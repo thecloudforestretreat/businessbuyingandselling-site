@@ -3,8 +3,11 @@ export async function onRequest() {
     "User-agent: *\nDisallow: /\n",
     {
       headers: {
-        "Content-Type": "text/plain",
-        "Cache-Control": "no-store"
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "0",
+        "X-Robots-From": "pages-function"
       }
     }
   );
