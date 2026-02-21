@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/assets/css/header.css">
 
   <!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
-  <script src="/assets/js/head.js"></script>
+  <script src="/assets/js/head.js" defer></script>
 </head>
 
 <body>
@@ -193,25 +193,19 @@
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
-  <!-- Page specific behavior (keeps your notify form behavior and smooth scroll) -->
   <script>
     (function () {
-      // Smooth scroll helper for data-scroll buttons
       document.addEventListener("click", function (e) {
         var target = e.target && e.target.closest ? e.target.closest("[data-scroll]") : null;
         if (!target) return;
-
         var sel = target.getAttribute("data-scroll");
         if (!sel) return;
-
         var dest = document.querySelector(sel);
         if (!dest) return;
-
         e.preventDefault();
         dest.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
-      // Placeholder notify form behavior (no backend yet)
       var form = document.getElementById("notifyForm");
       var note = document.getElementById("formNote");
 
@@ -220,12 +214,10 @@
           e.preventDefault();
           var email = form.querySelector('input[name="email"]');
           var value = email ? String(email.value || "").trim() : "";
-
           if (!value) {
             note.textContent = "Please enter an email address.";
             return;
           }
-
           note.textContent = "Thanks. You are on the list (placeholder). Wire this to a real service later.";
           form.reset();
         });
