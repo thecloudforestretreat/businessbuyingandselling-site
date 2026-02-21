@@ -18,6 +18,7 @@
 
   <!-- Page-only CSS (keeps your coming soon layout) -->
   <style>
+
     /* Page-scoped layout polish for the temporary homepage (does not touch global header/footer styles) */
     .bbas-home {
       background: linear-gradient(180deg, rgba(96,165,250,0.10) 0%, rgba(255,255,255,0.0) 260px);
@@ -263,15 +264,157 @@
       .bbas-home .lede { max-width: 100%; }
       .bbas-home .hero-media img { height: 200px; }
     }
-  </style>
+  
+
+/* --- Temporary homepage polish (page-scoped) --- */
+.page { background: var(--bbas-bg, #FAFAFA); }
+
+.bbas-hero-banner{
+  position: relative;
+  width: min(1120px, calc(100% - 40px));
+  margin: 18px auto 0;
+  height: 220px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(18,38,59,.72), rgba(18,38,59,.25)),
+    url("assets/images/bbas_homepage_hero_01.jpg") center/cover no-repeat;
+  box-shadow: 0 14px 40px rgba(17,24,39,.10);
+  border: 1px solid rgba(229,231,235,.70);
+}
+.bbas-hero-banner__scrim{
+  position:absolute; inset:0;
+  background: radial-gradient(800px 260px at 20% 40%, rgba(96,165,250,.22), rgba(0,0,0,0));
+}
+@media (max-width: 720px){
+  .bbas-hero-banner{ height: 160px; width: calc(100% - 28px); margin-top: 12px; border-radius: 16px; }
+}
+
+/* Make the main grid feel intentional */
+.hero-grid{
+  width: min(1120px, calc(100% - 40px));
+  margin: 18px auto 44px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 24px;
+}
+@media (max-width: 900px){
+  .hero-grid{ grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; width: calc(100% - 28px); }
+}
+
+.hero-card, .form-card{
+  border-radius: 18px;
+  border: 1px solid rgba(229,231,235,.85);
+  box-shadow: 0 12px 32px rgba(17,24,39,.08);
+}
+
+/* Value list: stop the stray 1/2/3/4 lines and align everything */
+.value-list{ margin-top: 18px; display: grid; gap: 12px; }
+.value{
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.value-icon{
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: 10px;
+  background: rgba(96,165,250,.18);
+  border: 1px solid rgba(96,165,250,.35);
+  color: #2563EB;
+  font-weight: 800;
+  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.value h3{ margin: 0; font-size: 16px; }
+.value p{ margin: 4px 0 0; color: #6B7280; }
+
+/* Tag chips: consistent and readable */
+.tagline{
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tagline .tag{
+  background: #FFFFFF;
+  border: 1px solid rgba(229,231,235,.95);
+  color: #1F2937;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* Form polish */
+.form-card h2{ margin-bottom: 6px; }
+.form-card .help{ margin-bottom: 14px; color: #6B7280; }
+
+.field{
+  border-radius: 14px;
+  border: 1px solid rgba(229,231,235,.95);
+  background: #FFFFFF;
+  padding: 12px 12px;
+  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
+}
+.field:focus{
+  outline: none;
+  border-color: rgba(37,99,235,.55);
+  box-shadow: 0 0 0 4px rgba(96,165,250,.30);
+}
+
+.btn{
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #2563EB, #1E40AF);
+  color: #FFFFFF;
+  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: .01em;
+  padding: 14px 18px;
+  box-shadow: 0 10px 24px rgba(37,99,235,.28);
+  cursor: pointer;
+}
+.btn:hover{ filter: brightness(1.03); transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+.btn:focus{ outline: none; box-shadow: 0 0 0 4px rgba(96,165,250,.34), 0 10px 24px rgba(37,99,235,.22); }
+
+@media (max-width: 720px){
+  .form-card{ padding: 18px; }
+  .form-grid{ gap: 12px; }
+}
+
+/* Tighten excessive whitespace before footer on mobile */
+@media (max-width: 720px){
+  main.page{ padding-bottom: 10px; }
+}
+
+/* Include fallbacks */
+.include-fallback{
+  width: min(1120px, calc(100% - 40px));
+  margin: 8px auto 0;
+  font-size: 13px;
+  color: #6B7280;
+}
+
+
+</style>
 </head>
 
 <body class="bbas-home">
   <!-- Global header injects here -->
   <div id="siteHeader"></div>
-  <div id="headerFallback" class="include-fallback">Header did not load yet.</div>
+  <div id="headerFallback" class="include-fallback" hidden>Header failed to load.</div>
+  <div id="headerFallback" class="include-fallback"></div>
 
   <main class="page">
+
+  <section class="bbas-hero-banner" aria-hidden="true">
+    <div class="bbas-hero-banner__scrim"></div>
+  </section>
+
     <div class="container grid">
       <section class="hero-card" aria-label="Coming soon overview">
         <div class="kicker">
@@ -333,11 +476,11 @@
           <div class="row">
             <div class="field">
               <label for="firstName">First Name</label>
-              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required autocapitalize="words" autocorrect="off" spellcheck="false">
             </div>
             <div class="field">
               <label for="lastName">Last Name</label>
-              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required autocapitalize="words" autocorrect="off" spellcheck="false">
             </div>
           </div>
 
@@ -348,7 +491,7 @@
             </div>
             <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="Optional" type="tel" autocomplete="tel" placeholder="Optional">
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Optional" maxlength="14" class="field" />
             </div>
           </div>
 
@@ -388,6 +531,7 @@
 
   <!-- Global footer injects here -->
   <div id="siteFooter"></div>
+  <div id="footerFallback" class="include-fallback" hidden>Footer failed to load.</div>
   <div id="footerFallback" class="include-fallback">Footer did not load yet.</div>
 
   <!-- Inject includes, then bind site behavior -->
@@ -483,5 +627,34 @@
       });
     })();
   </script>
+
+<script>
+(function() {
+  // Phone formatting: (123) 456-7890
+  var phone = document.getElementById('phone');
+  if (phone) {
+    phone.addEventListener('input', function() {
+      var digits = phone.value.replace(/\D/g, '').slice(0, 10);
+      var out = '';
+      if (digits.length > 0) out = '(' + digits.slice(0, 3);
+      if (digits.length >= 4) out += ') ' + digits.slice(3, 6);
+      if (digits.length >= 7) out += '-' + digits.slice(6, 10);
+      phone.value = out;
+    });
+  }
+
+  // Include fallback visibility: if header/footer stay empty, show message
+  function ensureIncludes() {
+    var header = document.getElementById('siteHeader');
+    var footer = document.getElementById('siteFooter');
+    var headerFallback = document.getElementById('headerFallback');
+    var footerFallback = document.getElementById('footerFallback');
+    if (header && headerFallback && header.innerHTML.trim() === '') headerFallback.hidden = false;
+    if (footer && footerFallback && footer.innerHTML.trim() === '') footerFallback.hidden = false;
+  }
+  window.setTimeout(ensureIncludes, 1500);
+})();
+</script>
+
 </body>
 </html>
