@@ -17,179 +17,281 @@
   <script src="/assets/js/head.js" defer></script>
 
   <!-- Page-only CSS (keeps your coming soon layout) -->
-  <style>    .bbas-comingsoon .page { padding: 42px 0 70px; }
-    .bbas-comingsoon .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 26px; align-items: start; }
-    .bbas-comingsoon .hero-card{
-      background:#ffffff;
-      border:1px solid #E5E7EB;
-      border-radius:16px;
-      padding:28px;
-      box-shadow:0 10px 28px rgba(17,24,39,0.06);
-      overflow:hidden;
-      position:relative;
-    }
-    .bbas-comingsoon .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(900px 300px at 10% 0%, rgba(96,165,250,0.25), transparent 60%),
-        radial-gradient(900px 300px at 95% 20%, rgba(37,99,235,0.18), transparent 60%);
-      pointer-events:none;
-    }
-    .bbas-comingsoon .hero-card > *{ position:relative; }
-    .bbas-comingsoon .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:13px;
-      color:#6B7280;
-      background:#F3F4F6;
-      border:1px solid #E5E7EB;
-      padding:8px 12px;
-      border-radius:999px;
-      margin-bottom:18px;
-    }
-    .bbas-comingsoon .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:#F97316;
-      box-shadow:0 0 0 4px rgba(249,115,22,0.18);
-    }
-    .bbas-comingsoon .bbas-comingsoon h1{
-      font-family:"Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:42px;
-      line-height:1.12;
-      margin:0 0 14px;
-      letter-spacing:-0.02em;
-      color:#111827;
-      max-width:18ch;
-    }
-    .bbas-comingsoon .subhead{ font-size:18px; color:#6B7280; max-width:60ch; margin-bottom:18px; }
-    .bbas-comingsoon .bbas-comingsoon .value-list{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:18px 0; }
-    .bbas-comingsoon .value{
-      background:#FAFAFA;
-      border:1px solid #E5E7EB;
-      border-radius:12px;
-      padding:12px;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .bbas-comingsoon .value-icon{
-      width:30px;height:30px;border-radius:10px;
-      background:#EAF2FF;
-      border:1px solid #D7E6FF;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      flex:0 0 auto;
-      color:#2563EB;
-      font-weight:700;
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    .bbas-comingsoon .value h3{
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:14px;
-      margin:0 0 2px;
-      color:#111827;
-    }
-    .bbas-comingsoon .value p{ font-size:13px; color:#6B7280; margin:0; }
-    .bbas-comingsoon .trust{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-    .bbas-comingsoon .pill{
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:12px;
-      color:#6B7280;
-      background:#ffffff;
-      border:1px solid #E5E7EB;
-      padding:8px 10px;
-      border-radius:999px;
-    }
-    .bbas-comingsoon .form-card{
-      background:#ffffff;
-      border:1px solid #E5E7EB;
-      border-radius:16px;
-      padding:22px;
-      box-shadow:0 10px 28px rgba(17,24,39,0.06);
-    }
-    .bbas-comingsoon .form-title{
-      font-family:"Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:20px;
-      margin:0 0 6px;
-      color:#111827;
-    }
-    .bbas-comingsoon .form-subtitle{ font-size:14px; color:#6B7280; margin:0 0 14px; }
-    .bbas-comingsoon .bbas-comingsoon .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
-    .bbas-comingsoon .row-1{ grid-template-columns:1fr; }
-    .bbas-comingsoon .field{ display:flex; flex-direction:column; gap:6px; }
-    .bbas-comingsoon label{
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:12px;
-      font-weight:600;
-      color:#111827;
-    }
-    .bbas-comingsoon input, .bbas-comingsoon select, .bbas-comingsoon textarea{
-      font-family:"Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size:14px;
-      padding:12px;
-      border-radius:12px;
-      border:1px solid #E5E7EB;
-      background:#FAFAFA;
-      outline:none;
-      transition:border-color 120ms ease, background 120ms ease;
-    }
-    .bbas-comingsoon input:focus, .bbas-comingsoon select:focus, .bbas-comingsoon textarea:focus{ border-color:#BFD6FF; background:#ffffff; }
-    .bbas-comingsoon textarea{ min-height:96px; resize:vertical; }
-    .bbas-comingsoon .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:12px;
-      padding:12px 14px;
-      border:1px solid transparent;
-      cursor:pointer;
-      font-family:"DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight:700;
-      font-size:14px;
-      width:100%;
-      background:#2563EB;
-      color:#ffffff;
-    }
-    .bbas-comingsoon .btn:hover{ background:#60A5FA; }
-    .bbas-comingsoon .fineprint{ margin-top:10px; font-size:12px; color:#6B7280; }
-    .bbas-comingsoon .status{
-      display:none;
-      margin-top:12px;
-      border-radius:12px;
-      padding:10px 12px;
-      font-size:13px;
-      border:1px solid #E5E7EB;
-      background:#FAFAFA;
-      color:#6B7280;
-    }
-    .bbas-comingsoon .status.success{
-      display:block;
-      border-color: rgba(34, 197, 94, 0.35);
-      background: rgba(34, 197, 94, 0.10);
-      color:#166534;
-    }
-    .bbas-comingsoon .status.error{
-      display:block;
-      border-color: rgba(239, 68, 68, 0.35);
-      background: rgba(239, 68, 68, 0.10);
-      color:#7F1D1D;
-    }
+  <style>
+/* Page-only layout tuning for the temporary homepage.
+   Keeps global header/footer untouched and avoids global CSS conflicts. */
 
-    @media (max-width: 980px){
-    .bbas-comingsoon .bbas-comingsoon .grid{ grid-template-columns:1fr; }
-    .bbas-comingsoon .bbas-comingsoon h1{ font-size:36px; }
-    }
-    @media (max-width: 560px){
-    .bbas-comingsoon .bbas-comingsoon .row{ grid-template-columns:1fr; }
-    .bbas-comingsoon .bbas-comingsoon .hero-card, .bbas-comingsoon .form-card{ padding:18px; }
-    .bbas-comingsoon .bbas-comingsoon .value-list{ grid-template-columns:1fr; }
-    }
-  </style>
+:root{
+  --bbas-navy:#1B263B;
+  --bbas-navy-2:#111827;
+  --bbas-blue:#2563EB;
+  --bbas-sky:#60A5FA;
+  --bbas-text:#1F2937;
+  --bbas-muted:#6B7280;
+  --bbas-border:#E5E7EB;
+  --bbas-bg:#FAFAFA;
+  --bbas-card:#FFFFFF;
+  --bbas-shadow: 0 20px 50px rgba(17,24,39,.10), 0 2px 10px rgba(17,24,39,.06);
+}
+
+main.bbas-comingsoon{
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(96,165,250,.22), rgba(96,165,250,0) 55%),
+    linear-gradient(180deg, rgba(96,165,250,.10), rgba(96,165,250,0) 60%),
+    var(--bbas-bg);
+  padding: clamp(18px, 3.5vw, 44px) 16px 72px;
+}
+
+.bbas-comingsoon .page{
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.bbas-comingsoon .grid{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.bbas-comingsoon .left{
+  display: grid;
+  gap: 14px;
+}
+
+.bbas-comingsoon .badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--bbas-border);
+  background: rgba(255,255,255,.75);
+  border-radius: 999px;
+  color: var(--bbas-muted);
+  font-size: 13px;
+  line-height: 1;
+  width: fit-content;
+}
+
+.bbas-comingsoon .badge:before{
+  content:"";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #F97316; /* Warning accent from palette */
+  box-shadow: 0 0 0 4px rgba(249,115,22,.18);
+}
+
+.bbas-comingsoon h1{
+  margin: 0;
+  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--bbas-text);
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.12;
+}
+
+.bbas-comingsoon p.lead{
+  margin: 0;
+  color: var(--bbas-muted);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+.bbas-comingsoon .hero-card{
+  background: var(--bbas-card);
+  border: 1px solid var(--bbas-border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--bbas-shadow);
+}
+
+.bbas-comingsoon .bullets{
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bbas-comingsoon .bullet{
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--bbas-border);
+  background: rgba(250,250,250,.65);
+}
+
+.bbas-comingsoon .bullet .num{
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(37,99,235,.10);
+  color: var(--bbas-blue);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.bbas-comingsoon .bullet b{
+  display: block;
+  color: var(--bbas-text);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.bbas-comingsoon .bullet span{
+  color: var(--bbas-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.bbas-comingsoon .tags{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.bbas-comingsoon .tag{
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--bbas-border);
+  background: rgba(255,255,255,.85);
+  color: var(--bbas-muted);
+  font-size: 12px;
+}
+
+.bbas-comingsoon .form-card{
+  background: var(--bbas-card);
+  border: 1px solid var(--bbas-border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--bbas-shadow);
+}
+
+.bbas-comingsoon .form-title{
+  margin: 0 0 6px;
+  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--bbas-text);
+}
+
+.bbas-comingsoon .form-sub{
+  margin: 0 0 14px;
+  color: var(--bbas-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bbas-comingsoon form{
+  margin: 0;
+}
+
+.bbas-comingsoon .row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.bbas-comingsoon .row.row-1{
+  grid-template-columns: 1fr;
+}
+
+.bbas-comingsoon label{
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bbas-text);
+  margin: 0 0 6px;
+}
+
+.bbas-comingsoon input,
+.bbas-comingsoon select,
+.bbas-comingsoon textarea{
+  width: 100%;
+  font-family: Montserrat, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--bbas-border);
+  background: #fff;
+  color: var(--bbas-text);
+  outline: none;
+}
+
+.bbas-comingsoon textarea{
+  min-height: 110px;
+  resize: vertical;
+}
+
+.bbas-comingsoon input:focus,
+.bbas-comingsoon select:focus,
+.bbas-comingsoon textarea:focus{
+  border-color: rgba(37,99,235,.45);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+}
+
+.bbas-comingsoon .btn{
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--bbas-blue);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform .08s ease, filter .12s ease;
+}
+
+.bbas-comingsoon .btn:hover{ filter: brightness(1.03); }
+.bbas-comingsoon .btn:active{ transform: translateY(1px); }
+
+.bbas-comingsoon .fineprint{
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--bbas-muted);
+  line-height: 1.45;
+}
+
+/* Mobile: stack, tighten, keep the form easy to complete */
+@media (max-width: 980px){
+  .bbas-comingsoon .grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .bbas-comingsoon .row{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small mobile: reduce card padding */
+@media (max-width: 480px){
+  .bbas-comingsoon .hero-card,
+  .bbas-comingsoon .form-card{
+    padding: 14px;
+    border-radius: 16px;
+  }
+  .bbas-comingsoon .bullet{
+    padding: 10px;
+  }
+}
+</style>
 </head>
 
 <body class="bbas-comingsoon">
