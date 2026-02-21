@@ -732,3 +732,10 @@ p{ margin:0 0 14px; color:var(--muted); }
     padding-top: 8px;
   }
 }
+
+/* Footer social icons – final size */
+.bbas-footer-social img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
