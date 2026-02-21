@@ -1,20 +1,28 @@
 <header class="bbas-header" data-bbas-header>
-  <div class="container bbas-header-inner">
+  <div class="bbas-header__inner">
     <a class="bbas-brand" href="/" aria-label="Business Buying and Selling home">
-      <img class="bbas-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying and Selling">
+      <img
+        class="bbas-brand__logo"
+        src="/assets/images/logo_square_transparent.png"
+        alt="Business Buying and Selling"
+        width="220"
+        height="64"
+        loading="eager"
+        decoding="async"
+      >
     </a>
 
     <nav class="bbas-nav" aria-label="Primary">
-      <a href="/">Home</a>
-      <a href="/sell-your-business/">Sell Your Business</a>
-      <a href="/buy-a-business/">Buy A Business</a>
-      <a href="/listings/">Listings</a>
-      <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
+      <a class="bbas-nav__link" href="/">Home</a>
+      <a class="bbas-nav__link" href="/sell-your-business/">Sell Your Business</a>
+      <a class="bbas-nav__link" href="/buy-a-business/">Buy A Business</a>
+      <a class="bbas-nav__link" href="/listings/">Listings</a>
+      <a class="bbas-nav__link" href="/about/">About</a>
+      <a class="bbas-nav__link" href="/contact/">Contact</a>
     </nav>
 
     <button
-      class="bbas-nav-toggle"
+      class="bbas-hamburger"
       type="button"
       aria-label="Open menu"
       aria-expanded="false"
@@ -24,14 +32,14 @@
     </button>
   </div>
 
-  <div class="bbas-mobile-nav" data-bbas-mobile-nav hidden>
-    <div class="container bbas-mobile-inner">
-      <a href="/" data-bbas-nav-close>Home</a>
-      <a href="/sell-your-business/" data-bbas-nav-close>Sell Your Business</a>
-      <a href="/buy-a-business/" data-bbas-nav-close>Buy A Business</a>
-      <a href="/listings/" data-bbas-nav-close>Listings</a>
-      <a href="/about/" data-bbas-nav-close>About</a>
-      <a href="/contact/" data-bbas-nav-close>Contact</a>
+  <div class="bbas-mobile" data-bbas-mobile-nav hidden>
+    <div class="bbas-mobile__inner" role="dialog" aria-label="Mobile menu">
+      <a class="bbas-mobile__link" href="/" data-bbas-nav-close>Home</a>
+      <a class="bbas-mobile__link" href="/sell-your-business/" data-bbas-nav-close>Sell Your Business</a>
+      <a class="bbas-mobile__link" href="/buy-a-business/" data-bbas-nav-close>Buy A Business</a>
+      <a class="bbas-mobile__link" href="/listings/" data-bbas-nav-close>Listings</a>
+      <a class="bbas-mobile__link" href="/about/" data-bbas-nav-close>About</a>
+      <a class="bbas-mobile__link" href="/contact/" data-bbas-nav-close>Contact</a>
     </div>
   </div>
 </header>
