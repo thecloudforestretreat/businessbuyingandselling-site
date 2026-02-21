@@ -27,7 +27,12 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Global CSS -->
+  <!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Montserrat:wght@400;500;600&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
+
+<!-- Global CSS -->
   <link rel="stylesheet" href="/assets/css/site.css">
   <link rel="stylesheet" href="/assets/css/header.css">
 
@@ -241,7 +246,43 @@
 
   <!-- Includes then site behavior -->
   <script src="/assets/js/includes.js"></script>
-  <script src="/assets/js/site.js"></script>
+  <script>
+  (function () {
+    function inject(targetId, url) {
+      var el = document.getElementById(targetId);
+      if (!el) return Promise.resolve(false);
+      return fetch(url, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.text() : ""; })
+        .then(function (html) {
+          if (!html) return false;
+          el.innerHTML = html;
+          return true;
+        })
+        .catch(function () { return false; });
+    }
+
+    // If includes.js is missing or throws, this still injects header and footer.
+    // It is safe even when includes.js succeeds because it only runs if containers are empty.
+    function runFallback() {
+      var headerEl = document.getElementById("siteHeader");
+      var footerEl = document.getElementById("siteFooter");
+      var headerEmpty = headerEl && !headerEl.children.length && !headerEl.textContent.trim();
+      var footerEmpty = footerEl && !footerEl.children.length && !footerEl.textContent.trim();
+      if (!headerEmpty && !footerEmpty) return;
+
+      if (headerEmpty) inject("siteHeader", "/assets/includes/header.html");
+      if (footerEmpty) inject("siteFooter", "/assets/includes/footer.html");
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runFallback);
+    } else {
+      runFallback();
+    }
+  })();
+</script>
+
+<script src="/assets/js/site.js"></script>
 
   <!-- Page behavior: smooth scroll + placeholder notify form -->
   <script>
