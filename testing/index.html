@@ -1,296 +1,660 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<!-- Per-page settings (used by /assets/js/head.js) -->
-<meta content="Business Buying and Selling | Coming Soon" name="page:title"/>
-<meta content="A marketplace and resource for buying and selling established businesses. Join the early access list." name="page:description"/>
-<meta content="/assets/images/og-image.jpg" name="page:image"/>
-<!-- Global CSS -->
-<link href="/assets/css/site.css" rel="stylesheet"/>
-<link href="/assets/css/header.css" rel="stylesheet"/>
-<!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
-<script defer="" src="/assets/js/head.js"></script>
-<!-- Page-only CSS (keeps your coming soon layout) -->
-<style>/* Page-specific enhancements (does not touch global site.css) */
-:root{
-  --bbas-charcoal:#1F2937;
-  --bbas-muted:#6B7280;
-  --bbas-border:#E5E7EB;
-  --bbas-soft:#FAFAFA;
-  --bbas-blue:#2563EB;
-  --bbas-sky:#60A5FA;
-  --bbas-navy:#1B263B;
-  --bbas-midnight:#111827;
-  --bbas-amber:#F59E0B;
-}
-.page{
-  padding: 34px 0 70px;
-  background: radial-gradient(1200px 600px at 20% 0%, rgba(96,165,250,0.12), transparent 55%),
-              radial-gradient(900px 500px at 80% 20%, rgba(37,99,235,0.10), transparent 60%),
-              linear-gradient(#ffffff, #ffffff);
-}
-.skip-link{
-  position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;
-}
-.skip-link:focus{
-  left:16px;top:16px;width:auto;height:auto;
-  padding:10px 12px;background:#fff;border:1px solid var(--bbas-border);
-  border-radius:10px;z-index:9999;
-  box-shadow:0 10px 28px rgba(17,24,39,0.12);
-}
-.hero-shell{
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: var(--bbas-midnight);
-  box-shadow: 0 18px 54px rgba(17,24,39,0.18);
-}
-.hero-media{
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(90deg, rgba(17,24,39,0.86) 0%, rgba(17,24,39,0.70) 46%, rgba(17,24,39,0.86) 100%),
-    url('assets/images/bbas_homepage_hero_03.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: saturate(1.05) contrast(1.05);
-}
-.hero-inner{ position:relative; padding: 28px 28px 26px; }
-.hero-kicker{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,0.85); font-size: 13px; letter-spacing: 0.2px; }
-.hero-dot{ width:10px;height:10px;border-radius:999px; background: var(--bbas-amber); box-shadow: 0 0 0 6px rgba(245,158,11,0.16); }
-.hero-title{ margin: 12px 0 10px; color:#fff; font-size: clamp(34px, 3.4vw, 52px); line-height: 1.02; letter-spacing: -0.03em; }
-.hero-sub{ margin:0; color: rgba(255,255,255,0.84); font-size: 15px; line-height: 1.45; max-width: 62ch; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Buying and Selling</title>
 
-.dock{ margin-top: 22px; display:grid; grid-template-columns: 1.12fr 0.88fr; gap: 18px; align-items: start; }
-.card{ background:#fff; border:1px solid rgba(229,231,235,0.95); border-radius:18px; padding: 22px; box-shadow: 0 16px 42px rgba(17,24,39,0.10); }
-.card h2{ margin:0; font-size: 28px; line-height: 1.08; letter-spacing: -0.02em; color: var(--bbas-charcoal); }
-.card p{ margin:10px 0 0; color: var(--bbas-muted); }
+  <!-- Global styles -->
+  <link rel="stylesheet" href="assets/css/site.css" />
 
-.pills{ display:flex; gap:10px; flex-wrap:wrap; margin: 2px 0 12px; }
-.pill{ display:inline-flex; align-items:center; gap:8px; padding: 8px 12px; border-radius:999px; border:1px solid rgba(229,231,235,0.9); background: rgba(250,250,250,0.92); font-size: 12px; color:#374151; }
-.pill .dot{ width:8px;height:8px;border-radius:999px; background: var(--bbas-amber); box-shadow: 0 0 0 6px rgba(245,158,11,0.14); }
+  <!-- Page-specific styling (kept self-contained; does not touch header/footer styles) -->
+  <style>
+    :root{
+      --bbas-navy:#18263B;
+      --bbas-midnight:#111827;
+      --bbas-blue:#2563EB;
+      --bbas-sky:#60A5FA;
+      --bbas-amber:#F59E0B;
+      --bbas-text:#1F2937;
+      --bbas-muted:#6B7280;
+      --bbas-border:#E5E7EB;
+      --bbas-bg:#FAFAFA;
+      --bbas-card:#FFFFFF;
+      --bbas-shadow: 0 24px 60px rgba(17,24,39,.16);
+      --bbas-shadow-soft: 0 14px 32px rgba(17,24,39,.10);
+      --bbas-radius: 18px;
+    }
 
-.feature{ display:grid; grid-template-columns: 34px 1fr; gap:12px; padding: 10px 10px; border-radius: 14px; }
-.feature:hover{ background: rgba(96,165,250,0.10); }
-.badge{ width: 28px;height:28px;border-radius: 12px; display:grid;place-items:center; background: rgba(96,165,250,0.22); border:1px solid rgba(96,165,250,0.35); color: #1D4ED8; font-weight: 800; font-size: 13px; }
-.feature b{ display:block; color: var(--bbas-charcoal); font-size: 14px; }
-.feature span{ display:block; color: var(--bbas-muted); font-size: 13px; line-height: 1.25; margin-top: 3px; }
+    /* Layout wrapper */
+    .page-wrap{
+      background: var(--bbas-bg);
+      color: var(--bbas-text);
+    }
+    .container{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
 
-.chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 14px; }
-.chip{ display:inline-flex; padding: 6px 10px; border-radius: 999px; font-size: 12px; color:#374151; background: rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.22); }
+    /* HERO */
+    .hero{
+      padding: 38px 0 26px;
+    }
+    .heroShell{
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--bbas-midnight);
+      box-shadow: var(--bbas-shadow);
+    }
+    .heroMedia{
+      position:absolute; inset:0;
+      background-image: url("assets/images/bbas_homepage_hero_03.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1200px 520px at 18% 30%, rgba(37,99,235,.35), rgba(17,24,39,.00) 60%),
+        linear-gradient(180deg, rgba(17,24,39,.55), rgba(17,24,39,.92));
+    }
+    .heroInner{
+      position: relative;
+      padding: 34px 34px 26px;
+    }
+    .heroKicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.88);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      margin-bottom: 10px;
+    }
+    .heroDot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: var(--bbas-amber);
+      box-shadow: 0 0 0 5px rgba(245,158,11,.18);
+      flex: 0 0 auto;
+    }
+    .heroTitle{
+      color: #fff;
+      font-size: clamp(32px, 4.2vw, 52px);
+      line-height: 1.05;
+      margin: 0 0 10px;
+      max-width: 720px;
+      letter-spacing: -0.02em;
+    }
+    .heroSub{
+      color: rgba(255,255,255,.82);
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 640px;
+    }
 
-.form-title{ font-size: 20px; margin: 0; color: var(--bbas-charcoal); }
-.form-help{ margin: 6px 0 14px; color: var(--bbas-muted); font-size: 13px; line-height:1.35; }
-.form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.form-row{ display:flex; flex-direction:column; gap: 6px; }
-label{ font-size:12px; font-weight:700; color:#374151; }
-input, select, textarea{ width:100%; border:1px solid rgba(229,231,235,0.95); border-radius: 14px; padding: 12px 12px; font-size: 14px; outline:none; background:#fff; }
-textarea{ min-height: 110px; resize: vertical; }
-input:focus, select:focus, textarea:focus{ border-color: rgba(37,99,235,0.55); box-shadow: 0 0 0 4px rgba(37,99,235,0.12); }
-button.primary{ margin-top: 14px; width:100%; border:none; border-radius: 999px; padding: 14px 16px; font-weight: 800; font-size: 14px; color:#fff; background: linear-gradient(90deg, var(--bbas-blue), #1D4ED8); box-shadow: 0 18px 44px rgba(37,99,235,0.22); cursor:pointer; transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease; }
-button.primary:hover{ transform: translateY(-1px); filter: brightness(1.03); box-shadow: 0 22px 52px rgba(37,99,235,0.26); }
-button.primary:active{ transform: translateY(0px); }
-.fineprint{ margin-top: 10px; color: var(--bbas-muted); font-size: 12px; line-height:1.35; }
+    /* Main two cards */
+    .heroGrid{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+    .card{
+      background: var(--bbas-card);
+      border: 1px solid rgba(229,231,235,.9);
+      border-radius: 18px;
+      box-shadow: var(--bbas-shadow-soft);
+    }
+    .valueCard{
+      padding: 24px 24px 20px;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--bbas-border);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(250,250,250,.92);
+      font-size: 12px;
+      font-weight: 700;
+      color: #111827;
+    }
+    .pill .dot{
+      width: 9px; height: 9px;
+      border-radius: 999px;
+      background: var(--bbas-amber);
+      box-shadow: 0 0 0 5px rgba(245,158,11,.16);
+    }
+    .valueTitle{
+      font-size: 34px;
+      line-height: 1.08;
+      margin: 14px 0 10px;
+      letter-spacing: -0.02em;
+    }
+    .valueLead{
+      margin: 0 0 16px;
+      color: var(--bbas-muted);
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 58ch;
+    }
 
-.container{ max-width: 1120px; margin: 0 auto; padding: 0 22px; }
-.hero-shell{ max-width: 1120px; margin: 18px auto 0; }
-.footer-spacer{ height: 18px; }
+    .benefits{
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .benefit{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .badge{
+      width: 28px; height: 28px;
+      border-radius: 12px;
+      background: rgba(96,165,250,.16);
+      border: 1px solid rgba(96,165,250,.35);
+      color: var(--bbas-blue);
+      font-weight: 900;
+      display:flex; align-items:center; justify-content:center;
+      font-size: 13px;
+      flex: 0 0 auto;
+    }
+    .benefit h4{
+      margin: 0;
+      font-size: 14px;
+      font-weight: 900;
+      color: #111827;
+    }
+    .benefit p{
+      margin: 2px 0 0;
+      font-size: 12.5px;
+      color: var(--bbas-muted);
+      line-height: 1.45;
+    }
 
-@media (max-width: 980px){
-  .dock{ grid-template-columns: 1fr; }
-  .hero-inner{ padding: 24px 18px 22px; }
-  .hero-shell{ border-radius: 18px; margin-top: 14px; }
-  .card{ padding: 18px; }
-}
-@media (max-width: 640px){
-  .page{ padding: 18px 0 46px; }
-  .hero-title{ font-size: 38px; }
-  .form-grid{ grid-template-columns: 1fr; }
-  .dock{ gap: 14px; }
-}
-</style>
+    .tags{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .tag{
+      border: 1px solid var(--bbas-border);
+      background: #F9FAFB;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    /* Form card */
+    .formCard{
+      padding: 22px;
+    }
+    .formCard h3{
+      margin: 0 0 6px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .formCard .sub{
+      margin: 0 0 14px;
+      color: var(--bbas-muted);
+      font-size: 12.8px;
+      line-height: 1.5;
+    }
+
+    form .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    label{
+      display:block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #111827;
+      margin: 10px 0 6px;
+    }
+    .field{
+      width: 100%;
+      border: 1px solid #E6EAF2;
+      background: #fff;
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 13px;
+      outline: none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .field:focus{
+      border-color: rgba(37,99,235,.55);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.14);
+    }
+    textarea.field{
+      min-height: 96px;
+      resize: vertical;
+    }
+    .cta{
+      margin-top: 14px;
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 14px;
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: .2px;
+      background:
+        linear-gradient(180deg, rgba(37,99,235,1), rgba(30,83,211,1));
+      box-shadow: 0 18px 40px rgba(37,99,235,.25);
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .cta:hover{ transform: translateY(-1px); filter: saturate(1.06); box-shadow: 0 22px 46px rgba(37,99,235,.28); }
+    .cta:active{ transform: translateY(0px); }
+
+    .fineprint{
+      margin: 10px 0 0;
+      color: var(--bbas-muted);
+      font-size: 11.5px;
+      line-height: 1.45;
+    }
+
+    /* Restored info sections */
+    .section{
+      padding: 30px 0;
+    }
+    .sectionTitle{
+      margin: 0 0 6px;
+      font-size: 26px;
+      letter-spacing: -0.015em;
+    }
+    .sectionLead{
+      margin: 0 0 16px;
+      color: var(--bbas-muted);
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 70ch;
+    }
+    .cards3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .infoCard{
+      padding: 16px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid rgba(229,231,235,.95);
+      box-shadow: 0 10px 22px rgba(17,24,39,.08);
+    }
+    .infoCard h4{
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .infoCard p{
+      margin: 0;
+      color: var(--bbas-muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .step{
+      background:#fff;
+      border: 1px solid rgba(229,231,235,.95);
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 22px rgba(17,24,39,.08);
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .stepNum{
+      width: 30px; height: 30px; border-radius: 12px;
+      background: rgba(96,165,250,.16);
+      border: 1px solid rgba(96,165,250,.35);
+      color: var(--bbas-blue);
+      font-weight: 900;
+      display:flex; align-items:center; justify-content:center;
+      flex: 0 0 auto;
+    }
+    .step h4{ margin: 0; font-size: 13px; font-weight: 900; }
+    .step p{ margin: 2px 0 0; color: var(--bbas-muted); font-size: 12.5px; line-height: 1.45; }
+
+    .callouts{
+      display:grid;
+      gap: 14px;
+    }
+    .calloutRow{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #FBFCFF);
+      border: 1px solid rgba(229,231,235,.95);
+      box-shadow: 0 12px 26px rgba(17,24,39,.08);
+    }
+    .calloutRow strong{ display:block; font-size: 18px; letter-spacing: -0.01em; }
+    .calloutRow span{ display:block; color: var(--bbas-muted); font-size: 12.8px; margin-top: 4px; }
+    .inlineForm{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      width: min(520px, 100%);
+    }
+    .inlineForm input{
+      flex:1;
+      min-width: 0;
+    }
+    .inlineForm button{
+      white-space: nowrap;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 900;
+      background: var(--bbas-blue);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(37,99,235,.22);
+    }
+
+    .contactRow{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(229,231,235,.95);
+      box-shadow: 0 12px 26px rgba(17,24,39,.08);
+    }
+    .contactRow strong{ display:block; font-size: 22px; letter-spacing: -0.01em; }
+    .contactRow span{ display:block; color: var(--bbas-muted); font-size: 12.8px; margin-top: 4px; }
+
+    .ghostBtn{
+      border: 1px solid rgba(37,99,235,.28);
+      background: rgba(37,99,235,.07);
+      color: var(--bbas-blue);
+      font-weight: 900;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    /* Make footer sit closer on mobile, without affecting footer styling */
+    .page-bottom-pad{ padding-bottom: 16px; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .heroInner{ padding: 26px 18px 18px; }
+      .valueTitle{ font-size: 30px; }
+      .cards3{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      form .grid2{ grid-template-columns: 1fr; }
+      .calloutRow{ flex-direction: column; align-items: stretch; }
+      .inlineForm{ width: 100%; }
+      .section{ padding: 22px 0; }
+      .hero{ padding: 22px 0 14px; }
+    }
+  </style>
+
+  <script src="assets/js/includes.js" defer></script>
 </head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<!-- Global header injects here -->
-<div id="siteHeader"></div>
-<main class="page" id="main">
-<section aria-label="Hero" class="hero-shell">
-<div aria-label="Business Buying and Selling hero image" class="hero-media" role="img"></div>
-<div class="hero-inner">
-<div class="hero-kicker"><span aria-hidden="true" class="hero-dot"></span><span>Launching soon. Built for buyers, sellers, and deal professionals.</span></div>
-<h1 class="hero-title">Buy and sell established businesses with confidence.</h1>
-<p class="hero-sub">Clean listings, practical education, and a smoother path from discovery to close.</p>
-<div class="dock">
-<div class="card" id="valueCard"><section aria-label="Coming soon overview" class="hero-card-inner">
-<div class="kicker">
-<span aria-hidden="true" class="dot"></span>
-          Launching soon. Built for buyers, sellers, and deal professionals.
-        </div>
-<h1>Business Buying and Selling, made clearer.</h1>
-<p class="subhead">
-          A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.
-        </p>
-<div class="value-list">
-<div class="value">
-<div class="value-icon">1</div>
-<div>
-<h3>Curated listings</h3>
-<p>Clear summaries and consistent deal information, so you can evaluate faster.</p>
-</div>
-</div>
-<div class="value">
-<div class="value-icon">2</div>
-<div>
-<h3>Buyer readiness</h3>
-<p>Guides and checklists that help you move from interest to action.</p>
-</div>
-</div>
-<div class="value">
-<div class="value-icon">3</div>
-<div>
-<h3>Seller support</h3>
-<p>Position your business properly with practical preparation steps.</p>
-</div>
-</div>
-<div class="value">
-<div class="value-icon">4</div>
-<div>
-<h3>Trust and transparency</h3>
-<p>We prioritize credible deal details and a professional experience.</p>
-</div>
-</div>
-</div>
-<div aria-label="Trust cues" class="trust">
-<span class="pill">Private deals and main street</span>
-<span class="pill">Education-first approach</span>
-<span class="pill">Built for serious buyers and sellers</span>
-</div>
-</section></div>
-<div class="card" id="formCard"><aside aria-label="Join early access list" class="form-card">
-<div class="form-title">Join the early access list</div>
-<div class="form-subtitle">Tell us what you are looking for and we will notify you when we launch.</div>
-<form action="https://formspree.io/f/REPLACE_ME" id="joinForm" method="POST">
-<div class="row">
-<div class="field">
-<label for="firstName">First Name</label>
-<input autocomplete="given-name" id="firstName" name="firstName" required="" type="text"/>
-</div>
-<div class="field">
-<label for="lastName">Last Name</label>
-<input autocomplete="family-name" id="lastName" name="lastName" required="" type="text"/>
-</div>
-</div>
-<div class="row">
-<div class="field">
-<label for="email">Email</label>
-<input autocomplete="email" id="email" name="email" required="" type="email"/>
-</div>
-<div class="field">
-<label for="phone">Phone</label>
-<input autocomplete="tel" id="phone" inputmode="tel" name="phone" placeholder="Optional" type="tel"/>
-</div>
-</div>
-<div class="row row-1">
-<div class="field">
-<label for="interest">Interested In</label>
-<select id="interest" name="interest" required="">
-<option disabled="" selected="" value="">Select one</option>
-<option value="Buying">Buying</option>
-<option value="Selling">Selling</option>
-<option value="Both">Both</option>
-</select>
-</div>
-</div>
-<div class="row row-1">
-<div class="field">
-<label for="message">Message</label>
-<textarea autocapitalize="sentences" id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
-</div>
-</div>
-<input name="source" type="hidden" value="production-coming-soon"/>
-<input name="site" type="hidden" value="businessbuyingandselling.com"/>
-<button class="primary" type="submit">Request Early Access</button>
-<div aria-live="polite" class="status" id="statusBox" role="status"></div>
-<div class="fineprint">
-            By submitting, you agree we may contact you about launch updates. No spam.
+
+<body class="page-wrap">
+  <!-- Header mount -->
+  <div id="siteHeader" data-include="assets/includes/header.html"></div>
+
+  <main id="main" class="page-bottom-pad">
+    <section class="hero">
+      <div class="container">
+        <div class="heroShell" aria-label="Homepage hero">
+          <div class="heroMedia" role="img" aria-label="Business Buying and Selling hero image"></div>
+          <div class="heroOverlay" aria-hidden="true"></div>
+
+          <div class="heroInner">
+            <div class="heroKicker"><span class="heroDot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
+            <h1 class="heroTitle">Buy and sell established businesses with confidence.</h1>
+            <p class="heroSub">Clean listings, practical education, and a smoother path from discovery to close.</p>
+
+            <div class="heroGrid" style="margin-top:18px;">
+              <!-- Left: value -->
+              <div class="card valueCard">
+                <div class="pill"><span class="dot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
+                <h2 class="valueTitle">Business Buying and Selling, made clearer.</h2>
+                <p class="valueLead">A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.</p>
+
+                <div class="benefits" aria-label="Key benefits">
+                  <div class="benefit">
+                    <div class="badge">1</div>
+                    <div>
+                      <h4>Curated listings</h4>
+                      <p>Clear summaries and consistent deal information, so you can evaluate faster.</p>
+                    </div>
+                  </div>
+
+                  <div class="benefit">
+                    <div class="badge">2</div>
+                    <div>
+                      <h4>Buyer readiness</h4>
+                      <p>Guides and checklists that help you move from interest to action.</p>
+                    </div>
+                  </div>
+
+                  <div class="benefit">
+                    <div class="badge">3</div>
+                    <div>
+                      <h4>Seller support</h4>
+                      <p>Position your business properly with practical preparation steps.</p>
+                    </div>
+                  </div>
+
+                  <div class="benefit">
+                    <div class="badge">4</div>
+                    <div>
+                      <h4>Trust and transparency</h4>
+                      <p>We prioritize credible deal details and a professional experience.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tags" aria-label="Positioning tags">
+                  <span class="tag">Private deals and main street</span>
+                  <span class="tag">Education-first approach</span>
+                  <span class="tag">Built for serious buyers and sellers</span>
+                </div>
+              </div>
+
+              <!-- Right: form -->
+              <div class="card formCard">
+                <h3>Join the early access list</h3>
+                <p class="sub">Tell us what you are looking for and we will notify you when we launch.</p>
+
+                <form id="earlyAccessForm" action="#" method="post" novalidate>
+                  <div class="grid2">
+                    <div>
+                      <label for="firstName">First Name</label>
+                      <input id="firstName" name="firstName" class="field" type="text" autocomplete="given-name" autocapitalize="words" />
+                    </div>
+                    <div>
+                      <label for="lastName">Last Name</label>
+                      <input id="lastName" name="lastName" class="field" type="text" autocomplete="family-name" autocapitalize="words" />
+                    </div>
+                  </div>
+
+                  <label for="email">Email</label>
+                  <input id="email" name="email" class="field" type="email" autocomplete="email" placeholder="you@company.com" />
+
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" class="field" type="tel" inputmode="tel" autocomplete="tel" placeholder="Optional" />
+
+                  <label for="interest">Interested In</label>
+                  <select id="interest" name="interest" class="field">
+                    <option value="" selected>Select one</option>
+                    <option value="buy">Buying a business</option>
+                    <option value="sell">Selling a business</option>
+                    <option value="broker">Broker / advisor</option>
+                    <option value="investor">Investor</option>
+                    <option value="other">Other</option>
+                  </select>
+
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" class="field" autocapitalize="sentences" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+
+                  <button class="cta" type="submit">Request Early Access</button>
+                  <p class="fineprint">By submitting, you agree we may contact you about launch updates. No spam.</p>
+                </form>
+              </div>
+            </div><!-- /heroGrid -->
+          </div><!-- /heroInner -->
+        </div><!-- /heroShell -->
+      </div><!-- /container -->
+    </section>
+
+    <!-- Restored information content (kept; improved presentation) -->
+    <section class="section">
+      <div class="container">
+        <h2 class="sectionTitle">Built for buyers, sellers, and brokers.</h2>
+        <p class="sectionLead">The goal is a cleaner marketplace with better information and fewer time-wasters.</p>
+
+        <div class="cards3" aria-label="Key pillars">
+          <div class="infoCard">
+            <h4>Clear listing structure</h4>
+            <p>Standard fields that matter. Revenue, cash flow, margin, and deal terms in one place.</p>
           </div>
-</form>
-</aside></div>
-</div>
-</div>
-</section>
-<div aria-hidden="true" class="footer-spacer"></div>
-</main>
-<!-- Global footer injects here -->
-<div id="siteFooter"></div>
-<!-- Includes then site behavior -->
-<script src="/assets/js/includes.js"></script>
-<script src="/assets/js/site.js"></script>
-<!-- Page-only form behavior -->
-<script>
-    (function () {
-      var form = document.getElementById('joinForm');
-      var statusBox = document.getElementById('statusBox');
-      if (!form || !statusBox) return;
+          <div class="infoCard">
+            <h4>Fast screening</h4>
+            <p>Filter by category, size, and basic qualification signals so you spend time on the right deals.</p>
+          </div>
+          <div class="infoCard">
+            <h4>Guides and resources</h4>
+            <p>Simple explainers for buyers and sellers, plus broker best practices and checklists.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
+    <section class="section" style="background: linear-gradient(180deg, rgba(96,165,250,.08), rgba(250,250,250,0)); border-top: 1px solid rgba(229,231,235,.9); border-bottom: 1px solid rgba(229,231,235,.9);">
+      <div class="container">
+        <h2 class="sectionTitle">How it works</h2>
+        <p class="sectionLead">A straightforward flow that scales when you are ready.</p>
 
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        statusBox.className = 'status';
-        statusBox.textContent = '';
+        <div class="steps" aria-label="How it works steps">
+          <div class="step">
+            <div class="stepNum">1</div>
+            <div>
+              <h4>Publish listings</h4>
+              <p>Start with clean, consistent listing data.</p>
+            </div>
+          </div>
 
-        try {
-          var formData = new FormData(form);
-          var res = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
+          <div class="step">
+            <div class="stepNum">2</div>
+            <div>
+              <h4>Qualify interest</h4>
+              <p>Capture intent and basics before deeper diligence.</p>
+            </div>
+          </div>
 
-          if (res.ok) {
-            form.reset();
-            statusBox.className = 'status success';
-            statusBox.textContent = 'Thanks. You are on the list. We will reach out with launch updates.';
-            return;
-          }
+          <div class="step">
+            <div class="stepNum">3</div>
+            <div>
+              <h4>Move to diligence</h4>
+              <p>Share docs and next steps when both sides are aligned.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          statusBox.className = 'status error';
-          statusBox.textContent = 'Submission failed. Please try again in a moment.';
-        } catch (err) {
-          statusBox.className = 'status error';
-          statusBox.textContent = 'Network error. Please try again in a moment.';
-        }
+    <section class="section">
+      <div class="container callouts">
+        <div class="calloutRow" aria-label="Launch updates callout">
+          <div>
+            <strong>Get launch updates</strong>
+            <span>No spam. Just major milestones and early access invites.</span>
+          </div>
+
+          <div class="inlineForm" role="group" aria-label="Email updates">
+            <input class="field" type="email" placeholder="you@company.com" aria-label="Email address" />
+            <button type="button">Notify me</button>
+          </div>
+        </div>
+
+        <div class="contactRow" aria-label="Contact callout">
+          <div>
+            <strong>Contact</strong>
+            <span>For now, update this section with your preferred contact method.</span>
+          </div>
+          <button class="ghostBtn" type="button" onclick="window.location.href='mailto:info@businessbuyingandselling.com';">Email us</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer mount -->
+  <div id="siteFooter" data-include="assets/includes/footer.html"></div>
+
+  <script>
+    // Phone formatting: (xxx) xxx-xxxx
+    (function(){
+      const phone = document.getElementById('phone');
+      if (!phone) return;
+
+      function digitsOnly(v){ return (v||'').replace(/\D/g,'').slice(0,10); }
+
+      function formatUS(d){
+        if (!d) return '';
+        if (d.length < 4) return d;
+        if (d.length < 7) return '(' + d.slice(0,3) + ') ' + d.slice(3);
+        return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+      }
+
+      // Keep placeholder "Optional" until user types
+      phone.addEventListener('input', () => {
+        const d = digitsOnly(phone.value);
+        phone.value = formatUS(d);
       });
+
+      // Basic "autocapitalize" for desktop: title-case first/last name on blur
+      function titleCaseWords(s){
+        return (s||'').split(/\s+/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      }
+      const fn = document.getElementById('firstName');
+      const ln = document.getElementById('lastName');
+      [fn, ln].forEach(el => {
+        if (!el) return;
+        el.addEventListener('blur', () => { el.value = titleCaseWords(el.value.trim()); });
+      });
+
+      // Prevent actual submit (temporary page)
+      const form = document.getElementById('earlyAccessForm');
+      if (form){
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert('Thanks. We will reach out when early access opens.');
+        });
+      }
     })();
   </script>
-<script>
-(function(){
-  var phone = document.querySelector("input[name='phone']");
-  if (phone){
-    phone.addEventListener("input", function(){
-      var digits = (phone.value || "").replace(/\D/g,"").slice(0,10);
-      var out = digits;
-      if (digits.length > 6) out = "(" + digits.slice(0,3) + ") " + digits.slice(3,6) + "-" + digits.slice(6);
-      else if (digits.length > 3) out = "(" + digits.slice(0,3) + ") " + digits.slice(3);
-      phone.value = out;
-    });
-  }
-
-  var headerHost = document.getElementById("siteHeader");
-  if (headerHost){
-    var killFallback = function(){
-      var nodes = headerHost.querySelectorAll("*");
-      nodes.forEach(function(n){
-        if ((n.textContent || "").trim().toLowerCase() === "header did not load yet.") n.remove();
-      });
-    };
-    killFallback();
-    new MutationObserver(function(){ killFallback(); }).observe(headerHost, {childList:true, subtree:true});
-  }
-})();
-</script></body>
+</body>
 </html>
