@@ -1,660 +1,415 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Per-page settings (used by /assets/js/head.js) -->
-  <meta name="page:title" content="Business Buying and Selling | Coming Soon">
-  <meta name="page:description" content="A marketplace and resource for buying and selling established businesses. Join the early access list.">
-  <meta name="page:image" content="/assets/images/og-image.jpg">
+  <title>Business Buying and Selling | Buy and sell established businesses with confidence</title>
+  <meta name="description" content="Business Buying and Selling is building a marketplace and resource hub for buyers, sellers, and brokers. Clean listings, clear numbers, and a smoother path from discovery to close." />
+  <link rel="canonical" href="https://businessbuyingandselling.com/" />
 
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css">
-  <link rel="stylesheet" href="/assets/css/header.css">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Business Buying and Selling" />
+  <meta property="og:title" content="Buy and sell established businesses with confidence" />
+  <meta property="og:description" content="A marketplace and resource hub for established business deals. Clean listings, clear numbers, and a smoother path from discovery to close." />
+  <meta property="og:url" content="https://businessbuyingandselling.com/" />
+  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_02.jpg" />
 
-  <!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
-  <script src="/assets/js/head.js"></script>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Buy and sell established businesses with confidence" />
+  <meta name="twitter:description" content="Clean listings, clear numbers, and a smoother path from discovery to close." />
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_02.jpg" />
 
-  <!-- Page-only CSS (keeps your coming soon layout) -->
+  <link rel="stylesheet" href="assets/css/site.css" />
+
   <style>
-
-    /* Page-scoped layout polish for the temporary homepage (does not touch global header/footer styles) */
-    .bbas-home {
-      background: linear-gradient(180deg, rgba(96,165,250,0.10) 0%, rgba(255,255,255,0.0) 260px);
+    :root{
+      --bbas-primary-navy:#1B263B;
+      --bbas-soft-midnight:#111827;
+      --bbas-marketplace-blue:#2563EB;
+      --bbas-light-sky:#60A5FA;
+      --bbas-soft-white:#FAFAFA;
+      --bbas-light-ui:#E5E7EB;
+      --bbas-text:#1F2937;
+      --bbas-muted:#6B7280;
+      --bbas-amber:#F59E0B;
+      --bbas-radius:18px;
+      --bbas-shadow:0 18px 40px rgba(17,24,39,.12);
     }
 
-    .bbas-home .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 20px 56px;
+    /* Page baseline */
+    body{background:var(--bbas-soft-white);}
+
+    /* Accessible skip link: keep it, but only visible on keyboard focus */
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:12px;
+      z-index:9999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid var(--bbas-light-ui);
+      color:var(--bbas-text);
+      box-shadow:0 12px 28px rgba(17,24,39,.14);
+    }
+    .skip-link:focus{left:12px;}
+
+    /* Layout wrapper */
+    .bbas-page{
+      width:min(1180px, calc(100% - 48px));
+      margin:0 auto;
+      padding:22px 0 64px;
     }
 
-    /* Clear separation from header */
-    .bbas-home .top-gap {
-      height: 14px;
+    /* Hero band */
+    .bbas-hero{
+      position:relative;
+      border-radius:calc(var(--bbas-radius) + 6px);
+      overflow:hidden;
+      background:var(--bbas-soft-midnight);
+      box-shadow:var(--bbas-shadow);
+      min-height:280px;
+    }
+    .bbas-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(1200px 420px at 18% 18%, rgba(37,99,235,.35), transparent 60%),
+        linear-gradient(90deg, rgba(17,24,39,.82), rgba(17,24,39,.35));
+      z-index:1;
+    }
+    .bbas-hero img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.02) contrast(1.02);
+      transform:scale(1.02);
+    }
+    .bbas-heroContent{
+      position:relative;
+      z-index:2;
+      padding:26px 26px 120px;
+      color:#fff;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:24px;
+    }
+    .bbas-heroKicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-size:14px;
+      color:rgba(255,255,255,.88);
+      margin:0 0 12px;
+    }
+    .bbas-dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:var(--bbas-amber);
+      box-shadow:0 0 0 6px rgba(245,158,11,.18);
+    }
+    .bbas-heroTitle{
+      margin:0;
+      font-size:44px;
+      letter-spacing:-0.02em;
+      line-height:1.06;
+      max-width:720px;
+    }
+    .bbas-heroSub{
+      margin:10px 0 0;
+      max-width:720px;
+      color:rgba(255,255,255,.88);
+      font-size:16px;
+      line-height:1.5;
     }
 
-    /* Wide hero image (optional). Recommended: 2000x650 (or 1600x520) JPG/WEBP */
-    .bbas-home .hero-media {
-      border: 1px solid #E5E7EB;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #0B1220;
-      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
-      margin: 0 0 18px;
+    /* Cards row overlaps hero */
+    .bbas-cards{
+      display:grid;
+      grid-template-columns: 1.15fr .95fr;
+      gap:22px;
+      margin-top:-86px;
+      position:relative;
+      z-index:3;
     }
-
-    .bbas-home .hero-media img {
-      width: 100%;
-      height: clamp(180px, 20vw, 260px);
-      object-fit: cover;
-      display: block;
-      opacity: 0.92;
+    .bbas-card{
+      background:#fff;
+      border:1px solid rgba(229,231,235,.9);
+      border-radius:var(--bbas-radius);
+      box-shadow:0 14px 34px rgba(17,24,39,.10);
+      overflow:hidden;
     }
+    .bbas-cardInner{padding:26px;}
 
-    .bbas-home .hero-media .hero-overlay {
-      position: relative;
+    /* Left value prop card */
+    .bbas-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(229,231,235,.9);
+      background:rgba(250,250,250,.92);
+      color:var(--bbas-text);
+      font-size:13px;
+      margin-bottom:14px;
     }
-
-    .bbas-home .grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      align-items: start;
+    .bbas-h1{
+      margin:0;
+      font-size:40px;
+      line-height:1.08;
+      letter-spacing:-0.02em;
+      color:var(--bbas-text);
     }
+    .bbas-lede{margin:12px 0 0; color:var(--bbas-muted); font-size:15px; line-height:1.55; max-width:60ch;}
 
-    .bbas-home .card {
-      background: #FFFFFF;
-      border: 1px solid #E5E7EB;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-      overflow: hidden;
+    .bbas-valueList{margin:18px 0 0; padding:0; list-style:none; display:grid; gap:12px;}
+    .bbas-valueItem{display:grid; grid-template-columns: 28px 1fr; gap:12px; align-items:flex-start;}
+    .bbas-badge{
+      width:24px;
+      height:24px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:rgba(96,165,250,.18);
+      border:1px solid rgba(96,165,250,.35);
+      color:var(--bbas-marketplace-blue);
+      font-weight:800;
+      font-size:12px;
+      line-height:1;
+      margin-top:2px;
     }
+    .bbas-valueTitle{margin:0; font-weight:800; color:var(--bbas-text); font-size:14px;}
+    .bbas-valueDesc{margin:2px 0 0; color:var(--bbas-muted); font-size:13px; line-height:1.45;}
 
-    .bbas-home .card.pad {
-      padding: 22px 22px 18px;
-    }
-
-    .bbas-home .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      border: 1px solid #E5E7EB;
-      padding: 8px 12px;
-      color: #1F2937;
-      background: #FAFAFA;
-      font-size: 13px;
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-
-    .bbas-home .badge .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 99px;
-      background: #F97316;
-      box-shadow: 0 0 0 4px rgba(249,115,22,0.14);
-    }
-
-    .bbas-home h1 {
-      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: clamp(34px, 3.2vw, 48px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin: 0 0 12px;
-      color: #1F2937;
-    }
-
-    .bbas-home .lede {
-      font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.55;
-      color: #4B5563;
-      margin: 0 0 18px;
-      max-width: 54ch;
-    }
-
-    .bbas-home .value-list {
-      display: grid;
-      gap: 14px;
-      margin: 12px 0 14px;
-    }
-
-    .bbas-home .value {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 12px;
-      align-items: start;
-    }
-
-    .bbas-home .value-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 13px;
-      color: #2563EB;
-      background: rgba(96,165,250,0.18);
-      border: 1px solid rgba(37,99,235,0.20);
-      margin-top: 2px;
-      flex: 0 0 auto;
-    }
-
-    .bbas-home .value h3 {
-      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: 15px;
-      margin: 0 0 4px;
-      color: #111827;
-    }
-
-    .bbas-home .value p {
-      margin: 0;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: #6B7280;
-    }
-
-    .bbas-home .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .bbas-home .tag {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid #E5E7EB;
-      background: #FFFFFF;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12.5px;
-      color: #374151;
-      white-space: nowrap;
+    .bbas-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+    .bbas-tag{
+      display:inline-flex;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(250,250,250,.94);
+      color:#4B5563;
+      font-size:12px;
+      line-height:1;
     }
 
     /* Form card */
-    .bbas-home .form-head h2 {
-      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: 20px;
-      margin: 0 0 6px;
-      color: #111827;
+    .bbas-formHead{margin:0; font-size:18px; font-weight:900; color:var(--bbas-text);}
+    .bbas-formSub{margin:8px 0 0; color:var(--bbas-muted); font-size:13px; line-height:1.45;}
+
+    .bbas-form{margin-top:16px; display:grid; gap:12px;}
+    .bbas-row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .bbas-field label{display:block; font-size:12px; font-weight:800; color:#374151; margin:0 0 6px;}
+    .bbas-input, .bbas-select, .bbas-textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(229,231,235,.95);
+      background:#fff;
+      color:var(--bbas-text);
+      font-size:14px;
+      outline:none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .bbas-textarea{min-height:96px; resize:vertical;}
+    .bbas-input:focus, .bbas-select:focus, .bbas-textarea:focus{border-color:rgba(37,99,235,.55); box-shadow:0 0 0 5px rgba(37,99,235,.14);}
+
+    .bbas-cta{
+      margin-top:10px;
+      width:100%;
+      padding:14px 14px;
+      border-radius:999px;
+      border:1px solid rgba(37,99,235,.25);
+      background:linear-gradient(180deg, rgba(37,99,235,1), rgba(37,99,235,.88));
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.01em;
+      cursor:pointer;
+      box-shadow:0 18px 36px rgba(37,99,235,.26);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .bbas-cta:hover{transform:translateY(-1px); box-shadow:0 22px 42px rgba(37,99,235,.30);}
+    .bbas-cta:active{transform:translateY(0);}
+
+    .bbas-legal{margin:10px 0 0; color:var(--bbas-muted); font-size:12px; line-height:1.35;}
+
+    /* Reduce dead space before footer */
+    .bbas-afterCards{height:42px;}
+
+    @media (max-width: 980px){
+      .bbas-heroContent{padding:22px 20px 110px;}
+      .bbas-heroTitle{font-size:38px;}
+      .bbas-h1{font-size:34px;}
+      .bbas-cards{grid-template-columns:1fr; margin-top:-78px;}
+      .bbas-afterCards{height:28px;}
     }
 
-    .bbas-home .form-head p {
-      margin: 0 0 14px;
-      color: #6B7280;
-      line-height: 1.45;
-      font-size: 13.5px;
+    @media (max-width: 560px){
+      .bbas-page{width:calc(100% - 28px); padding:16px 0 44px;}
+      .bbas-hero{min-height:220px;}
+      .bbas-heroContent{padding:18px 16px 96px;}
+      .bbas-heroTitle{font-size:30px;}
+      .bbas-heroSub{font-size:14px;}
+      .bbas-cardInner{padding:18px;}
+      .bbas-h1{font-size:30px;}
+      .bbas-row2{grid-template-columns:1fr;}
+      .bbas-textarea{min-height:110px;}
+      .bbas-afterCards{height:18px;}
     }
+  </style>
 
-    .bbas-home form {
-      margin-top: 6px;
-    }
-
-    .bbas-home .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .bbas-home label {
-      font-size: 12px;
-      font-weight: 700;
-      color: #374151;
-      display: block;
-      margin: 10px 0 6px;
-    }
-
-    .bbas-home input,
-    .bbas-home select,
-    .bbas-home textarea {
-      width: 100%;
-      border: 1px solid #E5E7EB;
-      border-radius: 14px;
-      padding: 12px 12px;
-      font-size: 14px;
-      outline: none;
-      background: #FFFFFF;
-      color: #111827;
-    }
-
-    .bbas-home textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .bbas-home input:focus,
-    .bbas-home select:focus,
-    .bbas-home textarea:focus {
-      border-color: rgba(37,99,235,0.55);
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
-    }
-
-    .bbas-home .cta {
-      margin-top: 14px;
-      width: 100%;
-      border: 0;
-      border-radius: 16px;
-      padding: 14px 16px;
-      font-weight: 800;
-      font-size: 14px;
-      color: #FFFFFF;
-      background: #2563EB;
-      cursor: pointer;
-    }
-
-    .bbas-home .fineprint {
-      margin: 10px 0 0;
-      color: #6B7280;
-      font-size: 12.5px;
-      line-height: 1.35;
-    }
-
-    /* Reduce space before footer on mobile */
-    @media (max-width: 900px) {
-      .bbas-home .container { padding: 18px 16px 34px; }
-      .bbas-home .grid { grid-template-columns: 1fr; gap: 16px; }
-      .bbas-home .field-row { grid-template-columns: 1fr; }
-      .bbas-home h1 { font-size: 36px; }
-      .bbas-home .lede { max-width: 100%; }
-      .bbas-home .hero-media img { height: 200px; }
-    }
-  
-
-/* --- Temporary homepage polish (page-scoped) --- */
-.page { background: var(--bbas-bg, #FAFAFA); }
-
-.bbas-hero-banner{
-  position: relative;
-  width: min(1120px, calc(100% - 40px));
-  margin: 18px auto 0;
-  height: 220px;
-  border-radius: 18px;
-  overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(18,38,59,.72), rgba(18,38,59,.25)),
-    url("assets/images/bbas_homepage_hero_01.jpg") center/cover no-repeat;
-  box-shadow: 0 14px 40px rgba(17,24,39,.10);
-  border: 1px solid rgba(229,231,235,.70);
-}
-.bbas-hero-banner__scrim{
-  position:absolute; inset:0;
-  background: radial-gradient(800px 260px at 20% 40%, rgba(96,165,250,.22), rgba(0,0,0,0));
-}
-@media (max-width: 720px){
-  .bbas-hero-banner{ height: 160px; width: calc(100% - 28px); margin-top: 12px; border-radius: 16px; }
-}
-
-/* Make the main grid feel intentional */
-.hero-grid{
-  width: min(1120px, calc(100% - 40px));
-  margin: 18px auto 44px;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 24px;
-}
-@media (max-width: 900px){
-  .hero-grid{ grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; width: calc(100% - 28px); }
-}
-
-.hero-card, .form-card{
-  border-radius: 18px;
-  border: 1px solid rgba(229,231,235,.85);
-  box-shadow: 0 12px 32px rgba(17,24,39,.08);
-}
-
-/* Value list: stop the stray 1/2/3/4 lines and align everything */
-.value-list{ margin-top: 18px; display: grid; gap: 12px; }
-.value{
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 12px;
-  align-items: start;
-}
-.value-icon{
-  width: 28px; height: 28px;
-  display: grid; place-items: center;
-  border-radius: 10px;
-  background: rgba(96,165,250,.18);
-  border: 1px solid rgba(96,165,250,.35);
-  color: #2563EB;
-  font-weight: 800;
-  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1;
-  flex: 0 0 auto;
-}
-.value h3{ margin: 0; font-size: 16px; }
-.value p{ margin: 4px 0 0; color: #6B7280; }
-
-/* Tag chips: consistent and readable */
-.tagline{
-  margin-top: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.tagline .tag{
-  background: #FFFFFF;
-  border: 1px solid rgba(229,231,235,.95);
-  color: #1F2937;
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
-/* Form polish */
-.form-card h2{ margin-bottom: 6px; }
-.form-card .help{ margin-bottom: 14px; color: #6B7280; }
-
-.field{
-  border-radius: 14px;
-  border: 1px solid rgba(229,231,235,.95);
-  background: #FFFFFF;
-  padding: 12px 12px;
-  transition: box-shadow .15s ease, border-color .15s ease, transform .05s ease;
-}
-.field:focus{
-  outline: none;
-  border-color: rgba(37,99,235,.55);
-  box-shadow: 0 0 0 4px rgba(96,165,250,.30);
-}
-
-.btn{
-  appearance: none;
-  border: 0;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #2563EB, #1E40AF);
-  color: #FFFFFF;
-  font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: .01em;
-  padding: 14px 18px;
-  box-shadow: 0 10px 24px rgba(37,99,235,.28);
-  cursor: pointer;
-}
-.btn:hover{ filter: brightness(1.03); transform: translateY(-1px); }
-.btn:active{ transform: translateY(0); }
-.btn:focus{ outline: none; box-shadow: 0 0 0 4px rgba(96,165,250,.34), 0 10px 24px rgba(37,99,235,.22); }
-
-@media (max-width: 720px){
-  .form-card{ padding: 18px; }
-  .form-grid{ gap: 12px; }
-}
-
-/* Tighten excessive whitespace before footer on mobile */
-@media (max-width: 720px){
-  main.page{ padding-bottom: 10px; }
-}
-
-/* Include fallbacks */
-.include-fallback{
-  width: min(1120px, calc(100% - 40px));
-  margin: 8px auto 0;
-  font-size: 13px;
-  color: #6B7280;
-}
-
-
-</style>
+  <script defer src="assets/js/includes.js"></script>
 </head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<body class="bbas-home">
-  <!-- Global header injects here -->
-  <div id="siteHeader"></div>
-  <div id="headerFallback" class="include-fallback" hidden>Header failed to load.</div>
-  <div id="headerFallback" class="include-fallback"></div>
+  <div id="siteHeader" data-include="/assets/includes/header.html"></div>
 
-  <main class="page">
+  <main id="main" class="bbas-page">
 
-  <section class="bbas-hero-banner" aria-hidden="true">
-    <div class="bbas-hero-banner__scrim"></div>
-  </section>
-
-    <div class="container grid">
-      <section class="hero-card" aria-label="Coming soon overview">
-        <div class="kicker">
-          <span class="dot" aria-hidden="true"></span>
-          Launching soon. Built for buyers, sellers, and deal professionals.
+    <section class="bbas-hero" aria-label="Homepage hero">
+      <img src="assets/images/bbas_homepage_hero_02.jpg" alt="" loading="eager" />
+      <div class="bbas-heroContent">
+        <div>
+          <p class="bbas-heroKicker"><span class="bbas-dot" aria-hidden="true"></span>Launching soon. Built for buyers, sellers, and deal professionals.</p>
+          <h2 class="bbas-heroTitle">Buy and sell established businesses with confidence.</h2>
+          <p class="bbas-heroSub">Clean listings, practical education, and a smoother path from discovery to close.</p>
         </div>
+      </div>
+    </section>
 
-        <h1>Business Buying and Selling, made clearer.</h1>
-        <p class="subhead">
-          A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.
-        </p>
+    <section class="bbas-cards" aria-label="Primary content">
 
-        <div class="value-list">
-          <div class="value">
-            <div class="value-icon">1</div>
-            <div>
-              <h3>Curated listings</h3>
-              <p>Clear summaries and consistent deal information, so you can evaluate faster.</p>
-            </div>
-          </div>
+      <!-- Left: value prop (keep all original content, just structured) -->
+      <article class="bbas-card" aria-label="What we are building">
+        <div class="bbas-cardInner">
+          <div class="bbas-pill"><span class="bbas-dot" aria-hidden="true"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
+          <h1 class="bbas-h1">Business Buying and Selling, made clearer.</h1>
+          <p class="bbas-lede">A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.</p>
 
-          <div class="value">
-            <div class="value-icon">2</div>
-            <div>
-              <h3>Buyer readiness</h3>
-              <p>Guides and checklists that help you move from interest to action.</p>
-            </div>
-          </div>
+          <ul class="bbas-valueList">
+            <li class="bbas-valueItem">
+              <div class="bbas-badge" aria-hidden="true">1</div>
+              <div>
+                <p class="bbas-valueTitle">Curated listings</p>
+                <p class="bbas-valueDesc">Clear summaries and consistent deal information, so you can evaluate faster.</p>
+              </div>
+            </li>
+            <li class="bbas-valueItem">
+              <div class="bbas-badge" aria-hidden="true">2</div>
+              <div>
+                <p class="bbas-valueTitle">Buyer readiness</p>
+                <p class="bbas-valueDesc">Guides and checklists that help you move from interest to action.</p>
+              </div>
+            </li>
+            <li class="bbas-valueItem">
+              <div class="bbas-badge" aria-hidden="true">3</div>
+              <div>
+                <p class="bbas-valueTitle">Seller support</p>
+                <p class="bbas-valueDesc">Position your business properly with practical preparation steps.</p>
+              </div>
+            </li>
+            <li class="bbas-valueItem">
+              <div class="bbas-badge" aria-hidden="true">4</div>
+              <div>
+                <p class="bbas-valueTitle">Trust and transparency</p>
+                <p class="bbas-valueDesc">We prioritize credible deal details and a professional experience.</p>
+              </div>
+            </li>
+          </ul>
 
-          <div class="value">
-            <div class="value-icon">3</div>
-            <div>
-              <h3>Seller support</h3>
-              <p>Position your business properly with practical preparation steps.</p>
-            </div>
-          </div>
-
-          <div class="value">
-            <div class="value-icon">4</div>
-            <div>
-              <h3>Trust and transparency</h3>
-              <p>We prioritize credible deal details and a professional experience.</p>
-            </div>
+          <div class="bbas-tags" aria-label="Positioning tags">
+            <span class="bbas-tag">Private deals and main street</span>
+            <span class="bbas-tag">Education-first approach</span>
+            <span class="bbas-tag">Built for serious buyers and sellers</span>
           </div>
         </div>
+      </article>
 
-        <div class="trust" aria-label="Trust cues">
-          <span class="pill">Private deals and main street</span>
-          <span class="pill">Education-first approach</span>
-          <span class="pill">Built for serious buyers and sellers</span>
-        </div>
-      </section>
+      <!-- Right: early access form -->
+      <aside class="bbas-card" aria-label="Join the early access list">
+        <div class="bbas-cardInner">
+          <h3 class="bbas-formHead">Join the early access list</h3>
+          <p class="bbas-formSub">Tell us what you are looking for and we will notify you when we launch.</p>
 
-      <aside class="form-card" aria-label="Join early access list">
-        <div class="form-title">Join the early access list</div>
-        <div class="form-subtitle">Tell us what you are looking for and we will notify you when we launch.</div>
-
-        <form id="joinForm" method="POST" action="https://formspree.io/f/REPLACE_ME">
-          <div class="row">
-            <div class="field">
-              <label for="firstName">First Name</label>
-              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required autocapitalize="words" autocorrect="off" spellcheck="false">
+          <form class="bbas-form" action="#" method="post" novalidate>
+            <div class="bbas-row2">
+              <div class="bbas-field">
+                <label for="firstName">First Name</label>
+                <input id="firstName" class="bbas-input" name="firstName" type="text" placeholder="First name" autocomplete="given-name" autocapitalize="words" />
+              </div>
+              <div class="bbas-field">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" class="bbas-input" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" autocapitalize="words" />
+              </div>
             </div>
-            <div class="field">
-              <label for="lastName">Last Name</label>
-              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required autocapitalize="words" autocorrect="off" spellcheck="false">
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="field">
+            <div class="bbas-field">
               <label for="email">Email</label>
-              <input id="email" name="email" autocomplete="email" inputmode="email" type="email" autocomplete="email" required>
+              <input id="email" class="bbas-input" name="email" type="email" placeholder="you@company.com" autocomplete="email" inputmode="email" />
             </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Optional" maxlength="14" class="field" />
-            </div>
-          </div>
 
-          <div class="row row-1">
-            <div class="field">
+            <div class="bbas-field">
+              <label for="phone">Phone</label>
+              <input id="phone" class="bbas-input" name="phone" type="tel" placeholder="Optional" autocomplete="tel" inputmode="tel" />
+            </div>
+
+            <div class="bbas-field">
               <label for="interest">Interested In</label>
-              <select id="interest" name="interest" required>
-                <option value="" selected disabled>Select one</option>
-                <option value="Buying">Buying</option>
-                <option value="Selling">Selling</option>
-                <option value="Both">Both</option>
+              <select id="interest" class="bbas-select" name="interest">
+                <option value="" selected>Select one</option>
+                <option value="buyer">Buying a business</option>
+                <option value="seller">Selling a business</option>
+                <option value="broker">Broker / advisor</option>
+                <option value="investor">Investor</option>
               </select>
             </div>
-          </div>
 
-          <div class="row row-1">
-            <div class="field">
+            <div class="bbas-field">
               <label for="message">Message</label>
-              <textarea id="message" name="message" autocapitalize="sentences" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+              <textarea id="message" class="bbas-textarea" name="message" placeholder="What type of business, budget range, industry, or timeline?" autocapitalize="sentences"></textarea>
             </div>
-          </div>
 
-          <input type="hidden" name="source" value="production-coming-soon">
-          <input type="hidden" name="site" value="businessbuyingandselling.com">
-
-          <button class="btn" type="submit">Request Early Access</button>
-
-          <div id="statusBox" class="status" role="status" aria-live="polite"></div>
-
-          <div class="fineprint">
-            By submitting, you agree we may contact you about launch updates. No spam.
-          </div>
-        </form>
+            <button class="bbas-cta" type="submit">Request Early Access</button>
+            <p class="bbas-legal">By submitting, you agree we may contact you about launch updates. No spam.</p>
+          </form>
+        </div>
       </aside>
-    </div>
+
+    </section>
+
+    <div class="bbas-afterCards" aria-hidden="true"></div>
+
   </main>
 
-  <!-- Global footer injects here -->
-  <div id="siteFooter"></div>
-  <div id="footerFallback" class="include-fallback" hidden>Footer failed to load.</div>
-  <div id="footerFallback" class="include-fallback">Footer did not load yet.</div>
-
-  <!-- Inject includes, then bind site behavior -->
-  <script src="/assets/js/includes.js"></script>
-  <script src="/assets/js/site.js"></script>
+  <div id="siteFooter" data-include="/assets/includes/footer.html"></div>
 
   <script>
-    // Diagnostics: show fallback if includes do not inject within 1 second
-    (function () {
-      var headerFallback = document.getElementById("headerFallback");
-      var footerFallback = document.getElementById("footerFallback");
+    // Format phone as (XXX) XXX-XXXX while typing.
+    (function(){
+      var phone = document.getElementById('phone');
+      if(!phone) return;
 
-      setTimeout(function () {
-        var headerHasContent = document.getElementById("siteHeader") && document.getElementById("siteHeader").innerHTML.trim().length > 0;
-        var footerHasContent = document.getElementById("siteFooter") && document.getElementById("siteFooter").innerHTML.trim().length > 0;
-
-        if (!headerHasContent && headerFallback) headerFallback.style.display = "block";
-        if (!footerHasContent && footerFallback) footerFallback.style.display = "block";
-      }, 1000);
-
-      document.addEventListener("includes:loaded", function () {
-        console.log("Includes loaded: header and footer injected.");
-      });
-    })();
-  </script>
-
-  <!-- Page-only form behavior -->
-  <script>
-    (function () {
-      var form = document.getElementById('joinForm');
-      var statusBox = document.getElementById('statusBox');
-      if (!form || !statusBox) return;
-
-      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
-
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        statusBox.className = 'status';
-        statusBox.textContent = '';
-
-        try {
-          var formData = new FormData(form);
-          var res = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (res.ok) {
-            form.reset();
-            statusBox.className = 'status success';
-            statusBox.textContent = 'Thanks. You are on the list. We will reach out with launch updates.';
-            return;
-          }
-
-          statusBox.className = 'status error';
-          statusBox.textContent = 'Submission failed. Please try again in a moment.';
-        } catch (err) {
-          statusBox.className = 'status error';
-          statusBox.textContent = 'Network error. Please try again in a moment.';
-        }
-      });
-    })();
-  </script>
-
-  <script>
-    (function () {
-      function formatPhone(value) {
-        var digits = (value || "").replace(/\D/g, "").slice(0, 10);
-        var a = digits.slice(0, 3);
-        var b = digits.slice(3, 6);
-        var c = digits.slice(6, 10);
-        if (digits.length <= 3) return a;
-        if (digits.length <= 6) return "(" + a + ") " + b;
-        return "(" + a + ") " + b + "-" + c;
+      function onlyDigits(v){ return (v || '').replace(/\D/g,'').slice(0,10); }
+      function formatUS(d){
+        if(d.length <= 3) return d;
+        if(d.length <= 6) return '(' + d.slice(0,3) + ') ' + d.slice(3);
+        return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var phone = document.querySelector('input[name="phone"]');
-        if (phone) {
-          phone.addEventListener("input", function () {
-            var start = phone.selectionStart || 0;
-            var before = phone.value;
-            phone.value = formatPhone(phone.value);
-            // Best-effort caret stabilization
-            if (before.length < phone.value.length) start += 1;
-            phone.setSelectionRange(start, start);
-          });
-          phone.addEventListener("blur", function () {
-            phone.value = formatPhone(phone.value);
-          });
-        }
+      phone.addEventListener('input', function(){
+        var digits = onlyDigits(phone.value);
+        phone.value = formatUS(digits);
       });
     })();
   </script>
-
-<script>
-(function() {
-  // Phone formatting: (123) 456-7890
-  var phone = document.getElementById('phone');
-  if (phone) {
-    phone.addEventListener('input', function() {
-      var digits = phone.value.replace(/\D/g, '').slice(0, 10);
-      var out = '';
-      if (digits.length > 0) out = '(' + digits.slice(0, 3);
-      if (digits.length >= 4) out += ') ' + digits.slice(3, 6);
-      if (digits.length >= 7) out += '-' + digits.slice(6, 10);
-      phone.value = out;
-    });
-  }
-
-  // Include fallback visibility: if header/footer stay empty, show message
-  function ensureIncludes() {
-    var header = document.getElementById('siteHeader');
-    var footer = document.getElementById('siteFooter');
-    var headerFallback = document.getElementById('headerFallback');
-    var footerFallback = document.getElementById('footerFallback');
-    if (header && headerFallback && header.innerHTML.trim() === '') headerFallback.hidden = false;
-    if (footer && footerFallback && footer.innerHTML.trim() === '') footerFallback.hidden = false;
-  }
-  window.setTimeout(ensureIncludes, 1500);
-})();
-</script>
-
 </body>
 </html>
