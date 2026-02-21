@@ -4,16 +4,15 @@
    Design tokens (BBAS)
    ========================= */
 :root{
-  /* Brand palette */
-  --navy:#1B263B;        /* Primary Navy */
-  --midnight:#111827;    /* Soft Midnight */
-  --blue:#2563EB;        /* Marketplace Blue */
-  --sky:#60A5FA;         /* Light Sky Blue */
+  --navy:#1B263B;
+  --midnight:#111827;
+  --blue:#2563EB;
+  --sky:#60A5FA;
 
-  --text:#1F2937;        /* Charcoal Text */
-  --muted:#6B7280;       /* Muted Gray */
-  --border:#E5E7EB;      /* Light UI Gray */
-  --bg:#FAFAFA;          /* Soft White */
+  --text:#1F2937;
+  --muted:#6B7280;
+  --border:#E5E7EB;
+  --bg:#FAFAFA;
   --card:#FFFFFF;
 
   --shadow: 0 10px 28px rgba(17,24,39,0.08);
@@ -27,6 +26,7 @@
    ========================= */
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -45,33 +45,16 @@ a:hover{ text-decoration:underline; }
   padding:0 20px;
 }
 
-.skip-link{
-  position:absolute;
-  left:-999px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
-.skip-link:focus{
-  left:16px;
-  top:16px;
-  width:auto;
-  height:auto;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px 12px;
-  z-index:1000;
-}
-
-/* Headings */
+/* =========================
+   Headings
+   ========================= */
 h1,h2,h3{
   font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
   color:var(--midnight);
   line-height:1.15;
   margin:0 0 10px;
 }
+
 p{ margin:0 0 14px; color:var(--muted); }
 .muted{ color:var(--muted); }
 
@@ -90,169 +73,160 @@ p{ margin:0 0 14px; color:var(--muted); }
   font-size:14px;
   border:1px solid transparent;
   cursor:pointer;
-  white-space:nowrap;
 }
+
 .btn-primary{
   background:var(--blue);
   color:#fff;
 }
-.btn-primary:hover{ background:var(--sky); text-decoration:none; }
-.btn-ghost{
-  background:transparent;
-  border-color:var(--border);
-  color:var(--midnight);
+
+.btn-primary:hover{
+  background:var(--sky);
+  text-decoration:none;
 }
-.btn-ghost:hover{ background:#fff; text-decoration:none; }
+
 .btn-secondary{
   background:#fff;
   border-color:var(--border);
   color:var(--midnight);
 }
 
+.btn-ghost{
+  background:transparent;
+  border-color:var(--border);
+  color:var(--midnight);
+}
+
 /* =========================
-   Footer (global)
+   Footer (GLOBAL – FINAL)
    ========================= */
 .bbas-footer{
-  background: var(--midnight);
-  color: rgba(255,255,255,0.90);
+  background:var(--midnight);
+  color:rgba(255,255,255,0.9);
 }
-.bbas-footer a{ color: rgba(255,255,255,0.90); }
-.bbas-footer a:hover{ color:#fff; text-decoration:underline; }
+
+.bbas-footer a{
+  color:rgba(255,255,255,0.9);
+}
+
+.bbas-footer a:hover{
+  color:#fff;
+}
 
 .bbas-footer-top{
   display:grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items:start;
-  gap: 26px;
-  padding: 34px 0 18px;
+  grid-template-columns:1fr auto 1fr;
+  gap:26px;
+  padding:34px 0 18px;
 }
 
-/* Left */
+/* Brand */
 .bbas-footer-brand{
   display:flex;
-  align-items:flex-start;
   gap:14px;
-  min-width:0;
 }
+
 .bbas-footer-logo{
   width:56px;
   height:56px;
   border-radius:999px;
-  flex:0 0 auto;
 }
+
 .bbas-footer-title{
-  font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:"Poppins";
   font-size:18px;
   font-weight:700;
-  line-height:1.2;
-  margin: 2px 0 6px;
   color:#fff;
 }
+
 .bbas-footer-desc{
-  margin:0;
   max-width:44ch;
-  color: rgba(255,255,255,0.72);
+  color:rgba(255,255,255,0.72);
 }
 
-/* Center socials */
+/* Social icons – FINAL SIZE */
 .bbas-footer-social{
   display:flex;
-  align-items:center;
   justify-content:center;
-  gap: 18px;
-  padding-top: 8px;
-}
-.bbas-social-link{
-  display:inline-flex;
   align-items:center;
-  justify-content:center;
-  width:44px;
-  height:44px;
-  border-radius:999px;
+  gap:18px;
 }
-.bbas-social-link img{
-  width:32px; /* 1.5x-ish */
-  height:32px;
-  object-fit:contain;
-  filter: none;
-}
-.bbas-social-link:hover{ background: rgba(255,255,255,0.08); text-decoration:none; }
 
-/* Right links (two columns) */
+.bbas-footer-social img{
+  width:24px;
+  height:24px;
+  display:block;
+}
+
+/* Right links */
 .bbas-footer-links{
   display:flex;
   justify-content:flex-end;
 }
+
 .bbas-footer-linkcols{
   display:grid;
-  grid-template-columns: auto auto;
-  gap: 34px;
-  padding-top: 2px;
+  grid-template-columns:auto auto;
+  gap:34px;
 }
+
 .bbas-footer-col{
   display:flex;
   flex-direction:column;
-  gap: 10px;
+  gap:10px;
   text-align:right;
 }
+
 .bbas-footer-col a{
-  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:"DM Sans";
   font-weight:700;
   font-size:14px;
-  color: rgba(255,255,255,0.86);
 }
-.bbas-footer-col a:hover{ color:#fff; }
 
 /* Bottom */
-.bbas-footer-bottom{
-  padding: 0 0 22px;
-}
 .bbas-footer-rule{
   height:1px;
-  background: rgba(255,255,255,0.12);
-  margin: 0 0 14px;
+  background:rgba(255,255,255,0.12);
+  margin:14px 0;
 }
+
 .bbas-footer-copy{
   text-align:center;
-  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:600;
+  font-family:"DM Sans";
   font-size:13px;
-  color: rgba(255,255,255,0.72);
+  color:rgba(255,255,255,0.72);
 }
 
 /* =========================
    Responsive
    ========================= */
-@media (max-width: 980px){
+@media (max-width:980px){
   .bbas-footer-top{
-    grid-template-columns: 1fr;
-    text-align:left;
-    padding: 30px 0 16px;
+    grid-template-columns:1fr;
   }
-  .bbas-footer-social{ justify-content:flex-start; padding-top: 0; }
-  .bbas-footer-links{ justify-content:flex-start; }
-  .bbas-footer-col{ text-align:left; }
-  .bbas-footer-linkcols{ grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  .bbas-footer-links{
+    justify-content:flex-start;
+  }
+
+  .bbas-footer-col{
+    text-align:left;
+  }
 }
 
-@media (max-width: 560px){
-  .bbas-footer-linkcols{ grid-template-columns: 1fr; }
-  .bbas-footer-social{ gap: 14px; }
-  .bbas-social-link{ width:40px; height:40px; }
-  .bbas-social-link img{ width:30px; height:30px; }
+@media (max-width:560px){
+  .bbas-footer-linkcols{
+    grid-template-columns:1fr;
+  }
 }
 
 /* =========================
-   Utilities (small)
+   Utilities
    ========================= */
 .sr-only{
-  position:absolute !important;
+  position:absolute;
   width:1px;
   height:1px;
-  padding:0;
-  margin:-1px;
   overflow:hidden;
   clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
 }
