@@ -1,48 +1,59 @@
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-left">
-      <img class="footer-logo" src="/assets/images/bbas_assets_logo_circle.png" alt="Business Buying and Selling">
-      <div class="footer-brand">
-        <h3>Business Buying and Selling</h3>
-        <p>A marketplace and resource for buying and selling established businesses.</p>
+<!-- /assets/includes/footer.html -->
+<footer class="bbas-footer" role="contentinfo">
+  <div class="container bbas-footer-top">
+    <!-- Left: brand -->
+    <div class="bbas-footer-brand">
+      <img class="bbas-footer-logo" src="/assets/images/bbas_assets_logo_circle.png" alt="Business Buying and Selling">
+      <div class="bbas-footer-brandcopy">
+        <div class="bbas-footer-title">Business Buying and Selling</div>
+        <p class="bbas-footer-desc">A marketplace and resource for buying and selling established businesses.</p>
       </div>
     </div>
 
-    <div class="footer-social" aria-label="Social links">
-      <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+    <!-- Center: socials -->
+    <nav class="bbas-footer-social" aria-label="Social links">
+      <a class="bbas-social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
         <img src="/assets/images/icons/bbas_icons_fb.png" alt="">
       </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+      <a class="bbas-social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
         <img src="/assets/images/icons/bbas_icons_ig.png" alt="">
       </a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <a class="bbas-social-link" href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
         <img src="/assets/images/icons/bbas_icons_linkedin.png" alt="">
       </a>
-      <a href="https://wa.me" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <a class="bbas-social-link" href="https://wa.me" target="_blank" rel="noopener" aria-label="WhatsApp">
         <img src="/assets/images/icons/bbas_icons_wa.png" alt="">
       </a>
-      <a href="https://x.com" target="_blank" rel="noopener" aria-label="X">
+      <a class="bbas-social-link" href="https://x.com" target="_blank" rel="noopener" aria-label="X">
         <img src="/assets/images/icons/bbas_icons_x.png" alt="">
       </a>
-    </div>
+    </nav>
 
-    <nav class="footer-right" aria-label="Footer navigation">
-      <a href="/">Home</a>
-      <a href="/sell-your-business.html">Sell Your Business</a>
-      <a href="/buy-a-business.html">Buy A Business</a>
-      <a href="/listings.html">Listings</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
+    <!-- Right: links (two columns) -->
+    <nav class="bbas-footer-links" aria-label="Footer links">
+      <div class="bbas-footer-linkcols">
+        <div class="bbas-footer-col">
+          <a href="/">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="bbas-footer-col">
+          <a href="/sell-your-business.html">Sell Your Business</a>
+          <a href="/buy-a-business.html">Buy A Business</a>
+          <a href="/listings.html">Listings</a>
+        </div>
+      </div>
     </nav>
   </div>
 
-  <div class="container footer-bottom">
-    <div>© <span id="year"></span> Business Buying and Selling</div>
+  <div class="container bbas-footer-bottom">
+    <div class="bbas-footer-rule" aria-hidden="true"></div>
+    <div class="bbas-footer-copy">© <span id="year"></span> Business Buying and Selling</div>
   </div>
 
   <script>
     (function () {
-      var y = document.getElementById('year');
+      var y = document.getElementById("year");
       if (y) y.textContent = String(new Date().getFullYear());
     })();
   </script>
