@@ -14,14 +14,14 @@
   <meta property="og:url" content="https://staging.businessbuyingandselling.com/">
   <meta property="og:title" content="Business Buying & Selling">
   <meta property="og:description" content="A marketplace and resource for buying and selling businesses.">
-  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
+  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <!-- Twitter / X -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://staging.businessbuyingandselling.com/">
   <meta property="twitter:title" content="Business Buying & Selling">
   <meta property="twitter:description" content="A marketplace and resource for buying and selling businesses.">
-  <meta property="twitter:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
+  <meta property="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico">
@@ -39,21 +39,6 @@
     gtag('js', new Date());
     gtag('config', 'G-EH99SDCSFD');
   </script>
-
-  <!-- Staging-only overrides for footer/logo/icons (safe to remove later) -->
-  <style>
-    .footer-logo { height: 56px; width: auto; display: block; }
-    .site-footer { background: #111827; color: #E5E7EB; border-top: 1px solid rgba(229,231,235,0.16); }
-    .site-footer a { color: #E5E7EB; text-decoration: none; }
-    .site-footer a:hover { color: #60A5FA; }
-    .site-footer .muted { color: rgba(229,231,235,0.82); }
-    .footer-social { display: flex; gap: 12px; align-items: center; justify-content: flex-end; }
-    .footer-social a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 10px; border: 1px solid rgba(229,231,235,0.18); background: rgba(255,255,255,0.04); }
-    .footer-social img { width: 18px; height: 18px; display: block; }
-    @media (max-width: 900px) {
-      .footer-social { justify-content: flex-start; }
-    }
-  </style>
 </head>
 
 <body>
@@ -71,20 +56,6 @@
         <a href="#contact">Contact</a>
         <button class="btn btn-primary" type="button" data-scroll="#notify">Get updates</button>
       </nav>
-
-      <!-- IMPORTANT: matches your current /assets/js/site.js selectors -->
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-bbas-nav-toggle>
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="mobile-nav" data-bbas-mobile-nav hidden>
-      <div class="container mobile-nav-inner">
-        <a href="#features" data-bbas-nav-close>Features</a>
-        <a href="#how" data-bbas-nav-close>How it works</a>
-        <a href="#contact" data-bbas-nav-close>Contact</a>
-        <button class="btn btn-primary" type="button" data-scroll="#notify" data-bbas-nav-close>Get updates</button>
-      </div>
     </div>
   </header>
 
@@ -98,236 +69,15 @@
             Business Buying and Selling is building a marketplace and resource hub for buyers, sellers, and brokers.
             Clean listings, clear numbers, and a better process.
           </p>
-
-          <div class="cta-row">
-            <button class="btn btn-primary" type="button" data-scroll="#notify">Join the launch list</button>
-            <a class="btn btn-ghost" href="#how">See how it works</a>
-          </div>
-
-          <div class="trust">
-            <div class="trust-item">
-              <div class="trust-kicker">Focus</div>
-              <div class="trust-text">Real businesses, verified basics</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-kicker">Clarity</div>
-              <div class="trust-text">Simple metrics, less noise</div>
-            </div>
-            <div class="trust-item">
-              <div class="trust-kicker">Speed</div>
-              <div class="trust-text">Faster screening for both sides</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-card" aria-label="Preview card">
-          <div class="card">
-            <div class="card-top">
-              <div class="card-title">Featured listing preview</div>
-              <div class="pill">Placeholder</div>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric">
-                <div class="metric-label">Revenue</div>
-                <div class="metric-value">$1,250,000</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">EBITDA</div>
-                <div class="metric-value">$325,000</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Multiple</div>
-                <div class="metric-value">3.8x</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Location</div>
-                <div class="metric-value">Remote</div>
-              </div>
-            </div>
-
-            <div class="card-actions">
-              <button class="btn btn-secondary" type="button" disabled>Request details</button>
-              <button class="btn btn-ghost" type="button" disabled>Save</button>
-            </div>
-
-            <p class="card-note">
-              This is a placeholder layout. You can swap this into a real listings grid later.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for buyers, sellers, and brokers.</h2>
-          <p class="muted">
-            The goal is a cleaner marketplace with better information and fewer time-wasters.
-          </p>
-        </div>
-
-        <div class="cards">
-          <article class="info-card">
-            <h3>Clear listing structure</h3>
-            <p>Standard fields that matter. Revenue, cash flow, margin, and deal terms in one place.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Fast screening</h3>
-            <p>Filter by category, size, and basic qualification signals so you spend time on the right deals.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Guides and resources</h3>
-            <p>Simple explainers for buyers and sellers, plus broker best practices and checklists.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <h2>How it works</h2>
-          <p class="muted">A straightforward flow that scales when you are ready.</p>
-        </div>
-
-        <ol class="steps">
-          <li>
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-title">Publish listings</div>
-              <div class="step-text">Start with clean, consistent listing data.</div>
-            </div>
-          </li>
-          <li>
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-title">Qualify interest</div>
-              <div class="step-text">Capture intent and basics before deeper diligence.</div>
-            </div>
-          </li>
-          <li>
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-title">Move to diligence</div>
-              <div class="step-text">Share docs and next steps when both sides are aligned.</div>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="notify" class="section">
-      <div class="container">
-        <div class="notify">
-          <div class="notify-copy">
-            <h2>Get launch updates</h2>
-            <p class="muted">No spam. Just major milestones and early access invites.</p>
-          </div>
-
-          <form class="notify-form" id="notifyForm">
-            <label class="sr-only" for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
-            <button class="btn btn-primary" type="submit">Notify me</button>
-            <p class="form-note" id="formNote" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section section-tight">
-      <div class="container">
-        <div class="contact">
-          <h2>Contact</h2>
-          <p class="muted">
-            For now, update this section with your preferred contact method.
-          </p>
-          <a class="btn btn-secondary" href="mailto:hello@businessbuyingandselling.com">Email us</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <img class="footer-logo" src="/assets/images/logo.png" alt="Business Buying and Selling">
-        <p class="muted">A marketplace and resource for buying and selling businesses.</p>
-      </div>
-
-      <div class="footer-right">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#notify">Updates</a>
-      </div>
-
-      <div class="footer-social" aria-label="Social links">
-        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-          <img src="/assets/images/icons/bbas_icons_fb.png" alt="">
-        </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-          <img src="/assets/images/icons/bbas_icons_ig.png" alt="">
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <img src="/assets/images/icons/bbas_icons_linkedin.png" alt="">
-        </a>
-        <a href="https://whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp">
-          <img src="/assets/images/icons/bbas_icons_wa.png" alt="">
-        </a>
-        <a href="https://x.com" target="_blank" rel="noopener" aria-label="X">
-          <img src="/assets/images/icons/bbas_icons_x.png" alt="">
-        </a>
-      </div>
-    </div>
-
     <div class="container footer-bottom">
       <div class="muted">© 2026 Business Buying and Selling</div>
     </div>
   </footer>
-
-  <script src="/assets/js/site.js"></script>
-
-  <!-- Page specific behavior (keeps your notify form behavior and smooth scroll) -->
-  <script>
-    (function () {
-      // Smooth scroll helper for data-scroll buttons
-      document.addEventListener("click", function (e) {
-        var target = e.target && e.target.closest ? e.target.closest("[data-scroll]") : null;
-        if (!target) return;
-
-        var sel = target.getAttribute("data-scroll");
-        if (!sel) return;
-
-        var dest = document.querySelector(sel);
-        if (!dest) return;
-
-        e.preventDefault();
-        dest.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-
-      // Placeholder notify form behavior (no backend yet)
-      var form = document.getElementById("notifyForm");
-      var note = document.getElementById("formNote");
-
-      if (form && note) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          var email = form.querySelector('input[name="email"]');
-          var value = email ? String(email.value || "").trim() : "";
-
-          if (!value) {
-            note.textContent = "Please enter an email address.";
-            return;
-          }
-
-          note.textContent = "Thanks. You are on the list (placeholder). Wire this to a real service later.";
-          form.reset();
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
