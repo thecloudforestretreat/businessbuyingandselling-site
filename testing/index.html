@@ -1,660 +1,517 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Business Buying and Selling</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- Per-page settings (used by /assets/js/head.js) -->
+<meta content="Business Buying and Selling | Coming Soon" name="page:title"/>
+<meta content="A marketplace and resource for buying and selling established businesses. Join the early access list." name="page:description"/>
+<meta content="/assets/images/og-image.jpg" name="page:image"/>
+<!-- Global CSS -->
+<link href="/assets/css/site.css" rel="stylesheet"/>
+<link href="/assets/css/header.css" rel="stylesheet"/>
+<!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
+<script defer="" src="/assets/js/head.js"></script>
+<!-- Page-only CSS (keeps your coming soon layout) -->
+<style>
+:root{
+  --bbas-navy:#1B263B;
+  --bbas-midnight:#111827;
+  --bbas-blue:#2563EB;
+  --bbas-sky:#60A5FA;
+  --bbas-charcoal:#1F2937;
+  --bbas-muted:#6B7280;
+  --bbas-border:#E5E7EB;
+  --bbas-bg:#FAFAFA;
+  --bbas-white:#FFFFFF;
+  --bbas-amber:#F59E0B;
+  --bbas-shadow: 0 18px 60px rgba(17,24,39,.10);
+  --bbas-radius: 22px;
+}
 
-  <!-- Global styles -->
-  <link rel="stylesheet" href="assets/css/site.css" />
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--bbas-charcoal);
+  background: radial-gradient(1200px 500px at 20% 0%, rgba(96,165,250,.18), transparent 60%),
+              radial-gradient(900px 420px at 90% 10%, rgba(37,99,235,.12), transparent 55%),
+              var(--bbas-bg);
+}
 
-  <!-- Page-specific styling (kept self-contained; does not touch header/footer styles) -->
-  <style>
-    :root{
-      --bbas-navy:#18263B;
-      --bbas-midnight:#111827;
-      --bbas-blue:#2563EB;
-      --bbas-sky:#60A5FA;
-      --bbas-amber:#F59E0B;
-      --bbas-text:#1F2937;
-      --bbas-muted:#6B7280;
-      --bbas-border:#E5E7EB;
-      --bbas-bg:#FAFAFA;
-      --bbas-card:#FFFFFF;
-      --bbas-shadow: 0 24px 60px rgba(17,24,39,.16);
-      --bbas-shadow-soft: 0 14px 32px rgba(17,24,39,.10);
-      --bbas-radius: 18px;
-    }
+#siteHeader, #siteFooter{width:100%;}
+.bbas-page{padding:0 0 64px;}
+.bbas-container{width:min(1120px, calc(100% - 48px)); margin:0 auto;}
 
-    /* Layout wrapper */
-    .page-wrap{
-      background: var(--bbas-bg);
-      color: var(--bbas-text);
-    }
-    .container{
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 22px;
-    }
+.bbas-hero-shell{padding:26px 0 34px;}
+.bbas-hero{
+  position:relative;
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(17,24,39,.78) 0%, rgba(27,38,59,.92) 58%, rgba(17,24,39,.98) 100%),
+    var(--hero-image) center/cover no-repeat;
+  box-shadow: var(--bbas-shadow);
+  padding:32px 32px 26px;
+}
 
-    /* HERO */
-    .hero{
-      padding: 38px 0 26px;
-    }
-    .heroShell{
-      position: relative;
-      border-radius: 28px;
-      overflow: hidden;
-      background: var(--bbas-midnight);
-      box-shadow: var(--bbas-shadow);
-    }
-    .heroMedia{
-      position:absolute; inset:0;
-      background-image: url("assets/images/bbas_homepage_hero_03.jpg");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.02);
-    }
-    .heroOverlay{
-      position:absolute; inset:0;
-      background:
-        radial-gradient(1200px 520px at 18% 30%, rgba(37,99,235,.35), rgba(17,24,39,.00) 60%),
-        linear-gradient(180deg, rgba(17,24,39,.55), rgba(17,24,39,.92));
-    }
-    .heroInner{
-      position: relative;
-      padding: 34px 34px 26px;
-    }
-    .heroKicker{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color: rgba(255,255,255,.88);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      margin-bottom: 10px;
-    }
-    .heroDot{
-      width: 10px; height: 10px; border-radius: 999px;
-      background: var(--bbas-amber);
-      box-shadow: 0 0 0 5px rgba(245,158,11,.18);
-      flex: 0 0 auto;
-    }
-    .heroTitle{
-      color: #fff;
-      font-size: clamp(32px, 4.2vw, 52px);
-      line-height: 1.05;
-      margin: 0 0 10px;
-      max-width: 720px;
-      letter-spacing: -0.02em;
-    }
-    .heroSub{
-      color: rgba(255,255,255,.82);
-      font-size: 15px;
-      line-height: 1.6;
-      margin: 0;
-      max-width: 640px;
-    }
+.bbas-hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(900px 500px at 15% 15%, rgba(96,165,250,.26), transparent 60%),
+    radial-gradient(700px 420px at 85% 10%, rgba(245,158,11,.14), transparent 55%);
+  pointer-events:none;
+}
 
-    /* Main two cards */
-    .heroGrid{
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 22px;
-      margin-top: 22px;
-    }
-    .card{
-      background: var(--bbas-card);
-      border: 1px solid rgba(229,231,235,.9);
-      border-radius: 18px;
-      box-shadow: var(--bbas-shadow-soft);
-    }
-    .valueCard{
-      padding: 24px 24px 20px;
-    }
-    .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid var(--bbas-border);
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(250,250,250,.92);
-      font-size: 12px;
-      font-weight: 700;
-      color: #111827;
-    }
-    .pill .dot{
-      width: 9px; height: 9px;
-      border-radius: 999px;
-      background: var(--bbas-amber);
-      box-shadow: 0 0 0 5px rgba(245,158,11,.16);
-    }
-    .valueTitle{
-      font-size: 34px;
-      line-height: 1.08;
-      margin: 14px 0 10px;
-      letter-spacing: -0.02em;
-    }
-    .valueLead{
-      margin: 0 0 16px;
-      color: var(--bbas-muted);
-      line-height: 1.6;
-      font-size: 14px;
-      max-width: 58ch;
-    }
+.bbas-heroTop{position:relative; z-index:1; max-width: 760px;}
+.bbas-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  color: rgba(255,255,255,.90);
+  font-size:13px;
+  line-height:1;
+}
+.bbas-badge::before{
+  content:"";
+  width:10px; height:10px;
+  border-radius:50%;
+  background: var(--bbas-amber);
+  box-shadow: 0 0 0 6px rgba(245,158,11,.16);
+}
 
-    .benefits{
-      margin-top: 16px;
-      display: grid;
-      gap: 12px;
-    }
-    .benefit{
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 12px;
-      align-items: start;
-    }
-    .badge{
-      width: 28px; height: 28px;
-      border-radius: 12px;
-      background: rgba(96,165,250,.16);
-      border: 1px solid rgba(96,165,250,.35);
-      color: var(--bbas-blue);
-      font-weight: 900;
-      display:flex; align-items:center; justify-content:center;
-      font-size: 13px;
-      flex: 0 0 auto;
-    }
-    .benefit h4{
-      margin: 0;
-      font-size: 14px;
-      font-weight: 900;
-      color: #111827;
-    }
-    .benefit p{
-      margin: 2px 0 0;
-      font-size: 12.5px;
-      color: var(--bbas-muted);
-      line-height: 1.45;
-    }
+.bbas-heroTop h1{
+  margin:16px 0 10px;
+  font-size:46px;
+  line-height:1.08;
+  letter-spacing:-0.02em;
+  color:var(--bbas-white);
+}
 
-    .tags{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .tag{
-      border: 1px solid var(--bbas-border);
-      background: #F9FAFB;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 11px;
-      color: #374151;
-      white-space: nowrap;
-    }
+.bbas-subhead{
+  margin:0 0 16px;
+  color: rgba(255,255,255,.82);
+  font-size:16px;
+  line-height:1.55;
+  max-width: 60ch;
+}
 
-    /* Form card */
-    .formCard{
-      padding: 22px;
-    }
-    .formCard h3{
-      margin: 0 0 6px;
-      font-size: 18px;
-      letter-spacing: -0.01em;
-    }
-    .formCard .sub{
-      margin: 0 0 14px;
-      color: var(--bbas-muted);
-      font-size: 12.8px;
-      line-height: 1.5;
-    }
+.bbas-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin: 12px 0 0;
+}
+.bbas-stat{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  padding:10px 12px;
+  border-radius:14px;
+  background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  min-width: 168px;
+}
+.bbas-stat strong{
+  color: rgba(255,255,255,.92);
+  font-size:13px;
+  letter-spacing:0.01em;
+}
+.bbas-stat span{
+  color: rgba(255,255,255,.70);
+  font-size:12px;
+}
 
-    form .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    label{
-      display:block;
-      font-size: 11px;
-      font-weight: 800;
-      color: #111827;
-      margin: 10px 0 6px;
-    }
-    .field{
-      width: 100%;
-      border: 1px solid #E6EAF2;
-      background: #fff;
-      border-radius: 14px;
-      padding: 12px 12px;
-      font-size: 13px;
-      outline: none;
-      transition: box-shadow .15s ease, border-color .15s ease;
-    }
-    .field:focus{
-      border-color: rgba(37,99,235,.55);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.14);
-    }
-    textarea.field{
-      min-height: 96px;
-      resize: vertical;
-    }
-    .cta{
-      margin-top: 14px;
-      width: 100%;
-      border: none;
-      border-radius: 999px;
-      padding: 12px 14px;
-      color: #fff;
-      font-weight: 900;
-      letter-spacing: .2px;
-      background:
-        linear-gradient(180deg, rgba(37,99,235,1), rgba(30,83,211,1));
-      box-shadow: 0 18px 40px rgba(37,99,235,.25);
-      cursor: pointer;
-      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-    }
-    .cta:hover{ transform: translateY(-1px); filter: saturate(1.06); box-shadow: 0 22px 46px rgba(37,99,235,.28); }
-    .cta:active{ transform: translateY(0px); }
+.bbas-heroGrid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 18px;
+  margin-top: 22px;
+  align-items: start;
+}
 
-    .fineprint{
-      margin: 10px 0 0;
-      color: var(--bbas-muted);
-      font-size: 11.5px;
-      line-height: 1.45;
-    }
+.bbas-card{
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: var(--bbas-radius);
+  box-shadow: 0 18px 50px rgba(17,24,39,.10);
+  padding: 18px 18px 16px;
+}
 
-    /* Restored info sections */
-    .section{
-      padding: 30px 0;
-    }
-    .sectionTitle{
-      margin: 0 0 6px;
-      font-size: 26px;
-      letter-spacing: -0.015em;
-    }
-    .sectionLead{
-      margin: 0 0 16px;
-      color: var(--bbas-muted);
-      line-height: 1.6;
-      font-size: 14px;
-      max-width: 70ch;
-    }
-    .cards3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .infoCard{
-      padding: 16px;
-      border-radius: 16px;
-      background: #fff;
-      border: 1px solid rgba(229,231,235,.95);
-      box-shadow: 0 10px 22px rgba(17,24,39,.08);
-    }
-    .infoCard h4{
-      margin: 0 0 6px;
-      font-size: 13px;
-      font-weight: 900;
-    }
-    .infoCard p{
-      margin: 0;
-      color: var(--bbas-muted);
-      font-size: 12.5px;
-      line-height: 1.5;
-    }
+.bbas-card--content{padding: 18px 20px 18px;}
+.bbas-pill{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  color: var(--bbas-charcoal);
+  background: rgba(96,165,250,.16);
+  border: 1px solid rgba(96,165,250,.30);
+}
 
-    .steps{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .step{
-      background:#fff;
-      border: 1px solid rgba(229,231,235,.95);
-      border-radius: 16px;
-      padding: 14px 16px;
-      box-shadow: 0 10px 22px rgba(17,24,39,.08);
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-    }
-    .stepNum{
-      width: 30px; height: 30px; border-radius: 12px;
-      background: rgba(96,165,250,.16);
-      border: 1px solid rgba(96,165,250,.35);
-      color: var(--bbas-blue);
-      font-weight: 900;
-      display:flex; align-items:center; justify-content:center;
-      flex: 0 0 auto;
-    }
-    .step h4{ margin: 0; font-size: 13px; font-weight: 900; }
-    .step p{ margin: 2px 0 0; color: var(--bbas-muted); font-size: 12.5px; line-height: 1.45; }
+.bbas-card h2{
+  margin: 14px 0 8px;
+  font-size: 30px;
+  letter-spacing:-0.02em;
+  line-height:1.12;
+  color: var(--bbas-charcoal);
+}
 
-    .callouts{
-      display:grid;
-      gap: 14px;
-    }
-    .calloutRow{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fff, #FBFCFF);
-      border: 1px solid rgba(229,231,235,.95);
-      box-shadow: 0 12px 26px rgba(17,24,39,.08);
-    }
-    .calloutRow strong{ display:block; font-size: 18px; letter-spacing: -0.01em; }
-    .calloutRow span{ display:block; color: var(--bbas-muted); font-size: 12.8px; margin-top: 4px; }
-    .inlineForm{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      width: min(520px, 100%);
-    }
-    .inlineForm input{
-      flex:1;
-      min-width: 0;
-    }
-    .inlineForm button{
-      white-space: nowrap;
-      padding: 11px 14px;
-      border-radius: 999px;
-      border: none;
-      font-weight: 900;
-      background: var(--bbas-blue);
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 14px 28px rgba(37,99,235,.22);
-    }
+.bbas-lede{
+  margin: 0 0 14px;
+  color: var(--bbas-muted);
+  line-height:1.6;
+  font-size: 14px;
+}
 
-    .contactRow{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: #fff;
-      border: 1px solid rgba(229,231,235,.95);
-      box-shadow: 0 12px 26px rgba(17,24,39,.08);
-    }
-    .contactRow strong{ display:block; font-size: 22px; letter-spacing: -0.01em; }
-    .contactRow span{ display:block; color: var(--bbas-muted); font-size: 12.8px; margin-top: 4px; }
+.bbas-featureList{
+  list-style:none;
+  padding:0;
+  margin: 0 0 12px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+.bbas-feature{
+  display:grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  align-items:start;
+}
+.bbas-num{
+  width:28px; height:28px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:12px;
+  color: var(--bbas-blue);
+  background: rgba(37,99,235,.10);
+  border: 1px solid rgba(37,99,235,.20);
+}
+.bbas-featureTitle{font-weight:800; font-size:13px; margin: 1px 0 2px;}
+.bbas-featureDesc{color: var(--bbas-muted); font-size:13px; line-height:1.45;}
 
-    .ghostBtn{
-      border: 1px solid rgba(37,99,235,.28);
-      background: rgba(37,99,235,.07);
-      color: var(--bbas-blue);
-      font-weight: 900;
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-    }
+.bbas-chips{display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 2px;}
+.bbas-chip{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  color: var(--bbas-charcoal);
+  background: rgba(229,231,235,.55);
+  border:1px solid rgba(229,231,235,.85);
+}
 
-    /* Make footer sit closer on mobile, without affecting footer styling */
-    .page-bottom-pad{ padding-bottom: 16px; }
+.bbas-preview{margin-top:14px; padding-top:14px; border-top:1px solid var(--bbas-border);}
+.bbas-preview h3{margin:0 0 6px; font-size:14px; letter-spacing:-0.01em;}
+.bbas-muted{color: var(--bbas-muted); font-size:13px; line-height:1.55; margin:0;}
+.bbas-miniGrid{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:10px;
+}
+.bbas-miniCard{
+  padding:10px 10px 11px;
+  border-radius:16px;
+  background: rgba(250,250,250,.9);
+  border:1px solid rgba(229,231,235,.95);
+}
+.bbas-miniTitle{font-weight:800; font-size:12px; margin-bottom:6px;}
+.bbas-miniMeta{display:flex; flex-direction:column; gap:4px; color: var(--bbas-muted); font-size:12px;}
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .heroInner{ padding: 26px 18px 18px; }
-      .valueTitle{ font-size: 30px; }
-      .cards3{ grid-template-columns: 1fr; }
-      .steps{ grid-template-columns: 1fr; }
-      form .grid2{ grid-template-columns: 1fr; }
-      .calloutRow{ flex-direction: column; align-items: stretch; }
-      .inlineForm{ width: 100%; }
-      .section{ padding: 22px 0; }
-      .hero{ padding: 22px 0 14px; }
-    }
-  </style>
+.bbas-card--form{padding: 18px 18px 16px;}
+.bbas-formHead h3{margin:0; font-size:18px; letter-spacing:-0.01em;}
+.bbas-formHead p{margin:6px 0 12px;}
 
-  <script src="assets/js/includes.js" defer></script>
+form{display:block;}
+.formRow{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+.formGroup{display:flex; flex-direction:column; gap:6px; margin: 0 0 10px;}
+label{font-size:12px; font-weight:800; color: var(--bbas-charcoal);}
+input, select, textarea{
+  width:100%;
+  border-radius: 14px;
+  border: 1px solid var(--bbas-border);
+  background: var(--bbas-white);
+  padding: 11px 12px;
+  font-size: 14px;
+  color: var(--bbas-charcoal);
+  outline:none;
+}
+textarea{min-height: 110px; resize: vertical;}
+input:focus, select:focus, textarea:focus{
+  border-color: rgba(37,99,235,.55);
+  box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+}
+
+.bbas-submitRow{margin-top: 10px;}
+.bbas-btn{
+  width:100%;
+  border:none;
+  border-radius: 999px;
+  padding: 13px 16px;
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--bbas-white);
+  background: linear-gradient(135deg, var(--bbas-blue), #1D4ED8);
+  box-shadow: 0 14px 30px rgba(37,99,235,.30);
+  cursor:pointer;
+}
+.bbas-btn:hover{filter: brightness(1.02);}
+.bbas-btn:active{transform: translateY(1px);}
+.bbas-fineprint{margin: 8px 0 0; color: var(--bbas-muted); font-size:12px; line-height:1.45;}
+
+.bbas-section{padding: 18px 0 0;}
+.bbas-belowGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.bbas-kb, .bbas-cta{
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(229,231,235,.95);
+  border-radius: var(--bbas-radius);
+  padding: 18px 18px 16px;
+  box-shadow: 0 14px 40px rgba(17,24,39,.06);
+}
+.bbas-kb h2{margin:0 0 8px; font-size:20px; letter-spacing:-0.01em;}
+.bbas-topicGrid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top: 12px;
+}
+.bbas-topic{
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(96,165,250,.12);
+  border: 1px solid rgba(96,165,250,.24);
+  color: var(--bbas-charcoal);
+  font-size: 13px;
+  font-weight: 700;
+}
+.bbas-cta h3{margin:0 0 6px; font-size:18px;}
+.bbas-ctaRow{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:10px;
+  margin-top: 12px;
+}
+.bbas-ctaStep{
+  padding: 12px 12px;
+  border-radius: 18px;
+  background: rgba(17,24,39,.92);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.92);
+  font-weight: 800;
+  font-size: 13px;
+  text-align:center;
+}
+
+@media (max-width: 980px){
+  .bbas-container{width:min(980px, calc(100% - 32px));}
+  .bbas-heroTop h1{font-size:38px;}
+  .bbas-heroGrid{grid-template-columns:1fr; gap:14px;}
+  .bbas-miniGrid{grid-template-columns:1fr;}
+  .bbas-belowGrid{grid-template-columns:1fr;}
+  .bbas-ctaRow{grid-template-columns:1fr;}
+}
+
+@media (max-width: 520px){
+  .bbas-hero{padding: 20px 14px 16px;}
+  .bbas-heroTop h1{font-size:32px;}
+  .bbas-card{padding: 16px 14px;}
+  .bbas-card--content{padding: 16px 14px;}
+  .formRow{grid-template-columns:1fr;}
+  textarea{min-height: 120px;}
+}
+
+
+/* Form legacy classes */
+form .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:10px;}
+form .row.row-1{grid-template-columns:1fr;}
+form .field{display:flex; flex-direction:column; gap:6px;}
+form .btn{
+  width:100%;
+  border:none;
+  border-radius:999px;
+  padding:13px 16px;
+  font-weight:900;
+  font-size:14px;
+  color:var(--bbas-white);
+  background: linear-gradient(135deg, var(--bbas-blue), #1D4ED8);
+  box-shadow: 0 14px 30px rgba(37,99,235,.30);
+  cursor:pointer;
+}
+form .btn:hover{filter:brightness(1.02);}
+form .btn:active{transform: translateY(1px);}
+form .fineprint{margin:8px 0 0; color:var(--bbas-muted); font-size:12px; line-height:1.45;}
+form .status{margin-top:10px; font-size:13px;}
+@media (max-width:520px){form .row{grid-template-columns:1fr;}}
+</style>
 </head>
-
-<body class="page-wrap">
-  <!-- Header mount -->
-  <div id="siteHeader" data-include="assets/includes/header.html"></div>
-
-  <main id="main" class="page-bottom-pad">
-    <section class="hero">
-      <div class="container">
-        <div class="heroShell" aria-label="Homepage hero">
-          <div class="heroMedia" role="img" aria-label="Business Buying and Selling hero image"></div>
-          <div class="heroOverlay" aria-hidden="true"></div>
-
-          <div class="heroInner">
-            <div class="heroKicker"><span class="heroDot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
-            <h1 class="heroTitle">Buy and sell established businesses with confidence.</h1>
-            <p class="heroSub">Clean listings, practical education, and a smoother path from discovery to close.</p>
-
-            <div class="heroGrid" style="margin-top:18px;">
-              <!-- Left: value -->
-              <div class="card valueCard">
-                <div class="pill"><span class="dot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
-                <h2 class="valueTitle">Business Buying and Selling, made clearer.</h2>
-                <p class="valueLead">A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.</p>
-
-                <div class="benefits" aria-label="Key benefits">
-                  <div class="benefit">
-                    <div class="badge">1</div>
-                    <div>
-                      <h4>Curated listings</h4>
-                      <p>Clear summaries and consistent deal information, so you can evaluate faster.</p>
-                    </div>
-                  </div>
-
-                  <div class="benefit">
-                    <div class="badge">2</div>
-                    <div>
-                      <h4>Buyer readiness</h4>
-                      <p>Guides and checklists that help you move from interest to action.</p>
-                    </div>
-                  </div>
-
-                  <div class="benefit">
-                    <div class="badge">3</div>
-                    <div>
-                      <h4>Seller support</h4>
-                      <p>Position your business properly with practical preparation steps.</p>
-                    </div>
-                  </div>
-
-                  <div class="benefit">
-                    <div class="badge">4</div>
-                    <div>
-                      <h4>Trust and transparency</h4>
-                      <p>We prioritize credible deal details and a professional experience.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tags" aria-label="Positioning tags">
-                  <span class="tag">Private deals and main street</span>
-                  <span class="tag">Education-first approach</span>
-                  <span class="tag">Built for serious buyers and sellers</span>
-                </div>
-              </div>
-
-              <!-- Right: form -->
-              <div class="card formCard">
-                <h3>Join the early access list</h3>
-                <p class="sub">Tell us what you are looking for and we will notify you when we launch.</p>
-
-                <form id="earlyAccessForm" action="#" method="post" novalidate>
-                  <div class="grid2">
-                    <div>
-                      <label for="firstName">First Name</label>
-                      <input id="firstName" name="firstName" class="field" type="text" autocomplete="given-name" autocapitalize="words" />
-                    </div>
-                    <div>
-                      <label for="lastName">Last Name</label>
-                      <input id="lastName" name="lastName" class="field" type="text" autocomplete="family-name" autocapitalize="words" />
-                    </div>
-                  </div>
-
-                  <label for="email">Email</label>
-                  <input id="email" name="email" class="field" type="email" autocomplete="email" placeholder="you@company.com" />
-
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" class="field" type="tel" inputmode="tel" autocomplete="tel" placeholder="Optional" />
-
-                  <label for="interest">Interested In</label>
-                  <select id="interest" name="interest" class="field">
-                    <option value="" selected>Select one</option>
-                    <option value="buy">Buying a business</option>
-                    <option value="sell">Selling a business</option>
-                    <option value="broker">Broker / advisor</option>
-                    <option value="investor">Investor</option>
-                    <option value="other">Other</option>
-                  </select>
-
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" class="field" autocapitalize="sentences" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
-
-                  <button class="cta" type="submit">Request Early Access</button>
-                  <p class="fineprint">By submitting, you agree we may contact you about launch updates. No spam.</p>
-                </form>
-              </div>
-            </div><!-- /heroGrid -->
-          </div><!-- /heroInner -->
-        </div><!-- /heroShell -->
-      </div><!-- /container -->
-    </section>
-
-    <!-- Restored information content (kept; improved presentation) -->
-    <section class="section">
-      <div class="container">
-        <h2 class="sectionTitle">Built for buyers, sellers, and brokers.</h2>
-        <p class="sectionLead">The goal is a cleaner marketplace with better information and fewer time-wasters.</p>
-
-        <div class="cards3" aria-label="Key pillars">
-          <div class="infoCard">
-            <h4>Clear listing structure</h4>
-            <p>Standard fields that matter. Revenue, cash flow, margin, and deal terms in one place.</p>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- Global header injects here -->
+<div data-include="/assets/includes/header.html" id="siteHeader"></div>
+<main class="bbas-page" id="main"><section class="bbas-hero-shell"><div class="bbas-container"><div class="bbas-hero" style="--hero-image: url('assets/images/bbas_homepage_hero_03.jpg');"><div class="bbas-heroTop"><div class="bbas-badge">Launching soon. Built for buyers, sellers, and deal professionals.</div><h1>Buy and sell established businesses with confidence.</h1><p class="bbas-subhead">Clean listings, practical education, and a smoother path from discovery to close.</p><div class="bbas-stats"><div class="bbas-stat"><strong>Verified basics</strong><span>Less noise</span></div><div class="bbas-stat"><strong>Deal metrics</strong><span>Front and center</span></div><div class="bbas-stat"><strong>Screening</strong><span>Faster match</span></div></div></div><div class="bbas-heroGrid"><section aria-label="Overview" class="bbas-card bbas-card--content"><div class="bbas-pill">A marketplace plus a knowledge hub</div><h2>Business Buying and Selling, made clearer.</h2><p class="bbas-lede">A marketplace and resource hub for established business deals. Focused on quality listings, practical education, and an efficient process for both sides.</p><ul class="bbas-featureList"><li class="bbas-feature"><div class="bbas-num">1</div><div class="bbas-featureBody"><div class="bbas-featureTitle">Curated listings</div><div class="bbas-featureDesc">Clear summaries and consistent deal information, so you can evaluate faster.</div></div></li><li class="bbas-feature"><div class="bbas-num">2</div><div class="bbas-featureBody"><div class="bbas-featureTitle">Buyer readiness</div><div class="bbas-featureDesc">Guides and checklists that move you from interest to action.</div></div></li><li class="bbas-feature"><div class="bbas-num">3</div><div class="bbas-featureBody"><div class="bbas-featureTitle">Seller support</div><div class="bbas-featureDesc">Preparation steps that help position a business properly.</div></div></li><li class="bbas-feature"><div class="bbas-num">4</div><div class="bbas-featureBody"><div class="bbas-featureTitle">Trust and transparency</div><div class="bbas-featureDesc">Credible metrics and a professional experience you can rely on.</div></div></li></ul><div class="bbas-chips"><span class="bbas-chip">Private deals and main street</span><span class="bbas-chip">Education first approach</span><span class="bbas-chip">Built for serious buyers and sellers</span></div><div class="bbas-preview"><h3>Marketplace preview</h3><p class="bbas-muted">Example cards for layout only. Real listings will be added once the backend is live.</p><div class="bbas-miniGrid"><div class="bbas-miniCard"><div class="bbas-miniTitle">Home services</div><div class="bbas-miniMeta"><span>Revenue $1.25M</span><span>EBITDA $325K</span><span>Multiple 3.8x</span></div></div><div class="bbas-miniCard"><div class="bbas-miniTitle">Healthcare</div><div class="bbas-miniMeta"><span>Revenue $2.10M</span><span>EBITDA $410K</span><span>Multiple 4.2x</span></div></div><div class="bbas-miniCard"><div class="bbas-miniTitle">Ecommerce</div><div class="bbas-miniMeta"><span>Revenue $980K</span><span>EBITDA $190K</span><span>Multiple 3.2x</span></div></div></div></div></section><section aria-label="Early access form" class="bbas-card bbas-card--form"><div class="bbas-formHead"><h3>Join the early access list</h3><p class="bbas-muted">Tell us what you are looking for and we will notify you when we launch.</p></div><form action="https://formspree.io/f/REPLACE_ME" id="joinForm" method="POST">
+<div class="row">
+<div class="field">
+<label for="firstName">First Name</label>
+<input autocapitalize="words" autocomplete="given-name" autocorrect="off" id="firstName" name="firstName" placeholder="First name" required="" type="text"/>
+</div>
+<div class="field">
+<label for="lastName">Last Name</label>
+<input autocapitalize="words" autocomplete="family-name" autocorrect="off" id="lastName" name="lastName" placeholder="Last name" required="" type="text"/>
+</div>
+</div>
+<div class="row">
+<div class="field">
+<label for="email">Email</label>
+<input autocapitalize="none" autocomplete="email" autocorrect="off" id="email" inputmode="email" name="email" placeholder="you@company.com" required="" type="email"/>
+</div>
+<div class="field">
+<label for="phone">Phone</label>
+<input autocomplete="tel" id="phone" inputmode="tel" name="phone" pattern="\(\d{3}\)\s\d{3}-\d{4}" placeholder="Optional" type="tel"/>
+</div>
+</div>
+<div class="row row-1">
+<div class="field">
+<label for="interest">Interested In</label>
+<select id="interest" name="interest" required="">
+<option disabled="" selected="" value="">Select one</option>
+<option value="Buying">Buying</option>
+<option value="Selling">Selling</option>
+<option value="Both">Both</option>
+</select>
+</div>
+</div>
+<div class="row row-1">
+<div class="field">
+<label for="message">Message</label>
+<textarea autocapitalize="sentences" autocorrect="on" id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+</div>
+</div>
+<input name="source" type="hidden" value="production-coming-soon"/>
+<input name="site" type="hidden" value="businessbuyingandselling.com"/>
+<button class="btn" type="submit">Request Early Access</button>
+<div aria-live="polite" class="status" id="statusBox" role="status"></div>
+<div class="fineprint">
+            By submitting, you agree we may contact you about launch updates. No spam.
           </div>
-          <div class="infoCard">
-            <h4>Fast screening</h4>
-            <p>Filter by category, size, and basic qualification signals so you spend time on the right deals.</p>
-          </div>
-          <div class="infoCard">
-            <h4>Guides and resources</h4>
-            <p>Simple explainers for buyers and sellers, plus broker best practices and checklists.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+</form></section></div></div></div></section><section class="bbas-section"><div class="bbas-container"><div class="bbas-belowGrid"><div class="bbas-kb"><h2>Knowledge how to hub</h2><p class="bbas-muted">Simple, practical resources to help you evaluate deals, prepare a business for sale, and avoid common mistakes.</p><div class="bbas-topicGrid"><div class="bbas-topic">Deal due diligence checklist</div><div class="bbas-topic">How to value a business</div><div class="bbas-topic">Understanding EBITDA and add backs</div><div class="bbas-topic">Negotiation and LOI basics</div><div class="bbas-topic">Financing options overview</div><div class="bbas-topic">Preparing clean financials</div></div></div><div class="bbas-cta"><h3>One stop shop, built to scale</h3><p class="bbas-muted">Start with a cleaner experience today. Add listings, broker tools, and structured resources as the product evolves.</p><div class="bbas-ctaRow"><div class="bbas-ctaStep"><span>Publish listings</span></div><div class="bbas-ctaStep"><span>Qualify interest</span></div><div class="bbas-ctaStep"><span>Move to diligence</span></div></div></div></div></div></section></main>
+<!-- Global footer injects here -->
+<div data-include="/assets/includes/footer.html" id="siteFooter"></div>
+<!-- Includes then site behavior -->
+<script src="/assets/js/includes.js"></script>
+<script src="/assets/js/site.js"></script>
+<!-- Page-only form behavior -->
+<script>
+    (function () {
+      var form = document.getElementById('joinForm');
+      var statusBox = document.getElementById('statusBox');
+      if (!form || !statusBox) return;
 
-    <section class="section" style="background: linear-gradient(180deg, rgba(96,165,250,.08), rgba(250,250,250,0)); border-top: 1px solid rgba(229,231,235,.9); border-bottom: 1px solid rgba(229,231,235,.9);">
-      <div class="container">
-        <h2 class="sectionTitle">How it works</h2>
-        <p class="sectionLead">A straightforward flow that scales when you are ready.</p>
+      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
 
-        <div class="steps" aria-label="How it works steps">
-          <div class="step">
-            <div class="stepNum">1</div>
-            <div>
-              <h4>Publish listings</h4>
-              <p>Start with clean, consistent listing data.</p>
-            </div>
-          </div>
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        statusBox.className = 'status';
+        statusBox.textContent = '';
 
-          <div class="step">
-            <div class="stepNum">2</div>
-            <div>
-              <h4>Qualify interest</h4>
-              <p>Capture intent and basics before deeper diligence.</p>
-            </div>
-          </div>
+        try {
+          var formData = new FormData(form);
+          var res = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
 
-          <div class="step">
-            <div class="stepNum">3</div>
-            <div>
-              <h4>Move to diligence</h4>
-              <p>Share docs and next steps when both sides are aligned.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          if (res.ok) {
+            form.reset();
+            statusBox.className = 'status success';
+            statusBox.textContent = 'Thanks. You are on the list. We will reach out with launch updates.';
+            return;
+          }
 
-    <section class="section">
-      <div class="container callouts">
-        <div class="calloutRow" aria-label="Launch updates callout">
-          <div>
-            <strong>Get launch updates</strong>
-            <span>No spam. Just major milestones and early access invites.</span>
-          </div>
-
-          <div class="inlineForm" role="group" aria-label="Email updates">
-            <input class="field" type="email" placeholder="you@company.com" aria-label="Email address" />
-            <button type="button">Notify me</button>
-          </div>
-        </div>
-
-        <div class="contactRow" aria-label="Contact callout">
-          <div>
-            <strong>Contact</strong>
-            <span>For now, update this section with your preferred contact method.</span>
-          </div>
-          <button class="ghostBtn" type="button" onclick="window.location.href='mailto:info@businessbuyingandselling.com';">Email us</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer mount -->
-  <div id="siteFooter" data-include="assets/includes/footer.html"></div>
-
-  <script>
-    // Phone formatting: (xxx) xxx-xxxx
-    (function(){
-      const phone = document.getElementById('phone');
-      if (!phone) return;
-
-      function digitsOnly(v){ return (v||'').replace(/\D/g,'').slice(0,10); }
-
-      function formatUS(d){
-        if (!d) return '';
-        if (d.length < 4) return d;
-        if (d.length < 7) return '(' + d.slice(0,3) + ') ' + d.slice(3);
-        return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
-      }
-
-      // Keep placeholder "Optional" until user types
-      phone.addEventListener('input', () => {
-        const d = digitsOnly(phone.value);
-        phone.value = formatUS(d);
+          statusBox.className = 'status error';
+          statusBox.textContent = 'Submission failed. Please try again in a moment.';
+        } catch (err) {
+          statusBox.className = 'status error';
+          statusBox.textContent = 'Network error. Please try again in a moment.';
+        }
       });
-
-      // Basic "autocapitalize" for desktop: title-case first/last name on blur
-      function titleCaseWords(s){
-        return (s||'').split(/\s+/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-      }
-      const fn = document.getElementById('firstName');
-      const ln = document.getElementById('lastName');
-      [fn, ln].forEach(el => {
-        if (!el) return;
-        el.addEventListener('blur', () => { el.value = titleCaseWords(el.value.trim()); });
-      });
-
-      // Prevent actual submit (temporary page)
-      const form = document.getElementById('earlyAccessForm');
-      if (form){
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          alert('Thanks. We will reach out when early access opens.');
-        });
-      }
     })();
   </script>
-</body>
+<script>
+(function(){
+  function inject(id, url){
+    var el = document.getElementById(id);
+    if(!el) return;
+    fetch(url, {cache:'no-store'}).then(function(r){ return r.text(); }).then(function(html){
+      el.innerHTML = html;
+    }).catch(function(){
+      el.innerHTML = '';
+    });
+  }
+  // Use data-include if present
+  var h = document.getElementById('siteHeader');
+  var f = document.getElementById('siteFooter');
+  if(h && h.getAttribute('data-include')) inject('siteHeader', h.getAttribute('data-include'));
+  if(f && f.getAttribute('data-include')) inject('siteFooter', f.getAttribute('data-include'));
+
+  function titleCaseWords(v){
+    return v.replace(/\s+/g,' ').trim().replace(/\b([a-z])/g, function(m, c){ return c.toUpperCase(); });
+  }
+
+  var first = document.getElementById('firstName');
+  var last = document.getElementById('lastName');
+  if(first) first.addEventListener('blur', function(){ this.value = titleCaseWords(this.value); });
+  if(last) last.addEventListener('blur', function(){ this.value = titleCaseWords(this.value); });
+
+  var msg = document.getElementById('message');
+  if(msg) msg.addEventListener('blur', function(){
+    var v = this.value.replace(/\s+/g,' ').trim();
+    if(!v) return;
+    this.value = v.charAt(0).toUpperCase() + v.slice(1);
+  });
+
+  var phone = document.getElementById('phone');
+  function formatPhone(raw){
+    var d = (raw || '').replace(/\D/g,'').slice(0,10);
+    if(d.length === 0) return '';
+    if(d.length < 4) return '(' + d;
+    if(d.length < 7) return '(' + d.slice(0,3) + ') ' + d.slice(3);
+    return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+  }
+  if(phone){
+    phone.addEventListener('input', function(){
+      var caret = this.selectionStart || 0;
+      var before = this.value;
+      this.value = formatPhone(this.value);
+      // keep caret near end for simplicity
+      if(before !== this.value){
+        this.setSelectionRange(this.value.length, this.value.length);
+      }
+    });
+    phone.addEventListener('blur', function(){
+      this.value = formatPhone(this.value);
+    });
+  }
+})();
+</script></body>
 </html>
