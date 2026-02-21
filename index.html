@@ -2,117 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Business Buying & Selling | Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Primary Meta -->
-  <meta name="title" content="Business Buying & Selling | Coming Soon">
-  <meta name="description" content="A marketplace and resource for buying and selling established businesses. Join the early access list.">
+  <!-- Per-page settings (used by /assets/js/head.js) -->
+  <meta name="page:title" content="Business Buying and Selling | Coming Soon">
+  <meta name="page:description" content="A marketplace and resource for buying and selling established businesses. Join the early access list.">
+  <meta name="page:image" content="/assets/images/og-image.jpg">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" content="Business Buying & Selling | Coming Soon">
-  <meta property="og:description" content="Buy and sell established businesses with confidence. Join the early access list.">
-  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/header.css">
 
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Business Buying & Selling | Coming Soon">
-  <meta name="twitter:description" content="Buy and sell established businesses with confidence. Join the early access list.">
-  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
+  <!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
+  <script src="/assets/js/head.js"></script>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
+  <!-- Page-only CSS for the coming soon layout -->
   <style>
-    :root {
-      --navy: #1B263B;
-      --midnight: #111827;
-      --blue: #2563EB;
-      --light-blue: #60A5FA;
-
-      --text-primary: #1F2937;
-      --text-secondary: #6B7280;
-
-      --bg-page: #FAFAFA;
-      --bg-light: #E5E7EB;
-      --white: #ffffff;
-
-      --success: #22C55E;
-      --warning: #F97316;
-      --error: #EF4444;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    body {
-      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(250, 250, 250, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--bg-light);
-    }
-
-    .header-inner {
-      height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-primary);
-      min-width: 0;
-    }
-
-    .brand-logo {
-      height: 46px;
-      width: auto;
-      display: block;
-    }
-
-    .badge {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--navy);
-      background: #EAF2FF;
-      border: 1px solid #D7E6FF;
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    /* Layout */
     .page {
       padding: 42px 0 70px;
     }
@@ -124,10 +29,9 @@
       align-items: start;
     }
 
-    /* Hero */
     .hero-card {
-      background: var(--white);
-      border: 1px solid var(--bg-light);
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       border-radius: 16px;
       padding: 28px;
       box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
@@ -151,11 +55,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 13px;
-      color: var(--text-secondary);
+      color: #6B7280;
       background: #F3F4F6;
-      border: 1px solid var(--bg-light);
+      border: 1px solid #E5E7EB;
       padding: 8px 12px;
       border-radius: 999px;
       margin-bottom: 18px;
@@ -165,23 +69,23 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--warning);
+      background: #F97316;
       box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
     }
 
-    h1 {
-      font-family: 'Poppins', sans-serif;
+    .coming-title {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 42px;
       line-height: 1.12;
-      margin-bottom: 14px;
+      margin: 0 0 14px;
       letter-spacing: -0.02em;
-      color: var(--midnight);
+      color: #111827;
       max-width: 18ch;
     }
 
     .subhead {
       font-size: 18px;
-      color: var(--text-secondary);
+      color: #6B7280;
       max-width: 60ch;
       margin-bottom: 18px;
     }
@@ -194,8 +98,8 @@
     }
 
     .value {
-      background: var(--bg-page);
-      border: 1px solid var(--bg-light);
+      background: #FAFAFA;
+      border: 1px solid #E5E7EB;
       border-radius: 12px;
       padding: 12px 12px;
       display: flex;
@@ -213,21 +117,22 @@
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      color: var(--blue);
+      color: #2563EB;
       font-weight: 700;
-      font-family: 'DM Sans', sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .value h3 {
-      font-family: 'DM Sans', sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 14px;
-      margin-bottom: 2px;
-      color: var(--midnight);
+      margin: 0 0 2px;
+      color: #111827;
     }
 
     .value p {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: #6B7280;
+      margin: 0;
     }
 
     .trust {
@@ -238,38 +143,35 @@
     }
 
     .pill {
-      font-family: 'DM Sans', sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 12px;
-      color: var(--text-secondary);
-      background: var(--white);
-      border: 1px solid var(--bg-light);
+      color: #6B7280;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       padding: 8px 10px;
       border-radius: 999px;
     }
 
-    /* Form */
     .form-card {
-      background: var(--white);
-      border: 1px solid var(--bg-light);
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       border-radius: 16px;
       padding: 22px;
       box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
     }
 
     .form-title {
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 20px;
-      margin-bottom: 6px;
-      color: var(--midnight);
+      margin: 0 0 6px;
+      color: #111827;
     }
 
     .form-subtitle {
       font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
+      color: #6B7280;
+      margin: 0 0 14px;
     }
-
-    form { margin-top: 10px; }
 
     .row {
       display: grid;
@@ -278,6 +180,8 @@
       margin-bottom: 12px;
     }
 
+    .row-1 { grid-template-columns: 1fr; }
+
     .field {
       display: flex;
       flex-direction: column;
@@ -285,19 +189,19 @@
     }
 
     label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 12px;
       font-weight: 600;
-      color: var(--midnight);
+      color: #111827;
     }
 
     input, select, textarea {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 14px;
       padding: 12px 12px;
       border-radius: 12px;
-      border: 1px solid var(--bg-light);
-      background: var(--bg-page);
+      border: 1px solid #E5E7EB;
+      background: #FAFAFA;
       outline: none;
       transition: border-color 120ms ease, background 120ms ease;
     }
@@ -309,41 +213,31 @@
 
     textarea { min-height: 96px; resize: vertical; }
 
-    .row-1 { grid-template-columns: 1fr; }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-top: 8px;
-    }
-
-    .btn {
+    .btn-full {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       border-radius: 12px;
       padding: 12px 14px;
       border: 1px solid transparent;
       text-decoration: none;
       cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 700;
       font-size: 14px;
       width: 100%;
+      background: #2563EB;
+      color: #FFFFFF;
     }
 
-    .btn-primary {
-      background: var(--blue);
-      color: #fff;
+    .btn-full:hover {
+      background: #60A5FA;
     }
-    .btn-primary:hover { background: var(--light-blue); }
 
     .fineprint {
       margin-top: 10px;
       font-size: 12px;
-      color: var(--text-secondary);
+      color: #6B7280;
     }
 
     .status {
@@ -352,9 +246,9 @@
       border-radius: 12px;
       padding: 10px 12px;
       font-size: 13px;
-      border: 1px solid var(--bg-light);
-      background: var(--bg-page);
-      color: var(--text-secondary);
+      border: 1px solid #E5E7EB;
+      background: #FAFAFA;
+      color: #6B7280;
     }
 
     .status.success {
@@ -371,23 +265,13 @@
       color: #7F1D1D;
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 26px;
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 12px;
-    }
-
-    /* Mobile */
     @media (max-width: 980px) {
       .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 36px; }
+      .coming-title { font-size: 36px; }
     }
 
     @media (max-width: 560px) {
       .row { grid-template-columns: 1fr; }
-      .brand-logo { height: 40px; }
       .hero-card, .form-card { padding: 18px; }
       .value-list { grid-template-columns: 1fr; }
     }
@@ -395,14 +279,8 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/">
-        <img class="brand-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying & Selling">
-      </a>
-      <div class="badge">Early Access: Join the list</div>
-    </div>
-  </header>
+  <!-- Global header injects here -->
+  <div id="siteHeader"></div>
 
   <main class="page">
     <div class="container grid">
@@ -412,7 +290,7 @@
           Launching soon. Built for buyers, sellers, and deal professionals.
         </div>
 
-        <h1>Business Buying and Selling, made clearer.</h1>
+        <h1 class="coming-title">Business Buying and Selling, made clearer.</h1>
         <p class="subhead">
           A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.
         </p>
@@ -505,13 +383,10 @@
             </div>
           </div>
 
-          <!-- Helpful metadata -->
           <input type="hidden" name="source" value="production-coming-soon">
           <input type="hidden" name="site" value="businessbuyingandselling.com">
 
-          <div class="actions">
-            <button class="btn btn-primary" type="submit">Request Early Access</button>
-          </div>
+          <button class="btn-full" type="submit">Request Early Access</button>
 
           <div id="statusBox" class="status" role="status" aria-live="polite"></div>
 
@@ -519,25 +394,29 @@
             By submitting, you agree we may contact you about launch updates. No spam.
           </div>
         </form>
-
-        <div class="footer">
-          © <span id="year"></span> Business Buying & Selling
-        </div>
       </aside>
     </div>
   </main>
 
-  <script>
-    // footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- Global footer injects here -->
+  <div id="siteFooter"></div>
 
-    // Optional: AJAX submit for nicer UX. Still works normally if JS is disabled.
+  <!-- Includes then site behavior -->
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/site.js"></script>
+
+  <!-- Page-only form behavior -->
+  <script>
     (function () {
       var form = document.getElementById('joinForm');
       var statusBox = document.getElementById('statusBox');
+      if (!form || !statusBox) return;
 
-      // If you have not replaced the endpoint yet, do not intercept.
-      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
+      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) {
+        statusBox.className = 'status';
+        statusBox.textContent = '';
+        return;
+      }
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
