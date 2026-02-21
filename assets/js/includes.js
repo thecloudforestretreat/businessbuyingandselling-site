@@ -1,36 +1,41 @@
-async function loadInclude(selector, url) {
-  const el = document.querySelector(selector);
-  if (!el) {
-    console.error("Include target missing:", selector);
-    return;
+/* /assets/js/includes.js
+   Injects global header/footer HTML into #siteHeader and #siteFooter
+*/
+
+(function () {
+  function inject(selector, url) {
+    var mount = document.querySelector(selector);
+    if (!mount) return Promise.resolve(false);
+
+    return fetch(url, { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Failed to load " + url + " (" + res.status + ")");
+        return res.text();
+      })
+      .then(function (html) {
+        mount.innerHTML = html;
+        return true;
+      })
+      .catch(function (err) {
+        console.error(err);
+        return false;
+      });
   }
 
-  try {
-    const res = await fetch(url + "?v=" + Date.now(), {
-      cache: "no-store",
-      headers: { "Accept": "text/html" }
+  function init() {
+    // Only inject if mounts exist on the page
+    var headerPromise = inject("#siteHeader", "/assets/includes/header.html");
+    var footerPromise = inject("#siteFooter", "/assets/includes/footer.html");
+
+    Promise.all([headerPromise, footerPromise]).then(function () {
+      // Optional: expose a small signal for debugging
+      document.documentElement.classList.add("bbas-includes-loaded");
     });
-
-    if (!res.ok) {
-      throw new Error("Failed include (" + res.status + "): " + url);
-    }
-
-    const html = await res.text();
-    if (!html || !html.trim()) {
-      throw new Error("Include empty HTML: " + url);
-    }
-
-    el.innerHTML = html;
-    console.log("Included:", url, "->", selector);
-  } catch (e) {
-    console.error("Include error for", url, e);
-    el.innerHTML = "";
   }
-}
 
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadInclude("#siteHeader", "/assets/includes/header.html");
-  await loadInclude("#siteFooter", "/assets/includes/footer.html");
-
-  document.dispatchEvent(new CustomEvent("includes:loaded"));
-});
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
