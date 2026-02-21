@@ -1,41 +1,45 @@
-/* /assets/js/includes.js
-   Injects global header/footer HTML into #siteHeader and #siteFooter
-*/
-
+/* /assets/js/includes.js */
 (function () {
-  function inject(selector, url) {
-    var mount = document.querySelector(selector);
-    if (!mount) return Promise.resolve(false);
+  function inject(targetId, url) {
+    var el = document.getElementById(targetId);
+    if (!el) return Promise.resolve({ id: targetId, ok: false, reason: "missing_target" });
+
+    // If you had placeholder text like "Header did not load yet.", this clears it.
+    el.innerHTML = "";
 
     return fetch(url, { cache: "no-store" })
       .then(function (res) {
-        if (!res.ok) throw new Error("Failed to load " + url + " (" + res.status + ")");
+        if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
         return res.text();
       })
       .then(function (html) {
-        mount.innerHTML = html;
-        return true;
+        el.innerHTML = html;
+        return { id: targetId, ok: true };
       })
       .catch(function (err) {
-        console.error(err);
-        return false;
+        el.innerHTML =
+          '<div style="padding:12px 16px;border:1px solid #e5e7eb;border-radius:12px;background:#fafafa;color:#6b7280;font:14px/1.4 system-ui;">' +
+          (targetId === "siteHeader" ? "Header" : "Footer") +
+          " failed to load.</div>";
+        return { id: targetId, ok: false, reason: String(err && err.message ? err.message : err) };
       });
   }
 
-  function init() {
-    // Only inject if mounts exist on the page
-    var headerPromise = inject("#siteHeader", "/assets/includes/header.html");
-    var footerPromise = inject("#siteFooter", "/assets/includes/footer.html");
-
-    Promise.all([headerPromise, footerPromise]).then(function () {
-      // Optional: expose a small signal for debugging
-      document.documentElement.classList.add("bbas-includes-loaded");
+  function run() {
+    Promise.all([
+      inject("siteHeader", "/assets/includes/header.html"),
+      inject("siteFooter", "/assets/includes/footer.html")
+    ]).then(function (results) {
+      // Let site.js know includes are ready (if it wants to re-bind behavior).
+      document.dispatchEvent(
+        new CustomEvent("bbas:includes:loaded", { detail: { results: results } })
+      );
     });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", run);
   } else {
-    init();
+    run();
   }
 })();
