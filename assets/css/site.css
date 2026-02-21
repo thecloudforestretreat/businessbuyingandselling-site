@@ -739,3 +739,27 @@ p{ margin:0 0 14px; color:var(--muted); }
   height: 24px;
   display: block;
 }
+
+/* =========================================================
+   Footer hardening (prevents white/transparent overrides)
+   ========================================================= */
+#siteFooter {
+  background: var(--midnight);
+}
+
+#siteFooter .bbas-footer,
+footer.bbas-footer {
+  background: var(--midnight) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  display: block;
+}
+
+#siteFooter .bbas-footer a,
+footer.bbas-footer a {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#siteFooter .bbas-footer .muted,
+footer.bbas-footer .muted {
+  color: rgba(255, 255, 255, 0.70) !important;
+}
