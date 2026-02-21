@@ -1,367 +1,108 @@
-/* /assets/css/site.css */
-
-/* =========================
-   Design tokens (BBAS)
-   ========================= */
-:root{
-  /* Brand palette */
-  --navy:#1B263B;        /* Primary Navy */
-  --midnight:#111827;    /* Soft Midnight */
-  --blue:#2563EB;        /* Marketplace Blue */
-  --sky:#60A5FA;         /* Light Sky Blue */
-
-  --text:#1F2937;        /* Charcoal Text */
-  --muted:#6B7280;       /* Muted Gray */
-  --border:#E5E7EB;      /* Light UI Gray */
-  --bg:#FAFAFA;          /* Soft White */
-  --card:#FFFFFF;
-
-  --shadow: 0 10px 28px rgba(17,24,39,0.08);
-
-  --radius: 16px;
-  --radius-sm: 12px;
+/* SITE.CSS FINAL – GLOBAL STYLES + APPROVED FOOTER */
+/* Brand colors */
+:root {
+  --navy: #0f172a;
+  --navy-soft: #111827;
+  --text-light: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-soft: rgba(255,255,255,.12);
 }
 
-/* =========================
-   Base
-   ========================= */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  color:var(--text);
-  background:var(--bg);
-  line-height:1.6;
+/* Reset */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background: #ffffff;
+  color: #111827;
 }
 
-img{ max-width:100%; height:auto; display:block; }
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:underline; }
-
-.container{
-  max-width:1120px;
-  margin:0 auto;
-  padding:0 20px;
-}
-
-.skip-link{
-  position:absolute;
-  left:-999px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
-.skip-link:focus{
-  left:16px;
-  top:16px;
-  width:auto;
-  height:auto;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:10px 12px;
-  z-index:1000;
-}
-
-/* Headings */
-h1,h2,h3{
-  font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  color:var(--midnight);
-  line-height:1.15;
-  margin:0 0 10px;
-}
-p{ margin:0 0 14px; color:var(--muted); }
-.muted{ color:var(--muted); }
-
-/* =========================
-   Buttons
-   ========================= */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:12px 16px;
-  border-radius:14px;
-  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:700;
-  font-size:14px;
-  border:1px solid transparent;
-  cursor:pointer;
-  white-space:nowrap;
-}
-.btn-primary{
-  background:var(--blue);
-  color:#fff;
-}
-.btn-primary:hover{ background:var(--sky); text-decoration:none; }
-.btn-ghost{
-  background:transparent;
-  border-color:var(--border);
-  color:var(--midnight);
-}
-.btn-ghost:hover{ background:#fff; text-decoration:none; }
-.btn-secondary{
-  background:#fff;
-  border-color:var(--border);
-  color:var(--midnight);
-}
-
-/* =========================
-   Footer (global)
-   ========================= */
-.bbas-footer{
-  background: var(--midnight);
-  color: rgba(255,255,255,0.90);
-}
-.bbas-footer a{ color: rgba(255,255,255,0.90); }
-.bbas-footer a:hover{ color:#fff; text-decoration:underline; }
-
-.bbas-footer-top{
-  display:grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items:start;
-  gap: 26px;
-  padding: 34px 0 18px;
-}
-
-/* Left */
-.bbas-footer-brand{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  min-width:0;
-}
-.bbas-footer-logo{
-  width:56px;
-  height:56px;
-  border-radius:999px;
-  flex:0 0 auto;
-}
-.bbas-footer-title{
-  font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-size:18px;
-  font-weight:700;
-  line-height:1.2;
-  margin: 2px 0 6px;
-  color:#fff;
-}
-.bbas-footer-desc{
-  margin:0;
-  max-width:44ch;
-  color: rgba(255,255,255,0.72);
-}
-
-/* Center socials */
-.bbas-footer-social{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap: 18px;
-  padding-top: 8px;
-}
-.bbas-social-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:44px;
-  height:44px;
-  border-radius:999px;
-}
-.bbas-social-link img{
-  width:32px; /* 1.5x-ish */
-  height:32px;
-  object-fit:contain;
-  filter: none;
-}
-.bbas-social-link:hover{ background: rgba(255,255,255,0.08); text-decoration:none; }
-
-/* Right links (two columns) */
-.bbas-footer-links{
-  display:flex;
-  justify-content:flex-end;
-}
-.bbas-footer-linkcols{
-  display:grid;
-  grid-template-columns: auto auto;
-  gap: 34px;
-  padding-top: 2px;
-}
-.bbas-footer-col{
-  display:flex;
-  flex-direction:column;
-  gap: 10px;
-  text-align:right;
-}
-.bbas-footer-col a{
-  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:700;
-  font-size:14px;
-  color: rgba(255,255,255,0.86);
-}
-.bbas-footer-col a:hover{ color:#fff; }
-
-/* Bottom */
-.bbas-footer-bottom{
-  padding: 0 0 22px;
-}
-.bbas-footer-rule{
-  height:1px;
-  background: rgba(255,255,255,0.12);
-  margin: 0 0 14px;
-}
-.bbas-footer-copy{
-  text-align:center;
-  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:600;
-  font-size:13px;
-  color: rgba(255,255,255,0.72);
-}
-
-/* =========================
-   Responsive
-   ========================= */
-@media (max-width: 980px){
-  .bbas-footer-top{
-    grid-template-columns: 1fr;
-    text-align:left;
-    padding: 30px 0 16px;
-  }
-  .bbas-footer-social{ justify-content:flex-start; padding-top: 0; }
-  .bbas-footer-links{ justify-content:flex-start; }
-  .bbas-footer-col{ text-align:left; }
-  .bbas-footer-linkcols{ grid-template-columns: 1fr 1fr; gap: 24px; }
-}
-
-@media (max-width: 560px){
-  .bbas-footer-linkcols{ grid-template-columns: 1fr; }
-  .bbas-footer-social{ gap: 14px; }
-  .bbas-social-link{ width:40px; height:40px; }
-  .bbas-social-link img{ width:30px; height:30px; }
-}
-
-/* =========================
-   Utilities (small)
-   ========================= */
-.sr-only{
-  position:absolute !important;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-
-/* ===== Footer ===== */
-
+/* FOOTER */
 .bbas-footer {
-  background: #111827;
-  color: #e5e7eb;
-  padding: 64px 0 24px;
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  color: var(--text-light);
+  padding: 56px 0 28px;
   margin-top: 80px;
 }
 
 .bbas-footer-inner {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: start;
+  grid-template-columns: 1.4fr 1fr;
   gap: 48px;
 }
 
-/* Left */
-.bbas-footer-left {
-  max-width: 320px;
-}
-
-.bbas-footer-logo {
-  width: 44px;
-  height: auto;
-  margin-bottom: 16px;
-}
-
-.bbas-footer-desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #9ca3af;
-}
-
-/* Center */
-.bbas-footer-center {
+.bbas-footer-brand {
   display: flex;
-  justify-content: center;
+  gap: 16px;
+  align-items: flex-start;
 }
 
+.bbas-footer-brand img {
+  width: 48px;
+  height: 48px;
+}
+
+.bbas-footer-brand h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bbas-footer-brand p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 360px;
+}
+
+/* Social icons */
 .bbas-footer-social {
   display: flex;
-  gap: 18px;
-  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
 }
 
 .bbas-footer-social img {
   width: 24px;
   height: 24px;
-  opacity: 0.9;
-  display: block;
+  opacity: .9;
 }
 
-.bbas-footer-social a:hover img {
-  opacity: 1;
-}
-
-/* Right */
-.bbas-footer-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
+/* Footer links */
 .bbas-footer-links {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 8px 32px;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 12px 48px;
+  align-content: start;
 }
 
 .bbas-footer-links a {
-  font-size: 14px;
-  color: #e5e7eb;
+  color: var(--text-light);
   text-decoration: none;
+  font-size: 14px;
 }
 
 .bbas-footer-links a:hover {
   text-decoration: underline;
 }
 
-/* Bottom */
+/* Bottom bar */
 .bbas-footer-bottom {
-  margin-top: 32px;
+  margin-top: 40px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-soft);
   text-align: center;
   font-size: 13px;
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 /* Responsive */
 @media (max-width: 900px) {
   .bbas-footer-inner {
     grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .bbas-footer-right {
-    justify-content: center;
-  }
-
-  .bbas-footer-links {
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    gap: 10px 24px;
+    gap: 32px;
   }
 }
