@@ -1,48 +1,36 @@
-:root{
-  --navy:#1B263B;
-  --midnight:#111827;
-  --blue:#2563EB;
-  --light-blue:#60A5FA;
+async function loadInclude(selector, url) {
+  const el = document.querySelector(selector);
+  if (!el) {
+    console.error("Include target missing:", selector);
+    return;
+  }
 
-  --text:#1F2937;
-  --muted:#6B7280;
+  try {
+    const res = await fetch(url + "?v=" + Date.now(), {
+      cache: "no-store",
+      headers: { "Accept": "text/html" }
+    });
 
-  --bg:#FAFAFA;
-  --card:#FFFFFF;
-  --border:#E5E7EB;
+    if (!res.ok) {
+      throw new Error("Failed include (" + res.status + "): " + url);
+    }
+
+    const html = await res.text();
+    if (!html || !html.trim()) {
+      throw new Error("Include empty HTML: " + url);
+    }
+
+    el.innerHTML = html;
+    console.log("Included:", url, "->", selector);
+  } catch (e) {
+    console.error("Include error for", url, e);
+    el.innerHTML = "";
+  }
 }
 
-*{ box-sizing: border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadInclude("#siteHeader", "/assets/includes/header.html");
+  await loadInclude("#siteFooter", "/assets/includes/footer.html");
 
-main{
-  min-height: calc(100vh - 74px - 120px);
-}
-
-h1,h2,h3{
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--midnight);
-  line-height: 1.15;
-  margin: 0 0 10px;
-}
-
-p{ margin: 0 0 14px; color: var(--muted); }
-
-.section{
-  padding: 44px 0;
-}
-
-.card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 10px 28px rgba(17,24,39,0.06);
-} s
+  document.dispatchEvent(new CustomEvent("includes:loaded"));
+});
