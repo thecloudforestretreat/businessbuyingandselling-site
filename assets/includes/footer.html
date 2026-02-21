@@ -1,43 +1,143 @@
+<!-- /assets/includes/footer.html -->
 <footer class="bbas-footer" role="contentinfo">
-  <div class="container bbas-footer-inner">
-    <div class="bbas-footer-left">
-      <a class="bbas-footer-brand" href="/" aria-label="Business Buying and Selling home">
+  <style>
+    /* Scoped footer styles so footer.html works even before site.css is finalized */
+    .bbas-footer {
+      background: #111827; /* Soft Midnight */
+      color: #E5E7EB;      /* Light UI Gray */
+      border-top: 1px solid rgba(229,231,235,0.14);
+    }
+    .bbas-footer a { color: inherit; text-decoration: none; }
+    .bbas-footer a:hover { text-decoration: underline; }
+
+    .bbas-footer .bbas-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+
+    .bbas-footer .bbas-footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .bbas-footer .bbas-footer-brand {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .bbas-footer .bbas-footer-logo {
+      height: 54px; /* Increase logo size */
+      width: auto;
+      display: block;
+      background: transparent;
+    }
+
+    .bbas-footer .bbas-footer-copy {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .bbas-footer .bbas-footer-copy p {
+      margin: 4px 0 0;
+      opacity: 0.9;
+    }
+
+    .bbas-footer .bbas-footer-nav {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      justify-items: start;
+    }
+
+    .bbas-footer .bbas-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .bbas-footer .bbas-social a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(229,231,235,0.16);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .bbas-footer .bbas-social img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .bbas-footer .bbas-footer-bottom {
+      border-top: 1px solid rgba(229,231,235,0.14);
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 760px) {
+      .bbas-footer .bbas-footer-grid { grid-template-columns: 1fr; }
+      .bbas-footer .bbas-footer-nav { grid-auto-flow: row; }
+      .bbas-footer .bbas-footer-logo { height: 48px; }
+    }
+  </style>
+
+  <div class="bbas-container">
+    <div class="bbas-footer-grid">
+      <div class="bbas-footer-brand">
         <img class="bbas-footer-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying and Selling">
-      </a>
-      <p class="bbas-footer-tagline">A marketplace and resource for buying and selling established businesses.</p>
-    </div>
+        <div class="bbas-footer-copy">
+          <strong>Business Buying and Selling</strong>
+          <p>A marketplace and resource for buying and selling established businesses.</p>
 
-    <nav class="bbas-footer-nav" aria-label="Footer">
-      <a href="/">Home</a>
-      <a href="/sell-your-business.html">Sell Your Business</a>
-      <a href="/buy-a-business.html">Buy A Business</a>
-      <a href="/listings.html">Listings</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
+          <nav class="bbas-social" aria-label="Social links">
+            <a href="https://facebook.com" target="_blank" rel="noopener">
+              <img src="/assets/images/icons/bbas_icons_fb.png" alt="" aria-hidden="true">
+              <span>Facebook</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener">
+              <img src="/assets/images/icons/bbas_icons_ig.png" alt="" aria-hidden="true">
+              <span>Instagram</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">
+              <img src="/assets/images/icons/bbas_icons_linkedin.png" alt="" aria-hidden="true">
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://whatsapp.com" target="_blank" rel="noopener">
+              <img src="/assets/images/icons/bbas_icons_wa.png" alt="" aria-hidden="true">
+              <span>WhatsApp</span>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener">
+              <img src="/assets/images/icons/bbas_icons_x.png" alt="" aria-hidden="true">
+              <span>X</span>
+            </a>
+          </nav>
+        </div>
+      </div>
 
-    <div class="bbas-footer-social" aria-label="Social links">
-      <a class="bbas-social" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
-        <img src="/assets/images/icons/bbas_icons_fb.png" alt="" width="22" height="22" loading="lazy">
-      </a>
-      <a class="bbas-social" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
-        <img src="/assets/images/icons/bbas_icons_ig.png" alt="" width="22" height="22" loading="lazy">
-      </a>
-      <a class="bbas-social" href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <img src="/assets/images/icons/bbas_icons_linkedin.png" alt="" width="22" height="22" loading="lazy">
-      </a>
-      <a class="bbas-social" href="https://whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <img src="/assets/images/icons/bbas_icons_wa.png" alt="" width="22" height="22" loading="lazy">
-      </a>
-      <a class="bbas-social" href="https://x.com" target="_blank" rel="noopener" aria-label="X">
-        <img src="/assets/images/icons/bbas_icons_x.png" alt="" width="22" height="22" loading="lazy">
-      </a>
+      <nav class="bbas-footer-nav" aria-label="Footer menu">
+        <a href="/">Home</a>
+        <a href="/sell-your-business/">Sell Your Business</a>
+        <a href="/buy-a-business/">Buy A Business</a>
+        <a href="/listings/">Listings</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
     </div>
   </div>
 
   <div class="bbas-footer-bottom">
-    <div class="container bbas-footer-bottom-inner">
-      <div>© 2026 Business Buying and Selling</div>
-    </div>
+    © 2026 Business Buying and Selling
   </div>
 </footer>
