@@ -1,3 +1,26 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<style>
+  /* Accessibility: visually hide skip link until keyboard focus */
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:8px;
+    z-index:9999;
+    padding:10px 14px;
+    border-radius:10px;
+    background:#2563EB;
+    color:#fff;
+    font:600 14px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    text-decoration:none;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+  }
+  .skip-link:focus{
+    left:12px;
+    outline:3px solid rgba(96,165,250,.9);
+    outline-offset:3px;
+  }
+</style>
+
 <header class="bbas-header" data-bbas-header>
   <div class="bbas-header__inner">
     <a class="bbas-brand" href="/" aria-label="Business Buying and Selling home">
@@ -26,14 +49,15 @@
       type="button"
       aria-label="Open menu"
       aria-expanded="false"
+      aria-controls="bbasMobileNav"
       data-bbas-nav-toggle
     >
       <span></span><span></span><span></span>
     </button>
   </div>
 
-  <div class="bbas-mobile" data-bbas-mobile-nav hidden>
-    <div class="bbas-mobile__inner" role="dialog" aria-label="Mobile menu">
+  <div class="bbas-mobile" id="bbasMobileNav" data-bbas-mobile-nav hidden>
+    <div class="bbas-mobile__inner" role="dialog" aria-modal="true" aria-label="Mobile menu">
       <a class="bbas-mobile__link" href="/" data-bbas-nav-close>Home</a>
       <a class="bbas-mobile__link" href="/sell-your-business/" data-bbas-nav-close>Sell Your Business</a>
       <a class="bbas-mobile__link" href="/buy-a-business/" data-bbas-nav-close>Buy A Business</a>
