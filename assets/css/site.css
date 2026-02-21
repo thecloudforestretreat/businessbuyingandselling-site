@@ -551,3 +551,129 @@ p{ margin:0 0 14px; color:var(--muted); }
   .footer-logo{ height:52px; }
   .metric-grid{ grid-template-columns:1fr; }
 }
+
+/* ------------------------------
+   Global Footer (includes/footer.html)
+   ------------------------------ */
+
+.bbas-footer{
+  background: radial-gradient(900px 500px at 15% 15%, rgba(96,165,250,0.18), transparent 55%),
+              radial-gradient(900px 500px at 85% 0%, rgba(37,99,235,0.16), transparent 60%),
+              #111827;
+  color: #E5E7EB;
+  border-top: 1px solid rgba(229,231,235,0.12);
+}
+
+.bbas-footer-inner{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 34px 20px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.bbas-footer-left{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.bbas-footer-logo{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.bbas-footer-copy{ min-width: 0; }
+
+.bbas-footer-title{
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin: 0 0 6px;
+}
+
+.bbas-footer-desc{
+  margin: 0 0 14px;
+  color: rgba(229,231,235,0.78);
+  max-width: 62ch;
+}
+
+.bbas-footer-social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+.bbas-social-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.bbas-social-icon{
+  width: 30px; /* ~1.5x */
+  height: 30px;
+  display: block;
+  object-fit: contain;
+}
+
+.bbas-social-link:hover .bbas-social-icon{
+  opacity: 0.85;
+}
+
+.bbas-footer-nav{
+  display: grid;
+  gap: 10px;
+  justify-content: end;
+}
+
+.bbas-footer-nav a{
+  color: rgba(229,231,235,0.92);
+  text-decoration: none;
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
+}
+
+.bbas-footer-nav a:hover{ color: #FFFFFF; text-decoration: underline; }
+
+.bbas-footer-bottom{
+  border-top: 1px solid rgba(229,231,235,0.12);
+}
+
+.bbas-footer-bottom-inner{
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  text-align: center;
+  color: rgba(229,231,235,0.78);
+  font-size: 13px;
+}
+
+/* Footer responsive */
+@media (max-width: 860px){
+  .bbas-footer-inner{
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .bbas-footer-nav{
+    justify-content: start;
+  }
+
+  .bbas-footer-social{
+    justify-content: flex-start;
+  }
+}
