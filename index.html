@@ -14,293 +14,264 @@
   <link rel="stylesheet" href="/assets/css/header.css">
 
   <!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
-  <script src="/assets/js/head.js" defer></script>
+  <script src="/assets/js/head.js"></script>
 
   <!-- Page-only CSS (keeps your coming soon layout) -->
   <style>
-/* Page-only layout tuning for the temporary homepage.
-   Keeps global header/footer untouched and avoids global CSS conflicts. */
+    /* Page-scoped layout polish for the temporary homepage (does not touch global header/footer styles) */
+    .bbas-home {
+      background: linear-gradient(180deg, rgba(96,165,250,0.10) 0%, rgba(255,255,255,0.0) 260px);
+    }
 
-:root{
-  --bbas-navy:#1B263B;
-  --bbas-navy-2:#111827;
-  --bbas-blue:#2563EB;
-  --bbas-sky:#60A5FA;
-  --bbas-text:#1F2937;
-  --bbas-muted:#6B7280;
-  --bbas-border:#E5E7EB;
-  --bbas-bg:#FAFAFA;
-  --bbas-card:#FFFFFF;
-  --bbas-shadow: 0 20px 50px rgba(17,24,39,.10), 0 2px 10px rgba(17,24,39,.06);
-}
+    .bbas-home .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
 
-main.bbas-comingsoon{
-  background:
-    radial-gradient(1200px 600px at 20% 0%, rgba(96,165,250,.22), rgba(96,165,250,0) 55%),
-    linear-gradient(180deg, rgba(96,165,250,.10), rgba(96,165,250,0) 60%),
-    var(--bbas-bg);
-  padding: clamp(18px, 3.5vw, 44px) 16px 72px;
-}
+    /* Clear separation from header */
+    .bbas-home .top-gap {
+      height: 14px;
+    }
 
-.bbas-comingsoon .page{
-  max-width: 1120px;
-  margin: 0 auto;
-}
+    /* Wide hero image (optional). Recommended: 2000x650 (or 1600x520) JPG/WEBP */
+    .bbas-home .hero-media {
+      border: 1px solid #E5E7EB;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0B1220;
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+      margin: 0 0 18px;
+    }
 
-.bbas-comingsoon .grid{
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 28px;
-  align-items: start;
-}
+    .bbas-home .hero-media img {
+      width: 100%;
+      height: clamp(180px, 20vw, 260px);
+      object-fit: cover;
+      display: block;
+      opacity: 0.92;
+    }
 
-.bbas-comingsoon .left{
-  display: grid;
-  gap: 14px;
-}
+    .bbas-home .hero-media .hero-overlay {
+      position: relative;
+    }
 
-.bbas-comingsoon .badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border: 1px solid var(--bbas-border);
-  background: rgba(255,255,255,.75);
-  border-radius: 999px;
-  color: var(--bbas-muted);
-  font-size: 13px;
-  line-height: 1;
-  width: fit-content;
-}
+    .bbas-home .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: start;
+    }
 
-.bbas-comingsoon .badge:before{
-  content:"";
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: #F97316; /* Warning accent from palette */
-  box-shadow: 0 0 0 4px rgba(249,115,22,.18);
-}
+    .bbas-home .card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
 
-.bbas-comingsoon h1{
-  margin: 0;
-  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--bbas-text);
-  font-size: clamp(30px, 3.4vw, 44px);
-  line-height: 1.12;
-}
+    .bbas-home .card.pad {
+      padding: 22px 22px 18px;
+    }
 
-.bbas-comingsoon p.lead{
-  margin: 0;
-  color: var(--bbas-muted);
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 62ch;
-}
+    .bbas-home .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      border: 1px solid #E5E7EB;
+      padding: 8px 12px;
+      color: #1F2937;
+      background: #FAFAFA;
+      font-size: 13px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
 
-.bbas-comingsoon .hero-card{
-  background: var(--bbas-card);
-  border: 1px solid var(--bbas-border);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: var(--bbas-shadow);
-}
+    .bbas-home .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: #F97316;
+      box-shadow: 0 0 0 4px rgba(249,115,22,0.14);
+    }
 
-.bbas-comingsoon .bullets{
-  display: grid;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .bbas-home h1 {
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: clamp(34px, 3.2vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: #1F2937;
+    }
 
-.bbas-comingsoon .bullet{
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 10px;
-  align-items: start;
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid var(--bbas-border);
-  background: rgba(250,250,250,.65);
-}
+    .bbas-home .lede {
+      font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #4B5563;
+      margin: 0 0 18px;
+      max-width: 54ch;
+    }
 
-.bbas-comingsoon .bullet .num{
-  width: 26px;
-  height: 26px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  background: rgba(37,99,235,.10);
-  color: var(--bbas-blue);
-  font-weight: 800;
-  font-size: 13px;
-}
+    .bbas-home .value-list {
+      display: grid;
+      gap: 14px;
+      margin: 12px 0 14px;
+    }
 
-.bbas-comingsoon .bullet b{
-  display: block;
-  color: var(--bbas-text);
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
+    .bbas-home .value {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
 
-.bbas-comingsoon .bullet span{
-  color: var(--bbas-muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
+    .bbas-home .value-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: #2563EB;
+      background: rgba(96,165,250,0.18);
+      border: 1px solid rgba(37,99,235,0.20);
+      margin-top: 2px;
+      flex: 0 0 auto;
+    }
 
-.bbas-comingsoon .tags{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
+    .bbas-home .value h3 {
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 15px;
+      margin: 0 0 4px;
+      color: #111827;
+    }
 
-.bbas-comingsoon .tag{
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--bbas-border);
-  background: rgba(255,255,255,.85);
-  color: var(--bbas-muted);
-  font-size: 12px;
-}
+    .bbas-home .value p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #6B7280;
+    }
 
-.bbas-comingsoon .form-card{
-  background: var(--bbas-card);
-  border: 1px solid var(--bbas-border);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: var(--bbas-shadow);
-}
+    .bbas-home .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
 
-.bbas-comingsoon .form-title{
-  margin: 0 0 6px;
-  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--bbas-text);
-}
+    .bbas-home .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #E5E7EB;
+      background: #FFFFFF;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      color: #374151;
+      white-space: nowrap;
+    }
 
-.bbas-comingsoon .form-sub{
-  margin: 0 0 14px;
-  color: var(--bbas-muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
+    /* Form card */
+    .bbas-home .form-head h2 {
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 20px;
+      margin: 0 0 6px;
+      color: #111827;
+    }
 
-.bbas-comingsoon form{
-  margin: 0;
-}
+    .bbas-home .form-head p {
+      margin: 0 0 14px;
+      color: #6B7280;
+      line-height: 1.45;
+      font-size: 13.5px;
+    }
 
-.bbas-comingsoon .row{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
+    .bbas-home form {
+      margin-top: 6px;
+    }
 
-.bbas-comingsoon .row.row-1{
-  grid-template-columns: 1fr;
-}
+    .bbas-home .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
 
-.bbas-comingsoon label{
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--bbas-text);
-  margin: 0 0 6px;
-}
+    .bbas-home label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #374151;
+      display: block;
+      margin: 10px 0 6px;
+    }
 
-.bbas-comingsoon input,
-.bbas-comingsoon select,
-.bbas-comingsoon textarea{
-  width: 100%;
-  font-family: Montserrat, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  font-size: 14px;
-  line-height: 1.2;
-  padding: 12px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--bbas-border);
-  background: #fff;
-  color: var(--bbas-text);
-  outline: none;
-}
+    .bbas-home input,
+    .bbas-home select,
+    .bbas-home textarea {
+      width: 100%;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 14px;
+      outline: none;
+      background: #FFFFFF;
+      color: #111827;
+    }
 
-.bbas-comingsoon textarea{
-  min-height: 110px;
-  resize: vertical;
-}
+    .bbas-home textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
 
-.bbas-comingsoon input:focus,
-.bbas-comingsoon select:focus,
-.bbas-comingsoon textarea:focus{
-  border-color: rgba(37,99,235,.45);
-  box-shadow: 0 0 0 4px rgba(37,99,235,.12);
-}
+    .bbas-home input:focus,
+    .bbas-home select:focus,
+    .bbas-home textarea:focus {
+      border-color: rgba(37,99,235,0.55);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+    }
 
-.bbas-comingsoon .btn{
-  width: 100%;
-  border: 0;
-  border-radius: 14px;
-  padding: 12px 14px;
-  background: var(--bbas-blue);
-  color: #fff;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: .01em;
-  cursor: pointer;
-  transition: transform .08s ease, filter .12s ease;
-}
+    .bbas-home .cta {
+      margin-top: 14px;
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-weight: 800;
+      font-size: 14px;
+      color: #FFFFFF;
+      background: #2563EB;
+      cursor: pointer;
+    }
 
-.bbas-comingsoon .btn:hover{ filter: brightness(1.03); }
-.bbas-comingsoon .btn:active{ transform: translateY(1px); }
+    .bbas-home .fineprint {
+      margin: 10px 0 0;
+      color: #6B7280;
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
 
-.bbas-comingsoon .fineprint{
-  margin: 10px 0 0;
-  font-size: 12px;
-  color: var(--bbas-muted);
-  line-height: 1.45;
-}
-
-/* Mobile: stack, tighten, keep the form easy to complete */
-@media (max-width: 980px){
-  .bbas-comingsoon .grid{
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .bbas-comingsoon .row{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Small mobile: reduce card padding */
-@media (max-width: 480px){
-  .bbas-comingsoon .hero-card,
-  .bbas-comingsoon .form-card{
-    padding: 14px;
-    border-radius: 16px;
-  }
-  .bbas-comingsoon .bullet{
-    padding: 10px;
-  }
-}
-</style>
+    /* Reduce space before footer on mobile */
+    @media (max-width: 900px) {
+      .bbas-home .container { padding: 18px 16px 34px; }
+      .bbas-home .grid { grid-template-columns: 1fr; gap: 16px; }
+      .bbas-home .field-row { grid-template-columns: 1fr; }
+      .bbas-home h1 { font-size: 36px; }
+      .bbas-home .lede { max-width: 100%; }
+      .bbas-home .hero-media img { height: 200px; }
+    }
+  </style>
 </head>
 
-<body class="bbas-comingsoon">
-  <a class="skip-link" href="#main">Skip to content</a>
-
+<body class="bbas-home">
   <!-- Global header injects here -->
   <div id="siteHeader"></div>
+  <div id="headerFallback" class="include-fallback">Header did not load yet.</div>
 
-  <main id="main" class="page">
+  <main class="page">
     <div class="container grid">
       <section class="hero-card" aria-label="Coming soon overview">
         <div class="kicker">
@@ -373,11 +344,11 @@ main.bbas-comingsoon{
           <div class="row">
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required>
+              <input id="email" name="email" autocomplete="email" inputmode="email" type="email" autocomplete="email" required>
             </div>
             <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="Optional" type="tel" autocomplete="tel" placeholder="Optional">
             </div>
           </div>
 
@@ -396,7 +367,7 @@ main.bbas-comingsoon{
           <div class="row row-1">
             <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+              <textarea id="message" name="message" autocapitalize="sentences" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
             </div>
           </div>
 
@@ -417,10 +388,31 @@ main.bbas-comingsoon{
 
   <!-- Global footer injects here -->
   <div id="siteFooter"></div>
+  <div id="footerFallback" class="include-fallback">Footer did not load yet.</div>
 
-  <!-- Includes then site behavior -->
+  <!-- Inject includes, then bind site behavior -->
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
+
+  <script>
+    // Diagnostics: show fallback if includes do not inject within 1 second
+    (function () {
+      var headerFallback = document.getElementById("headerFallback");
+      var footerFallback = document.getElementById("footerFallback");
+
+      setTimeout(function () {
+        var headerHasContent = document.getElementById("siteHeader") && document.getElementById("siteHeader").innerHTML.trim().length > 0;
+        var footerHasContent = document.getElementById("siteFooter") && document.getElementById("siteFooter").innerHTML.trim().length > 0;
+
+        if (!headerHasContent && headerFallback) headerFallback.style.display = "block";
+        if (!footerHasContent && footerFallback) footerFallback.style.display = "block";
+      }, 1000);
+
+      document.addEventListener("includes:loaded", function () {
+        console.log("Includes loaded: header and footer injected.");
+      });
+    })();
+  </script>
 
   <!-- Page-only form behavior -->
   <script>
@@ -456,6 +448,37 @@ main.bbas-comingsoon{
         } catch (err) {
           statusBox.className = 'status error';
           statusBox.textContent = 'Network error. Please try again in a moment.';
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      function formatPhone(value) {
+        var digits = (value || "").replace(/\D/g, "").slice(0, 10);
+        var a = digits.slice(0, 3);
+        var b = digits.slice(3, 6);
+        var c = digits.slice(6, 10);
+        if (digits.length <= 3) return a;
+        if (digits.length <= 6) return "(" + a + ") " + b;
+        return "(" + a + ") " + b + "-" + c;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var phone = document.querySelector('input[name="phone"]');
+        if (phone) {
+          phone.addEventListener("input", function () {
+            var start = phone.selectionStart || 0;
+            var before = phone.value;
+            phone.value = formatPhone(phone.value);
+            // Best-effort caret stabilization
+            if (before.length < phone.value.length) start += 1;
+            phone.setSelectionRange(start, start);
+          });
+          phone.addEventListener("blur", function () {
+            phone.value = formatPhone(phone.value);
+          });
         }
       });
     })();
