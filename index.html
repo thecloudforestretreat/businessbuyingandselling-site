@@ -16,7 +16,7 @@
   <!-- Global head builder: SEO, OG, Twitter, favicons, GA -->
   <script src="/assets/js/head.js"></script>
 
-  <!-- Page-only CSS for the coming soon layout -->
+  <!-- Page-only CSS (keeps your current production coming soon look) -->
   <style>
     .page {
       padding: 42px 0 70px;
@@ -30,7 +30,7 @@
     }
 
     .hero-card {
-      background: #FFFFFF;
+      background: #ffffff;
       border: 1px solid #E5E7EB;
       border-radius: 16px;
       padding: 28px;
@@ -73,7 +73,7 @@
       box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
     }
 
-    .coming-title {
+    h1 {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 42px;
       line-height: 1.12;
@@ -146,14 +146,14 @@
       font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 12px;
       color: #6B7280;
-      background: #FFFFFF;
+      background: #ffffff;
       border: 1px solid #E5E7EB;
       padding: 8px 10px;
       border-radius: 999px;
     }
 
     .form-card {
-      background: #FFFFFF;
+      background: #ffffff;
       border: 1px solid #E5E7EB;
       border-radius: 16px;
       padding: 22px;
@@ -208,31 +208,29 @@
 
     input:focus, select:focus, textarea:focus {
       border-color: #BFD6FF;
-      background: #FFFFFF;
+      background: #ffffff;
     }
 
     textarea { min-height: 96px; resize: vertical; }
 
-    .btn-full {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       border-radius: 12px;
       padding: 12px 14px;
       border: 1px solid transparent;
-      text-decoration: none;
       cursor: pointer;
       font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 700;
       font-size: 14px;
       width: 100%;
       background: #2563EB;
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
-    .btn-full:hover {
-      background: #60A5FA;
-    }
+    .btn:hover { background: #60A5FA; }
 
     .fineprint {
       margin-top: 10px;
@@ -267,7 +265,7 @@
 
     @media (max-width: 980px) {
       .grid { grid-template-columns: 1fr; }
-      .coming-title { font-size: 36px; }
+      h1 { font-size: 36px; }
     }
 
     @media (max-width: 560px) {
@@ -290,7 +288,7 @@
           Launching soon. Built for buyers, sellers, and deal professionals.
         </div>
 
-        <h1 class="coming-title">Business Buying and Selling, made clearer.</h1>
+        <h1>Business Buying and Selling, made clearer.</h1>
         <p class="subhead">
           A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.
         </p>
@@ -340,7 +338,6 @@
         <div class="form-title">Join the early access list</div>
         <div class="form-subtitle">Tell us what you are looking for and we will notify you when we launch.</div>
 
-        <!-- Replace the action URL with your Formspree endpoint -->
         <form id="joinForm" method="POST" action="https://formspree.io/f/REPLACE_ME">
           <div class="row">
             <div class="field">
@@ -386,7 +383,7 @@
           <input type="hidden" name="source" value="production-coming-soon">
           <input type="hidden" name="site" value="businessbuyingandselling.com">
 
-          <button class="btn-full" type="submit">Request Early Access</button>
+          <button class="btn" type="submit">Request Early Access</button>
 
           <div id="statusBox" class="status" role="status" aria-live="polite"></div>
 
@@ -401,7 +398,7 @@
   <!-- Global footer injects here -->
   <div id="siteFooter"></div>
 
-  <!-- Includes then site behavior -->
+  <!-- Inject includes, then bind site behavior -->
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
@@ -412,11 +409,7 @@
       var statusBox = document.getElementById('statusBox');
       if (!form || !statusBox) return;
 
-      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) {
-        statusBox.className = 'status';
-        statusBox.textContent = '';
-        return;
-      }
+      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
