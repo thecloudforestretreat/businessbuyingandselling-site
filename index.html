@@ -2,258 +2,571 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Business Buying & Selling</title>
+  <title>Business Buying & Selling | Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Primary Meta -->
-  <meta name="title" content="Business Buying & Selling">
-  <meta name="description" content="A marketplace and resource for buying and selling businesses.">
+  <meta name="title" content="Business Buying & Selling | Coming Soon">
+  <meta name="description" content="A marketplace and resource for buying and selling established businesses. Join the early access list.">
 
-  <!-- Open Graph / Facebook / LinkedIn -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" content="Business Buying & Selling">
-  <meta property="og:description" content="A marketplace and resource for buying and selling businesses.">
-  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
+  <meta property="og:title" content="Business Buying & Selling | Coming Soon">
+  <meta property="og:description" content="Buy and sell established businesses with confidence. Join the early access list.">
+  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
 
   <!-- Twitter / X -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://businessbuyingandselling.com/">
-  <meta property="twitter:title" content="Business Buying & Selling">
-  <meta property="twitter:description" content="A marketplace and resource for buying and selling businesses.">
-  <meta property="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Business Buying & Selling | Coming Soon">
+  <meta name="twitter:description" content="Buy and sell established businesses with confidence. Join the early access list.">
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/og-image.jpg">
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Site CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-EH99SDCSFD');
-  </script>
+  <style>
+    :root {
+      --navy: #1B263B;
+      --midnight: #111827;
+      --blue: #2563EB;
+      --light-blue: #60A5FA;
+
+      --text-primary: #1F2937;
+      --text-secondary: #6B7280;
+
+      --bg-page: #FAFAFA;
+      --bg-light: #E5E7EB;
+      --white: #ffffff;
+
+      --success: #22C55E;
+      --warning: #F97316;
+      --error: #EF4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 250, 250, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--bg-light);
+    }
+
+    .header-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+
+    .brand-logo {
+      height: 46px;
+      width: auto;
+      display: block;
+    }
+
+    .badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--navy);
+      background: #EAF2FF;
+      border: 1px solid #D7E6FF;
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Layout */
+    .page {
+      padding: 42px 0 70px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    /* Hero */
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--bg-light);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(900px 300px at 10% 0%, rgba(96,165,250,0.25), transparent 60%),
+        radial-gradient(900px 300px at 95% 20%, rgba(37,99,235,0.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-card > * { position: relative; }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: #F3F4F6;
+      border: 1px solid var(--bg-light);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 42px;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+      color: var(--midnight);
+      max-width: 18ch;
+    }
+
+    .subhead {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin-bottom: 18px;
+    }
+
+    .value-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0 18px;
+    }
+
+    .value {
+      background: var(--bg-page);
+      border: 1px solid var(--bg-light);
+      border-radius: 12px;
+      padding: 12px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .value-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: #EAF2FF;
+      border: 1px solid #D7E6FF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .value h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      margin-bottom: 2px;
+      color: var(--midnight);
+    }
+
+    .value p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--white);
+      border: 1px solid var(--bg-light);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--bg-light);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
+    }
+
+    .form-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      margin-bottom: 6px;
+      color: var(--midnight);
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    form { margin-top: 10px; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--midnight);
+    }
+
+    input, select, textarea {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--bg-light);
+      background: var(--bg-page);
+      outline: none;
+      transition: border-color 120ms ease, background 120ms ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #BFD6FF;
+      background: #FFFFFF;
+    }
+
+    textarea { min-height: 96px; resize: vertical; }
+
+    .row-1 { grid-template-columns: 1fr; }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--light-blue); }
+
+    .fineprint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .status {
+      display: none;
+      margin-top: 12px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      border: 1px solid var(--bg-light);
+      background: var(--bg-page);
+      color: var(--text-secondary);
+    }
+
+    .status.success {
+      display: block;
+      border-color: rgba(34, 197, 94, 0.35);
+      background: rgba(34, 197, 94, 0.10);
+      color: #166534;
+    }
+
+    .status.error {
+      display: block;
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.10);
+      color: #7F1D1D;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 36px; }
+    }
+
+    @media (max-width: 560px) {
+      .row { grid-template-columns: 1fr; }
+      .brand-logo { height: 40px; }
+      .hero-card, .form-card { padding: 18px; }
+      .value-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="Business Buying and Selling home">
-        <img class="brand-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying and Selling">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying & Selling">
       </a>
-
-      <nav class="nav">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#contact">Contact</a>
-        <button class="btn btn-primary" type="button" data-scroll="#notify">Get updates</button>
-      </nav>
-
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-
-    <div class="mobile-nav" data-mobile-nav hidden>
-      <div class="container mobile-nav-inner">
-        <a href="#features" data-nav-close>Features</a>
-        <a href="#how" data-nav-close>How it works</a>
-        <a href="#contact" data-nav-close>Contact</a>
-        <button class="btn btn-primary" type="button" data-scroll="#notify" data-nav-close>Get updates</button>
-      </div>
+      <div class="badge">Early Access: Join the list</div>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="badge">Launching soon</p>
-          <h1>Buy and sell established businesses with confidence.</h1>
-          <p class="lead">
-            Business Buying and Selling is building a marketplace and resource hub for buyers, sellers, and brokers.
-            Clean listings, clear numbers, and a better process.
-          </p>
+  <main class="page">
+    <div class="container grid">
+      <section class="hero-card" aria-label="Coming soon overview">
+        <div class="kicker">
+          <span class="dot" aria-hidden="true"></span>
+          Launching soon. Built for buyers, sellers, and deal professionals.
+        </div>
 
-          <div class="cta-row">
-            <button class="btn btn-primary" type="button" data-scroll="#notify">Join the launch list</button>
-            <a class="btn btn-ghost" href="#how">See how it works</a>
+        <h1>Business Buying and Selling, made clearer.</h1>
+        <p class="subhead">
+          A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.
+        </p>
+
+        <div class="value-list">
+          <div class="value">
+            <div class="value-icon">1</div>
+            <div>
+              <h3>Curated listings</h3>
+              <p>Clear summaries and consistent deal information, so you can evaluate faster.</p>
+            </div>
           </div>
 
-          <div class="trust">
-            <div class="trust-item">
-              <div class="trust-kicker">Focus</div>
-              <div class="trust-text">Real businesses, verified basics</div>
+          <div class="value">
+            <div class="value-icon">2</div>
+            <div>
+              <h3>Buyer readiness</h3>
+              <p>Guides and checklists that help you move from interest to action.</p>
             </div>
-            <div class="trust-item">
-              <div class="trust-kicker">Clarity</div>
-              <div class="trust-text">Simple metrics, less noise</div>
+          </div>
+
+          <div class="value">
+            <div class="value-icon">3</div>
+            <div>
+              <h3>Seller support</h3>
+              <p>Position your business properly with practical preparation steps.</p>
             </div>
-            <div class="trust-item">
-              <div class="trust-kicker">Speed</div>
-              <div class="trust-text">Faster screening for both sides</div>
+          </div>
+
+          <div class="value">
+            <div class="value-icon">4</div>
+            <div>
+              <h3>Trust and transparency</h3>
+              <p>We prioritize credible deal details and a professional experience.</p>
             </div>
           </div>
         </div>
 
-        <div class="hero-card" aria-label="Preview card">
-          <div class="card">
-            <div class="card-top">
-              <div class="card-title">Featured listing preview</div>
-              <div class="pill">Placeholder</div>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric">
-                <div class="metric-label">Revenue</div>
-                <div class="metric-value">$1,250,000</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">EBITDA</div>
-                <div class="metric-value">$325,000</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Multiple</div>
-                <div class="metric-value">3.8x</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Location</div>
-                <div class="metric-value">Remote</div>
-              </div>
-            </div>
-
-            <div class="card-actions">
-              <button class="btn btn-secondary" type="button" disabled>Request details</button>
-              <button class="btn btn-ghost" type="button" disabled>Save</button>
-            </div>
-
-            <p class="card-note">
-              This is a placeholder layout. You can swap this into a real listings grid later.
-            </p>
-          </div>
+        <div class="trust" aria-label="Trust cues">
+          <span class="pill">Private deals and main street</span>
+          <span class="pill">Education-first approach</span>
+          <span class="pill">Built for serious buyers and sellers</span>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for buyers, sellers, and brokers.</h2>
-          <p class="muted">
-            The goal is a cleaner marketplace with better information and fewer time-wasters.
-          </p>
-        </div>
+      <aside class="form-card" aria-label="Join early access list">
+        <div class="form-title">Join the early access list</div>
+        <div class="form-subtitle">Tell us what you are looking for and we will notify you when we launch.</div>
 
-        <div class="cards">
-          <article class="info-card">
-            <h3>Clear listing structure</h3>
-            <p>Standard fields that matter. Revenue, cash flow, margin, and deal terms in one place.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Fast screening</h3>
-            <p>Filter by category, size, and basic qualification signals so you spend time on the right deals.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Guides and resources</h3>
-            <p>Simple explainers for buyers and sellers, plus broker best practices and checklists.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <h2>How it works</h2>
-          <p class="muted">A straightforward flow that scales when you are ready.</p>
-        </div>
-
-        <ol class="steps">
-          <li>
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <div class="step-title">Publish listings</div>
-              <div class="step-text">Start with clean, consistent listing data.</div>
+        <!-- Replace the action URL with your Formspree endpoint -->
+        <form id="joinForm" method="POST" action="https://formspree.io/f/REPLACE_ME">
+          <div class="row">
+            <div class="field">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
             </div>
-          </li>
-          <li>
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <div class="step-title">Qualify interest</div>
-              <div class="step-text">Capture intent and basics before deeper diligence.</div>
+            <div class="field">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
             </div>
-          </li>
-          <li>
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <div class="step-title">Move to diligence</div>
-              <div class="step-text">Share docs and next steps when both sides are aligned.</div>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="notify" class="section">
-      <div class="container">
-        <div class="notify">
-          <div class="notify-copy">
-            <h2>Get launch updates</h2>
-            <p class="muted">No spam. Just major milestones and early access invites.</p>
           </div>
 
-          <form class="notify-form" id="notifyForm">
-            <label class="sr-only" for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
-            <button class="btn btn-primary" type="submit">Notify me</button>
-            <p class="form-note" id="formNote" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
+          <div class="row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional">
+            </div>
+          </div>
 
-    <section id="contact" class="section section-tight">
-      <div class="container">
-        <div class="contact">
-          <h2>Contact</h2>
-          <p class="muted">
-            For now, update this section with your preferred contact method.
-          </p>
-          <a class="btn btn-secondary" href="mailto:hello@businessbuyingandselling.com">Email us</a>
+          <div class="row row-1">
+            <div class="field">
+              <label for="interest">Interested In</label>
+              <select id="interest" name="interest" required>
+                <option value="" selected disabled>Select one</option>
+                <option value="Buying">Buying</option>
+                <option value="Selling">Selling</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row row-1">
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+            </div>
+          </div>
+
+          <!-- Helpful metadata -->
+          <input type="hidden" name="source" value="production-coming-soon">
+          <input type="hidden" name="site" value="businessbuyingandselling.com">
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Request Early Access</button>
+          </div>
+
+          <div id="statusBox" class="status" role="status" aria-live="polite"></div>
+
+          <div class="fineprint">
+            By submitting, you agree we may contact you about launch updates. No spam.
+          </div>
+        </form>
+
+        <div class="footer">
+          © <span id="year"></span> Business Buying & Selling
         </div>
-      </div>
-    </section>
+      </aside>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
-        <img class="footer-logo" src="/assets/images/logo_square_transparent.png" alt="Business Buying and Selling">
-        <p class="muted">A marketplace and resource for buying and selling businesses.</p>
-      </div>
+  <script>
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      <div class="footer-right">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#notify">Updates</a>
-      </div>
-    </div>
+    // Optional: AJAX submit for nicer UX. Still works normally if JS is disabled.
+    (function () {
+      var form = document.getElementById('joinForm');
+      var statusBox = document.getElementById('statusBox');
 
-    <div class="container footer-bottom">
-      <div class="muted">© <span id="year"></span> Business Buying and Selling. All rights reserved.</div>
-    </div>
-  </footer>
+      // If you have not replaced the endpoint yet, do not intercept.
+      if (!form.action || form.action.indexOf('REPLACE_ME') !== -1) return;
 
-  <script src="/assets/js/site.js"></script>
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        statusBox.className = 'status';
+        statusBox.textContent = '';
+
+        try {
+          var formData = new FormData(form);
+          var res = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            form.reset();
+            statusBox.className = 'status success';
+            statusBox.textContent = 'Thanks. You are on the list. We will reach out with launch updates.';
+            return;
+          }
+
+          statusBox.className = 'status error';
+          statusBox.textContent = 'Submission failed. Please try again in a moment.';
+        } catch (err) {
+          statusBox.className = 'status error';
+          statusBox.textContent = 'Network error. Please try again in a moment.';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
