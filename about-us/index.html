@@ -1,394 +1,460 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About - Business Buying and Selling</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Business Buying and Selling</title>
 
-  <!-- Global site CSS (keep root-relative so it works in /about-us/) -->
+  <!-- Global styles (do not change) -->
   <link rel="stylesheet" href="/assets/css/site.css" />
 
+  <!-- Page styles: scoped to this page only -->
   <style>
-    :root{
-      --bbas-navy:#1B263B;
-      --bbas-midnight:#111827;
-      --bbas-blue:#2563EB;
-      --bbas-sky:#60A5FA;
-      --bbas-text:#1F2937;
-      --bbas-muted:#6B7280;
-      --bbas-border:#E5E7EB;
-      --bbas-bg:#FAFAFA;
-      --bbas-card:#FFFFFF;
-      --bbas-radius:18px;
-      --bbas-max:1120px;
+    :root {
+      --bbas-text: #1F2937;
+      --bbas-muted: #6B7280;
+      --bbas-border: #E5E7EB;
+      --bbas-surface: #FFFFFF;
+      --bbas-bg: #FAFAFA;
+      --bbas-blue: #2563EB;
+      --bbas-sky: #60A5FA;
+      --bbas-navy: #1B263B;
+      --bbas-midnight: #111827;
+      --bbas-amber: #F59E0B;
+      --bbas-green: #22C55E;
+      --bbas-radius: 20px;
+      --bbas-shadow: 0 10px 30px rgba(17, 24, 39, 0.10);
     }
 
-    html, body { height: 100%; }
-    body { margin: 0; background: var(--bbas-bg); color: var(--bbas-text); overflow-x:hidden; }
-
-    /* Keep page content aligned with header/footer containers */
-    .bbas-wrap{ max-width: var(--bbas-max); margin: 0 auto; padding: 0 24px; }
-    @media (max-width: 520px){ .bbas-wrap{ padding: 0 16px; } }
-
-    .bbas-hero{
-      position: relative;
-      padding: 34px 0 34px;
-      background: linear-gradient(180deg, rgba(17,24,39,0.04), rgba(17,24,39,0.00));
+    body {
+      background: #f6f8fb;
     }
 
-    .bbas-hero-shell{
+    /* Keep body width aligned with header/footer */
+    .bbas-page {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .bbas-container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .bbas-main {
+      padding: 26px 0 40px;
+    }
+
+    /* Hero */
+    .bbas-hero {
       position: relative;
-      border-radius: 28px;
+      border-radius: 26px;
       overflow: hidden;
-      background: radial-gradient(1200px 420px at 20% 0%, rgba(96,165,250,0.28), transparent 55%),
-                  radial-gradient(900px 400px at 80% 20%, rgba(37,99,235,0.22), transparent 55%),
-                  linear-gradient(180deg, #0B1220, var(--bbas-midnight));
-      box-shadow: 0 28px 70px rgba(17,24,39,0.22);
+      background: radial-gradient(1200px 600px at 10% 0%, rgba(96,165,250,0.30), transparent 55%),
+                  radial-gradient(900px 500px at 85% 10%, rgba(245,158,11,0.18), transparent 60%),
+                  linear-gradient(135deg, #111827, #1B263B);
+      color: #fff;
+      box-shadow: var(--bbas-shadow);
+      border: 1px solid rgba(255,255,255,0.10);
     }
 
-    .bbas-hero-media{
-      position:absolute; inset:0;
-      background-image: url("/assets/images/bbas_homepage_hero_03.jpg");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.20;
-      transform: scale(1.02);
-    }
-    .bbas-hero-scrim{
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(17,24,39,0.90) 0%, rgba(17,24,39,0.78) 44%, rgba(17,24,39,0.60) 100%);
-    }
-
-    .bbas-hero-inner{
-      position: relative;
-      padding: 40px;
+    .bbas-hero-inner {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 22px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .bbas-hero-inner{ grid-template-columns: 1fr; padding: 28px; }
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 18px;
+      padding: 34px;
+      align-items: center;
     }
 
-    .bbas-pill{
-      display:inline-flex; align-items:center; gap:10px;
+    .bbas-chip {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
       padding: 8px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,0.10);
       border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.90);
-      font-weight: 600;
+      color: rgba(255,255,255,0.92);
       font-size: 13px;
-      letter-spacing: 0.2px;
+      line-height: 1;
       width: fit-content;
     }
-    .bbas-dot{
-      width: 9px; height: 9px; border-radius: 50%;
-      background: #F59E0B;
-      box-shadow: 0 0 0 5px rgba(245,158,11,0.18);
+
+    .bbas-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--bbas-amber);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
       flex: 0 0 auto;
     }
 
-    .bbas-h1{
+    .bbas-hero h1 {
       margin: 14px 0 10px;
-      color: #fff;
-      font-weight: 800;
-      line-height: 1.06;
       font-size: 44px;
+      line-height: 1.06;
       letter-spacing: -0.02em;
     }
-    @media (max-width: 520px){ .bbas-h1{ font-size: 34px; } }
 
-    .bbas-lead{
-      margin: 0 0 16px;
+    .bbas-hero p {
+      margin: 0;
       color: rgba(255,255,255,0.86);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 62ch;
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 60ch;
     }
 
-    .bbas-ctaRow{
-      display:flex; flex-wrap:wrap; gap: 10px;
+    .bbas-hero-cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-top: 16px;
     }
 
-    .bbas-btn{
-      appearance:none; border: 1px solid transparent;
+    .bbas-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
+      padding: 0 14px;
       border-radius: 999px;
-      padding: 11px 14px;
-      font-weight: 700;
-      font-size: 14px;
-      text-decoration: none;
-      display:inline-flex; align-items:center; justify-content:center;
-      gap: 10px;
-      cursor: pointer;
-      line-height: 1;
-      min-height: 42px;
-      transition: transform .08s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
-      white-space: nowrap;
-    }
-    .bbas-btn:active{ transform: translateY(1px); }
-
-    .bbas-btnPrimary{
-      background: linear-gradient(180deg, #2F6AF0, var(--bbas-blue));
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
       color: #fff;
-      box-shadow: 0 10px 22px rgba(37,99,235,0.22);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
     }
-    .bbas-btnPrimary:hover{ box-shadow: 0 14px 30px rgba(37,99,235,0.26); }
 
-    .bbas-btnGhost{
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.92);
-      border-color: rgba(255,255,255,0.16);
+    .bbas-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.26);
     }
-    .bbas-btnGhost:hover{ background: rgba(255,255,255,0.12); }
 
-    /* Right card in hero */
-    .bbas-heroCard{
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 22px;
+    .bbas-btn-primary {
+      background: linear-gradient(135deg, rgba(37,99,235,1), rgba(96,165,250,1));
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .bbas-btn-primary:hover {
+      background: linear-gradient(135deg, rgba(37,99,235,1), rgba(37,99,235,0.92));
+    }
+
+    .bbas-hero-panel {
+      border-radius: 18px;
       padding: 18px;
-      color: rgba(255,255,255,0.90);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
       backdrop-filter: blur(10px);
     }
-    .bbas-heroCard h3{
-      margin: 0 0 10px;
-      font-size: 16px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-    .bbas-heroCard p{
-      margin: 0 0 14px;
-      color: rgba(255,255,255,0.80);
+
+    .bbas-hero-panel h3 {
+      margin: 0 0 4px;
       font-size: 14px;
-      line-height: 1.55;
+      letter-spacing: 0.01em;
+      color: rgba(255,255,255,0.92);
     }
-    .bbas-kpis{
-      display:grid;
+
+    .bbas-hero-panel p {
+      margin: 0 0 12px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.45;
+    }
+
+    .bbas-pillgrid {
+      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .bbas-kpi{
-      background: rgba(17,24,39,0.36);
+
+    .bbas-pill {
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 12px;
-    }
-    .bbas-kpi strong{ display:block; font-size: 16px; color:#fff; }
-    .bbas-kpi span{ display:block; font-size: 12px; color: rgba(255,255,255,0.74); margin-top: 4px; }
-
-    /* Content sections */
-    .bbas-section{ padding: 36px 0; }
-    .bbas-sectionAlt{ background: #F3F6FB; border-top: 1px solid var(--bbas-border); border-bottom: 1px solid var(--bbas-border); }
-
-    .bbas-h2{
-      margin: 0 0 8px;
-      font-size: 30px;
-      font-weight: 850;
-      letter-spacing: -0.02em;
-      color: var(--bbas-text);
-      line-height: 1.15;
-    }
-    .bbas-sub{
-      margin: 0 0 18px;
-      color: var(--bbas-muted);
-      line-height: 1.6;
-      max-width: 80ch;
-      font-size: 15px;
     }
 
-    .bbas-grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    .bbas-pill strong {
+      display: block;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 2px;
     }
-    @media (max-width: 920px){ .bbas-grid3{ grid-template-columns: 1fr; } }
 
-    .bbas-card{
-      background: var(--bbas-card);
+    .bbas-pill span {
+      display: block;
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.35;
+    }
+
+    /* Sections */
+    .bbas-section {
+      margin-top: 22px;
+    }
+
+    .bbas-section-card {
+      background: var(--bbas-surface);
       border: 1px solid var(--bbas-border);
       border-radius: var(--bbas-radius);
-      padding: 16px;
-      box-shadow: 0 14px 34px rgba(17,24,39,0.06);
+      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.06);
       overflow: hidden;
     }
-    .bbas-card h4{
-      margin: 0 0 6px;
-      font-size: 16px;
-      font-weight: 850;
+
+    .bbas-section-head {
+      padding: 18px 18px 0;
+    }
+
+    .bbas-section-title {
+      margin: 0;
+      font-size: 24px;
+      color: var(--bbas-text);
       letter-spacing: -0.01em;
     }
-    .bbas-card p{
-      margin: 0;
+
+    .bbas-section-sub {
+      margin: 8px 0 0;
       color: var(--bbas-muted);
-      line-height: 1.6;
       font-size: 14px;
+      line-height: 1.55;
+      max-width: 80ch;
     }
 
-    .bbas-2col{
-      display:grid;
+    .bbas-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 16px 18px 18px;
+    }
+
+    .bbas-mini {
+      border-radius: 16px;
+      border: 1px solid var(--bbas-border);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      padding: 14px;
+    }
+
+    .bbas-mini h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: var(--bbas-text);
+    }
+
+    .bbas-mini p {
+      margin: 0;
+      font-size: 12.75px;
+      line-height: 1.5;
+      color: var(--bbas-muted);
+    }
+
+    .bbas-grid-2 {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: stretch;
+      gap: 14px;
+      padding: 16px 18px 18px;
     }
-    @media (max-width: 920px){ .bbas-2col{ grid-template-columns: 1fr; } }
 
-    .bbas-list{
-      margin: 12px 0 0;
+    .bbas-list {
+      margin: 10px 0 0;
       padding-left: 18px;
       color: var(--bbas-muted);
-      line-height: 1.7;
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.65;
     }
 
-    /* Avoid the “body wider than header” bug caused by any child overflow */
-    main, section, .bbas-wrap, .bbas-hero-shell { max-width: 100%; }
-    img { max-width: 100%; height: auto; display:block; }
+    .bbas-kicker {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(37,99,235,0.25);
+      background: rgba(96,165,250,0.12);
+      color: #1f3a8a;
+      font-size: 12px;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .bbas-kicker i {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--bbas-green);
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.20);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .bbas-hero-inner {
+        grid-template-columns: 1fr;
+        padding: 26px;
+      }
+      .bbas-hero h1 {
+        font-size: 36px;
+      }
+      .bbas-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .bbas-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .bbas-container {
+        padding: 0 16px;
+      }
+      .bbas-hero h1 {
+        font-size: 30px;
+      }
+      .bbas-pillgrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Prevent any accidental full-width elements */
+    img, video, iframe { max-width: 100%; height: auto; }
   </style>
 </head>
-
 <body>
-  <!-- Header include mount -->
-  <div id="siteHeader"></div>
+  <div class="bbas-page">
+    <!-- Header include mount -->
+    <div id="siteHeader"></div>
 
-  <main id="content">
-    <section class="bbas-hero">
-      <div class="bbas-wrap">
-        <div class="bbas-hero-shell">
-          <div class="bbas-hero-media" aria-hidden="true"></div>
-          <div class="bbas-hero-scrim" aria-hidden="true"></div>
+    <main class="bbas-main">
+      <div class="bbas-container">
 
+        <section class="bbas-hero" aria-label="About hero">
           <div class="bbas-hero-inner">
             <div>
-              <div class="bbas-pill"><span class="bbas-dot"></span>About Business Buying and Selling</div>
-              <h1 class="bbas-h1">A clearer path to buying or selling a real business.</h1>
-              <p class="bbas-lead">
+              <div class="bbas-chip"><span class="bbas-dot" aria-hidden="true"></span>About Business Buying and Selling</div>
+              <h1>A clearer path to buying or selling a real business.</h1>
+              <p>
                 We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses
                 like convenience stores, gas stations, smoke and vape shops, small retail, service shops, and local operators.
+                Our mission is to reduce confusion, raise clarity, and help buyers and owners move with confidence.
               </p>
-              <div class="bbas-ctaRow">
-                <a class="bbas-btn bbas-btnPrimary" href="/#early-access">Join early access</a>
-                <a class="bbas-btn bbas-btnGhost" href="/listings/">Browse listings</a>
-                <a class="bbas-btn bbas-btnGhost" href="/contact/">Contact</a>
+              <div class="bbas-hero-cta">
+                <a class="bbas-btn bbas-btn-primary" href="/">Join early access</a>
+                <a class="bbas-btn" href="/listings/">Browse listings</a>
+                <a class="bbas-btn" href="/contact/">Contact</a>
               </div>
+              <div class="bbas-kicker"><i aria-hidden="true"></i>Built for owners and first-time buyers. Not franchises. Not corporate M&amp;A.</div>
             </div>
 
-            <aside class="bbas-heroCard" aria-label="What we optimize for">
+            <aside class="bbas-hero-panel" aria-label="What we optimize for">
               <h3>What we optimize for</h3>
               <p>Less confusion. Better decisions. Faster momentum for buyers and owners who want options.</p>
-              <div class="bbas-kpis">
-                <div class="bbas-kpi"><strong>Clarity</strong><span>Structured listings, clean numbers, real context</span></div>
-                <div class="bbas-kpi"><strong>Trust</strong><span>Verification cues and guided next steps</span></div>
-                <div class="bbas-kpi"><strong>Speed</strong><span>Qualify interest without endless back and forth</span></div>
-                <div class="bbas-kpi"><strong>Education</strong><span>Playbooks that make the process feel doable</span></div>
+              <div class="bbas-pillgrid">
+                <div class="bbas-pill"><strong>Clarity</strong><span>Structured listings, clean numbers, real context</span></div>
+                <div class="bbas-pill"><strong>Trust</strong><span>Verification cues and guided next steps</span></div>
+                <div class="bbas-pill"><strong>Speed</strong><span>Qualify interest without endless back and forth</span></div>
+                <div class="bbas-pill"><strong>Education</strong><span>Playbooks that make the process feel doable</span></div>
               </div>
             </aside>
           </div>
-        </div>
+        </section>
+
+        <section class="bbas-section" aria-label="Why we exist">
+          <div class="bbas-section-card">
+            <div class="bbas-section-head">
+              <h2 class="bbas-section-title">Why we exist</h2>
+              <p class="bbas-section-sub">
+                Buying or selling a small business should not feel like walking into a fog. Too many listings lack the basics,
+                too many conversations start without alignment, and too many people waste time.
+                We are building a better experience for everyday owners and first-time buyers.
+              </p>
+            </div>
+
+            <div class="bbas-grid-3">
+              <div class="bbas-mini">
+                <h4>Cleaner listings</h4>
+                <p>Standard fields that matter: revenue, cash flow, margin, lease, and what is included in the sale.</p>
+              </div>
+              <div class="bbas-mini">
+                <h4>Buyer readiness</h4>
+                <p>Guides and checklists that help you move from interest to action without guesswork.</p>
+              </div>
+              <div class="bbas-mini">
+                <h4>Owner confidence</h4>
+                <p>Plain-language steps that make selling feel possible even if you have never done it before.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bbas-section" aria-label="Who this platform is for">
+          <div class="bbas-section-card">
+            <div class="bbas-section-head">
+              <h2 class="bbas-section-title">Who this platform is for</h2>
+              <p class="bbas-section-sub">
+                Built for owners and buyers. Not franchise sales. Not corporate M&amp;A. Real, local businesses.
+              </p>
+            </div>
+
+            <div class="bbas-grid-2">
+              <div class="bbas-mini">
+                <h4>If you own a business</h4>
+                <p>You might not be ready to sell today. But you want to know your options.</p>
+                <ul class="bbas-list">
+                  <li>Understand what makes your business sellable and valuable.</li>
+                  <li>Learn what buyers ask for and how to prepare your numbers.</li>
+                  <li>Explore timelines and what a smooth process can look like.</li>
+                </ul>
+              </div>
+
+              <div class="bbas-mini">
+                <h4>If you want to buy a business</h4>
+                <p>You are tired of the 9 to 5 and do not want the franchise route.</p>
+                <ul class="bbas-list">
+                  <li>Find owner-operated deals with clear metrics and context.</li>
+                  <li>Qualify faster with simple readiness steps and checklists.</li>
+                  <li>Understand what a smart first purchase looks like.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
-    </section>
+    </main>
 
-    <section class="bbas-section">
-      <div class="bbas-wrap">
-        <h2 class="bbas-h2">Why we exist</h2>
-        <p class="bbas-sub">
-          Buying or selling a small business should not feel like walking into a fog.
-          Too many listings lack the basics, too many conversations start without alignment, and too many people waste time.
-          Our goal is to make the process understandable for everyday owners and first-time buyers.
-        </p>
+    <!-- Footer include mount -->
+    <div id="siteFooter"></div>
+  </div>
 
-        <div class="bbas-grid3">
-          <div class="bbas-card">
-            <h4>Cleaner listings</h4>
-            <p>Standard fields that matter: revenue, cash flow, margin, lease, and what is included in the sale.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>Buyer readiness</h4>
-            <p>Guides and checklists that help you move from interest to action without guesswork.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>Owner confidence</h4>
-            <p>Plain-language steps that make selling feel possible even if you have never done it before.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bbas-section bbas-sectionAlt">
-      <div class="bbas-wrap">
-        <h2 class="bbas-h2">Who this platform is for</h2>
-        <p class="bbas-sub">
-          Built for owners and buyers. Not franchise sales. Not corporate M&amp;A. Real, local businesses.
-        </p>
-
-        <div class="bbas-2col">
-          <div class="bbas-card">
-            <h4>If you own a business</h4>
-            <p>You might not be ready to sell today. But you want to know your options.</p>
-            <ul class="bbas-list">
-              <li>Understand what makes your business sellable and valuable.</li>
-              <li>Learn what buyers ask for and how to prepare your numbers.</li>
-              <li>Explore timelines and what a smooth process can look like.</li>
-            </ul>
-          </div>
-
-          <div class="bbas-card">
-            <h4>If you want to buy a business</h4>
-            <p>You are tired of the 9 to 5 and do not want the franchise route.</p>
-            <ul class="bbas-list">
-              <li>Find owner-operated deals with clear metrics and context.</li>
-              <li>Qualify faster with simple readiness steps and checklists.</li>
-              <li>Understand what a smart first purchase looks like.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bbas-section">
-      <div class="bbas-wrap">
-        <h2 class="bbas-h2">How we become the market leader</h2>
-        <p class="bbas-sub">
-          We win by making the experience easier than anywhere else. A one-stop shop: deals plus education plus a clean path to next steps.
-        </p>
-
-        <div class="bbas-grid3">
-          <div class="bbas-card">
-            <h4>Marketplace that feels modern</h4>
-            <p>Filters that match how people actually shop: location, price range, cash flow, and business type.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>Knowledge hub that saves time</h4>
-            <p>Short guides: valuing a convenience store, what to ask for, and what to avoid in due diligence.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>Momentum tools</h4>
-            <p>Clear next steps once both sides are serious, without pressure and without noise.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer include mount -->
-  <div id="siteFooter"></div>
-
-  <!-- Robust include loader (root-relative paths so it works in subfolders) -->
   <script>
-    (function(){
-      function inject(id, url){
-        var el = document.getElementById(id);
-        if(!el) return;
-        fetch(url, { cache: "no-cache" })
-          .then(function(r){ return r.text(); })
-          .then(function(html){ el.innerHTML = html; })
-          .catch(function(){ /* no-op */ });
+    (function () {
+      var headerMount = document.getElementById('siteHeader');
+      var footerMount = document.getElementById('siteFooter');
+
+      function inject(url, mount) {
+        return fetch(url, { cache: 'no-cache' })
+          .then(function (r) {
+            if (!r.ok) throw new Error('Failed to load ' + url);
+            return r.text();
+          })
+          .then(function (html) {
+            mount.innerHTML = html;
+          });
       }
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
+
+      Promise.all([
+        inject('/assets/includes/header.html', headerMount),
+        inject('/assets/includes/footer.html', footerMount)
+      ]).catch(function (e) {
+        console.warn(e);
+      });
     })();
   </script>
 </body>
