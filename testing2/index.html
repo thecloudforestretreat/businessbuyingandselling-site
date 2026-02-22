@@ -1,32 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>Business Buying and Selling | Buy and sell established businesses with confidence</title>
-  <meta name="description" content="Business Buying and Selling is building a marketplace and resource hub for buyers, sellers, and brokers. Clean listings, clear numbers, and a smoother path from discovery to close." />
-  <link rel="canonical" href="https://businessbuyingandselling.com/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Business Buying and Selling" />
-  <meta property="og:title" content="Buy and sell established businesses with confidence" />
-  <meta property="og:description" content="A marketplace and resource hub for established business deals. Clean listings, clear numbers, and a smoother path from discovery to close." />
-  <meta property="og:url" content="https://businessbuyingandselling.com/" />
-  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Buy and sell established businesses with confidence" />
-  <meta name="twitter:description" content="Clean listings, clear numbers, and a smoother path from discovery to close." />
-  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg" />
-
-  <link rel="stylesheet" href="/assets/css/header.css" />
-  <link rel="stylesheet" href="/assets/css/site.css" />
-
-  <!-- Cloudflare Turnstile (client) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Business Buying and Selling | Buy and sell established businesses with confidence</title>
+<meta content="Business Buying and Selling is building a marketplace and resource hub for buyers, sellers, and brokers. Clean listings, clear numbers, and a smoother path from discovery to close." name="description"/>
+<link href="https://businessbuyingandselling.com/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Business Buying and Selling" property="og:site_name"/>
+<meta content="Buy and sell established businesses with confidence" property="og:title"/>
+<meta content="A marketplace and resource hub for established business deals. Clean listings, clear numbers, and a smoother path from discovery to close." property="og:description"/>
+<meta content="https://businessbuyingandselling.com/" property="og:url"/>
+<meta content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_02.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Buy and sell established businesses with confidence" name="twitter:title"/>
+<meta content="Clean listings, clear numbers, and a smoother path from discovery to close." name="twitter:description"/>
+<meta content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_02.jpg" name="twitter:image"/>
+<link href="/assets/css/header.css" rel="stylesheet"/>
+<link href="/assets/css/site.css" rel="stylesheet"/>
+<style>
     :root{
       --bbas-primary-navy:#1B263B;
       --bbas-soft-midnight:#111827;
@@ -41,6 +34,7 @@
       --bbas-shadow:0 18px 40px rgba(17,24,39,.12);
     }
 
+    /* Page baseline */
     body{background:var(--bbas-soft-white);}
 
     /* Accessible skip link: keep it, but only visible on keyboard focus */
@@ -58,20 +52,19 @@
     }
     .skip-link:focus{left:12px;}
 
+    /* Layout wrapper */
     .bbas-page{
       width:min(1180px, calc(100% - 48px));
       margin:0 auto;
       padding:22px 0 64px;
     }
 
+    /* Hero band */
     .bbas-hero{
       position:relative;
       border-radius:calc(var(--bbas-radius) + 6px);
       overflow:hidden;
       background:var(--bbas-soft-midnight);
-      background-image:url("/assets/images/bbas_homepage_hero_03.jpg");
-      background-size:cover;
-      background-position:center;
       box-shadow:var(--bbas-shadow);
       min-height:280px;
     }
@@ -133,6 +126,7 @@
       line-height:1.5;
     }
 
+    /* Cards row overlaps hero */
     .bbas-cards{
       display:grid;
       grid-template-columns: 1.15fr .95fr;
@@ -150,6 +144,7 @@
     }
     .bbas-cardInner{padding:26px;}
 
+    /* Left value prop card */
     .bbas-pill{
       display:inline-flex;
       align-items:center;
@@ -202,6 +197,7 @@
       line-height:1;
     }
 
+    /* Form card */
     .bbas-formHead{margin:0; font-size:18px; font-weight:900; color:var(--bbas-text);}
     .bbas-formSub{margin:8px 0 0; color:var(--bbas-muted); font-size:13px; line-height:1.45;}
 
@@ -235,40 +231,14 @@
       letter-spacing:.01em;
       cursor:pointer;
       box-shadow:0 18px 36px rgba(37,99,235,.26);
-      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+      transition: transform .12s ease, box-shadow .12s ease;
     }
     .bbas-cta:hover{transform:translateY(-1px); box-shadow:0 22px 42px rgba(37,99,235,.30);}
     .bbas-cta:active{transform:translateY(0);}
-    .bbas-cta[disabled]{opacity:.65; cursor:not-allowed; transform:none;}
 
     .bbas-legal{margin:10px 0 0; color:var(--bbas-muted); font-size:12px; line-height:1.35;}
 
-    /* Turnstile + form status */
-    .bbas-turnstile{
-      display:flex;
-      justify-content:flex-start;
-      padding-top:4px;
-    }
-    .bbas-status{
-      display:none;
-      border-radius:14px;
-      padding:10px 12px;
-      border:1px solid rgba(229,231,235,.95);
-      background:rgba(250,250,250,.92);
-      color:var(--bbas-text);
-      font-size:13px;
-      line-height:1.35;
-    }
-    .bbas-status.is-show{display:block;}
-    .bbas-status.is-ok{
-      border-color:rgba(34,197,94,.35);
-      background:rgba(34,197,94,.10);
-    }
-    .bbas-status.is-bad{
-      border-color:rgba(239,68,68,.35);
-      background:rgba(239,68,68,.08);
-    }
-
+    /* Reduce dead space before footer */
     .bbas-afterCards{height:42px;}
 
     @media (max-width: 980px){
@@ -290,146 +260,128 @@
       .bbas-row2{grid-template-columns:1fr;}
       .bbas-textarea{min-height:110px;}
       .bbas-afterCards{height:18px;}
-      .bbas-turnstile{justify-content:center;}
     }
-  </style>
-
-  <script defer src="/assets/js/includes.js"></script>
+  
+/* --- Homepage left card fill (balances card heights) --- */
+.bbas-cardInner--info{display:flex;flex-direction:column;height:100%;}
+.bbas-cardFill{margin-top:18px;padding-top:16px;border-top:1px solid rgba(15,29,55,.12);}
+.bbas-cardFillTitle{margin:0 0 10px 0;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:#1F2937;}
+.bbas-cardFillGrid{display:grid;grid-template-columns:1fr;gap:10px;}
+.bbas-cardFillItem{padding:10px 12px;border:1px solid rgba(15,29,55,.10);border-radius:12px;background:#FAFAFA;}
+.bbas-cardFillItemTitle{font-weight:800;font-size:13px;margin-bottom:4px;color:#1F2937;}
+.bbas-cardFillItemDesc{font-size:12px;line-height:1.4;color:#6B7280;}
+@media (min-width: 980px){
+  .bbas-cardFillGrid{grid-template-columns:1fr;}
+}
+</style>
+<script defer="" src="/assets/js/includes.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <div id="siteHeader" data-include="/assets/includes/header.html"></div>
-
-  <main id="main" class="bbas-page">
-
-    <section class="bbas-hero" aria-label="Homepage hero">
-      <img src="/assets/images/bbas_homepage_hero_03.jpg" alt="" loading="eager" />
-      <div class="bbas-heroContent">
-        <div>
-          <p class="bbas-heroKicker"><span class="bbas-dot" aria-hidden="true"></span>Launching soon. Built for buyers, sellers, and deal professionals.</p>
-          <h2 class="bbas-heroTitle">Buy and sell established businesses with confidence.</h2>
-          <p class="bbas-heroSub">Clean listings, practical education, and a smoother path from discovery to close.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bbas-cards" aria-label="Primary content">
-
-      <article class="bbas-card" aria-label="What we are building">
-        <div class="bbas-cardInner">
-          <div class="bbas-pill"><span class="bbas-dot" aria-hidden="true"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
-          <h1 class="bbas-h1">Business Buying and Selling, made clearer.</h1>
-          <p class="bbas-lede">A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.</p>
-
-          <ul class="bbas-valueList">
-            <li class="bbas-valueItem">
-              <div class="bbas-badge" aria-hidden="true">1</div>
-              <div>
-                <p class="bbas-valueTitle">Curated listings</p>
-                <p class="bbas-valueDesc">Clear summaries and consistent deal information, so you can evaluate faster.</p>
-              </div>
-            </li>
-            <li class="bbas-valueItem">
-              <div class="bbas-badge" aria-hidden="true">2</div>
-              <div>
-                <p class="bbas-valueTitle">Buyer readiness</p>
-                <p class="bbas-valueDesc">Guides and checklists that help you move from interest to action.</p>
-              </div>
-            </li>
-            <li class="bbas-valueItem">
-              <div class="bbas-badge" aria-hidden="true">3</div>
-              <div>
-                <p class="bbas-valueTitle">Seller support</p>
-                <p class="bbas-valueDesc">Position your business properly with practical preparation steps.</p>
-              </div>
-            </li>
-            <li class="bbas-valueItem">
-              <div class="bbas-badge" aria-hidden="true">4</div>
-              <div>
-                <p class="bbas-valueTitle">Trust and transparency</p>
-                <p class="bbas-valueDesc">We prioritize credible deal details and a professional experience.</p>
-              </div>
-            </li>
-          </ul>
-
-          <div class="bbas-tags" aria-label="Positioning tags">
-            <span class="bbas-tag">Private deals and main street</span>
-            <span class="bbas-tag">Education-first approach</span>
-            <span class="bbas-tag">Built for serious buyers and sellers</span>
-          </div>
-        </div>
-      </article>
-
-      <aside class="bbas-card" aria-label="Join the early access list">
-        <div class="bbas-cardInner">
-          <h3 class="bbas-formHead">Join the early access list</h3>
-          <p class="bbas-formSub">Tell us what you are looking for and we will notify you when we launch.</p>
-
-          <!-- IMPORTANT:
-               1) Set your real Turnstile site key below (data-sitekey).
-               2) This form posts to your Pages Function: /functions/api/early-access.js -> /api/early-access
-          -->
-          <form id="earlyAccessForm" class="bbas-form" action="/api/early-access" method="post" novalidate>
-            <div class="bbas-row2">
-              <div class="bbas-field">
-                <label for="firstName">First Name</label>
-                <input id="firstName" class="bbas-input" name="first_name" type="text" placeholder="First name" autocomplete="given-name" autocapitalize="words" />
-              </div>
-              <div class="bbas-field">
-                <label for="lastName">Last Name</label>
-                <input id="lastName" class="bbas-input" name="last_name" type="text" placeholder="Last name" autocomplete="family-name" autocapitalize="words" />
-              </div>
-            </div>
-
-            <div class="bbas-field">
-              <label for="email">Email</label>
-              <input id="email" class="bbas-input" name="email" type="email" placeholder="you@company.com" autocomplete="email" inputmode="email" />
-            </div>
-
-            <div class="bbas-field">
-              <label for="phone">Phone</label>
-              <input id="phone" class="bbas-input" name="phone" type="tel" placeholder="Optional" autocomplete="tel" inputmode="tel" />
-            </div>
-
-            <div class="bbas-field">
-              <label for="interest">Interested In</label>
-              <select id="interest" class="bbas-select" name="interest">
-                <option value="" selected>Select one</option>
-                <option value="buyer">Buying a business</option>
-                <option value="seller">Selling a business</option>
-                <option value="broker">Broker / advisor</option>
-                <option value="investor">Investor</option>
-              </select>
-            </div>
-
-            <div class="bbas-field">
-              <label for="message">Message</label>
-              <textarea id="message" class="bbas-textarea" name="message" placeholder="What type of business, budget range, industry, or timeline?" autocapitalize="sentences"></textarea>
-            </div>
-
-            <!-- Turnstile widget -->
-            <div class="bbas-turnstile">
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ"></div>
-            </div>
-
-            <div id="formStatus" class="bbas-status" role="status" aria-live="polite"></div>
-
-            <button id="earlyAccessBtn" class="bbas-cta" type="submit">Request Early Access</button>
-            <p class="bbas-legal">By submitting, you agree we may contact you about launch updates. No spam.</p>
-          </form>
-        </div>
-      </aside>
-
-    </section>
-
-    <div class="bbas-afterCards" aria-hidden="true"></div>
-
-  </main>
-
-  <div id="siteFooter" data-include="/assets/includes/footer.html"></div>
-
-  <script>
+<a class="skip-link" href="#main">Skip to content</a>
+<div data-include="/assets/includes/header.html" id="siteHeader"></div>
+<main class="bbas-page" id="main">
+<section aria-label="Homepage hero" class="bbas-hero">
+<img alt="" loading="eager" src="/assets/images/bbas_homepage_hero_02.jpg"/>
+<div class="bbas-heroContent">
+<div>
+<p class="bbas-heroKicker"><span aria-hidden="true" class="bbas-dot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</p>
+<h2 class="bbas-heroTitle">Buy and sell established businesses with confidence.</h2>
+<p class="bbas-heroSub">Clean listings, practical education, and a smoother path from discovery to close.</p>
+</div>
+</div>
+</section>
+<section aria-label="Primary content" class="bbas-cards">
+<!-- Left: value prop (keep all original content, just structured) -->
+<article aria-label="What we are building" class="bbas-card">
+<div class="bbas-cardInner bbas-cardInner--info">
+<div class="bbas-pill"><span aria-hidden="true" class="bbas-dot"></span>Launching soon. Built for buyers, sellers, and deal professionals.</div>
+<h1 class="bbas-h1">Business Buying and Selling, made clearer.</h1>
+<p class="bbas-lede">A marketplace and resource hub for established business deals. We are focused on quality listings, practical education, and a smooth path from discovery to close.</p>
+<ul class="bbas-valueList">
+<li class="bbas-valueItem">
+<div aria-hidden="true" class="bbas-badge">1</div>
+<div>
+<p class="bbas-valueTitle">Curated listings</p>
+<p class="bbas-valueDesc">Clear summaries and consistent deal information, so you can evaluate faster.</p>
+</div>
+</li>
+<li class="bbas-valueItem">
+<div aria-hidden="true" class="bbas-badge">2</div>
+<div>
+<p class="bbas-valueTitle">Buyer readiness</p>
+<p class="bbas-valueDesc">Guides and checklists that help you move from interest to action.</p>
+</div>
+</li>
+<li class="bbas-valueItem">
+<div aria-hidden="true" class="bbas-badge">3</div>
+<div>
+<p class="bbas-valueTitle">Seller support</p>
+<p class="bbas-valueDesc">Position your business properly with practical preparation steps.</p>
+</div>
+</li>
+<li class="bbas-valueItem">
+<div aria-hidden="true" class="bbas-badge">4</div>
+<div>
+<p class="bbas-valueTitle">Trust and transparency</p>
+<p class="bbas-valueDesc">We prioritize credible deal details and a professional experience.</p>
+</div>
+</li>
+</ul>
+<div aria-label="Positioning tags" class="bbas-tags">
+<span class="bbas-tag">Private deals and main street</span>
+<span class="bbas-tag">Education-first approach</span>
+<span class="bbas-tag">Built for serious buyers and sellers</span>
+</div><div class="bbas-cardFill"><h3 class="bbas-cardFillTitle">At launch, you will get</h3><div class="bbas-cardFillGrid"><div class="bbas-cardFillItem"><div class="bbas-cardFillItemTitle">Verified basics</div><div class="bbas-cardFillItemDesc">Revenue, cash flow, lease terms, and what is included in the sale.</div></div><div class="bbas-cardFillItem"><div class="bbas-cardFillItemTitle">Clear readiness steps</div><div class="bbas-cardFillItemDesc">Simple checklists so sellers and buyers know what to prepare next.</div></div><div class="bbas-cardFillItem"><div class="bbas-cardFillItemTitle">Better matching</div><div class="bbas-cardFillItemDesc">See businesses that fit your budget, timeline, and risk comfort.</div></div></div></div>
+</div>
+</article>
+<!-- Right: early access form -->
+<aside aria-label="Join the early access list" class="bbas-card">
+<div class="bbas-cardInner">
+<h3 class="bbas-formHead">Join the early access list</h3>
+<p class="bbas-formSub">Tell us what you are looking for and we will notify you when we launch.</p>
+<form action="#" class="bbas-form" method="post" novalidate="">
+<div class="bbas-row2">
+<div class="bbas-field">
+<label for="firstName">First Name</label>
+<input autocapitalize="words" autocomplete="given-name" class="bbas-input" id="firstName" name="firstName" placeholder="First name" type="text"/>
+</div>
+<div class="bbas-field">
+<label for="lastName">Last Name</label>
+<input autocapitalize="words" autocomplete="family-name" class="bbas-input" id="lastName" name="lastName" placeholder="Last name" type="text"/>
+</div>
+</div>
+<div class="bbas-field">
+<label for="email">Email</label>
+<input autocomplete="email" class="bbas-input" id="email" inputmode="email" name="email" placeholder="you@company.com" type="email"/>
+</div>
+<div class="bbas-field">
+<label for="phone">Phone</label>
+<input autocomplete="tel" class="bbas-input" id="phone" inputmode="tel" name="phone" placeholder="Optional" type="tel"/>
+</div>
+<div class="bbas-field">
+<label for="interest">Interested In</label>
+<select class="bbas-select" id="interest" name="interest">
+<option selected="" value="">Select one</option>
+<option value="buyer">Buying a business</option>
+<option value="seller">Selling a business</option>
+<option value="broker">Broker / advisor</option>
+<option value="investor">Investor</option>
+</select>
+</div>
+<div class="bbas-field">
+<label for="message">Message</label>
+<textarea autocapitalize="sentences" class="bbas-textarea" id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
+</div>
+<button class="bbas-cta" type="submit">Request Early Access</button>
+<p class="bbas-legal">By submitting, you agree we may contact you about launch updates. No spam.</p>
+</form>
+</div>
+</aside>
+</section>
+<div aria-hidden="true" class="bbas-afterCards"></div>
+</main>
+<div data-include="/assets/includes/footer.html" id="siteFooter"></div>
+<script>
     // Format phone as (XXX) XXX-XXXX while typing.
     (function(){
       var phone = document.getElementById('phone');
@@ -445,61 +397,6 @@
       phone.addEventListener('input', function(){
         var digits = onlyDigits(phone.value);
         phone.value = formatUS(digits);
-      });
-    })();
-
-    // Post the form to /api/early-access (Pages Function) and show a clean status message.
-    (function(){
-      var form = document.getElementById('earlyAccessForm');
-      var btn = document.getElementById('earlyAccessBtn');
-      var statusEl = document.getElementById('formStatus');
-      if(!form || !btn || !statusEl) return;
-
-      function showStatus(kind, msg){
-        statusEl.className = 'bbas-status is-show ' + (kind === 'ok' ? 'is-ok' : 'is-bad');
-        statusEl.textContent = msg;
-      }
-
-      form.addEventListener('submit', async function(e){
-        e.preventDefault();
-
-        // Turnstile injects this hidden field name. Your server expects it.
-        var tokenEl = form.querySelector('input[name="cf-turnstile-response"]');
-        if(!tokenEl || !tokenEl.value){
-          showStatus('bad', 'Please complete the verification check and try again.');
-          return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
-
-        try{
-          var resp = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-
-          var data = null;
-          try { data = await resp.json(); } catch(_){}
-
-          if(resp.ok && data && data.ok){
-            showStatus('ok', 'You are on the list. We will reach out when early access opens.');
-            form.reset();
-
-            // Reset Turnstile widget if the API is available.
-            if(window.turnstile && typeof window.turnstile.reset === 'function'){
-              try { window.turnstile.reset(); } catch(_){}
-            }
-          } else {
-            showStatus('bad', 'Verification failed or the form could not be submitted. Please try again.');
-          }
-        } catch(err){
-          showStatus('bad', 'Network error. Please try again in a moment.');
-        } finally {
-          btn.disabled = false;
-          btn.textContent = 'Request Early Access';
-        }
       });
     })();
   </script>
