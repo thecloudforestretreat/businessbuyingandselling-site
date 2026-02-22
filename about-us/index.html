@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>About Us | Business Buying and Selling</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO -->
+  <meta name="description" content="Business Buying and Selling is a marketplace and knowledge hub for owner-operated businesses. Learn why we exist and how we help buyers and owners move with confidence.">
+  <link rel="canonical" href="https://businessbuyingandselling.com/about/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://businessbuyingandselling.com/about/">
+  <meta property="og:title" content="About Us | Business Buying and Selling">
+  <meta property="og:description" content="A marketplace and knowledge hub for owner-operated businesses. Clear listings, practical education, and a better path to ownership.">
+  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Us | Business Buying and Selling">
+  <meta name="twitter:description" content="A marketplace and knowledge hub for owner-operated businesses. Clear listings, practical education, and a better path to ownership.">
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <!-- Page-level styles (scoped, matches homepage visual system) -->
+  <style>
+    :root{
+      --bbas-navy:#1B263B;
+      --bbas-blue:#2563EB;
+      --bbas-ink:#0B1220;
+      --bbas-surface:#ffffff;
+      --bbas-soft:#F5F7FB;
+      --bbas-line:rgba(17,24,39,.10);
+      --bbas-text:#111827;
+      --bbas-muted:#6B7280;
+      --bbas-glow: rgba(37,99,235,.18);
+    }
+    .container{max-width:1160px;margin:0 auto;padding:0 22px;}
+    .narrow{max-width:940px;margin:0 auto;}
+    .bbas-page a{color:inherit}
+
+    .bbas-hero{
+      position:relative;
+      background:#0b1220 url('/assets/images/bbas_homepage_hero_03.jpg') center/cover no-repeat;
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .bbas-hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 520px at 12% 12%, rgba(96,165,250,.22), transparent 60%),
+        radial-gradient(900px 520px at 88% 18%, rgba(37,99,235,.22), transparent 60%),
+        linear-gradient(180deg, rgba(11,18,32,.72), rgba(11,18,32,.88));
+      pointer-events:none;
+    }
+    .bbas-hero-inner{position:relative;padding:54px 0 34px;}
+    .bbas-badge{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px; font-weight:800; letter-spacing:.02em;
+      color:#EAF2FF; background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      padding:8px 12px; border-radius:999px;
+      width:fit-content;
+      backdrop-filter: blur(8px);
+    }
+    .bbas-dot{width:8px;height:8px;border-radius:50%;background:#F97316; box-shadow:0 0 0 4px rgba(249,115,22,.20);}
+    .bbas-hero h1{margin:14px 0 10px;font-size:44px;line-height:1.06;letter-spacing:-0.02em;max-width:22ch;}
+    .bbas-hero p.lead{font-size:18px;color:rgba(255,255,255,.86);max-width:72ch;line-height:1.55;margin:0;}
+
+    .bbas-section{padding:44px 0;}
+    .bbas-section.alt{background:var(--bbas-soft); border-top:1px solid var(--bbas-line); border-bottom:1px solid var(--bbas-line);}
+    .bbas-section h2{font-size:30px;letter-spacing:-0.02em;margin:0 0 10px;color:var(--bbas-ink);}
+    .bbas-section p{color:var(--bbas-muted);font-size:16px;line-height:1.7;margin:0 0 14px;}
+
+    .bbas-grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:18px;}
+    .bbas-card{background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:16px 16px;box-shadow:0 14px 34px rgba(17,24,39,.06);}
+    .bbas-card h3{margin:0 0 8px;font-size:16px;color:#0b1220;letter-spacing:-0.01em;}
+    .bbas-card p{margin:0;font-size:14px;color:var(--bbas-muted);line-height:1.6;}
+
+    .bbas-split{display:grid;grid-template-columns: 1.05fr .95fr;gap:14px;margin-top:18px;align-items:start;}
+    .bbas-panel{background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:18px 18px;box-shadow:0 14px 34px rgba(17,24,39,.06);}
+    .bbas-panel h3{margin:0 0 8px;font-size:18px;letter-spacing:-0.01em;color:#0b1220;}
+    .bbas-ul{margin:0;padding-left:18px;color:#374151;display:grid;gap:8px;}
+    .bbas-ul li{line-height:1.55;}
+
+    .bbas-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;}
+    .bbas-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:12px 16px;font-weight:800;text-decoration:none;border:1px solid transparent;cursor:pointer;min-height:46px;user-select:none;white-space:nowrap;}
+    .bbas-btn-primary{background:var(--bbas-blue); color:#fff; box-shadow:0 14px 34px rgba(37,99,235,.22);}
+    .bbas-btn-primary:hover{filter:brightness(1.05);}
+    .bbas-btn-ghost{background:#fff; border-color:var(--bbas-line); color:#0b1220;}
+    .bbas-btn-ghost:hover{border-color:rgba(37,99,235,.25); box-shadow:0 0 0 4px var(--bbas-glow);}
+
+    .bbas-quote{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--bbas-line);border-radius:18px;padding:18px 18px;box-shadow:0 14px 34px rgba(17,24,39,.06);position:relative;overflow:hidden;}
+    .bbas-quote::before{content:"";position:absolute;inset:-1px;background:radial-gradient(520px 220px at 20% 0%, rgba(37,99,235,.12), transparent 60%);pointer-events:none;}
+    .bbas-quote > *{position:relative;}
+    .bbas-quote p{margin:0;color:#374151;font-size:16px;line-height:1.7;}
+    .bbas-quote .sig{margin-top:10px;color:var(--bbas-muted);font-size:13px;font-weight:700;}
+
+    @media (max-width: 980px){
+      .bbas-grid{grid-template-columns:1fr;}
+      .bbas-split{grid-template-columns:1fr;}
+      .bbas-hero h1{font-size:38px;}
+    }
+    @media (max-width: 560px){
+      .bbas-hero-inner{padding:44px 0 28px;}
+      .bbas-hero h1{font-size:32px;}
+      .bbas-section{padding:36px 0;}
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EH99SDCSFD');
+  </script>
+</head>
+
+<body class="bbas-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="bbas-hero" aria-label="About hero">
+      <div class="container">
+        <div class="bbas-hero-inner">
+          <div class="bbas-badge"><span class="bbas-dot" aria-hidden="true"></span>About Business Buying and Selling</div>
+          <h1>A clearer path to buying or selling a real business.</h1>
+          <p class="lead">
+            We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses.
+            The mission is simple: reduce confusion, raise clarity, and help buyers and owners make confident decisions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbas-section" aria-label="Why we exist">
+      <div class="container narrow">
+        <h2>Why we exist</h2>
+        <p>
+          Buying or selling a small business should not feel like walking into a fog.
+          Too many listings lack the basics, too many conversations start without alignment, and too many people waste time.
+        </p>
+        <p>
+          We are building a better experience for everyday owners and first-time buyers: clearer information, practical education,
+          and a smoother path from discovery to action.
+        </p>
+
+        <div class="bbas-grid" aria-label="Core pillars">
+          <div class="bbas-card">
+            <h3>Clarity</h3>
+            <p>Consistent listing structure, simple metrics, and expectations that make sense.</p>
+          </div>
+          <div class="bbas-card">
+            <h3>Confidence</h3>
+            <p>Guides, checklists, and examples so you can evaluate without guessing.</p>
+          </div>
+          <div class="bbas-card">
+            <h3>Momentum</h3>
+            <p>Cleaner handoffs and better next steps when both sides are serious.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbas-section alt" aria-label="Who it is for">
+      <div class="container">
+        <h2>Who this platform is for</h2>
+        <p class="narrow">
+          This is built for owners and buyers, not just deal pros. If you want to learn, explore, and make a smart move,
+          you are in the right place.
+        </p>
+
+        <div class="bbas-split">
+          <div class="bbas-panel">
+            <h3>For business owners</h3>
+            <p>
+              Even if you are only thinking about selling, you can start with clarity. Understand what drives value and what buyers care about.
+            </p>
+            <ul class="bbas-ul">
+              <li>Learn what impacts valuation and deal terms.</li>
+              <li>See what a clean listing looks like and why it attracts serious buyers.</li>
+              <li>Understand typical timelines and common pitfalls.</li>
+              <li>Decide if selling makes sense, on your schedule.</li>
+            </ul>
+
+            <div class="bbas-cta-row">
+              <a class="bbas-btn bbas-btn-primary" href="/sell-your-business/">Sell your business</a>
+              <a class="bbas-btn bbas-btn-ghost" href="/contact/">Ask a question</a>
+            </div>
+          </div>
+
+          <div class="bbas-panel">
+            <h3>For buyers leaving the 9 to 5</h3>
+            <p>
+              You do not need a franchise or a risky start-from-zero leap. Explore ownership through real businesses with operations and cash flow.
+            </p>
+            <ul class="bbas-ul">
+              <li>Learn how to evaluate a deal and ask better questions.</li>
+              <li>Compare opportunities with consistent, simple metrics.</li>
+              <li>Spot red flags early and avoid common mistakes.</li>
+              <li>Build confidence step-by-step before you commit.</li>
+            </ul>
+
+            <div class="bbas-cta-row">
+              <a class="bbas-btn bbas-btn-primary" href="/buy-a-business/">Buy a business</a>
+              <a class="bbas-btn bbas-btn-ghost" href="/listings/">Browse listings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbas-section" aria-label="Focus areas">
+      <div class="container narrow">
+        <h2>What we focus on</h2>
+        <p>
+          Our focus is owner-operated, non-franchise businesses, the kinds of businesses people actually run and buy every day.
+          Think gas stations, convenience stores, vape stores, small retail, and local service businesses.
+        </p>
+
+        <div class="bbas-quote" aria-label="Positioning statement">
+          <p>
+            Our goal is to make the small-business marketplace feel modern: clean information, useful education,
+            and a process that respects your time.
+          </p>
+          <div class="sig">Built for real buyers and real owners.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bbas-section alt" aria-label="Roadmap">
+      <div class="container">
+        <h2>Where we are heading</h2>
+        <p class="narrow">
+          This is a temporary site while we build the platform. The full experience will include a stronger marketplace, better tools,
+          and a practical knowledge hub.
+        </p>
+
+        <div class="bbas-grid" aria-label="Planned features">
+          <div class="bbas-card">
+            <h3>Clean listings that compare</h3>
+            <p>Standard fields that matter: revenue, cash flow, terms, lease basics, and what is included.</p>
+          </div>
+          <div class="bbas-card">
+            <h3>Knowledge hub you will actually use</h3>
+            <p>Valuation basics, buyer checklists, seller prep, and real examples without fluff.</p>
+          </div>
+          <div class="bbas-card">
+            <h3>Better next steps</h3>
+            <p>Clear actions when there is real interest: what to request, what to share, and what happens next.</p>
+          </div>
+        </div>
+
+        <div class="bbas-cta-row" style="margin-top:18px;">
+          <a class="bbas-btn bbas-btn-primary" href="/#early-access">Join early access</a>
+          <a class="bbas-btn bbas-btn-ghost" href="/contact/">Contact</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>
