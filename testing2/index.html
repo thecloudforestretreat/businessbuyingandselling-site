@@ -273,8 +273,24 @@
 @media (min-width: 980px){
   .bbas-cardFillGrid{grid-template-columns:1fr;}
 }
+
+    .bbas-status{
+      margin:10px 0 0;
+      font-size:13px;
+      font-weight:700;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(229,231,235,.95);
+      background:#fff;
+      color:var(--bbas-text);
+    }
+    .bbas-status[data-type="success"]{border-color:rgba(34,197,94,.35); background:rgba(34,197,94,.08); color:#065F46;}
+    .bbas-status[data-type="error"]{border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08); color:#7F1D1D;}
+    .bbas-cta[disabled]{opacity:.7; cursor:not-allowed; transform:none !important;}
+
 </style>
 <script defer="" src="/assets/js/includes.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -372,7 +388,12 @@
 <label for="message">Message</label>
 <textarea autocapitalize="sentences" class="bbas-textarea" id="message" name="message" placeholder="What type of business, budget range, industry, or timeline?"></textarea>
 </div>
+<div class="bbas-field">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ"></div>
+        </div>
 <button class="bbas-cta" type="submit">Request Early Access</button>
+        <p class="bbas-status" id="earlyAccessStatus" style="display:none;"></p>
+
 <p class="bbas-legal">By submitting, you agree we may contact you about launch updates. No spam.</p>
 </form>
 </div>
@@ -400,5 +421,65 @@
       });
     })();
   </script>
+
+<script>
+  (function(){
+    const form = document.getElementById('earlyAccessForm');
+    if(!form) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const statusEl = document.getElementById('earlyAccessStatus');
+
+    function setStatus(msg, type){
+      if(!statusEl) return;
+      statusEl.textContent = msg || '';
+      statusEl.dataset.type = type || '';
+      statusEl.style.display = msg ? 'block' : 'none';
+    }
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      setStatus('', '');
+
+      // Turnstile injects a hidden input named "cf-turnstile-response"
+      const token = form.querySelector('input[name="cf-turnstile-response"]')?.value;
+      if(!token){
+        setStatus('Please complete the Turnstile check, then submit again.', 'error');
+        return;
+      }
+
+      if(submitBtn){
+        submitBtn.disabled = true;
+        submitBtn.dataset.loading = '1';
+      }
+
+      try{
+        const fd = new FormData(form);
+        const res = await fetch('/api/early-access', {
+          method: 'POST',
+          body: fd
+        });
+        const data = await res.json().catch(()=> ({}));
+
+        if(res.ok && (data.success || data.ok)){
+          setStatus('Success! We will reach out when early access opens.', 'success');
+          // optional: reset fields but keep Turnstile widget state handled by Turnstile
+          form.reset();
+        }else{
+          const msg = data.message || data.error || 'Something went wrong. Please try again.';
+          setStatus(msg, 'error');
+        }
+      }catch(err){
+        setStatus('Network error. Please try again.', 'error');
+      }finally{
+        if(submitBtn){
+          submitBtn.disabled = false;
+          delete submitBtn.dataset.loading;
+        }
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
