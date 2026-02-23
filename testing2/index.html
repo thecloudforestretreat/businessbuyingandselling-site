@@ -603,31 +603,7 @@
             <div class="trustGrid">
               <div class="trustItem">
                 <div class="trustKicker">Clear numbers</div>
-                <div class="trustText">Revenue, cash flow, margin, 
-<script>
-/* Failsafe: ensure header/footer includes load on subpaths (e.g. /testing2/) */
-(function(){
-  function safeInject(id, url){
-    var el = document.getElementById(id);
-    if(!el) return;
-    if(el.childElementCount > 0) return;
-    fetch(url, { cache: "no-cache" })
-      .then(function(r){ return r.ok ? r.text() : ""; })
-      .then(function(html){
-        if(!html) return;
-        el.innerHTML = html;
-        // If the global site script exposes an init hook, call it; otherwise no-op.
-        if(typeof window.initSiteNav === "function"){ try{ window.initSiteNav(); }catch(e){} }
-        if(typeof window.initMobileNav === "function"){ try{ window.initMobileNav(); }catch(e){} }
-      })
-      .catch(function(){});
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    safeInject("siteHeader", "/assets/includes/header.html");
-    safeInject("siteFooter", "/assets/includes/footer.html");
-  });
-})();
-</script>
+                <div class="trustText">Revenue, cash flow, margin,
 lease terms, and what is included in the sale.</div>
               </div>
               <div class="trustItem">
@@ -1151,6 +1127,7 @@ lease terms, and what is included in the sale.</div>
 
     sel.addEventListener("change", function(){
       state.answers.location_state = sel.value;
+      updateNextEnabled();
     });
 
     loc.appendChild(sel);
@@ -1170,6 +1147,7 @@ lease terms, and what is included in the sale.</div>
       inp.value = state.answers.business_url || "";
       inp.addEventListener("input", function(){
         state.answers.business_url = inp.value;
+        updateNextEnabled();
       });
       url.appendChild(inp);
       grid.appendChild(url);
@@ -1228,6 +1206,13 @@ lease terms, and what is included in the sale.</div>
     });
 
     body.appendChild(form);
+  }
+
+  function updateNextEnabled(){
+    var nextBtn = qs('#funnelNextBtn');
+    if(!nextBtn) return;
+    nextBtn.disabled = !canGoNext();
+    nextBtn.style.opacity = nextBtn.disabled ? '0.6' : '1';
   }
 
   function canGoNext(){
@@ -1406,14 +1391,13 @@ lease terms, and what is included in the sale.</div>
     });
 
     // keep Next button enabled state in sync for contact typing
-    document.addEventListener("input", function(e){
+    document.addEventListener("input", function(){
       if (!state.branch) return;
-      var step = state.steps[state.stepIndex];
-      if (!step || step.type !== "contact") return;
-      var nextBtn = qs("#funnelNextBtn");
-      if (!nextBtn) return;
-      nextBtn.disabled = !canGoNext();
-      nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
+      updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
     });
   }
 
@@ -1427,6 +1411,30 @@ lease terms, and what is included in the sale.</div>
   } else {
     init();
   }
+})();
+</script>
+
+<script>
+/* Failsafe: load header/footer includes if includes.js did not (works on subpaths too). */
+(function(){
+  function inject(id, url){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(el.childElementCount > 0) return;
+    fetch(url, { cache: "no-cache" })
+      .then(function(r){ return r.ok ? r.text() : ""; })
+      .then(function(markup){
+        if(!markup) return;
+        el.innerHTML = markup;
+        if (typeof window.initSiteNav === "function") { try { window.initSiteNav(); } catch(e) {} }
+        if (typeof window.initMobileNav === "function") { try { window.initMobileNav(); } catch(e) {} }
+      })
+      .catch(function(){});
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    inject("siteHeader", "/assets/includes/header.html");
+    inject("siteFooter", "/assets/includes/footer.html");
+  });
 })();
 </script>
 
