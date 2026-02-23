@@ -305,7 +305,7 @@
     gtag('js', new Date());
     gtag('config', 'G-EH99SDCSFD');
   </script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
 
 <style id="funnelStyles">
   /* Funnel page additions. Built to match the approved site system. */
@@ -470,9 +470,9 @@
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.68), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.74), rgba(0,0,0,0) 62%),
     radial-gradient(900px 520px at 78% 18%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.72));
+    linear-gradient(180deg, rgba(0,0,0,0.78), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.78));
   pointer-events:none;
   z-index:0;
 }
@@ -553,6 +553,23 @@
 @media (max-height: 760px){
   .hero--funnel{ padding-top: 26px; }
 }
+
+
+
+/* Hero copy legibility */
+.heroTop{
+  background: rgba(0,0,0,0.28);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 18px 14px 20px;
+  backdrop-filter: blur(10px);
+}
+.heroBadge{
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.20);
+}
+.heroTitle{ color: rgba(255,255,255,0.98); }
+.heroLead{ color: rgba(255,255,255,0.94); }
 
 </style>
 </head>
@@ -1344,38 +1361,54 @@ lease terms, and what is included in the sale.</div>
   }
 
   // ---- Turnstile explicit render (step is injected after page load) ----
-  function ensureTurnstileMounted() {
+  function ensureTurnstileMounted(force){
     const mount = qs("#turnstileMount");
     if (!mount) return;
+
+    // If we re-enter the contact step, allow a clean re-render.
+    if (force) {
+      mount.dataset.rendered = "0";
+      mount.innerHTML = "";
+    }
 
     if (mount.dataset.rendered === "1") return;
 
     const sitekey = "0x4AAAAAABVCw4QS8X61pRAE";
 
     if (window.turnstile && typeof window.turnstile.render === "function") {
-      window.turnstile.render(mount, {
-        sitekey,
-        theme: "light",
-        callback: function (token) {
-          const tokenInput = qs("#turnstileToken");
-          if (tokenInput) tokenInput.value = token || "";
-        },
-        "error-callback": function () {
-          const tokenInput = qs("#turnstileToken");
-          if (tokenInput) tokenInput.value = "";
-        },
-        "expired-callback": function () {
-          const tokenInput = qs("#turnstileToken");
-          if (tokenInput) tokenInput.value = "";
-        },
-      });
-      mount.dataset.rendered = "1";
-      return;
+      try {
+        mount.innerHTML = "";
+        window.turnstile.render(mount, {
+          sitekey: sitekey,
+          theme: "light",
+          callback: function (token) {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = token || "";
+          },
+          "error-callback": function () {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = "";
+          },
+          "expired-callback": function () {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = "";
+          }
+        });
+        mount.dataset.rendered = "1";
+        return;
+      } catch (_) {
+        // fall through to retry
+      }
     }
 
     // try again shortly if the script has not loaded yet
-    setTimeout(ensureTurnstileMounted, 250);
+    setTimeout(function(){ ensureTurnstileMounted(force); }, 300);
   }
+
+  // Turnstile API onload hook (render=explicit)
+  window.tsOnload = function(){
+    try { ensureTurnstileMounted(true); } catch (_) {}
+  };
 function renderStep(){
     if (!state.branch) {
       renderBranchChoice();
@@ -1410,7 +1443,7 @@ function renderStep(){
 
     if (step.type === "contact") {
       bindContactEnhancements();
-      ensureTurnstileMounted();
+      ensureTurnstileMounted(true);
     }
 
 
