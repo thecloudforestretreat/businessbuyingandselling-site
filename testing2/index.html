@@ -470,9 +470,9 @@
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.74), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.82), rgba(0,0,0,0) 62%),
     radial-gradient(900px 520px at 78% 18%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.78), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.78));
+    linear-gradient(180deg, rgba(0,0,0,0.86), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.86));
   pointer-events:none;
   z-index:0;
 }
@@ -570,6 +570,33 @@
 }
 .heroTitle{ color: rgba(255,255,255,0.98); }
 .heroLead{ color: rgba(255,255,255,0.94); }
+
+
+
+/* Keep hero background stable while funnel content changes */
+.heroBg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+.hero--funnel{
+  position: relative;
+}
+
+
+
+/* Stronger hero text contrast */
+.heroTop{
+  background: rgba(0,0,0,0.46);
+  border-color: rgba(255,255,255,0.14);
+}
+.heroTitle{
+  color: rgba(255,255,255,0.99);
+  letter-spacing: -0.02em;
+}
+.heroLead{
+  color: rgba(255,255,255,0.97);
+}
 
 </style>
 </head>
@@ -1381,6 +1408,8 @@ lease terms, and what is included in the sale.</div>
         window.turnstile.render(mount, {
           sitekey: sitekey,
           theme: "light",
+          size: "normal",
+          appearance: "always",
           callback: function (token) {
             const tokenInput = qs("#turnstileToken");
             if (tokenInput) tokenInput.value = token || "";
@@ -1393,6 +1422,7 @@ lease terms, and what is included in the sale.</div>
             const tokenInput = qs("#turnstileToken");
             if (tokenInput) tokenInput.value = "";
           }
+        
         });
         mount.dataset.rendered = "1";
         return;
