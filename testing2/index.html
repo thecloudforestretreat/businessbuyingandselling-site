@@ -86,7 +86,7 @@
           </p>
 
           <div class="cta-row">
-            <button class="btn btn-primary" type="button" data-scroll="#notify">Request Early Access</button>
+            <button class="btn btn-primary" type="button" data-scroll="#notify">Join the launch list</button>
             <a class="btn btn-ghost" href="#how">See how it works</a>
           </div>
 
@@ -217,7 +217,11 @@
           <form class="notify-form" id="notifyForm">
             <label class="sr-only" for="email">Email address</label>
             <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
-            <button class="btn btn-primary" type="submit">Notify me</button>
+                      <div class="bbas-turnstile">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ"></div>
+          </div>
+
+<button class="btn btn-primary" type="submit">Notify me</button>
             <p class="form-note" id="formNote" aria-live="polite"></p>
           </form>
         </div>
@@ -265,9 +269,8 @@
       var note = document.getElementById("formNote");
 
       if (form && note) {
-        form.addEventListener("submit", async function (e) {
+        form.addEventListener("submit", function (e) {
           e.preventDefault();
-
           var email = form.querySelector('input[name="email"]');
           var value = email ? String(email.value || "").trim() : "";
 
@@ -276,44 +279,12 @@
             return;
           }
 
-          note.textContent = "Submitting...";
-
-          try {
-            var fd = new FormData(form);
-
-            // Turnstile injects a hidden input named "cf-turnstile-response".
-            var token = fd.get("cf-turnstile-response");
-            if (!token) {
-              note.textContent = "Please complete the security check and try again.";
-              return;
-            }
-
-            var res = await fetch(form.action, {
-              method: "POST",
-              body: fd,
-              headers: { "Accept": "application/json" }
-            });
-
-            if (res.ok) {
-              form.reset();
-              if (window.turnstile && typeof window.turnstile.reset === "function") {
-                try { window.turnstile.reset(); } catch (e2) {}
-              }
-              note.textContent = "Thanks. You are on the list. We will reach out with launch updates.";
-              return;
-            }
-
-            var msg = "Submission failed. Please try again.";
-            try {
-              var data = await res.json();
-              if (data && (data.error || data.message)) msg = data.error || data.message;
-            } catch (e3) {}
-            note.textContent = msg;
-          } catch (err) {
-            note.textContent = "Network error. Please try again.";
-          }
+          note.textContent = "Thanks. You are on the list (placeholder). Wire this to a real service later.";
+          form.reset();
+        if (window.turnstile && typeof window.turnstile.reset === 'function') { window.turnstile.reset(); }
         });
-      }})();
+      }
+    })();
   </script>
 </body>
 </html>
