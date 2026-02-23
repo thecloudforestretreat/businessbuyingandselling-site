@@ -982,6 +982,59 @@
   padding-top: 0 !important;
 }
 
+
+
+
+/* === VERTICAL RHYTHM FIX (answers -> footer gap equals answer gap) === */
+:root{
+  --answer-spacing: 14px;
+}
+
+/* Normalize common answer containers to be a vertical stack with a single rhythm */
+.funnelAnswers,
+.answers,
+.optionList, .choiceList, .radioList, .optionsList, .options,
+.cardGrid, .choiceGrid{
+  gap: var(--answer-spacing) !important;
+}
+
+/* Ensure the distance from the last answer to the buttons matches the answer spacing */
+.funnelAnswers,
+.answers,
+.stepBody .optionList,
+.stepBody .choiceList,
+.stepBody .radioList,
+.stepBody .optionsList,
+.stepBody .options,
+.stepContent .optionList,
+.stepContent .choiceList,
+.stepContent .radioList,
+.stepContent .optionsList,
+.stepContent .options,
+.stepBody .cardGrid,
+.stepContent .cardGrid,
+.stepBody .choiceGrid,
+.stepContent .choiceGrid{
+  margin-bottom: var(--answer-spacing) !important;
+}
+
+/* Remove "collapsed" look when last option sits too close to footer */
+.funnelActions, .stepFooter{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Avoid extra padding hacks that can break perceived rhythm */
+.funnelCard{
+  padding-bottom: 18px !important;
+}
+
+/* Mobile: keep same rhythm but slightly tighter card padding */
+@media (max-width: 768px){
+  :root{ --answer-spacing: 12px; }
+  .funnelCard{ padding-bottom: 14px !important; }
+}
+
 </style>
 </head>
 
