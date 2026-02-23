@@ -1,37 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- SEO -->
-  <meta name="description" content="A modern marketplace and knowledge hub for buying and selling real, owner-operated businesses. Explore listings, learn valuation basics, and move with confidence.">
-  <link rel="canonical" href="https://businessbuyingandselling.com/">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" content="Business Buying and Selling">
-  <meta property="og:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
-  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Business Buying and Selling">
-  <meta name="twitter:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
-  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
-
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css">
-
-  <!-- Page-level polish (compact, scoped) -->
-  <style>
+<meta charset="utf-8"/>
+<title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- SEO -->
+<meta content="A modern marketplace and knowledge hub for buying and selling real, owner-operated businesses. Explore listings, learn valuation basics, and move with confidence." name="description"/>
+<link href="https://businessbuyingandselling.com/" rel="canonical"/>
+<!-- Open Graph -->
+<meta content="website" property="og:type"/>
+<meta content="https://businessbuyingandselling.com/" property="og:url"/>
+<meta content="Business Buying and Selling" property="og:title"/>
+<meta content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership." property="og:description"/>
+<meta content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg" property="og:image"/>
+<!-- Twitter -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Business Buying and Selling" name="twitter:title"/>
+<meta content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership." name="twitter:description"/>
+<meta content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg" name="twitter:image"/>
+<!-- Favicons -->
+<link href="/favicon.ico" rel="icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<!-- Global CSS -->
+<link href="/assets/css/site.css" rel="stylesheet"/><link href="/assets/css/header.css" rel="stylesheet"/>
+<!-- Page-level polish (compact, scoped) -->
+<style>
     :root{
       --bbas-navy:#1B263B;
       --bbas-blue:#2563EB;
@@ -290,301 +285,351 @@
 .formStatus.is-success{color:#22C55E}
 .formStatus.is-loading{color:var(--muted)}
 
-</style>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
-  <script>
+
+/* --- Fixes requested (layout tightening, alignment, contrast) --- */
+.bbas-launchbox{
+  margin-top: 14px;
+  padding: 14px 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+}
+.bbas-launchbox-head{
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+.bbas-launchbox-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.bbas-launchitem{
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(3,78,162,0.10);
+}
+.bbas-launchtitle{
+  font-weight: 800;
+  font-size: 13px;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.bbas-launchdesc{
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.35;
+}
+
+/* Align the two preview cards to the same bottom edge */
+.bbas-preview{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+@media (max-width: 900px){
+  .bbas-preview{ grid-template-columns: 1fr; }
+}
+.bbas-listing{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bbas-listing ul.bbas-ul{ flex: 1; }
+.bbas-listing .bbas-pillrow{ margin-top: auto; }
+
+/* Back-to-top button readability */
+.bbas-backtotop,
+.bbas-backtotop:link,
+.bbas-backtotop:visited{ color:#fff !important; }
+</style>
+<!-- Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-EH99SDCSFD');
   </script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script async="" defer="" src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
 </head>
-
 <body class="bbas-page">
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <div id="siteHeader"></div>
-
-  <main id="main">
-    <section class="bbas-hero" aria-label="Hero">
-      <div class="container">
-        <div class="bbas-hero-inner">
-          <div>
-            <div class="bbas-badge"><span class="bbas-dot" aria-hidden="true"></span>Launching soon. Built for buyers and owners.</div>
-            <h1>Buy or sell a real business, with confidence.</h1>
-            <p class="lead">
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="siteHeader"></div>
+<main id="main">
+<section aria-label="Hero" class="bbas-hero">
+<div class="container">
+<div class="bbas-hero-inner">
+<div>
+<div class="bbas-badge"><span aria-hidden="true" class="bbas-dot"></span>Launching soon. Built for buyers and owners.</div>
+<h1>Buy or sell a real business, with confidence.</h1>
+<p class="lead">
               A modern marketplace and knowledge hub for owner-operated businesses.
               Great deals deserve clear numbers, a clean process, and practical guidance.
             </p>
+<ul class="bbas-points">
+<li><span aria-hidden="true" class="bbas-check">✓</span><div><strong>For owners:</strong> understand value, prepare properly, and attract serious buyers.</div></li>
+<li><span aria-hidden="true" class="bbas-check">✓</span><div><strong>For buyers:</strong> explore ownership without franchises or starting from scratch.</div></li>
+<li><span aria-hidden="true" class="bbas-check">✓</span><div><strong>For both:</strong> learn first, then move forward when you are ready.</div></li>
+</ul>
+<div class="bbas-cta">
+<a class="bbas-btn bbas-btn-primary" href="#early-access">Join early access</a>
+<a class="bbas-btn bbas-btn-ghost" href="#how-it-works">How it works</a>
+<a class="bbas-btn bbas-btn-ghost" href="#marketplace-preview">Marketplace preview</a>
+</div>
+<div aria-label="At launch benefits" class="bbas-launchbox">
+<div class="bbas-launchbox-head">At launch, you will get</div>
+<div class="bbas-launchbox-grid">
+<div class="bbas-launchitem">
+<div class="bbas-launchtitle">Verified basics</div>
+<div class="bbas-launchdesc">Revenue, cash flow, lease terms, and what is included in the sale.</div>
+</div>
+<div class="bbas-launchitem">
+<div class="bbas-launchtitle">Clear readiness steps</div>
+<div class="bbas-launchdesc">Simple checklists so owners and buyers know what to prepare next.</div>
+</div>
+<div class="bbas-launchitem">
+<div class="bbas-launchtitle">Better matching</div>
+<div class="bbas-launchdesc">See businesses that fit your budget, timeline, and risk comfort.</div>
+</div>
+</div>
+</div>
 
-            <ul class="bbas-points">
-              <li><span class="bbas-check" aria-hidden="true">✓</span><div><strong>For owners:</strong> understand value, prepare properly, and attract serious buyers.</div></li>
-              <li><span class="bbas-check" aria-hidden="true">✓</span><div><strong>For buyers:</strong> explore ownership without franchises or starting from scratch.</div></li>
-              <li><span class="bbas-check" aria-hidden="true">✓</span><div><strong>For both:</strong> learn first, then move forward when you are ready.</div></li>
-            </ul>
-
-            <div class="bbas-cta">
-              <a class="bbas-btn bbas-btn-primary" href="#early-access">Join early access</a>
-              <a class="bbas-btn bbas-btn-ghost" href="#how-it-works">How it works</a>
-              <a class="bbas-btn bbas-btn-ghost" href="#marketplace-preview">Marketplace preview</a>
-            </div>
-          </div>
-
-          <aside class="bbas-hero-card" aria-label="Early access form card">
-            <div class="bbas-card-head">
-              <div class="kicker">Early access</div>
-              <h3>Be first to explore listings and the knowledge hub.</h3>
-            </div>
-
-            <form class="bbas-form" id="earlyForm" method="POST" action="https://formspree.io/f/REPLACE_ME">
-              <div class="bbas-row">
-                <div class="bbas-field">
-                  <label for="firstName">First Name</label>
-                  <input class="bbas-input" id="firstName" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" required>
-                </div>
-                <div class="bbas-field">
-                  <label for="lastName">Last Name</label>
-                  <input class="bbas-input" id="lastName" name="lastName" type="text" autocomplete="family-name" autocapitalize="words" required>
-                </div>
-              </div>
-
-              <div class="bbas-row">
-                <div class="bbas-field">
-                  <label for="email">Email</label>
-                  <input class="bbas-input" id="email" name="email" type="email" autocomplete="email" required>
-                </div>
-                <div class="bbas-field">
-                  <label for="phone">Phone (optional)</label>
-                  <input class="bbas-input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 555-5555">
-                </div>
-              </div>
-
-              <div class="bbas-field">
-                <label for="interest">Interested In</label>
-                <select class="bbas-select" id="interest" name="interest" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option value="Buying">Buying</option>
-                  <option value="Selling">Selling</option>
-                  <option value="Both">Both</option>
-                </select>
-              </div>
-
-              <div class="bbas-field">
-                <label for="message">Message</label>
-                <textarea class="bbas-textarea" id="message" name="message" autocapitalize="sentences" placeholder="Example: I own a convenience store and want to understand value, timeline, and next steps."></textarea>
-              </div>
-
-              <input type="hidden" name="source" value="homepage-early-access">
-              <input type="hidden" name="site" value="businessbuyingandselling.com">
-        <div class="turnstileWrap">
-          <!-- Replace YOUR_TURNSTILE_SITE_KEY with your Cloudflare Turnstile site key -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ" data-theme="light"></div>
-        </div>
-
-
-              <button class="bbas-btn bbas-btn-primary bbas-submit" type="submit">Request early access</button>
-              <div class="bbas-status" id="earlyStatus" role="status" aria-live="polite"></div>
-              <div class="bbas-fine">No spam. Just launch updates and early access invites.</div>
-            </form>
-          </aside>
-        </div>
-
-        <div class="bbas-stats" aria-label="Positioning strip">
-          <div class="bbas-stats-inner">
-            <div class="bbas-stat"><div class="num">Owner-operated</div><div class="lbl">Non-franchise businesses built on real cash flow.</div></div>
-            <div class="bbas-stat"><div class="num">Clarity first</div><div class="lbl">Numbers, terms, and expectations are made simple.</div></div>
-            <div class="bbas-stat"><div class="num">Learn before you decide</div><div class="lbl">Guides that reduce risk for buyers and owners.</div></div>
-            <div class="bbas-stat"><div class="num">A better process</div><div class="lbl">Less noise, fewer tire kickers, better outcomes.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bbas-section" aria-label="Audience split">
-      <div class="container narrow">
-        <h2>Designed for real people on both sides of the deal.</h2>
-        <p>
+</div>
+<aside aria-label="Early access form card" class="bbas-hero-card">
+<div class="bbas-card-head">
+<div class="kicker">Early access</div>
+<h3>Be first to explore listings and the knowledge hub.</h3>
+</div>
+<form action="https://formspree.io/f/REPLACE_ME" class="bbas-form" id="earlyForm" method="POST">
+<div class="bbas-row">
+<div class="bbas-field">
+<label for="firstName">First Name</label>
+<input autocapitalize="words" autocomplete="given-name" class="bbas-input" id="firstName" name="firstName" required="" type="text"/>
+</div>
+<div class="bbas-field">
+<label for="lastName">Last Name</label>
+<input autocapitalize="words" autocomplete="family-name" class="bbas-input" id="lastName" name="lastName" required="" type="text"/>
+</div>
+</div>
+<div class="bbas-row">
+<div class="bbas-field">
+<label for="email">Email</label>
+<input autocomplete="email" class="bbas-input" id="email" name="email" required="" type="email"/>
+</div>
+<div class="bbas-field">
+<label for="phone">Phone (optional)</label>
+<input autocomplete="tel" class="bbas-input" id="phone" inputmode="tel" name="phone" placeholder="(555) 555-5555" type="tel"/>
+</div>
+</div>
+<div class="bbas-field">
+<label for="interest">Interested In</label>
+<select class="bbas-select" id="interest" name="interest" required="">
+<option disabled="" selected="" value="">Select one</option>
+<option value="Buying">Buying</option>
+<option value="Selling">Selling</option>
+<option value="Both">Both</option>
+</select>
+</div>
+<div class="bbas-field">
+<label for="message">Message</label>
+<textarea autocapitalize="sentences" class="bbas-textarea" id="message" name="message" placeholder="Example: I own a convenience store and want to understand value, timeline, and next steps."></textarea>
+</div>
+<input name="source" type="hidden" value="homepage-early-access"/>
+<input name="site" type="hidden" value="businessbuyingandselling.com"/>
+<div class="turnstileWrap">
+<!-- Replace YOUR_TURNSTILE_SITE_KEY with your Cloudflare Turnstile site key -->
+<div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ" data-theme="light"></div>
+</div>
+<button class="bbas-btn bbas-btn-primary bbas-submit" type="submit">Request early access</button>
+<div aria-live="polite" class="bbas-status" id="earlyStatus" role="status"></div>
+<div class="bbas-fine">No spam. Just launch updates and early access invites.</div>
+</form>
+</aside>
+</div>
+<div aria-label="Positioning strip" class="bbas-stats">
+<div class="bbas-stats-inner">
+<div class="bbas-stat"><div class="num">Owner-operated</div><div class="lbl">Non-franchise businesses built on real cash flow.</div></div>
+<div class="bbas-stat"><div class="num">Clarity first</div><div class="lbl">Numbers, terms, and expectations are made simple.</div></div>
+<div class="bbas-stat"><div class="num">Learn before you decide</div><div class="lbl">Guides that reduce risk for buyers and owners.</div></div>
+<div class="bbas-stat"><div class="num">A better process</div><div class="lbl">Less noise, fewer tire kickers, better outcomes.</div></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Audience split" class="bbas-section">
+<div class="container narrow">
+<h2>Designed for real people on both sides of the deal.</h2>
+<p>
           If you are a business owner, you deserve clarity on value and options without pressure.
           If you are a buyer, you deserve a path to ownership that is not a franchise and not a risky start-from-zero leap.
         </p>
-
-        <div class="bbas-split">
-          <div class="bbas-panel">
-            <h3>For business owners</h3>
-            <p>Even if you are not ready to sell today, you can start getting informed now.</p>
-            <ul class="bbas-ul">
-              <li>Learn what drives value (and what lowers it).</li>
-              <li>Understand typical deal structures and timelines.</li>
-              <li>Prepare your business to attract serious buyers.</li>
-              <li>Decide if selling makes sense for you, on your timing.</li>
-            </ul>
-          </div>
-
-          <div class="bbas-panel">
-            <h3>For buyers leaving the 9 to 5</h3>
-            <p>Explore ownership through existing businesses with customers, operations, and cash flow.</p>
-            <ul class="bbas-ul">
-              <li>Find businesses that fit your budget and lifestyle.</li>
-              <li>Learn how to evaluate a deal without getting burned.</li>
-              <li>Know what questions to ask before you make offers.</li>
-              <li>Move from curiosity to confidence with practical guidance.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bbas-section alt" aria-label="Categories and positioning">
-      <div class="container">
-        <h2>Focused on owner-operated businesses, not franchises.</h2>
-        <p class="narrow">
+<div class="bbas-split">
+<div class="bbas-panel">
+<h3>For business owners</h3>
+<p>Even if you are not ready to sell today, you can start getting informed now.</p>
+<ul class="bbas-ul">
+<li>Learn what drives value (and what lowers it).</li>
+<li>Understand typical deal structures and timelines.</li>
+<li>Prepare your business to attract serious buyers.</li>
+<li>Decide if selling makes sense for you, on your timing.</li>
+</ul>
+</div>
+<div class="bbas-panel">
+<h3>For buyers leaving the 9 to 5</h3>
+<p>Explore ownership through existing businesses with customers, operations, and cash flow.</p>
+<ul class="bbas-ul">
+<li>Find businesses that fit your budget and lifestyle.</li>
+<li>Learn how to evaluate a deal without getting burned.</li>
+<li>Know what questions to ask before you make offers.</li>
+<li>Move from curiosity to confidence with practical guidance.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Categories and positioning" class="bbas-section alt">
+<div class="container">
+<h2>Focused on owner-operated businesses, not franchises.</h2>
+<p class="narrow">
           Think gas stations, convenience stores, vape stores, small retail, and local service businesses.
           Deals where clear numbers, real operations, and straightforward expectations matter.
         </p>
-
-        <div class="bbas-grid" aria-label="Categories">
-          <div class="bbas-card">
-            <h4>Convenience stores</h4>
-            <p>Neighborhood staples with repeat traffic and stable demand.</p>
-            <div class="bbas-pillrow">
-              <span class="bbas-pill">Inventory</span>
-              <span class="bbas-pill">Margins</span>
-              <span class="bbas-pill">Foot traffic</span>
-            </div>
-          </div>
-          <div class="bbas-card">
-            <h4>Gas stations</h4>
-            <p>High-volume operations where structure and diligence matter.</p>
-            <div class="bbas-pillrow">
-              <span class="bbas-pill">Fuel contracts</span>
-              <span class="bbas-pill">Inside sales</span>
-              <span class="bbas-pill">Compliance</span>
-            </div>
-          </div>
-          <div class="bbas-card">
-            <h4>Vape and specialty retail</h4>
-            <p>Local brands, loyal customers, and strong cash flow potential.</p>
-            <div class="bbas-pillrow">
-              <span class="bbas-pill">Regulatory basics</span>
-              <span class="bbas-pill">SKU mix</span>
-              <span class="bbas-pill">Location</span>
-            </div>
-          </div>
-        </div>
-
-        <div id="marketplace-preview" class="bbas-preview" aria-label="Marketplace preview">
-          <div class="bbas-listing">
-            <div class="bbas-listing-top">
-              <h3>Featured listing preview</h3>
-              <span class="bbas-tag">Preview</span>
-            </div>
-            <p style="margin:0;color:var(--bbas-muted);line-height:1.6;">
+<div aria-label="Categories" class="bbas-grid">
+<div class="bbas-card">
+<h4>Convenience stores</h4>
+<p>Neighborhood staples with repeat traffic and stable demand.</p>
+<div class="bbas-pillrow">
+<span class="bbas-pill">Inventory</span>
+<span class="bbas-pill">Margins</span>
+<span class="bbas-pill">Foot traffic</span>
+</div>
+</div>
+<div class="bbas-card">
+<h4>Gas stations</h4>
+<p>High-volume operations where structure and diligence matter.</p>
+<div class="bbas-pillrow">
+<span class="bbas-pill">Fuel contracts</span>
+<span class="bbas-pill">Inside sales</span>
+<span class="bbas-pill">Compliance</span>
+</div>
+</div>
+<div class="bbas-card">
+<h4>Vape and specialty retail</h4>
+<p>Local brands, loyal customers, and strong cash flow potential.</p>
+<div class="bbas-pillrow">
+<span class="bbas-pill">Regulatory basics</span>
+<span class="bbas-pill">SKU mix</span>
+<span class="bbas-pill">Location</span>
+</div>
+</div>
+</div>
+<div aria-label="Marketplace preview" class="bbas-preview" id="marketplace-preview">
+<div class="bbas-listing">
+<div class="bbas-listing-top">
+<h3>Featured listing preview</h3>
+<span class="bbas-tag">Preview</span>
+</div>
+<p style="margin:0;color:var(--bbas-muted);line-height:1.6;">
               A clean, consistent listing layout so buyers can evaluate quickly and owners can present clearly.
             </p>
-
-            <div class="bbas-metrics" aria-label="Listing metrics">
-              <div class="bbas-metric"><div class="k">Revenue</div><div class="v">$1,250,000</div></div>
-              <div class="bbas-metric"><div class="k">Cash Flow</div><div class="v">$310,000</div></div>
-              <div class="bbas-metric"><div class="k">Asking Price</div><div class="v">$1,050,000</div></div>
-              <div class="bbas-metric"><div class="k">Location</div><div class="v">Metro Area</div></div>
-            </div>
-
-            <div class="bbas-note">
+<div aria-label="Listing metrics" class="bbas-metrics">
+<div class="bbas-metric"><div class="k">Revenue</div><div class="v">$1,250,000</div></div>
+<div class="bbas-metric"><div class="k">Cash Flow</div><div class="v">$310,000</div></div>
+<div class="bbas-metric"><div class="k">Asking Price</div><div class="v">$1,050,000</div></div>
+<div class="bbas-metric"><div class="k">Location</div><div class="v">Metro Area</div></div>
+</div>
+<div class="bbas-note">
               This is placeholder data for the temporary site. The real platform will standardize key fields
               so buyers and sellers waste less time.
             </div>
-          </div>
-
-          <div class="bbas-listing">
-            <div class="bbas-listing-top">
-              <h3>What makes a listing "clear"</h3>
-              <span class="bbas-tag">Standard</span>
-            </div>
-            <ul class="bbas-ul" style="margin-top:8px;">
-              <li>Simple financial snapshot (revenue, cash flow, margin).</li>
-              <li>What is included (inventory, equipment, lease terms).</li>
-              <li>Owner role and staffing basics.</li>
-              <li>Clear next step for interested buyers.</li>
-            </ul>
-            <div class="bbas-pillrow" style="margin-top:14px;">
-              <span class="bbas-pill">Less noise</span>
-              <span class="bbas-pill">Better questions</span>
-              <span class="bbas-pill">Better outcomes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how-it-works" class="bbas-section" aria-label="How it works">
-      <div class="container">
-        <h2>How it works</h2>
-        <p class="narrow">
+</div>
+<div class="bbas-listing">
+<div class="bbas-listing-top">
+<h3>What makes a listing "clear"</h3>
+<span class="bbas-tag">Standard</span>
+</div>
+<ul class="bbas-ul" style="margin-top:8px;">
+<li>Simple financial snapshot (revenue, cash flow, margin).</li>
+<li>What is included (inventory, equipment, lease terms).</li>
+<li>Owner role and staffing basics.</li>
+<li>Clear next step for interested buyers.</li>
+</ul>
+<div class="bbas-pillrow" style="margin-top:14px;">
+<span class="bbas-pill">Less noise</span>
+<span class="bbas-pill">Better questions</span>
+<span class="bbas-pill">Better outcomes</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="How it works" class="bbas-section" id="how-it-works">
+<div class="container">
+<h2>How it works</h2>
+<p class="narrow">
           A simple path from curiosity to action. Learn first, explore the marketplace, then move forward when you are ready.
         </p>
-
-        <div class="bbas-grid" aria-label="Steps">
-          <div class="bbas-card">
-            <h4>1) Learn the basics</h4>
-            <p>Valuation, deal structure, and what buyers and owners should expect.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>2) Explore listings</h4>
-            <p>Clean previews and consistent information so you can compare quickly.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>3) Take the next step</h4>
-            <p>When there is real interest, move to deeper diligence and next actions.</p>
-          </div>
-        </div>
-
-        <div class="bbas-knowledge" aria-label="Knowledge hub cards">
-          <div class="bbas-card">
-            <h4>What is my business worth?</h4>
-            <p>A simple, practical way to understand value without overwhelm.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>What buyers look for</h4>
-            <p>What makes buyers confident, and what causes deals to stall.</p>
-          </div>
-          <div class="bbas-card">
-            <h4>First-time buyer checklist</h4>
-            <p>Questions to ask, documents to request, and red flags to watch.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="early-access" class="bbas-section alt" aria-label="Early access anchor">
-      <div class="container narrow">
-        <h2>Join early access</h2>
-        <p>
+<div aria-label="Steps" class="bbas-grid">
+<div class="bbas-card">
+<h4>1) Learn the basics</h4>
+<p>Valuation, deal structure, and what buyers and owners should expect.</p>
+</div>
+<div class="bbas-card">
+<h4>2) Explore listings</h4>
+<p>Clean previews and consistent information so you can compare quickly.</p>
+</div>
+<div class="bbas-card">
+<h4>3) Take the next step</h4>
+<p>When there is real interest, move to deeper diligence and next actions.</p>
+</div>
+</div>
+<div aria-label="Knowledge hub cards" class="bbas-knowledge">
+<div class="bbas-card">
+<h4>What is my business worth?</h4>
+<p>A simple, practical way to understand value without overwhelm.</p>
+</div>
+<div class="bbas-card">
+<h4>What buyers look for</h4>
+<p>What makes buyers confident, and what causes deals to stall.</p>
+</div>
+<div class="bbas-card">
+<h4>First-time buyer checklist</h4>
+<p>Questions to ask, documents to request, and red flags to watch.</p>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Early access anchor" class="bbas-section alt" id="early-access">
+<div class="container narrow">
+<h2>Join early access</h2>
+<p>
           We will invite early members to explore listings, guides, and tools as they go live.
           If you are buying, selling, or both, this is the best way to stay close to launch.
         </p>
-
-        <div class="bbas-panel" style="padding:18px;">
-          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
-            <div style="min-width:240px;">
-              <strong style="color:#0b1220;">Want the early access form?</strong>
-              <div style="color:var(--bbas-muted);font-size:14px;margin-top:2px;">Use the form in the hero section above.</div>
-            </div>
-            <a class="bbas-btn bbas-btn-primary" href="#main">Back to top</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div id="siteFooter"></div>
-
-  <script src="/assets/js/includes.js"></script>
-  <script src="/assets/js/site.js"></script>
-
-  <script>
+<div class="bbas-panel" style="padding:18px;">
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;">
+<div style="min-width:240px;">
+<strong style="color:#0b1220;">Want the early access form?</strong>
+<div style="color:var(--bbas-muted);font-size:14px;margin-top:2px;">Use the form in the hero section above.</div>
+</div>
+<a class="bbas-btn bbas-btn-primary bbas-backtotop" href="#main">Back to top</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div id="siteFooter"></div>
+<script src="/assets/js/includes.js"></script>
+<script src="/assets/js/site.js"></script>
+<script>
     (function () {
       document.addEventListener("click", function (e) {
         var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
@@ -642,7 +687,6 @@
       }
     })();
   </script>
-
 <script>
 (function(){
   var form = document.getElementById('earlyAccessForm');
@@ -705,6 +749,5 @@
   });
 })();
 </script>
-
 </body>
 </html>
