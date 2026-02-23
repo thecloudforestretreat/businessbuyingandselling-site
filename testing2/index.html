@@ -903,6 +903,38 @@
   height: auto !important;
 }
 
+
+
+
+/* === FIX: Remove the artificial blank space in funnel question cards === */
+/* Root cause was: #funnelBody { flex:1; padding-bottom:120px } + sticky .funnelActions. */
+/* That combo reserves empty "scroll room" even when the step content is short. */
+
+#funnelBody{
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+  padding-bottom: 0 !important;
+}
+
+.funnelActions{
+  position: static !important;
+  bottom: auto !important;
+  z-index: auto !important;
+}
+
+/* Ensure the card hugs content */
+.funnelCard{
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* If any earlier rule makes the card a flex column, keep it but do not stretch children */
+.funnelCard{
+  display: flex !important;
+  flex-direction: column !important;
+}
+.funnelCardHeader{ flex: 0 0 auto !important; }
+
 </style>
 </head>
 
