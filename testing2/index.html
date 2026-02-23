@@ -1172,10 +1172,11 @@ lease terms, and what is included in the sale.</div>
         '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
       '</div>',
       '<div class="turnstileWrap">',
-        '<div class="turnstileWrap"><div id="turnstileMount"></div><input type="hidden" id="turnstileToken" name="cf-turnstile-response" required></div>',
+        '<div id="turnstileMount" class="turnstileMount"></div>',
+        '<input type="hidden" id="turnstileToken" name="cf-turnstile-response" required>',
       '</div>',
       '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
     ].join("");
@@ -1187,20 +1188,20 @@ lease terms, and what is included in the sale.</div>
       if (state.answers[key]) el.value = state.answers[key];
       el.addEventListener("input", function(){ state.answers[key] = el.value; });
     }
-    restore("first_name", "contact_first_name");
-    restore("last_name", "contact_last_name");
-    restore("email", "contact_email");
-    restore("phone", "contact_phone");
+    restore("firstName", "contact_first_name");
+    restore("lastName", "contact_last_name");
+    restore("emailAddress", "contact_email");
+    restore("phoneNumber", "contact_phone");
     restore("notes", "contact_notes");
 
     // persist on blur for required fields too
     qsa("input, textarea", form).forEach(function(el){
       el.addEventListener("blur", function(){
         var map = {
-          "first_name":"contact_first_name",
-          "last_name":"contact_last_name",
-          "email":"contact_email",
-          "phone":"contact_phone",
+          "firstName":"contact_first_name",
+          "lastName":"contact_last_name",
+          "emailAddress":"contact_email",
+          "phoneNumber":"contact_phone",
           "notes":"contact_notes"
         };
         if (map[el.id]) state.answers[map[el.id]] = el.value;
@@ -1237,9 +1238,9 @@ lease terms, and what is included in the sale.</div>
     if (step.type === "contact") {
       var form = qs("#funnelContactForm");
       if (!form) return false;
-      var first = qs("#first_name", form);
-      var last = qs("#last_name", form);
-      var email = qs("#email", form);
+      var first = qs("#firstName", form);
+      var last = qs("#lastName", form);
+      var email = qs("#emailAddress", form);
       return !!(first && last && email && first.value.trim() && last.value.trim() && email.value.trim());
     }
     return true;
@@ -1270,7 +1271,7 @@ lease terms, and what is included in the sale.</div>
   function bindContactEnhancements() {
     const first = qs("#firstName");
     const last = qs("#lastName");
-    const phone = qs("#phone");
+    const phone = qs("#phoneNumber");
 
     if (first && !first.dataset.capBound) {
       first.dataset.capBound = "1";
@@ -1403,8 +1404,8 @@ function renderStep(){
 
     var first = titleCaseName(qs("#firstName", form).value);
     var last = titleCaseName(qs("#lastName", form).value);
-    var email = qs("#email", form).value.trim();
-    var phone = qs("#phone", form).value.trim();
+    var email = qs("#emailAddress", form).value.trim();
+    var phone = qs("#phoneNumber", form).value.trim();
     var notes = qs("#notes", form).value.trim();
 
     state.answers.contact_first_name = first;
