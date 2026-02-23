@@ -286,6 +286,7 @@
   
 /* Turnstile + form status */
 .turnstileWrap{margin-top:14px;margin-bottom:14px;display:flex;justify-content:flex-start}
+.turnstileMount{min-height:65px;}
 .formStatus{min-height:18px;margin:0 0 10px 0;font-size:13px;line-height:1.25;color:var(--muted)}
 .formStatus.is-error{color:#EF4444}
 .formStatus.is-success{color:#22C55E}
@@ -1167,11 +1168,11 @@ lease terms, and what is included in the sale.</div>
 
     form.innerHTML = [
       '<div class="inputGrid">',
-        '<div class="field"><label for="first_name">First Name</label><input id="first_name" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
-        '<div class="field"><label for="last_name">Last Name</label><input id="last_name" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
+        '<div class="field"><label for="first_name">First Name</label><input id="first_name" id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="last_name">Last Name</label><input id="last_name" id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="email">Email</label><input id="email" id="email" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phone">Phone</label><input id="phone" id="phone" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
       '</div>',
       '<div class="turnstileWrap">',
         '<div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ" data-theme="light"></div>',
@@ -1244,7 +1245,103 @@ lease terms, and what is included in the sale.</div>
     return true;
   }
 
-  function renderStep(){
+  
+
+  // ---- Contact input helpers (auto-cap + phone format) ----
+  function titleCaseName(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    return raw
+      .split(/\s+/)
+      .map((word) => {
+        return word
+          .split("-")
+          .map((part) =>
+            part
+              .split("'")
+              .map((p) => (p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : ""))
+              .join("'")
+          )
+          .join("-");
+      })
+      .join(" ");
+  }
+
+  function bindContactEnhancements() {
+    const first = qs("#firstName");
+    const last = qs("#lastName");
+    const phone = qs("#phone");
+
+    if (first && !first.dataset.capBound) {
+      first.dataset.capBound = "1";
+      first.autocomplete = "given-name";
+      first.addEventListener("blur", () => {
+        first.value = titleCaseName(first.value);
+      });
+    }
+
+    if (last && !last.dataset.capBound) {
+      last.dataset.capBound = "1";
+      last.autocomplete = "family-name";
+      last.addEventListener("blur", () => {
+        last.value = titleCaseName(last.value);
+      });
+    }
+
+    if (phone && !phone.dataset.phoneBound) {
+      phone.dataset.phoneBound = "1";
+      phone.addEventListener("input", () => {
+        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
+        let out = "";
+        if (digits.length > 0) out = "(" + digits.slice(0, 3);
+        if (digits.length >= 4) out += ") " + digits.slice(3, 6);
+        if (digits.length >= 7) out += "-" + digits.slice(6, 10);
+        phone.value = out || "";
+      });
+      phone.addEventListener("blur", () => {
+        // finalize formatting on blur
+        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
+        if (digits.length === 10) {
+          phone.value = "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6);
+        }
+      });
+    }
+  }
+
+  // ---- Turnstile explicit render (step is injected after page load) ----
+  function ensureTurnstileMounted() {
+    const mount = qs("#turnstileMount");
+    if (!mount) return;
+
+    if (mount.dataset.rendered === "1") return;
+
+    const sitekey = "0x4AAAAAABVCw4QS8X61pRAE";
+
+    if (window.turnstile && typeof window.turnstile.render === "function") {
+      window.turnstile.render(mount, {
+        sitekey,
+        theme: "light",
+        callback: function (token) {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = token || "";
+        },
+        "error-callback": function () {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = "";
+        },
+        "expired-callback": function () {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = "";
+        },
+      });
+      mount.dataset.rendered = "1";
+      return;
+    }
+
+    // try again shortly if the script has not loaded yet
+    setTimeout(ensureTurnstileMounted, 250);
+  }
+function renderStep(){
     if (!state.branch) {
       renderBranchChoice();
       return;
@@ -1276,6 +1373,12 @@ lease terms, and what is included in the sale.</div>
     nextBtn.disabled = !canGoNext();
     nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
 
+    if (step.type === "contact") {
+      bindContactEnhancements();
+      ensureTurnstileMounted();
+    }
+
+
     // update selection styling for choice steps
     qsa('[aria-pressed]', qs("#funnelBody")).forEach(function(btn){
       btn.addEventListener("keydown", function(e){
@@ -1298,8 +1401,8 @@ lease terms, and what is included in the sale.</div>
     var form = qs("#funnelContactForm");
     if (!form) return;
 
-    var first = qs("#first_name", form).value.trim();
-    var last = qs("#last_name", form).value.trim();
+    var first = titleCaseName(qs("#firstName", form).value);
+    var last = titleCaseName(qs("#lastName", form).value);
     var email = qs("#email", form).value.trim();
     var phone = qs("#phone", form).value.trim();
     var notes = qs("#notes", form).value.trim();
@@ -1310,8 +1413,8 @@ lease terms, and what is included in the sale.</div>
     state.answers.contact_phone = phone;
     state.answers.contact_notes = notes;
 
-    var tokenEl = form.querySelector('input[name="cf-turnstile-response"]');
-    var token = tokenEl ? tokenEl.value : "";
+    var tokenEl = form.querySelector('#turnstileToken') || form.querySelector('input[name="cf-turnstile-response"]');
+    var token = tokenEl ? String(tokenEl.value || "").trim() : "";
 
     if (!token) {
       showStatus("Please complete the Turnstile check, then submit again.", true);
