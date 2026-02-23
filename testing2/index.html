@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
   <meta charset="utf-8">
   <title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
@@ -33,7 +33,10 @@
       <link rel="stylesheet" href="/assets/css/header.css">
 <!-- Page-level polish (compact, scoped) -->
   <style>
-    :root{
+    
+  .pageBg{position:fixed; inset:0; background-image:url(\'/assets/images/bbas_homepage_hero_03.jpg\'); background-size:cover; background-position:center; background-repeat:no-repeat; transform:none; will-change:auto; z-index:-2;}
+  .pageBg::after{content:\'\'; position:absolute; inset:0; background: radial-gradient(1200px 700px at 25% 20%, rgba(0,0,0,0.55), rgba(0,0,0,0.82));}
+:root{
       --bbas-navy:#1B263B;
       --bbas-blue:#2563EB;
       --bbas-ink:#0B1220;
@@ -295,6 +298,12 @@
 
 /* Ensure footer never overlays the funnel UI */
 #siteFooter{ position: relative; z-index: 1; }
+
+  .optionsGrid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px){ .optionsGrid2{ grid-template-columns: 1fr; } }
+
+  .optionList--two{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 720px){ .optionList--two{ grid-template-columns: 1fr; } }
 </style>
 
   <!-- Google Analytics -->
@@ -313,8 +322,7 @@
   .hero--funnel { position: relative; padding: 44px 0 64px; }
   .hero--funnel .heroBg{
     position:absolute; inset:0;
-    background-image: url('/assets/images/bbas_homepage_hero_03.jpg');
-    background-size: cover; background-position: center;
+    background: transparent;
     border-radius: 28px;
     max-width: var(--container-max);
     margin: 0 auto;
@@ -322,7 +330,7 @@
   }
   .hero--funnel .container{ position: relative; padding-top: 16px; }
   .heroTop{
-  background: rgba(0,0,0,0.74) !important;
+  background: rgba(0,0,0,0.86) !important;
   border: 1px solid rgba(255,255,255,0.18) !important;
   border-radius: 20px !important;
   padding: 20px 16px 22px !important;
@@ -944,7 +952,11 @@ lease terms, and what is included in the sale.</div>
 <script id="funnelScript">
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
-  function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  
+  function getTurnstileSitekey(){
+    return document.documentElement.getAttribute("data-turnstile-sitekey") || "0x4AAAAAACgmGQoYfzwumYuZ";
+  }
+function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
 
   var state = {
     branch: null,
@@ -1222,6 +1234,7 @@ lease terms, and what is included in the sale.</div>
 
     var wrap = document.createElement("div");
     wrap.className = grid ? "choiceGrid" : "optionList";
+    if (!grid && step.options && step.options.length >= 8) wrap.classList.add("optionList--two");
     if (grid) {
       wrap.classList.add("choiceGrid--two");
       if (step.columns === 1) wrap.classList.remove("choiceGrid--two");
@@ -1503,7 +1516,7 @@ lease terms, and what is included in the sale.</div>
 
     if (mount.dataset.rendered === "1") return;
 
-    const sitekey = "0x4AAAAAABVCw4QS8X61pRAE";
+    const sitekey = getTurnstileSitekey();
 
     if (window.turnstile && typeof window.turnstile.render === "function") {
       try {
