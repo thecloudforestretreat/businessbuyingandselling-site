@@ -37,6 +37,8 @@
   .pageBg{position:fixed; inset:0; background-image:url(\'/assets/images/bbas_homepage_hero_03.jpg\'); background-size:cover; background-position:center; background-repeat:no-repeat; transform:none; will-change:auto; z-index:-2;}
   .pageBg::after{content:\'\'; position:absolute; inset:0; background: radial-gradient(1200px 700px at 25% 20%, rgba(0,0,0,0.55), rgba(0,0,0,0.82));}
 :root{
+  --rhythm: 14px;
+
       --bbas-navy:#1B263B;
       --bbas-blue:#2563EB;
       --bbas-ink:#0B1220;
@@ -288,7 +290,7 @@
     }
   
 /* Turnstile + form status */
-.turnstileWrap{margin-top:14px;margin-bottom:14px;display:flex;justify-content:flex-start}
+.turnstileWrap{margin-top: var(--rhythm);margin-bottom:14px;display:flex;justify-content:flex-start}
 .turnstileMount{min-height:65px;}
 .formStatus{min-height:18px;margin:0 0 10px 0;font-size:13px;line-height:1.25;color:var(--muted)}
 .formStatus.is-error{color:#EF4444}
@@ -466,10 +468,11 @@
 
   .funnelActions{
     display:flex;
+  align-items: center;
     justify-content:space-between;
     gap: 12px;
     margin-top: var(--answer-spacing);
-    padding: 14px 18px 18px;
+    padding: 16px 18px 12px;
     border-top: 1px solid rgba(15,23,42,0.08);
     background: rgba(255,255,255,0.92);
 }
@@ -480,7 +483,7 @@
   .btn--ghost{ background: #fff; color: #0f172a; }
   .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
 
-  .funnelNote{ padding: 10px 18px 16px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
+  .funnelNote{ padding: 6px 18px 14px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
 
   .trustCard{
     background: rgba(255,255,255,0.14);
@@ -811,7 +814,9 @@
 /* Reduce vertical gaps between option pills */
 .optionList, .choiceList, .radioList, .optionsList, .options{
   gap: 10px !important;
+  margin-bottom: var(--rhythm) !important;
 }
+
 .optionRow, .choiceRow, .radioRow{
   margin: 0 !important;
 }
