@@ -935,6 +935,53 @@
 }
 .funnelCardHeader{ flex: 0 0 auto !important; }
 
+
+
+
+/* === Consistent vertical rhythm between answers and buttons === */
+:root{
+  --qa-gap: 12px;
+}
+
+.optionList, .choiceList, .radioList, .optionsList, .options{
+  gap: var(--qa-gap) !important;
+}
+
+.optionRow + .optionRow,
+.choiceRow + .choiceRow,
+.radioRow + .radioRow{
+  margin-top: var(--qa-gap) !important;
+}
+
+/* Make the space between last answer and buttons match the answer gap */
+.stepBody .optionList,
+.stepBody .choiceList,
+.stepBody .radioList,
+.stepBody .optionsList,
+.stepBody .options,
+.stepContent .optionList,
+.stepContent .choiceList,
+.stepContent .radioList,
+.stepContent .optionsList,
+.stepContent .options{
+  margin-bottom: var(--qa-gap) !important;
+}
+
+/* If a step uses a grid of cards (2-up), keep same bottom spacing */
+.stepBody .cardGrid,
+.stepContent .cardGrid,
+.stepBody .choiceGrid,
+.stepContent .choiceGrid{
+  gap: var(--qa-gap) !important;
+  margin-bottom: var(--qa-gap) !important;
+}
+
+/* Normalize the actions/footer spacing */
+.funnelActions, .stepFooter{
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 </style>
 </head>
 
