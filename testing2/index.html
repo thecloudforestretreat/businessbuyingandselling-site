@@ -470,14 +470,15 @@
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.55));
+    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.68), rgba(0,0,0,0) 62%),
+    radial-gradient(900px 520px at 78% 18%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.72), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.72));
   pointer-events:none;
   z-index:0;
 }
-.heroInner{ position:relative; z-index:1; }
+.heroInner{ position:relative; z-index:1; }{ position:relative; z-index:1; }
 .heroTitle, .heroLead{
-  text-shadow: 0 2px 18px rgba(0,0,0,0.65);
+  text-shadow: 0 3px 22px rgba(0,0,0,0.75);
 }
 .heroLead{ max-width: 48ch; }
 
@@ -519,6 +520,39 @@
 
 /* Header include failsafe: keep injected header from being pushed by hero */
 #siteHeader{ position: relative; z-index: 20; }
+
+
+
+/* Funnel UX fixes: keep actions visible and prevent clipping at 100% zoom */
+.funnelCard{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden; /* keep rounded corners */
+}
+.funnelCardHeader{flex:0 0 auto;}
+#funnelBody{
+  flex:1 1 auto;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:120px; /* room for sticky actions */
+}
+.funnelActions{
+  position:sticky;
+  bottom:0;
+  z-index:2;
+  flex:0 0 auto;
+}
+/* Allow the hero to grow on shorter viewports */
+.hero--funnel{
+  min-height: 920px;
+  height: auto;
+}
+.heroLead{ color: rgba(255,255,255,0.92); }
+/* Spacing adjustments to prevent overlaps */
+.funnelShell{ margin-top: 10px; }
+@media (max-height: 760px){
+  .hero--funnel{ padding-top: 26px; }
+}
 
 </style>
 </head>
