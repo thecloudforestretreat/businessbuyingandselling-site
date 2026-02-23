@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
@@ -335,7 +335,7 @@
 
   .funnelProgress{ display:flex; flex-direction:column; gap:10px; margin: 0 0 14px; }
   .funnelProgressTrack{ height: 10px; border-radius: 999px; background: rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.18); overflow:hidden; }
-  .funnelProgressFill{ height:100%; border-radius: 999px; background: linear-gradient(90deg, rgba(59,130,246,1), rgba(99,102,241,1)); }
+  .funnelProgressFill{height:100%;width:0;background:var(--bbas-blue);border-radius:999px;transition:width .35s ease;}
   .funnelProgressMeta{ display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(255,255,255,0.88); }
   .linkBtn{ background: transparent; border: 0; padding: 0; color: rgba(255,255,255,0.88); text-decoration: underline; cursor: pointer; }
   .linkBtn:hover{ color: #fff; }
@@ -410,7 +410,7 @@
   .funnelActions{ display:flex; justify-content:space-between; gap: 12px; padding: 14px 18px 18px; border-top: 1px solid rgba(15,23,42,0.08); background: rgba(255,255,255,0.92); }
   .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
   .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
-  .btn--primary{ background: linear-gradient(90deg, rgba(37,99,235,1), rgba(99,102,241,1)); color: #fff; border-color: transparent; }
+  .btn--primary{background:var(--bbas-blue);color:#fff;border:0;box-shadow:0 14px 30px rgba(0,0,0,.25);}
   .btn--primary:hover{ filter: brightness(1.03); }
   .btn--ghost{ background: #fff; color: #0f172a; }
   .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
@@ -1168,14 +1168,14 @@ lease terms, and what is included in the sale.</div>
 
     form.innerHTML = [
       '<div class="inputGrid">',
-        '<div class="field"><label for="first_name">First Name</label><input id="first_name" id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required autocapitalize="words"></div>',
-        '<div class="field"><label for="last_name">Last Name</label><input id="last_name" id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required autocapitalize="words"></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="email">Email</label><input id="email" id="email" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="phone">Phone</label><input id="phone" id="phone" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
       '</div>',
       '<div class="turnstileWrap">',
-        '<div class="cf-turnstile" data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ" data-theme="light"></div>',
+        '<div class="turnstileWrap"><div id="turnstileMount"></div><input type="hidden" id="turnstileToken" name="cf-turnstile-response" required></div>',
       '</div>',
       '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
     ].join("");
@@ -1237,11 +1237,10 @@ lease terms, and what is included in the sale.</div>
     if (step.type === "contact") {
       var form = qs("#funnelContactForm");
       if (!form) return false;
-      var first = qs("#firstName", form);
-      var last = qs("#lastName", form);
+      var first = qs("#first_name", form);
+      var last = qs("#last_name", form);
       var email = qs("#email", form);
-      var ts = qs("#cf-turnstile-response", form);
-      return !!(first && last && email && first.value.trim() && last.value.trim() && email.value.trim() && ts && ts.value.trim());
+      return !!(first && last && email && first.value.trim() && last.value.trim() && email.value.trim());
     }
     return true;
   }
@@ -1314,62 +1313,208 @@ lease terms, and what is included in the sale.</div>
     const mount = qs("#turnstileMount");
     if (!mount) return;
 
-    // Avoid double-render if user goes back/forward
-    if (mount.dataset.rendered === "1" && window.__bbasTurnstileWidgetId != null && window.turnstile) {
-      try { window.turnstile.reset(window.__bbasTurnstileWidgetId); } catch (e) {}
-      return;
-    }
+    if (mount.dataset.rendered === "1") return;
 
-    const sitekey = (document.documentElement.getAttribute("data-turnstile-sitekey") || mount.getAttribute("data-sitekey") || "").trim();
-    if (!sitekey) return;
+    const sitekey = "0x4AAAAAABVCw4QS8X61pRAE";
 
-    const tokenInput = qs("#cf-turnstile-response");
-    const renderNow = () => {
-      if (!window.turnstile) return;
-      try {
-        // Clear container in case we re-render after navigation
-        mount.innerHTML = "";
-        const widgetId = window.turnstile.render(mount, {
-          sitekey,
-          theme: "light",
-          callback: (token) => { if (tokenInput) tokenInput.value = token || ""; },
-          "expired-callback": () => { if (tokenInput) tokenInput.value = ""; },
-          "error-callback": () => { if (tokenInput) tokenInput.value = ""; }
-        });
-        window.__bbasTurnstileWidgetId = widgetId;
-        mount.dataset.rendered = "1";
-      } catch (e) {
-        // no-op
-      }
-    };
-
-    // If api is ready, render immediately. Otherwise load it (once) and render on load.
     if (window.turnstile && typeof window.turnstile.render === "function") {
-      renderNow();
+      window.turnstile.render(mount, {
+        sitekey,
+        theme: "light",
+        callback: function (token) {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = token || "";
+        },
+        "error-callback": function () {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = "";
+        },
+        "expired-callback": function () {
+          const tokenInput = qs("#turnstileToken");
+          if (tokenInput) tokenInput.value = "";
+        },
+      });
+      mount.dataset.rendered = "1";
       return;
     }
 
-    if (!window.__bbasTurnstileScriptLoading) {
-      window.__bbasTurnstileScriptLoading = true;
-      const s = document.createElement("script");
-      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-      s.async = true;
-      s.defer = true;
-      s.onload = () => renderNow();
-      document.head.appendChild(s);
-    } else {
-      // Poll briefly until available
-      let tries = 0;
-      const t = setInterval(() => {
-        tries += 1;
-        if (window.turnstile && typeof window.turnstile.render === "function") {
-          clearInterval(t);
-          renderNow();
-        } else if (tries > 40) {
-          clearInterval(t);
-        }
-      }, 150);
+    // try again shortly if the script has not loaded yet
+    setTimeout(ensureTurnstileMounted, 250);
+  }
+function renderStep(){
+    if (!state.branch) {
+      renderBranchChoice();
+      return;
     }
+
+    var step = state.steps[state.stepIndex];
+    if (!step) return;
+
+    qs("#funnelRestartBtn").style.visibility = "visible";
+    setHeader(step);
+    setProgress();
+
+    if (step.type === "choice") renderChoice(step, false);
+    else if (step.type === "choice_grid") renderChoice(step, true);
+    else if (step.type === "location_url") renderLocationUrl(step, true);
+    else if (step.type === "location_only") renderLocationUrl(step, false);
+    else if (step.type === "contact") renderContact();
+
+    var actions = qs("#funnelActions");
+    actions.hidden = false;
+
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+
+    backBtn.disabled = (state.stepIndex === 0);
+    backBtn.style.opacity = backBtn.disabled ? "0.5" : "1";
+
+    nextBtn.textContent = (step.type === "contact") ? "Submit" : "Next";
+    nextBtn.disabled = !canGoNext();
+    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
+
+    if (step.type === "contact") {
+      bindContactEnhancements();
+      ensureTurnstileMounted();
+    }
+
+
+    // update selection styling for choice steps
+    qsa('[aria-pressed]', qs("#funnelBody")).forEach(function(btn){
+      btn.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  }
+
+  function showStatus(msg, isError){
+    var el = qs("#funnelStatus");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.className = "statusLine" + (isError ? " statusLine--error" : "");
+  }
+
+  async function submitFunnel(){
+    var form = qs("#funnelContactForm");
+    if (!form) return;
+
+    var first = titleCaseName(qs("#firstName", form).value);
+    var last = titleCaseName(qs("#lastName", form).value);
+    var email = qs("#email", form).value.trim();
+    var phone = qs("#phone", form).value.trim();
+    var notes = qs("#notes", form).value.trim();
+
+    state.answers.contact_first_name = first;
+    state.answers.contact_last_name = last;
+    state.answers.contact_email = email;
+    state.answers.contact_phone = phone;
+    state.answers.contact_notes = notes;
+
+    var tokenEl = form.querySelector('#turnstileToken') || form.querySelector('input[name="cf-turnstile-response"]');
+    var token = tokenEl ? String(tokenEl.value || "").trim() : "";
+
+    if (!token) {
+      showStatus("Please complete the Turnstile check, then submit again.", true);
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append("source", "funnel");
+    formData.append("branch", state.branch);
+    formData.append("answers_json", JSON.stringify(state.answers));
+    formData.append("first_name", first);
+    formData.append("last_name", last);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("message", notes);
+    formData.append("cf-turnstile-response", token);
+
+    showStatus("Submitting...", false);
+
+    try {
+      var resp = await fetch("/api/early-access", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!resp.ok) {
+        var txt = await resp.text();
+        throw new Error(txt || "Request failed");
+      }
+
+      showStatus("Success. You are on the early access list.", false);
+      qs("#funnelNextBtn").disabled = true;
+      qs("#funnelBackBtn").disabled = true;
+      qs("#funnelRestartBtn").disabled = false;
+    } catch (e) {
+      showStatus("Something went wrong. Please try again in a moment.", true);
+    }
+  }
+
+  function bindActions(){
+    qs("#funnelRestartBtn").addEventListener("click", function(){
+      state.branch = null;
+      state.stepIndex = 0;
+      state.steps = [];
+      state.answers = {};
+      renderBranchChoice();
+    });
+
+    qs("#funnelBackBtn").addEventListener("click", function(){
+      if (state.stepIndex > 0) {
+        state.stepIndex -= 1;
+        showStatus("", false);
+        renderStep();
+      }
+    });
+
+    qs("#funnelNextBtn").addEventListener("click", function(){
+      if (!state.steps.length) return;
+
+      var step = state.steps[state.stepIndex];
+      if (!step) return;
+
+      if (step.type === "contact") {
+        submitFunnel();
+        return;
+      }
+
+      if (!canGoNext()) {
+        renderStep();
+        return;
+      }
+
+      if (state.stepIndex < state.steps.length - 1) {
+        state.stepIndex += 1;
+        showStatus("", false);
+        renderStep();
+      }
+    });
+
+    // keep Next button enabled state in sync for contact typing
+    document.addEventListener("input", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+  }
+
+  function init(){
+    bindActions();
+    renderBranchChoice();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
 </script>
 
@@ -1395,6 +1540,38 @@ lease terms, and what is included in the sale.</div>
     inject("siteFooter", "/assets/includes/footer.html");
   });
 })();
+
+  // Turnstile: dynamic render (contact step is injected after page load)
+  let __turnstileWidgetId = null;
+  function initTurnstileIfNeeded(){
+    const mount = document.getElementById('turnstileMount');
+    const token = document.getElementById('turnstileToken');
+    if(!mount || !token) return;
+    const siteKey = document.documentElement.getAttribute('data-turnstile-sitekey') || '';
+    // If already rendered, keep token as-is (Turnstile manages it)
+    if(__turnstileWidgetId !== null) return;
+    // Script may not be loaded yet
+    if(!window.turnstile || !siteKey){
+      setTimeout(initTurnstileIfNeeded, 250);
+      return;
+    }
+    __turnstileWidgetId = window.turnstile.render(mount, {
+      sitekey: siteKey,
+      theme: 'light',
+      callback: (t) => { token.value = t || ''; },
+      'expired-callback': () => { token.value = ''; },
+      'error-callback': () => { token.value = ''; }
+    });
+  }
+
+  function resetTurnstile(){
+    const token = document.getElementById('turnstileToken');
+    if(token) token.value = '';
+    if(window.turnstile && __turnstileWidgetId !== null){
+      try{ window.turnstile.reset(__turnstileWidgetId); } catch(e){}
+    }
+  }
+
 </script>
 
 </body>
