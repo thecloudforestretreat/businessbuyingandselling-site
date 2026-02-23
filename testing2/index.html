@@ -305,7 +305,8 @@
     gtag('js', new Date());
     gtag('config', 'G-EH99SDCSFD');
   </script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
+  <!-- Turnstile needs CSP to allow iframes from challenges.cloudflare.com (frame-src). -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
 
 <style id="funnelStyles">
   /* Funnel page additions. Built to match the approved site system. */
@@ -669,6 +670,28 @@
   margin-top: 10px;
   font-size: 12px;
   color: rgba(20,24,33,0.62);
+}
+
+
+
+/* Right panel readability */
+.trustCard{
+  background: rgba(12,14,18,0.72) !important;
+  border-color: rgba(255,255,255,0.16) !important;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(14px) !important;
+}
+.trustTitle{ color: rgba(255,255,255,0.985) !important; text-shadow: 0 3px 22px rgba(0,0,0,0.70) !important; }
+.trustDesc{ color: rgba(255,255,255,0.92) !important; }
+.trustBox{ background: rgba(0,0,0,0.32) !important; border-color: rgba(255,255,255,0.10) !important; }
+.trustBox h4{ color: rgba(255,255,255,0.96) !important; }
+.trustBox p{ color: rgba(255,255,255,0.86) !important; }
+.trustFoot{ color: rgba(255,255,255,0.70) !important; }
+
+
+/* Slightly stronger hero scrim */
+.hero--funnel::before{
+  background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.66) 55%, rgba(0,0,0,0.88)) !important;
 }
 
 </style>
@@ -1514,7 +1537,7 @@ lease terms, and what is included in the sale.</div>
             if (hasFrame) {
               hint.style.display = "none";
             } else {
-              hint.textContent = "Security check blocked. Disable ad blockers or allow challenges.cloudflare.com.";
+              hint.textContent = "Security check blocked. Disable blockers. If you use a Content-Security-Policy header, allow frame-src https://challenges.cloudflare.com.";
             }
           }
         }, 600);
