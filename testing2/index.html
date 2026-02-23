@@ -598,6 +598,46 @@
   color: rgba(255,255,255,0.97);
 }
 
+
+
+/* Lock hero background so it never resizes/zooms when steps change */
+.heroBg{
+  position: fixed !important;
+  inset: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  transform: none !important;
+}
+
+
+
+/* Stronger hero copy panel for readability */
+.heroTop{
+  background: rgba(0,0,0,0.62) !important;
+  border: 1px solid rgba(255,255,255,0.16) !important;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.45) !important;
+}
+.heroTitle{
+  color: rgba(255,255,255,0.995) !important;
+  text-shadow: 0 4px 26px rgba(0,0,0,0.85) !important;
+}
+.heroLead{
+  color: rgba(255,255,255,0.985) !important;
+  text-shadow: 0 3px 22px rgba(0,0,0,0.80) !important;
+}
+
+
+
+.turnstileHint{
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(20, 24, 33, 0.60);
+}
+
 </style>
 </head>
 
@@ -793,9 +833,15 @@ lease terms, and what is included in the sale.</div>
   form.addEventListener('submit', async function(e){
     e.preventDefault();
 
-    var fd = new FormData(form);
+        var fd = new FormData(form);
     var token = fd.get('cf-turnstile-response');
 
+    if (!token && window.turnstile && typeof window.turnstile.execute === 'function' && window.__tsWidgetId != null) {
+      try { window.turnstile.execute(window.__tsWidgetId); } catch (_) {}
+      await new Promise(function(res){ setTimeout(res, 900); });
+      fd = new FormData(form);
+      token = fd.get('cf-turnstile-response');
+    }
     if (!token) {
       setStatus('Please complete the security check.', 'error');
       return;
@@ -1254,6 +1300,7 @@ lease terms, and what is included in the sale.</div>
       '</div>',
       '<div class="turnstileWrap">',
         '<div id="turnstileMount" class="turnstileMount"></div>',
+        '<div class="turnstileHint" id="turnstileHint">Security check loads here.</div>',
         '<input type="hidden" id="turnstileToken" name="cf-turnstile-response" required>',
       '</div>',
       '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
@@ -1405,7 +1452,7 @@ lease terms, and what is included in the sale.</div>
     if (window.turnstile && typeof window.turnstile.render === "function") {
       try {
         mount.innerHTML = "";
-        window.turnstile.render(mount, {
+        window.__tsWidgetId = window.turnstile.render(mount, {
           sitekey: sitekey,
           theme: "light",
           size: "normal",
