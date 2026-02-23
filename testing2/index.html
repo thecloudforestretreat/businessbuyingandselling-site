@@ -451,6 +451,67 @@
     .funnelActions .btn{ width: 100%; }
     .trustGrid{ grid-template-columns: 1fr; }
   }
+
+/* Funnel standardization fixes */
+.heroBg{
+  overflow:hidden;
+  isolation:isolate;
+}
+.heroBg::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.55));
+  pointer-events:none;
+  z-index:0;
+}
+.heroInner{ position:relative; z-index:1; }
+.heroTitle, .heroLead{
+  text-shadow: 0 2px 18px rgba(0,0,0,0.65);
+}
+.heroLead{ max-width: 48ch; }
+
+.hero--funnel{
+  min-height: 760px;
+  height: min(860px, calc(100vh - 140px));
+}
+@media (max-width: 900px){
+  .hero--funnel{
+    min-height: 860px;
+    height: auto; /* mobile can grow */
+  }
+}
+
+/* Keep background steady while steps change */
+.funnelCard{
+  max-height: calc(100vh - 290px);
+}
+@media (max-width: 900px){
+  .funnelCard{ max-height: none; }
+}
+
+/* Consistent answer tile sizing */
+.choiceTile{
+  min-height: 86px;
+}
+.choiceIcon{
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+}
+.optionRow{
+  min-height: 54px;
+  align-items: center;
+}
+.optionRow .optLabel{
+  line-height: 1.25;
+}
+
+/* Header include failsafe: keep injected header from being pushed by hero */
+#siteHeader{ position: relative; z-index: 20; }
+
 </style>
 </head>
 
@@ -536,7 +597,32 @@
             <div class="trustGrid">
               <div class="trustItem">
                 <div class="trustKicker">Clear numbers</div>
-                <div class="trustText">Revenue, cash flow, margin, lease terms, and what is included in the sale.</div>
+                <div class="trustText">Revenue, cash flow, margin, 
+<script>
+/* Failsafe: ensure header/footer includes load on subpaths (e.g. /testing2/) */
+(function(){
+  function safeInject(id, url){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(el.childElementCount > 0) return;
+    fetch(url, { cache: "no-cache" })
+      .then(function(r){ return r.ok ? r.text() : ""; })
+      .then(function(html){
+        if(!html) return;
+        el.innerHTML = html;
+        // If the global site script exposes an init hook, call it; otherwise no-op.
+        if(typeof window.initSiteNav === "function"){ try{ window.initSiteNav(); }catch(e){} }
+        if(typeof window.initMobileNav === "function"){ try{ window.initMobileNav(); }catch(e){} }
+      })
+      .catch(function(){});
+  }
+  document.addEventListener("DOMContentLoaded", function(){
+    safeInject("siteHeader", "/assets/includes/header.html");
+    safeInject("siteFooter", "/assets/includes/footer.html");
+  });
+})();
+</script>
+lease terms, and what is included in the sale.</div>
               </div>
               <div class="trustItem">
                 <div class="trustKicker">Better matching</div>
