@@ -335,7 +335,7 @@
 
   .funnelProgress{ display:flex; flex-direction:column; gap:10px; margin: 0 0 14px; }
   .funnelProgressTrack{ height: 10px; border-radius: 999px; background: rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.18); overflow:hidden; }
-  .funnelProgressFill{ height:100%; border-radius: 999px; background: linear-gradient(90deg, rgba(59,130,246,1), rgba(99,102,241,1)); }
+  .funnelProgressFill{ height:100%; border-radius: 999px; background: linear-gradient(90deg, rgba(59,130,246,1), rgba(29,78,216,1)); }
   .funnelProgressMeta{ display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(255,255,255,0.88); }
   .linkBtn{ background: transparent; border: 0; padding: 0; color: rgba(255,255,255,0.88); text-decoration: underline; cursor: pointer; }
   .linkBtn:hover{ color: #fff; }
@@ -410,7 +410,7 @@
   .funnelActions{ display:flex; justify-content:space-between; gap: 12px; padding: 14px 18px 18px; border-top: 1px solid rgba(15,23,42,0.08); background: rgba(255,255,255,0.92); }
   .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
   .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
-  .btn--primary{ background: linear-gradient(90deg, rgba(37,99,235,1), rgba(99,102,241,1)); color: #fff; border-color: transparent; }
+  .btn--primary{ background: linear-gradient(90deg, rgba(37,99,235,1), rgba(29,78,216,1)); color: #fff; border-color: transparent; }
   .btn--primary:hover{ filter: brightness(1.03); }
   .btn--ghost{ background: #fff; color: #0f172a; }
   .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
@@ -1168,10 +1168,10 @@ lease terms, and what is included in the sale.</div>
 
     form.innerHTML = [
       '<div class="inputGrid">',
-        '<div class="field"><label for="first_name">First Name</label><input id="first_name" id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
-        '<div class="field"><label for="last_name">Last Name</label><input id="last_name" id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="email">Email</label><input id="email" id="email" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="phone">Phone</label><input id="phone" id="phone" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
       '</div>',
       '<div class="turnstileWrap">',
