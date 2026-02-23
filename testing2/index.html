@@ -290,6 +290,9 @@
 .formStatus.is-success{color:#22C55E}
 .formStatus.is-loading{color:var(--muted)}
 
+
+/* Ensure footer never overlays the funnel UI */
+#siteFooter{ position: relative; z-index: 1; }
 </style>
 
   <!-- Google Analytics -->
@@ -321,7 +324,10 @@
   .heroTitle{ margin: 14px 0 10px; font-size: clamp(32px, 4.1vw, 48px); line-height: 1.05; letter-spacing: -0.02em; }
   .heroLead{ margin: 0; max-width: 56ch; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.88); }
 
-  .funnelShell{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; align-items:start; margin-top: 18px; }
+  .funnelShell{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; align-items:start; margin-top: 18px; 
+  position: relative;
+  z-index: 9999;
+}
   .funnelLeft{ min-width:0; }
   .funnelRight{ min-width:0; }
 
@@ -946,8 +952,8 @@ lease terms, and what is included in the sale.</div>
     {
       id: "buy_location",
       title: "Where do you want the business to be located?",
-      helper: "Choose a state. You can change your mind later.",
-      type: "location_only"
+      helper: "Choose a state and add a website if you have one.",
+      type: "location_url"
     },
     STEPS_COMMON_CONTACT
   ];
