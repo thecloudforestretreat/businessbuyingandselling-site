@@ -409,7 +409,7 @@
   .funnelHelper{ margin: 6px 0 0; color: rgba(15,23,42,0.70); font-size: 14px; line-height: 1.5; }
 
   .funnelBody{ padding: 16px 18px 12px; }
-  .choiceGrid{ display:grid; gap: 12px; }
+  .choiceGrid{ display:grid; gap: var(--answer-spacing); }
   .choiceGrid--two{ grid-template-columns: 1fr 1fr; }
   .choiceGrid--two .choiceTile{ min-height: 104px; }
   .choiceTile{
@@ -429,7 +429,7 @@
   .choiceSub{ margin-top: 4px; font-size: 13px; color: rgba(15,23,42,0.68); line-height: 1.4; }
   .choiceText{ flex:1; min-width:0; }
 
-  .optionList{ display:grid; gap: 10px; }
+  .optionList{ display:grid; gap: var(--answer-spacing); }
   .optionRow{
     display:flex; align-items:center; gap: 10px;
     padding: 12px 12px;
@@ -464,7 +464,15 @@
   .field textarea{ min-height: 100px; resize: vertical; }
   .field input:focus, .field select:focus, .field textarea:focus{ border-color: rgba(59,130,246,0.70); box-shadow: 0 0 0 4px rgba(59,130,246,0.12); }
 
-  .funnelActions{ display:flex; justify-content:space-between; gap: 12px; padding: 14px 18px 18px; border-top: 1px solid rgba(15,23,42,0.08); background: rgba(255,255,255,0.92); }
+  .funnelActions{
+    display:flex;
+    justify-content:space-between;
+    gap: 12px;
+    margin-top: var(--answer-spacing);
+    padding: 14px 18px 18px;
+    border-top: 1px solid rgba(15,23,42,0.08);
+    background: rgba(255,255,255,0.92);
+}
   .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
   .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
   .btn--primary{background:var(--bbas-blue);color:#fff;border:0;box-shadow:0 14px 30px rgba(0,0,0,.25);}
@@ -588,10 +596,13 @@
 }
 .funnelCardHeader{flex:0 0 auto;}
 #funnelBody{
-  flex:1 1 auto;
-  overflow:auto;
-  -webkit-overflow-scrolling:touch;
-  padding-bottom:120px; /* room for sticky actions */
+    /* Do not create an inner scroll area or artificial empty space.
+       Let the card height be driven by content, and keep a consistent rhythm
+       between the last answer and the actions row. */
+    padding: 18px;
+    padding-bottom: var(--answer-spacing);
+    overflow: visible;
+    flex: 0 0 auto;
 }
 .funnelActions{
   position:sticky;
@@ -1036,6 +1047,13 @@
   .funnelCard{ padding-bottom: 14px !important; }
 }
 
+
+/* ---- Spacing rhythm: keep last answer and actions aligned ---- */
+#funnelBody > .optionList,
+#funnelBody > .choiceGrid,
+#funnelBody > .inputGrid{
+    margin-bottom: 0;
+}
 </style>
 </head>
 
