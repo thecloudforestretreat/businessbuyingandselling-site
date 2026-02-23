@@ -37,8 +37,6 @@
   .pageBg{position:fixed; inset:0; background-image:url(\'/assets/images/bbas_homepage_hero_03.jpg\'); background-size:cover; background-position:center; background-repeat:no-repeat; transform:none; will-change:auto; z-index:-2;}
   .pageBg::after{content:\'\'; position:absolute; inset:0; background: radial-gradient(1200px 700px at 25% 20%, rgba(0,0,0,0.55), rgba(0,0,0,0.82));}
 :root{
-  --rhythm: 14px;
-
       --bbas-navy:#1B263B;
       --bbas-blue:#2563EB;
       --bbas-ink:#0B1220;
@@ -290,7 +288,7 @@
     }
   
 /* Turnstile + form status */
-.turnstileWrap{margin-top: var(--rhythm);margin-bottom:14px;display:flex;justify-content:flex-start}
+.turnstileWrap{margin-top:14px;margin-bottom:14px;display:flex;justify-content:flex-start}
 .turnstileMount{min-height:65px;}
 .formStatus{min-height:18px;margin:0 0 10px 0;font-size:13px;line-height:1.25;color:var(--muted)}
 .formStatus.is-error{color:#EF4444}
@@ -344,6 +342,89 @@
 .stepPad,
 .stepFill {
   display: none !important;
+}
+
+
+/* =========================
+   FINAL SPACING RHYTHM FIX
+   Makes bottom spacing (last answer -> footer) match option spacing
+   and balances the footer white area on desktop + mobile.
+   ========================= */
+
+:root{
+  --qa-gap: 16px;
+  --footer-pad-top: 16px;
+  --footer-pad-bottom: 14px;
+}
+
+/* Ensure cards are true columns */
+.stepCard,
+.funnelCard{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Body should not stretch with phantom space */
+.stepBody,
+.funnelBody{
+  flex: 0 0 auto !important;
+  padding-bottom: var(--qa-gap) !important;
+}
+
+/* Add consistent gap between answer area and footer */
+.stepBody .answers,
+.stepBody .radioList,
+.stepBody .optionGrid,
+.stepBody .choicesGrid,
+.stepBody .choiceGrid,
+.stepBody .optionsGrid,
+.stepBody .options,
+.stepBody .questionOptions,
+.stepBody .questionContent{
+  margin-bottom: var(--qa-gap) !important;
+}
+
+/* If an inner wrapper exists, ensure it does not collapse margins */
+.stepBody .answers > *:last-child,
+.stepBody .radioList > *:last-child,
+.stepBody .optionGrid > *:last-child,
+.stepBody .choicesGrid > *:last-child,
+.stepBody .choiceGrid > *:last-child,
+.stepBody .optionsGrid > *:last-child{
+  margin-bottom: 0 !important;
+}
+
+/* Footer: center the buttons within their white band */
+.stepFooter{
+  padding: var(--footer-pad-top) 18px var(--footer-pad-bottom) !important;
+}
+
+/* Funnel footer band (buttons + note) */
+.funnelActions{
+  padding: 18px 18px 12px !important;
+}
+
+.funnelNote{
+  padding: 8px 18px 12px !important;
+  margin-top: 0 !important;
+}
+
+/* Mobile tuning: slightly tighter but still consistent */
+@media (max-width: 720px){
+  :root{
+    --qa-gap: 14px;
+    --footer-pad-top: 14px;
+    --footer-pad-bottom: 12px;
+  }
+  .stepFooter{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .funnelActions,
+  .funnelNote{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
 
 </style>
@@ -411,7 +492,7 @@
   .funnelHelper{ margin: 6px 0 0; color: rgba(15,23,42,0.70); font-size: 14px; line-height: 1.5; }
 
   .funnelBody{ padding: 16px 18px 12px; }
-  .choiceGrid{ display:grid; gap: var(--answer-spacing); }
+  .choiceGrid{ display:grid; gap: 12px; }
   .choiceGrid--two{ grid-template-columns: 1fr 1fr; }
   .choiceGrid--two .choiceTile{ min-height: 104px; }
   .choiceTile{
@@ -431,7 +512,7 @@
   .choiceSub{ margin-top: 4px; font-size: 13px; color: rgba(15,23,42,0.68); line-height: 1.4; }
   .choiceText{ flex:1; min-width:0; }
 
-  .optionList{ display:grid; gap: var(--answer-spacing); }
+  .optionList{ display:grid; gap: 10px; }
   .optionRow{
     display:flex; align-items:center; gap: 10px;
     padding: 12px 12px;
@@ -466,16 +547,7 @@
   .field textarea{ min-height: 100px; resize: vertical; }
   .field input:focus, .field select:focus, .field textarea:focus{ border-color: rgba(59,130,246,0.70); box-shadow: 0 0 0 4px rgba(59,130,246,0.12); }
 
-  .funnelActions{
-    display:flex;
-  align-items: center;
-    justify-content:space-between;
-    gap: 12px;
-    margin-top: var(--answer-spacing);
-    padding: 16px 18px 12px;
-    border-top: 1px solid rgba(15,23,42,0.08);
-    background: rgba(255,255,255,0.92);
-}
+  .funnelActions{ display:flex; justify-content:space-between; gap: 12px; padding: 14px 18px 18px; border-top: 1px solid rgba(15,23,42,0.08); background: rgba(255,255,255,0.92); }
   .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
   .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
   .btn--primary{background:var(--bbas-blue);color:#fff;border:0;box-shadow:0 14px 30px rgba(0,0,0,.25);}
@@ -483,7 +555,7 @@
   .btn--ghost{ background: #fff; color: #0f172a; }
   .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
 
-  .funnelNote{ padding: 6px 18px 14px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
+  .funnelNote{ padding: 10px 18px 16px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
 
   .trustCard{
     background: rgba(255,255,255,0.14);
@@ -599,13 +671,10 @@
 }
 .funnelCardHeader{flex:0 0 auto;}
 #funnelBody{
-    /* Do not create an inner scroll area or artificial empty space.
-       Let the card height be driven by content, and keep a consistent rhythm
-       between the last answer and the actions row. */
-    padding: 18px;
-    padding-bottom: var(--answer-spacing);
-    overflow: visible;
-    flex: 0 0 auto;
+  flex:1 1 auto;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:120px; /* room for sticky actions */
 }
 .funnelActions{
   position:sticky;
@@ -814,9 +883,7 @@
 /* Reduce vertical gaps between option pills */
 .optionList, .choiceList, .radioList, .optionsList, .options{
   gap: 10px !important;
-  margin-bottom: var(--rhythm) !important;
 }
-
 .optionRow, .choiceRow, .radioRow{
   margin: 0 !important;
 }
@@ -1051,26 +1118,6 @@
   :root{ --answer-spacing: 12px; }
   .funnelCard{ padding-bottom: 14px !important; }
 }
-
-
-/* ---- Spacing rhythm: keep last answer and actions aligned ---- */
-#funnelBody > .optionList,
-#funnelBody > .choiceGrid,
-#funnelBody > .inputGrid{
-    margin-bottom: 0;
-}
-
-/* Final spacing rhythm (authoritative) */
-:root{--answer-spacing:18px;}
-.funnelBody{padding-bottom:0 !important;}
-/* gap between last answer block and action bar */
-#funnelBody{margin-bottom:var(--answer-spacing)!important;}
-/* prevent last answer block from collapsing oddly */
-#funnelBody > *:last-child{margin-bottom:0 !important;}
-/* action bar spacing from content */
-.funnelActions{margin-top:var(--answer-spacing)!important;}
-/* match answer spacing to controls spacing */
-.choiceList{gap:var(--answer-spacing)!important;}
 
 </style>
 </head>
