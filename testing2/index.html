@@ -875,6 +875,34 @@
   }
 }
 
+
+
+/* --- REMOVE the remaining "filler" height (no forced tall cards) --- */
+/* We revert the sticky-footer/max-height approach. Cards should hug content. */
+.stepCard{
+  max-height: none !important;
+  height: auto !important;
+}
+
+.stepBody, .stepContent{
+  flex: 0 0 auto !important;
+  overflow: visible !important;
+}
+
+.stepFooter{
+  position: static !important;
+  bottom: auto !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  padding-bottom: 0 !important;
+}
+
+/* If any internal wrapper is stretching, stop it */
+.stepInner, .stepMain, .stepGrid{
+  min-height: 0 !important;
+  height: auto !important;
+}
+
 </style>
 </head>
 
