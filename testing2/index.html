@@ -304,6 +304,22 @@
 
   .optionList--two{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   @media (max-width: 720px){ .optionList--two{ grid-template-columns: 1fr; } }
+
+/* Reduce excess vertical space in step cards */
+.stepCard{
+  min-height: auto !important;
+}
+
+.stepBody{
+  padding-bottom: 20px !important;
+}
+
+/* Remove spacer pushing footer down */
+.stepSpacer,
+.formSpacer{
+  display: none !important;
+}
+
 </style>
 
   <!-- Google Analytics -->
@@ -700,6 +716,27 @@
 /* Slightly stronger hero scrim */
 .hero--funnel::before{
   background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.66) 55%, rgba(0,0,0,0.88)) !important;
+}
+
+
+
+/* Turnstile sizing */
+.turnstileWrap{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+#turnstileMount{
+  min-height: 70px;
+  width: 320px;
+  max-width: 100%;
+}
+.turnstileHint{
+  display:none;
+  font-size: 12px;
+  color: rgba(20,24,33,0.62);
+  max-width: 340px;
 }
 
 </style>
@@ -1528,6 +1565,8 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
                     callback: function (token) {
             const tokenInput = qs("#turnstileToken");
             if (tokenInput) tokenInput.value = token || "";
+            var hint = qs("#turnstileHint");
+            if (hint) hint.style.display = "none";
           },
           "error-callback": function () {
             const tokenInput = qs("#turnstileToken");
@@ -1545,15 +1584,20 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
         // If nothing visible rendered, show a clear hint (commonly blocked by extensions or CSP)
         setTimeout(function(){
           var hasFrame = !!mount.querySelector("iframe");
+          var tokenNow = "";
+          var tokenEl = qs("#turnstileToken");
+          if (tokenEl) tokenNow = (tokenEl.value || "").trim();
           var hint = qs("#turnstileHint");
-          if (hint) {
-            if (hasFrame) {
-              hint.style.display = "none";
-            } else {
-              hint.textContent = "Security check blocked. Disable blockers. If you use a Content-Security-Policy header, allow frame-src https://challenges.cloudflare.com.";
-            }
+          if (!hint) return;
+
+          if (hasFrame || tokenNow) {
+            hint.style.display = "none";
+            return;
           }
-        }, 600);
+
+          hint.style.display = "block";
+          hint.textContent = "Security check blocked. Disable blockers. If you use a Content-Security-Policy header, allow frame-src https://challenges.cloudflare.com.";
+        }, 1400);
         return;
       } catch (_) {
         // fall through to retry
