@@ -320,7 +320,15 @@
     box-shadow: 0 24px 60px rgba(6, 14, 28, 0.20);
   }
   .hero--funnel .container{ position: relative; padding-top: 16px; }
-  .heroTop{ max-width: 760px; color: #fff; padding: 18px 10px 26px; }
+  .heroTop{
+  background: rgba(0,0,0,0.74) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 20px !important;
+  padding: 20px 16px 22px !important;
+  box-shadow: 0 22px 56px rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
   .heroBadge{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; background: rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.16); font-size: 13px; }
   .heroBadge .dot{ width:10px; height:10px; border-radius:999px; background: #F59E0B; box-shadow: 0 0 0 6px rgba(245,158,11,0.18); }
   .heroTitle{ margin: 14px 0 10px; font-size: clamp(32px, 4.1vw, 48px); line-height: 1.05; letter-spacing: -0.02em; }
@@ -636,6 +644,31 @@
   margin-top: 8px;
   font-size: 12px;
   color: rgba(20, 24, 33, 0.60);
+}
+
+
+
+/* Strong global hero scrim for readability */
+.hero--funnel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.82), rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.82));
+  pointer-events:none;
+  z-index:0;
+}
+.hero--funnel .heroInner,
+.hero--funnel .funnelShell{
+  position:relative;
+  z-index:1;
+}
+
+
+
+.turnstileHint{
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgba(20,24,33,0.62);
 }
 
 </style>
@@ -1456,8 +1489,7 @@ lease terms, and what is included in the sale.</div>
           sitekey: sitekey,
           theme: "light",
           size: "normal",
-          appearance: "always",
-          callback: function (token) {
+                    callback: function (token) {
             const tokenInput = qs("#turnstileToken");
             if (tokenInput) tokenInput.value = token || "";
           },
@@ -1471,7 +1503,21 @@ lease terms, and what is included in the sale.</div>
           }
         
         });
+
         mount.dataset.rendered = "1";
+
+        // If nothing visible rendered, show a clear hint (commonly blocked by extensions or CSP)
+        setTimeout(function(){
+          var hasFrame = !!mount.querySelector("iframe");
+          var hint = qs("#turnstileHint");
+          if (hint) {
+            if (hasFrame) {
+              hint.style.display = "none";
+            } else {
+              hint.textContent = "Security check blocked. Disable ad blockers or allow challenges.cloudflare.com.";
+            }
+          }
+        }, 600);
         return;
       } catch (_) {
         // fall through to retry
