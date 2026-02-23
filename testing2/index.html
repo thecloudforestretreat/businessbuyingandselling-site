@@ -1054,6 +1054,19 @@
 #funnelBody > .inputGrid{
     margin-bottom: 0;
 }
+
+/* Final spacing rhythm (authoritative) */
+:root{--answer-spacing:18px;}
+.funnelBody{padding-bottom:0 !important;}
+/* gap between last answer block and action bar */
+#funnelBody{margin-bottom:var(--answer-spacing)!important;}
+/* prevent last answer block from collapsing oddly */
+#funnelBody > *:last-child{margin-bottom:0 !important;}
+/* action bar spacing from content */
+.funnelActions{margin-top:var(--answer-spacing)!important;}
+/* match answer spacing to controls spacing */
+.choiceList{gap:var(--answer-spacing)!important;}
+
 </style>
 </head>
 
