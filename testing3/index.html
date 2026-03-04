@@ -1111,6 +1111,34 @@
 .funnelNote{
   padding: 8px 18px 14px !important;
 }
+
+
+/* --- v17 funnel fixes --- */
+/* Respect the hidden attribute even with author display rules */
+#funnelActions[hidden]{ display:none !important; }
+
+/* Make footer buttons the same size */
+.funnelActions .btn{
+  width: 160px;
+  min-width: 160px;
+}
+
+/* Seller address layout: Business Name, Street, then City | State | Zip */
+.inputGrid--address{
+  grid-template-columns: repeat(3, 1fr);
+}
+.inputGrid--address .field--full{
+  grid-column: 1 / -1;
+}
+@media (max-width: 640px){
+  .inputGrid--address{
+    grid-template-columns: 1fr;
+  }
+  .funnelActions .btn{
+    width: 100%;
+    min-width: 0;
+  }
+}
 </style>
 </head>
 
@@ -1363,6 +1391,46 @@ lease terms, and what is included in the sale.</div>
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+  // Turnstile (Cloudflare) rendering for the contact step
+  var __tsWidgetId = null;
+  var __tsReady = false;
+  function ensureTurnstile(){
+    if (!window.turnstile) return;
+    var mount = qs("#turnstileMount");
+    if (!mount) return;
+    if (__tsWidgetId !== null) return;
+
+    var hidden = qs("#turnstileToken");
+    if (hidden) hidden.value = "";
+
+    try{
+      __tsWidgetId = window.turnstile.render(mount, {
+        sitekey: getTurnstileSitekey(),
+        theme: "light",
+        callback: function(token){
+          var h = qs("#turnstileToken");
+          if (h) h.value = token || "";
+        },
+        "expired-callback": function(){
+          var h = qs("#turnstileToken");
+          if (h) h.value = "";
+        },
+        "error-callback": function(){
+          var h = qs("#turnstileToken");
+          if (h) h.value = "";
+        }
+      });
+      __tsReady = true;
+    }catch(_){}
+  }
+
+  // Called by the Turnstile script tag in the page
+  window.tsOnload = function(){
+    __tsReady = true;
+    ensureTurnstile();
+  };
+
 
   var state = { branch: null, stepIndex: 0, steps: [], answers: {} };
 
@@ -1639,20 +1707,21 @@ lease terms, and what is included in the sale.</div>
     body.innerHTML = "";
 
     var grid = document.createElement("div");
-    grid.className = "inputGrid";
+    grid.className = "inputGrid inputGrid--address";
 
-    function field(label, id, placeholder){
+    function field(label, id, placeholder, extraClass, extraAttrs){
       var w = document.createElement("div");
-      w.className = "field";
+      w.className = "field" + (extraClass ? (" " + extraClass) : "");
+      var attrs = extraAttrs || "";
       w.innerHTML =
         '<label for="' + id + '">' + label + '</label>' +
-        '<input id="' + id + '" type="text" placeholder="' + (placeholder || "") + '">';
+        '<input id="' + id + '" type="text" placeholder="' + (placeholder || "") + '" ' + attrs + '>';
       return w;
     }
 
-    grid.appendChild(field("Business Name","biz_name","Business name"));
-    grid.appendChild(field("Street","biz_street","Street address"));
-    grid.appendChild(field("City","biz_city","City"));
+    grid.appendChild(field("Business Name","biz_name","Business name","field--full","autocapitalize=\"words\" autocomplete=\"organization\""));
+    grid.appendChild(field("Street","biz_street","Street address","field--full","autocapitalize=\"words\" autocomplete=\"street-address\""));
+    grid.appendChild(field("City","biz_city","City",null,"autocapitalize=\"words\" autocomplete=\"address-level2\""));
 
     var stateWrap = document.createElement("div");
     stateWrap.className = "field";
@@ -1661,10 +1730,10 @@ lease terms, and what is included in the sale.</div>
     }).join("");
     stateWrap.innerHTML =
       '<label for="biz_state">State</label>' +
-      '<select id="biz_state">' + optHtml + '</select>';
+      '<select id="biz_state" autocomplete="address-level1">' + optHtml + '</select>';
     grid.appendChild(stateWrap);
 
-    grid.appendChild(field("Zip","biz_zip","Zip code"));
+    grid.appendChild(field("Zip","biz_zip","Zip code",null,"inputmode=\"numeric\" autocomplete=\"postal-code\" autocapitalize=\"none\""));
 
     body.appendChild(grid);
 
@@ -1697,7 +1766,7 @@ lease terms, and what is included in the sale.</div>
     body.innerHTML = "";
 
     var grid = document.createElement("div");
-    grid.className = "inputGrid";
+    grid.className = "inputGrid inputGrid--address";
 
     var city = document.createElement("div");
     city.className = "field";
