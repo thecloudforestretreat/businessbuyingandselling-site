@@ -1359,6 +1359,7 @@ lease terms, and what is included in the sale.</div>
 
 
 <script id="funnelScript">
+
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   
@@ -1376,7 +1377,7 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     type: "contact"
   };
 
-    var SELL_STEPS = [
+  var SELL_STEPS = [
     {
       id: "sell_urgency",
       title: "How soon are you looking to sell your business?",
@@ -1446,7 +1447,7 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     STEPS_COMMON_CONTACT
   ];
 
-    var BUY_STEPS = [
+  var BUY_STEPS = [
     {
       id: "buy_type",
       title: "What type of Business?",
@@ -1494,6 +1495,15 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     STEPS_COMMON_CONTACT
   ];
 
+var BRANCH_STEP = {
+    id: "branch",
+    title: "What are you here to do?",
+    helper: "Choose one to start. You can switch later.",
+    type: "branch"
+  };
+
+
+
   var US_STATES = [
     {v:"", t:"Choose a state"},
     {v:"AL", t:"Alabama"},{v:"AK", t:"Alaska"},{v:"AZ", t:"Arizona"},{v:"AR", t:"Arkansas"},
@@ -1516,6 +1526,7 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     state.stepIndex = 0;
     state.steps = (branch === "sell") ? SELL_STEPS.slice() : BUY_STEPS.slice();
     state.answers = { branch: branch };
+    showStatus("", false);
     renderStep();
   }
 
@@ -1549,13 +1560,6 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
 
     var grid = document.createElement("div");
     grid.className = "choiceGrid choiceGrid--two";
-
-    var sellBtn = tileButton("sell", "💼", "I want to sell my business", "Understand value, timeline, and the best next steps.");
-    var buyBtn = tileButton("buy", "🧾", "I want to buy a business", "Find the right type of deal without the franchise route.");
-
-    grid.appendChild(sellBtn);
-    grid.appendChild(buyBtn);
-    body.appendChild(grid);
 
     function tileButton(branch, icon, title, sub){
       var btn = document.createElement("button");
@@ -1605,11 +1609,11 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
       return btn;
     }
 
-    qs("#funnelRestartBtn").style.visibility = "hidden";
-    qs("#funnelStepLabel").textContent = "Step 1 of 1";
-    qs("#funnelProgressFill").style.width = "0%";
+    grid.appendChild(tileButton("sell", "💼", "I want to sell my business", "Understand value, timeline, and the best next steps."));
+    grid.appendChild(tileButton("buy", "🧾", "I want to buy a business", "Find the right type of deal without the franchise route."));
 
-    // Buttons
+    body.appendChild(grid);
+
     var backBtn = qs("#funnelBackBtn");
     if (backBtn){
       backBtn.disabled = true;
@@ -1620,9 +1624,372 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     if (nextBtn){
       nextBtn.textContent = "Next";
       nextBtn.disabled = !state.branchChoice;
-      nextBtn.style.opacity = nextBtn.disabled ? "0.55" : "1";
+      nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
     }
-})();  function renderChoiceWithOther(step){
+
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+    qs("#funnelStepLabel").textContent = "Step 1 of 1";
+    qs("#funnelProgressFill").style.width = "0%";
+  });
+
+      return btn;
+    }
+
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+    qs("#funnelStepLabel").textContent = "Step 1 of 1";
+    qs("#funnelProgressFill").style.width = "0%";
+    qs("#funnelQuestion").textContent = "What are you here to do?";
+    qs("#funnelHelper").textContent = "Choose one to start. You can switch later.";
+  }
+
+  function renderChoice(step, grid){
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var wrap = document.createElement("div");
+    wrap.className = grid ? "choiceGrid" : "optionList";
+    if (!grid && step.options && step.options.length >= 8) wrap.classList.add("optionList--two");
+    if (grid) {
+      wrap.classList.add("choiceGrid--two");
+      if (step.columns === 1) wrap.classList.remove("choiceGrid--two");
+      if (step.columns === 2) wrap.classList.add("choiceGrid--two");
+    }
+
+    var currentVal = state.answers[step.id];
+
+    step.options.forEach(function(opt){
+      var row = document.createElement("button");
+      row.type = "button";
+      if (grid) row.className = "choiceTile";
+      else row.className = "optionRow";
+
+      row.setAttribute("aria-pressed", (currentVal === opt.value) ? "true" : "false");
+
+      if (grid) {
+        var ic = document.createElement("div");
+        ic.className = "choiceIcon";
+        ic.textContent = "✓";
+        ic.style.opacity = (currentVal === opt.value) ? "1" : "0.35";
+
+        var tx = document.createElement("div");
+        tx.className = "choiceText";
+
+        var t = document.createElement("div");
+        t.className = "choiceTitle";
+        t.textContent = opt.label;
+
+        tx.appendChild(t);
+
+        row.appendChild(ic);
+        row.appendChild(tx);
+      } else {
+        var bullet = document.createElement("div");
+        bullet.className = "optionBullet";
+
+        var tx2 = document.createElement("div");
+        tx2.className = "optionText";
+
+        var label = document.createElement("div");
+        label.className = "optionLabel";
+        label.textContent = opt.label;
+
+        tx2.appendChild(label);
+
+        row.appendChild(bullet);
+        row.appendChild(tx2);
+      }
+
+      row.addEventListener("click", function(){
+        state.answers[step.id] = opt.value;
+        qsa(".optionRow", wrap).forEach(function(r){ r.setAttribute("aria-pressed","false"); });
+        row.setAttribute("aria-pressed","true");
+        updateNextEnabled();
+      });
+
+      wrap.appendChild(row);
+    });
+
+    body.appendChild(wrap);
+  }
+
+  function renderLocationUrl(step, includeUrl){
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var grid = document.createElement("div");
+    grid.className = "inputGrid";
+
+    var loc = document.createElement("div");
+    loc.className = "field";
+    loc.innerHTML = '<label for="funnel_state">Choose a state</label>';
+    var sel = document.createElement("select");
+    sel.id = "funnel_state";
+    sel.name = "state";
+    sel.autocomplete = "address-level1";
+
+    US_STATES.forEach(function(s){
+      var o = document.createElement("option");
+      o.value = s.v;
+      o.textContent = s.t;
+      sel.appendChild(o);
+    });
+
+    if (state.answers.location_state) sel.value = state.answers.location_state;
+
+    sel.addEventListener("change", function(){
+      state.answers.location_state = sel.value;
+      updateNextEnabled();
+    });
+
+    loc.appendChild(sel);
+    grid.appendChild(loc);
+
+    if (includeUrl) {
+      var url = document.createElement("div");
+      url.className = "field";
+      url.innerHTML = '<label for="funnel_url">Business website URL</label>';
+      var inp = document.createElement("input");
+      inp.type = "url";
+      inp.id = "funnel_url";
+      inp.name = "business_url";
+      inp.placeholder = "https://";
+      inp.autocapitalize = "none";
+      inp.autocomplete = "url";
+      inp.value = state.answers.business_url || "";
+      inp.addEventListener("input", function(){
+        state.answers.business_url = inp.value;
+        updateNextEnabled();
+      });
+      url.appendChild(inp);
+      grid.appendChild(url);
+    }
+
+    body.appendChild(grid);
+  }
+
+  function renderContact(){
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var form = document.createElement("form");
+    form.id = "funnelContactForm";
+    form.noValidate = true;
+
+    form.innerHTML = [
+      '<div class="inputGrid">',
+        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
+      '</div>',
+      '<div class="turnstileWrap">',
+        '<div id="turnstileMount" class="turnstileMount"></div>',
+        '<div class="turnstileHint" id="turnstileHint">Security check loads here.</div>',
+        '<input type="hidden" id="turnstileToken" name="cf-turnstile-response" required>',
+      '</div>',
+      '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
+    ].join("");
+
+    // restore prior values
+    function restore(id, key){
+      var el = qs("#" + id, form);
+      if (!el) return;
+      if (state.answers[key]) el.value = state.answers[key];
+      el.addEventListener("input", function(){ state.answers[key] = el.value; });
+    }
+    restore("firstName", "contact_first_name");
+    restore("lastName", "contact_last_name");
+    restore("emailAddress", "contact_email");
+    restore("phoneNumber", "contact_phone");
+    restore("notes", "contact_notes");
+
+    // persist on blur for required fields too
+    qsa("input, textarea", form).forEach(function(el){
+      el.addEventListener("blur", function(){
+        var map = {
+          "firstName":"contact_first_name",
+          "lastName":"contact_last_name",
+          "emailAddress":"contact_email",
+          "phoneNumber":"contact_phone",
+          "notes":"contact_notes"
+        };
+        if (map[el.id]) state.answers[map[el.id]] = el.value;
+      });
+    });
+
+    body.appendChild(form);
+  }
+
+  function updateNextEnabled(){
+    var nextBtn = qs('#funnelNextBtn');
+    if(!nextBtn) return;
+    nextBtn.disabled = !canGoNext();
+    nextBtn.style.opacity = nextBtn.disabled ? '0.6' : '1';
+  }
+
+  function canGoNext(){
+    var step = state.steps[state.stepIndex];
+    if (!step) return false;
+    if (step.type === "contact") return true;
+    return isStepAnswered(step);
+  }
+
+    if (step.type === "location_url") {
+      return !!state.answers.location_state;
+    }
+
+    if (step.type === "location_only") {
+      return !!state.answers.location_state;
+    }
+
+    if (step.type === "contact") {
+      var form = qs("#funnelContactForm");
+      if (!form) return false;
+      var first = qs("#firstName", form);
+      var last = qs("#lastName", form);
+      var email = qs("#emailAddress", form);
+      return !!(first && last && email && first.value.trim() && last.value.trim() && email.value.trim());
+    }
+    return true;
+  }
+
+  
+
+  // ---- Contact input helpers (auto-cap + phone format) ----
+  function titleCaseName(value) {
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    return raw
+      .split(/\s+/)
+      .map((word) => {
+        return word
+          .split("-")
+          .map((part) =>
+            part
+              .split("'")
+              .map((p) => (p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : ""))
+              .join("'")
+          )
+          .join("-");
+      })
+      .join(" ");
+  }
+
+  function bindContactEnhancements() {
+    const first = qs("#firstName");
+    const last = qs("#lastName");
+    const phone = qs("#phoneNumber");
+
+    if (first && !first.dataset.capBound) {
+      first.dataset.capBound = "1";
+      first.autocomplete = "given-name";
+      first.addEventListener("blur", () => {
+        first.value = titleCaseName(first.value);
+      });
+    }
+
+    if (last && !last.dataset.capBound) {
+      last.dataset.capBound = "1";
+      last.autocomplete = "family-name";
+      last.addEventListener("blur", () => {
+        last.value = titleCaseName(last.value);
+      });
+    }
+
+    if (phone && !phone.dataset.phoneBound) {
+      phone.dataset.phoneBound = "1";
+      phone.addEventListener("input", () => {
+        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
+        let out = "";
+        if (digits.length > 0) out = "(" + digits.slice(0, 3);
+        if (digits.length >= 4) out += ") " + digits.slice(3, 6);
+        if (digits.length >= 7) out += "-" + digits.slice(6, 10);
+        phone.value = out || "";
+      });
+      phone.addEventListener("blur", () => {
+        // finalize formatting on blur
+        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
+        if (digits.length === 10) {
+          phone.value = "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6);
+        }
+      });
+    }
+  }
+
+  // ---- Turnstile explicit render (step is injected after page load) ----
+  function ensureTurnstileMounted(force){
+    const mount = qs("#turnstileMount");
+    if (!mount) return;
+
+    // If we re-enter the contact step, allow a clean re-render.
+    if (force) {
+      mount.dataset.rendered = "0";
+      mount.innerHTML = "";
+    }
+
+    if (mount.dataset.rendered === "1") return;
+
+    const sitekey = getTurnstileSitekey();
+
+    if (window.turnstile && typeof window.turnstile.render === "function") {
+      try {
+        mount.innerHTML = "";
+        window.__tsWidgetId = window.turnstile.render(mount, {
+          sitekey: sitekey,
+          theme: "light",
+          size: "normal",
+                    callback: function (token) {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = token || "";
+            var hint = qs("#turnstileHint");
+            if (hint) hint.style.display = "none";
+          },
+          "error-callback": function () {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = "";
+          },
+          "expired-callback": function () {
+            const tokenInput = qs("#turnstileToken");
+            if (tokenInput) tokenInput.value = "";
+          }
+        
+        });
+
+        mount.dataset.rendered = "1";
+
+        // If nothing visible rendered, show a clear hint (commonly blocked by extensions or CSP)
+        setTimeout(function(){
+          var hasFrame = !!mount.querySelector("iframe");
+          var tokenNow = "";
+          var tokenEl = qs("#turnstileToken");
+          if (tokenEl) tokenNow = (tokenEl.value || "").trim();
+          var hint = qs("#turnstileHint");
+          if (!hint) return;
+
+          if (hasFrame || tokenNow) {
+            hint.style.display = "none";
+            return;
+          }
+
+          hint.style.display = "block";
+          hint.textContent = "Security check blocked. Disable blockers. If you use a Content-Security-Policy header, allow frame-src https://challenges.cloudflare.com.";
+        }, 1400);
+        return;
+      } catch (_) {
+        // fall through to retry
+      }
+    }
+
+    // try again shortly if the script has not loaded yet
+    setTimeout(function(){ ensureTurnstileMounted(force); }, 300);
+  }
+
+  // Turnstile API onload hook (render=explicit)
+  window.tsOnload = function(){
+    try { ensureTurnstileMounted(true); } catch (_) {}
+  };
+function renderChoiceWithOther(step){
     var body = qs("#funnelBody");
     body.innerHTML = "";
 
@@ -1699,7 +2066,6 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
 
     body.appendChild(wrap);
 
-    // default FL
     state.answers.sell_state = "FL";
     var st = qs("#sell_state");
     if (st) st.value = "FL";
@@ -1750,6 +2116,10 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
   function isStepAnswered(step){
     if (!step) return false;
 
+    if (step.type === "branch"){
+      return Boolean(state.branchChoice);
+    }
+
     if (step.type === "choice"){
       return Boolean(state.answers[step.id]);
     }
@@ -1780,7 +2150,6 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
       );
     }
 
-    // contact handled separately
     return true;
   }
 
@@ -1788,15 +2157,12 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     var nextBtn = qs("#funnelNextBtn");
     if (!nextBtn) return;
 
-    // Branch chooser
-    if (!state.branch){
-      nextBtn.disabled = !state.branchChoice;
-      nextBtn.style.opacity = nextBtn.disabled ? "0.55" : "1";
+    var step = state.steps[state.stepIndex];
+    if (!step){
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = "0.6";
       return;
     }
-
-    var step = state.steps[state.stepIndex];
-    if (!step) { nextBtn.disabled = true; return; }
 
     if (step.type === "contact"){
       nextBtn.disabled = false;
@@ -1805,8 +2171,205 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     }
 
     nextBtn.disabled = !isStepAnswered(step);
-    nextBtn.style.opacity = nextBtn.disabled ? "0.55" : "1";
+    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
   }
+
+function renderStep(){
+    if (!state.branch) {
+      renderBranchChoice();
+      return;
+    }
+
+    var step = state.steps[state.stepIndex];
+    if (!step) return;
+
+    qs("#funnelRestartBtn").style.visibility = "visible";
+    setHeader(step);
+    setProgress();
+
+    if (step.type === "choice") renderChoice(step, false);
+    else if (step.type === "choice_grid") renderChoice(step, true);
+    else if (step.type === "location_url") renderLocationUrl(step, true);
+    else if (step.type === "location_only") renderLocationUrl(step, false);
+    else if (step.type === "contact") renderContact();
+
+    var actions = qs("#funnelActions");
+    actions.hidden = false;
+
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+
+    backBtn.disabled = (state.stepIndex === 0);
+    backBtn.style.opacity = backBtn.disabled ? "0.5" : "1";
+
+    nextBtn.textContent = (step.type === "contact") ? "Submit" : "Next";
+    nextBtn.disabled = !canGoNext();
+    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
+
+    if (step.type === "contact") {
+      bindContactEnhancements();
+      ensureTurnstileMounted(true);
+    }
+
+
+    // update selection styling for choice steps
+    qsa('[aria-pressed]', qs("#funnelBody")).forEach(function(btn){
+      btn.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  }
+
+  function showStatus(msg, isError){
+    var el = qs("#funnelStatus");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.className = "statusLine" + (isError ? " statusLine--error" : "");
+  }
+
+  async function submitFunnel(){
+    var form = qs("#funnelContactForm");
+    if (!form) return;
+
+    var first = titleCaseName(qs("#firstName", form).value);
+    var last = titleCaseName(qs("#lastName", form).value);
+    var email = qs("#emailAddress", form).value.trim();
+    var phone = qs("#phoneNumber", form).value.trim();
+    var notes = qs("#notes", form).value.trim();
+
+    state.answers.contact_first_name = first;
+    state.answers.contact_last_name = last;
+    state.answers.contact_email = email;
+    state.answers.contact_phone = phone;
+    state.answers.contact_notes = notes;
+
+    var tokenEl = form.querySelector('#turnstileToken') || form.querySelector('input[name="cf-turnstile-response"]');
+    var token = tokenEl ? String(tokenEl.value || "").trim() : "";
+
+    if (!token) {
+      showStatus("Please complete the Turnstile check, then submit again.", true);
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append("source", "funnel");
+    formData.append("branch", state.branch);
+    formData.append("answers_json", JSON.stringify(state.answers));
+    formData.append("first_name", first);
+    formData.append("last_name", last);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("message", notes);
+    formData.append("cf-turnstile-response", token);
+
+    showStatus("Submitting...", false);
+
+    try {
+      var resp = await fetch("/api/early-access", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!resp.ok) {
+        var txt = await resp.text();
+        throw new Error(txt || "Request failed");
+      }
+
+      showStatus("Success. You are on the early access list.", false);
+      qs("#funnelNextBtn").disabled = true;
+      qs("#funnelBackBtn").disabled = true;
+      qs("#funnelRestartBtn").disabled = false;
+    } catch (e) {
+      showStatus("Something went wrong. Please try again in a moment.", true);
+    }
+  }
+
+  function bindActions(){
+    qs("#funnelRestartBtn").addEventListener("click", function(){
+      state.branch = null;
+      state.branchChoice = null;
+      state.stepIndex = 0;
+      state.steps = [BRANCH_STEP];
+      state.answers = {};
+      showStatus("", false);
+      renderStep();
+    });
+
+    qs("#funnelBackBtn").addEventListener("click", function(){
+      if (state.stepIndex > 0) {
+        state.stepIndex -= 1;
+        showStatus("", false);
+        renderStep();
+      }
+    });
+
+    qs("#funnelNextBtn").addEventListener("click", function(){
+      if (!state.steps.length) return;
+
+      var step = state.steps[state.stepIndex];
+      if (!step) return;
+
+      if (step.type === "branch") {
+        if (!state.branchChoice) { updateNextEnabled(); return; }
+        setBranch(state.branchChoice);
+        return;
+      }
+
+      if (step.type === "contact") {
+        submitFunnel();
+        return;
+      }
+
+      if (!canGoNext()) {
+        updateNextEnabled();
+        return;
+      }
+
+      // Seller routing: if they want to speak with someone, jump to contact form
+      if (state.branch === "sell" && step.id === "sell_urgency" && state.answers.sell_urgency === "not_right_now_talk"){
+        state.stepIndex = state.steps.length - 1;
+        showStatus("", false);
+        renderStep();
+        return;
+      }
+
+      if (state.stepIndex < state.steps.length - 1) {
+        state.stepIndex += 1;
+        showStatus("", false);
+        renderStep();
+      }
+    });
+
+    // keep Next button enabled state in sync for contact typing
+    document.addEventListener("input", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+  }
+
+  function init(){
+    bindActions();
+    state.branch = null;
+    state.branchChoice = null;
+    state.stepIndex = 0;
+    state.steps = [BRANCH_STEP];
+    state.answers = {};
+    renderStep();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
 
 </script>
 
