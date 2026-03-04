@@ -470,6 +470,88 @@
   .addressRow3{ grid-template-columns: 1fr; }
 }
 
+
+
+/* --- GLOBAL FUNNEL LAYOUT (LOCKED) --- */
+html, body { height: 100%; }
+body { overflow: hidden; }
+
+/* Keep funnel section within viewport */
+.funnelSection,
+#funnelSection,
+main.funnelSection {
+  min-height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
+/* Card sizing and internal scrolling */
+.funnelCard{
+  max-width: 680px !important;
+  width: 100%;
+  max-height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+}
+#funnelBody{
+  overflow: auto;
+  max-height: calc(100vh - 220px - 210px);
+}
+
+/* Lock action buttons */
+#funnelBackBtn, #funnelNextBtn{
+  width: 160px !important;
+  min-width: 160px !important;
+  max-width: 160px !important;
+  height: 44px !important;
+}
+#funnelActions{
+  display: grid !important;
+  grid-template-columns: 160px 1fr 160px;
+  align-items: center;
+}
+#funnelBackBtn{ justify-self: start; }
+#funnelNextBtn{ justify-self: end; }
+
+/* --- OPTION ROWS (LOCKED HEIGHT + PERFECT CENTER BULLET) --- */
+.optionRow{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+}
+.optionRow .optionBullet{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.optionRow .optionLabel{
+  line-height: 1.1;
+  width: 100%;
+}
+
+/* --- SELLER LOCATION LAYOUT --- */
+.addressStack{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.addressRow3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 720px){
+  body{ overflow: auto; } /* allow normal scrolling on small screens */
+  .addressRow3{ grid-template-columns: 1fr; }
+  .funnelCard{ max-height: none; }
+  #funnelBody{ max-height: none; }
+}
+
+/* Ensure turnstile area has space */
+.turnstileWrap{ margin-top: 10px; }
+.turnstileMount{ min-height: 70px; }
 </style>
 
   <!-- Google Analytics -->
@@ -481,7 +563,7 @@
     gtag('config', 'G-EH99SDCSFD');
   </script>
   <!-- Turnstile needs CSP to allow iframes from challenges.cloudflare.com (frame-src). -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 
 <style id="funnelStyles">
   /* Funnel page additions. Built to match the approved site system. */
@@ -1493,6 +1575,7 @@ lease terms, and what is included in the sale.</div>
 
 
 
+
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -1501,9 +1584,20 @@ lease terms, and what is included in the sale.</div>
   var __tsWidgetId = null;
   var __tsReady = false;
   function ensureTurnstile(){
-    if (!window.turnstile) return;
+    // Turnstile API loads async; poll until available
+    if (!window.__tsPollCount) window.__tsPollCount = 0;
+
+    if (!window.turnstile){
+      if (window.__tsPollCount < 40){ // ~10s max
+        window.__tsPollCount++;
+        setTimeout(ensureTurnstile, 250);
+      }
+      return;
+    }
+
     var mount = qs("#turnstileMount");
     if (!mount) return;
+
     if (__tsWidgetId !== null) return;
 
     var hidden = qs("#turnstileToken");
@@ -1517,18 +1611,19 @@ lease terms, and what is included in the sale.</div>
           var h = qs("#turnstileToken");
           if (h) h.value = token || "";
         },
-        "expired-callback": function(){
-          var h = qs("#turnstileToken");
-          if (h) h.value = "";
-        },
         "error-callback": function(){
-          var h = qs("#turnstileToken");
-          if (h) h.value = "";
+          var hint = qs("#turnstileHint");
+          if (hint) hint.textContent = "Security check failed to load. Please refresh.";
         }
       });
-      __tsReady = true;
-    }catch(_){}
-  }
+      var hint = qs("#turnstileHint");
+      if (hint) hint.style.display = "none";
+    }catch(e){
+      var hint2 = qs("#turnstileHint");
+      if (hint2) hint2.textContent = "Security check failed to load. Please refresh.";
+    }
+}
+
 
   // Called by the Turnstile script tag in the page
   window.tsOnload = function(){
@@ -1828,7 +1923,7 @@ function showStatus(msg, isError){
     body.innerHTML = "";
 
     var wrap = document.createElement("div");
-    wrap.className = "inputGrid inputGrid--address";
+    wrap.className = "addressStack";
 
     wrap.insertAdjacentHTML("beforeend",
       '<div class="field"><label for="business_name">Business Name</label><input id="business_name" type="text" placeholder="Business name" autocapitalize="words"></div>'
@@ -1848,21 +1943,20 @@ function showStatus(msg, isError){
 
     body.appendChild(wrap);
 
-    // populate states
-    var sel = qs("#business_state");
-    if (sel){
-      sel.innerHTML = '<option value="" disabled>Select</option>' + US_STATES.map(function(p){
-        return '<option value="' + p[0] + '">' + p[1] + '</option>';
+    var st = qs("#business_state");
+    if (st){
+      st.innerHTML = US_STATES.map(function(p){
+        return '<option value="' + p.v + '">' + p.t + '</option>';
       }).join("");
-      sel.value = state.answers.business_state || "FL";
-      state.answers.business_state = sel.value;
-      sel.addEventListener("change", function(){
-        state.answers.business_state = sel.value;
+      st.value = state.answers.business_state || "FL";
+      st.addEventListener("change", function(){
+        state.answers.business_state = st.value;
         updateNextEnabled();
       });
+      state.answers.business_state = st.value;
     }
 
-    function bind(id, key, tc){
+    function bind(id, key){
       var el = qs("#" + id);
       if (!el) return;
       el.value = state.answers[key] || "";
@@ -1870,18 +1964,19 @@ function showStatus(msg, isError){
         state.answers[key] = String(el.value || "").trim();
         updateNextEnabled();
       });
-      if (tc){
-        el.addEventListener("blur", function(){
-          el.value = titleCaseWords(el.value);
+      // Desktop title case on blur
+      el.addEventListener("blur", function(){
+        if (id === "business_name" || id === "business_city"){
+          el.value = titleCase(String(el.value||""));
           state.answers[key] = String(el.value || "").trim();
-        });
-      }
+        }
+      });
     }
 
-    bind("business_name", "business_name", true);
-    bind("business_street", "business_street", true);
-    bind("business_city", "business_city", true);
-    bind("business_zip", "business_zip", false);
+    bind("business_name","business_name");
+    bind("business_street","business_street");
+    bind("business_city","business_city");
+    bind("business_zip","business_zip");
 
     updateNextEnabled();
 }
@@ -1891,41 +1986,40 @@ function showStatus(msg, isError){
     body.innerHTML = "";
 
     var wrap = document.createElement("div");
-    wrap.className = "inputGrid";
+    wrap.className = "addressStack";
 
     var row3 = document.createElement("div");
     row3.className = "addressRow3";
     row3.innerHTML = [
-      '<div class="field"><label for="want_city">City</label><input id="want_city" type="text" placeholder="City" autocapitalize="words"></div>',
-      '<div class="field"><label for="want_state">State</label><select id="want_state"></select></div>',
-      '<div class="field" style="opacity:0;pointer-events:none;"><label>&nbsp;</label><div style="height:44px"></div></div>'
+      '<div class="field"><label for="buy_city">City</label><input id="buy_city" type="text" placeholder="City" autocapitalize="words"></div>',
+      '<div class="field"><label for="buy_state">State</label><select id="buy_state"></select></div>',
+      '<div class="field" style="display:none"></div>'
     ].join("");
-
     wrap.appendChild(row3);
     body.appendChild(wrap);
 
-    var sel = qs("#want_state");
-    if (sel){
-      sel.innerHTML = '<option value="" disabled selected>Select</option>' + US_STATES.map(function(p){
-        return '<option value="' + p[0] + '">' + p[1] + '</option>';
+    var st = qs("#buy_state");
+    if (st){
+      st.innerHTML = US_STATES.map(function(p){
+        return '<option value="' + p.v + '">' + p.t + '</option>';
       }).join("");
-      if (state.answers.want_state) sel.value = state.answers.want_state;
-      sel.addEventListener("change", function(){
-        state.answers.want_state = sel.value;
+      st.value = state.answers.buy_state || "";
+      st.addEventListener("change", function(){
+        state.answers.buy_state = st.value;
         updateNextEnabled();
       });
     }
 
-    var city = qs("#want_city");
+    var city = qs("#buy_city");
     if (city){
-      city.value = state.answers.want_city || "";
+      city.value = state.answers.buy_city || "";
       city.addEventListener("input", function(){
-        state.answers.want_city = String(city.value || "").trim();
+        state.answers.buy_city = String(city.value || "").trim();
         updateNextEnabled();
       });
       city.addEventListener("blur", function(){
-        city.value = titleCaseWords(city.value);
-        state.answers.want_city = String(city.value || "").trim();
+        city.value = titleCase(String(city.value||""));
+        state.answers.buy_city = String(city.value || "").trim();
       });
     }
 
@@ -2135,6 +2229,7 @@ function showStatus(msg, isError){
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
 
 
 </script>
