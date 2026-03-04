@@ -1419,8 +1419,6 @@ lease terms, and what is included in the sale.</div>
 
 
 <script id="funnelScript">
-
-
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -1634,20 +1632,57 @@ lease terms, and what is included in the sale.</div>
   }
 
   function renderBranchChoice(){
-    qs("#funnelActions").hidden = true;
-
-    qs("#funnelRestartBtn").style.visibility = "hidden";
-    qs("#funnelStepLabel").textContent = "Step 1 of 1";
-    qs("#funnelProgressFill").style.width = "0%";
+    // Reset branch state
+    state.branch = null;
+    state.stepIndex = 0;
+    state.steps = [];
+    state.answers = {};
 
     qs("#funnelQuestion").textContent = "What are you here to do?";
     qs("#funnelHelper").textContent = "Choose one to start. You can switch later.";
 
     var body = qs("#funnelBody");
+    body.classList.remove("compactStep");
     body.innerHTML = "";
+
+    // Hide Prev/Next on the first screen
+    var actions = qs("#funnelActions");
+    if (actions) actions.hidden = true;
+
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+    qs("#funnelStepLabel").textContent = "Step 1 of 1";
+    qs("#funnelProgressFill").style.width = "0%";
 
     var grid = document.createElement("div");
     grid.className = "choiceGrid choiceGrid--two";
+
+    function tile(branch, icon, title, sub){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choiceTile";
+      btn.setAttribute("data-branch", branch);
+      btn.setAttribute("aria-pressed", "false");
+      btn.innerHTML =
+        '<div class="choiceIcon" aria-hidden="true">' + icon + '</div>' +
+        '<div class="choiceText">' +
+          '<div class="choiceTitle">' + title + '</div>' +
+          '<div class="choiceSub">' + sub + '</div>' +
+        '</div>';
+
+      btn.addEventListener("click", function(){
+        // Immediately move forward
+        setBranch(branch);
+      });
+
+      return btn;
+    }
+
+    grid.appendChild(tile("sell","💼","I want to sell my business","Understand value, timeline, and the best next steps."));
+    grid.appendChild(tile("buy","🧾","I want to buy a business","Find the right type of deal without the franchise route."));
+
+    body.appendChild(grid);
+}
+
 
     function tile(branch, icon, title, sub){
       var btn = document.createElement("button");
