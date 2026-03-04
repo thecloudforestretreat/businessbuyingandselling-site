@@ -394,6 +394,82 @@
   .locationRow3{ grid-template-columns: 1fr; }
 }
 
+
+/* === APPROVED GLOBAL FUNNEL LAYOUT (LOCKED) === */
+.hero--funnel .container{ max-width: 1180px; }
+.funnelCard{
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 220px);
+}
+.funnelCardHeader{ padding: 14px 16px 10px; }
+.funnelQuestion{ font-size: 20px; }
+.funnelBody{
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 14px 16px;
+}
+.funnelActions{
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 160px 160px;
+  justify-content: space-between;
+  gap: 12px;
+}
+.funnelActions .btn{
+  width: 160px;
+  min-width: 160px;
+  height: 44px;
+}
+@media (max-width: 640px){
+  .funnelCard{ max-height: none; }
+  .funnelActions{ grid-template-columns: 1fr 1fr; }
+  .funnelActions .btn{ width: 100%; min-width: 0; }
+}
+
+/* Option bullet selected fill */
+.optionBullet{
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(15,23,42,0.22);
+  flex: 0 0 18px;
+  position: relative;
+  background: #fff;
+}
+.optionRow[aria-pressed="true"] .optionBullet{
+  border-color: rgba(37,99,235,0.85);
+}
+.optionRow[aria-pressed="true"] .optionBullet::after{
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background: var(--bbas-blue);
+}
+
+/* Turnstile visibility */
+.turnstileWrap{ margin-top: 12px; }
+.turnstileHint{ margin-top: 8px; font-size: 13px; color: rgba(15,23,42,0.65); }
+.turnstileMount{ min-height: 70px; }
+
+/* Address layout: Business Name, Street, then City|State|Zip */
+.inputGrid--address{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.addressRow3{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 640px){
+  .addressRow3{ grid-template-columns: 1fr; }
+}
+
 </style>
 
   <!-- Google Analytics -->
@@ -1416,6 +1492,7 @@ lease terms, and what is included in the sale.</div>
 <script id="funnelScript">
 
 
+
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -1593,7 +1670,15 @@ lease terms, and what is included in the sale.</div>
   ];
 
   
-  function formatPhoneUS(value){
+  
+  function titleCaseWords(s){
+    s = String(s || "").trim();
+    if (!s) return s;
+    return s.replace(/\w\S*/g, function(w){
+      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+    });
+  }
+function formatPhoneUS(value){
     var digits = String(value || "").replace(/\D/g, "").slice(0, 10);
     if (digits.length <= 3) return digits;
     if (digits.length <= 6) return "(" + digits.slice(0,3) + ") " + digits.slice(3);
@@ -1740,109 +1825,112 @@ function showStatus(msg, isError){
 
   function renderSellerLocation(step){
     var body = qs("#funnelBody");
-    body.classList.remove("compactStep");
     body.innerHTML = "";
 
-    var grid = document.createElement("div");
-    grid.className = "inputGrid";
+    var wrap = document.createElement("div");
+    wrap.className = "inputGrid inputGrid--address";
 
-    var f1 = document.createElement("div");
-    f1.className = "field";
-    f1.innerHTML = '<label for="biz_name">Business Name</label><input id="biz_name" type="text" placeholder="Business name" autocapitalize="words" autocomplete="organization">';
-    grid.appendChild(f1);
-
-    var f2 = document.createElement("div");
-    f2.className = "field";
-    f2.innerHTML = '<label for="biz_street">Street</label><input id="biz_street" type="text" placeholder="Street address" autocapitalize="words" autocomplete="street-address">';
-    grid.appendChild(f2);
+    wrap.insertAdjacentHTML("beforeend",
+      '<div class="field"><label for="business_name">Business Name</label><input id="business_name" type="text" placeholder="Business name" autocapitalize="words"></div>'
+    );
+    wrap.insertAdjacentHTML("beforeend",
+      '<div class="field"><label for="business_street">Street address</label><input id="business_street" type="text" placeholder="Street address" autocapitalize="words"></div>'
+    );
 
     var row3 = document.createElement("div");
-    row3.className = "locationRow3";
+    row3.className = "addressRow3";
+    row3.innerHTML = [
+      '<div class="field"><label for="business_city">City</label><input id="business_city" type="text" placeholder="City" autocapitalize="words"></div>',
+      '<div class="field"><label for="business_state">State</label><select id="business_state"></select></div>',
+      '<div class="field"><label for="business_zip">Zip</label><input id="business_zip" type="text" inputmode="numeric" placeholder="Zip code"></div>'
+    ].join("");
+    wrap.appendChild(row3);
 
-    var cityWrap = document.createElement("div");
-    cityWrap.className = "field";
-    cityWrap.innerHTML = '<label for="biz_city">City</label><input id="biz_city" type="text" placeholder="City" autocapitalize="words" autocomplete="address-level2">';
-    row3.appendChild(cityWrap);
+    body.appendChild(wrap);
 
-    var stateWrap = document.createElement("div");
-    stateWrap.className = "field";
-    var optHtml = US_STATES.map(function(s){
-      return '<option value="' + s.v + '">' + s.t + '</option>';
-    }).join("");
-    stateWrap.innerHTML =
-      '<label for="biz_state">State</label>' +
-      '<select id="biz_state" autocomplete="address-level1">' + optHtml + '</select>';
-    row3.appendChild(stateWrap);
+    // populate states
+    var sel = qs("#business_state");
+    if (sel){
+      sel.innerHTML = '<option value="" disabled>Select</option>' + US_STATES.map(function(p){
+        return '<option value="' + p[0] + '">' + p[1] + '</option>';
+      }).join("");
+      sel.value = state.answers.business_state || "FL";
+      state.answers.business_state = sel.value;
+      sel.addEventListener("change", function(){
+        state.answers.business_state = sel.value;
+        updateNextEnabled();
+      });
+    }
 
-    var zipWrap = document.createElement("div");
-    zipWrap.className = "field";
-    zipWrap.innerHTML = '<label for="biz_zip">Zip</label><input id="biz_zip" type="text" inputmode="numeric" placeholder="Zip code" autocomplete="postal-code">';
-    row3.appendChild(zipWrap);
+    function bind(id, key, tc){
+      var el = qs("#" + id);
+      if (!el) return;
+      el.value = state.answers[key] || "";
+      el.addEventListener("input", function(){
+        state.answers[key] = String(el.value || "").trim();
+        updateNextEnabled();
+      });
+      if (tc){
+        el.addEventListener("blur", function(){
+          el.value = titleCaseWords(el.value);
+          state.answers[key] = String(el.value || "").trim();
+        });
+      }
+    }
 
-    grid.appendChild(row3);
-    body.appendChild(grid);
-
-    qs("#biz_name").value = state.answers.business_name || "";
-    qs("#biz_street").value = state.answers.business_street || "";
-    qs("#biz_city").value = state.answers.business_city || "";
-    qs("#biz_state").value = state.answers.business_state || "FL";
-    qs("#biz_zip").value = state.answers.business_zip || "";
-
-    qs("#biz_name").addEventListener("input", function(){ state.answers.business_name = this.value; updateNextEnabled(); });
-    qs("#biz_street").addEventListener("input", function(){ state.answers.business_street = this.value; updateNextEnabled(); });
-    qs("#biz_city").addEventListener("input", function(){ state.answers.business_city = this.value; updateNextEnabled(); });
-    qs("#biz_state").addEventListener("change", function(){ state.answers.business_state = this.value; updateNextEnabled(); });
-    qs("#biz_zip").addEventListener("input", function(){ state.answers.business_zip = this.value; updateNextEnabled(); });
-
-    state.answers.business_state = qs("#biz_state").value;
+    bind("business_name", "business_name", true);
+    bind("business_street", "business_street", true);
+    bind("business_city", "business_city", true);
+    bind("business_zip", "business_zip", false);
 
     updateNextEnabled();
-  }
+}
 
   function renderBuyerLocation(step){
     var body = qs("#funnelBody");
-    body.classList.add("compactStep");
     body.innerHTML = "";
 
-    var grid = document.createElement("div");
-    grid.className = "inputGrid";
+    var wrap = document.createElement("div");
+    wrap.className = "inputGrid";
 
     var row3 = document.createElement("div");
-    row3.className = "locationRow3";
+    row3.className = "addressRow3";
+    row3.innerHTML = [
+      '<div class="field"><label for="want_city">City</label><input id="want_city" type="text" placeholder="City" autocapitalize="words"></div>',
+      '<div class="field"><label for="want_state">State</label><select id="want_state"></select></div>',
+      '<div class="field" style="opacity:0;pointer-events:none;"><label>&nbsp;</label><div style="height:44px"></div></div>'
+    ].join("");
 
-    var cityWrap = document.createElement("div");
-    cityWrap.className = "field";
-    cityWrap.innerHTML = '<label for="want_city">City</label><input id="want_city" type="text" placeholder="City" autocapitalize="words" autocomplete="address-level2">';
-    row3.appendChild(cityWrap);
+    wrap.appendChild(row3);
+    body.appendChild(wrap);
 
-    var stateWrap = document.createElement("div");
-    stateWrap.className = "field";
-    var optHtml = '<option value="" disabled selected>Select</option>' + US_STATES.map(function(s){
-      return '<option value="' + s.v + '">' + s.t + '</option>';
-    }).join("");
-    stateWrap.innerHTML =
-      '<label for="want_state">State</label>' +
-      '<select id="want_state" autocomplete="address-level1">' + optHtml + '</select>';
-    row3.appendChild(stateWrap);
+    var sel = qs("#want_state");
+    if (sel){
+      sel.innerHTML = '<option value="" disabled selected>Select</option>' + US_STATES.map(function(p){
+        return '<option value="' + p[0] + '">' + p[1] + '</option>';
+      }).join("");
+      if (state.answers.want_state) sel.value = state.answers.want_state;
+      sel.addEventListener("change", function(){
+        state.answers.want_state = sel.value;
+        updateNextEnabled();
+      });
+    }
 
-    var sp = document.createElement("div");
-    sp.className = "field";
-    sp.style.opacity = "0";
-    sp.style.pointerEvents = "none";
-    sp.innerHTML = '<label>&nbsp;</label><div style="height:44px"></div>';
-    row3.appendChild(sp);
-
-    grid.appendChild(row3);
-    body.appendChild(grid);
-
-    qs("#want_city").value = state.answers.want_city || "";
-    if (state.answers.want_state) qs("#want_state").value = state.answers.want_state;
-
-    qs("#want_city").addEventListener("input", function(){ state.answers.want_city = this.value; updateNextEnabled(); });
-    qs("#want_state").addEventListener("change", function(){ state.answers.want_state = this.value; updateNextEnabled(); });
+    var city = qs("#want_city");
+    if (city){
+      city.value = state.answers.want_city || "";
+      city.addEventListener("input", function(){
+        state.answers.want_city = String(city.value || "").trim();
+        updateNextEnabled();
+      });
+      city.addEventListener("blur", function(){
+        city.value = titleCaseWords(city.value);
+        state.answers.want_city = String(city.value || "").trim();
+      });
+    }
 
     updateNextEnabled();
-  }
+}
 
   // Contact form renderer (approved wiring from the base page)
   function renderContact(){
@@ -1855,10 +1943,10 @@ function showStatus(msg, isError){
 
     form.innerHTML = [
       '<div class="inputGrid">',
-        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
-        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="firstName">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="lastName">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none" inputmode="tel"></div>',
         '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
       '</div>',
       '<div class="turnstileWrap">',
@@ -1869,46 +1957,41 @@ function showStatus(msg, isError){
       '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
     ].join("");
 
-    // restore prior values
-    function restore(id, key){
+    body.appendChild(form);
+
+    function bind(id, key, tc){
       var el = qs("#" + id, form);
       if (!el) return;
-      if (state.answers[key]) el.value = state.answers[key];
-      el.addEventListener("input", function(){ state.answers[key] = el.value; });
+      el.value = state.answers[key] || "";
+      el.addEventListener("input", function(){
+        state.answers[key] = el.value;
+      });
+      if (tc){
+        el.addEventListener("blur", function(){
+          el.value = titleCaseWords(el.value);
+          state.answers[key] = el.value;
+        });
+      }
     }
-    restore("firstName", "contact_first_name");
-    restore("lastName", "contact_last_name");
-    restore("emailAddress", "contact_email");
-    restore("phoneNumber", "contact_phone");
+
+    bind("firstName", "contact_first_name", true);
+    bind("lastName", "contact_last_name", true);
+    bind("emailAddress", "contact_email", false);
+    bind("notes", "contact_notes", false);
+
     var ph = qs("#phoneNumber", form);
     if (ph){
+      ph.value = state.answers["contact_phone"] || "";
       ph.addEventListener("input", function(){
         ph.value = formatPhoneUS(ph.value);
         state.answers["contact_phone"] = ph.value;
       });
     }
-    restore("notes", "contact_notes");
-
-    // persist on blur for required fields too
-    qsa("input, textarea", form).forEach(function(el){
-      el.addEventListener("blur", function(){
-        var map = {
-          "firstName":"contact_first_name",
-          "lastName":"contact_last_name",
-          "emailAddress":"contact_email",
-          "phoneNumber":"contact_phone",
-          "notes":"contact_notes"
-        };
-        if (map[el.id]) state.answers[map[el.id]] = el.value;
-      });
-    });
-
-    body.appendChild(form);
 
     // Render Turnstile when contact step appears
     try{ __tsWidgetId = null; __tsReady = false; }catch(_){ }
     setTimeout(function(){ try{ ensureTurnstile(); }catch(_){ } }, 0);
-  }  function canGoNext(){
+}  function canGoNext(){
     if (!state.branch) return false;
     if (!state.steps.length) return false;
     var step = state.steps[state.stepIndex];
@@ -2052,6 +2135,7 @@ function showStatus(msg, isError){
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
 
 </script>
 
