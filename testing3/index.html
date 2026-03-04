@@ -474,7 +474,7 @@
 
 /* --- GLOBAL FUNNEL LAYOUT (LOCKED) --- */
 html, body { height: 100%; }
-body { overflow: hidden; }
+body{ }
 
 /* Keep funnel section within viewport */
 .funnelSection,
@@ -552,6 +552,33 @@ main.funnelSection {
 /* Ensure turnstile area has space */
 .turnstileWrap{ margin-top: 10px; }
 .turnstileMount{ min-height: 70px; }
+
+/* Funnel: lock action buttons to identical size */
+#funnelActions{display:flex;justify-content:space-between;gap:12px;}
+#funnelBackBtn,#funnelNextBtn{
+  width:180px !important;
+  min-width:180px !important;
+  max-width:180px !important;
+  height:44px !important;
+  padding:0 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+}
+
+/* Prevent footer overlay hiding the last option row */
+#funnelBody{padding-bottom:92px !important;}
+
+/* Compact vertical rhythm to avoid page scroll on desktop */
+@media (min-width: 901px){
+  #funnelCard{max-width:680px !important;}
+  #funnelCard .cardHeader{padding:18px 22px 10px !important;}
+  #funnelCard .cardFooter{padding:14px 22px !important;}
+  #funnelCard #funnelBody{padding:12px 22px 92px !important;}
+  .optionRow{min-height:56px !important;margin-bottom:12px !important;}
+}
+
 </style>
 
   <!-- Google Analytics -->
@@ -1540,38 +1567,7 @@ lease terms, and what is included in the sale.</div>
     setStatus('Submitting...', 'loading');
 
     try {
-      var res = await fetch('/api/early-access', {
-        method: 'POST',
-        body: fd
-      });
-
-      var data = {};
-      try { data = await res.json(); } catch (_) {}
-
-      if (!res.ok || !data || data.ok !== true) {
-        setStatus((data && data.error) ? data.error : 'Something went wrong. Please try again.', 'error');
-        if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-        return;
-      }
-
-      setStatus('Success. You are on the list.', 'success');
-      form.reset();
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } catch (err) {
-      setStatus('Network error. Please try again.', 'error');
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.removeAttribute('aria-busy');
-      }
-    }
-  });
-})();
-</script>
-
-
-<script id="funnelScript">
+      va
 
 
 
@@ -1583,7 +1579,12 @@ lease terms, and what is included in the sale.</div>
   // Turnstile (Cloudflare) rendering for the contact step
   var __tsWidgetId = null;
   var __tsReady = false;
-  function ensureTurnstile(){
+  
+function getTurnstileSitekey(){
+    try{ return document.documentElement.getAttribute("data-turnstile-sitekey") || ""; }catch(_){ return ""; }
+}
+
+function ensureTurnstile(){
     // Turnstile API loads async; poll until available
     if (!window.__tsPollCount) window.__tsPollCount = 0;
 
@@ -1600,7 +1601,9 @@ lease terms, and what is included in the sale.</div>
 
     if (__tsWidgetId !== null) return;
 
-    var hidden = qs("#turnstileToken");
+    // reset poll counter when mount is present
+    window.__tsPollCount = 0;
+var hidden = qs("#turnstileToken");
     if (hidden) hidden.value = "";
 
     try{
@@ -2083,8 +2086,14 @@ function showStatus(msg, isError){
     }
 
     // Render Turnstile when contact step appears
-    try{ __tsWidgetId = null; __tsReady = false; }catch(_){ }
-    setTimeout(function(){ try{ ensureTurnstile(); }catch(_){ } }, 0);
+    try{ __tsWidgetId = null; __tsReady = false; }catch(_){
+      // if render fails (eg missing sitekey), retry shortly
+      if (window.__tsPollCount < 40){
+        window.__tsPollCount++;
+        setTimeout(ensureTurnstile, 250);
+      }
+    }
+setTimeout(function(){ try{ ensureTurnstile(); }catch(_){ } }, 0);
 }  function canGoNext(){
     if (!state.branch) return false;
     if (!state.steps.length) return false;
@@ -2194,6 +2203,45 @@ function showStatus(msg, isError){
 
   function bindActions(){
     var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    var restartBtn = qs("#funnelRestartBtn");
+
+    if (backBtn) backBtn.addEventListener("click", goPrev);
+    if (nextBtn) nextBtn.addEventListener("click", goNext);
+
+    if (restartBtn){
+      restartBtn.addEventListener("click", function(){
+        state.branch = null;
+        state.stepIndex = 0;
+        state.steps = [];
+        state.answers = {};
+        showStatus("", false);
+        renderStep();
+      });
+    }
+
+    document.addEventListener("input", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+  }
+
+  function init(){
+    bindActions();
+    renderStep();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
+
+
+ backBtn = qs("#funnelBackBtn");
     var nextBtn = qs("#funnelNextBtn");
     var restartBtn = qs("#funnelRestartBtn");
 
