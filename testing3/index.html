@@ -384,6 +384,8 @@
   padding-bottom:96px !important; /* prevents footer overlap */
 }
 .optionBullet, .optionRow .optionBullet, .choiceBullet{
+  flex:0 0 18px !important;
+
   width:18px !important;
   height:18px !important;
   border-radius:999px !important;
@@ -471,8 +473,12 @@
   .funnelBody{ padding: 16px 18px 12px; }
   .choiceGrid{ display:grid; gap: var(--answer-spacing); }
   .choiceGrid--two{ grid-template-columns: 1fr 1fr; }
-  .choiceGrid--two .choiceTile{ min-height: 104px; }
+  .choiceGrid--two .choiceTile{
+  min-height:86px;
+ min-height: 104px; }
   .choiceTile{
+  min-height:86px;
+
     display:flex; gap: 14px; align-items:flex-start;
     padding: 14px 14px;
     border-radius: 16px;
@@ -491,6 +497,10 @@
 
   .optionList{ display:grid; gap: var(--answer-spacing); }
   .optionRow{
+    min-height:86px;
+    display:flex;
+    align-items:center;
+
     display:flex; align-items:center; gap: 10px;
     padding: 12px 12px;
     border-radius: 14px;
@@ -629,6 +639,8 @@
 
 /* Consistent answer tile sizing */
 .choiceTile{
+  min-height:86px;
+
   min-height: 86px;
 }
 .choiceIcon{
@@ -637,6 +649,10 @@
   flex: 0 0 42px;
 }
 .optionRow{
+    min-height:86px;
+    display:flex;
+    align-items:center;
+
   min-height: 54px;
   align-items: center;
 }
@@ -1202,6 +1218,10 @@
 
   /* Ensure option tiles consistent height and radio centered */
   .optionRow{
+    min-height:86px;
+    display:flex;
+    align-items:center;
+
     min-height: 56px !important;
     display:flex !important;
     align-items:center !important;
@@ -1896,6 +1916,8 @@ lease terms, and what is included in the sale.</div>
     qs("#want_city").value = state.answers.want_city || "";
     qs("#want_state").value = state.answers.want_state || "";
 
+    attachTitleCase("#want_city");
+
     function sync(){
       state.answers.want_city = qs("#want_city").value.trim();
       state.answers.want_state = qs("#want_state").value.trim();
@@ -1963,6 +1985,9 @@ lease terms, and what is included in the sale.</div>
 
     body.appendChild(form);
 
+    attachTitleCase("#first_name");
+    attachTitleCase("#last_name");
+    attachTitleCase("#contact_notes");
 
     // Mount Turnstile when the contact step is shown
     ensureTurnstile();
@@ -2112,48 +2137,7 @@ lease terms, and what is included in the sale.</div>
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
-})();
-ps.length - 1;
-    renderStep();
-  }
-
-  function bindActions(){
-    var backBtn = qs("#funnelBackBtn");
-    var nextBtn = qs("#funnelNextBtn");
-    var restartBtn = qs("#funnelRestartBtn");
-
-    if (backBtn) backBtn.addEventListener("click", goPrev);
-    if (nextBtn) nextBtn.addEventListener("click", goNext);
-
-    if (restartBtn){
-      restartBtn.addEventListener("click", function(){
-        state.branch = null;
-        state.stepIndex = 0;
-        state.steps = [];
-        state.answers = {};
-        showStatus("", false);
-        renderStep();
-      });
-    }
-
-    document.addEventListener("input", function(){
-      if (!state.branch) return;
-      updateNextEnabled();
-    });
-    document.addEventListener("change", function(){
-      if (!state.branch) return;
-      updateNextEnabled();
-    });
-  }
-
-  function init(){
-    bindActions();
-    renderStep();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
+})()
 </script>
 
 <script>
