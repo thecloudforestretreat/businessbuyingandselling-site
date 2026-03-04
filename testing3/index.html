@@ -1414,8 +1414,9 @@ lease terms, and what is included in the sale.</div>
 <script>
 (function(){
   var form = document.getElementById('earlyAccessForm');
-  if (!form) return;
 
+  // Early access form (homepage). Funnel page may not include it.
+  if (form) {
   var statusEl = document.getElementById('earlyStatus') || document.getElementById('earlyAccessStatus');
   var btn = form.querySelector('button[type="submit"]');
 
@@ -1519,6 +1520,8 @@ lease terms, and what is included in the sale.</div>
     ensureTurnstile();
   };
 
+
+  }
 
   var state = { branch: null, stepIndex: 0, steps: [], answers: {} };
 
