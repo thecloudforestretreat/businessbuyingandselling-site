@@ -374,14 +374,9 @@
   min-width: 160px !important;
   max-width: 160px !important;
 }
-#funnelActions{
-  display:flex;
-  justify-content:space-between;
-  gap: 12px;
-}
 #funnelActions[hidden]{ display:none !important; }
 
-/* Reduce extra whitespace for compact steps */
+/* Compact steps (reduce vertical whitespace) */
 #funnelBody.compactStep{
   padding-bottom: 0 !important;
 }
@@ -389,7 +384,7 @@
   margin-bottom: 0 !important;
 }
 
-/* Seller/Buyer location: 3-up row for City | State | Zip */
+/* City | State | Zip row */
 .locationRow3{
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -1419,6 +1414,8 @@ lease terms, and what is included in the sale.</div>
 
 
 <script id="funnelScript">
+
+
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -1595,7 +1592,15 @@ lease terms, and what is included in the sale.</div>
     {v:"WI", t:"Wisconsin"},{v:"WY", t:"Wyoming"}
   ];
 
-  function showStatus(msg, isError){
+  
+  function formatPhoneUS(value){
+    var digits = String(value || "").replace(/\D/g, "").slice(0, 10);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return "(" + digits.slice(0,3) + ") " + digits.slice(3);
+    return "(" + digits.slice(0,3) + ") " + digits.slice(3,6) + "-" + digits.slice(6);
+  }
+
+function showStatus(msg, isError){
     var note = qs("#funnelNote");
     if (!note) return;
     note.textContent = msg || "Built for owner-operated businesses. Not franchises. Not corporate M&A.";
@@ -1632,57 +1637,20 @@ lease terms, and what is included in the sale.</div>
   }
 
   function renderBranchChoice(){
-    // Reset branch state
-    state.branch = null;
-    state.stepIndex = 0;
-    state.steps = [];
-    state.answers = {};
-
-    qs("#funnelQuestion").textContent = "What are you here to do?";
-    qs("#funnelHelper").textContent = "Choose one to start. You can switch later.";
-
-    var body = qs("#funnelBody");
-    body.classList.remove("compactStep");
-    body.innerHTML = "";
-
-    // Hide Prev/Next on the first screen
-    var actions = qs("#funnelActions");
-    if (actions) actions.hidden = true;
+    qs("#funnelActions").hidden = true;
 
     qs("#funnelRestartBtn").style.visibility = "hidden";
     qs("#funnelStepLabel").textContent = "Step 1 of 1";
     qs("#funnelProgressFill").style.width = "0%";
 
+    qs("#funnelQuestion").textContent = "What are you here to do?";
+    qs("#funnelHelper").textContent = "Choose one to start. You can switch later.";
+
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
     var grid = document.createElement("div");
     grid.className = "choiceGrid choiceGrid--two";
-
-    function tile(branch, icon, title, sub){
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "choiceTile";
-      btn.setAttribute("data-branch", branch);
-      btn.setAttribute("aria-pressed", "false");
-      btn.innerHTML =
-        '<div class="choiceIcon" aria-hidden="true">' + icon + '</div>' +
-        '<div class="choiceText">' +
-          '<div class="choiceTitle">' + title + '</div>' +
-          '<div class="choiceSub">' + sub + '</div>' +
-        '</div>';
-
-      btn.addEventListener("click", function(){
-        // Immediately move forward
-        setBranch(branch);
-      });
-
-      return btn;
-    }
-
-    grid.appendChild(tile("sell","💼","I want to sell my business","Understand value, timeline, and the best next steps."));
-    grid.appendChild(tile("buy","🧾","I want to buy a business","Find the right type of deal without the franchise route."));
-
-    body.appendChild(grid);
-}
-
 
     function tile(branch, icon, title, sub){
       var btn = document.createElement("button");
@@ -1770,62 +1738,320 @@ lease terms, and what is included in the sale.</div>
     }
   }
 
-    function renderSellerLocation(step){
+  function renderSellerLocation(step){
     var body = qs("#funnelBody");
     body.classList.remove("compactStep");
     body.innerHTML = "";
 
-    var wrap = document.createElement("div");
-    wrap.className = "inputGrid";
+    var grid = document.createElement("div");
+    grid.className = "inputGrid";
 
-    wrap.insertAdjacentHTML("beforeend",
-      '<div class="field"><label for="sell_business_name">Business Name</label><input id="sell_business_name" type="text" placeholder="Business name" autocapitalize="words"></div>'
-    );
-    wrap.insertAdjacentHTML("beforeend",
-      '<div class="field"><label for="sell_street">Street</label><input id="sell_street" type="text" placeholder="Street address" autocapitalize="words"></div>'
-    );
+    var f1 = document.createElement("div");
+    f1.className = "field";
+    f1.innerHTML = '<label for="biz_name">Business Name</label><input id="biz_name" type="text" placeholder="Business name" autocapitalize="words" autocomplete="organization">';
+    grid.appendChild(f1);
+
+    var f2 = document.createElement("div");
+    f2.className = "field";
+    f2.innerHTML = '<label for="biz_street">Street</label><input id="biz_street" type="text" placeholder="Street address" autocapitalize="words" autocomplete="street-address">';
+    grid.appendChild(f2);
 
     var row3 = document.createElement("div");
     row3.className = "locationRow3";
-    row3.innerHTML = [
-      '<div class="field"><label for="sell_city">City</label><input id="sell_city" type="text" placeholder="City" autocapitalize="words"></div>',
-      '<div class="field"><label for="sell_state">State</label><select id="sell_state"></select></div>',
-      '<div class="field"><label for="sell_zip">Zip</label><input id="sell_zip" type="text" inputmode="numeric" placeholder="Zip code"></div>'
-    ].join("");
-    wrap.appendChild(row3);
 
-    body.appendChild(wrap);
+    var cityWrap = document.createElement("div");
+    cityWrap.className = "field";
+    cityWrap.innerHTML = '<label for="biz_city">City</label><input id="biz_city" type="text" placeholder="City" autocapitalize="words" autocomplete="address-level2">';
+    row3.appendChild(cityWrap);
 
-    var sel = qs("#sell_state");
-    if (sel){
-      sel.innerHTML = '<option value="" disabled>Select</option>' + US_STATES.map(function(p){
-        return '<option value="' + p[0] + '">' + p[1] + '</option>';
-      }).join("");
-      sel.value = (state.answers.sell_state || "FL");
-      sel.addEventListener("change", function(){
-        state.answers.sell_state = sel.value;
-        updateNextEnabled();
-      });
-      state.answers.sell_state = sel.value;
-    }
+    var stateWrap = document.createElement("div");
+    stateWrap.className = "field";
+    var optHtml = US_STATES.map(function(s){
+      return '<option value="' + s.v + '">' + s.t + '</option>';
+    }).join("");
+    stateWrap.innerHTML =
+      '<label for="biz_state">State</label>' +
+      '<select id="biz_state" autocomplete="address-level1">' + optHtml + '</select>';
+    row3.appendChild(stateWrap);
 
-    function bind(id, key){
-      var el = qs("#" + id);
-      if (!el) return;
-      el.value = state.answers[key] || "";
-      el.addEventListener("input", function(){
-        state.answers[key] = String(el.value || "").trim();
-        updateNextEnabled();
-      });
-    }
+    var zipWrap = document.createElement("div");
+    zipWrap.className = "field";
+    zipWrap.innerHTML = '<label for="biz_zip">Zip</label><input id="biz_zip" type="text" inputmode="numeric" placeholder="Zip code" autocomplete="postal-code">';
+    row3.appendChild(zipWrap);
 
-    bind("sell_business_name", "sell_business_name");
-    bind("sell_street", "sell_street");
-    bind("sell_city", "sell_city");
-    bind("sell_zip", "sell_zip");
+    grid.appendChild(row3);
+    body.appendChild(grid);
+
+    qs("#biz_name").value = state.answers.business_name || "";
+    qs("#biz_street").value = state.answers.business_street || "";
+    qs("#biz_city").value = state.answers.business_city || "";
+    qs("#biz_state").value = state.answers.business_state || "FL";
+    qs("#biz_zip").value = state.answers.business_zip || "";
+
+    qs("#biz_name").addEventListener("input", function(){ state.answers.business_name = this.value; updateNextEnabled(); });
+    qs("#biz_street").addEventListener("input", function(){ state.answers.business_street = this.value; updateNextEnabled(); });
+    qs("#biz_city").addEventListener("input", function(){ state.answers.business_city = this.value; updateNextEnabled(); });
+    qs("#biz_state").addEventListener("change", function(){ state.answers.business_state = this.value; updateNextEnabled(); });
+    qs("#biz_zip").addEventListener("input", function(){ state.answers.business_zip = this.value; updateNextEnabled(); });
+
+    state.answers.business_state = qs("#biz_state").value;
 
     updateNextEnabled();
-  })();
+  }
+
+  function renderBuyerLocation(step){
+    var body = qs("#funnelBody");
+    body.classList.add("compactStep");
+    body.innerHTML = "";
+
+    var grid = document.createElement("div");
+    grid.className = "inputGrid";
+
+    var row3 = document.createElement("div");
+    row3.className = "locationRow3";
+
+    var cityWrap = document.createElement("div");
+    cityWrap.className = "field";
+    cityWrap.innerHTML = '<label for="want_city">City</label><input id="want_city" type="text" placeholder="City" autocapitalize="words" autocomplete="address-level2">';
+    row3.appendChild(cityWrap);
+
+    var stateWrap = document.createElement("div");
+    stateWrap.className = "field";
+    var optHtml = '<option value="" disabled selected>Select</option>' + US_STATES.map(function(s){
+      return '<option value="' + s.v + '">' + s.t + '</option>';
+    }).join("");
+    stateWrap.innerHTML =
+      '<label for="want_state">State</label>' +
+      '<select id="want_state" autocomplete="address-level1">' + optHtml + '</select>';
+    row3.appendChild(stateWrap);
+
+    var sp = document.createElement("div");
+    sp.className = "field";
+    sp.style.opacity = "0";
+    sp.style.pointerEvents = "none";
+    sp.innerHTML = '<label>&nbsp;</label><div style="height:44px"></div>';
+    row3.appendChild(sp);
+
+    grid.appendChild(row3);
+    body.appendChild(grid);
+
+    qs("#want_city").value = state.answers.want_city || "";
+    if (state.answers.want_state) qs("#want_state").value = state.answers.want_state;
+
+    qs("#want_city").addEventListener("input", function(){ state.answers.want_city = this.value; updateNextEnabled(); });
+    qs("#want_state").addEventListener("change", function(){ state.answers.want_state = this.value; updateNextEnabled(); });
+
+    updateNextEnabled();
+  }
+
+  // Contact form renderer (approved wiring from the base page)
+  function renderContact(){
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var form = document.createElement("form");
+    form.id = "funnelContactForm";
+    form.noValidate = true;
+
+    form.innerHTML = [
+      '<div class="inputGrid">',
+        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
+        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
+        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
+      '</div>',
+      '<div class="turnstileWrap">',
+        '<div id="turnstileMount" class="turnstileMount"></div>',
+        '<div class="turnstileHint" id="turnstileHint">Security check loads here.</div>',
+        '<input type="hidden" id="turnstileToken" name="cf-turnstile-response" required>',
+      '</div>',
+      '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
+    ].join("");
+
+    // restore prior values
+    function restore(id, key){
+      var el = qs("#" + id, form);
+      if (!el) return;
+      if (state.answers[key]) el.value = state.answers[key];
+      el.addEventListener("input", function(){ state.answers[key] = el.value; });
+    }
+    restore("firstName", "contact_first_name");
+    restore("lastName", "contact_last_name");
+    restore("emailAddress", "contact_email");
+    restore("phoneNumber", "contact_phone");
+    var ph = qs("#phoneNumber", form);
+    if (ph){
+      ph.addEventListener("input", function(){
+        ph.value = formatPhoneUS(ph.value);
+        state.answers["contact_phone"] = ph.value;
+      });
+    }
+    restore("notes", "contact_notes");
+
+    // persist on blur for required fields too
+    qsa("input, textarea", form).forEach(function(el){
+      el.addEventListener("blur", function(){
+        var map = {
+          "firstName":"contact_first_name",
+          "lastName":"contact_last_name",
+          "emailAddress":"contact_email",
+          "phoneNumber":"contact_phone",
+          "notes":"contact_notes"
+        };
+        if (map[el.id]) state.answers[map[el.id]] = el.value;
+      });
+    });
+
+    body.appendChild(form);
+
+    // Render Turnstile when contact step appears
+    try{ __tsWidgetId = null; __tsReady = false; }catch(_){ }
+    setTimeout(function(){ try{ ensureTurnstile(); }catch(_){ } }, 0);
+  }  function canGoNext(){
+    if (!state.branch) return false;
+    if (!state.steps.length) return false;
+    var step = state.steps[state.stepIndex];
+    if (!step) return false;
+
+    if (step.type === "choice"){
+      if (!state.answers[step.id]) return false;
+      if (step.other && state.answers[step.id] === "other"){
+        var k = step.otherKey || (step.id + "_other");
+        return !!String(state.answers[k] || "").trim();
+      }
+      return true;
+    }
+
+    if (step.type === "seller_location"){
+      return !!(state.answers.business_name && state.answers.business_street && state.answers.business_city && state.answers.business_state && state.answers.business_zip);
+    }
+
+    if (step.type === "buyer_location"){
+      return !!(state.answers.want_city && state.answers.want_state);
+    }
+
+    if (step.type === "contact"){
+      // Contact step uses its own submit. Allow Next to be disabled.
+      return false;
+    }
+
+    return false;
+  }
+
+  function updateNextEnabled(){
+    var nextBtn = qs("#funnelNextBtn");
+    if (!nextBtn) return;
+    if (!state.branch){ nextBtn.disabled = true; nextBtn.style.opacity = "0.6"; return; }
+
+    var step = state.steps[state.stepIndex];
+    if (step && step.type === "contact"){
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = "0.45";
+      return;
+    }
+
+    nextBtn.disabled = !canGoNext();
+    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
+  }
+
+  function renderStep(){
+    if (!state.branch){
+      renderBranchChoice();
+      return;
+    }
+
+    var actions = qs("#funnelActions");
+    if (actions) actions.hidden = false;
+
+    var step = state.steps[state.stepIndex];
+    if (!step) return;
+
+    qs("#funnelRestartBtn").style.visibility = "visible";
+    setHeader(step);
+    setProgress();
+
+    if (step.type === "choice") renderChoice(step);
+    else if (step.type === "seller_location") renderSellerLocation(step);
+    else if (step.type === "buyer_location") renderBuyerLocation(step);
+    else if (step.type === "contact") renderContact();
+
+    updateNextEnabled();
+  }
+
+  function goPrev(){
+    if (!state.branch) return;
+    if (state.stepIndex <= 0){
+      state.branch = null;
+      state.steps = [];
+      state.stepIndex = 0;
+      state.answers = {};
+      renderStep();
+      return;
+    }
+    state.stepIndex -= 1;
+    renderStep();
+  }
+
+  function goNext(){
+    if (!state.branch) return;
+
+    var step = state.steps[state.stepIndex];
+    if (!step) return;
+
+    // Seller special rule: if they choose "Not right now..." go directly to contact step.
+    if (state.branch === "sell" && step.id === "sell_urgency"){
+      if (state.answers.sell_urgency === "not_right_now_talk"){
+        state.stepIndex = state.steps.length - 1; // contact
+        renderStep();
+        return;
+      }
+    }
+
+    if (!canGoNext()) return;
+
+    state.stepIndex += 1;
+    if (state.stepIndex >= state.steps.length) state.stepIndex = state.steps.length - 1;
+    renderStep();
+  }
+
+  function bindActions(){
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    var restartBtn = qs("#funnelRestartBtn");
+
+    if (backBtn) backBtn.addEventListener("click", goPrev);
+    if (nextBtn) nextBtn.addEventListener("click", goNext);
+
+    if (restartBtn){
+      restartBtn.addEventListener("click", function(){
+        state.branch = null;
+        state.stepIndex = 0;
+        state.steps = [];
+        state.answers = {};
+        showStatus("", false);
+        renderStep();
+      });
+    }
+
+    document.addEventListener("input", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      updateNextEnabled();
+    });
+  }
+
+  function init(){
+    bindActions();
+    renderStep();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
 
 </script>
 
