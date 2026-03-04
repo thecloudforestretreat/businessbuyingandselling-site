@@ -1358,8 +1358,7 @@ lease terms, and what is included in the sale.</div>
 </script>
 
 
-<script id="funnelScript">
-(function(){
+<script id="funnelScript">(function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
   
   function getTurnstileSitekey(){
@@ -1369,6 +1368,7 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
 
   var state = {
     branch: null,
+    pendingBranch: null,
     stepIndex: 0,
     steps: [],
     answers: {}
@@ -1718,7 +1718,66 @@ function setBranch(branch){
     qs("#funnelQuestion").textContent = step.title;
     qs("#funnelHelper").textContent = step.helper || "";
   }
+function renderBranchChoice(){
+    qs("#funnelActions").hidden = false;
 
+    qs("#funnelQuestion").textContent = "What are you here to do?";
+    qs("#funnelHelper").textContent = "Choose one to start. Then click Next.";
+
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var grid = document.createElement("div");
+    grid.className = "choiceGrid choiceGrid--two";
+
+    function makeTile(branch, icon, title, sub){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choiceTile";
+      btn.setAttribute("data-branch", branch);
+      btn.setAttribute("aria-pressed", (state.pendingBranch === branch) ? "true" : "false");
+      btn.innerHTML =
+        '<div class="choiceIcon" aria-hidden="true">' + icon + '</div>' +
+        '<div class="choiceText">' +
+          '<div class="choiceTitle">' + title + '</div>' +
+          '<div class="choiceSub">' + sub + '</div>' +
+        '</div>';
+
+      btn.addEventListener("click", function(){
+        qsa(".choiceTile", grid).forEach(function(b){ b.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        state.pendingBranch = branch;
+        var nextBtn = qs("#funnelNextBtn");
+        if (nextBtn){
+          nextBtn.disabled = false;
+          nextBtn.style.opacity = "1";
+        }
+      });
+
+      return btn;
+    }
+
+    grid.appendChild(makeTile("sell","💼","I want to sell my business","Understand value, timeline, and the best next steps."));
+    grid.appendChild(makeTile("buy","🧾","I want to buy a business","Find the right type of deal without the franchise route."));
+
+    body.appendChild(grid);
+
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    if (backBtn){
+      backBtn.disabled = true;
+      backBtn.style.opacity = "0.5";
+    }
+    if (nextBtn){
+      nextBtn.textContent = "Next";
+      nextBtn.disabled = !state.pendingBranch;
+      nextBtn.style.opacity = nextBtn.disabled ? "0.55" : "1";
+    }
+
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+    qs("#funnelStepLabel").textContent = "Step 1 of 1";
+    qs("#funnelProgressFill").style.width = "0%";
+}
   function renderBranchChoice(){
     qs("#funnelActions").hidden = true;
     qs("#funnelBody").innerHTML = '';
@@ -1834,7 +1893,7 @@ function setBranch(branch){
 
       row.addEventListener("click", function(){
         state.answers[step.id] = opt.value;
-        renderStep();
+        updateNextEnabled();
       });
 
       wrap.appendChild(row);
@@ -2131,49 +2190,33 @@ function renderStep(){
     var step = state.steps[state.stepIndex];
     if (!step) return;
 
-    qs("#funnelRestartBtn").style.visibility = "visible";
+    setProgress();
     setHeader(step);
-    
-    setActionsVisible(true);
-setProgress();
 
-    
-    updateNextEnabled();
-if (step.type === "choice") renderChoice(step, false);
-    else if (step.type === "choice_grid") renderChoice(step, true);
-    else if (step.type === "location_url") renderLocationUrl(step, true);
-    else if (step.type === "location_only") renderLocationUrl(step, false);
-    else if (step.type === "contact") renderContact();
-
-    var actions = qs("#funnelActions");
-    actions.hidden = false;
+    qs("#funnelActions").hidden = false;
 
     var backBtn = qs("#funnelBackBtn");
     var nextBtn = qs("#funnelNextBtn");
 
-    backBtn.disabled = (state.stepIndex === 0);
-    backBtn.style.opacity = backBtn.disabled ? "0.5" : "1";
-
-    nextBtn.textContent = (step.type === "contact") ? "Submit" : "Next";
-    nextBtn.disabled = !canGoNext();
-    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
-
-    if (step.type === "contact") {
-      bindContactEnhancements();
-      ensureTurnstileMounted(true);
+    if (backBtn){
+      backBtn.disabled = (state.stepIndex === 0);
+      backBtn.style.opacity = backBtn.disabled ? "0.5" : "1";
     }
 
+    if (nextBtn){
+      nextBtn.textContent = (step.type === "contact") ? "Submit" : "Next";
+    }
 
-    // update selection styling for choice steps
-    qsa('[aria-pressed]', qs("#funnelBody")).forEach(function(btn){
-      btn.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          btn.click();
-        }
-      });
-    });
-  }
+    if (step.type === "choice") renderChoice(step);
+    else if (step.type === "choice_with_other") renderChoiceWithOther(step);
+    else if (step.type === "seller_location") renderSellerLocation(step);
+    else if (step.type === "buyer_location") renderBuyerLocation(step);
+    else if (step.type === "location_url") renderLocationUrl(step, true);
+    else if (step.type === "contact") renderContact();
+    else renderChoice(step);
+
+    updateNextEnabled();
+}
 
   function showStatus(msg, isError){
     var el = qs("#funnelStatus");
@@ -2238,7 +2281,70 @@ if (step.type === "choice") renderChoice(step, false);
       showStatus("Something went wrong. Please try again in a moment.", true);
     }
   }
+function bindActions(){
+    qs("#funnelRestartBtn").addEventListener("click", function(){
+      state.branch = null;
+      state.pendingBranch = null;
+      state.stepIndex = 0;
+      state.steps = [];
+      state.answers = {};
+      showStatus("", false);
+      renderBranchChoice();
+    });
 
+    qs("#funnelBackBtn").addEventListener("click", function(){
+      if (!state.branch) return;
+
+      if (state.stepIndex === 0){
+        state.branch = null;
+        state.pendingBranch = null;
+        state.stepIndex = 0;
+        state.steps = [];
+        state.answers = {};
+        showStatus("", false);
+        renderBranchChoice();
+        return;
+      }
+
+      state.stepIndex = Math.max(0, state.stepIndex - 1);
+      showStatus("", false);
+      renderStep();
+    });
+
+    qs("#funnelNextBtn").addEventListener("click", function(){
+      // Branch chooser: require selection and then show step 1. Do not auto advance.
+      if (!state.branch){
+        if (!state.pendingBranch) return;
+        setBranch(state.pendingBranch);
+        return;
+      }
+
+      if (!state.steps.length) return;
+
+      var step = state.steps[state.stepIndex];
+      if (!step) return;
+
+      // Contact step submit handled by the contact form button
+      if (step.type === "contact") return;
+
+      if (!isStepAnswered(step)) return;
+
+      // Seller routing: if they are not ready, jump to contact form immediately.
+      if (state.branch === "sell" && step.id === "sell_urgency"){
+        if (state.answers.sell_urgency === "not_right_now_talk"){
+          state.stepIndex = state.steps.length - 1;
+          renderStep();
+          return;
+        }
+      }
+
+      if (state.stepIndex < state.steps.length - 1){
+        state.stepIndex += 1;
+        showStatus("", false);
+        renderStep();
+      }
+    });
+}
   function bindActions(){
     qs("#funnelRestartBtn").addEventListener("click", function(){
       state.branch = null;
