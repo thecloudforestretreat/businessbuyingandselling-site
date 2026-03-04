@@ -367,6 +367,43 @@
   color: rgba(20,26,38,.38) !important;
 }
 
+
+
+/* --- Global funnel consistency fixes --- */
+#funnelBackBtn, #funnelNextBtn{
+  width:180px !important;
+  height:44px !important;
+  min-height:44px !important;
+  padding:0 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+}
+#funnelBody{
+  padding-bottom:96px !important; /* prevents footer overlap */
+}
+.optionBullet, .optionRow .optionBullet, .choiceBullet{
+  width:18px !important;
+  height:18px !important;
+  border-radius:999px !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.optionBullet::after, .choiceBullet::after{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:transparent;
+  display:block;
+}
+.optionRow[aria-pressed="true"] .optionBullet::after,
+.choiceTile[aria-pressed="true"] .choiceBullet::after{
+  background: var(--bbas-accent, #2a5bff);
+}
 </style>
 
   <!-- Google Analytics -->
@@ -1409,42 +1446,7 @@ lease terms, and what is included in the sale.</div>
     if (btn) {
       btn.disabled = true;
       btn.setAttribute('aria-busy', 'true');
-    }
-    setStatus('Submitting...', 'loading');
 
-    try {
-      var res = await fetch('/api/early-access', {
-        method: 'POST',
-        body: fd
-      });
-
-      var data = {};
-      try { data = await res.json(); } catch (_) {}
-
-      if (!res.ok || !data || data.ok !== true) {
-        setStatus((data && data.error) ? data.error : 'Something went wrong. Please try again.', 'error');
-        if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-        return;
-      }
-
-      setStatus('Success. You are on the list.', 'success');
-      form.reset();
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } catch (err) {
-      setStatus('Network error. Please try again.', 'error');
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.removeAttribute('aria-busy');
-      }
-    }
-  });
-})();
-</script>
-
-
-<script id="funnelScript">
 
 (function(){
   function qs(sel, root){ return (root || document).querySelector(sel); }
@@ -1471,6 +1473,11 @@ lease terms, and what is included in the sale.</div>
   // Turnstile (Cloudflare) rendering for the contact step
   var __tsWidgetId = null;
   var __tsReady = false;
+
+  // Turnstile sitekey (matches approved homepage form)
+  function getTurnstileSitekey(){
+    return document.documentElement.getAttribute('data-turnstile-sitekey') || "0x4AAAAAACgmGQoYfzwumYuZ";
+  }
   function ensureTurnstile(){
     if (!window.__tsPollCount) window.__tsPollCount = 0;
     if (!window.turnstile){
@@ -1752,7 +1759,8 @@ lease terms, and what is included in the sale.</div>
         var otherWrap = qs("#otherWrap");
         if (otherWrap) otherWrap.style.display = (opt.value === "other") ? "block" : "none";
 
-        updateNextEnabled();
+        bindAutoFormat();
+    updateNextEnabled();
       });
 
       wrap.appendChild(row);
@@ -1777,7 +1785,8 @@ lease terms, and what is included in the sale.</div>
         otherInput.value = state.answers[step.otherKey] || "";
         otherInput.addEventListener("input", function(){
           state.answers[step.otherKey] = otherInput.value;
-          updateNextEnabled();
+          bindAutoFormat();
+    updateNextEnabled();
         });
       }
     }
@@ -1850,7 +1859,8 @@ lease terms, and what is included in the sale.</div>
       state.answers.business_city = qs("#biz_city").value.trim();
       state.answers.business_state = qs("#biz_state").value;
       state.answers.business_zip = qs("#biz_zip").value.trim();
-      updateNextEnabled();
+      bindAutoFormat();
+    updateNextEnabled();
     }
 
     ["input","change"].forEach(function(evt){
@@ -1869,12 +1879,13 @@ lease terms, and what is included in the sale.</div>
 
     var city = document.createElement("div");
     city.className = "field";
-    city.innerHTML = '<label for="want_city">City</label><input id="want_city" type="text" placeholder="City">';
+    city.innerHTML = '<label for="want_city">City</label><input id="want_city" type="text" placeholder="City" autocapitalize="words">';
     grid.appendChild(city);
 
     var st = document.createElement("div");
     st.className = "field";
-    st.innerHTML = '<label for="want_state">State</label><input id="want_state" type="text" placeholder="State (e.g., FL)">';
+    var opts = US_STATES.map(function(p){ return '<option value="' + p.v + '">' + p.t + '</option>'; }).join('');
+    st.innerHTML = '<label for="want_state">State</label><select id="want_state">' + opts + '</select>';
     grid.appendChild(st);
 
     body.appendChild(grid);
@@ -1885,7 +1896,8 @@ lease terms, and what is included in the sale.</div>
     function sync(){
       state.answers.want_city = qs("#want_city").value.trim();
       state.answers.want_state = qs("#want_state").value.trim();
-      updateNextEnabled();
+      bindAutoFormat();
+    updateNextEnabled();
     }
 
     qsa("#want_city,#want_state").forEach(function(el){
@@ -2019,6 +2031,7 @@ lease terms, and what is included in the sale.</div>
     else if (step.type === "buyer_location") renderBuyerLocation(step);
     else if (step.type === "contact") renderContact();
 
+    bindAutoFormat();
     updateNextEnabled();
   }
 
@@ -2055,6 +2068,49 @@ lease terms, and what is included in the sale.</div>
 
     state.stepIndex += 1;
     if (state.stepIndex >= state.steps.length) state.stepIndex = state.steps.length - 1;
+    renderStep();
+  }
+
+  function bindActions(){
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    var restartBtn = qs("#funnelRestartBtn");
+
+    if (backBtn) backBtn.addEventListener("click", goPrev);
+    if (nextBtn) nextBtn.addEventListener("click", goNext);
+
+    if (restartBtn){
+      restartBtn.addEventListener("click", function(){
+        state.branch = null;
+        state.stepIndex = 0;
+        state.steps = [];
+        state.answers = {};
+        showStatus("", false);
+        renderStep();
+      });
+    }
+
+    document.addEventListener("input", function(){
+      if (!state.branch) return;
+      bindAutoFormat();
+    updateNextEnabled();
+    });
+    document.addEventListener("change", function(){
+      if (!state.branch) return;
+      bindAutoFormat();
+    updateNextEnabled();
+    });
+  }
+
+  function init(){
+    bindActions();
+    renderStep();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+ps.length - 1;
     renderStep();
   }
 
