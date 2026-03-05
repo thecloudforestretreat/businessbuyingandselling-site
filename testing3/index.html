@@ -1,816 +1,1301 @@
 <!doctype html>
-<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Get Started | Business Buying & Selling</title>
+  <title>BBAS Funnel</title>
 
-  <!-- Approved global CSS -->
-  <link rel="stylesheet" href="/assets/css/header.css">
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="header.css">
 
-  <!-- Turnstile (explicit render) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EH99SDCSFD');
+  </script>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
 
   <style>
-    /* Funnel styles are scoped so they do NOT change global header/footer */
-    .bbas-funnel-page { background: #0a0b10; }
-    .bbas-funnel-shell { max-width: 1180px; margin: 0 auto; padding: 40px 16px 56px; }
-    .bbas-funnel-hero {
-      background: radial-gradient(900px 300px at 20% 20%, rgba(37,99,235,0.20), transparent 60%),
-                  radial-gradient(700px 260px at 80% 0%, rgba(147,51,234,0.16), transparent 55%),
-                  linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      padding: 28px 28px 22px;
-      color: #fff;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.55);
-      margin-bottom: 18px;
+    /* Funnel-only adjustments (do NOT override global header/footer styles) */
+    :root {
+      --funnel-accent: #7b61ff;
+      --funnel-accent-2: #5b2bff;
+      --funnel-muted: rgba(255,255,255,.7);
+      --funnel-text: rgba(255,255,255,.92);
+      --card-bg: rgba(20, 22, 28, .72);
+      --card-border: rgba(255,255,255,.12);
     }
-    .bbas-funnel-pill {
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 30% 25%, rgba(123,97,255,.25), transparent 60%),
+        radial-gradient(1000px 600px at 70% 55%, rgba(0,200,255,.10), transparent 60%),
+        linear-gradient(180deg, #07080b 0%, #0b0d12 40%, #0a0b10 100%);
+      color: var(--funnel-text);
+      min-height: 100vh;
+    }
+
+    .bbas-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .hero {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(800px 420px at 20% 20%, rgba(123,97,255,.25), transparent 60%),
+        radial-gradient(900px 460px at 80% 60%, rgba(255,255,255,.08), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+      padding: 22px 22px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+
+    .hero-top {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
       font-size: 13px;
-      color: rgba(255,255,255,0.78);
-      margin-bottom: 12px;
+      color: rgba(255,255,255,.86);
+      width: fit-content;
     }
-    .bbas-funnel-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; display: inline-block; }
-    .bbas-funnel-hero h1 { margin: 0 0 10px; font-weight: 500; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.02em; }
-    .bbas-funnel-hero p { margin: 0; max-width: 62ch; color: rgba(255,255,255,0.72); line-height: 1.45; }
 
-    .bbas-funnel-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px; align-items: start; }
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f4b400;
+      box-shadow: 0 0 0 4px rgba(244,180,0,.12);
+    }
 
-    /* Left: funnel card */
-    .bbas-card {
-      background: rgba(255,255,255,0.96);
-      border: 1px solid rgba(0,0,0,0.06);
+    .hero h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 720px;
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    /* Make funnel visually smaller on desktop */
+    .funnel {
       border-radius: 18px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+      background: rgba(255,255,255,.92);
+      color: #111827;
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
       overflow: hidden;
-    }
-    .bbas-card-header { padding: 14px 18px 10px; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .bbas-steps { display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(0,0,0,0.55); margin-bottom: 8px; }
-    .bbas-progress { height: 6px; background: rgba(0,0,0,0.08); border-radius: 999px; overflow: hidden; }
-    .bbas-progress > div { height: 100%; width: 0%; background: #7c3aed; border-radius: 999px; transition: width .25s ease; }
-
-    .bbas-card-body { padding: 18px; display:flex; flex-direction:column; gap: 12px; }
-    .bbas-q { font-size: 30px; letter-spacing: -0.02em; margin: 0; color: rgba(0,0,0,0.82); }
-    .bbas-sub { margin: 0; color: rgba(0,0,0,0.52); font-size: 14px; }
-
-    /* content region that can scroll if needed, footer always visible */
-    .bbas-content {
-      flex: 1;
-      min-height: 240px;
-      max-height: min(420px, calc(100vh - 420px));
-      overflow: auto;
-      padding-right: 2px;
+      max-width: 820px;
     }
 
-    .bbas-options { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-    .bbas-options.onecol { grid-template-columns: 1fr; }
-    .bbas-choice {
-      width: 100%;
-      text-align: left;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.14);
-      border-radius: 14px;
-      padding: 14px 14px;
-      display:flex;
-      align-items:flex-start;
+    .funnel-head {
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid rgba(17,24,39,.08);
+    }
+
+    .funnel-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: rgba(17,24,39,.60);
+    }
+
+    .progress-track {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(17,24,39,.10);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--funnel-accent), var(--funnel-accent-2));
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .funnel-body {
+      padding: 16px 18px 14px;
+    }
+
+    .q-title {
+      font-size: 28px;
+      line-height: 1.15;
+      margin: 0 0 6px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: rgba(17,24,39,.78);
+    }
+
+    .q-sub {
+      margin: 0 0 14px;
+      color: rgba(17,24,39,.42);
+      font-size: 13px;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      cursor: pointer;
-      transition: border-color .15s ease, box-shadow .15s ease;
-      min-height: 68px;
     }
-    .bbas-choice:hover { border-color: rgba(37,99,235,0.55); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
-    .bbas-choice[aria-pressed="true"] { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,0.18); }
 
-    /* consistent radio circle size and centered dot */
-    .bbas-radio {
-      width: 18px; height: 18px;
-      border: 2px solid rgba(0,0,0,0.28);
-      border-radius: 50%;
-      display:grid;
-      place-items:center;
-      flex: 0 0 18px;
-      margin-top: 2px;
+    .choices.onecol {
+      grid-template-columns: 1fr;
     }
-    .bbas-choice[aria-pressed="true"] .bbas-radio { border-color: #2563eb; }
-    .bbas-radio::after {
-      content:"";
-      width: 10px; height: 10px;
+
+    .choice {
+      position: relative;
+      border: 1px solid rgba(17,24,39,.14);
+      border-radius: 14px;
+      padding: 12px 12px 12px 48px;
+      background: #fff;
+      cursor: pointer;
+      min-height: 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      user-select: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .choice:hover {
+      border-color: rgba(123,97,255,.45);
+      box-shadow: 0 8px 24px rgba(123,97,255,.12);
+    }
+
+    .choice strong {
+      font-size: 14px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      color: rgba(17,24,39,.92);
+    }
+
+    .choice span {
+      font-size: 13px;
+      color: rgba(17,24,39,.58);
+      line-height: 1.25;
+    }
+
+    /* Consistent radio bubbles */
+    .choice input[type="radio"] {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      appearance: none;
+      -webkit-appearance: none;
       border-radius: 50%;
-      background: #2563eb;
+      border: 2px solid rgba(17,24,39,.28);
+      background: #fff;
+      display: grid;
+      place-items: center;
+    }
+
+    .choice input[type="radio"]::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--funnel-accent-2);
       transform: scale(0);
       transition: transform .12s ease;
     }
-    .bbas-choice[aria-pressed="true"] .bbas-radio::after { transform: scale(1); }
 
-    .bbas-choice h3 { margin: 0; font-size: 14px; color: rgba(0,0,0,0.82); }
-    .bbas-choice p { margin: 4px 0 0; font-size: 12.5px; color: rgba(0,0,0,0.58); line-height: 1.35; }
+    .choice input[type="radio"]:checked {
+      border-color: var(--funnel-accent-2);
+      box-shadow: 0 0 0 4px rgba(123,97,255,.14);
+    }
 
-    .bbas-fields { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-    .bbas-fields.onecol { grid-template-columns: 1fr; }
-    .bbas-fields.three { grid-template-columns: 1fr 180px 140px; }
-    .bbas-field label { display:block; font-size: 12px; color: rgba(0,0,0,0.55); margin: 0 0 6px; }
-    .bbas-field input, .bbas-field select, .bbas-field textarea {
+    .choice input[type="radio"]:checked::after {
+      transform: scale(1);
+    }
+
+    .choice.selected {
+      border-color: var(--funnel-accent-2);
+    }
+
+    .choice-icon {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(123,97,255,.10);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .choice-icon img {
+      width: 18px;
+      height: 18px;
+      opacity: .85;
+    }
+
+    .choice.with-icon {
+      padding-left: 58px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-grid.onecol {
+      grid-template-columns: 1fr;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: rgba(17,24,39,.46);
+      margin-bottom: 6px;
+    }
+
+    .field input, .field select, .field textarea {
       width: 100%;
-      border: 1px solid rgba(0,0,0,0.16);
+      border: 1px solid rgba(17,24,39,.14);
       border-radius: 12px;
       padding: 12px 12px;
       font-size: 14px;
       outline: none;
       background: #fff;
+      box-sizing: border-box;
     }
-    .bbas-field textarea { min-height: 96px; resize: vertical; }
 
-    /* Footer buttons */
-    .bbas-card-footer {
-      padding: 14px 18px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.94);
+    .field textarea {
+      min-height: 96px;
+      resize: vertical;
     }
-    .bbas-btn {
-      height: 44px;
+
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: rgba(123,97,255,.65);
+      box-shadow: 0 0 0 4px rgba(123,97,255,.14);
+    }
+
+    .other-wrap {
+      margin-top: 10px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px 16px;
+      border-top: 1px solid rgba(17,24,39,.08);
+      background: rgba(255,255,255,.88);
+    }
+
+    /* Lock button sizing */
+    .btn {
+      height: 46px;
       min-width: 160px;
       padding: 0 18px;
       border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.16);
-      background: #fff;
-      color: rgba(0,0,0,0.78);
       font-weight: 600;
-      cursor:pointer;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid rgba(17,24,39,.18);
+      background: #fff;
+      color: rgba(17,24,39,.86);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
     }
-    .bbas-btn.primary {
-      border-color: transparent;
-      background: #7c3aed;
+
+    .btn.primary {
+      border: none;
+      background: linear-gradient(180deg, var(--funnel-accent), var(--funnel-accent-2));
       color: #fff;
-      box-shadow: 0 18px 30px rgba(124,58,237,0.20);
+      box-shadow: 0 16px 40px rgba(91,43,255,.28);
     }
-    .bbas-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .bbas-footnote { font-size: 12px; color: rgba(0,0,0,0.35); padding: 0 18px 16px; }
-
-    /* Right: info card */
-    .bbas-info {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      padding: 18px;
-      color: rgba(255,255,255,0.85);
-      box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+    .btn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      box-shadow: none;
     }
-    .bbas-info .tag {
-      display:inline-flex; gap:10px; align-items:center;
-      padding: 6px 10px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.25);
-      color: rgba(255,255,255,0.78);
+
+    .fineprint {
+      margin-top: 6px;
       font-size: 12px;
+      color: rgba(17,24,39,.28);
+    }
+
+    .side {
+      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      position: sticky;
+      top: 18px;
+    }
+
+    .side-badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+      width: fit-content;
       margin-bottom: 10px;
     }
-    .bbas-info h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; }
-    .bbas-info p { margin: 0 0 14px; color: rgba(255,255,255,0.70); line-height: 1.45; font-size: 13px; }
-    .bbas-info-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .bbas-info-box { border: 1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.18); border-radius: 14px; padding: 12px; }
-    .bbas-info-box h3 { margin: 0 0 6px; font-size: 13px; }
-    .bbas-info-box p { margin: 0; font-size: 12px; color: rgba(255,255,255,0.68); }
-    .bbas-info-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.10); font-size: 12px; color: rgba(255,255,255,0.55); }
+
+    .side-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.14);
+    }
+
+    .side h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .side p {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.4;
+    }
+
+    .side-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .side-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 10px;
+    }
+
+    .side-card strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+      margin-bottom: 4px;
+    }
+
+    .side-card span {
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      line-height: 1.35;
+      display: block;
+    }
+
+    .side-foot {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      font-size: 12px;
+      color: rgba(255,255,255,.58);
+      line-height: 1.35;
+    }
+
+    /* Keep option lists from forcing page scroll while keeping nav visible */
+    .scroll-area {
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 4px;
+    }
 
     @media (max-width: 980px) {
-      .bbas-funnel-grid { grid-template-columns: 1fr; }
-      .bbas-info { order: 2; }
-      .bbas-card { order: 1; }
-      .bbas-content { max-height: none; }
+      .grid { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .funnel { max-width: 100%; }
+      .scroll-area { max-height: none; overflow: visible; }
     }
+
     @media (max-width: 560px) {
-      .bbas-options { grid-template-columns: 1fr; }
-      .bbas-fields { grid-template-columns: 1fr; }
-      .bbas-fields.three { grid-template-columns: 1fr; }
-      .bbas-btn { min-width: 46%; }
+      .choices { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .btn { min-width: 0; width: 100%; }
+      .nav { flex-direction: column; }
+      .q-title { font-size: 24px; }
     }
   </style>
 </head>
 
-<body class="bbas-funnel-page">
-  <!-- Global header injection -->
+<body>
   <div id="siteHeader"></div>
 
-  <main class="bbas-funnel-shell">
-    <section class="bbas-funnel-hero">
-      <div class="bbas-funnel-pill"><span class="dot"></span>Get started in under 60 seconds.</div>
+  <main class="bbas-wrap">
+    <section class="hero">
+      <div class="hero-top"><span class="hero-dot"></span><span>Get started in under 60 seconds.</span></div>
       <h1>Buy or sell a business, with confidence.</h1>
       <p>Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
     </section>
 
-    <section class="bbas-funnel-grid" aria-label="Business Buying and Selling funnel">
-      <div class="bbas-card" id="bbasCard">
-        <div class="bbas-card-header">
-          <div class="bbas-steps">
-            <span id="bbasStepLabel">Step 1 of 1</span>
-            <a href="#" id="bbasStartOver" style="color: rgba(0,0,0,0.65); text-decoration: underline;">Start over</a>
+    <section class="grid">
+      <div class="funnel" aria-live="polite">
+        <div class="funnel-head">
+          <div class="funnel-progress">
+            <div><span id="stepLabel">Step 1 of 1</span></div>
+            <button id="startOverBtn" type="button" style="border:none;background:transparent;color:rgba(17,24,39,.65);text-decoration:underline;cursor:pointer;font-weight:600;">Start over</button>
           </div>
-          <div class="bbas-progress" aria-hidden="true"><div id="bbasProgress"></div></div>
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
         </div>
 
-        <div class="bbas-card-body">
-          <div>
-            <h2 class="bbas-q" id="bbasQuestion">What are you here to do?</h2>
-            <p class="bbas-sub" id="bbasSub">Choose one to start. You can switch later.</p>
-          </div>
+        <div class="funnel-body" id="funnelBody"></div>
 
-          <div class="bbas-content" id="bbasContent"></div>
+        <div class="nav" id="navBar">
+          <button class="btn" id="prevBtn" type="button">Previous</button>
+          <button class="btn primary" id="nextBtn" type="button">Next</button>
         </div>
-
-        <div class="bbas-card-footer" id="bbasFooter">
-          <button class="bbas-btn" id="bbasPrev" type="button">Previous</button>
-          <button class="bbas-btn primary" id="bbasNext" type="button">Next</button>
-        </div>
-
-        <div class="bbas-footnote">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
       </div>
 
-      <aside class="bbas-info">
-        <div class="tag"><span style="width:10px;height:10px;border-radius:50%;background:#22c55e;display:inline-block;"></span>What you get</div>
-        <h2>Clarity first. Decisions second.</h2>
+      <aside class="side">
+        <div class="side-badge"><span class="side-dot"></span><span>What you get</span></div>
+        <h3>Clarity first. Decisions second.</h3>
         <p>We are building a marketplace plus a practical knowledge hub, so both buyers and owners move faster and waste less time.</p>
-        <div class="bbas-info-grid">
-          <div class="bbas-info-box">
-            <h3>Clear numbers</h3>
-            <p>Revenue, cash flow, margin, lease terms, and what is included in the sale.</p>
-          </div>
-          <div class="bbas-info-box">
-            <h3>Better matching</h3>
-            <p>Filter by type, budget, timeline, and involvement level. No guessing.</p>
-          </div>
-          <div class="bbas-info-box">
-            <h3>Buyer readiness</h3>
-            <p>Checklists and questions that prevent the usual deal-stalling surprises.</p>
-          </div>
-          <div class="bbas-info-box">
-            <h3>Owner support</h3>
-            <p>Simple guidance on prep, documentation, and what serious buyers expect.</p>
-          </div>
+        <div class="side-grid">
+          <div class="side-card"><strong>Clear numbers</strong><span>Revenue, cash flow, margin, lease terms, and what is included in the sale.</span></div>
+          <div class="side-card"><strong>Better matching</strong><span>Filter by type, budget, timeline, and involvement level. No guessing.</span></div>
+          <div class="side-card"><strong>Buyer readiness</strong><span>Checklists and questions that prevent the usual deal-stalling surprises.</span></div>
+          <div class="side-card"><strong>Owner support</strong><span>Simple guidance on prep, documentation, and what serious buyers expect.</span></div>
         </div>
-        <div class="bbas-info-foot">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
+        <div class="side-foot">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
       </aside>
     </section>
   </main>
 
-  <!-- Global footer injection -->
   <div id="siteFooter"></div>
 
-  <script src="/assets/js/includes.js"></script>
-  <script src="/assets/js/site.js"></script>
+  <script src="includes.js"></script>
+  <script src="site.js"></script>
 
   <script>
-  (function() {
-    // Use the same Turnstile sitekey pattern as your approved pages:
-    // <html data-turnstile-sitekey="...">
-    var siteKey = document.documentElement.getAttribute('data-turnstile-sitekey') || '';
-    if (!siteKey) {
-      // keep empty: your server/template can inject it. We still render if present.
-    }
-
-    var stateOptions = [
-      {v:"AL",t:"Alabama"},{v:"AK",t:"Alaska"},{v:"AZ",t:"Arizona"},{v:"AR",t:"Arkansas"},{v:"CA",t:"California"},
-      {v:"CO",t:"Colorado"},{v:"CT",t:"Connecticut"},{v:"DE",t:"Delaware"},{v:"FL",t:"Florida"},{v:"GA",t:"Georgia"},
-      {v:"HI",t:"Hawaii"},{v:"ID",t:"Idaho"},{v:"IL",t:"Illinois"},{v:"IN",t:"Indiana"},{v:"IA",t:"Iowa"},
-      {v:"KS",t:"Kansas"},{v:"KY",t:"Kentucky"},{v:"LA",t:"Louisiana"},{v:"ME",t:"Maine"},{v:"MD",t:"Maryland"},
-      {v:"MA",t:"Massachusetts"},{v:"MI",t:"Michigan"},{v:"MN",t:"Minnesota"},{v:"MS",t:"Mississippi"},{v:"MO",t:"Missouri"},
-      {v:"MT",t:"Montana"},{v:"NE",t:"Nebraska"},{v:"NV",t:"Nevada"},{v:"NH",t:"New Hampshire"},{v:"NJ",t:"New Jersey"},
-      {v:"NM",t:"New Mexico"},{v:"NY",t:"New York"},{v:"NC",t:"North Carolina"},{v:"ND",t:"North Dakota"},{v:"OH",t:"Ohio"},
-      {v:"OK",t:"Oklahoma"},{v:"OR",t:"Oregon"},{v:"PA",t:"Pennsylvania"},{v:"RI",t:"Rhode Island"},{v:"SC",t:"South Carolina"},
-      {v:"SD",t:"South Dakota"},{v:"TN",t:"Tennessee"},{v:"TX",t:"Texas"},{v:"UT",t:"Utah"},{v:"VT",t:"Vermont"},
-      {v:"VA",t:"Virginia"},{v:"WA",t:"Washington"},{v:"WV",t:"West Virginia"},{v:"WI",t:"Wisconsin"},{v:"WY",t:"Wyoming"}
+    // -----------------------------
+    // Funnel data (per your latest spec)
+    // -----------------------------
+    const BUSINESS_TYPES = [
+      "Auto Repair","Construction","Car washes","Day care","Dry Cleaners","Dog grooming","Gas Station","Food truck",
+      "Hair Salon/Barber Shop","Heating & Air","Hotel/Motels","Ice cream shop","Liquor store","Retail","Restaurants","Vape shop","Other"
     ];
 
-    var businessTypes = [
-      "Auto Repair","Construction","Car washes","Day care","Dry Cleaners","Dog grooming",
-      "Gas Station","Food truck","Hair Salon/Barber Shop","Heating & Air",
-      "Hotel/Motels","Ice cream shop","Liquor store","Retail","Restaurants","Vape shop","Other (please specify)"
+    const SELLER_STEPS = [
+      {
+        id: "sell_timing",
+        title: "How soon are you looking to sell your business?",
+        subtitle: "Choose one to start.",
+        type: "single",
+        key: "sell_timing",
+        options: [
+          { value: "ready_now", label: "I am ready now" },
+          { value: "not_ready_talk", label: "Not right now, but want to speak with someone" }
+        ],
+        autoAdvance: true
+      },
+      {
+        id: "sell_type",
+        title: "What type of business you own?",
+        subtitle: "Owner-operated businesses.",
+        type: "single",
+        key: "business_type",
+        options: BUSINESS_TYPES.map(v => ({ value: v, label: v })),
+        hasOther: true
+      },
+      {
+        id: "sell_revenue",
+        title: "What was your Gross Revenue in the last 12 months?",
+        subtitle: "",
+        type: "single",
+        key: "gross_revenue",
+        options: [
+          { value: "under_250k", label: "Under $250k" },
+          { value: "250_500", label: "$250k - $500k" },
+          { value: "500_750", label: "$500k - $750k" },
+          { value: "over_1m", label: "+ $1 million" }
+        ]
+      },
+      {
+        id: "sell_profit",
+        title: "What was your Gross Profit in the last 12 months?",
+        subtitle: "",
+        type: "single",
+        key: "gross_profit",
+        options: [
+          { value: "under_50k", label: "Under $50k" },
+          { value: "50_150", label: "$50k - $150k" },
+          { value: "150_250", label: "$150k - $250k" },
+          { value: "250_500", label: "$250k - $500k" }
+        ]
+      },
+      {
+        id: "sell_location",
+        title: "Where is the business located?",
+        subtitle: "Add the business name and address.",
+        type: "location_full",
+        key: "business_location"
+      },
+      {
+        id: "contact",
+        title: "Contact info",
+        subtitle: "We will only use this to send early access and next steps.",
+        type: "contact",
+        key: "contact"
+      }
     ];
 
-    // Funnel definitions
-    var funnels = {
-      intro: [
-        {
-          key: "intent",
-          q: "What are you here to do?",
-          sub: "Choose one to start. You can switch later.",
-          type: "intro",
-          options: [
-            { value: "sell", title: "I want to sell my business", desc: "Understand value, timeline, and the best next steps." },
-            { value: "buy",  title: "I want to buy a business",  desc: "Find the right type of deal without the franchise route." }
-          ]
-        }
-      ],
-      sell: [
-        {
-          key: "business_type",
-          q: "What type of business do you own?",
-          sub: "Owner-operated businesses.",
-          type: "radio",
-          columns: 2,
-          options: businessTypes
-        },
-        {
-          key: "timeline",
-          q: "When are you looking to sell?",
-          sub: "",
-          type: "radio",
-          columns: 1,
-          options: ["I am ready now","In the next 3 months","In the next 6 months","Not right now, but want to speak with someone"]
-        },
-        {
-          key: "price",
-          q: "What is the approximate sale price?",
-          sub: "",
-          type: "radio",
-          columns: 1,
-          options: ["Under $250k","$250k - $500k","$500k - $1M","$1M - $3M","$3M+"]
-        },
-        {
-          key: "location",
-          q: "Where is the business located?",
-          sub: "Add the business name and address.",
-          type: "address_seller"
-        },
-        {
-          key: "contact",
-          q: "Contact info",
-          sub: "We will only use this to send early access and next steps.",
-          type: "contact"
-        }
-      ],
-      buy: [
-        {
-          key: "business_type",
-          q: "What type of business?",
-          sub: "",
-          type: "radio",
-          columns: 2,
-          options: businessTypes
-        },
-        {
-          key: "budget",
-          q: "What is your budget range?",
-          sub: "",
-          type: "radio",
-          columns: 1,
-          options: ["Under $250k","$250k - $500k","$500k - $1M","$1M - $3M","$3M+"]
-        },
-        {
-          key: "location_pref",
-          q: "Where do you want the business to be located?",
-          sub: "",
-          type: "address_buyer"
-        },
-        {
-          key: "contact",
-          q: "Contact info",
-          sub: "We will only use this to send early access and next steps.",
-          type: "contact"
-        }
-      ]
+    const BUYER_STEPS = [
+      {
+        id: "buy_type",
+        title: "What type of Business?",
+        subtitle: "Choose one.",
+        type: "single",
+        key: "business_type",
+        options: BUSINESS_TYPES.map(v => ({ value: v, label: v })),
+        hasOther: true
+      },
+      {
+        id: "buy_price",
+        title: "What Purchase Price?",
+        subtitle: "",
+        type: "single",
+        key: "purchase_price",
+        options: [
+          { value: "under_100k", label: "Under $100k" },
+          { value: "100_250", label: "$100k - $250k" },
+          { value: "250_500", label: "$250k - $500k" },
+          { value: "over_1m", label: "+ $1 mill" }
+        ]
+      },
+      {
+        id: "buy_location",
+        title: "Where do you want the business to be located?",
+        subtitle: "",
+        type: "location_city_state",
+        key: "desired_location"
+      },
+      {
+        id: "contact",
+        title: "Contact info",
+        subtitle: "We will only use this to send early access and next steps.",
+        type: "contact",
+        key: "contact"
+      }
+    ];
+
+    // -----------------------------
+    // State
+    // -----------------------------
+    const state = {
+      mode: null, // "seller" | "buyer"
+      stepIndex: 0,
+      steps: [],
+      answers: { path: null },
+      turnstileToken: ""
     };
 
-    var state = {
-      funnel: "intro",
-      step: 0,
-      answers: {}
-    };
-
-    // Elements
-    var elQuestion = document.getElementById("bbasQuestion");
-    var elSub = document.getElementById("bbasSub");
-    var elContent = document.getElementById("bbasContent");
-    var elStepLabel = document.getElementById("bbasStepLabel");
-    var elProgress = document.getElementById("bbasProgress");
-    var elPrev = document.getElementById("bbasPrev");
-    var elNext = document.getElementById("bbasNext");
-    var elFooter = document.getElementById("bbasFooter");
-    var elStartOver = document.getElementById("bbasStartOver");
-
-    function setFooterMode(mode) {
-      // mode: "hidden" for intro (auto-advance), "nav" for normal steps
-      if (mode === "hidden") {
-        elFooter.style.display = "none";
-      } else {
-        elFooter.style.display = "flex";
-      }
+    // -----------------------------
+    // Helpers: input formatting
+    // -----------------------------
+    function capWords(str) {
+      return (str || "")
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(" ");
     }
 
-    function setProgress() {
-      var steps = funnels[state.funnel];
-      var total = steps.length;
-      elStepLabel.textContent = "Step " + (state.step + 1) + " of " + total;
-      var pct = ((state.step + 1) / total) * 100;
-      elProgress.style.width = pct + "%";
+    function capCity(str) {
+      return capWords(str);
     }
 
-    function optionButton(opt, key) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "bbas-choice";
-      btn.setAttribute("data-value", opt.value || opt);
-      btn.setAttribute("data-key", key);
-      btn.setAttribute("aria-pressed", "false");
-
-      var radio = document.createElement("span");
-      radio.className = "bbas-radio";
-
-      var wrap = document.createElement("div");
-      var h = document.createElement("h3");
-      h.textContent = opt.title || String(opt);
-      var p = document.createElement("p");
-      if (opt.desc) p.textContent = opt.desc;
-      wrap.appendChild(h);
-      if (opt.desc) wrap.appendChild(p);
-
-      btn.appendChild(radio);
-      btn.appendChild(wrap);
-      return btn;
+    function capBusiness(str) {
+      const words = (str || "").split(/\s+/).filter(Boolean);
+      return words.map(w => {
+        if (w.length <= 2 && w === w.toUpperCase()) return w;
+        if (/^[A-Z0-9&.-]+$/.test(w) && w.length <= 4) return w;
+        return w.charAt(0).toUpperCase() + w.slice(1);
+      }).join(" ");
     }
 
-    function renderRadioStep(stepDef) {
-      var selected = state.answers[stepDef.key] || "";
-      var grid = document.createElement("div");
-      grid.className = "bbas-options" + (stepDef.columns === 1 ? " onecol" : "");
-      stepDef.options.forEach(function(opt) {
-        var btn = optionButton(opt, stepDef.key);
-        var val = btn.getAttribute("data-value");
-        if (val === selected) btn.setAttribute("aria-pressed", "true");
-        grid.appendChild(btn);
-      });
-      elContent.appendChild(grid);
-
-      // For radio steps, require selection to enable Next
-      elNext.disabled = !selected;
-    }
-
-    function renderAddressSeller(stepDef) {
-      var a = state.answers || {};
-      var box = document.createElement("div");
-      box.className = "bbas-fields onecol";
-
-      // Business Name
-      box.appendChild(field("Business Name", "business_name", "text", a.business_name || "", {autocapitalize:"words"}));
-      // Street
-      box.appendChild(field("Street address", "street", "text", a.street || "", {autocapitalize:"words"}));
-
-      // City | State | Zip
-      var row = document.createElement("div");
-      row.className = "bbas-fields three";
-
-      row.appendChild(field("City", "city", "text", a.city || "", {autocapitalize:"words"}));
-
-      var stateField = document.createElement("div");
-      stateField.className = "bbas-field";
-      var label = document.createElement("label");
-      label.textContent = "State";
-      var sel = document.createElement("select");
-      sel.name = "state";
-      sel.id = "state";
-      sel.innerHTML = '<option value="">Select</option>' + stateOptions.map(function(s){ return '<option value="'+s.v+'">'+s.t+'</option>'; }).join("");
-      sel.value = a.state || "";
-      stateField.appendChild(label);
-      stateField.appendChild(sel);
-      row.appendChild(stateField);
-
-      row.appendChild(field("Zip", "zip", "text", a.zip || "", {inputmode:"numeric", autocomplete:"postal-code"}));
-
-      box.appendChild(row);
-      elContent.appendChild(box);
-
-      // Validation
-      elNext.disabled = !(val("business_name") && val("street") && val("city") && valSel("state") && val("zip"));
-    }
-
-    function renderAddressBuyer(stepDef) {
-      var a = state.answers || {};
-      var box = document.createElement("div");
-      box.className = "bbas-fields onecol";
-
-      box.appendChild(field("City", "city", "text", a.city || "", {autocapitalize:"words"}));
-
-      var stateField = document.createElement("div");
-      stateField.className = "bbas-field";
-      var label = document.createElement("label");
-      label.textContent = "State";
-      var sel = document.createElement("select");
-      sel.name = "state";
-      sel.id = "state";
-      sel.innerHTML = '<option value="">Select</option>' + stateOptions.map(function(s){ return '<option value="'+s.v+'">'+s.t+'</option>'; }).join("");
-      sel.value = a.state || "";
-      stateField.appendChild(label);
-      stateField.appendChild(sel);
-      box.appendChild(stateField);
-
-      elContent.appendChild(box);
-      elNext.disabled = !(val("city") && valSel("state"));
-    }
-
-    function renderContact(stepDef) {
-      var a = state.answers || {};
-      var box = document.createElement("div");
-      box.className = "bbas-fields onecol";
-
-      var row = document.createElement("div");
-      row.className = "bbas-fields";
-      row.appendChild(field("First Name", "first_name", "text", a.first_name || "", {autocapitalize:"words"}));
-      row.appendChild(field("Last Name", "last_name", "text", a.last_name || "", {autocapitalize:"words"}));
-      box.appendChild(row);
-
-      box.appendChild(field("Email", "email", "email", a.email || "", {autocomplete:"email"}));
-      box.appendChild(field("Phone", "phone", "tel", a.phone || "", {inputmode:"tel", autocomplete:"tel"}));
-      box.appendChild(field("Anything else we should know?", "message", "textarea", a.message || "", {}));
-
-      // Turnstile placeholder
-      var tsWrap = document.createElement("div");
-      tsWrap.className = "bbas-field";
-      var tsLabel = document.createElement("label");
-      tsLabel.textContent = "";
-      var ts = document.createElement("div");
-      ts.id = "turnstileContainer";
-      tsWrap.appendChild(tsLabel);
-      tsWrap.appendChild(ts);
-      box.appendChild(tsWrap);
-
-      elContent.appendChild(box);
-
-      // Render turnstile (once per visit)
-      maybeRenderTurnstile();
-
-      // Validation requires turnstile token too
-      elNext.textContent = "Submit";
-      elNext.disabled = !(val("first_name") && val("last_name") && val("email") && val("phone") && (state.answers.turnstile_token || ""));
-    }
-
-    function field(labelText, name, type, value, attrs) {
-      var wrap = document.createElement("div");
-      wrap.className = "bbas-field";
-      var label = document.createElement("label");
-      label.textContent = labelText;
-
-      var input;
-      if (type === "textarea") {
-        input = document.createElement("textarea");
-        input.placeholder = "Example: I am looking for a convenience store and want to understand timeline and next steps.";
-      } else {
-        input = document.createElement("input");
-        input.type = type;
-      }
-      input.name = name;
-      input.id = name;
-      input.value = value || "";
-
-      // Apply attributes
-      attrs = attrs || {};
-      Object.keys(attrs).forEach(function(k){ input.setAttribute(k, attrs[k]); });
-
-      // Autocapitalize fallback (desktop browsers often ignore)
-      if (attrs.autocapitalize === "words") {
-        input.addEventListener("blur", function() {
-          var v = input.value || "";
-          input.value = v.replace(/\s+/g," ").split(" ").map(function(w){
-            return w ? (w[0].toUpperCase() + w.slice(1)) : "";
-          }).join(" ").trim();
-        });
-      }
-
-      // Phone formatting
-      if (name === "phone") {
-        input.addEventListener("input", function() {
-          input.value = formatPhone(input.value);
-        });
-      }
-
-      input.addEventListener("input", function() { onFieldInput(); });
-      input.addEventListener("change", function() { onFieldInput(); });
-
-      wrap.appendChild(label);
-      wrap.appendChild(input);
-      return wrap;
-    }
-
-    function formatPhone(raw) {
-      var digits = String(raw || "").replace(/\D/g, "").slice(0, 10);
-      var a = digits.slice(0,3), b = digits.slice(3,6), c = digits.slice(6,10);
+    function formatPhone(value) {
+      const digits = (value || "").replace(/\D/g, "").slice(0, 10);
+      const a = digits.slice(0,3);
+      const b = digits.slice(3,6);
+      const c = digits.slice(6,10);
       if (digits.length <= 3) return a;
       if (digits.length <= 6) return "(" + a + ") " + b;
       return "(" + a + ") " + b + "-" + c;
     }
 
-    function val(id) {
-      var el = document.getElementById(id);
-      return el && String(el.value || "").trim();
-    }
-    function valSel(id) {
-      var el = document.getElementById(id);
-      return el && String(el.value || "").trim();
-    }
-
-    function onFieldInput() {
-      // persist field values
-      ["business_name","street","city","state","zip","first_name","last_name","email","phone","message"].forEach(function(k){
-        var el = document.getElementById(k);
-        if (!el) return;
-        state.answers[k] = (k === "state") ? el.value : el.value;
+    function attachCapHandlers(root) {
+      const nodes = root.querySelectorAll("[data-cap]");
+      nodes.forEach(el => {
+        el.addEventListener("blur", () => {
+          const kind = el.getAttribute("data-cap");
+          if (kind === "words") el.value = capWords(el.value);
+          if (kind === "city") el.value = capCity(el.value);
+          if (kind === "business") el.value = capBusiness(el.value);
+          if (kind === "state") el.value = (el.value || "").toUpperCase().slice(0, 2);
+        });
       });
 
-      // toggle next enabled based on step
-      var stepDef = funnels[state.funnel][state.step];
-      if (!stepDef) return;
-
-      if (stepDef.type === "address_seller") {
-        elNext.disabled = !(val("business_name") && val("street") && val("city") && valSel("state") && val("zip"));
-      } else if (stepDef.type === "address_buyer") {
-        elNext.disabled = !(val("city") && valSel("state"));
-      } else if (stepDef.type === "contact") {
-        elNext.disabled = !(val("first_name") && val("last_name") && val("email") && val("phone") && (state.answers.turnstile_token || ""));
-      }
-    }
-
-    var turnstileWidgetId = null;
-    function maybeRenderTurnstile() {
-      // Only render if container exists and sitekey present
-      if (!siteKey) return;
-      var container = document.getElementById("turnstileContainer");
-      if (!container) return;
-
-      if (turnstileWidgetId !== null) return;
-
-      var tryRender = function() {
-        if (!window.turnstile || !window.turnstile.render) return false;
-        turnstileWidgetId = window.turnstile.render(container, {
-          sitekey: siteKey,
-          callback: function(token) {
-            state.answers.turnstile_token = token || "";
-            onFieldInput();
-          },
-          "error-callback": function() {
-            state.answers.turnstile_token = "";
-            onFieldInput();
-          },
-          "expired-callback": function() {
-            state.answers.turnstile_token = "";
-            onFieldInput();
-          }
+      const phone = root.querySelector('input[data-format="phone"]');
+      if (phone) {
+        phone.addEventListener("input", () => {
+          const pos = phone.selectionStart;
+          phone.value = formatPhone(phone.value);
+          try { phone.setSelectionRange(pos, pos); } catch(e) {}
         });
-        return true;
-      };
-
-      // attempt now and also a few times after in case script loads late
-      if (tryRender()) return;
-      var tries = 0;
-      var iv = setInterval(function() {
-        tries++;
-        if (tryRender() || tries > 25) clearInterval(iv);
-      }, 200);
-    }
-
-    function render() {
-      var steps = funnels[state.funnel];
-      var stepDef = steps[state.step];
-
-      // Reset
-      elContent.innerHTML = "";
-      elNext.textContent = "Next";
-      elPrev.textContent = "Previous";
-
-      elQuestion.textContent = stepDef.q;
-      elSub.textContent = stepDef.sub || "";
-
-      // Footer rules
-      if (state.funnel === "intro") {
-        setFooterMode("hidden");
-      } else {
-        setFooterMode("nav");
-      }
-
-      setProgress();
-
-      // Prev enabled
-      elPrev.disabled = (state.step === 0);
-
-      // Render by type
-      if (stepDef.type === "intro") {
-        var grid = document.createElement("div");
-        grid.className = "bbas-options";
-        stepDef.options.forEach(function(opt) {
-          var btn = optionButton(opt, "intent");
-          grid.appendChild(btn);
+        phone.addEventListener("blur", () => {
+          phone.value = formatPhone(phone.value);
         });
-        elContent.appendChild(grid);
-      } else if (stepDef.type === "radio") {
-        renderRadioStep(stepDef);
-      } else if (stepDef.type === "address_seller") {
-        renderAddressSeller(stepDef);
-      } else if (stepDef.type === "address_buyer") {
-        renderAddressBuyer(stepDef);
-      } else if (stepDef.type === "contact") {
-        renderContact(stepDef);
       }
     }
 
-    function advance() {
-      var steps = funnels[state.funnel];
-      if (state.step < steps.length - 1) {
-        state.step++;
-        render();
-        // keep focus near top of card
-        document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
-      } else {
-        // Submit: here you'd POST to API. For now just log.
-        console.log("Funnel submit:", state.funnel, state.answers);
-
-        // Optional success state (simple)
-        elContent.innerHTML = "<div style='padding:10px 0; color: rgba(0,0,0,0.78); font-size: 15px; line-height: 1.45;'><strong>Success!</strong><br>We received your info. We will follow up with next steps.</div>";
-        elFooter.style.display = "none";
-        elQuestion.textContent = "All set.";
-        elSub.textContent = "Thank you.";
-        elProgress.style.width = "100%";
-      }
+    // -----------------------------
+    // Turnstile
+    // -----------------------------
+    function getTurnstileSitekey() {
+      return (window.TURNSTILE_SITEKEY || "0x4AAAAAAABkKfJ7l8yTt7pJ");
     }
 
-    function back() {
-      if (state.step > 0) {
-        state.step--;
-        render();
-        document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
-      }
-    }
+    function ensureTurnstile() {
+      const mount = document.getElementById("turnstileMount");
+      if (!mount) return;
+      if (mount.dataset.rendered === "1") return;
 
-    // Click delegation for choices
-    elContent.addEventListener("click", function(e) {
-      var btn = e.target.closest(".bbas-choice");
-      if (!btn) return;
-
-      var key = btn.getAttribute("data-key");
-      var value = btn.getAttribute("data-value");
-
-      if (state.funnel === "intro") {
-        // Set funnel and auto-advance immediately
-        state.answers.intent = value;
-        state.funnel = (value === "sell") ? "sell" : "buy";
-        state.step = 0;
-        render();
+      if (!window.turnstile || typeof window.turnstile.render !== "function") {
+        setTimeout(ensureTurnstile, 200);
         return;
       }
 
-      // Radio selection
-      if (key) {
-        state.answers[key] = value;
-        // Update aria-pressed in this group
-        var siblings = elContent.querySelectorAll('.bbas-choice[data-key="' + key + '"]');
-        siblings.forEach(function(s){ s.setAttribute("aria-pressed", "false"); });
-        btn.setAttribute("aria-pressed", "true");
-        elNext.disabled = false;
-      }
-    });
+      mount.dataset.rendered = "1";
+      const sitekey = getTurnstileSitekey();
 
-    elNext.addEventListener("click", function() {
-      if (elNext.disabled) return;
+      window.turnstile.render("#turnstileMount", {
+        sitekey: sitekey,
+        theme: "light",
+        callback: (token) => {
+          state.turnstileToken = token || "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = state.turnstileToken;
+          validateStep();
+        },
+        "error-callback": () => {
+          state.turnstileToken = "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = "";
+          validateStep();
+        },
+        "expired-callback": () => {
+          state.turnstileToken = "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = "";
+          validateStep();
+        }
+      });
+    }
 
-      var stepDef = funnels[state.funnel][state.step];
-      if (stepDef.type === "radio") {
-        // must have answer stored
-        if (!state.answers[stepDef.key]) return;
-      }
-      if (stepDef.type === "contact") {
-        // contact requires token, etc
-        if (elNext.disabled) return;
-      }
-      advance();
-    });
+    window.tsOnload = function() {
+      ensureTurnstile();
+    };
 
-    elPrev.addEventListener("click", function() {
-      back();
-    });
+    // -----------------------------
+    // Rendering
+    // -----------------------------
+    const funnelBody = document.getElementById("funnelBody");
+    const stepLabel = document.getElementById("stepLabel");
+    const progressBar = document.getElementById("progressBar");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const navBar = document.getElementById("navBar");
+    const startOverBtn = document.getElementById("startOverBtn");
 
-    elStartOver.addEventListener("click", function(e) {
-      e.preventDefault();
-      state.funnel = "intro";
-      state.step = 0;
-      state.answers = {};
-      turnstileWidgetId = null;
+    function setMode(mode) {
+      state.mode = mode;
+      state.stepIndex = 0;
+      state.answers = { path: mode };
+      state.turnstileToken = "";
+      state.steps = (mode === "seller") ? SELLER_STEPS.slice() : BUYER_STEPS.slice();
       render();
-      document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
-    });
+    }
 
-    // Initial render
-    render();
-  })();
+    function startOver() {
+      state.mode = null;
+      state.stepIndex = 0;
+      state.steps = [];
+      state.answers = { path: null };
+      state.turnstileToken = "";
+      render();
+    }
+
+    startOverBtn.addEventListener("click", startOver);
+
+    function currentStep() {
+      if (!state.mode) return null;
+      return state.steps[state.stepIndex] || null;
+    }
+
+    function totalSteps() {
+      if (!state.mode) return 1;
+      return state.steps.length;
+    }
+
+    function stepNumber() {
+      if (!state.mode) return 1;
+      return state.stepIndex + 1;
+    }
+
+    function updateProgress() {
+      const total = totalSteps();
+      const num = stepNumber();
+      stepLabel.textContent = "Step " + num + " of " + total;
+      const pct = (total <= 1) ? 0 : Math.round(((num - 1) / (total - 1)) * 100);
+      progressBar.style.width = pct + "%";
+    }
+
+    function renderStart() {
+      navBar.style.display = "none";
+      stepLabel.textContent = "Step 1 of 1";
+      progressBar.style.width = "0%";
+      funnelBody.innerHTML = `
+        <h2 class="q-title">What are you here to do?</h2>
+        <p class="q-sub">Choose one to start. You can switch later.</p>
+
+        <div class="choices">
+          <label class="choice with-icon" data-choice="seller">
+            <span class="choice-icon"><img src="bbas_icons_fb.png" alt="" onerror="this.style.display='none'"></span>
+            <input type="radio" name="path" value="seller">
+            <strong>I want to sell my business</strong>
+            <span>Understand value, timeline, and the best next steps.</span>
+          </label>
+
+          <label class="choice with-icon" data-choice="buyer">
+            <span class="choice-icon"><img src="bbas_icons_linkedin.png" alt="" onerror="this.style.display='none'"></span>
+            <input type="radio" name="path" value="buyer">
+            <strong>I want to buy a business</strong>
+            <span>Find the right type of deal without the franchise route.</span>
+          </label>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      funnelBody.querySelectorAll(".choice").forEach(card => {
+        card.addEventListener("click", () => {
+          const val = card.getAttribute("data-choice");
+          if (val === "seller") setMode("seller");
+          if (val === "buyer") setMode("buyer");
+        });
+      });
+    }
+
+    function renderSingle(step) {
+      const saved = state.answers[step.key] || "";
+      const optionsHtml = step.options.map(o => {
+        const checked = (saved === o.value) ? "checked" : "";
+        const label = o.label;
+        return `
+          <label class="choice" data-value="${o.value}">
+            <input type="radio" name="q" value="${o.value}" ${checked}>
+            <strong>${label}</strong>
+          </label>
+        `;
+      }).join("");
+
+      const showOther = step.hasOther && saved === "Other";
+      const otherVal = state.answers[step.key + "_other"] || "";
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="scroll-area">
+          <div class="choices">
+            ${optionsHtml}
+          </div>
+
+          ${step.hasOther ? `
+          <div class="other-wrap" id="otherWrap" style="display:${showOther ? "block" : "none"}">
+            <div class="field">
+              <label>Other (please specify)</label>
+              <input type="text" id="otherInput" value="${escapeHtml(otherVal)}" placeholder="Type here">
+            </div>
+          </div>
+          ` : ``}
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      funnelBody.querySelectorAll(".choice").forEach(card => {
+        const input = card.querySelector("input[type=radio]");
+        if (input && input.checked) card.classList.add("selected");
+
+        card.addEventListener("click", () => {
+          funnelBody.querySelectorAll(".choice").forEach(c => c.classList.remove("selected"));
+          card.classList.add("selected");
+          input.checked = true;
+          state.answers[step.key] = input.value;
+
+          if (step.hasOther) {
+            const wrap = document.getElementById("otherWrap");
+            if (wrap) wrap.style.display = (input.value === "Other") ? "block" : "none";
+          }
+
+          validateStep();
+
+          if (step.autoAdvance) {
+            setTimeout(() => goNext(), 120);
+          }
+        });
+      });
+
+      if (step.hasOther) {
+        const other = document.getElementById("otherInput");
+        if (other) {
+          other.addEventListener("input", () => {
+            state.answers[step.key + "_other"] = other.value;
+            validateStep();
+          });
+        }
+      }
+    }
+
+    function renderLocationFull(step) {
+      const loc = state.answers[step.key] || {};
+      const stateVal = loc.state || "FL";
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid onecol">
+          <div class="field">
+            <label>Business Name</label>
+            <input id="businessName" type="text" value="${escapeHtml(loc.business_name || "")}" placeholder="Business name" data-cap="business" autocapitalize="words">
+          </div>
+
+          <div class="field">
+            <label>Street</label>
+            <input id="street" type="text" value="${escapeHtml(loc.street || "")}" placeholder="Street address">
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>City</label>
+              <input id="city" type="text" value="${escapeHtml(loc.city || "")}" placeholder="City" data-cap="city" autocapitalize="words">
+            </div>
+
+            <div class="field">
+              <label>State</label>
+              <select id="stateSelect">
+                <option value="AL">Alabama</option>
+<option value="AK">Alaska</option>
+<option value="AZ">Arizona</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+<option value="CT">Connecticut</option>
+<option value="DE">Delaware</option>
+<option value="DC">District of Columbia</option>
+<option value="FL">Florida</option>
+<option value="GA">Georgia</option>
+<option value="HI">Hawaii</option>
+<option value="ID">Idaho</option>
+<option value="IL">Illinois</option>
+<option value="IN">Indiana</option>
+<option value="IA">Iowa</option>
+<option value="KS">Kansas</option>
+<option value="KY">Kentucky</option>
+<option value="LA">Louisiana</option>
+<option value="ME">Maine</option>
+<option value="MD">Maryland</option>
+<option value="MA">Massachusetts</option>
+<option value="MI">Michigan</option>
+<option value="MN">Minnesota</option>
+<option value="MS">Mississippi</option>
+<option value="MO">Missouri</option>
+<option value="MT">Montana</option>
+<option value="NE">Nebraska</option>
+<option value="NV">Nevada</option>
+<option value="NH">New Hampshire</option>
+<option value="NJ">New Jersey</option>
+<option value="NM">New Mexico</option>
+<option value="NY">New York</option>
+<option value="NC">North Carolina</option>
+<option value="ND">North Dakota</option>
+<option value="OH">Ohio</option>
+<option value="OK">Oklahoma</option>
+<option value="OR">Oregon</option>
+<option value="PA">Pennsylvania</option>
+<option value="RI">Rhode Island</option>
+<option value="SC">South Carolina</option>
+<option value="SD">South Dakota</option>
+<option value="TN">Tennessee</option>
+<option value="TX">Texas</option>
+<option value="UT">Utah</option>
+<option value="VT">Vermont</option>
+<option value="VA">Virginia</option>
+<option value="WA">Washington</option>
+<option value="WV">West Virginia</option>
+<option value="WI">Wisconsin</option>
+<option value="WY">Wyoming</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Zip</label>
+              <input id="zip" type="text" inputmode="numeric" value="${escapeHtml(loc.zip || "")}" placeholder="Zip code" maxlength="10">
+            </div>
+          </div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const businessName = document.getElementById("businessName");
+      const street = document.getElementById("street");
+      const city = document.getElementById("city");
+      const stateSelect = document.getElementById("stateSelect");
+      const zip = document.getElementById("zip");
+
+      stateSelect.value = stateVal;
+
+      [businessName, street, city, stateSelect, zip].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = {
+            business_name: businessName.value,
+            street: street.value,
+            city: city.value,
+            state: stateSelect.value,
+            zip: zip.value
+          };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = {
+            business_name: businessName.value,
+            street: street.value,
+            city: city.value,
+            state: stateSelect.value,
+            zip: zip.value
+          };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      validateStep();
+    }
+
+    function renderLocationCityState(step) {
+      const loc = state.answers[step.key] || {};
+      const stateVal = (loc.state || "").toUpperCase().slice(0,2);
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid">
+          <div class="field">
+            <label>City</label>
+            <input id="city" type="text" value="${escapeHtml(loc.city || "")}" placeholder="City" data-cap="city" autocapitalize="words">
+          </div>
+
+          <div class="field">
+            <label>State</label>
+            <input id="state" type="text" value="${escapeHtml(stateVal)}" placeholder="State (e.g., FL)" maxlength="2" data-cap="state" autocapitalize="characters">
+          </div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const city = document.getElementById("city");
+      const st = document.getElementById("state");
+
+      [city, st].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = { city: city.value, state: st.value };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = { city: city.value, state: st.value };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      validateStep();
+    }
+
+    function renderContact(step) {
+      const c = state.answers[step.key] || {};
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid">
+          <div class="field">
+            <label>First Name</label>
+            <input id="firstName" type="text" value="${escapeHtml(c.first_name || "")}" data-cap="words" autocapitalize="words">
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input id="lastName" type="text" value="${escapeHtml(c.last_name || "")}" data-cap="words" autocapitalize="words">
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Email</label>
+          <input id="email" type="email" value="${escapeHtml(c.email || "")}">
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Phone</label>
+          <input id="phone" type="tel" value="${escapeHtml(c.phone || "")}" inputmode="tel" data-format="phone">
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Anything else we should know?</label>
+          <textarea id="message" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.">${escapeHtml(c.message || "")}</textarea>
+        </div>
+
+        <input type="hidden" id="turnstileToken" value="${escapeHtml(state.turnstileToken || "")}">
+
+        <div style="margin-top:12px;">
+          <div id="turnstileMount"></div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const message = document.getElementById("message");
+
+      [firstName, lastName, email, phone, message].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            phone: phone.value,
+            message: message.value
+          };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            phone: phone.value,
+            message: message.value
+          };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      ensureTurnstile();
+      validateStep();
+    }
+
+    function render() {
+      updateProgress();
+
+      if (!state.mode) {
+        renderStart();
+        return;
+      }
+
+      if (state.mode === "seller") {
+        const timing = state.answers["sell_timing"];
+        const isNotReady = timing === "not_ready_talk";
+        if (isNotReady) {
+          const contactIndex = state.steps.findIndex(s => s.type === "contact");
+          if (contactIndex !== -1 && state.stepIndex < contactIndex) {
+            state.stepIndex = contactIndex;
+          }
+        }
+      }
+
+      const step = currentStep();
+      if (!step) return;
+
+      navBar.style.display = "flex";
+      prevBtn.style.display = (state.stepIndex === 0) ? "none" : "inline-flex";
+      nextBtn.textContent = (state.stepIndex === state.steps.length - 1) ? "Submit" : "Next";
+
+      if (step.type === "single") renderSingle(step);
+      if (step.type === "location_full") renderLocationFull(step);
+      if (step.type === "location_city_state") renderLocationCityState(step);
+      if (step.type === "contact") renderContact(step);
+
+      validateStep();
+    }
+
+    function validateStep() {
+      const step = currentStep();
+      if (!step) {
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      prevBtn.disabled = false;
+
+      let ok = true;
+
+      if (step.type === "single") {
+        const val = state.answers[step.key];
+        ok = !!val;
+        if (step.hasOther && val === "Other") {
+          const other = (state.answers[step.key + "_other"] || "").trim();
+          ok = other.length > 0;
+        }
+      }
+
+      if (step.type === "location_full") {
+        const loc = state.answers[step.key] || {};
+        ok = !!(loc.business_name && loc.street && loc.city && loc.state && loc.zip);
+      }
+
+      if (step.type === "location_city_state") {
+        const loc = state.answers[step.key] || {};
+        ok = !!(loc.city && loc.state && String(loc.state).trim().length >= 2);
+      }
+
+      if (step.type === "contact") {
+        const c = state.answers[step.key] || {};
+        ok = !!(c.first_name && c.last_name && c.email && c.phone);
+        ok = ok && !!(state.turnstileToken && state.turnstileToken.length > 10);
+      }
+
+      nextBtn.disabled = !ok;
+    }
+
+    function goPrev() {
+      if (!state.mode) return;
+      if (state.stepIndex <= 0) return;
+      state.stepIndex -= 1;
+      render();
+    }
+
+    function goNext() {
+      if (!state.mode) return;
+      const step = currentStep();
+      if (!step) return;
+
+      if (state.stepIndex === state.steps.length - 1) {
+        submitFunnel();
+        return;
+      }
+
+      state.stepIndex += 1;
+      render();
+    }
+
+    prevBtn.addEventListener("click", goPrev);
+    nextBtn.addEventListener("click", goNext);
+
+    function submitFunnel() {
+      const payload = {
+        submitted_at: new Date().toISOString(),
+        funnel: state.mode,
+        answers: state.answers,
+        turnstile_token: state.turnstileToken
+      };
+
+      nextBtn.disabled = true;
+      nextBtn.textContent = "Submitting...";
+
+      fetch("/api/funnel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(async (r) => {
+        if (!r.ok) throw new Error("Bad response: " + r.status);
+        return r.json().catch(() => ({ ok: true }));
+      })
+      .then(() => {
+        funnelBody.innerHTML = `
+          <h2 class="q-title">Success!</h2>
+          <p class="q-sub">Thanks. We will follow up shortly.</p>
+        `;
+        navBar.style.display = "none";
+        progressBar.style.width = "100%";
+        stepLabel.textContent = "Submitted";
+      })
+      .catch((err) => {
+        console.error(err);
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Submit";
+        alert("Submission failed. Please try again.");
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function currentStep() {
+      if (!state.mode) return null;
+      return state.steps[state.stepIndex] || null;
+    }
+
+    // Init
+    startOver();
   </script>
 </body>
 </html>
