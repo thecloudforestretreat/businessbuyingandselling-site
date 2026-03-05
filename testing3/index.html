@@ -373,6 +373,34 @@
       display: flex;
       justify-content: flex-start;
     }
+
+    /* Funnel control hardening against global CSS resets */
+    .bbasMain .funnelCard button,
+    .bbasMain .funnelCard input,
+    .bbasMain .funnelCard select,
+    .bbasMain .funnelCard textarea{
+      font-family: inherit;
+    }
+    .bbasMain .funnelCard button{
+      appearance: none;
+      -webkit-appearance: none;
+      border: 0;
+      background: none;
+      color: inherit;
+    }
+    .bbasMain .funnelCard .choiceTile{
+      border: 1px solid rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.92);
+      color: rgba(0,0,0,0.86);
+    }
+    .bbasMain .funnelCard .qTitle{ color: rgba(0,0,0,0.86); }
+    .bbasMain .funnelCard .tileTitle{ color: rgba(0,0,0,0.86); }
+    .bbasMain .funnelCard .tileSub{ color: rgba(0,0,0,0.58); }
+    .bbasMain .funnelCard .radio{
+      border: 2px solid rgba(0,0,0,0.28);
+      background: rgba(255,255,255,0.98);
+    }
+
   </style>
 </head>
 
@@ -403,12 +431,14 @@
             </div>
 
             <div class="funnelFooter" id="funnelFooter">
-              <div class="turnstileWrap" id="turnstileFooter" hidden>
-                <div class="cf-turnstile" data-sitekey="" data-theme="light"></div>
-              </div>
-              <div class="footerBtns">
-                <button class="bbasBtn" id="prevBtn" type="button">Previous</button>
-                <button class="bbasBtn bbasBtnPrimary" id="nextBtn" type="button" disabled>Next</button>
+              <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
+                <div class="turnstileWrap" id="turnstileFooter" hidden>
+                  <div class="cf-turnstile" data-sitekey="" data-theme="light"></div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;">
+                  <button class="bbasBtn" id="prevBtn" type="button">Previous</button>
+                  <button class="bbasBtn bbasBtnPrimary" id="nextBtn" type="button" disabled>Next</button>
+                </div>
               </div>
             </div>
           </div>
@@ -459,6 +489,18 @@
       const elProg = document.getElementById("progressFill");
       const elStartOver = document.getElementById("startOverBtn");
 
+      // Turnstile sitekey wiring:
+      // Set your sitekey in the <html> tag attribute: data-turnstile-sitekey="YOUR_SITEKEY_HERE"
+      (function syncTurnstileSitekey(){
+        const sitekey = (document.documentElement.dataset.turnstileSitekey || "").trim();
+        if(!sitekey) return;
+        const w = document.querySelector(".cf-turnstile");
+        if(w && !w.getAttribute("data-sitekey")){
+          w.setAttribute("data-sitekey", sitekey);
+        }
+      })();
+
+
       const STATES = [
         { abbr: "AL", name: "Alabama" },{ abbr: "AK", name: "Alaska" },{ abbr: "AZ", name: "Arizona" },{ abbr: "AR", name: "Arkansas" },
         { abbr: "CA", name: "California" },{ abbr: "CO", name: "Colorado" },{ abbr: "CT", name: "Connecticut" },{ abbr: "DE", name: "Delaware" },
@@ -486,7 +528,6 @@
         branch: null, // "seller" | "buyer"
         stepIndex: 0,
         answers: {},
-        turnstileWidgetId: null
       };
 
       const funnels = {
@@ -710,6 +751,8 @@
           renderChoice(step.id, step.options);
         }else if(step.type === "choice_other"){
           renderChoiceOther(step.id, step.options);
+        }else if(step.type === "dropdown_other"){
+          renderDropdownOther(step.id, step.options);
         }else if(step.type === "location_simple"){
           renderLocationSimple();
         }else if(step.type === "location_full"){
@@ -817,6 +860,9 @@
             state.answers[stepId] = value;
             // re-render to update selected styles + enable Next
             render();
+            if(AUTO_ADVANCE && value){
+              window.requestAnimationFrame(() => next());
+            }
           });
 
           grid.appendChild(btn);
@@ -829,8 +875,10 @@
         const grid = document.createElement("div");
         grid.className = "choicesGrid";
 
-        options.forEach((label) => {
-          const value = label;
+        options.forEach((opt) => {
+          const value = (typeof opt === "string") ? opt : opt.value;
+          const label = (typeof opt === "string") ? opt : opt.label;
+          const sub = (typeof opt === "object" && opt.sub) ? opt.sub : "";
 
           const btn = document.createElement("button");
           btn.type = "button";
@@ -839,11 +887,17 @@
           btn.setAttribute("aria-checked", (state.answers[stepId] === value) ? "true" : "false");
           btn.innerHTML =
             '<span class="radio"><span class="radioDot"></span></span>' +
-            '<div><p class="tileTitle">' + escapeHtml(label) + '</p>' + (typeof opt === "object" && opt.sub ? ('<p class="tileSub">' + escapeHtml(opt.sub) + '</p>') : '') + '</div>';
+            '<div><p class="tileTitle">' + escapeHtml(label) + '</p>' + (sub ? ('<p class="tileSub">' + escapeHtml(sub) + '</p>') : '') + '</div>';
 
           btn.addEventListener("click", () => {
             state.answers[stepId] = value;
+            // clear old other text when not Other
+            if(value !== "Other") state.answers[stepId + "_other"] = "";
             render();
+            if(AUTO_ADVANCE && value && value !== "Other"){
+              // Let the selection paint first
+              window.requestAnimationFrame(() => next());
+            }
           });
 
           grid.appendChild(btn);
@@ -854,7 +908,7 @@
         if(state.answers[stepId] === "Other"){
           const f = document.createElement("div");
           f.className = "field";
-          f.style.marginTop = "6px";
+          f.style.marginTop = "10px";
           f.innerHTML = '<div class="label">Other (please specify)</div><input id="otherInput" class="input" type="text" placeholder="Type here..." autocomplete="off" />';
           elBody.appendChild(f);
 
@@ -871,7 +925,6 @@
         }
       }
 
-      
        function renderDropdownOther(stepId, options){
          const field = document.createElement("div");
          field.className = "field";
@@ -1085,7 +1138,6 @@ function renderLocationSimple(){
         message.addEventListener("input", () => { state.answers.message = message.value; });
 
         applyAutoCaps(elBody);
-        ensureTurnstileRendered();
       }
 
       function fillStates(selectEl, selected){
@@ -1124,6 +1176,16 @@ function renderLocationSimple(){
         // seller timing skip logic happens in render()
         const isLast = state.stepIndex >= steps.length - 1;
         if(isLast){
+          const tsFooter = document.getElementById("turnstileFooter");
+          if(tsFooter && !tsFooter.hidden){
+            const tokenEl = document.querySelector('textarea[name="cf-turnstile-response"]');
+            const token = tokenEl ? (tokenEl.value || "").trim() : "";
+            if(!token){
+              alert("Please complete the verification before submitting.");
+              return;
+            }
+            state.answers.turnstile_token = token;
+          }
           // Submit: for now, just log payload (server submit wire-up can be added later)
           const payload = {
             branch: state.branch,
