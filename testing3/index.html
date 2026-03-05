@@ -2,880 +2,814 @@
 <html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
   <meta charset="utf-8">
-  <title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get Started | Business Buying & Selling</title>
 
-  <meta name="description" content="A modern marketplace and knowledge hub for buying and selling real, owner-operated businesses. Explore listings, learn valuation basics, and move with confidence.">
-  <link rel="canonical" href="https://businessbuyingandselling.com/">
-
-  <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <!-- Approved global CSS -->
   <link rel="stylesheet" href="/assets/css/header.css">
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <!-- Turnstile (explicit render) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+
+  <style>
+    /* Funnel styles are scoped so they do NOT change global header/footer */
+    .bbas-funnel-page { background: #0a0b10; }
+    .bbas-funnel-shell { max-width: 1180px; margin: 0 auto; padding: 40px 16px 56px; }
+    .bbas-funnel-hero {
+      background: radial-gradient(900px 300px at 20% 20%, rgba(37,99,235,0.20), transparent 60%),
+                  radial-gradient(700px 260px at 80% 0%, rgba(147,51,234,0.16), transparent 55%),
+                  linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 28px 28px 22px;
+      color: #fff;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+      margin-bottom: 18px;
+    }
+    .bbas-funnel-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 13px;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 12px;
+    }
+    .bbas-funnel-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; display: inline-block; }
+    .bbas-funnel-hero h1 { margin: 0 0 10px; font-weight: 500; font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.02em; }
+    .bbas-funnel-hero p { margin: 0; max-width: 62ch; color: rgba(255,255,255,0.72); line-height: 1.45; }
+
+    .bbas-funnel-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px; align-items: start; }
+
+    /* Left: funnel card */
+    .bbas-card {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+    .bbas-card-header { padding: 14px 18px 10px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .bbas-steps { display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(0,0,0,0.55); margin-bottom: 8px; }
+    .bbas-progress { height: 6px; background: rgba(0,0,0,0.08); border-radius: 999px; overflow: hidden; }
+    .bbas-progress > div { height: 100%; width: 0%; background: #7c3aed; border-radius: 999px; transition: width .25s ease; }
+
+    .bbas-card-body { padding: 18px; display:flex; flex-direction:column; gap: 12px; }
+    .bbas-q { font-size: 30px; letter-spacing: -0.02em; margin: 0; color: rgba(0,0,0,0.82); }
+    .bbas-sub { margin: 0; color: rgba(0,0,0,0.52); font-size: 14px; }
+
+    /* content region that can scroll if needed, footer always visible */
+    .bbas-content {
+      flex: 1;
+      min-height: 240px;
+      max-height: min(420px, calc(100vh - 420px));
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .bbas-options { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .bbas-options.onecol { grid-template-columns: 1fr; }
+    .bbas-choice {
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 14px;
+      padding: 14px 14px;
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      min-height: 68px;
+    }
+    .bbas-choice:hover { border-color: rgba(37,99,235,0.55); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+    .bbas-choice[aria-pressed="true"] { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,0.18); }
+
+    /* consistent radio circle size and centered dot */
+    .bbas-radio {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,0.28);
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      flex: 0 0 18px;
+      margin-top: 2px;
+    }
+    .bbas-choice[aria-pressed="true"] .bbas-radio { border-color: #2563eb; }
+    .bbas-radio::after {
+      content:"";
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #2563eb;
+      transform: scale(0);
+      transition: transform .12s ease;
+    }
+    .bbas-choice[aria-pressed="true"] .bbas-radio::after { transform: scale(1); }
+
+    .bbas-choice h3 { margin: 0; font-size: 14px; color: rgba(0,0,0,0.82); }
+    .bbas-choice p { margin: 4px 0 0; font-size: 12.5px; color: rgba(0,0,0,0.58); line-height: 1.35; }
+
+    .bbas-fields { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .bbas-fields.onecol { grid-template-columns: 1fr; }
+    .bbas-fields.three { grid-template-columns: 1fr 180px 140px; }
+    .bbas-field label { display:block; font-size: 12px; color: rgba(0,0,0,0.55); margin: 0 0 6px; }
+    .bbas-field input, .bbas-field select, .bbas-field textarea {
+      width: 100%;
+      border: 1px solid rgba(0,0,0,0.16);
+      border-radius: 12px;
+      padding: 12px 12px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+    }
+    .bbas-field textarea { min-height: 96px; resize: vertical; }
+
+    /* Footer buttons */
+    .bbas-card-footer {
+      padding: 14px 18px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.94);
+    }
+    .bbas-btn {
+      height: 44px;
+      min-width: 160px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.16);
+      background: #fff;
+      color: rgba(0,0,0,0.78);
+      font-weight: 600;
+      cursor:pointer;
+    }
+    .bbas-btn.primary {
+      border-color: transparent;
+      background: #7c3aed;
+      color: #fff;
+      box-shadow: 0 18px 30px rgba(124,58,237,0.20);
+    }
+    .bbas-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .bbas-footnote { font-size: 12px; color: rgba(0,0,0,0.35); padding: 0 18px 16px; }
+
+    /* Right: info card */
+    .bbas-info {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 18px;
+      color: rgba(255,255,255,0.85);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+    }
+    .bbas-info .tag {
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.25);
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .bbas-info h2 { margin: 0 0 8px; font-size: 18px; font-weight: 600; }
+    .bbas-info p { margin: 0 0 14px; color: rgba(255,255,255,0.70); line-height: 1.45; font-size: 13px; }
+    .bbas-info-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .bbas-info-box { border: 1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.18); border-radius: 14px; padding: 12px; }
+    .bbas-info-box h3 { margin: 0 0 6px; font-size: 13px; }
+    .bbas-info-box p { margin: 0; font-size: 12px; color: rgba(255,255,255,0.68); }
+    .bbas-info-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.10); font-size: 12px; color: rgba(255,255,255,0.55); }
+
+    @media (max-width: 980px) {
+      .bbas-funnel-grid { grid-template-columns: 1fr; }
+      .bbas-info { order: 2; }
+      .bbas-card { order: 1; }
+      .bbas-content { max-height: none; }
+    }
+    @media (max-width: 560px) {
+      .bbas-options { grid-template-columns: 1fr; }
+      .bbas-fields { grid-template-columns: 1fr; }
+      .bbas-fields.three { grid-template-columns: 1fr; }
+      .bbas-btn { min-width: 46%; }
+    }
+  </style>
 </head>
 
-<body>
-  <!-- Global header/footer mounts (required) -->
+<body class="bbas-funnel-page">
+  <!-- Global header injection -->
   <div id="siteHeader"></div>
 
-  <!-- Page background / hero -->
-  <div class="pageBg" aria-hidden="true"></div>
-
-  <main class="page">
-    <section class="heroWrap">
-      <div class="hero">
-        <div class="pill"><span class="dot"></span> Get started in under 60 seconds.</div>
-        <h1>Buy or sell a business, with confidence.</h1>
-        <p>Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
-      </div>
+  <main class="bbas-funnel-shell">
+    <section class="bbas-funnel-hero">
+      <div class="bbas-funnel-pill"><span class="dot"></span>Get started in under 60 seconds.</div>
+      <h1>Buy or sell a business, with confidence.</h1>
+      <p>Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
     </section>
 
-    <section class="funnelGrid">
-      <!-- Funnel card -->
-      <section class="funnelCard" aria-label="Funnel">
-        <div class="progressTop">
-          <div class="progressMeta">
-            <span id="stepLabel">Step 1 of 1</span>
-            <button type="button" class="linkBtn" id="startOverBtn">Start over</button>
+    <section class="bbas-funnel-grid" aria-label="Business Buying and Selling funnel">
+      <div class="bbas-card" id="bbasCard">
+        <div class="bbas-card-header">
+          <div class="bbas-steps">
+            <span id="bbasStepLabel">Step 1 of 1</span>
+            <a href="#" id="bbasStartOver" style="color: rgba(0,0,0,0.65); text-decoration: underline;">Start over</a>
           </div>
-          <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
+          <div class="bbas-progress" aria-hidden="true"><div id="bbasProgress"></div></div>
         </div>
 
-        <div class="cardBody" id="cardBody"></div>
+        <div class="bbas-card-body">
+          <div>
+            <h2 class="bbas-q" id="bbasQuestion">What are you here to do?</h2>
+            <p class="bbas-sub" id="bbasSub">Choose one to start. You can switch later.</p>
+          </div>
 
-        <div class="cardFooter" id="cardFooter">
-          <button type="button" class="btn btn-ghost" id="prevBtn">Previous</button>
-          <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+          <div class="bbas-content" id="bbasContent"></div>
         </div>
 
-        <div class="footNote">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
-      </section>
+        <div class="bbas-card-footer" id="bbasFooter">
+          <button class="bbas-btn" id="bbasPrev" type="button">Previous</button>
+          <button class="bbas-btn primary" id="bbasNext" type="button">Next</button>
+        </div>
 
-      <!-- Right explainer panel (matches your approved layout) -->
-      <aside class="sideCard" aria-label="What you get">
-        <div class="sideHeader"><span class="greenDot"></span><span>What you get</span></div>
-        <h3>Clarity first. Decisions second.</h3>
+        <div class="bbas-footnote">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      </div>
+
+      <aside class="bbas-info">
+        <div class="tag"><span style="width:10px;height:10px;border-radius:50%;background:#22c55e;display:inline-block;"></span>What you get</div>
+        <h2>Clarity first. Decisions second.</h2>
         <p>We are building a marketplace plus a practical knowledge hub, so both buyers and owners move faster and waste less time.</p>
-
-        <div class="sideGrid">
-          <div class="sideItem">
-            <div class="sideTitle">Clear numbers</div>
-            <div class="sideText">Revenue, cash flow, margin, lease terms, and what is included in the sale.</div>
+        <div class="bbas-info-grid">
+          <div class="bbas-info-box">
+            <h3>Clear numbers</h3>
+            <p>Revenue, cash flow, margin, lease terms, and what is included in the sale.</p>
           </div>
-          <div class="sideItem">
-            <div class="sideTitle">Better matching</div>
-            <div class="sideText">Filter by type, budget, timeline, and involvement level. No guessing.</div>
+          <div class="bbas-info-box">
+            <h3>Better matching</h3>
+            <p>Filter by type, budget, timeline, and involvement level. No guessing.</p>
           </div>
-          <div class="sideItem">
-            <div class="sideTitle">Buyer readiness</div>
-            <div class="sideText">Checklists and questions that prevent the usual deal-stalling surprises.</div>
+          <div class="bbas-info-box">
+            <h3>Buyer readiness</h3>
+            <p>Checklists and questions that prevent the usual deal-stalling surprises.</p>
           </div>
-          <div class="sideItem">
-            <div class="sideTitle">Owner support</div>
-            <div class="sideText">Simple guidance on prep, documentation, and what serious buyers expect.</div>
+          <div class="bbas-info-box">
+            <h3>Owner support</h3>
+            <p>Simple guidance on prep, documentation, and what serious buyers expect.</p>
           </div>
         </div>
-
-        <div class="sideBottom">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
+        <div class="bbas-info-foot">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
       </aside>
     </section>
   </main>
 
+  <!-- Global footer injection -->
   <div id="siteFooter"></div>
 
-  <!-- Global JS -->
-  <script src="/assets/js/includes.js" defer></script>
-  <script src="/assets/js/site.js" defer></script>
-
-  <!-- Cloudflare Turnstile (explicit render) -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
-
-  <style>
-    /* Background */
-    .pageBg{
-      position: fixed; inset: 0;
-      background-image: url('/assets/images/bbas_homepage_hero_03.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: blur(0px);
-      transform: scale(1.02);
-      z-index: -2;
-    }
-    .pageBg:after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(900px 500px at 30% 10%, rgba(0,0,0,0.2), rgba(0,0,0,0.8)),
-                  linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9));
-      z-index:-1;
-    }
-
-    /* Layout (compact so no forced scrolling on desktop) */
-    .page{max-width: 1100px; margin: 0 auto; padding: 28px 20px 40px;}
-    .heroWrap{margin-top: 18px;}
-    .hero{
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 18px;
-      padding: 22px 22px;
-      background: rgba(0,0,0,0.35);
-      box-shadow: 0 20px 80px rgba(0,0,0,0.45);
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.82);
-      font-size: 13px;
-    }
-    .pill .dot{width:10px; height:10px; border-radius:50%; background:#f5b301;}
-    .hero h1{margin: 12px 0 6px; font-size: 46px; line-height: 1.04; color: #fff; letter-spacing: -0.02em;}
-    .hero p{margin:0; color: rgba(255,255,255,0.78); max-width: 560px;}
-
-    .funnelGrid{
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .funnelCard{
-      background: rgba(255,255,255,0.92);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-    .progressTop{padding: 12px 16px 10px; background: rgba(0,0,0,0.04);}
-    .progressMeta{display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(0,0,0,0.6);}
-    .linkBtn{
-      appearance:none; border:none; background:none; color: rgba(0,0,0,0.65);
-      text-decoration: underline; cursor:pointer; font-size: 13px;
-    }
-    .progressBar{height: 7px; background: rgba(0,0,0,0.08); border-radius: 999px; margin-top: 8px; overflow:hidden;}
-    .progressFill{height:100%; width: 0%; background: linear-gradient(90deg, #2b6cff, #6a2bff); border-radius: 999px;}
-
-    .cardBody{padding: 18px 18px 8px; min-height: 300px;}
-    .qTitle{font-size: 34px; line-height: 1.1; margin: 6px 0 6px; color: rgba(0,0,0,0.78); letter-spacing: -0.02em;}
-    .qHelper{margin:0 0 14px; color: rgba(0,0,0,0.45);}
-
-    /* Options */
-    .optionGrid{display:grid; gap: 12px;}
-    .optionGrid.twoCol{grid-template-columns: 1fr 1fr;}
-    @media (max-width: 980px){
-      .funnelGrid{grid-template-columns: 1fr;}
-      .hero h1{font-size: 40px;}
-    }
-    @media (max-width: 640px){
-      .optionGrid.twoCol{grid-template-columns: 1fr;}
-      .hero h1{font-size: 34px;}
-    }
-
-    /* Option buttons – enforce identical sizing */
-    .opt{
-      width: 100%;
-      min-height: 62px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.18);
-      background: rgba(255,255,255,0.8);
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      padding: 12px 14px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .opt:hover{border-color: rgba(43,108,255,0.45);}
-    .opt.isSelected{border-color: #2b6cff; box-shadow: 0 0 0 1px rgba(43,108,255,0.25) inset;}
-    .radio{
-      width: 18px; height: 18px; border-radius: 50%;
-      border: 2px solid rgba(0,0,0,0.28);
-      display:flex; align-items:center; justify-content:center;
-      flex: 0 0 auto;
-    }
-    .radio:after{
-      content:"";
-      width: 8px; height: 8px; border-radius: 50%;
-      background: transparent;
-    }
-    .opt.isSelected .radio{border-color: #2b6cff;}
-    .opt.isSelected .radio:after{background:#2b6cff;}
-    .optText{display:flex; flex-direction:column; gap:2px; min-width:0;}
-    .optLabel{font-weight: 700; color: rgba(0,0,0,0.82);}
-    .optSub{font-size: 13px; color: rgba(0,0,0,0.55);}
-
-    /* Footer buttons – enforce same size */
-    .cardFooter{
-      padding: 14px 18px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      display:flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items:center;
-      background: rgba(255,255,255,0.95);
-    }
-    .btn{
-      height: 46px;
-      min-width: 180px;
-      padding: 0 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      cursor:pointer;
-      border: 1px solid rgba(0,0,0,0.18);
-      background: #fff;
-      color: rgba(0,0,0,0.8);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-    .btn:disabled{opacity:0.45; cursor:not-allowed; box-shadow:none;}
-    .btn-primary{
-      border-color: transparent;
-      background: linear-gradient(90deg, #2b6cff, #6a2bff);
-      color: #fff;
-    }
-    .btn-ghost{background: #fff;}
-    .footNote{padding: 10px 18px 14px; color: rgba(0,0,0,0.35); font-size: 12px;}
-
-    /* Form fields */
-    .formGrid{display:grid; gap: 14px; margin-top: 8px;}
-    .formRow2{display:grid; grid-template-columns: 1fr 1fr; gap: 14px;}
-    .formRow3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;}
-    @media (max-width: 640px){
-      .formRow2, .formRow3{grid-template-columns: 1fr;}
-      .btn{min-width: 140px;}
-    }
-    label{display:block; font-size: 12px; color: rgba(0,0,0,0.45); margin-bottom: 6px;}
-    input, select, textarea{
-      width: 100%;
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.18);
-      padding: 0 12px;
-      background: #fff;
-      outline: none;
-    }
-    textarea{height: 96px; padding: 12px; resize: vertical;}
-    input:focus, select:focus, textarea:focus{border-color: rgba(43,108,255,0.7); box-shadow: 0 0 0 3px rgba(43,108,255,0.12);}
-
-    /* Side card */
-    .sideCard{
-      background: rgba(15,18,28,0.72);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 16px 16px;
-      color: rgba(255,255,255,0.86);
-      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
-    }
-    .sideHeader{display:flex; align-items:center; gap:10px; font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 8px;}
-    .greenDot{width:10px; height:10px; border-radius:50%; background:#2ecc71;}
-    .sideCard h3{margin: 4px 0 6px; font-size: 18px;}
-    .sideCard p{margin: 0 0 12px; font-size: 13px; color: rgba(255,255,255,0.72);}
-    .sideGrid{display:grid; grid-template-columns: 1fr 1fr; gap: 12px;}
-    .sideItem{background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 12px;}
-    .sideTitle{font-weight: 700; font-size: 13px; margin-bottom: 6px;}
-    .sideText{font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.35;}
-    .sideBottom{margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.62); border-top: 1px solid rgba(255,255,255,0.12); padding-top: 12px;}
-  </style>
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/site.js"></script>
 
   <script>
-  (function(){
-    /* ---------- Header/Footer injection fail-safe ---------- */
-    function inject(id, url){
+  (function() {
+    // Use the same Turnstile sitekey pattern as your approved pages:
+    // <html data-turnstile-sitekey="...">
+    var siteKey = document.documentElement.getAttribute('data-turnstile-sitekey') || '';
+    if (!siteKey) {
+      // keep empty: your server/template can inject it. We still render if present.
+    }
+
+    var stateOptions = [
+      {v:"AL",t:"Alabama"},{v:"AK",t:"Alaska"},{v:"AZ",t:"Arizona"},{v:"AR",t:"Arkansas"},{v:"CA",t:"California"},
+      {v:"CO",t:"Colorado"},{v:"CT",t:"Connecticut"},{v:"DE",t:"Delaware"},{v:"FL",t:"Florida"},{v:"GA",t:"Georgia"},
+      {v:"HI",t:"Hawaii"},{v:"ID",t:"Idaho"},{v:"IL",t:"Illinois"},{v:"IN",t:"Indiana"},{v:"IA",t:"Iowa"},
+      {v:"KS",t:"Kansas"},{v:"KY",t:"Kentucky"},{v:"LA",t:"Louisiana"},{v:"ME",t:"Maine"},{v:"MD",t:"Maryland"},
+      {v:"MA",t:"Massachusetts"},{v:"MI",t:"Michigan"},{v:"MN",t:"Minnesota"},{v:"MS",t:"Mississippi"},{v:"MO",t:"Missouri"},
+      {v:"MT",t:"Montana"},{v:"NE",t:"Nebraska"},{v:"NV",t:"Nevada"},{v:"NH",t:"New Hampshire"},{v:"NJ",t:"New Jersey"},
+      {v:"NM",t:"New Mexico"},{v:"NY",t:"New York"},{v:"NC",t:"North Carolina"},{v:"ND",t:"North Dakota"},{v:"OH",t:"Ohio"},
+      {v:"OK",t:"Oklahoma"},{v:"OR",t:"Oregon"},{v:"PA",t:"Pennsylvania"},{v:"RI",t:"Rhode Island"},{v:"SC",t:"South Carolina"},
+      {v:"SD",t:"South Dakota"},{v:"TN",t:"Tennessee"},{v:"TX",t:"Texas"},{v:"UT",t:"Utah"},{v:"VT",t:"Vermont"},
+      {v:"VA",t:"Virginia"},{v:"WA",t:"Washington"},{v:"WV",t:"West Virginia"},{v:"WI",t:"Wisconsin"},{v:"WY",t:"Wyoming"}
+    ];
+
+    var businessTypes = [
+      "Auto Repair","Construction","Car washes","Day care","Dry Cleaners","Dog grooming",
+      "Gas Station","Food truck","Hair Salon/Barber Shop","Heating & Air",
+      "Hotel/Motels","Ice cream shop","Liquor store","Retail","Restaurants","Vape shop","Other (please specify)"
+    ];
+
+    // Funnel definitions
+    var funnels = {
+      intro: [
+        {
+          key: "intent",
+          q: "What are you here to do?",
+          sub: "Choose one to start. You can switch later.",
+          type: "intro",
+          options: [
+            { value: "sell", title: "I want to sell my business", desc: "Understand value, timeline, and the best next steps." },
+            { value: "buy",  title: "I want to buy a business",  desc: "Find the right type of deal without the franchise route." }
+          ]
+        }
+      ],
+      sell: [
+        {
+          key: "business_type",
+          q: "What type of business do you own?",
+          sub: "Owner-operated businesses.",
+          type: "radio",
+          columns: 2,
+          options: businessTypes
+        },
+        {
+          key: "timeline",
+          q: "When are you looking to sell?",
+          sub: "",
+          type: "radio",
+          columns: 1,
+          options: ["I am ready now","In the next 3 months","In the next 6 months","Not right now, but want to speak with someone"]
+        },
+        {
+          key: "price",
+          q: "What is the approximate sale price?",
+          sub: "",
+          type: "radio",
+          columns: 1,
+          options: ["Under $250k","$250k - $500k","$500k - $1M","$1M - $3M","$3M+"]
+        },
+        {
+          key: "location",
+          q: "Where is the business located?",
+          sub: "Add the business name and address.",
+          type: "address_seller"
+        },
+        {
+          key: "contact",
+          q: "Contact info",
+          sub: "We will only use this to send early access and next steps.",
+          type: "contact"
+        }
+      ],
+      buy: [
+        {
+          key: "business_type",
+          q: "What type of business?",
+          sub: "",
+          type: "radio",
+          columns: 2,
+          options: businessTypes
+        },
+        {
+          key: "budget",
+          q: "What is your budget range?",
+          sub: "",
+          type: "radio",
+          columns: 1,
+          options: ["Under $250k","$250k - $500k","$500k - $1M","$1M - $3M","$3M+"]
+        },
+        {
+          key: "location_pref",
+          q: "Where do you want the business to be located?",
+          sub: "",
+          type: "address_buyer"
+        },
+        {
+          key: "contact",
+          q: "Contact info",
+          sub: "We will only use this to send early access and next steps.",
+          type: "contact"
+        }
+      ]
+    };
+
+    var state = {
+      funnel: "intro",
+      step: 0,
+      answers: {}
+    };
+
+    // Elements
+    var elQuestion = document.getElementById("bbasQuestion");
+    var elSub = document.getElementById("bbasSub");
+    var elContent = document.getElementById("bbasContent");
+    var elStepLabel = document.getElementById("bbasStepLabel");
+    var elProgress = document.getElementById("bbasProgress");
+    var elPrev = document.getElementById("bbasPrev");
+    var elNext = document.getElementById("bbasNext");
+    var elFooter = document.getElementById("bbasFooter");
+    var elStartOver = document.getElementById("bbasStartOver");
+
+    function setFooterMode(mode) {
+      // mode: "hidden" for intro (auto-advance), "nav" for normal steps
+      if (mode === "hidden") {
+        elFooter.style.display = "none";
+      } else {
+        elFooter.style.display = "flex";
+      }
+    }
+
+    function setProgress() {
+      var steps = funnels[state.funnel];
+      var total = steps.length;
+      elStepLabel.textContent = "Step " + (state.step + 1) + " of " + total;
+      var pct = ((state.step + 1) / total) * 100;
+      elProgress.style.width = pct + "%";
+    }
+
+    function optionButton(opt, key) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "bbas-choice";
+      btn.setAttribute("data-value", opt.value || opt);
+      btn.setAttribute("data-key", key);
+      btn.setAttribute("aria-pressed", "false");
+
+      var radio = document.createElement("span");
+      radio.className = "bbas-radio";
+
+      var wrap = document.createElement("div");
+      var h = document.createElement("h3");
+      h.textContent = opt.title || String(opt);
+      var p = document.createElement("p");
+      if (opt.desc) p.textContent = opt.desc;
+      wrap.appendChild(h);
+      if (opt.desc) wrap.appendChild(p);
+
+      btn.appendChild(radio);
+      btn.appendChild(wrap);
+      return btn;
+    }
+
+    function renderRadioStep(stepDef) {
+      var selected = state.answers[stepDef.key] || "";
+      var grid = document.createElement("div");
+      grid.className = "bbas-options" + (stepDef.columns === 1 ? " onecol" : "");
+      stepDef.options.forEach(function(opt) {
+        var btn = optionButton(opt, stepDef.key);
+        var val = btn.getAttribute("data-value");
+        if (val === selected) btn.setAttribute("aria-pressed", "true");
+        grid.appendChild(btn);
+      });
+      elContent.appendChild(grid);
+
+      // For radio steps, require selection to enable Next
+      elNext.disabled = !selected;
+    }
+
+    function renderAddressSeller(stepDef) {
+      var a = state.answers || {};
+      var box = document.createElement("div");
+      box.className = "bbas-fields onecol";
+
+      // Business Name
+      box.appendChild(field("Business Name", "business_name", "text", a.business_name || "", {autocapitalize:"words"}));
+      // Street
+      box.appendChild(field("Street address", "street", "text", a.street || "", {autocapitalize:"words"}));
+
+      // City | State | Zip
+      var row = document.createElement("div");
+      row.className = "bbas-fields three";
+
+      row.appendChild(field("City", "city", "text", a.city || "", {autocapitalize:"words"}));
+
+      var stateField = document.createElement("div");
+      stateField.className = "bbas-field";
+      var label = document.createElement("label");
+      label.textContent = "State";
+      var sel = document.createElement("select");
+      sel.name = "state";
+      sel.id = "state";
+      sel.innerHTML = '<option value="">Select</option>' + stateOptions.map(function(s){ return '<option value="'+s.v+'">'+s.t+'</option>'; }).join("");
+      sel.value = a.state || "";
+      stateField.appendChild(label);
+      stateField.appendChild(sel);
+      row.appendChild(stateField);
+
+      row.appendChild(field("Zip", "zip", "text", a.zip || "", {inputmode:"numeric", autocomplete:"postal-code"}));
+
+      box.appendChild(row);
+      elContent.appendChild(box);
+
+      // Validation
+      elNext.disabled = !(val("business_name") && val("street") && val("city") && valSel("state") && val("zip"));
+    }
+
+    function renderAddressBuyer(stepDef) {
+      var a = state.answers || {};
+      var box = document.createElement("div");
+      box.className = "bbas-fields onecol";
+
+      box.appendChild(field("City", "city", "text", a.city || "", {autocapitalize:"words"}));
+
+      var stateField = document.createElement("div");
+      stateField.className = "bbas-field";
+      var label = document.createElement("label");
+      label.textContent = "State";
+      var sel = document.createElement("select");
+      sel.name = "state";
+      sel.id = "state";
+      sel.innerHTML = '<option value="">Select</option>' + stateOptions.map(function(s){ return '<option value="'+s.v+'">'+s.t+'</option>'; }).join("");
+      sel.value = a.state || "";
+      stateField.appendChild(label);
+      stateField.appendChild(sel);
+      box.appendChild(stateField);
+
+      elContent.appendChild(box);
+      elNext.disabled = !(val("city") && valSel("state"));
+    }
+
+    function renderContact(stepDef) {
+      var a = state.answers || {};
+      var box = document.createElement("div");
+      box.className = "bbas-fields onecol";
+
+      var row = document.createElement("div");
+      row.className = "bbas-fields";
+      row.appendChild(field("First Name", "first_name", "text", a.first_name || "", {autocapitalize:"words"}));
+      row.appendChild(field("Last Name", "last_name", "text", a.last_name || "", {autocapitalize:"words"}));
+      box.appendChild(row);
+
+      box.appendChild(field("Email", "email", "email", a.email || "", {autocomplete:"email"}));
+      box.appendChild(field("Phone", "phone", "tel", a.phone || "", {inputmode:"tel", autocomplete:"tel"}));
+      box.appendChild(field("Anything else we should know?", "message", "textarea", a.message || "", {}));
+
+      // Turnstile placeholder
+      var tsWrap = document.createElement("div");
+      tsWrap.className = "bbas-field";
+      var tsLabel = document.createElement("label");
+      tsLabel.textContent = "";
+      var ts = document.createElement("div");
+      ts.id = "turnstileContainer";
+      tsWrap.appendChild(tsLabel);
+      tsWrap.appendChild(ts);
+      box.appendChild(tsWrap);
+
+      elContent.appendChild(box);
+
+      // Render turnstile (once per visit)
+      maybeRenderTurnstile();
+
+      // Validation requires turnstile token too
+      elNext.textContent = "Submit";
+      elNext.disabled = !(val("first_name") && val("last_name") && val("email") && val("phone") && (state.answers.turnstile_token || ""));
+    }
+
+    function field(labelText, name, type, value, attrs) {
+      var wrap = document.createElement("div");
+      wrap.className = "bbas-field";
+      var label = document.createElement("label");
+      label.textContent = labelText;
+
+      var input;
+      if (type === "textarea") {
+        input = document.createElement("textarea");
+        input.placeholder = "Example: I am looking for a convenience store and want to understand timeline and next steps.";
+      } else {
+        input = document.createElement("input");
+        input.type = type;
+      }
+      input.name = name;
+      input.id = name;
+      input.value = value || "";
+
+      // Apply attributes
+      attrs = attrs || {};
+      Object.keys(attrs).forEach(function(k){ input.setAttribute(k, attrs[k]); });
+
+      // Autocapitalize fallback (desktop browsers often ignore)
+      if (attrs.autocapitalize === "words") {
+        input.addEventListener("blur", function() {
+          var v = input.value || "";
+          input.value = v.replace(/\s+/g," ").split(" ").map(function(w){
+            return w ? (w[0].toUpperCase() + w.slice(1)) : "";
+          }).join(" ").trim();
+        });
+      }
+
+      // Phone formatting
+      if (name === "phone") {
+        input.addEventListener("input", function() {
+          input.value = formatPhone(input.value);
+        });
+      }
+
+      input.addEventListener("input", function() { onFieldInput(); });
+      input.addEventListener("change", function() { onFieldInput(); });
+
+      wrap.appendChild(label);
+      wrap.appendChild(input);
+      return wrap;
+    }
+
+    function formatPhone(raw) {
+      var digits = String(raw || "").replace(/\D/g, "").slice(0, 10);
+      var a = digits.slice(0,3), b = digits.slice(3,6), c = digits.slice(6,10);
+      if (digits.length <= 3) return a;
+      if (digits.length <= 6) return "(" + a + ") " + b;
+      return "(" + a + ") " + b + "-" + c;
+    }
+
+    function val(id) {
       var el = document.getElementById(id);
-      if(!el) return;
-      if(el.childElementCount > 0) return;
-      fetch(url, { cache: "no-cache" })
-        .then(function(r){ return r.ok ? r.text() : ""; })
-        .then(function(markup){
-          if(!markup) return;
-          el.innerHTML = markup;
-          if (typeof window.initSiteNav === "function") { try { window.initSiteNav(); } catch(e) {} }
-          if (typeof window.initMobileNav === "function") { try { window.initMobileNav(); } catch(e) {} }
-        })
-        .catch(function(){});
+      return el && String(el.value || "").trim();
     }
-    document.addEventListener("DOMContentLoaded", function(){
-      inject("siteHeader", "/assets/includes/header.html");
-      inject("siteFooter", "/assets/includes/footer.html");
-    });
-
-    /* ---------- Data ---------- */
-    var BUSINESS_TYPES = [
-      { value:"Auto Repair", label:"Auto Repair" },
-      { value:"Construction", label:"Construction" },
-      { value:"Car washes", label:"Car washes" },
-      { value:"Day care", label:"Day care" },
-      { value:"Dry Cleaners", label:"Dry Cleaners" },
-      { value:"Dog grooming", label:"Dog grooming" },
-      { value:"Gas Station", label:"Gas Station" },
-      { value:"Food truck", label:"Food truck" },
-      { value:"Hair Salon/Barber Shop", label:"Hair Salon/Barber Shop" },
-      { value:"Heating & Air", label:"Heating & Air" },
-      { value:"Hotel/Motels", label:"Hotel/Motels" },
-      { value:"Ice cream shop", label:"Ice cream shop" },
-      { value:"Liquor store", label:"Liquor store" },
-      { value:"Retail", label:"Retail" },
-      { value:"Restaurants", label:"Restaurants" },
-      { value:"Vape shop", label:"Vape shop" },
-      { value:"Other", label:"Other (please specify)", other:true }
-    ];
-
-    var SELL_STEPS = [
-      { id:"sell_when", title:"How soon are you looking to sell your business?", helper:"", type:"choices", choices:[
-        { value:"I am ready now", label:"I am ready now" },
-        { value:"Not right now, but want to speak with someone", label:"Not right now, but want to speak with someone", jumpTo:"contact" }
-      ]},
-      { id:"sell_type", title:"What type of business do you own?", helper:"Owner-operated businesses.", type:"choices", twoCol:true, choices: BUSINESS_TYPES },
-      { id:"sell_revenue", title:"What was your Gross Revenue in the last 12 months?", helper:"", type:"choices", choices:[
-        { value:"Under $250k", label:"Under $250k" },
-        { value:"$250k - $500k", label:"$250k - $500k" },
-        { value:"$500k - $750k", label:"$500k - $750k" },
-        { value:"+ $1 million", label:"+ $1 million" }
-      ]},
-      { id:"sell_profit", title:"What was your Gross Profit in the last 12 months?", helper:"", type:"choices", choices:[
-        { value:"Under $50k", label:"Under $50k" },
-        { value:"$50k - $150k", label:"$50k - $150k" },
-        { value:"$150k - $250k", label:"$150k - $250k" },
-        { value:"$250k - $500k", label:"$250k - $500k" }
-      ]},
-      { id:"sell_location", title:"Where is the business located?", helper:"Add the business name and address.", type:"location" },
-      { id:"contact", title:"Contact info", helper:"We will only use this to send early access and next steps.", type:"contact" }
-    ];
-
-    var BUY_STEPS = [
-      { id:"buy_type", title:"What type of Business?", helper:"", type:"choices", twoCol:true, choices: BUSINESS_TYPES },
-      { id:"buy_price", title:"What Purchase Price?", helper:"Choose a range that fits your budget.", type:"choices", choices:[
-        { value:"Under $100k", label:"Under $100k" },
-        { value:"$100k - $250k", label:"$100k - $250k" },
-        { value:"$250k - $500k", label:"$250k - $500k" },
-        { value:"+ $1 mill", label:"+ $1 mill" }
-      ]},
-      { id:"buy_location", title:"Where do you want the business to be located?", helper:"", type:"buy_location" },
-      { id:"contact", title:"Contact info", helper:"We will only use this to send early access and next steps.", type:"contact" }
-    ];
-
-    var US_STATES = [
-      ["AL","Alabama"],["AK","Alaska"],["AZ","Arizona"],["AR","Arkansas"],["CA","California"],["CO","Colorado"],["CT","Connecticut"],["DE","Delaware"],["DC","District of Columbia"],
-      ["FL","Florida"],["GA","Georgia"],["HI","Hawaii"],["ID","Idaho"],["IL","Illinois"],["IN","Indiana"],["IA","Iowa"],["KS","Kansas"],["KY","Kentucky"],["LA","Louisiana"],
-      ["ME","Maine"],["MD","Maryland"],["MA","Massachusetts"],["MI","Michigan"],["MN","Minnesota"],["MS","Mississippi"],["MO","Missouri"],["MT","Montana"],["NE","Nebraska"],
-      ["NV","Nevada"],["NH","New Hampshire"],["NJ","New Jersey"],["NM","New Mexico"],["NY","New York"],["NC","North Carolina"],["ND","North Dakota"],["OH","Ohio"],["OK","Oklahoma"],
-      ["OR","Oregon"],["PA","Pennsylvania"],["RI","Rhode Island"],["SC","South Carolina"],["SD","South Dakota"],["TN","Tennessee"],["TX","Texas"],["UT","Utah"],["VT","Vermont"],
-      ["VA","Virginia"],["WA","Washington"],["WV","West Virginia"],["WI","Wisconsin"],["WY","Wyoming"]
-    ];
-
-    /* ---------- State + rendering ---------- */
-    var state = { branch:null, stepIndex:0, steps:[], answers:{} };
-
-    var cardBody = document.getElementById("cardBody");
-    var cardFooter = document.getElementById("cardFooter");
-    var stepLabel = document.getElementById("stepLabel");
-    var progressFill = document.getElementById("progressFill");
-    var prevBtn = document.getElementById("prevBtn");
-    var nextBtn = document.getElementById("nextBtn");
-    var startOverBtn = document.getElementById("startOverBtn");
-
-    function setProgress(){
-      var total = state.steps.length || 1;
-      var idx = Math.min(state.stepIndex + 1, total);
-      stepLabel.textContent = "Step " + idx + " of " + total;
-      progressFill.style.width = ((idx / total) * 100) + "%";
+    function valSel(id) {
+      var el = document.getElementById(id);
+      return el && String(el.value || "").trim();
     }
 
-    function titleCaseWords(s){
-      s = (s || "").toString().replace(/\s+/g," ").trim();
-      if(!s) return "";
-      return s.split(" ").map(function(w){
-        return w ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : "";
-      }).join(" ");
-    }
-
-    function wireAutoCap(el){
-      if(!el) return;
-      el.setAttribute("autocapitalize","words");
-      el.setAttribute("autocomplete","on");
-      el.addEventListener("blur", function(){
-        var v = el.value || "";
-        var tc = titleCaseWords(v);
-        if(tc !== v) el.value = tc;
+    function onFieldInput() {
+      // persist field values
+      ["business_name","street","city","state","zip","first_name","last_name","email","phone","message"].forEach(function(k){
+        var el = document.getElementById(k);
+        if (!el) return;
+        state.answers[k] = (k === "state") ? el.value : el.value;
       });
+
+      // toggle next enabled based on step
+      var stepDef = funnels[state.funnel][state.step];
+      if (!stepDef) return;
+
+      if (stepDef.type === "address_seller") {
+        elNext.disabled = !(val("business_name") && val("street") && val("city") && valSel("state") && val("zip"));
+      } else if (stepDef.type === "address_buyer") {
+        elNext.disabled = !(val("city") && valSel("state"));
+      } else if (stepDef.type === "contact") {
+        elNext.disabled = !(val("first_name") && val("last_name") && val("email") && val("phone") && (state.answers.turnstile_token || ""));
+      }
     }
 
-    function formatPhoneDigits(v){
-      var d = (v || "").replace(/\D/g,"").slice(0,10);
-      if(d.length === 0) return "";
-      if(d.length < 4) return "(" + d;
-      if(d.length < 7) return "(" + d.slice(0,3) + ") " + d.slice(3);
-      return "(" + d.slice(0,3) + ") " + d.slice(3,6) + "-" + d.slice(6);
+    var turnstileWidgetId = null;
+    function maybeRenderTurnstile() {
+      // Only render if container exists and sitekey present
+      if (!siteKey) return;
+      var container = document.getElementById("turnstileContainer");
+      if (!container) return;
+
+      if (turnstileWidgetId !== null) return;
+
+      var tryRender = function() {
+        if (!window.turnstile || !window.turnstile.render) return false;
+        turnstileWidgetId = window.turnstile.render(container, {
+          sitekey: siteKey,
+          callback: function(token) {
+            state.answers.turnstile_token = token || "";
+            onFieldInput();
+          },
+          "error-callback": function() {
+            state.answers.turnstile_token = "";
+            onFieldInput();
+          },
+          "expired-callback": function() {
+            state.answers.turnstile_token = "";
+            onFieldInput();
+          }
+        });
+        return true;
+      };
+
+      // attempt now and also a few times after in case script loads late
+      if (tryRender()) return;
+      var tries = 0;
+      var iv = setInterval(function() {
+        tries++;
+        if (tryRender() || tries > 25) clearInterval(iv);
+      }, 200);
     }
 
-    function wirePhone(el){
-      if(!el) return;
-      el.setAttribute("inputmode","tel");
-      el.addEventListener("input", function(){
-        var pos = el.selectionStart;
-        var before = el.value;
-        el.value = formatPhoneDigits(el.value);
-        // keep cursor roughly stable
-        if(before.length <= el.value.length) el.selectionEnd = el.selectionStart = Math.min(el.value.length, pos + 1);
-      });
-      el.addEventListener("blur", function(){ el.value = formatPhoneDigits(el.value); });
-    }
+    function render() {
+      var steps = funnels[state.funnel];
+      var stepDef = steps[state.step];
 
-    function setFooterVisible(show){
-      cardFooter.style.display = show ? "flex" : "none";
-    }
+      // Reset
+      elContent.innerHTML = "";
+      elNext.textContent = "Next";
+      elPrev.textContent = "Previous";
 
-    function renderStep(){
-      var step = state.steps[state.stepIndex];
-      if(!step){ return; }
+      elQuestion.textContent = stepDef.q;
+      elSub.textContent = stepDef.sub || "";
+
+      // Footer rules
+      if (state.funnel === "intro") {
+        setFooterMode("hidden");
+      } else {
+        setFooterMode("nav");
+      }
+
       setProgress();
 
-      // Step 0 (branch picker): no footer buttons, auto-advance on click
-      if(step.type === "branch"){
-        setFooterVisible(false);
-      } else {
-        setFooterVisible(true);
-      }
+      // Prev enabled
+      elPrev.disabled = (state.step === 0);
 
-      // Build content
-      cardBody.innerHTML = "";
-
-      var h = document.createElement("h2");
-      h.className = "qTitle";
-      h.textContent = step.title || "";
-      cardBody.appendChild(h);
-
-      if(step.helper){
-        var p = document.createElement("p");
-        p.className = "qHelper";
-        p.textContent = step.helper;
-        cardBody.appendChild(p);
-      }
-
-      if(step.type === "branch"){
+      // Render by type
+      if (stepDef.type === "intro") {
         var grid = document.createElement("div");
-        grid.className = "optionGrid twoCol";
-
-        function makeBranchCard(id, label, sub){
-          var b = document.createElement("div");
-          b.className = "opt";
-          b.setAttribute("role","button");
-          b.setAttribute("tabindex","0");
-          b.dataset.value = id;
-
-          var r = document.createElement("div");
-          r.className = "radio";
-          b.appendChild(r);
-
-          var t = document.createElement("div");
-          t.className = "optText";
-          var l = document.createElement("div"); l.className="optLabel"; l.textContent = label;
-          var s = document.createElement("div"); s.className="optSub"; s.textContent = sub;
-          t.appendChild(l); t.appendChild(s);
-          b.appendChild(t);
-
-          b.addEventListener("click", function(){
-            state.branch = id;
-            state.answers.branch = id;
-            state.steps = (id === "sell") ? SELL_STEPS.slice() : BUY_STEPS.slice();
-            state.stepIndex = 0;
-            renderStep();
-          });
-          b.addEventListener("keydown", function(e){
-            if(e.key === "Enter" || e.key === " "){ e.preventDefault(); b.click(); }
-          });
-          return b;
-        }
-
-        grid.appendChild(makeBranchCard("sell","I want to sell my business","Understand value, timeline, and the best next steps."));
-        grid.appendChild(makeBranchCard("buy","I want to buy a business","Find the right type of deal without the franchise route."));
-        cardBody.appendChild(grid);
-
-        // Update meta for step 0
-        stepLabel.textContent = "Step 1 of 1";
-        progressFill.style.width = "100%";
-        return;
-      }
-
-      if(step.type === "choices"){
-        var list = document.createElement("div");
-        list.className = "optionGrid" + (step.twoCol ? " twoCol" : "");
-
-        (step.choices || []).forEach(function(c){
-          var opt = document.createElement("div");
-          opt.className = "opt";
-          opt.dataset.value = c.value;
-
-          var r = document.createElement("div");
-          r.className = "radio";
-          opt.appendChild(r);
-
-          var t = document.createElement("div");
-          t.className = "optText";
-          var l = document.createElement("div");
-          l.className = "optLabel";
-          l.textContent = c.label;
-          t.appendChild(l);
-          opt.appendChild(t);
-
-          opt.addEventListener("click", function(){
-            // selection
-            qsa(".opt", list).forEach(function(x){ x.classList.remove("isSelected"); });
-            opt.classList.add("isSelected");
-            state.answers[step.id] = c.value;
-
-            // show 'Other' free text if needed
-            var otherWrap = document.getElementById("otherWrap");
-            if(otherWrap) otherWrap.remove();
-
-            if(c.other){
-              var wrap = document.createElement("div");
-              wrap.id = "otherWrap";
-              wrap.className = "formGrid";
-              var lab = document.createElement("label");
-              lab.textContent = "Other";
-              var inp = document.createElement("input");
-              inp.type = "text";
-              inp.id = "otherInput";
-              inp.placeholder = "Please specify";
-              wireAutoCap(inp);
-              wrap.appendChild(lab);
-              wrap.appendChild(inp);
-              cardBody.appendChild(wrap);
-            }
-
-            // enable next
-            nextBtn.disabled = false;
-
-            // special jump
-            if(c.jumpTo){
-              nextBtn.dataset.jumpTo = c.jumpTo;
-            } else {
-              nextBtn.dataset.jumpTo = "";
-            }
-          });
-
-          // preselect
-          if(state.answers[step.id] && state.answers[step.id] === c.value){
-            opt.classList.add("isSelected");
-            nextBtn.disabled = false;
-          }
-
-          list.appendChild(opt);
+        grid.className = "bbas-options";
+        stepDef.options.forEach(function(opt) {
+          var btn = optionButton(opt, "intent");
+          grid.appendChild(btn);
         });
-
-        cardBody.appendChild(list);
-
-        // default next disabled
-        nextBtn.disabled = !state.answers[step.id];
-        return;
-      }
-
-      if(step.type === "location"){
-        var form = document.createElement("div");
-        form.className = "formGrid";
-
-        // Row 1: Business Name
-        var r1 = document.createElement("div");
-        var l1 = document.createElement("label"); l1.textContent = "Business Name";
-        var i1 = document.createElement("input"); i1.type="text"; i1.id="businessName"; i1.placeholder="Business name";
-        wireAutoCap(i1);
-        r1.appendChild(l1); r1.appendChild(i1);
-
-        // Row 2: Street address
-        var r2 = document.createElement("div");
-        var l2 = document.createElement("label"); l2.textContent = "Street address";
-        var i2 = document.createElement("input"); i2.type="text"; i2.id="street"; i2.placeholder="Street address";
-        wireAutoCap(i2);
-        r2.appendChild(l2); r2.appendChild(i2);
-
-        // Row 3: City | State | Zip
-        var r3 = document.createElement("div");
-        r3.className = "formRow3";
-
-        var c1 = document.createElement("div");
-        var lc = document.createElement("label"); lc.textContent="City";
-        var ic = document.createElement("input"); ic.type="text"; ic.id="city"; ic.placeholder="City";
-        wireAutoCap(ic);
-        c1.appendChild(lc); c1.appendChild(ic);
-
-        var c2 = document.createElement("div");
-        var ls = document.createElement("label"); ls.textContent="State";
-        var sel = document.createElement("select"); sel.id="state";
-        var opt0 = document.createElement("option"); opt0.value=""; opt0.textContent="Select";
-        sel.appendChild(opt0);
-        US_STATES.forEach(function(st){
-          var o = document.createElement("option");
-          o.value = st[0];
-          o.textContent = st[1] + " (" + st[0] + ")";
-          sel.appendChild(o);
-        });
-        c2.appendChild(ls); c2.appendChild(sel);
-
-        var c3 = document.createElement("div");
-        var lz = document.createElement("label"); lz.textContent="Zip";
-        var iz = document.createElement("input"); iz.type="text"; iz.id="zip"; iz.placeholder="Zip code"; iz.inputMode="numeric";
-        c3.appendChild(lz); c3.appendChild(iz);
-
-        r3.appendChild(c1); r3.appendChild(c2); r3.appendChild(c3);
-
-        form.appendChild(r1); form.appendChild(r2); form.appendChild(r3);
-        cardBody.appendChild(form);
-
-        // hydrate values
-        var saved = state.answers[step.id] || {};
-        i1.value = saved.businessName || "";
-        i2.value = saved.street || "";
-        ic.value = saved.city || "";
-        sel.value = saved.state || "";
-        iz.value = saved.zip || "";
-
-        function validate(){
-          var ok = !!(i1.value.trim() && i2.value.trim() && ic.value.trim() && sel.value && iz.value.trim());
-          nextBtn.disabled = !ok;
-          state.answers[step.id] = {
-            businessName: i1.value.trim(),
-            street: i2.value.trim(),
-            city: ic.value.trim(),
-            state: sel.value,
-            zip: iz.value.trim()
-          };
-        }
-        ["input","change","blur"].forEach(function(evt){
-          i1.addEventListener(evt, validate);
-          i2.addEventListener(evt, validate);
-          ic.addEventListener(evt, validate);
-          sel.addEventListener(evt, validate);
-          iz.addEventListener(evt, validate);
-        });
-        validate();
-        return;
-      }
-
-      if(step.type === "buy_location"){
-        var form2 = document.createElement("div");
-        form2.className = "formGrid";
-
-        var row = document.createElement("div");
-        row.className = "formRow2";
-
-        var a = document.createElement("div");
-        var la = document.createElement("label"); la.textContent="City";
-        var ia = document.createElement("input"); ia.type="text"; ia.id="buyCity"; ia.placeholder="City";
-        wireAutoCap(ia);
-        a.appendChild(la); a.appendChild(ia);
-
-        var b = document.createElement("div");
-        var lb = document.createElement("label"); lb.textContent="State";
-        var sb = document.createElement("select"); sb.id="buyState";
-        var o0 = document.createElement("option"); o0.value=""; o0.textContent="Select";
-        sb.appendChild(o0);
-        US_STATES.forEach(function(st){
-          var o = document.createElement("option");
-          o.value = st[0];
-          o.textContent = st[1] + " (" + st[0] + ")";
-          sb.appendChild(o);
-        });
-        b.appendChild(lb); b.appendChild(sb);
-
-        row.appendChild(a); row.appendChild(b);
-        form2.appendChild(row);
-        cardBody.appendChild(form2);
-
-        var saved2 = state.answers[step.id] || {};
-        ia.value = saved2.city || "";
-        sb.value = saved2.state || "";
-
-        function validate2(){
-          var ok = !!(ia.value.trim() && sb.value);
-          nextBtn.disabled = !ok;
-          state.answers[step.id] = { city: ia.value.trim(), state: sb.value };
-        }
-        ["input","change","blur"].forEach(function(evt){
-          ia.addEventListener(evt, validate2);
-          sb.addEventListener(evt, validate2);
-        });
-        validate2();
-        return;
-      }
-
-      if(step.type === "contact"){
-        var form3 = document.createElement("form");
-        form3.id = "contactForm";
-        form3.className = "formGrid";
-        form3.setAttribute("novalidate","novalidate");
-
-        var row2 = document.createElement("div");
-        row2.className = "formRow2";
-
-        function field(label, id, type, placeholder){
-          var wrap = document.createElement("div");
-          var lab = document.createElement("label"); lab.textContent = label;
-          var inp = document.createElement("input");
-          inp.type = type || "text";
-          inp.id = id;
-          inp.placeholder = placeholder || "";
-          wrap.appendChild(lab); wrap.appendChild(inp);
-          return { wrap:wrap, input:inp };
-        }
-
-        var f1 = field("First Name","firstName","text","");
-        var f2 = field("Last Name","lastName","text","");
-        wireAutoCap(f1.input);
-        wireAutoCap(f2.input);
-        row2.appendChild(f1.wrap);
-        row2.appendChild(f2.wrap);
-
-        var f3 = field("Email","email","email","");
-        var f4 = field("Phone","phone","tel","");
-        wirePhone(f4.input);
-
-        var msgWrap = document.createElement("div");
-        var msgLab = document.createElement("label"); msgLab.textContent="Anything else we should know?";
-        var msg = document.createElement("textarea"); msg.id="message"; msg.placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.";
-        msgWrap.appendChild(msgLab); msgWrap.appendChild(msg);
-
-        // Turnstile mount (matches approved pattern: mount + hidden token)
-        var tsWrap = document.createElement("div");
-        tsWrap.className = "formGrid";
-        var tsMount = document.createElement("div"); tsMount.id="turnstileMount";
-        var tsToken = document.createElement("input"); tsToken.type="hidden"; tsToken.name="cf-turnstile-response"; tsToken.id="turnstileToken";
-        tsWrap.appendChild(tsMount);
-        tsWrap.appendChild(tsToken);
-
-        // Hidden funnel payload
-        var payload = document.createElement("input"); payload.type="hidden"; payload.name="funnel_payload"; payload.id="funnelPayload";
-
-        form3.appendChild(row2);
-        form3.appendChild(f3.wrap);
-        form3.appendChild(f4.wrap);
-        form3.appendChild(msgWrap);
-        form3.appendChild(tsWrap);
-        form3.appendChild(payload);
-
-        cardBody.appendChild(form3);
-
-        // hydrate
-        var saved3 = state.answers[step.id] || {};
-        f1.input.value = saved3.firstName || "";
-        f2.input.value = saved3.lastName || "";
-        f3.input.value = saved3.email || "";
-        f4.input.value = saved3.phone || "";
-        msg.value = saved3.message || "";
-
-        function validate3(){
-          var ok = !!(f1.input.value.trim() && f2.input.value.trim() && f3.input.value.trim() && f4.input.value.replace(/\D/g,"").length === 10);
-          nextBtn.disabled = !ok;
-          state.answers[step.id] = {
-            firstName: f1.input.value.trim(),
-            lastName: f2.input.value.trim(),
-            email: f3.input.value.trim(),
-            phone: f4.input.value.trim(),
-            message: msg.value.trim()
-          };
-          // keep payload updated
-          payload.value = JSON.stringify(state.answers);
-        }
-        ["input","blur","change"].forEach(function(evt){
-          f1.input.addEventListener(evt, validate3);
-          f2.input.addEventListener(evt, validate3);
-          f3.input.addEventListener(evt, validate3);
-          f4.input.addEventListener(evt, validate3);
-          msg.addEventListener(evt, validate3);
-        });
-        validate3();
-
-        // Render Turnstile once contact step exists
-        ensureTurnstile();
-        return;
+        elContent.appendChild(grid);
+      } else if (stepDef.type === "radio") {
+        renderRadioStep(stepDef);
+      } else if (stepDef.type === "address_seller") {
+        renderAddressSeller(stepDef);
+      } else if (stepDef.type === "address_buyer") {
+        renderAddressBuyer(stepDef);
+      } else if (stepDef.type === "contact") {
+        renderContact(stepDef);
       }
     }
 
-    function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+    function advance() {
+      var steps = funnels[state.funnel];
+      if (state.step < steps.length - 1) {
+        state.step++;
+        render();
+        // keep focus near top of card
+        document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
+      } else {
+        // Submit: here you'd POST to API. For now just log.
+        console.log("Funnel submit:", state.funnel, state.answers);
 
-    /* ---------- Turnstile ---------- */
-    var __tsWidgetId = null;
-    function ensureTurnstile(){
-      var mount = document.getElementById("turnstileMount");
-      if(!mount) return;
-      if(__tsWidgetId !== null) return;
-      if(!window.turnstile){ setTimeout(ensureTurnstile, 250); return; }
-      try{
-        __tsWidgetId = window.turnstile.render(mount, {
-          sitekey: document.documentElement.getAttribute("data-turnstile-sitekey") || "",
-          theme: "light",
-          callback: function(token){
-            var h = document.getElementById("turnstileToken");
-            if(h) h.value = token || "";
-          },
-          "expired-callback": function(){
-            var h = document.getElementById("turnstileToken");
-            if(h) h.value = "";
-          },
-          "error-callback": function(){
-            var h = document.getElementById("turnstileToken");
-            if(h) h.value = "";
-          }
-        });
-      }catch(e){}
-    }
-    window.tsOnload = function(){ ensureTurnstile(); };
-
-    /* ---------- Navigation ---------- */
-    function goNext(){
-      var step = state.steps[state.stepIndex];
-      if(!step) return;
-
-      // capture "Other"
-      if(step.type === "choices"){
-        var otherInp = document.getElementById("otherInput");
-        if(otherInp){
-          state.answers[step.id] = "Other: " + (otherInp.value || "").trim();
-        }
-        if(nextBtn.dataset.jumpTo === "contact"){
-          // jump to contact step inside current branch steps
-          var idx = state.steps.findIndex(function(s){ return s.id === "contact"; });
-          if(idx >= 0){ state.stepIndex = idx; renderStep(); return; }
-        }
-      }
-
-      if(state.stepIndex < state.steps.length - 1){
-        state.stepIndex++;
-        renderStep();
+        // Optional success state (simple)
+        elContent.innerHTML = "<div style='padding:10px 0; color: rgba(0,0,0,0.78); font-size: 15px; line-height: 1.45;'><strong>Success!</strong><br>We received your info. We will follow up with next steps.</div>";
+        elFooter.style.display = "none";
+        elQuestion.textContent = "All set.";
+        elSub.textContent = "Thank you.";
+        elProgress.style.width = "100%";
       }
     }
 
-    function goPrev(){
-      if(state.stepIndex > 0){
-        state.stepIndex--;
-        renderStep();
+    function back() {
+      if (state.step > 0) {
+        state.step--;
+        render();
+        document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
       }
     }
 
-    prevBtn.addEventListener("click", goPrev);
-    nextBtn.addEventListener("click", goNext);
+    // Click delegation for choices
+    elContent.addEventListener("click", function(e) {
+      var btn = e.target.closest(".bbas-choice");
+      if (!btn) return;
 
-    startOverBtn.addEventListener("click", function(){
-      state = { branch:null, stepIndex:0, steps:[], answers:{} };
-      state.steps = [{ id:"branch", title:"What are you here to do?", helper:"Choose one to start. You can switch later.", type:"branch" }];
-      state.stepIndex = 0;
-      renderStep();
+      var key = btn.getAttribute("data-key");
+      var value = btn.getAttribute("data-value");
+
+      if (state.funnel === "intro") {
+        // Set funnel and auto-advance immediately
+        state.answers.intent = value;
+        state.funnel = (value === "sell") ? "sell" : "buy";
+        state.step = 0;
+        render();
+        return;
+      }
+
+      // Radio selection
+      if (key) {
+        state.answers[key] = value;
+        // Update aria-pressed in this group
+        var siblings = elContent.querySelectorAll('.bbas-choice[data-key="' + key + '"]');
+        siblings.forEach(function(s){ s.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        elNext.disabled = false;
+      }
     });
 
-    /* ---------- Init ---------- */
-    document.addEventListener("DOMContentLoaded", function(){
-      state.steps = [{ id:"branch", title:"What are you here to do?", helper:"Choose one to start. You can switch later.", type:"branch" }];
-      state.stepIndex = 0;
-      renderStep();
+    elNext.addEventListener("click", function() {
+      if (elNext.disabled) return;
 
-      // Hide Previous on first step of each branch
-      var obs = new MutationObserver(function(){
-        prevBtn.style.visibility = (state.stepIndex === 0 && state.steps.length > 1) ? "hidden" : "visible";
-      });
-      obs.observe(cardBody, { childList:true, subtree:true });
-      prevBtn.style.visibility = "hidden";
+      var stepDef = funnels[state.funnel][state.step];
+      if (stepDef.type === "radio") {
+        // must have answer stored
+        if (!state.answers[stepDef.key]) return;
+      }
+      if (stepDef.type === "contact") {
+        // contact requires token, etc
+        if (elNext.disabled) return;
+      }
+      advance();
     });
 
+    elPrev.addEventListener("click", function() {
+      back();
+    });
+
+    elStartOver.addEventListener("click", function(e) {
+      e.preventDefault();
+      state.funnel = "intro";
+      state.step = 0;
+      state.answers = {};
+      turnstileWidgetId = null;
+      render();
+      document.getElementById("bbasCard").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+
+    // Initial render
+    render();
   })();
   </script>
 </body>
