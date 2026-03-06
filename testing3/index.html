@@ -967,6 +967,31 @@
   .trustSub, .trustText, .trustMini, .choiceSub, .funnelHelper { color: #374151 !important; }
 </style>
 
+
+<script>
+  window.onTurnstileSuccess = function(token){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = token || "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+  window.onTurnstileExpired = function(){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+  window.onTurnstileError = function(){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+</script>
+
 </head>
 
 <body class="bbas-page">
@@ -1386,7 +1411,7 @@ lease terms, and what is included in the sale.</div>
 
     if (step.type === "contact"){
       var ready = !!(state.answers.first_name && state.answers.last_name && state.answers.email && state.answers.phone);
-      var tokenEl = document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
       var token = tokenEl ? String(tokenEl.value || "").trim() : "";
       return ready && !!token;
     }
@@ -1560,7 +1585,16 @@ lease terms, and what is included in the sale.</div>
         '<div class="field field--full" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" type="tel" value="' + escapeHtml(state.answers.phone || "") + '"></div>' +
         '<div class="field field--full" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.">' + escapeHtml(state.answers.notes || "") + '</textarea></div>' +
       '</div>' +
-      '<div class="turnstileWrap"><div class="cf-turnstile" data-sitekey="' + escapeHtml(document.documentElement.getAttribute("data-turnstile-sitekey") || "") + '" data-theme="light"></div></div>' +
+      '<div class="turnstileWrap">' +
+        '<div class="cf-turnstile" ' +
+          'data-sitekey="' + escapeHtml(document.documentElement.getAttribute("data-turnstile-sitekey") || "") + '" ' +
+          'data-theme="light" ' +
+          'data-callback="onTurnstileSuccess" ' +
+          'data-expired-callback="onTurnstileExpired" ' +
+          'data-error-callback="onTurnstileError">' +
+        '</div>' +
+        '<input type="hidden" id="turnstileToken" value="' + escapeHtml(state.answers.turnstile_token || "") + '">' +
+      '</div>' +
       '<div class="statusLine" id="turnstileHint">Please complete verification before submitting.</div>';
 
     qs("#firstName").addEventListener("input", function(){ this.value = titleCaseWords(this.value); state.answers.first_name = this.value.trim(); updateActions(); });
@@ -1570,6 +1604,14 @@ lease terms, and what is included in the sale.</div>
     qs("#emailAddress").addEventListener("input", function(){ state.answers.email = this.value.trim(); updateActions(); });
     qs("#phoneNumber").addEventListener("input", function(){ this.value = phoneFormat(this.value); state.answers.phone = this.value.trim(); updateActions(); });
     qs("#notes").addEventListener("input", function(){ state.answers.notes = this.value; });
+
+    var ts = document.getElementById("turnstileToken");
+    if (ts) {
+      ts.addEventListener("input", function(){
+        state.answers.turnstile_token = ts.value || "";
+        updateActions();
+      });
+    }
 
     setTimeout(function(){ updateActions(); }, 200);
   }
@@ -1617,7 +1659,7 @@ lease terms, and what is included in the sale.</div>
     }
 
     if (step.type === "contact"){
-      var tokenEl = document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
       state.answers.turnstile_token = tokenEl ? (tokenEl.value || "") : "";
       console.log("Funnel payload", state.answers);
       alert("Form submit wiring comes next. Data is ready to send to Apps Script.");
