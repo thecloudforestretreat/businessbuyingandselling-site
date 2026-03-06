@@ -373,14 +373,6 @@
       display: flex;
       justify-content: flex-start;
     }
-
-    /* Funnel control hardening against global CSS resets */
-    .bbasMain .funnelCard button,
-    .bbasMain .funnelCard input,
-    .bbasMain .funnelCard select,
-    .bbasMain .funnelCard textarea{
-      font-family: inherit;
-    }
     .bbasMain .funnelCard button{
       appearance: none;
       -webkit-appearance: none;
@@ -436,6 +428,15 @@
       opacity: 0.55 !important;
     }
 
+
+    /* Minimal guard against aggressive global resets (does not change theme colors) */
+    .bbasMain .funnelCard .choiceTile{ cursor: pointer; }
+    .bbasMain .funnelCard .choiceTile,
+    .bbasMain .funnelCard .bbasBtn{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
   </style>
 </head>
 
@@ -466,10 +467,7 @@
             </div>
 
             <div class="funnelFooter" id="funnelFooter">
-              <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-                <div class="turnstileWrap" id="turnstileFooter" hidden>
-                  <div class="cf-turnstile" data-sitekey="" data-theme="light"></div>
-                </div>
+              <div style="display:flex;flex-direction:column;gap:10px;width:100%;"></div>
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;">
                   <button class="bbasBtn" id="prevBtn" type="button">Previous</button>
                   <button class="bbasBtn bbasBtnPrimary" id="nextBtn" type="button" disabled>Next</button>
@@ -741,7 +739,6 @@
         const isLast = state.stepIndex === steps.length - 1;
         elNext.textContent = isLast ? "Submit" : "Next";
 
-        const tsFooter = document.getElementById("turnstileFooter");
         const step = steps[state.stepIndex];
         if(tsFooter){
           const showTs = !!(isLast && step && step.type === "contact");
@@ -1168,7 +1165,22 @@ function renderLocationSimple(){
           phone.value = formatPhone(phone.value);
           state.answers.phone = phone.value;
           setNavState();
-        });
+        // Turnstile (only on Contact step, directly above Submit)
+        const tsWrap = document.createElement("div");
+        tsWrap.className = "turnstileWrap";
+        tsWrap.id = "turnstileMount";
+        tsWrap.innerHTML = '<div class="cf-turnstile" data-sitekey="" data-theme="light"></div>';
+        elBody.appendChild(tsWrap);
+
+        // Sync sitekey from <html data-turnstile-sitekey="...">
+        const sitekey = (document.documentElement.dataset.turnstileSitekey || "").trim();
+        if(sitekey){
+          const w = tsWrap.querySelector(".cf-turnstile");
+          if(w) w.setAttribute("data-sitekey", sitekey);
+        }
+
+      }
+);
 
         message.addEventListener("input", () => { state.answers.message = message.value; });
 
@@ -1211,8 +1223,7 @@ function renderLocationSimple(){
         // seller timing skip logic happens in render()
         const isLast = state.stepIndex >= steps.length - 1;
         if(isLast){
-          const tsFooter = document.getElementById("turnstileFooter");
-          if(tsFooter && !tsFooter.hidden){
+          if(tsMount){
             const tokenEl = document.querySelector('textarea[name="cf-turnstile-response"]');
             const token = tokenEl ? (tokenEl.value || "").trim() : "";
             if(!token){
