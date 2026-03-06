@@ -203,7 +203,7 @@
       padding:10px 12px;
       font-size:13px;
       background:#F6F8FC;
-      color:#374151;
+      color:#334155;
     }
 
     .bbas-stats{
@@ -237,7 +237,7 @@
       box-shadow:0 14px 34px rgba(17,24,39,.06);
     }
     .bbas-panel h3{margin:0 0 8px;font-size:18px;letter-spacing:-0.01em;color:#0b1220;}
-    .bbas-ul{margin:0;padding-left:18px;color:#374151;display:grid;gap:8px;}
+    .bbas-ul{margin:0;padding-left:18px;color:#334155;display:grid;gap:8px;}
     .bbas-ul li{line-height:1.5;}
 
     .bbas-grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:18px;}
@@ -250,7 +250,7 @@
     .bbas-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
     .bbas-pill{
       font-size:12px;border-radius:999px;padding:8px 10px;border:1px solid var(--bbas-line);
-      background:#F6F8FC;color:#374151;font-weight:700;
+      background:#F6F8FC;color:#334155;font-weight:700;
     }
 
     .bbas-preview{display:grid;grid-template-columns: 1.05fr .95fr;gap:14px;margin-top:18px;align-items:start;}
@@ -535,7 +535,7 @@
     gap:12px;
     font-size:12px;
     font-weight:800;
-    color:var(--text-muted, #6B7280);
+    color:#475569;
   }
   .linkBtn{
     background:transparent;
@@ -570,7 +570,7 @@
     margin:8px 0 0;
     font-size:13px;
     line-height:1.5;
-    color:var(--text-muted, #6B7280);
+    color:#475569;
   }
 
   .funnelBody{
@@ -633,7 +633,7 @@
     margin:3px 0 0;
     font-size:12px;
     line-height:1.45;
-    color:var(--text-muted, #6B7280);
+    color:#475569;
   }
 
   .optionList{
@@ -719,7 +719,7 @@
   .field label{
     font-size:12px;
     font-weight:800;
-    color:#374151;
+    color:#334155;
   }
   .field input,
   .field select,
@@ -832,13 +832,13 @@
     font-size:18px;
     font-weight:900;
     letter-spacing:-0.01em;
-    color:var(--text-primary, #1F2937);
+    color:#0f172a;
   }
   .trustSub{
     margin:8px 0 0;
-    color:#374151;
+    color:#334155;
     font-size:13px;
-    line-height:1.45;
+    line-height:1.5;
   }
   .trustGrid{
     display:grid;
@@ -860,8 +860,8 @@
   .trustText{
     margin-top:6px;
     font-size:12px;
-    line-height:1.45;
-    color:#374151;
+    line-height:1.5;
+    color:#334155;
   }
   .trustFooter{
     margin-top:14px;
@@ -870,8 +870,8 @@
   }
   .trustMini{
     font-size:12px;
-    line-height:1.45;
-    color:var(--text-muted, #6B7280);
+    line-height:1.5;
+    color:#475569;
   }
 
   .turnstileWrap{
@@ -965,6 +965,13 @@
   .trustCard { background:#FFFFFF !important; }
   .trustTitle, .trustKicker, .optionLabel, .choiceTitle, .funnelQuestion { color: var(--text-primary, #1F2937) !important; }
   .trustSub, .trustText, .trustMini, .choiceSub, .funnelHelper { color: #374151 !important; }
+</style>
+
+
+<style id="bbas-v57-sanity">
+  body[data-funnel-branch="none"] #funnelActions{ display:none !important; }
+  body[data-funnel-branch="none"] #funnelBackBtn,
+  body[data-funnel-branch="none"] #funnelNextBtn{ display:none !important; }
 </style>
 
 </head>
@@ -1454,7 +1461,25 @@ lease terms, and what is included in the sale.</div>
         evt.preventDefault();
         evt.stopPropagation();
         setBranch(branch);
-        renderStep();
+
+        // Force the first real step to render immediately.
+        var firstStep = state.steps[0];
+        if (!firstStep) return;
+
+        var actions = qs("#funnelActions");
+        if (actions) actions.hidden = false;
+
+        qs("#funnelRestartBtn").style.visibility = "visible";
+        setHeader(firstStep);
+        setProgress();
+
+        if (firstStep.type === "choice") renderChoice(firstStep);
+        else if (firstStep.type === "seller_location") renderSellerLocation(firstStep);
+        else if (firstStep.type === "buyer_location") renderBuyerLocation(firstStep);
+        else if (firstStep.type === "contact") renderContact();
+
+        bindAutoFormat();
+        updateNextEnabled();
       });
       return btn;
     }
