@@ -876,59 +876,96 @@ footer.bbas-footer *{
   box-shadow:0 12px 24px rgba(37,99,235,.20);
 }
 
+
 /* ===============================
-   FUNNEL COMPONENT SYSTEM
+   POLISH PASS V5
+   Improve secondary contrast, card breathing room, and bottom note placement
    =============================== */
 
-.funnelQuestion{
-  color:#0F172A !important;
-  font-size:clamp(1.9rem,3vw,2.3rem);
-  font-weight:600;
-  letter-spacing:-0.02em;
-  line-height:1.15;
-}
-
-.funnelHelper{
+.funnelHelper,
+.choiceSub,
+.trustSub,
+.trustText,
+.trustMini,
+.funnelNote,
+.statusLine{
   color:#334155 !important;
-  font-size:14px;
-  line-height:1.6;
 }
 
-.choiceTitle,
-.optionLabel{
+.choiceSub,
+.trustText,
+.trustMini{
+  line-height:1.65 !important;
+}
+
+.choiceTile,
+.optionRow{
+  padding-top:16px !important;
+  padding-bottom:16px !important;
+}
+
+.trustItem{
+  padding:16px !important;
+  border-color:#CBD5E1 !important;
+}
+
+.trustKicker{
+  color:#111827 !important;
+  margin-bottom:4px !important;
+}
+
+.trustText{
+  color:#475569 !important;
+}
+
+.trustSub{
+  color:#475569 !important;
+  margin-bottom:14px !important;
+}
+
+.funnelNote{
+  display:block !important;
+  margin-top:14px !important;
+  padding-top:10px !important;
+  padding-bottom:6px !important;
+  color:#64748B !important;
+  font-size:12px !important;
+  line-height:1.55 !important;
+}
+
+.funnelCard .funnelNote,
+.funnelCard .statusLine{
+  border-top:0 !important;
+}
+
+.funnelBody{
+  padding-bottom:8px !important;
+}
+
+.trustFooter{
+  margin-top:14px !important;
+  padding-top:14px !important;
+  border-top:1px solid #E5E7EB !important;
+}
+
+.optionLabel,
+.choiceTitle{
   color:#1F2937 !important;
-  font-weight:700;
-  font-size:14px;
 }
 
 .choiceSub{
   color:#475569 !important;
-  font-size:13px;
-  line-height:1.6;
 }
 
-.trustTitle{
-  color:#0F172A !important;
-  font-weight:600;
-  font-size:clamp(1.5rem,2vw,1.9rem);
-  letter-spacing:-0.02em;
+.funnelCard,
+.trustCard{
+  box-shadow:0 12px 24px rgba(15,23,42,.05) !important;
 }
 
-.trustSub{
-  color:#334155 !important;
-  font-size:14px;
-  line-height:1.65;
+@media (max-width:720px){
+  .funnelNote{
+    margin-top:12px !important;
+    padding-bottom:8px !important;
+  }
 }
 
-.trustKicker{
-  color:#1F2937 !important;
-  font-weight:700;
-  font-size:14px;
-}
-
-.trustText,
-.trustMini{
-  color:#475569 !important;
-  font-size:13px;
-  line-height:1.6;
-}
