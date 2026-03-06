@@ -878,68 +878,141 @@ footer.bbas-footer *{
 
 
 /* ===============================
-   POLISH PASS V5
-   Improve secondary contrast, card breathing room, and bottom note placement
+   FINAL CONTRAST PASS V6
+   Darker text hierarchy for light cards
    =============================== */
 
-.funnelHelper,
-.choiceSub,
-.trustSub,
-.trustText,
-.trustMini,
-.funnelNote,
-.statusLine{
-  color:#334155 !important;
+.funnelCard,
+.trustCard{
+  background:#FFFFFF !important;
+  border:1px solid #D1D5DB !important;
+  box-shadow:0 10px 22px rgba(15,23,42,.05) !important;
 }
 
-.choiceSub,
-.trustText,
-.trustMini{
+.funnelQuestion,
+.trustTitle{
+  color:#111827 !important;
+  font-weight:600 !important;
+  letter-spacing:-0.02em !important;
+}
+
+.funnelQuestion{
+  font-size:clamp(1.95rem, 3vw, 2.4rem) !important;
+  line-height:1.12 !important;
+}
+
+.trustTitle{
+  font-size:clamp(1.55rem, 2vw, 1.95rem) !important;
+  line-height:1.18 !important;
+  margin-bottom:8px !important;
+}
+
+.funnelHelper,
+.trustSub{
+  color:#374151 !important;
+  font-size:14px !important;
   line-height:1.65 !important;
 }
 
-.choiceTile,
-.optionRow{
-  padding-top:16px !important;
-  padding-bottom:16px !important;
-}
-
-.trustItem{
-  padding:16px !important;
-  border-color:#CBD5E1 !important;
-}
-
+.choiceTitle,
+.optionLabel,
 .trustKicker{
   color:#111827 !important;
-  margin-bottom:4px !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  line-height:1.35 !important;
 }
 
+.choiceSub,
 .trustText{
-  color:#475569 !important;
+  color:#374151 !important;
+  font-size:13px !important;
+  line-height:1.65 !important;
+  font-weight:500 !important;
 }
 
-.trustSub{
+.trustMini,
+.funnelNote,
+.statusLine,
+#funnelStepLabel{
+  color:#4B5563 !important;
+  font-size:12.5px !important;
+  line-height:1.55 !important;
+}
+
+.trustPill{
   color:#475569 !important;
-  margin-bottom:14px !important;
+  border-color:#D1D5DB !important;
+  background:#F8FAFC !important;
+}
+
+.choiceTile,
+.optionRow,
+.trustItem{
+  background:#FFFFFF !important;
+  border:1px solid #D1D5DB !important;
+  border-radius:16px !important;
+}
+
+.choiceTile,
+.trustItem{
+  padding:16px !important;
+}
+
+.optionRow{
+  padding:15px 16px !important;
+}
+
+.choiceTile:hover,
+.optionRow:hover{
+  border-color:#93C5FD !important;
+  box-shadow:0 1px 2px rgba(15,23,42,.06) !important;
+}
+
+.choiceTile[aria-pressed="true"],
+.optionRow[aria-pressed="true"]{
+  border-color:#2563EB !important;
+  box-shadow:0 0 0 4px rgba(37,99,235,.10) !important;
+}
+
+.choiceIcon{
+  background:#EEF4FF !important;
+  border:1px solid #BFDBFE !important;
+  color:#1B263B !important;
+}
+
+.optionBullet{
+  border:2px solid #CBD5E1 !important;
+  background:#FFFFFF !important;
+}
+
+.optionRow[aria-pressed="true"] .optionBullet{
+  border-color:#2563EB !important;
+}
+
+.optionRow[aria-pressed="true"] .optionBullet::after{
+  background:#2563EB !important;
+}
+
+.btn--ghost{
+  background:#FFFFFF !important;
+  color:#1F2937 !important;
+  border:1px solid #D1D5DB !important;
+}
+
+.btn--primary{
+  color:#FFFFFF !important;
 }
 
 .funnelNote{
   display:block !important;
   margin-top:14px !important;
   padding-top:10px !important;
-  padding-bottom:6px !important;
-  color:#64748B !important;
-  font-size:12px !important;
-  line-height:1.55 !important;
-}
-
-.funnelCard .funnelNote,
-.funnelCard .statusLine{
-  border-top:0 !important;
+  padding-bottom:8px !important;
 }
 
 .funnelBody{
-  padding-bottom:8px !important;
+  padding-bottom:10px !important;
 }
 
 .trustFooter{
@@ -948,24 +1021,13 @@ footer.bbas-footer *{
   border-top:1px solid #E5E7EB !important;
 }
 
-.optionLabel,
-.choiceTitle{
-  color:#1F2937 !important;
-}
-
-.choiceSub{
-  color:#475569 !important;
-}
-
-.funnelCard,
-.trustCard{
-  box-shadow:0 12px 24px rgba(15,23,42,.05) !important;
-}
-
 @media (max-width:720px){
-  .funnelNote{
-    margin-top:12px !important;
-    padding-bottom:8px !important;
+  .funnelQuestion{
+    font-size:clamp(1.8rem, 7vw, 2.15rem) !important;
+  }
+
+  .trustTitle{
+    font-size:clamp(1.35rem, 6vw, 1.75rem) !important;
   }
 }
 
