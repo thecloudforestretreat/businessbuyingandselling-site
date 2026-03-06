@@ -691,3 +691,188 @@ footer.bbas-footer *{
     grid-template-columns:1fr 1fr;
   }
 }
+
+/* ===============================
+   FINAL FUNNEL/TRUST CONTRAST LAYER
+   Site-wide mapping for existing BBAS component classes
+   =============================== */
+
+.bbas-page .funnelCard,
+.bbas-page .trustCard{
+  background:#FFFFFF;
+  border:1px solid #D1D5DB;
+  border-radius:20px;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+}
+
+.bbas-page .funnelQuestion,
+.bbas-page .trustTitle{
+  color:#111827 !important;
+  font-weight:600;
+  letter-spacing:-0.02em;
+}
+
+.bbas-page .funnelQuestion{
+  font-size:clamp(1.85rem, 3vw, 2.3rem);
+  line-height:1.12;
+}
+
+.bbas-page .trustTitle{
+  font-size:clamp(1.55rem, 2vw, 1.95rem);
+  line-height:1.18;
+}
+
+.bbas-page .funnelHelper,
+.bbas-page .choiceSub,
+.bbas-page .trustSub,
+.bbas-page .trustText,
+.bbas-page .trustMini,
+.bbas-page .funnelNote,
+.bbas-page .statusLine{
+  color:#475569 !important;
+  font-weight:500;
+}
+
+.bbas-page .funnelHelper,
+.bbas-page .choiceSub,
+.bbas-page .trustSub,
+.bbas-page .trustText{
+  line-height:1.6;
+}
+
+.bbas-page .choiceTitle,
+.bbas-page .optionLabel,
+.bbas-page .trustKicker{
+  color:#1F2937 !important;
+  font-weight:700;
+}
+
+.bbas-page .choiceText,
+.bbas-page .optionText{
+  min-width:0;
+}
+
+.bbas-page .choiceTitle,
+.bbas-page .optionLabel{
+  display:block;
+  font-size:14px;
+  line-height:1.35;
+}
+
+.bbas-page .choiceSub{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+}
+
+.bbas-page .trustSub{
+  font-size:14px;
+  margin-top:6px;
+}
+
+.bbas-page .trustKicker{
+  display:block;
+  margin:0;
+  font-size:14px;
+  line-height:1.35;
+}
+
+.bbas-page .trustText{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+}
+
+.bbas-page .trustMini,
+.bbas-page .funnelNote{
+  font-size:12.5px;
+  line-height:1.55;
+}
+
+.bbas-page .choiceTile,
+.bbas-page .optionRow,
+.bbas-page .trustItem{
+  background:#FFFFFF;
+  border:1px solid #D1D5DB;
+  border-radius:16px;
+}
+
+.bbas-page .choiceTile,
+.bbas-page .trustItem{
+  padding:14px;
+}
+
+.bbas-page .optionRow{
+  padding:14px 16px;
+}
+
+.bbas-page .choiceTile:hover,
+.bbas-page .optionRow:hover{
+  border-color:#93C5FD;
+  box-shadow:0 1px 2px rgba(15,23,42,.06);
+}
+
+.bbas-page .choiceTile[aria-pressed="true"],
+.bbas-page .optionRow[aria-pressed="true"]{
+  border-color:#2563EB;
+  box-shadow:0 0 0 4px rgba(37,99,235,.10);
+}
+
+.bbas-page .choiceIcon{
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+  border-radius:10px;
+  color:#1B263B;
+}
+
+.bbas-page .optionBullet{
+  border:2px solid #CBD5E1;
+  background:#FFFFFF;
+}
+
+.bbas-page .optionRow[aria-pressed="true"] .optionBullet{
+  border-color:#2563EB;
+}
+
+.bbas-page .optionRow[aria-pressed="true"] .optionBullet::after{
+  background:#2563EB;
+}
+
+.bbas-page .trustPill{
+  color:#475569 !important;
+  background:#F8FAFC;
+  border:1px solid #E5E7EB;
+}
+
+.bbas-page .linkBtn,
+.bbas-page #funnelRestartBtn{
+  color:#2563EB !important;
+  font-weight:700;
+}
+
+.bbas-page #funnelStepLabel{
+  color:#64748B !important;
+  font-weight:700;
+}
+
+.bbas-page .funnelProgressTrack{
+  background:#E5E7EB;
+}
+
+.bbas-page .funnelProgressFill{
+  background:linear-gradient(90deg,#2563EB,#60A5FA);
+}
+
+.bbas-page .btn--ghost{
+  background:#FFFFFF;
+  color:#1F2937 !important;
+  border:1px solid #D1D5DB;
+}
+
+.bbas-page .btn--primary{
+  background:linear-gradient(180deg,#3B82F6 0%,#2563EB 100%);
+  color:#FFFFFF !important;
+  border:1px solid transparent;
+  box-shadow:0 12px 24px rgba(37,99,235,.20);
+}
+
