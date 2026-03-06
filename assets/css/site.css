@@ -877,92 +877,58 @@ footer.bbas-footer *{
 }
 
 /* ===============================
-   FINAL READABILITY OVERRIDE V3
-   Unscoped so it applies to the live funnel/trust UI directly
+   FUNNEL COMPONENT SYSTEM
    =============================== */
 
-.funnelQuestion,
+.funnelQuestion{
+  color:#0F172A !important;
+  font-size:clamp(1.9rem,3vw,2.3rem);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+}
+
+.funnelHelper{
+  color:#334155 !important;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.choiceTitle,
+.optionLabel{
+  color:#1F2937 !important;
+  font-weight:700;
+  font-size:14px;
+}
+
+.choiceSub{
+  color:#475569 !important;
+  font-size:13px;
+  line-height:1.6;
+}
+
 .trustTitle{
   color:#0F172A !important;
-  font-weight:600 !important;
+  font-weight:600;
+  font-size:clamp(1.5rem,2vw,1.9rem);
   letter-spacing:-0.02em;
 }
 
-.funnelHelper,
-.choiceSub,
-.trustSub,
-.trustText,
-.trustMini,
-.funnelNote,
-.statusLine{
+.trustSub{
   color:#334155 !important;
-  font-weight:500 !important;
+  font-size:14px;
+  line-height:1.65;
 }
 
-.choiceTitle,
-.optionLabel,
 .trustKicker{
   color:#1F2937 !important;
-  font-weight:700 !important;
+  font-weight:700;
+  font-size:14px;
 }
 
-.choiceTitle,
-.optionLabel,
-.trustKicker,
 .trustText,
-.trustSub,
-.choiceSub,
-.funnelHelper{
-  text-shadow:none !important;
-  opacity:1 !important;
-}
-
-.choiceTile,
-.optionRow,
-.trustItem{
-  color:#334155 !important;
-  border-color:#CBD5E1 !important;
-}
-
-.choiceTile .choiceTitle,
-.optionRow .optionLabel,
-.trustItem .trustKicker{
-  color:#1F2937 !important;
-}
-
-.choiceTile .choiceSub,
-.trustItem .trustText,
-.trustCard .trustSub,
-.trustCard .trustMini{
-  color:#334155 !important;
-}
-
-.trustCard,
-.funnelCard{
-  border-color:#CBD5E1 !important;
-  box-shadow:0 8px 20px rgba(15,23,42,.05) !important;
-}
-
-.trustPill{
+.trustMini{
   color:#475569 !important;
-  border-color:#D1D5DB !important;
-  background:#F8FAFC !important;
+  font-size:13px;
+  line-height:1.6;
 }
-
-.funnelProgressMeta #funnelStepLabel{
-  color:#64748B !important;
-}
-
-.btn--ghost{
-  color:#1F2937 !important;
-  border-color:#CBD5E1 !important;
-}
-
-.btn--primary{
-  color:#FFFFFF !important;
-}
-
-.heroLead{
-  color:rgba(255,255,255,.93) !important;
-}
-
