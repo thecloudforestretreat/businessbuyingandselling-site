@@ -272,9 +272,7 @@
 
     .bbas-knowledge{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:16px;}
 
-    @media (max-width: 720px){ .trustGrid{ grid-template-columns: 1fr; } }
-
-@media (max-width: 980px){
+    @media (max-width: 980px){
       .bbas-hero-inner{grid-template-columns:1fr; padding:48px 0 26px;}
       .bbas-hero h1{font-size:40px; max-width:22ch;}
       .bbas-stats-inner{grid-template-columns: repeat(2, 1fr);}
@@ -571,10 +569,25 @@
     color: #0f172a;
   }
   .trustDot{ width: 9px; height: 9px; border-radius: 999px; background: #22C55E; box-shadow: 0 0 0 6px rgba(34,197,94,0.18); }
-  .trustTitle{ margin: 10px 0 0; font-size: 18px; letter-spacing: -0.01em; color: #0f172a; }
-  .trustSub{ margin: 8px 0 0; color: rgba(15,23,42,0.72); font-size: 13px; line-height: 1.45; }
-  .trustGrid{ margin-top: 14px; display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .trustItem{ padding: 12px; border-radius: 14px; background: rgba(15,23,42,0.03); border: 1px solid rgba(15,23,42,0.08); }
+  .trustTitle{
+    margin: 10px 0 0;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: #0f172a;
+  }
+  .trustSub{
+    margin: 8px 0 0;
+    color: rgba(15,23,42,0.72);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .trustGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .trustItem{
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(15,23,42,0.03);
+    border: 1px solid rgba(15,23,42,0.08);
+  }
   .trustKicker{ font-size: 12px; font-weight: 900; }
   .trustText{ margin-top: 4px; font-size: 12.5px; color: rgba(255,255,255,0.86); line-height: 1.45; }
   .trustFooter{ margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.16); }
@@ -584,9 +597,7 @@
   .statusLine{ margin-top: 10px; font-size: 13px; color: rgba(15,23,42,0.72); }
   .statusLine--error{ color: #b91c1c; }
 
-  @media (max-width: 720px){ .trustGrid{ grid-template-columns: 1fr; } }
-
-@media (max-width: 980px){
+  @media (max-width: 980px){
     .funnelShell{ grid-template-columns: 1fr; }
     .heroTop{ padding-left: 4px; padding-right: 4px; }
     .trustGrid{ grid-template-columns: 1fr 1fr; }
@@ -936,8 +947,6 @@
 }
 
 /* When content is taller than the viewport, scroll inside the card instead of creating empty space */
-@media (max-width: 720px){ .trustGrid{ grid-template-columns: 1fr; } }
-
 @media (max-width: 980px){
   .stepCard{
     max-height: calc(100vh - 220px) !important;
@@ -1261,6 +1270,14 @@
     .inputGrid--address .addressRow3{ grid-template-columns: 1fr; }
     #funnelBackBtn, #funnelNextBtn{ width: 160px !important; min-width: 160px !important; }
   }
+
+/* Minimal guard so global CSS cannot disable funnel clicks */
+#funnelBody button, #funnelActions button{
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+
 </style>
 
 <style id="bbas-funnel-overrides">
