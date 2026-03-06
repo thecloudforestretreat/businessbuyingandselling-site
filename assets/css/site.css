@@ -876,3 +876,93 @@ footer.bbas-footer *{
   box-shadow:0 12px 24px rgba(37,99,235,.20);
 }
 
+/* ===============================
+   FINAL READABILITY OVERRIDE V3
+   Unscoped so it applies to the live funnel/trust UI directly
+   =============================== */
+
+.funnelQuestion,
+.trustTitle{
+  color:#0F172A !important;
+  font-weight:600 !important;
+  letter-spacing:-0.02em;
+}
+
+.funnelHelper,
+.choiceSub,
+.trustSub,
+.trustText,
+.trustMini,
+.funnelNote,
+.statusLine{
+  color:#334155 !important;
+  font-weight:500 !important;
+}
+
+.choiceTitle,
+.optionLabel,
+.trustKicker{
+  color:#1F2937 !important;
+  font-weight:700 !important;
+}
+
+.choiceTitle,
+.optionLabel,
+.trustKicker,
+.trustText,
+.trustSub,
+.choiceSub,
+.funnelHelper{
+  text-shadow:none !important;
+  opacity:1 !important;
+}
+
+.choiceTile,
+.optionRow,
+.trustItem{
+  color:#334155 !important;
+  border-color:#CBD5E1 !important;
+}
+
+.choiceTile .choiceTitle,
+.optionRow .optionLabel,
+.trustItem .trustKicker{
+  color:#1F2937 !important;
+}
+
+.choiceTile .choiceSub,
+.trustItem .trustText,
+.trustCard .trustSub,
+.trustCard .trustMini{
+  color:#334155 !important;
+}
+
+.trustCard,
+.funnelCard{
+  border-color:#CBD5E1 !important;
+  box-shadow:0 8px 20px rgba(15,23,42,.05) !important;
+}
+
+.trustPill{
+  color:#475569 !important;
+  border-color:#D1D5DB !important;
+  background:#F8FAFC !important;
+}
+
+.funnelProgressMeta #funnelStepLabel{
+  color:#64748B !important;
+}
+
+.btn--ghost{
+  color:#1F2937 !important;
+  border-color:#CBD5E1 !important;
+}
+
+.btn--primary{
+  color:#FFFFFF !important;
+}
+
+.heroLead{
+  color:rgba(255,255,255,.93) !important;
+}
+
