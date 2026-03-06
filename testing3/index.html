@@ -32,380 +32,171 @@
 
       <link rel="stylesheet" href="/assets/css/header.css">
 <!-- Page-level polish (compact, scoped) -->
-  <style>
-    
-  .pageBg{position:fixed; inset:0; background-image:url(\'/assets/images/bbas_homepage_hero_03.jpg\'); background-size:cover; background-position:center; background-repeat:no-repeat; transform:none; will-change:auto; z-index:-2;}
-  .pageBg::after{content:\'\'; position:absolute; inset:0; background: radial-gradient(1200px 700px at 25% 20%, rgba(0,0,0,0.55), rgba(0,0,0,0.82));}
-:root{
-  --rhythm: 14px;
+<style id="page-structure-only">
+  /* Structure only. Visual styling comes from global site.css and header.css. */
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:12px;
+    z-index:9999;
+  }
+  .skip-link:focus{ left:12px; }
 
-      --bbas-navy:#1B263B;
-      --bbas-blue:#2563EB;
-      --bbas-ink:#0B1220;
-      --bbas-surface:#ffffff;
-      --bbas-soft:#F5F7FB;
-      --bbas-line:rgba(17,24,39,.10);
-      --bbas-text:#111827;
-      --bbas-muted:#6B7280;
-      --bbas-glow: rgba(37,99,235,.18);
-    }
-    .container{max-width:1160px;margin:0 auto;padding:0 22px;}
-    .narrow{max-width:940px;margin:0 auto;}
-    .bbas-page a{color:inherit}
+  body.bbas-page{ min-height:100vh; }
 
-    .bbas-hero{
-      position:relative;
-      background:#0b1220 url('/assets/images/bbas_homepage_hero_03.jpg') center/cover no-repeat;
-      color:#fff;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .bbas-hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 12% 12%, rgba(96,165,250,.22), transparent 60%),
-        radial-gradient(900px 520px at 88% 18%, rgba(37,99,235,.22), transparent 60%),
-        linear-gradient(180deg, rgba(11,18,32,.70), rgba(11,18,32,.82));
-      pointer-events:none;
-    }
-    .bbas-hero-inner{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:26px;
-      padding:58px 0 34px;
-      align-items:start;
-    }
-    .bbas-badge{
-      display:inline-flex; gap:10px; align-items:center;
-      font-size:12px; font-weight:700; letter-spacing:.02em;
-      color:#EAF2FF; background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
-      padding:8px 12px; border-radius:999px;
-      width:fit-content;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-dot{width:8px;height:8px;border-radius:50%;background:#F97316; box-shadow:0 0 0 4px rgba(249,115,22,.20);}
-    .bbas-hero h1{
-      margin:14px 0 10px;
-      font-size:46px; line-height:1.06;
-      letter-spacing:-0.02em;
-      max-width:18ch;
-    }
-    .bbas-hero p.lead{
-      font-size:18px;
-      color:rgba(255,255,255,.86);
-      max-width:62ch;
-      line-height:1.55;
-      margin:0 0 18px;
-    }
-    .bbas-points{
-      list-style:none; padding:0; margin:0 0 18px;
-      display:grid; gap:10px;
-    }
-    .bbas-points li{
-      display:flex; gap:10px; align-items:flex-start;
-      color:rgba(255,255,255,.90);
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      padding:12px 12px;
-    }
-    .bbas-check{
-      width:22px;height:22px;border-radius:9px;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:rgba(96,165,250,.18);
-      border:1px solid rgba(96,165,250,.26);
-      flex:0 0 auto;
-      margin-top:1px;
-      color:#EAF2FF;
-      font-weight:900;
-    }
-    .bbas-cta{
-      display:flex; flex-wrap:wrap; gap:12px;
-      margin-top:10px;
-    }
-    .bbas-btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      border-radius:14px;
-      padding:12px 16px;
-      font-weight:800;
-      text-decoration:none;
-      border:1px solid transparent;
-      cursor:pointer;
-      min-height:46px;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .bbas-btn-primary{background:var(--bbas-blue); color:#fff; box-shadow:0 14px 34px rgba(37,99,235,.28);}
-    .bbas-btn-primary:hover{filter:brightness(1.05);}
-    .bbas-btn-ghost{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.18);
-      color:#fff;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-btn-ghost:hover{background:rgba(255,255,255,.14);}
+  .hero--funnel{
+    position:relative;
+    padding:24px 0 64px;
+  }
 
-    .bbas-hero-card{
-      background:rgba(255,255,255,.96);
-      color:var(--bbas-text);
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:18px;
-      box-shadow: 0 22px 60px rgba(0,0,0,.35);
-      overflow:hidden;
+  .hero--funnel .container{
+    width:min(1160px, calc(100% - 32px));
+    margin:0 auto;
+  }
+
+  .heroTop{
+    position:relative;
+    overflow:hidden;
+    padding:28px 28px 118px;
+  }
+
+  .heroTitle,
+  .heroLead{
+    max-width:720px;
+  }
+
+  .funnelShell{
+    display:grid;
+    grid-template-columns:minmax(0, 1.15fr) minmax(320px, .95fr);
+    gap:22px;
+    align-items:start;
+    margin-top:-84px;
+    position:relative;
+    z-index:3;
+  }
+
+  .funnelLeft,
+  .funnelRight{
+    min-width:0;
+  }
+
+  .funnelProgress{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin:0 0 14px;
+  }
+
+  .funnelProgressMeta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .funnelCard{ overflow:hidden; }
+  .funnelCardHeader{ padding:22px 22px 12px; }
+  .funnelBody{ padding:16px 22px 12px; }
+
+  .choiceGrid,
+  .optionList,
+  .trustGrid,
+  .inputGrid{
+    display:grid;
+    gap:12px;
+  }
+
+  .choiceGrid--two,
+  .optionList--two{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .inputGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .inputGrid--address .field--full{
+    grid-column:1 / -1;
+  }
+
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .funnelActions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 22px 14px;
+  }
+
+  body[data-funnel-branch="none"] #funnelActions{
+    display:none !important;
+  }
+
+  .turnstileWrap{
+    display:flex;
+    justify-content:flex-start;
+    padding:12px 0 6px;
+  }
+
+  .statusLine{
+    margin-top:10px;
+    font-size:13px;
+  }
+
+  #siteFooter{
+    position:relative;
+    z-index:1;
+  }
+
+  @media (max-width: 980px){
+    .heroTop{ padding:22px 22px 110px; }
+    .funnelShell{
+      grid-template-columns:1fr;
+      margin-top:-72px;
     }
-    .bbas-card-head{
-      padding:18px 18px 12px;
-      border-bottom:1px solid var(--bbas-line);
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
+  }
+
+  @media (max-width: 720px){
+    .hero--funnel{
+      padding:16px 0 40px;
     }
-    .bbas-card-head .kicker{
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.04em;
-      color:#1B263B;
-      text-transform:uppercase;
+
+    .hero--funnel .container{
+      width:min(1160px, calc(100% - 24px));
     }
-    .bbas-card-head h3{
-      margin:6px 0 0;
-      font-size:18px;
-      letter-spacing:-0.01em;
+
+    .heroTop{
+      padding:18px 16px 84px;
     }
-    .bbas-form{
-      padding:16px 18px 18px;
-      display:grid;
-      gap:12px;
+
+    .choiceGrid--two,
+    .optionList--two,
+    .trustGrid,
+    .inputGrid{
+      grid-template-columns:1fr;
     }
-    .bbas-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-    .bbas-field label{display:block;font-size:12px;font-weight:800;color:#111827;margin:0 0 6px;}
-    .bbas-input, .bbas-select, .bbas-textarea{
+
+    .funnelCardHeader,
+    .funnelBody,
+    .funnelActions,
+    .trustCard{
+      padding-left:16px;
+      padding-right:16px;
+    }
+
+    .funnelActions{
+      flex-wrap:wrap;
+    }
+
+    .btn{
       width:100%;
-      border-radius:14px;
-      border:1px solid var(--bbas-line);
-      background:#F6F8FC;
-      padding:12px 12px;
-      font-size:14px;
-      outline:none;
     }
-    .bbas-input:focus, .bbas-select:focus, .bbas-textarea:focus{
-      border-color: rgba(37,99,235,.35);
-      box-shadow:0 0 0 4px var(--bbas-glow);
-      background:#fff;
-    }
-    .bbas-textarea{min-height:92px; resize:vertical;}
-    .bbas-submit{width:100%;border:none;}
-    .bbas-fine{font-size:12px;color:var(--bbas-muted);line-height:1.45;}
-    .bbas-status{
-      display:none;
-      border-radius:14px;
-      border:1px solid var(--bbas-line);
-      padding:10px 12px;
-      font-size:13px;
-      background:#F6F8FC;
-      color:#374151;
-    }
-
-    .bbas-stats{
-      position:relative;
-      padding:18px 0 26px;
-      background: linear-gradient(180deg, rgba(11,18,32,.00), rgba(11,18,32,.10));
-    }
-    .bbas-stats-inner{
-      position:relative;
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:12px;
-    }
-    .bbas-stat{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:14px 14px;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-stat .num{font-size:18px;font-weight:900;letter-spacing:-0.01em;}
-    .bbas-stat .lbl{font-size:12px;color:rgba(255,255,255,.82);margin-top:2px;line-height:1.35;}
-
-    .bbas-section{padding:44px 0;}
-    .bbas-section.alt{background:var(--bbas-soft); border-top:1px solid var(--bbas-line); border-bottom:1px solid var(--bbas-line);}
-    .bbas-section h2{font-size:30px;letter-spacing:-0.02em;margin:0 0 10px;color:var(--bbas-ink);}
-    .bbas-section p{color:var(--bbas-muted);font-size:16px;line-height:1.65;margin:0 0 14px;}
-    .bbas-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
-    .bbas-panel{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:18px 18px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-panel h3{margin:0 0 8px;font-size:18px;letter-spacing:-0.01em;color:#0b1220;}
-    .bbas-ul{margin:0;padding-left:18px;color:#374151;display:grid;gap:8px;}
-    .bbas-ul li{line-height:1.5;}
-
-    .bbas-grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:18px;}
-    .bbas-card{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:16px 16px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-card h4{margin:0 0 6px;font-size:16px;color:#0b1220;}
-    .bbas-card p{margin:0;font-size:14px;}
-    .bbas-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-    .bbas-pill{
-      font-size:12px;border-radius:999px;padding:8px 10px;border:1px solid var(--bbas-line);
-      background:#F6F8FC;color:#374151;font-weight:700;
-    }
-
-    .bbas-preview{display:grid;grid-template-columns: 1.05fr .95fr;gap:14px;margin-top:18px;align-items:start;}
-    .bbas-listing{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:16px 16px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-listing-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-    .bbas-listing h3{margin:0;font-size:18px;color:#0b1220;letter-spacing:-0.01em;}
-    .bbas-tag{
-      font-size:12px;font-weight:900;color:#1B263B;background:#EAF2FF;border:1px solid #D7E6FF;
-      padding:7px 10px;border-radius:999px;white-space:nowrap;
-    }
-    .bbas-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
-    .bbas-metric{background:#F6F8FC;border:1px solid var(--bbas-line);border-radius:14px;padding:10px 10px;}
-    .bbas-metric .k{font-size:12px;color:var(--bbas-muted);font-weight:800;}
-    .bbas-metric .v{font-size:16px;font-weight:900;color:#0b1220;margin-top:2px;}
-    .bbas-note{font-size:12px;color:var(--bbas-muted);margin-top:12px;line-height:1.45;}
-
-    .bbas-knowledge{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:16px;}
-
-    @media (max-width: 980px){
-      .bbas-hero-inner{grid-template-columns:1fr; padding:48px 0 26px;}
-      .bbas-hero h1{font-size:40px; max-width:22ch;}
-      .bbas-stats-inner{grid-template-columns: repeat(2, 1fr);}
-      .bbas-split{grid-template-columns:1fr;}
-      .bbas-grid{grid-template-columns:1fr;}
-      .bbas-preview{grid-template-columns:1fr;}
-      .bbas-knowledge{grid-template-columns:1fr;}
-    }
-    @media (max-width: 560px){
-      .bbas-hero h1{font-size:34px;}
-      .bbas-row{grid-template-columns:1fr;}
-      .bbas-section{padding:36px 0;}
-      .bbas-hero-inner{gap:14px;}
-      .bbas-stats{padding:14px 0 22px;}
-    }
-  
-/* Turnstile + form status */
-.turnstileWrap{margin-top: var(--rhythm);margin-bottom:14px;display:flex;justify-content:flex-start}
-.turnstileMount{min-height:65px;}
-.formStatus{min-height:18px;margin:0 0 10px 0;font-size:13px;line-height:1.25;color:var(--muted)}
-.formStatus.is-error{color:#EF4444}
-.formStatus.is-success{color:#22C55E}
-.formStatus.is-loading{color:var(--muted)}
-
-
-/* Ensure footer never overlays the funnel UI */
-#siteFooter{ position: relative; z-index: 1; }
-
-  .optionsGrid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 720px){ .optionsGrid2{ grid-template-columns: 1fr; } }
-
-  .optionList--two{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 720px){ .optionList--two{ grid-template-columns: 1fr; } }
-
-/* Reduce excess vertical space in step cards */
-.stepCard{
-  min-height: auto !important;
-}
-
-.stepBody{
-  padding-bottom: 20px !important;
-}
-
-/* Remove spacer pushing footer down */
-.stepSpacer,
-.formSpacer{
-  display: none !important;
-}
-
-
-/* Normalize spacing across all steps */
-.stepCard {
-  display: flex;
-  flex-direction: column;
-}
-
-.stepContent {
-  flex: 0 0 auto !important;
-}
-
-.stepFooter {
-  margin-top: 16px !important;
-  padding-top: 12px !important;
-  min-height: auto !important;
-}
-
-/* Remove legacy filler blocks */
-.stepFiller,
-.stepPad,
-.stepFill {
-  display: none !important;
-}
-
-
-/* ---- Spacing rhythm: keep the same gap between the last answer and the footer actions ---- */
-.qBody > :is(.answers,.optionList,.choiceList,.radioList,.optionsList,.options,.cardGrid,.choiceGrid){
-  margin-bottom: var(--answer-spacing) !important;
-}
-
-/* Footer actions should sit off the divider with the same rhythm as answer gaps */
-.funnelActions{
-  margin-top: var(--answer-spacing) !important;
-  padding-top: 14px !important;
-  padding-bottom: 10px !important;
-  align-items: center !important;
-}
-
-/* Reduce perceived empty space by tightening the note block */
-.funnelNote{
-  padding-top: 6px !important;
-  padding-bottom: 10px !important;
-  color: rgba(20,26,38,.38) !important;
-}
-
-
-
-/* --- Global funnel consistency fixes --- */
-#funnelBackBtn, #funnelNextBtn{
-  width:180px !important;
-  height:44px !important;
-  min-height:44px !important;
-  padding:0 !important;
-  display:inline-flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  box-sizing:border-box !important;
-}
-#funnelBody{
-  padding-bottom:96px !important; /* prevents footer overlap */
-}
-.optionBullet, .optionRow .optionBullet, .choiceBullet{
-  flex:0 0 18px !important;
-
-  width:18px !important;
-  height:18px !important;
-  border-radius:999px !important;
-  box-sizing:border-box !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-}
-.optionBullet::after, .choiceBullet::after{
-  content:"";
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:transparent;
-  display:block;
-}
-.optionRow[aria-pressed="true"] .optionBullet::after,
-.choiceTile[aria-pressed="true"] .choiceBullet::after{
-  background: var(--bbas-accent, #2a5bff);
-}
+  }
 </style>
 
   <!-- Google Analytics -->
@@ -418,555 +209,6 @@
   </script>
   <!-- Turnstile needs CSP to allow iframes from challenges.cloudflare.com (frame-src). -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<style id="funnelStyles">
-  /* Funnel page styling aligned to the approved homepage/global system */
-  body.bbas-page{
-    background:#FAFAFA;
-    color:var(--text-primary, #1F2937);
-  }
-
-  .hero--funnel{
-    position:relative;
-    padding:22px 0 64px;
-    background:transparent;
-  }
-  .hero--funnel .heroBg{ display:none; }
-  .hero--funnel .container{
-    position:relative;
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  .heroTop{
-    position:relative;
-    overflow:hidden;
-    border-radius:24px;
-    background:#111827;
-    box-shadow:0 18px 40px rgba(17,24,39,.12);
-    padding:26px 26px 118px;
-    color:#fff;
-  }
-  .heroTop::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(1200px 420px at 18% 18%, rgba(37,99,235,.35), transparent 60%),
-      linear-gradient(90deg, rgba(17,24,39,.82), rgba(17,24,39,.35));
-    z-index:1;
-  }
-  .heroTop > *{
-    position:relative;
-    z-index:2;
-  }
-
-  .heroBadge{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.10);
-    color:rgba(255,255,255,.88);
-    font-size:14px;
-  }
-  .heroBadge .dot{
-    width:9px;
-    height:9px;
-    border-radius:999px;
-    background:#F59E0B;
-    box-shadow:0 0 0 6px rgba(245,158,11,.18);
-  }
-  .heroTitle{
-    margin:14px 0 10px;
-    max-width:720px;
-    font-size:44px;
-    line-height:1.06;
-    letter-spacing:-0.02em;
-    color:#fff;
-  }
-  .heroLead{
-    margin:0;
-    max-width:720px;
-    font-size:16px;
-    line-height:1.5;
-    color:rgba(255,255,255,.88);
-  }
-
-  .funnelShell{
-    display:grid;
-    grid-template-columns:1.15fr .95fr;
-    gap:22px;
-    align-items:start;
-    margin-top:-86px;
-    position:relative;
-    z-index:3;
-    padding:0;
-  }
-  .funnelLeft,
-  .funnelRight{ min-width:0; }
-
-  .funnelProgress{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin:0 0 14px;
-  }
-  .funnelProgressTrack{
-    height:6px;
-    border-radius:999px;
-    background:rgba(229,231,235,.92);
-    overflow:hidden;
-  }
-  .funnelProgressFill{
-    height:100%;
-    width:0;
-    background:linear-gradient(90deg, rgba(37,99,235,1), rgba(96,165,250,1));
-    border-radius:999px;
-    transition:width .25s ease;
-  }
-  .funnelProgressMeta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    font-size:12px;
-    font-weight:800;
-    color:var(--text-muted, #6B7280);
-  }
-  .linkBtn{
-    background:transparent;
-    border:0;
-    padding:0;
-    color:var(--marketplace-blue, #2563EB);
-    text-decoration:none;
-    cursor:pointer;
-    font-weight:800;
-  }
-  .linkBtn:hover{ text-decoration:underline; }
-
-  .funnelCard{
-    background:#FFFFFF;
-    border:1px solid rgba(229,231,235,.9);
-    border-radius:18px;
-    box-shadow:0 14px 34px rgba(17,24,39,.10);
-    overflow:hidden;
-  }
-  .funnelCardHeader{
-    padding:22px 22px 12px;
-    border-bottom:1px solid rgba(229,231,235,.9);
-  }
-  .funnelQuestion{
-    margin:0;
-    font-size:26px;
-    line-height:1.15;
-    letter-spacing:-0.02em;
-    color:var(--text-primary, #1F2937);
-  }
-  .funnelHelper{
-    margin:8px 0 0;
-    font-size:13px;
-    line-height:1.5;
-    color:var(--text-muted, #6B7280);
-  }
-
-  .funnelBody{
-    padding:16px 22px 12px;
-    background:#FFFFFF;
-  }
-
-  .choiceGrid{
-    display:grid;
-    gap:12px;
-  }
-  .choiceGrid--two{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .choiceTile{
-    width:100%;
-    min-height:96px;
-    display:grid;
-    grid-template-columns:40px 1fr;
-    gap:12px;
-    align-items:flex-start;
-    padding:14px 14px;
-    text-align:left;
-    border-radius:16px;
-    border:1px solid rgba(229,231,235,.95);
-    background:#FFFFFF;
-    color:var(--text-primary, #1F2937);
-    cursor:pointer;
-    transition:border-color .15s ease, box-shadow .15s ease, transform .12s ease;
-  }
-  .choiceTile:hover{
-    border-color:rgba(37,99,235,.28);
-    box-shadow:0 10px 26px rgba(17,24,39,.08);
-    transform:translateY(-1px);
-  }
-  .choiceTile[aria-pressed="true"]{
-    border-color:rgba(37,99,235,.55);
-    box-shadow:0 0 0 5px rgba(37,99,235,.10);
-  }
-  .choiceIcon{
-    width:28px;
-    height:28px;
-    border-radius:10px;
-    display:grid;
-    place-items:center;
-    background:rgba(96,165,250,.18);
-    border:1px solid rgba(96,165,250,.35);
-    font-size:14px;
-    line-height:1;
-    margin-top:2px;
-  }
-  .choiceTitle{
-    margin:0;
-    font-size:14px;
-    font-weight:800;
-    color:var(--text-primary, #1F2937);
-  }
-  .choiceSub{
-    margin:3px 0 0;
-    font-size:12px;
-    line-height:1.45;
-    color:var(--text-muted, #6B7280);
-  }
-
-  .optionList{
-    display:grid;
-    gap:10px;
-  }
-  .optionList--two{
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  }
-  .optionRow{
-    width:100%;
-    min-height:58px;
-    display:grid;
-    grid-template-columns:18px 1fr;
-    gap:12px;
-    align-items:center;
-    padding:12px 14px;
-    text-align:left;
-    border-radius:14px;
-    border:1px solid rgba(229,231,235,.95);
-    background:#FFFFFF;
-    color:var(--text-primary, #1F2937);
-    cursor:pointer;
-    transition:border-color .15s ease, box-shadow .15s ease, transform .12s ease;
-  }
-  .optionRow:hover{
-    border-color:rgba(37,99,235,.28);
-    box-shadow:0 8px 22px rgba(17,24,39,.08);
-    transform:translateY(-1px);
-  }
-  .optionRow[aria-pressed="true"]{
-    border-color:rgba(37,99,235,.55);
-    box-shadow:0 0 0 5px rgba(37,99,235,.10);
-  }
-  .optionBullet{
-    width:18px;
-    height:18px;
-    border-radius:999px;
-    border:2px solid rgba(107,114,128,.30);
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
-  }
-  .optionBullet::after{
-    content:"";
-    width:8px;
-    height:8px;
-    border-radius:999px;
-    background:transparent;
-    display:block;
-  }
-  .optionRow[aria-pressed="true"] .optionBullet{
-    border-color:rgba(37,99,235,.75);
-  }
-  .optionRow[aria-pressed="true"] .optionBullet::after{
-    background:rgba(37,99,235,1);
-  }
-  .optionText{
-    display:block;
-    min-width:0;
-  }
-  .optionLabel{
-    display:block;
-    font-size:14px;
-    font-weight:700;
-    line-height:1.35;
-    color:var(--text-primary, #1F2937);
-  }
-
-  .inputGrid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  }
-  .inputGrid--address .field--full{ grid-column:1 / -1; }
-  .field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-  .field label{
-    font-size:12px;
-    font-weight:800;
-    color:#374151;
-  }
-  .field input,
-  .field select,
-  .field textarea{
-    width:100%;
-    border-radius:14px;
-    border:1px solid rgba(229,231,235,.95);
-    padding:12px 12px;
-    font-size:14px;
-    outline:none;
-    background:#FFFFFF;
-    color:var(--text-primary, #1F2937);
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .field textarea{
-    min-height:100px;
-    resize:vertical;
-  }
-  .field input:focus,
-  .field select:focus,
-  .field textarea:focus{
-    border-color:rgba(37,99,235,.55);
-    box-shadow:0 0 0 5px rgba(37,99,235,.14);
-  }
-
-  .funnelActions{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 22px 14px;
-    border-top:1px solid rgba(229,231,235,.9);
-    background:#FFFFFF;
-  }
-  .btn{
-    min-width:120px;
-    height:44px;
-    padding:0 18px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:999px !important;
-    font-size:13px;
-    font-weight:800;
-    cursor:pointer;
-    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
-  }
-  .btn:hover{
-    transform:translateY(-1px);
-  }
-  .btn[disabled]{
-    cursor:not-allowed;
-    transform:none;
-  }
-  .btn--ghost{
-    background:#FFFFFF;
-    color:var(--text-primary, #1F2937);
-    border:1px solid rgba(229,231,235,.95);
-  }
-  .btn--ghost:hover{
-    border-color:rgba(37,99,235,.22);
-    box-shadow:0 14px 30px rgba(17,24,39,.10);
-    background:#FFFFFF;
-  }
-  .btn--primary{
-    border:1px solid rgba(37,99,235,.25);
-    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(37,99,235,.88));
-    color:#FFFFFF;
-    box-shadow:0 18px 36px rgba(37,99,235,.20);
-  }
-  .btn--primary:hover{
-    box-shadow:0 22px 42px rgba(37,99,235,.26);
-  }
-
-  .funnelNote{
-    padding:0 22px 18px;
-    font-size:12.5px;
-    color:rgba(15,23,42,.60);
-  }
-
-  .trustCard{
-    background:#FFFFFF;
-    border:1px solid rgba(229,231,235,.9);
-    border-radius:18px;
-    padding:22px;
-    color:var(--text-primary, #1F2937);
-    box-shadow:0 14px 34px rgba(17,24,39,.10);
-  }
-  .trustPill{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 12px;
-    border-radius:999px;
-    border:1px solid rgba(229,231,235,.9);
-    background:rgba(250,250,250,.92);
-    color:var(--text-primary, #1F2937);
-    font-size:13px;
-    font-weight:700;
-  }
-  .trustDot{
-    width:9px;
-    height:9px;
-    border-radius:999px;
-    background:#22C55E;
-    box-shadow:0 0 0 6px rgba(34,197,94,.14);
-  }
-  .trustTitle{
-    margin:14px 0 0;
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:-0.01em;
-    color:var(--text-primary, #1F2937);
-  }
-  .trustSub{
-    margin:8px 0 0;
-    color:#334155;
-    font-size:13px;
-    line-height:1.5;
-  }
-  .trustGrid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:14px;
-  }
-  .trustItem{
-    padding:12px;
-    border-radius:14px;
-    background:rgba(250,250,250,.94);
-    border:1px solid rgba(229,231,235,.95);
-  }
-  .trustKicker{
-    font-size:13px;
-    font-weight:900;
-    color:var(--text-primary, #1F2937);
-  }
-  .trustText{
-    margin-top:6px;
-    font-size:12px;
-    line-height:1.5;
-    color:#334155;
-  }
-  .trustFooter{
-    margin-top:14px;
-    padding-top:12px;
-    border-top:1px solid rgba(229,231,235,.95);
-  }
-  .trustMini{
-    font-size:12px;
-    line-height:1.5;
-    color:#475569;
-  }
-
-  .turnstileWrap{
-    display:flex;
-    justify-content:flex-start;
-    padding:12px 0 6px;
-  }
-  .statusLine{
-    margin-top:10px;
-    font-size:13px;
-    color:rgba(15,23,42,.72);
-  }
-  .statusLine--error{ color:#b91c1c; }
-
-  @media (max-width: 980px){
-    .heroTop{
-      padding:22px 22px 110px;
-    }
-    .heroTitle{
-      font-size:38px;
-    }
-    .funnelShell{
-      grid-template-columns:1fr;
-      margin-top:-74px;
-    }
-  }
-
-  @media (max-width: 720px){
-    .hero--funnel{
-      padding:16px 0 44px;
-    }
-    .hero--funnel .container{
-      padding:0 14px;
-    }
-    .heroTop{
-      padding:18px 16px 84px;
-      border-radius:20px;
-    }
-    .heroTitle{
-      font-size:30px;
-    }
-    .heroLead{
-      font-size:14px;
-    }
-    .choiceGrid--two,
-    .optionList--two,
-    .trustGrid,
-    .inputGrid{
-      grid-template-columns:1fr;
-    }
-    .funnelCardHeader,
-    .funnelBody,
-    .funnelActions,
-    .trustCard{
-      padding-left:16px;
-      padding-right:16px;
-    }
-    .funnelActions{
-      flex-wrap:wrap;
-    }
-    .btn{
-      width:100%;
-    }
-    .btn--ghost,
-    .btn--primary{
-      min-width:0;
-    }
-  }
-</style>
-
-<style id="bbas-funnel-overrides">
-  html, body { overflow-x: hidden; overflow-y: auto; }
-
-  /* Keep clicks and visibility reliable without changing the approved theme */
-  #funnelBody button,
-  #funnelActions button,
-  #funnelRestartBtn{
-    pointer-events:auto !important;
-    opacity:1 !important;
-  }
-
-  /* Start screen keeps footer actions hidden */
-  body[data-funnel-branch="none"] #funnelActions{
-    display:none !important;
-  }
-</style>
-
-
-<style id="bbas-final-sanity">
-  .trustCard, .trustCard * { color: inherit; }
-  .trustCard { background:#FFFFFF !important; }
-  .trustTitle, .trustKicker, .optionLabel, .choiceTitle, .funnelQuestion { color: var(--text-primary, #1F2937) !important; }
-  .trustSub, .trustText, .trustMini, .choiceSub, .funnelHelper { color: #374151 !important; }
-</style>
-
 
 <script>
   window.onTurnstileSuccess = function(token){
@@ -1004,8 +246,8 @@
   <section class="hero hero--funnel" aria-label="Get started">
     <div class="heroBg" aria-hidden="true"></div>
     <div class="container">
-      <div class="heroTop">
-        <div class="heroBadge">
+      <div class="heroTop hero-dark">
+        <div class="heroBadge badge">
           <span class="dot" aria-hidden="true"></span>
           <span>Get started in under 60 seconds.</span>
         </div>
@@ -1025,7 +267,7 @@
             </div>
           </div>
 
-          <div class="funnelCard" role="region" aria-live="polite" aria-label="Questions">
+          <div class="funnelCard card" role="region" aria-live="polite" aria-label="Questions">
             <div class="funnelCardHeader">
               <h2 class="funnelQuestion" id="funnelQuestion">What are you here to do?</h2>
               <p class="funnelHelper" id="funnelHelper">Choose one to start. You can switch later.</p>
@@ -1063,9 +305,9 @@
         </div>
 
         <aside class="funnelRight" aria-label="What you get">
-          <div class="trustCard">
+          <div class="trustCard card">
             <div class="trustHead">
-              <div class="trustPill">
+              <div class="trustPill pill">
                 <span class="trustDot" aria-hidden="true"></span>
                 <span>What you get</span>
               </div>
