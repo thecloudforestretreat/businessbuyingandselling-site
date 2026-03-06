@@ -28,9 +28,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260306-contrast-fix-1">
 
-      <link rel="stylesheet" href="/assets/css/header.css">
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260306-contrast-fix-1">
 <!-- Page-level polish (compact, scoped) -->
   <style id="page-structure-only">
   /* Structural/layout rules only. Visual styling should come from /assets/css/site.css and /assets/css/header.css */
@@ -476,6 +476,7 @@ lease terms, and what is included in the sale.</div>
 
   <div id="siteFooter"></div>
 
+  <!-- Single source of truth for header/footer injection. Do not duplicate this in inline scripts. -->
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
@@ -1074,65 +1075,7 @@ lease terms, and what is included in the sale.</div>
 })()
 </script>
 
-<script>
-/* Failsafe: load header/footer includes if includes.js did not (works on subpaths too). */
-(function(){
-  function inject(id, url){
-    var el = document.getElementById(id);
-    if(!el) return;
-    if(el.childElementCount > 0) return;
-    fetch(url, { cache: "no-cache" })
-      .then(function(r){ return r.ok ? r.text() : ""; })
-      .then(function(markup){
-        if(!markup) return;
-        el.innerHTML = markup;
-        if (typeof window.initSiteNav === "function") { try { window.initSiteNav(); } catch(e) {} }
-        if (typeof window.initMobileNav === "function") { try { window.initMobileNav(); } catch(e) {} }
-      })
-      .catch(function(){});
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    inject("siteHeader", "/assets/includes/header.html");
-    inject("siteFooter", "/assets/includes/footer.html");
-  });
-})();
 
-  // Turnstile: dynamic render (contact step is injected after page load)
-  let __turnstileWidgetId = null;
-  function initTurnstileIfNeeded(){
-    const mount = document.getElementById('turnstileMount');
-    const token = document.getElementById('turnstileToken');
-    if(!mount || !token) return;
-    const siteKey = document.documentElement.getAttribute('data-turnstile-sitekey') || '';
-    // If already rendered, keep token as-is (Turnstile manages it)
-    if(__turnstileWidgetId !== null) return;
-    // Script may not be loaded yet
-    if(!window.turnstile || !siteKey){
-      setTimeout(initTurnstileIfNeeded, 250);
-      return;
-    }
-    __turnstileWidgetId = window.turnstile.render(mount, {
-      sitekey: siteKey,
-      theme: 'light',
-      callback: (t) => { token.value = t || ''; },
-      'expired-callback': () => { token.value = ''; },
-      'error-callback': () => { token.value = ''; }
-    });
-  }
-
-  function resetTurnstile(){
-    const token = document.getElementById('turnstileToken');
-    if(token) token.value = '';
-    if(window.turnstile && __turnstileWidgetId !== null){
-      try{ window.turnstile.reset(__turnstileWidgetId); } catch(e){}
-    }
-  }
-
-</script>
-
-<script>
-/* Turnstile auto-renders from the injected .cf-turnstile element on the contact step. */
-</script>
 
 </body>
 </html>
