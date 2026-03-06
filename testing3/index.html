@@ -420,896 +420,551 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
 
 <style id="funnelStyles">
-  /* Funnel page additions. Built to match the approved site system. */
-  .hero--funnel { position: relative; padding: 44px 0 64px; }
-  .hero--funnel .heroBg{
-    position:absolute; inset:0;
-    background: transparent;
-    border-radius: 28px;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    box-shadow: 0 24px 60px rgba(6, 14, 28, 0.20);
+  /* Funnel page styling aligned to the approved homepage/global system */
+  body.bbas-page{
+    background:#FAFAFA;
+    color:var(--text-primary, #1F2937);
   }
-  .hero--funnel .container{ position: relative; padding-top: 16px; }
+
+  .hero--funnel{
+    position:relative;
+    padding:22px 0 64px;
+    background:transparent;
+  }
+  .hero--funnel .heroBg{ display:none; }
+  .hero--funnel .container{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
   .heroTop{
-  background: rgba(0,0,0,0.86) !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  border-radius: 20px !important;
-  padding: 20px 16px 22px !important;
-  box-shadow: 0 22px 56px rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(12px) !important;
-}
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    background:#111827;
+    box-shadow:0 18px 40px rgba(17,24,39,.12);
+    padding:26px 26px 118px;
+    color:#fff;
+  }
+  .heroTop::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(1200px 420px at 18% 18%, rgba(37,99,235,.35), transparent 60%),
+      linear-gradient(90deg, rgba(17,24,39,.82), rgba(17,24,39,.35));
+    z-index:1;
+  }
+  .heroTop > *{
+    position:relative;
+    z-index:2;
+  }
 
-  .heroBadge{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; background: rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.16); font-size: 13px; }
-  .heroBadge .dot{ width:10px; height:10px; border-radius:999px; background: #F59E0B; box-shadow: 0 0 0 6px rgba(245,158,11,0.18); }
-  .heroTitle{ margin: 14px 0 10px; font-size: clamp(32px, 4.1vw, 48px); line-height: 1.05; letter-spacing: -0.02em; }
-  .heroLead{ margin: 0; max-width: 56ch; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.88); }
+  .heroBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.10);
+    color:rgba(255,255,255,.88);
+    font-size:14px;
+  }
+  .heroBadge .dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    background:#F59E0B;
+    box-shadow:0 0 0 6px rgba(245,158,11,.18);
+  }
+  .heroTitle{
+    margin:14px 0 10px;
+    max-width:720px;
+    font-size:44px;
+    line-height:1.06;
+    letter-spacing:-0.02em;
+    color:#fff;
+  }
+  .heroLead{
+    margin:0;
+    max-width:720px;
+    font-size:16px;
+    line-height:1.5;
+    color:rgba(255,255,255,.88);
+  }
 
-  .funnelShell{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; align-items:start; margin-top: 18px; 
-  position: relative;
-  z-index: 9999;
-}
-  .funnelLeft{ min-width:0; }
+  .funnelShell{
+    display:grid;
+    grid-template-columns:1.15fr .95fr;
+    gap:22px;
+    align-items:start;
+    margin-top:-86px;
+    position:relative;
+    z-index:3;
+    padding:0;
+  }
+  .funnelLeft,
   .funnelRight{ min-width:0; }
 
-  .funnelProgress{ display:flex; flex-direction:column; gap:10px; margin: 0 0 14px; }
-  .funnelProgressTrack{ height: 10px; border-radius: 999px; background: rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.18); overflow:hidden; }
-  .funnelProgressFill{height:100%;width:0;background:var(--bbas-blue);border-radius:999px;transition:width .35s ease;}
-  .funnelProgressMeta{ display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(255,255,255,0.88); }
-  .linkBtn{ background: transparent; border: 0; padding: 0; color: rgba(255,255,255,0.88); text-decoration: underline; cursor: pointer; }
-  .linkBtn:hover{ color: #fff; }
-
-  .funnelCard{
-    background: rgba(255,255,255,0.96);
-    border: 1px solid rgba(17,24,39,0.10);
-    border-radius: 18px;
-    box-shadow: 0 18px 40px rgba(15,23,42,0.18);
+  .funnelProgress{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin:0 0 14px;
+  }
+  .funnelProgressTrack{
+    height:6px;
+    border-radius:999px;
+    background:rgba(229,231,235,.92);
     overflow:hidden;
   }
-  .funnelCardHeader{ padding: 18px 18px 10px; border-bottom: 1px solid rgba(17,24,39,0.08); }
-  .funnelQuestion{ margin:0; font-size: 22px; letter-spacing:-0.01em; color: #0f172a; }
-  .funnelHelper{ margin: 6px 0 0; color: rgba(15,23,42,0.70); font-size: 14px; line-height: 1.5; }
-
-  .funnelBody{ padding: 16px 18px 12px; }
-  .choiceGrid{ display:grid; gap: var(--answer-spacing); }
-  .choiceGrid--two{ grid-template-columns: 1fr 1fr; }
-  .choiceGrid--two .choiceTile{
-  min-height:86px;
- min-height: 104px; }
-  .choiceTile{
-  min-height:86px;
-
-    display:flex; gap: 14px; align-items:flex-start;
-    padding: 14px 14px;
-    border-radius: 16px;
-    border: 1px solid rgba(15,23,42,0.14);
-    background: #fff;
-    cursor:pointer;
-    text-align:left;
-    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  .funnelProgressFill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg, rgba(37,99,235,1), rgba(96,165,250,1));
+    border-radius:999px;
+    transition:width .25s ease;
   }
-  .choiceTile:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(15,23,42,0.10); border-color: rgba(59,130,246,0.40); }
-  .choiceTile[aria-pressed="true"]{ border-color: rgba(59,130,246,0.65); box-shadow: 0 14px 34px rgba(59,130,246,0.18); }
-  .choiceIcon{ width: 40px; height: 40px; border-radius: 12px; display:flex; align-items:center; justify-content:center; background: rgba(59,130,246,0.10); font-size: 18px; }
-  .choiceTitle{ font-weight: 800; color:#0f172a; }
-  .choiceSub{ margin-top: 4px; font-size: 13px; color: rgba(15,23,42,0.68); line-height: 1.4; }
-  .choiceText{ flex:1; min-width:0; }
-
-  .optionList{ display:grid; gap: var(--answer-spacing); }
-  .optionRow{
-    min-height:86px;
+  .funnelProgressMeta{
     display:flex;
     align-items:center;
-
-    display:flex; align-items:center; gap: 10px;
-    padding: 12px 12px;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,0.12);
-    background: #fff;
-    cursor:pointer;
-    transition: border-color .12s ease, box-shadow .12s ease;
+    justify-content:space-between;
+    gap:12px;
+    font-size:12px;
+    font-weight:800;
+    color:var(--text-muted, #6B7280);
   }
-  .optionRow:hover{ border-color: rgba(59,130,246,0.40); box-shadow: 0 10px 24px rgba(15,23,42,0.08); }
-  .optionRow[aria-pressed="true"]{ border-color: rgba(59,130,246,0.65); }
-  .optionBullet{ width: 18px; height: 18px; border-radius: 999px; border:2px solid rgba(15,23,42,0.22); display:flex; align-items:center; justify-content:center; }
-  .optionRow[aria-pressed="true"] .optionBullet{ border-color: rgba(59,130,246,0.90); }
-  .optionBullet::after{ content:""; width: 8px; height: 8px; border-radius:999px; background: transparent; }
-  .optionRow[aria-pressed="true"] .optionBullet::after{ background: rgba(59,130,246,0.92); }
-  .optionLabel{ font-weight: 700; color: #0f172a; }
-  .optionHint{ display:block; margin-top: 2px; font-size: 12.5px; color: rgba(15,23,42,0.62); font-weight: 500; }
-  .optionText{ flex:1; }
+  .linkBtn{
+    background:transparent;
+    border:0;
+    padding:0;
+    color:var(--marketplace-blue, #2563EB);
+    text-decoration:none;
+    cursor:pointer;
+    font-weight:800;
+  }
+  .linkBtn:hover{ text-decoration:underline; }
 
-  .inputGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .field{ display:flex; flex-direction:column; gap: 6px; }
-  .field label{ font-size: 12px; font-weight: 800; color: rgba(15,23,42,0.70); }
-  .field input, .field select, .field textarea{
-    width: 100%;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,0.14);
-    padding: 12px 12px;
-    font-size: 14px;
-    outline: none;
+  .funnelCard{
+    background:#FFFFFF;
+    border:1px solid rgba(229,231,235,.9);
+    border-radius:18px;
+    box-shadow:0 14px 34px rgba(17,24,39,.10);
+    overflow:hidden;
+  }
+  .funnelCardHeader{
+    padding:22px 22px 12px;
+    border-bottom:1px solid rgba(229,231,235,.9);
+  }
+  .funnelQuestion{
+    margin:0;
+    font-size:26px;
+    line-height:1.15;
+    letter-spacing:-0.02em;
+    color:var(--text-primary, #1F2937);
+  }
+  .funnelHelper{
+    margin:8px 0 0;
+    font-size:13px;
+    line-height:1.5;
+    color:var(--text-muted, #6B7280);
+  }
+
+  .funnelBody{
+    padding:16px 22px 12px;
+    background:#FFFFFF;
+  }
+
+  .choiceGrid{
+    display:grid;
+    gap:12px;
+  }
+  .choiceGrid--two{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .choiceTile{
+    width:100%;
+    min-height:96px;
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:12px;
+    align-items:flex-start;
+    padding:14px 14px;
+    text-align:left;
+    border-radius:16px;
+    border:1px solid rgba(229,231,235,.95);
+    background:#FFFFFF;
+    color:var(--text-primary, #1F2937);
+    cursor:pointer;
+    transition:border-color .15s ease, box-shadow .15s ease, transform .12s ease;
+  }
+  .choiceTile:hover{
+    border-color:rgba(37,99,235,.28);
+    box-shadow:0 10px 26px rgba(17,24,39,.08);
+    transform:translateY(-1px);
+  }
+  .choiceTile[aria-pressed="true"]{
+    border-color:rgba(37,99,235,.55);
+    box-shadow:0 0 0 5px rgba(37,99,235,.10);
+  }
+  .choiceIcon{
+    width:28px;
+    height:28px;
+    border-radius:10px;
+    display:grid;
+    place-items:center;
+    background:rgba(96,165,250,.18);
+    border:1px solid rgba(96,165,250,.35);
+    font-size:14px;
+    line-height:1;
+    margin-top:2px;
+  }
+  .choiceTitle{
+    margin:0;
+    font-size:14px;
+    font-weight:800;
+    color:var(--text-primary, #1F2937);
+  }
+  .choiceSub{
+    margin:3px 0 0;
+    font-size:12px;
+    line-height:1.45;
+    color:var(--text-muted, #6B7280);
+  }
+
+  .optionList{
+    display:grid;
+    gap:10px;
+  }
+  .optionList--two{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .optionRow{
+    width:100%;
+    min-height:58px;
+    display:grid;
+    grid-template-columns:18px 1fr;
+    gap:12px;
+    align-items:center;
+    padding:12px 14px;
+    text-align:left;
+    border-radius:14px;
+    border:1px solid rgba(229,231,235,.95);
+    background:#FFFFFF;
+    color:var(--text-primary, #1F2937);
+    cursor:pointer;
+    transition:border-color .15s ease, box-shadow .15s ease, transform .12s ease;
+  }
+  .optionRow:hover{
+    border-color:rgba(37,99,235,.28);
+    box-shadow:0 8px 22px rgba(17,24,39,.08);
+    transform:translateY(-1px);
+  }
+  .optionRow[aria-pressed="true"]{
+    border-color:rgba(37,99,235,.55);
+    box-shadow:0 0 0 5px rgba(37,99,235,.10);
+  }
+  .optionBullet{
+    width:18px;
+    height:18px;
+    border-radius:999px;
+    border:2px solid rgba(107,114,128,.30);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
     background:#fff;
   }
-  .field textarea{ min-height: 100px; resize: vertical; }
-  .field input:focus, .field select:focus, .field textarea:focus{ border-color: rgba(59,130,246,0.70); box-shadow: 0 0 0 4px rgba(59,130,246,0.12); }
+  .optionBullet::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    background:transparent;
+    display:block;
+  }
+  .optionRow[aria-pressed="true"] .optionBullet{
+    border-color:rgba(37,99,235,.75);
+  }
+  .optionRow[aria-pressed="true"] .optionBullet::after{
+    background:rgba(37,99,235,1);
+  }
+  .optionText{
+    display:block;
+    min-width:0;
+  }
+  .optionLabel{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    line-height:1.35;
+    color:var(--text-primary, #1F2937);
+  }
+
+  .inputGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .inputGrid--address .field--full{ grid-column:1 / -1; }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .field label{
+    font-size:12px;
+    font-weight:800;
+    color:#374151;
+  }
+  .field input,
+  .field select,
+  .field textarea{
+    width:100%;
+    border-radius:14px;
+    border:1px solid rgba(229,231,235,.95);
+    padding:12px 12px;
+    font-size:14px;
+    outline:none;
+    background:#FFFFFF;
+    color:var(--text-primary, #1F2937);
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field textarea{
+    min-height:100px;
+    resize:vertical;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus{
+    border-color:rgba(37,99,235,.55);
+    box-shadow:0 0 0 5px rgba(37,99,235,.14);
+  }
 
   .funnelActions{
     display:flex;
-  align-items: center;
+    align-items:center;
     justify-content:space-between;
-    gap: 12px;
-    margin-top: var(--answer-spacing);
-    padding: 16px 18px 12px;
-    border-top: 1px solid rgba(15,23,42,0.08);
-    background: rgba(255,255,255,0.92);
-}
-  .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
-  .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
-  .btn--primary{background:var(--bbas-blue);color:#fff;border:0;box-shadow:0 14px 30px rgba(0,0,0,.25);}
-  .btn--primary:hover{ filter: brightness(1.03); }
-  .btn--ghost{ background: #fff; color: #0f172a; }
-  .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
+    gap:12px;
+    padding:14px 22px 14px;
+    border-top:1px solid rgba(229,231,235,.9);
+    background:#FFFFFF;
+  }
+  .btn{
+    min-width:120px;
+    height:44px;
+    padding:0 18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px !important;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease, opacity .12s ease;
+  }
+  .btn:hover{
+    transform:translateY(-1px);
+  }
+  .btn[disabled]{
+    cursor:not-allowed;
+    transform:none;
+  }
+  .btn--ghost{
+    background:#FFFFFF;
+    color:var(--text-primary, #1F2937);
+    border:1px solid rgba(229,231,235,.95);
+  }
+  .btn--ghost:hover{
+    border-color:rgba(37,99,235,.22);
+    box-shadow:0 14px 30px rgba(17,24,39,.10);
+    background:#FFFFFF;
+  }
+  .btn--primary{
+    border:1px solid rgba(37,99,235,.25);
+    background:linear-gradient(180deg, rgba(37,99,235,1), rgba(37,99,235,.88));
+    color:#FFFFFF;
+    box-shadow:0 18px 36px rgba(37,99,235,.20);
+  }
+  .btn--primary:hover{
+    box-shadow:0 22px 42px rgba(37,99,235,.26);
+  }
 
-  .funnelNote{ padding: 6px 18px 14px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
+  .funnelNote{
+    padding:0 22px 18px;
+    font-size:12.5px;
+    color:rgba(15,23,42,.60);
+  }
 
   .trustCard{
-    background: #ffffff;
-    border: 1px solid rgba(15,23,42,0.10);
-    border-radius: 18px;
-    padding: 16px;
-    color: #0f172a;
-    box-shadow: 0 18px 42px rgba(15,23,42,0.12);
+    background:#FFFFFF;
+    border:1px solid rgba(229,231,235,.9);
+    border-radius:18px;
+    padding:22px;
+    color:var(--text-primary, #1F2937);
+    box-shadow:0 14px 34px rgba(17,24,39,.10);
   }
   .trustPill{
-    display:inline-flex; align-items:center; gap: 10px; padding: 8px 12px; border-radius: 999px;
-    background: rgba(37,99,235,0.08);
-    border: 1px solid rgba(37,99,235,0.16);
-    font-size: 12px; font-weight: 800;
-    color: #0f172a;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid rgba(229,231,235,.9);
+    background:rgba(250,250,250,.92);
+    color:var(--text-primary, #1F2937);
+    font-size:13px;
+    font-weight:700;
   }
-  .trustDot{ width: 9px; height: 9px; border-radius: 999px; background: #22C55E; box-shadow: 0 0 0 6px rgba(34,197,94,0.18); }
+  .trustDot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+    background:#22C55E;
+    box-shadow:0 0 0 6px rgba(34,197,94,.14);
+  }
   .trustTitle{
-    margin: 10px 0 0;
-    font-size: 18px;
-    letter-spacing: -0.01em;
-    color: #0f172a;
+    margin:14px 0 0;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:-0.01em;
+    color:var(--text-primary, #1F2937);
   }
   .trustSub{
-    margin: 8px 0 0;
-    color: rgba(15,23,42,0.72);
-    font-size: 13px;
-    line-height: 1.45;
+    margin:8px 0 0;
+    color:#374151;
+    font-size:13px;
+    line-height:1.45;
   }
-  .trustGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .trustGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:14px;
+  }
   .trustItem{
-    padding: 12px;
-    border-radius: 14px;
-    background: rgba(15,23,42,0.03);
-    border: 1px solid rgba(15,23,42,0.08);
+    padding:12px;
+    border-radius:14px;
+    background:rgba(250,250,250,.94);
+    border:1px solid rgba(229,231,235,.95);
   }
-  .trustKicker{ font-size: 12px; font-weight: 900; }
-  .trustText{ margin-top: 4px; font-size: 12.5px; color: rgba(255,255,255,0.86); line-height: 1.45; }
-  .trustFooter{ margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.16); }
-  .trustMini{ font-size: 12px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+  .trustKicker{
+    font-size:13px;
+    font-weight:900;
+    color:var(--text-primary, #1F2937);
+  }
+  .trustText{
+    margin-top:6px;
+    font-size:12px;
+    line-height:1.45;
+    color:#374151;
+  }
+  .trustFooter{
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid rgba(229,231,235,.95);
+  }
+  .trustMini{
+    font-size:12px;
+    line-height:1.45;
+    color:var(--text-muted, #6B7280);
+  }
 
-  .turnstileWrap{ display:flex; justify-content:flex-start; padding: 12px 0 6px; }
-  .statusLine{ margin-top: 10px; font-size: 13px; color: rgba(15,23,42,0.72); }
-  .statusLine--error{ color: #b91c1c; }
+  .turnstileWrap{
+    display:flex;
+    justify-content:flex-start;
+    padding:12px 0 6px;
+  }
+  .statusLine{
+    margin-top:10px;
+    font-size:13px;
+    color:rgba(15,23,42,.72);
+  }
+  .statusLine--error{ color:#b91c1c; }
 
   @media (max-width: 980px){
-    .funnelShell{ grid-template-columns: 1fr; }
-    .heroTop{ padding-left: 4px; padding-right: 4px; }
-    .trustGrid{ grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 640px){
-    .hero--funnel { padding: 22px 0 44px; }
-    .hero--funnel .heroBg{ border-radius: 22px; }
-    .choiceGrid--two{ grid-template-columns: 1fr; }
-    .inputGrid{ grid-template-columns: 1fr; }
-    .funnelActions{ flex-direction:column; }
-    .funnelActions .btn{ width: 100%; }
-    .trustGrid{ grid-template-columns: 1fr; }
+    .heroTop{
+      padding:22px 22px 110px;
+    }
+    .heroTitle{
+      font-size:38px;
+    }
+    .funnelShell{
+      grid-template-columns:1fr;
+      margin-top:-74px;
+    }
   }
 
-/* Funnel standardization fixes */
-.heroBg{
-  overflow:hidden;
-  isolation:isolate;
-}
-.heroBg::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.82), rgba(0,0,0,0) 62%),
-    radial-gradient(900px 520px at 78% 18%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.86), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.86));
-  pointer-events:none;
-  z-index:0;
-}
-.heroInner{ position:relative; z-index:1; }{ position:relative; z-index:1; }
-.heroTitle, .heroLead{
-  text-shadow: 0 3px 22px rgba(0,0,0,0.75);
-}
-.heroLead{ max-width: 48ch; }
-
-.hero--funnel{
-  min-height: 760px;
-  height: min(860px, calc(100vh - 140px));
-}
-@media (max-width: 900px){
-  .hero--funnel{
-    min-height: 860px;
-    height: auto; /* mobile can grow */
+  @media (max-width: 720px){
+    .hero--funnel{
+      padding:16px 0 44px;
+    }
+    .hero--funnel .container{
+      padding:0 14px;
+    }
+    .heroTop{
+      padding:18px 16px 84px;
+      border-radius:20px;
+    }
+    .heroTitle{
+      font-size:30px;
+    }
+    .heroLead{
+      font-size:14px;
+    }
+    .choiceGrid--two,
+    .optionList--two,
+    .trustGrid,
+    .inputGrid{
+      grid-template-columns:1fr;
+    }
+    .funnelCardHeader,
+    .funnelBody,
+    .funnelActions,
+    .trustCard{
+      padding-left:16px;
+      padding-right:16px;
+    }
+    .funnelActions{
+      flex-wrap:wrap;
+    }
+    .btn{
+      width:100%;
+    }
+    .btn--ghost,
+    .btn--primary{
+      min-width:0;
+    }
   }
-}
-
-/* Keep background steady while steps change */
-.funnelCard{
-  max-height: calc(100vh - 290px);
-}
-@media (max-width: 900px){
-  .funnelCard{ max-height: none; }
-}
-
-/* Consistent answer tile sizing */
-.choiceTile{
-  min-height:86px;
-
-  min-height: 86px;
-}
-.choiceIcon{
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-}
-.optionRow{
-    min-height:86px;
-    display:flex;
-    align-items:center;
-
-  min-height: 54px;
-  align-items: center;
-}
-.optionRow .optLabel{
-  line-height: 1.25;
-}
-
-/* Header include failsafe: keep injected header from being pushed by hero */
-#siteHeader{ position: relative; z-index: 20; }
-
-
-
-/* Funnel UX fixes: keep actions visible and prevent clipping at 100% zoom */
-.funnelCard{
-  display:flex;
-  flex-direction:column;
-  overflow:hidden; /* keep rounded corners */
-}
-.funnelCardHeader{flex:0 0 auto;}
-#funnelBody{
-    /* Do not create an inner scroll area or artificial empty space.
-       Let the card height be driven by content, and keep a consistent rhythm
-       between the last answer and the actions row. */
-    padding: 18px;
-    padding-bottom: var(--answer-spacing);
-    overflow: visible;
-    flex: 0 0 auto;
-}
-.funnelActions{
-  position:sticky;
-  bottom:0;
-  z-index:2;
-  flex:0 0 auto;
-}
-/* Allow the hero to grow on shorter viewports */
-.hero--funnel{
-  min-height: 920px;
-  height: auto;
-}
-.heroLead{ color: rgba(255,255,255,0.92); }
-/* Spacing adjustments to prevent overlaps */
-.funnelShell{ margin-top: 10px; }
-@media (max-height: 760px){
-  .hero--funnel{ padding-top: 26px; }
-}
-
-
-
-/* Hero copy legibility */
-.heroTop{
-  background: rgba(0,0,0,0.28);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  padding: 18px 14px 20px;
-  backdrop-filter: blur(10px);
-}
-.heroBadge{
-  background: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.20);
-}
-.heroTitle{ color: rgba(255,255,255,0.98); }
-.heroLead{ color: rgba(255,255,255,0.94); }
-
-
-
-/* Keep hero background stable while funnel content changes */
-.heroBg{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-.hero--funnel{
-  position: relative;
-}
-
-
-
-/* Stronger hero text contrast */
-.heroTop{
-  background: rgba(0,0,0,0.46);
-  border-color: rgba(255,255,255,0.14);
-}
-.heroTitle{
-  color: rgba(255,255,255,0.99);
-  letter-spacing: -0.02em;
-}
-.heroLead{
-  color: rgba(255,255,255,0.97);
-}
-
-
-
-/* Lock hero background so it never resizes/zooms when steps change */
-.heroBg{
-  position: fixed !important;
-  inset: 0 !important;
-  max-width: none !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  transform: none !important;
-}
-
-
-
-/* Stronger hero copy panel for readability */
-.heroTop{
-  background: rgba(0,0,0,0.62) !important;
-  border: 1px solid rgba(255,255,255,0.16) !important;
-  box-shadow: 0 18px 42px rgba(0,0,0,0.45) !important;
-}
-.heroTitle{
-  color: rgba(255,255,255,0.995) !important;
-  text-shadow: 0 4px 26px rgba(0,0,0,0.85) !important;
-}
-.heroLead{
-  color: rgba(255,255,255,0.985) !important;
-  text-shadow: 0 3px 22px rgba(0,0,0,0.80) !important;
-}
-
-
-
-.turnstileHint{
-  margin-top: 8px;
-  font-size: 12px;
-  color: rgba(20, 24, 33, 0.60);
-}
-
-
-
-/* Strong global hero scrim for readability */
-.hero--funnel::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.82), rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.82));
-  pointer-events:none;
-  z-index:0;
-}
-.hero--funnel .heroInner,
-.hero--funnel .funnelShell{
-  position:relative;
-  z-index:1;
-}
-
-
-
-.turnstileHint{
-  margin-top: 10px;
-  font-size: 12px;
-  color: rgba(20,24,33,0.62);
-}
-
-
-
-/* Right panel readability */
-.trustCard{
-  background: rgba(12,14,18,0.72) !important;
-  border-color: rgba(255,255,255,0.16) !important;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(14px) !important;
-}
-.trustTitle{ color: rgba(255,255,255,0.985) !important; text-shadow: 0 3px 22px rgba(0,0,0,0.70) !important; }
-.trustDesc{ color: rgba(255,255,255,0.92) !important; }
-.trustBox{ background: rgba(0,0,0,0.32) !important; border-color: rgba(255,255,255,0.10) !important; }
-.trustBox h4{ color: rgba(255,255,255,0.96) !important; }
-.trustBox p{ color: rgba(255,255,255,0.86) !important; }
-.trustFoot{ color: rgba(255,255,255,0.70) !important; }
-
-
-/* Slightly stronger hero scrim */
-.hero--funnel::before{
-  background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.66) 55%, rgba(0,0,0,0.88)) !important;
-}
-
-
-
-/* Turnstile sizing */
-.turnstileWrap{
-  display:flex;
-  align-items:center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-#turnstileMount{
-  min-height: 70px;
-  width: 320px;
-  max-width: 100%;
-}
-.turnstileHint{
-  display:none;
-  font-size: 12px;
-  color: rgba(20,24,33,0.62);
-  max-width: 340px;
-}
-
-
-
-/* --- Hero badge text visibility --- */
-.heroBadge{
-  background: rgba(255,255,255,0.10) !important;
-  border-color: rgba(255,255,255,0.18) !important;
-}
-.heroBadge, .heroBadge *{
-  color: rgba(255,255,255,0.92) !important;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.65) !important;
-}
-
-/* --- Show more of the hero image (reduce black overlay) --- */
-.hero--funnel::before{
-  background: linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.44) 55%, rgba(0,0,0,0.70)) !important;
-}
-
-/* Keep copy readable while showing more image */
-.heroTop{
-  background: rgba(0,0,0,0.62) !important;
-}
-
-/* --- Consistent, tighter spacing in all step cards --- */
-.stepHeader{
-  padding-bottom: 14px !important;
-}
-.stepTitle{
-  margin-bottom: 6px !important;
-}
-.stepSub{
-  margin-top: 0 !important;
-  margin-bottom: 14px !important;
-}
-
-/* Reduce vertical gaps between option pills */
-.optionList, .choiceList, .radioList, .optionsList, .options{
-  gap: 10px !important;
-  margin-bottom: var(--rhythm) !important;
-}
-
-.optionRow, .choiceRow, .radioRow{
-  margin: 0 !important;
-}
-.optionRow + .optionRow,
-.choiceRow + .choiceRow,
-.radioRow + .radioRow{
-  margin-top: 10px !important;
-}
-
-/* Reduce extra blank space above footer buttons */
-.stepFooter{
-  margin-top: 12px !important;
-  padding-top: 10px !important;
-}
-
-
-
-/* --- Remove artificial empty space inside question cards --- */
-/* The blank area is caused by footer being pushed to the bottom (margin-top:auto / flex-grow). */
-/* Make cards content-driven, and only constrain height when viewport is small, using scroll instead of blank space. */
-
-.stepCard{
-  height: auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* Do NOT let the content area grow to fill remaining height */
-.stepBody, .stepContent{
-  flex: 0 0 auto !important;
-  min-height: 0 !important;
-}
-
-/* Footer should sit right after content (no auto push) */
-.stepFooter{
-  margin-top: 14px !important;
-}
-
-/* When content is taller than the viewport, scroll inside the card instead of creating empty space */
-@media (max-width: 980px){
-  .stepCard{
-    max-height: calc(100vh - 220px) !important;
-  }
-  .stepBody, .stepContent{
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  /* Keep buttons visible while scrolling content */
-  .stepFooter{
-    position: sticky !important;
-    bottom: 0 !important;
-    background: rgba(255,255,255,0.96) !important;
-    backdrop-filter: blur(10px);
-    padding-bottom: 10px !important;
-  }
-}
-
-@media (min-width: 981px){
-  .stepCard{
-    max-height: calc(100vh - 260px) !important;
-  }
-  .stepBody, .stepContent{
-    overflow: auto !important;
-  }
-  .stepFooter{
-    position: sticky !important;
-    bottom: 0 !important;
-    background: rgba(255,255,255,0.96) !important;
-    backdrop-filter: blur(10px);
-    padding-bottom: 10px !important;
-  }
-}
-
-
-
-/* --- REMOVE the remaining "filler" height (no forced tall cards) --- */
-/* We revert the sticky-footer/max-height approach. Cards should hug content. */
-.stepCard{
-  max-height: none !important;
-  height: auto !important;
-}
-
-.stepBody, .stepContent{
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-}
-
-.stepFooter{
-  position: static !important;
-  bottom: auto !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* If any internal wrapper is stretching, stop it */
-.stepInner, .stepMain, .stepGrid{
-  min-height: 0 !important;
-  height: auto !important;
-}
-
-
-
-
-/* === FIX: Remove the artificial blank space in funnel question cards === */
-/* Root cause was: #funnelBody { flex:1; padding-bottom:120px } + sticky .funnelActions. */
-/* That combo reserves empty "scroll room" even when the step content is short. */
-
-#funnelBody{
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-  padding-bottom: var(--answer-gap) !important;
-}
-
-.funnelActions{
-  position: static !important;
-  bottom: auto !important;
-  z-index: auto !important;
-  padding-top: 14px !important;
-}
-
-/* Ensure the card hugs content */
-.funnelCard{
-  height: auto !important;
-  max-height: none !important;
-}
-
-/* If any earlier rule makes the card a flex column, keep it but do not stretch children */
-.funnelCard{
-  display: flex !important;
-  flex-direction: column !important;
-}
-.funnelCardHeader{ flex: 0 0 auto !important; }
-
-
-
-
-/* === Consistent vertical rhythm between answers and buttons === */
-:root{
-  --qa-gap: 12px;
-}
-
-.optionList, .choiceList, .radioList, .optionsList, .options{
-  gap: var(--qa-gap) !important;
-}
-
-.optionRow + .optionRow,
-.choiceRow + .choiceRow,
-.radioRow + .radioRow{
-  margin-top: var(--qa-gap) !important;
-}
-
-/* Make the space between last answer and buttons match the answer gap */
-.stepBody .optionList,
-.stepBody .choiceList,
-.stepBody .radioList,
-.stepBody .optionsList,
-.stepBody .options,
-.stepContent .optionList,
-.stepContent .choiceList,
-.stepContent .radioList,
-.stepContent .optionsList,
-.stepContent .options{
-  margin-bottom: var(--qa-gap) !important;
-}
-
-/* If a step uses a grid of cards (2-up), keep same bottom spacing */
-.stepBody .cardGrid,
-.stepContent .cardGrid,
-.stepBody .choiceGrid,
-.stepContent .choiceGrid{
-  gap: var(--qa-gap) !important;
-  margin-bottom: var(--qa-gap) !important;
-}
-
-/* Normalize the actions/footer spacing */
-.funnelActions, .stepFooter{
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-
-
-
-/* === VERTICAL RHYTHM FIX (answers -> footer gap equals answer gap) === */
-:root{
-  --answer-spacing: 14px;
-}
-
-/* Normalize common answer containers to be a vertical stack with a single rhythm */
-.funnelAnswers,
-.answers,
-.optionList, .choiceList, .radioList, .optionsList, .options,
-.cardGrid, .choiceGrid{
-  gap: var(--answer-spacing) !important;
-}
-
-/* Ensure the distance from the last answer to the buttons matches the answer spacing */
-.funnelAnswers,
-.answers,
-.stepBody .optionList,
-.stepBody .choiceList,
-.stepBody .radioList,
-.stepBody .optionsList,
-.stepBody .options,
-.stepContent .optionList,
-.stepContent .choiceList,
-.stepContent .radioList,
-.stepContent .optionsList,
-.stepContent .options,
-.stepBody .cardGrid,
-.stepContent .cardGrid,
-.stepBody .choiceGrid,
-.stepContent .choiceGrid{
-  margin-bottom: var(--answer-spacing) !important;
-}
-
-/* Remove "collapsed" look when last option sits too close to footer */
-.funnelActions, .stepFooter{
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Avoid extra padding hacks that can break perceived rhythm */
-.funnelCard{
-  padding-bottom: 18px !important;
-}
-
-/* Mobile: keep same rhythm but slightly tighter card padding */
-@media (max-width: 768px){
-  :root{ --answer-spacing: 12px; }
-  .funnelCard{ padding-bottom: 14px !important; }
-}
-
-
-/* ---- Spacing rhythm: keep last answer and actions aligned ---- */
-#funnelBody > .optionList,
-#funnelBody > .choiceGrid,
-#funnelBody > .inputGrid{
-    margin-bottom: 0;
-}
-
-/* Final spacing rhythm (authoritative) */
-:root{--answer-spacing:18px;}
-.funnelBody{padding-bottom:0 !important;}
-/* gap between last answer block and action bar */
-#funnelBody{margin-bottom:var(--answer-spacing)!important;}
-/* prevent last answer block from collapsing oddly */
-#funnelBody > *:last-child{margin-bottom:0 !important;}
-/* action bar spacing from content */
-.funnelActions{margin-top:var(--answer-spacing)!important;}
-/* match answer spacing to controls spacing */
-.choiceList{gap:var(--answer-spacing)!important;}
-
-
-
-/* --- Funnel footer spacing + button alignment (final override) --- */
-.funnelActions{
-  display:flex !important;
-  gap:12px !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  position:static !important;
-  bottom:auto !important;
-  z-index:auto !important;
-  margin-top:0 !important;
-  padding: var(--answer-spacing) 18px 12px !important;
-  border-top:1px solid rgba(15,23,42,.08) !important;
-}
-.funnelNote{
-  padding: 8px 18px 14px !important;
-}
-
-
-/* --- v17 funnel fixes --- */
-/* Respect the hidden attribute even with author display rules */
-#funnelActions[hidden]{ display:none !important; }
-
-/* Make footer buttons the same size */
-.funnelActions .btn{
-  width: 160px;
-  min-width: 160px;
-}
-
-/* Seller address layout: Business Name, Street, then City | State | Zip */
-.inputGrid--address{
-  grid-template-columns: repeat(3, 1fr);
-}
-.inputGrid--address .field--full{
-  grid-column: 1 / -1;
-}
-@media (max-width: 640px){
-  .inputGrid--address{
-    grid-template-columns: 1fr;
-  }
-  .funnelActions .btn{
-    width: 100%;
-    min-width: 0;
-  }
-}
-
-
-  /* === Global funnel sizing lock === */
-  .funnelCard{ max-width: 680px !important; }
-  .funnelCardInner{ padding: 18px 18px 14px !important; }
-  .funnelHeader{ padding: 18px 18px 10px !important; }
-  .funnelHeader h2{ font-size: 34px !important; }
-  .funnelBody{ padding: 14px 18px 18px !important; overflow:auto; }
-  .funnelActions{ padding: 14px 18px 18px !important; }
-  .funnelCard{ max-height: calc(100vh - 220px); display:flex; flex-direction:column; }
-  .funnelHeader{ flex: 0 0 auto; }
-  .funnelBody{ flex: 1 1 auto; }
-  .funnelActions{ flex: 0 0 auto; }
-
-  /* Keep buttons identical */
-  #funnelBackBtn, #funnelNextBtn{
-    width: 180px !important;
-    height: 44px !important;
-    min-width: 180px !important;
-    display:inline-flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-  }
-
-  /* Ensure option tiles consistent height and radio centered */
-  .optionRow{
-    min-height:86px;
-    display:flex;
-    align-items:center;
-
-    min-height: 56px !important;
-    display:flex !important;
-    align-items:center !important;
-  }
-  .optionRow .bullet{
-    width: 18px !important;
-    height: 18px !important;
-    flex: 0 0 18px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-  }
-  .optionRow .bullet::after{
-    width: 8px !important;
-    height: 8px !important;
-  }
-
-  /* Address layout: Business + Street full, City/State/Zip 3 cols */
-  .inputGrid--address{
-    display:grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-  .inputGrid--address .addressRow3{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
-  }
-  @media (max-width: 640px){
-    .inputGrid--address .addressRow3{ grid-template-columns: 1fr; }
-    #funnelBackBtn, #funnelNextBtn{ width: 160px !important; min-width: 160px !important; }
-  }
-
-/* Minimal guard so global CSS cannot disable funnel clicks */
-#funnelBody button, #funnelActions button{
-  pointer-events: auto !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
-}
-
 </style>
 
 <style id="bbas-funnel-overrides">
-  /* Keep page scroll enabled (never hard-lock). */
   html, body { overflow-x: hidden; overflow-y: auto; }
 
-  /* Visually "zoom out" the funnel on desktop by reducing paddings/sizes (not browser zoom). */
-  .funnelShell { max-width: 1180px; margin: 0 auto; padding: 18px 18px 48px; }
-  @media (min-width: 900px){
-    .funnelShell { gap: 22px; padding: 18px 18px 54px; }
+  /* Keep clicks and visibility reliable without changing the approved theme */
+  #funnelBody button,
+  #funnelActions button,
+  #funnelRestartBtn{
+    pointer-events:auto !important;
+    opacity:1 !important;
   }
 
-  /* Make the funnel card compact and always keep actions visible without page-scrolling. */
-  #funnelCard { display: flex; flex-direction: column; }
-  #funnelBody { flex: 1 1 auto; overflow: auto; max-height: calc(100vh - 420px); padding-bottom: 10px; }
-  #funnelActions { position: sticky; bottom: 0; background: #fff; padding-top: 14px; padding-bottom: 14px; border-top: 1px solid rgba(0,0,0,0.06); }
+  /* Start screen keeps footer actions hidden */
+  body[data-funnel-branch="none"] #funnelActions{
+    display:none !important;
+  }
+</style>
 
-  /* Start screen: no footer actions */
-  body[data-funnel-branch="none"] #funnelActions { display: none !important; }
 
-  /* Options: consistent row height + perfectly centered radio dot */
-  .optionRow { min-height: 64px; }
-  .optionBullet { width: 18px; height: 18px; border-width: 2px; display: inline-flex; align-items: center; justify-content: center; }
-  .optionBullet::after { content: ""; width: 8px; height: 8px; border-radius: 999px; background: transparent; }
-  .optionRow.is-selected .optionBullet::after { background: var(--accent, #6C5CE7); }
-
-  /* Reduce headline sizes slightly so the hero + funnel fit on desktop without scrolling. */
-  .heroTitle { font-size: clamp(36px, 4.2vw, 56px); }
-  .heroSub { font-size: 16px; line-height: 1.5; }
-
-  /* Ensure buttons inherit your approved pill look (no squared fallbacks). */
-  .btn, button.btn, .funnelBtn { border-radius: 999px !important; }
+<style id="bbas-final-sanity">
+  .trustCard, .trustCard * { color: inherit; }
+  .trustCard { background:#FFFFFF !important; }
+  .trustTitle, .trustKicker, .optionLabel, .choiceTitle, .funnelQuestion { color: var(--text-primary, #1F2937) !important; }
+  .trustSub, .trustText, .trustMini, .choiceSub, .funnelHelper { color: #374151 !important; }
 </style>
 
 </head>
