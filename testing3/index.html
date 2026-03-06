@@ -1,1275 +1,1301 @@
 <!doctype html>
-<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Business Buying and Selling - Funnel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BBAS Funnel</title>
 
-  <!-- Approved global CSS -->
-  <link rel="stylesheet" href="/assets/css/header.css" />
-  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="header.css">
 
-  <!-- Turnstile -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EH99SDCSFD');
+  </script>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
 
   <style>
-    /* Page backdrop + layout (scoped to this page only) */
-    :root{
-      --bbas-accent: #7c3aed;
-      --bbas-accent-2: #a78bfa;
-      --bbas-ink: #0b0b0f;
-      --bbas-card: rgba(255,255,255,0.92);
-      --bbas-card-border: rgba(255,255,255,0.14);
-      --bbas-hero: rgba(0,0,0,0.55);
-      --bbas-panel: rgba(20,20,28,0.75);
-      --bbas-panel-border: rgba(255,255,255,0.10);
-      --bbas-shadow: 0 22px 60px rgba(0,0,0,0.35);
-      --bbas-radius-xl: 24px;
-      --bbas-radius-lg: 18px;
-      --bbas-radius-md: 14px;
-      --bbas-maxw: 1160px;
-
-      /* Compactness tuning */
-      --funnel-card-maxw: 760px;
-      --funnel-scale: 0.92; /* visually "zoomed out" without breaking layout */
-      --tile-minh: 66px;
-      --tile-pad: 10px 14px;
-      --tile-gap: 12px;
-      --title-size: clamp(34px, 3.1vw, 56px);
-      --sub-size: 15px;
-      --q-size: 34px;
+    /* Funnel-only adjustments (do NOT override global header/footer styles) */
+    :root {
+      --funnel-accent: #7b61ff;
+      --funnel-accent-2: #5b2bff;
+      --funnel-muted: rgba(255,255,255,.7);
+      --funnel-text: rgba(255,255,255,.92);
+      --card-bg: rgba(20, 22, 28, .72);
+      --card-border: rgba(255,255,255,.12);
     }
 
-    body{
+    body {
+      margin: 0;
       background:
-        radial-gradient(900px 520px at 22% 18%, rgba(124,58,237,0.35), rgba(0,0,0,0) 60%),
-        radial-gradient(820px 520px at 78% 86%, rgba(59,130,246,0.20), rgba(0,0,0,0) 55%),
-        linear-gradient(180deg, #050507 0%, #0a0a10 100%);
+        radial-gradient(1200px 600px at 30% 25%, rgba(123,97,255,.25), transparent 60%),
+        radial-gradient(1000px 600px at 70% 55%, rgba(0,200,255,.10), transparent 60%),
+        linear-gradient(180deg, #07080b 0%, #0b0d12 40%, #0a0b10 100%);
+      color: var(--funnel-text);
       min-height: 100vh;
     }
 
-    /* Header/Footer mounts (global includes) */
-    #siteHeader, #siteFooter { width: 100%; }
-
-    main.bbasMain{
-      width: 100%;
-      display: block;
-      padding: 28px 16px 80px;
-    }
-
-    .bbasWrap{
-      max-width: var(--bbas-maxw);
+    .bbas-wrap {
+      max-width: 1180px;
       margin: 0 auto;
+      padding: 28px 18px 60px;
     }
 
-    .heroBox{
-      border-radius: var(--bbas-radius-xl);
-      border: 1px solid var(--bbas-card-border);
+    .hero {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
       background:
-        radial-gradient(1200px 520px at 30% 0%, rgba(124,58,237,0.35), rgba(0,0,0,0) 55%),
-        radial-gradient(1200px 520px at 70% 0%, rgba(124,58,237,0.12), rgba(0,0,0,0) 60%),
-        linear-gradient(180deg, rgba(0,0,0,0.78), rgba(0,0,0,0.58));
-      box-shadow: var(--bbas-shadow);
-      padding: 22px 26px;
-      color: rgba(255,255,255,0.92);
+        radial-gradient(800px 420px at 20% 20%, rgba(123,97,255,.25), transparent 60%),
+        radial-gradient(900px 460px at 80% 60%, rgba(255,255,255,.08), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+      padding: 22px 22px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
     }
 
-    .heroPill{
+    .hero-top {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.28);
-      font-size: 12px;
-      letter-spacing: 0.2px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
       width: fit-content;
     }
-    .heroDot{
-      width: 8px; height: 8px; border-radius: 999px;
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       background: #f4b400;
-      box-shadow: 0 0 0 4px rgba(244,180,0,0.14);
-      flex: 0 0 auto;
+      box-shadow: 0 0 0 4px rgba(244,180,0,.12);
     }
 
-    .heroTitle{
-      margin: 12px 0 8px;
-      font-size: var(--title-size);
+    .hero h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(34px, 4vw, 56px);
       line-height: 1.05;
-      font-weight: 600;
-    }
-    .heroSub{
-      margin: 0;
-      font-size: 16px;
-      opacity: 0.86;
-      max-width: 62ch;
+      letter-spacing: -0.02em;
+      font-weight: 500;
     }
 
-    .belowHero{
-      margin-top: 16px;
+    .hero p {
+      margin: 0;
+      max-width: 720px;
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: 1.55fr 1fr;
       gap: 18px;
+      margin-top: 18px;
       align-items: start;
     }
 
-    @media (max-width: 980px){
-      .belowHero{ grid-template-columns: 1fr; }
-    }
-
-    /* Funnel shell */
-    .funnelShell{
-      transform: scale(var(--funnel-scale));
-      transform-origin: top left;
-      width: calc(100% / var(--funnel-scale));
-    }
-
-    .funnelCard{
-      border-radius: var(--bbas-radius-xl);
-      background: var(--bbas-card);
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: var(--bbas-shadow);
+    /* Make funnel visually smaller on desktop */
+    .funnel {
+      border-radius: 18px;
+      background: rgba(255,255,255,.92);
+      color: #111827;
+      box-shadow: 0 22px 70px rgba(0,0,0,.55);
       overflow: hidden;
-      max-width: var(--funnel-card-maxw);
+      max-width: 820px;
     }
 
-    .funnelTopbar{
-      padding: 12px 18px 10px;
-      background: rgba(0,0,0,0.02);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+    .funnel-head {
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid rgba(17,24,39,.08);
+    }
+
+    .funnel-progress {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-    }
-    .stepLabel{ font-size: 12px; color: rgba(0,0,0,0.55); }
-    .startOver{
+      margin-bottom: 10px;
       font-size: 12px;
-      color: rgba(0,0,0,0.65);
-      text-decoration: underline;
-      cursor: pointer;
-      background: none;
-      border: 0;
-      padding: 0;
+      color: rgba(17,24,39,.60);
     }
 
-    .progressBar{
+    .progress-track {
       height: 6px;
-      background: rgba(0,0,0,0.10);
       border-radius: 999px;
+      background: rgba(17,24,39,.10);
       overflow: hidden;
       margin-top: 8px;
     }
-    .progressFill{
+
+    .progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--bbas-accent), #9333ea);
+      background: linear-gradient(90deg, var(--funnel-accent), var(--funnel-accent-2));
       border-radius: 999px;
-      transition: width 220ms ease;
+      transition: width .25s ease;
     }
 
-    .funnelBody{
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 360px; /* consistent height to reduce page jumping */
+    .funnel-body {
+      padding: 16px 18px 14px;
     }
 
-    .qTitle{
-      font-size: var(--q-size);
-      line-height: 1.12;
-      margin: 0;
-      color: rgba(0,0,0,0.78);
+    .q-title {
+      font-size: 28px;
+      line-height: 1.15;
+      margin: 0 0 6px;
       font-weight: 500;
+      letter-spacing: -0.02em;
+      color: rgba(17,24,39,.78);
     }
-    .qHint{
-      margin: 0;
-      color: rgba(0,0,0,0.45);
+
+    .q-sub {
+      margin: 0 0 14px;
+      color: rgba(17,24,39,.42);
       font-size: 13px;
-      margin-top: -6px;
     }
 
-    .choicesGrid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--tile-gap);
-      margin-top: 6px;
-    }
-    @media (max-width: 720px){
-      .choicesGrid{ grid-template-columns: 1fr; }
-    }
-
-    .choiceTile{
-      width: 100%;
-      display: grid;
-      grid-template-columns: 20px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: var(--tile-pad);
-      min-height: var(--tile-minh);
-      border-radius: var(--bbas-radius-md);
-      border: 1px solid rgba(0,0,0,0.14);
-      background: rgba(255,255,255,0.78);
-      color: rgba(0,0,0,0.78);
-      cursor: pointer;
-      text-align: left;
-      font-family: inherit;
-      transition: box-shadow 140ms ease, transform 140ms ease, border-color 140ms ease;
-    }
-    .choiceTile:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-      border-color: rgba(124,58,237,0.45);
-    }
-    .choiceTile[aria-checked="true"]{
-      border-color: var(--bbas-accent);
-      box-shadow: 0 10px 22px rgba(124,58,237,0.16);
-    }
-
-    .radio{
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      border: 2px solid rgba(0,0,0,0.28);
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,0.9);
-      box-sizing: border-box;
-    }
-    .radioDot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--bbas-accent);
-      transform: scale(0);
-      transition: transform 140ms ease;
-    }
-    .choiceTile[aria-checked="true"] .radio{ border-color: var(--bbas-accent); }
-    .choiceTile[aria-checked="true"] .radioDot{ transform: scale(1); }
-
-    .tileTitle{ font-weight: 600; font-size: 14px; margin: 0; }
-    .tileSub{ margin: 2px 0 0; font-size: 12px; color: rgba(0,0,0,0.50); }
-
-    .funnelFooter{
-      padding: 14px 18px 16px;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      background: rgba(255,255,255,0.82);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    /* Approved-looking pill buttons (does not override global buttons elsewhere) */
-    .bbasBtn{
-      height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,0.18);
-      background: rgba(255,255,255,0.86);
-      color: rgba(0,0,0,0.78);
-      font-weight: 600;
-      cursor: pointer;
-      min-width: 140px;
-    }
-    .bbasBtn:hover{ border-color: rgba(124,58,237,0.45); }
-    .bbasBtnPrimary{
-      border-color: transparent;
-      background: linear-gradient(90deg, var(--bbas-accent), #9333ea);
-      color: white;
-      box-shadow: 0 14px 28px rgba(124,58,237,0.22);
-      min-width: 160px;
-    }
-    .bbasBtnPrimary:disabled{
-      opacity: 0.55;
-      box-shadow: none;
-      cursor: not-allowed;
-    }
-
-    /* Inputs */
-    .fieldGrid{
+    .choices {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .fieldGrid.three{ grid-template-columns: 1fr 1fr 1fr; }
-    @media (max-width: 720px){
-      .fieldGrid, .fieldGrid.three{ grid-template-columns: 1fr; }
+
+    .choices.onecol {
+      grid-template-columns: 1fr;
     }
-    .field{
+
+    .choice {
+      position: relative;
+      border: 1px solid rgba(17,24,39,.14);
+      border-radius: 14px;
+      padding: 12px 12px 12px 48px;
+      background: #fff;
+      cursor: pointer;
+      min-height: 56px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-    }
-    .label{
-      font-size: 12px;
-      color: rgba(0,0,0,0.45);
-    }
-    .input, .select, .textarea{
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.14);
-      padding: 0 14px;
-      outline: none;
-      font: inherit;
-      background: rgba(255,255,255,0.92);
-    }
-    .textarea{
-      height: 120px;
-      padding: 12px 14px;
-      resize: vertical;
-    }
-    .input:focus, .select:focus, .textarea:focus{
-      border-color: rgba(124,58,237,0.70);
-      box-shadow: 0 0 0 4px rgba(124,58,237,0.16);
+      justify-content: center;
+      user-select: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
     }
 
-    /* Right info panel */
-    .infoPanel{
-      border-radius: var(--bbas-radius-xl);
-      border: 1px solid var(--bbas-panel-border);
-      background: var(--bbas-panel);
-      box-shadow: var(--bbas-shadow);
-      padding: 16px;
-      color: rgba(255,255,255,0.86);
-    }
-    .infoPill{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.18);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-bottom: 10px;
-    }
-    .infoTitle{ margin: 0 0 6px; font-size: 18px; font-weight: 600; }
-    .infoText{ margin: 0 0 14px; font-size: 13px; opacity: 0.85; line-height: 1.35; }
-    .infoGrid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .infoCard{
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.16);
-      border-radius: 14px;
-      padding: 10px;
-    }
-    .infoCard h4{ margin: 0 0 4px; font-size: 12px; font-weight: 600; }
-    .infoCard p{ margin: 0; font-size: 12px; opacity: 0.80; line-height: 1.25; }
-    .infoFooter{
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      font-size: 12px;
-      opacity: 0.74;
+    .choice:hover {
+      border-color: rgba(123,97,255,.45);
+      box-shadow: 0 8px 24px rgba(123,97,255,.12);
     }
 
-    /* Turnstile wrap */
-    .turnstileWrap{
-      margin-top: 8px;
-      display: flex;
-      justify-content: flex-start;
+    .choice strong {
+      font-size: 14px;
+      line-height: 1.1;
+      margin-bottom: 4px;
+      color: rgba(17,24,39,.92);
     }
-    .bbasMain .funnelCard button{
+
+    .choice span {
+      font-size: 13px;
+      color: rgba(17,24,39,.58);
+      line-height: 1.25;
+    }
+
+    /* Consistent radio bubbles */
+    .choice input[type="radio"] {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      margin: 0;
       appearance: none;
       -webkit-appearance: none;
-      border: 0;
-      background: none;
-      color: inherit;
-    }
-    .bbasMain .funnelCard .choiceTile{
-      border: 1px solid rgba(0,0,0,0.14);
-      background: rgba(255,255,255,0.92);
-      color: rgba(0,0,0,0.86);
-    }
-    .bbasMain .funnelCard .qTitle{ color: rgba(0,0,0,0.86); }
-    .bbasMain .funnelCard .tileTitle{ color: rgba(0,0,0,0.86); }
-    .bbasMain .funnelCard .tileSub{ color: rgba(0,0,0,0.58); }
-    .bbasMain .funnelCard .radio{
-      border: 2px solid rgba(0,0,0,0.28);
-      background: rgba(255,255,255,0.98);
+      border-radius: 50%;
+      border: 2px solid rgba(17,24,39,.28);
+      background: #fff;
+      display: grid;
+      place-items: center;
     }
 
+    .choice input[type="radio"]::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--funnel-accent-2);
+      transform: scale(0);
+      transition: transform .12s ease;
+    }
 
-    /* Strong visual defaults so the first step never looks "disabled" */
-    .bbasMain .funnelCard .choicesGrid{ opacity: 1; }
-    .bbasMain .funnelCard .choiceTile{
+    .choice input[type="radio"]:checked {
+      border-color: var(--funnel-accent-2);
+      box-shadow: 0 0 0 4px rgba(123,97,255,.14);
+    }
+
+    .choice input[type="radio"]:checked::after {
+      transform: scale(1);
+    }
+
+    .choice.selected {
+      border-color: var(--funnel-accent-2);
+    }
+
+    .choice-icon {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(123,97,255,.10);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .choice-icon img {
+      width: 18px;
+      height: 18px;
+      opacity: .85;
+    }
+
+    .choice.with-icon {
+      padding-left: 58px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-grid.onecol {
+      grid-template-columns: 1fr;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: rgba(17,24,39,.46);
+      margin-bottom: 6px;
+    }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      border: 1px solid rgba(17,24,39,.14);
+      border-radius: 12px;
+      padding: 12px 12px;
+      font-size: 14px;
+      outline: none;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    .field textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: rgba(123,97,255,.65);
+      box-shadow: 0 0 0 4px rgba(123,97,255,.14);
+    }
+
+    .other-wrap {
+      margin-top: 10px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px 16px;
+      border-top: 1px solid rgba(17,24,39,.08);
+      background: rgba(255,255,255,.88);
+    }
+
+    /* Lock button sizing */
+    .btn {
+      height: 46px;
+      min-width: 160px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
-      opacity: 1 !important;
-      filter: none !important;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+      border: 1px solid rgba(17,24,39,.18);
+      background: #fff;
+      color: rgba(17,24,39,.86);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
     }
-    .bbasMain .funnelCard .choiceTile:hover{
-      border-color: rgba(124,58,237,0.55);
-      box-shadow: 0 0 0 3px rgba(124,58,237,0.10);
+
+    .btn.primary {
+      border: none;
+      background: linear-gradient(180deg, var(--funnel-accent), var(--funnel-accent-2));
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(91,43,255,.28);
     }
-    .bbasMain .funnelCard .choiceTile[aria-checked="true"]{
-      border-color: rgba(124,58,237,0.80);
-      box-shadow: 0 0 0 3px rgba(124,58,237,0.14);
-    }
-    .bbasMain .funnelCard .bbasBtn{
-      cursor: pointer;
-      opacity: 1 !important;
-      color: rgba(0,0,0,0.86) !important;
-      background: rgba(255,255,255,0.92) !important;
-      border: 1px solid rgba(0,0,0,0.14) !important;
-    }
-    .bbasMain .funnelCard .bbasBtnPrimary{
-      color: #ffffff !important;
-      background: linear-gradient(135deg, var(--bbas-accent), var(--bbas-accent-2)) !important;
-      border-color: transparent !important;
-    }
-    .bbasMain .funnelCard .bbasBtn[disabled],
-    .bbasMain .funnelCard .bbasBtnPrimary[disabled]{
+
+    .btn:disabled {
+      opacity: .45;
       cursor: not-allowed;
-      opacity: 0.55 !important;
+      box-shadow: none;
     }
 
-
-    /* Minimal guard against aggressive global resets (does not change theme colors) */
-    .bbasMain .funnelCard .choiceTile{ cursor: pointer; }
-    .bbasMain .funnelCard .choiceTile,
-    .bbasMain .funnelCard .bbasBtn{
-      opacity: 1;
-      pointer-events: auto;
+    .fineprint {
+      margin-top: 6px;
+      font-size: 12px;
+      color: rgba(17,24,39,.28);
     }
 
+    .side {
+      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      position: sticky;
+      top: 18px;
+    }
+
+    .side-badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    .side-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,.14);
+    }
+
+    .side h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .side p {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.4;
+    }
+
+    .side-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .side-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 10px;
+    }
+
+    .side-card strong {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+      margin-bottom: 4px;
+    }
+
+    .side-card span {
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+      line-height: 1.35;
+      display: block;
+    }
+
+    .side-foot {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      font-size: 12px;
+      color: rgba(255,255,255,.58);
+      line-height: 1.35;
+    }
+
+    /* Keep option lists from forcing page scroll while keeping nav visible */
+    .scroll-area {
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .funnel { max-width: 100%; }
+      .scroll-area { max-height: none; overflow: visible; }
+    }
+
+    @media (max-width: 560px) {
+      .choices { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .btn { min-width: 0; width: 100%; }
+      .nav { flex-direction: column; }
+      .q-title { font-size: 24px; }
+    }
   </style>
 </head>
 
 <body>
   <div id="siteHeader"></div>
 
-  <main class="bbasMain">
-    <div class="bbasWrap">
-      <section class="heroBox" aria-label="Funnel hero">
-        <div class="heroPill"><span class="heroDot"></span>Get started in under 60 seconds.</div>
-        <h1 class="heroTitle">Buy or sell a business, with confidence.</h1>
-        <p class="heroSub">Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
-      </section>
+  <main class="bbas-wrap">
+    <section class="hero">
+      <div class="hero-top"><span class="hero-dot"></span><span>Get started in under 60 seconds.</span></div>
+      <h1>Buy or sell a business, with confidence.</h1>
+      <p>Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
+    </section>
 
-      <section class="belowHero">
-        <div class="funnelShell">
-          <div class="funnelCard" id="funnelCard">
-            <div class="funnelTopbar">
-              <div class="stepLabel" id="stepLabel">Step 1 of 1</div>
-              <button class="startOver" id="startOverBtn" type="button">Start over</button>
-            </div>
-            <div class="progressBar" aria-hidden="true">
-              <div class="progressFill" id="progressFill"></div>
-            </div>
-
-            <div class="funnelBody" id="funnelBody">
-              <!-- Rendered by JS -->
-            </div>
-
-            <div class="funnelFooter" id="funnelFooter">
-              <div style="display:flex;flex-direction:column;gap:10px;width:100%;"></div>
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;">
-                  <button class="bbasBtn" id="prevBtn" type="button">Previous</button>
-                  <button class="bbasBtn bbasBtnPrimary" id="nextBtn" type="button" disabled>Next</button>
-                </div>
-              </div>
-            </div>
+    <section class="grid">
+      <div class="funnel" aria-live="polite">
+        <div class="funnel-head">
+          <div class="funnel-progress">
+            <div><span id="stepLabel">Step 1 of 1</span></div>
+            <button id="startOverBtn" type="button" style="border:none;background:transparent;color:rgba(17,24,39,.65);text-decoration:underline;cursor:pointer;font-weight:600;">Start over</button>
           </div>
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
         </div>
 
-        <aside class="infoPanel">
-          <div class="infoPill"><span style="width:10px;height:10px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,0.16)"></span>What you get</div>
-          <h3 class="infoTitle">Clarity first. Decisions second.</h3>
-          <p class="infoText">We are building a marketplace plus a practical knowledge hub, so both buyers and owners move faster and waste less time.</p>
-          <div class="infoGrid">
-            <div class="infoCard">
-              <h4>Clear numbers</h4>
-              <p>Revenue, cash flow, margin, lease terms, and what is included in the sale.</p>
-            </div>
-            <div class="infoCard">
-              <h4>Better matching</h4>
-              <p>Filter by type, budget, timeline, and involvement level. No guessing.</p>
-            </div>
-            <div class="infoCard">
-              <h4>Buyer readiness</h4>
-              <p>Checklists and questions that prevent the usual deal-stalling surprises.</p>
-            </div>
-            <div class="infoCard">
-              <h4>Owner support</h4>
-              <p>Simple guidance on prep, documentation, and what serious buyers expect.</p>
-            </div>
-          </div>
-          <div class="infoFooter">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
-        </aside>
-      </section>
-    </div>
+        <div class="funnel-body" id="funnelBody"></div>
+
+        <div class="nav" id="navBar">
+          <button class="btn" id="prevBtn" type="button">Previous</button>
+          <button class="btn primary" id="nextBtn" type="button">Next</button>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="side-badge"><span class="side-dot"></span><span>What you get</span></div>
+        <h3>Clarity first. Decisions second.</h3>
+        <p>We are building a marketplace plus a practical knowledge hub, so both buyers and owners move faster and waste less time.</p>
+        <div class="side-grid">
+          <div class="side-card"><strong>Clear numbers</strong><span>Revenue, cash flow, margin, lease terms, and what is included in the sale.</span></div>
+          <div class="side-card"><strong>Better matching</strong><span>Filter by type, budget, timeline, and involvement level. No guessing.</span></div>
+          <div class="side-card"><strong>Buyer readiness</strong><span>Checklists and questions that prevent the usual deal-stalling surprises.</span></div>
+          <div class="side-card"><strong>Owner support</strong><span>Simple guidance on prep, documentation, and what serious buyers expect.</span></div>
+        </div>
+        <div class="side-foot">Private, owner-operated deals like convenience stores, gas stations, vape shops, small retail, and local service businesses.</div>
+      </aside>
+    </section>
   </main>
 
   <div id="siteFooter"></div>
 
-  <!-- Global include + nav behavior (existing site pattern) -->
-  <script src="/assets/js/includes.js"></script>
-  <script src="/assets/js/site.js"></script>
+  <script src="includes.js"></script>
+  <script src="site.js"></script>
 
   <script>
-    (function(){
-      "use strict";
+    // -----------------------------
+    // Funnel data (per your latest spec)
+    // -----------------------------
+    const BUSINESS_TYPES = [
+      "Auto Repair","Construction","Car washes","Day care","Dry Cleaners","Dog grooming","Gas Station","Food truck",
+      "Hair Salon/Barber Shop","Heating & Air","Hotel/Motels","Ice cream shop","Liquor store","Retail","Restaurants","Vape shop","Other"
+    ];
 
-      const elBody = document.getElementById("funnelBody");
-      const elPrev = document.getElementById("prevBtn");
-      const elNext = document.getElementById("nextBtn");
-      const elStep = document.getElementById("stepLabel");
-      const elProg = document.getElementById("progressFill");
-      const elStartOver = document.getElementById("startOverBtn");
-
-      // Turnstile sitekey wiring:
-      // Set your sitekey in the <html> tag attribute: data-turnstile-sitekey="YOUR_SITEKEY_HERE"
-      (function syncTurnstileSitekey(){
-        const sitekey = (document.documentElement.dataset.turnstileSitekey || "").trim();
-        if(!sitekey) return;
-        const w = document.querySelector(".cf-turnstile");
-        if(w && !w.getAttribute("data-sitekey")){
-          w.setAttribute("data-sitekey", sitekey);
-        }
-      })();
-
-
-      const STATES = [
-        { abbr: "AL", name: "Alabama" },{ abbr: "AK", name: "Alaska" },{ abbr: "AZ", name: "Arizona" },{ abbr: "AR", name: "Arkansas" },
-        { abbr: "CA", name: "California" },{ abbr: "CO", name: "Colorado" },{ abbr: "CT", name: "Connecticut" },{ abbr: "DE", name: "Delaware" },
-        { abbr: "DC", name: "District of Columbia" },{ abbr: "FL", name: "Florida" },{ abbr: "GA", name: "Georgia" },{ abbr: "HI", name: "Hawaii" },
-        { abbr: "ID", name: "Idaho" },{ abbr: "IL", name: "Illinois" },{ abbr: "IN", name: "Indiana" },{ abbr: "IA", name: "Iowa" },
-        { abbr: "KS", name: "Kansas" },{ abbr: "KY", name: "Kentucky" },{ abbr: "LA", name: "Louisiana" },{ abbr: "ME", name: "Maine" },
-        { abbr: "MD", name: "Maryland" },{ abbr: "MA", name: "Massachusetts" },{ abbr: "MI", name: "Michigan" },{ abbr: "MN", name: "Minnesota" },
-        { abbr: "MS", name: "Mississippi" },{ abbr: "MO", name: "Missouri" },{ abbr: "MT", name: "Montana" },{ abbr: "NE", name: "Nebraska" },
-        { abbr: "NV", name: "Nevada" },{ abbr: "NH", name: "New Hampshire" },{ abbr: "NJ", name: "New Jersey" },{ abbr: "NM", name: "New Mexico" },
-        { abbr: "NY", name: "New York" },{ abbr: "NC", name: "North Carolina" },{ abbr: "ND", name: "North Dakota" },{ abbr: "OH", name: "Ohio" },
-        { abbr: "OK", name: "Oklahoma" },{ abbr: "OR", name: "Oregon" },{ abbr: "PA", name: "Pennsylvania" },{ abbr: "RI", name: "Rhode Island" },
-        { abbr: "SC", name: "South Carolina" },{ abbr: "SD", name: "South Dakota" },{ abbr: "TN", name: "Tennessee" },{ abbr: "TX", name: "Texas" },
-        { abbr: "UT", name: "Utah" },{ abbr: "VT", name: "Vermont" },{ abbr: "VA", name: "Virginia" },{ abbr: "WA", name: "Washington" },
-        { abbr: "WV", name: "West Virginia" },{ abbr: "WI", name: "Wisconsin" },{ abbr: "WY", name: "Wyoming" }
-      ];
-
-      const BIZ_TYPES = [
-        "Auto Repair","Construction","Car washes","Day care","Dry Cleaners","Dog grooming","Gas Station","Food truck",
-        "Hair Salon/Barber Shop","Heating & Air","Hotel/Motels","Ice cream shop","Liquor store","Retail","Restaurants","Vape shop","Other"
-      ];
-
-      const AUTO_ADVANCE = true;
-
-       const state = {
-        branch: null, // "seller" | "buyer"
-        stepIndex: 0,
-        answers: {},
-      };
-
-      const funnels = {
-        seller: [
-          {
-            id: "sell_timing",
-            type: "choice",
-            question: "How soon are you looking to sell your business?",
-            hint: "",
-            options: [
-              { value: "ready_now", label: "I am ready now" },
-              { value: "not_now", label: "Not right now, but want to speak with someone" }
-            ]
-          },
-          {
-            id: "seller_biz_type",
-            type: "dropdown_other",
-            question: "What type of business you own?",
-            hint: "",
-            options: BIZ_TYPES
-          },
-          {
-            id: "gross_revenue",
-            type: "choice",
-            question: "What was your Gross Revenue in the last 12 months?",
-            hint: "",
-            options: [
-              { value: "under_250k", label: "Under $250k" },
-              { value: "250_500", label: "$250k - $500k" },
-              { value: "500_750", label: "$500k - $750k" },
-              { value: "over_1m", label: "+ $1 million" }
-            ]
-          },
-          {
-            id: "gross_profit",
-            type: "choice",
-            question: "What was your Gross Profit in the last 12 months?",
-            hint: "",
-            options: [
-              { value: "under_50k", label: "Under $50k" },
-              { value: "50_150", label: "$50k - $150k" },
-              { value: "150_250", label: "$150k - $250k" },
-              { value: "250_500", label: "$250k - $500k" }
-            ]
-          },
-          {
-            id: "biz_location",
-            type: "location_full",
-            question: "Where is the business located?",
-            hint: "Add the business name and address."
-          },
-          {
-            id: "contact",
-            type: "contact",
-            question: "Contact info",
-            hint: "We will only use this to send early access and next steps."
-          }
+    const SELLER_STEPS = [
+      {
+        id: "sell_timing",
+        title: "How soon are you looking to sell your business?",
+        subtitle: "Choose one to start.",
+        type: "single",
+        key: "sell_timing",
+        options: [
+          { value: "ready_now", label: "I am ready now" },
+          { value: "not_ready_talk", label: "Not right now, but want to speak with someone" }
         ],
-        buyer: [
-          {
-            id: "buyer_biz_type",
-            type: "dropdown_other",
-            question: "What type of Business?",
-            hint: "",
-            options: BIZ_TYPES
-          },
-          {
-            id: "purchase_price",
-            type: "choice",
-            question: "What Purchase Price?",
-            hint: "",
-            options: [
-              { value: "under_100k", label: "Under $100k" },
-              { value: "100_250", label: "$100k - $250k" },
-              { value: "250_500", label: "$250k - $500k" },
-              { value: "over_1m", label: "+ $1 mill" }
-            ]
-          },
-          {
-            id: "buyer_location",
-            type: "location_simple",
-            question: "Where do you want the business to be located?",
-            hint: ""
-          },
-          {
-            id: "contact",
-            type: "contact",
-            question: "Contact info",
-            hint: "We will only use this to send early access and next steps."
-          }
+        autoAdvance: true
+      },
+      {
+        id: "sell_type",
+        title: "What type of business you own?",
+        subtitle: "Owner-operated businesses.",
+        type: "single",
+        key: "business_type",
+        options: BUSINESS_TYPES.map(v => ({ value: v, label: v })),
+        hasOther: true
+      },
+      {
+        id: "sell_revenue",
+        title: "What was your Gross Revenue in the last 12 months?",
+        subtitle: "",
+        type: "single",
+        key: "gross_revenue",
+        options: [
+          { value: "under_250k", label: "Under $250k" },
+          { value: "250_500", label: "$250k - $500k" },
+          { value: "500_750", label: "$500k - $750k" },
+          { value: "over_1m", label: "+ $1 million" }
         ]
+      },
+      {
+        id: "sell_profit",
+        title: "What was your Gross Profit in the last 12 months?",
+        subtitle: "",
+        type: "single",
+        key: "gross_profit",
+        options: [
+          { value: "under_50k", label: "Under $50k" },
+          { value: "50_150", label: "$50k - $150k" },
+          { value: "150_250", label: "$150k - $250k" },
+          { value: "250_500", label: "$250k - $500k" }
+        ]
+      },
+      {
+        id: "sell_location",
+        title: "Where is the business located?",
+        subtitle: "Add the business name and address.",
+        type: "location_full",
+        key: "business_location"
+      },
+      {
+        id: "contact",
+        title: "Contact info",
+        subtitle: "We will only use this to send early access and next steps.",
+        type: "contact",
+        key: "contact"
+      }
+    ];
+
+    const BUYER_STEPS = [
+      {
+        id: "buy_type",
+        title: "What type of Business?",
+        subtitle: "Choose one.",
+        type: "single",
+        key: "business_type",
+        options: BUSINESS_TYPES.map(v => ({ value: v, label: v })),
+        hasOther: true
+      },
+      {
+        id: "buy_price",
+        title: "What Purchase Price?",
+        subtitle: "",
+        type: "single",
+        key: "purchase_price",
+        options: [
+          { value: "under_100k", label: "Under $100k" },
+          { value: "100_250", label: "$100k - $250k" },
+          { value: "250_500", label: "$250k - $500k" },
+          { value: "over_1m", label: "+ $1 mill" }
+        ]
+      },
+      {
+        id: "buy_location",
+        title: "Where do you want the business to be located?",
+        subtitle: "",
+        type: "location_city_state",
+        key: "desired_location"
+      },
+      {
+        id: "contact",
+        title: "Contact info",
+        subtitle: "We will only use this to send early access and next steps.",
+        type: "contact",
+        key: "contact"
+      }
+    ];
+
+    // -----------------------------
+    // State
+    // -----------------------------
+    const state = {
+      mode: null, // "seller" | "buyer"
+      stepIndex: 0,
+      steps: [],
+      answers: { path: null },
+      turnstileToken: ""
+    };
+
+    // -----------------------------
+    // Helpers: input formatting
+    // -----------------------------
+    function capWords(str) {
+      return (str || "")
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+        .join(" ");
+    }
+
+    function capCity(str) {
+      return capWords(str);
+    }
+
+    function capBusiness(str) {
+      const words = (str || "").split(/\s+/).filter(Boolean);
+      return words.map(w => {
+        if (w.length <= 2 && w === w.toUpperCase()) return w;
+        if (/^[A-Z0-9&.-]+$/.test(w) && w.length <= 4) return w;
+        return w.charAt(0).toUpperCase() + w.slice(1);
+      }).join(" ");
+    }
+
+    function formatPhone(value) {
+      const digits = (value || "").replace(/\D/g, "").slice(0, 10);
+      const a = digits.slice(0,3);
+      const b = digits.slice(3,6);
+      const c = digits.slice(6,10);
+      if (digits.length <= 3) return a;
+      if (digits.length <= 6) return "(" + a + ") " + b;
+      return "(" + a + ") " + b + "-" + c;
+    }
+
+    function attachCapHandlers(root) {
+      const nodes = root.querySelectorAll("[data-cap]");
+      nodes.forEach(el => {
+        el.addEventListener("blur", () => {
+          const kind = el.getAttribute("data-cap");
+          if (kind === "words") el.value = capWords(el.value);
+          if (kind === "city") el.value = capCity(el.value);
+          if (kind === "business") el.value = capBusiness(el.value);
+          if (kind === "state") el.value = (el.value || "").toUpperCase().slice(0, 2);
+        });
+      });
+
+      const phone = root.querySelector('input[data-format="phone"]');
+      if (phone) {
+        phone.addEventListener("input", () => {
+          const pos = phone.selectionStart;
+          phone.value = formatPhone(phone.value);
+          try { phone.setSelectionRange(pos, pos); } catch(e) {}
+        });
+        phone.addEventListener("blur", () => {
+          phone.value = formatPhone(phone.value);
+        });
+      }
+    }
+
+    // -----------------------------
+    // Turnstile
+    // -----------------------------
+    function getTurnstileSitekey() {
+      return (window.TURNSTILE_SITEKEY || "0x4AAAAAAABkKfJ7l8yTt7pJ");
+    }
+
+    function ensureTurnstile() {
+      const mount = document.getElementById("turnstileMount");
+      if (!mount) return;
+      if (mount.dataset.rendered === "1") return;
+
+      if (!window.turnstile || typeof window.turnstile.render !== "function") {
+        setTimeout(ensureTurnstile, 200);
+        return;
+      }
+
+      mount.dataset.rendered = "1";
+      const sitekey = getTurnstileSitekey();
+
+      window.turnstile.render("#turnstileMount", {
+        sitekey: sitekey,
+        theme: "light",
+        callback: (token) => {
+          state.turnstileToken = token || "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = state.turnstileToken;
+          validateStep();
+        },
+        "error-callback": () => {
+          state.turnstileToken = "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = "";
+          validateStep();
+        },
+        "expired-callback": () => {
+          state.turnstileToken = "";
+          const hidden = document.getElementById("turnstileToken");
+          if (hidden) hidden.value = "";
+          validateStep();
+        }
+      });
+    }
+
+    window.tsOnload = function() {
+      ensureTurnstile();
+    };
+
+    // -----------------------------
+    // Rendering
+    // -----------------------------
+    const funnelBody = document.getElementById("funnelBody");
+    const stepLabel = document.getElementById("stepLabel");
+    const progressBar = document.getElementById("progressBar");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const navBar = document.getElementById("navBar");
+    const startOverBtn = document.getElementById("startOverBtn");
+
+    function setMode(mode) {
+      state.mode = mode;
+      state.stepIndex = 0;
+      state.answers = { path: mode };
+      state.turnstileToken = "";
+      state.steps = (mode === "seller") ? SELLER_STEPS.slice() : BUYER_STEPS.slice();
+      render();
+    }
+
+    function startOver() {
+      state.mode = null;
+      state.stepIndex = 0;
+      state.steps = [];
+      state.answers = { path: null };
+      state.turnstileToken = "";
+      render();
+    }
+
+    startOverBtn.addEventListener("click", startOver);
+
+    function currentStep() {
+      if (!state.mode) return null;
+      return state.steps[state.stepIndex] || null;
+    }
+
+    function totalSteps() {
+      if (!state.mode) return 1;
+      return state.steps.length;
+    }
+
+    function stepNumber() {
+      if (!state.mode) return 1;
+      return state.stepIndex + 1;
+    }
+
+    function updateProgress() {
+      const total = totalSteps();
+      const num = stepNumber();
+      stepLabel.textContent = "Step " + num + " of " + total;
+      const pct = (total <= 1) ? 0 : Math.round(((num - 1) / (total - 1)) * 100);
+      progressBar.style.width = pct + "%";
+    }
+
+    function renderStart() {
+      navBar.style.display = "none";
+      stepLabel.textContent = "Step 1 of 1";
+      progressBar.style.width = "0%";
+      funnelBody.innerHTML = `
+        <h2 class="q-title">What are you here to do?</h2>
+        <p class="q-sub">Choose one to start. You can switch later.</p>
+
+        <div class="choices">
+          <label class="choice with-icon" data-choice="seller">
+            <span class="choice-icon"><img src="bbas_icons_fb.png" alt="" onerror="this.style.display='none'"></span>
+            <input type="radio" name="path" value="seller">
+            <strong>I want to sell my business</strong>
+            <span>Understand value, timeline, and the best next steps.</span>
+          </label>
+
+          <label class="choice with-icon" data-choice="buyer">
+            <span class="choice-icon"><img src="bbas_icons_linkedin.png" alt="" onerror="this.style.display='none'"></span>
+            <input type="radio" name="path" value="buyer">
+            <strong>I want to buy a business</strong>
+            <span>Find the right type of deal without the franchise route.</span>
+          </label>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      funnelBody.querySelectorAll(".choice").forEach(card => {
+        card.addEventListener("click", () => {
+          const val = card.getAttribute("data-choice");
+          if (val === "seller") setMode("seller");
+          if (val === "buyer") setMode("buyer");
+        });
+      });
+    }
+
+    function renderSingle(step) {
+      const saved = state.answers[step.key] || "";
+      const optionsHtml = step.options.map(o => {
+        const checked = (saved === o.value) ? "checked" : "";
+        const label = o.label;
+        return `
+          <label class="choice" data-value="${o.value}">
+            <input type="radio" name="q" value="${o.value}" ${checked}>
+            <strong>${label}</strong>
+          </label>
+        `;
+      }).join("");
+
+      const showOther = step.hasOther && saved === "Other";
+      const otherVal = state.answers[step.key + "_other"] || "";
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="scroll-area">
+          <div class="choices">
+            ${optionsHtml}
+          </div>
+
+          ${step.hasOther ? `
+          <div class="other-wrap" id="otherWrap" style="display:${showOther ? "block" : "none"}">
+            <div class="field">
+              <label>Other (please specify)</label>
+              <input type="text" id="otherInput" value="${escapeHtml(otherVal)}" placeholder="Type here">
+            </div>
+          </div>
+          ` : ``}
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      funnelBody.querySelectorAll(".choice").forEach(card => {
+        const input = card.querySelector("input[type=radio]");
+        if (input && input.checked) card.classList.add("selected");
+
+        card.addEventListener("click", () => {
+          funnelBody.querySelectorAll(".choice").forEach(c => c.classList.remove("selected"));
+          card.classList.add("selected");
+          input.checked = true;
+          state.answers[step.key] = input.value;
+
+          if (step.hasOther) {
+            const wrap = document.getElementById("otherWrap");
+            if (wrap) wrap.style.display = (input.value === "Other") ? "block" : "none";
+          }
+
+          validateStep();
+
+          if (step.autoAdvance) {
+            setTimeout(() => goNext(), 120);
+          }
+        });
+      });
+
+      if (step.hasOther) {
+        const other = document.getElementById("otherInput");
+        if (other) {
+          other.addEventListener("input", () => {
+            state.answers[step.key + "_other"] = other.value;
+            validateStep();
+          });
+        }
+      }
+    }
+
+    function renderLocationFull(step) {
+      const loc = state.answers[step.key] || {};
+      const stateVal = loc.state || "FL";
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid onecol">
+          <div class="field">
+            <label>Business Name</label>
+            <input id="businessName" type="text" value="${escapeHtml(loc.business_name || "")}" placeholder="Business name" data-cap="business" autocapitalize="words">
+          </div>
+
+          <div class="field">
+            <label>Street</label>
+            <input id="street" type="text" value="${escapeHtml(loc.street || "")}" placeholder="Street address">
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>City</label>
+              <input id="city" type="text" value="${escapeHtml(loc.city || "")}" placeholder="City" data-cap="city" autocapitalize="words">
+            </div>
+
+            <div class="field">
+              <label>State</label>
+              <select id="stateSelect">
+                <option value="AL">Alabama</option>
+<option value="AK">Alaska</option>
+<option value="AZ">Arizona</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+<option value="CT">Connecticut</option>
+<option value="DE">Delaware</option>
+<option value="DC">District of Columbia</option>
+<option value="FL">Florida</option>
+<option value="GA">Georgia</option>
+<option value="HI">Hawaii</option>
+<option value="ID">Idaho</option>
+<option value="IL">Illinois</option>
+<option value="IN">Indiana</option>
+<option value="IA">Iowa</option>
+<option value="KS">Kansas</option>
+<option value="KY">Kentucky</option>
+<option value="LA">Louisiana</option>
+<option value="ME">Maine</option>
+<option value="MD">Maryland</option>
+<option value="MA">Massachusetts</option>
+<option value="MI">Michigan</option>
+<option value="MN">Minnesota</option>
+<option value="MS">Mississippi</option>
+<option value="MO">Missouri</option>
+<option value="MT">Montana</option>
+<option value="NE">Nebraska</option>
+<option value="NV">Nevada</option>
+<option value="NH">New Hampshire</option>
+<option value="NJ">New Jersey</option>
+<option value="NM">New Mexico</option>
+<option value="NY">New York</option>
+<option value="NC">North Carolina</option>
+<option value="ND">North Dakota</option>
+<option value="OH">Ohio</option>
+<option value="OK">Oklahoma</option>
+<option value="OR">Oregon</option>
+<option value="PA">Pennsylvania</option>
+<option value="RI">Rhode Island</option>
+<option value="SC">South Carolina</option>
+<option value="SD">South Dakota</option>
+<option value="TN">Tennessee</option>
+<option value="TX">Texas</option>
+<option value="UT">Utah</option>
+<option value="VT">Vermont</option>
+<option value="VA">Virginia</option>
+<option value="WA">Washington</option>
+<option value="WV">West Virginia</option>
+<option value="WI">Wisconsin</option>
+<option value="WY">Wyoming</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Zip</label>
+              <input id="zip" type="text" inputmode="numeric" value="${escapeHtml(loc.zip || "")}" placeholder="Zip code" maxlength="10">
+            </div>
+          </div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const businessName = document.getElementById("businessName");
+      const street = document.getElementById("street");
+      const city = document.getElementById("city");
+      const stateSelect = document.getElementById("stateSelect");
+      const zip = document.getElementById("zip");
+
+      stateSelect.value = stateVal;
+
+      [businessName, street, city, stateSelect, zip].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = {
+            business_name: businessName.value,
+            street: street.value,
+            city: city.value,
+            state: stateSelect.value,
+            zip: zip.value
+          };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = {
+            business_name: businessName.value,
+            street: street.value,
+            city: city.value,
+            state: stateSelect.value,
+            zip: zip.value
+          };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      validateStep();
+    }
+
+    function renderLocationCityState(step) {
+      const loc = state.answers[step.key] || {};
+      const stateVal = (loc.state || "").toUpperCase().slice(0,2);
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid">
+          <div class="field">
+            <label>City</label>
+            <input id="city" type="text" value="${escapeHtml(loc.city || "")}" placeholder="City" data-cap="city" autocapitalize="words">
+          </div>
+
+          <div class="field">
+            <label>State</label>
+            <input id="state" type="text" value="${escapeHtml(stateVal)}" placeholder="State (e.g., FL)" maxlength="2" data-cap="state" autocapitalize="characters">
+          </div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const city = document.getElementById("city");
+      const st = document.getElementById("state");
+
+      [city, st].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = { city: city.value, state: st.value };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = { city: city.value, state: st.value };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      validateStep();
+    }
+
+    function renderContact(step) {
+      const c = state.answers[step.key] || {};
+
+      funnelBody.innerHTML = `
+        <h2 class="q-title">${step.title}</h2>
+        ${step.subtitle ? `<p class="q-sub">${step.subtitle}</p>` : ``}
+
+        <div class="form-grid">
+          <div class="field">
+            <label>First Name</label>
+            <input id="firstName" type="text" value="${escapeHtml(c.first_name || "")}" data-cap="words" autocapitalize="words">
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input id="lastName" type="text" value="${escapeHtml(c.last_name || "")}" data-cap="words" autocapitalize="words">
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Email</label>
+          <input id="email" type="email" value="${escapeHtml(c.email || "")}">
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Phone</label>
+          <input id="phone" type="tel" value="${escapeHtml(c.phone || "")}" inputmode="tel" data-format="phone">
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Anything else we should know?</label>
+          <textarea id="message" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.">${escapeHtml(c.message || "")}</textarea>
+        </div>
+
+        <input type="hidden" id="turnstileToken" value="${escapeHtml(state.turnstileToken || "")}">
+
+        <div style="margin-top:12px;">
+          <div id="turnstileMount"></div>
+        </div>
+
+        <div class="fineprint">Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.</div>
+      `;
+
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const message = document.getElementById("message");
+
+      [firstName, lastName, email, phone, message].forEach(el => {
+        el.addEventListener("input", () => {
+          state.answers[step.key] = {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            phone: phone.value,
+            message: message.value
+          };
+          validateStep();
+        });
+        el.addEventListener("blur", () => {
+          state.answers[step.key] = {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            phone: phone.value,
+            message: message.value
+          };
+          validateStep();
+        });
+      });
+
+      attachCapHandlers(funnelBody);
+      ensureTurnstile();
+      validateStep();
+    }
+
+    function render() {
+      updateProgress();
+
+      if (!state.mode) {
+        renderStart();
+        return;
+      }
+
+      if (state.mode === "seller") {
+        const timing = state.answers["sell_timing"];
+        const isNotReady = timing === "not_ready_talk";
+        if (isNotReady) {
+          const contactIndex = state.steps.findIndex(s => s.type === "contact");
+          if (contactIndex !== -1 && state.stepIndex < contactIndex) {
+            state.stepIndex = contactIndex;
+          }
+        }
+      }
+
+      const step = currentStep();
+      if (!step) return;
+
+      navBar.style.display = "flex";
+      prevBtn.style.display = (state.stepIndex === 0) ? "none" : "inline-flex";
+      nextBtn.textContent = (state.stepIndex === state.steps.length - 1) ? "Submit" : "Next";
+
+      if (step.type === "single") renderSingle(step);
+      if (step.type === "location_full") renderLocationFull(step);
+      if (step.type === "location_city_state") renderLocationCityState(step);
+      if (step.type === "contact") renderContact(step);
+
+      validateStep();
+    }
+
+    function validateStep() {
+      const step = currentStep();
+      if (!step) {
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      prevBtn.disabled = false;
+
+      let ok = true;
+
+      if (step.type === "single") {
+        const val = state.answers[step.key];
+        ok = !!val;
+        if (step.hasOther && val === "Other") {
+          const other = (state.answers[step.key + "_other"] || "").trim();
+          ok = other.length > 0;
+        }
+      }
+
+      if (step.type === "location_full") {
+        const loc = state.answers[step.key] || {};
+        ok = !!(loc.business_name && loc.street && loc.city && loc.state && loc.zip);
+      }
+
+      if (step.type === "location_city_state") {
+        const loc = state.answers[step.key] || {};
+        ok = !!(loc.city && loc.state && String(loc.state).trim().length >= 2);
+      }
+
+      if (step.type === "contact") {
+        const c = state.answers[step.key] || {};
+        ok = !!(c.first_name && c.last_name && c.email && c.phone);
+        ok = ok && !!(state.turnstileToken && state.turnstileToken.length > 10);
+      }
+
+      nextBtn.disabled = !ok;
+    }
+
+    function goPrev() {
+      if (!state.mode) return;
+      if (state.stepIndex <= 0) return;
+      state.stepIndex -= 1;
+      render();
+    }
+
+    function goNext() {
+      if (!state.mode) return;
+      const step = currentStep();
+      if (!step) return;
+
+      if (state.stepIndex === state.steps.length - 1) {
+        submitFunnel();
+        return;
+      }
+
+      state.stepIndex += 1;
+      render();
+    }
+
+    prevBtn.addEventListener("click", goPrev);
+    nextBtn.addEventListener("click", goNext);
+
+    function submitFunnel() {
+      const payload = {
+        submitted_at: new Date().toISOString(),
+        funnel: state.mode,
+        answers: state.answers,
+        turnstile_token: state.turnstileToken
       };
 
-      function titleCase(str){
-        const s = (str || "").toLowerCase();
-        return s.replace(/\b([a-z])/g, (m, c) => c.toUpperCase());
-      }
+      nextBtn.disabled = true;
+      nextBtn.textContent = "Submitting...";
 
-      function applyAutoCaps(root){
-        const ids = ["firstName","lastName","city","businessName"];
-        ids.forEach((id) => {
-          const el = root.querySelector("#" + id);
-          if(!el) return;
-          el.addEventListener("blur", () => { el.value = titleCase(el.value.trim()); });
-        });
-      }
-
-      function formatPhone(value){
-        const digits = (value || "").replace(/\D/g,"").slice(0,10);
-        if(digits.length <= 3) return digits;
-        if(digits.length <= 6) return "(" + digits.slice(0,3) + ") " + digits.slice(3);
-        return "(" + digits.slice(0,3) + ") " + digits.slice(3,6) + "-" + digits.slice(6);
-      }
-
-      function setStepLabel(){
-        const steps = getSteps();
-        const stepNum = (state.branch ? (state.stepIndex + 1) : 1);
-        const total = (state.branch ? steps.length : 1);
-        elStep.textContent = "Step " + stepNum + " of " + total;
-
-        const pct = (state.branch ? ((state.stepIndex) / Math.max(steps.length-1,1)) : 0);
-        elProg.style.width = Math.round(pct * 100) + "%";
-      }
-
-      function getSteps(){
-        if(!state.branch) return [];
-        return funnels[state.branch];
-      }
-
-      function canGoNext(){
-        if(!state.branch) return !!state.answers.branch;
-        const steps = getSteps();
-        const step = steps[state.stepIndex];
-        if(!step) return false;
-
-        if(step.type === "choice" || step.type === "choice_other"){
-          const v = state.answers[step.id];
-          if(!v) return false;
-          if(step.type === "choice_other" && v === "Other"){
-            return !!(state.answers[step.id + "_other"] || "").trim();
-          }
-          return true;
-        }
-
-        if(step.type === "location_simple"){
-          return !!(state.answers.city || "").trim() && !!(state.answers.state || "").trim();
-        }
-
-        if(step.type === "location_full"){
-          const need = ["businessName","street","city","state","zip"];
-          return need.every((k) => !!(state.answers[k] || "").trim());
-        }
-
-        if(step.type === "contact"){
-          // allow next/submit if basic fields present; turnstile token validated server-side
-          const need = ["firstName","lastName","email","phone"];
-          return need.every((k) => !!(state.answers[k] || "").trim());
-        }
-
-        return false;
-      }
-
-      function setNavState(){
-        elPrev.disabled = !state.branch || state.stepIndex === 0;
-        elNext.disabled = !canGoNext();
-
-        if(!state.branch){
-          elPrev.style.visibility = "hidden";
-          elNext.textContent = "Next";
-          elNext.disabled = true;
-          return;
-        }
-
-        elPrev.style.visibility = "visible";
-        const steps = getSteps();
-        const isLast = state.stepIndex === steps.length - 1;
-        elNext.textContent = isLast ? "Submit" : "Next";
-
-        const step = steps[state.stepIndex];
-        if(tsFooter){
-          const showTs = !!(isLast && step && step.type === "contact");
-          tsFooter.hidden = !showTs;
-          
-        }
-      }
-
-      function render(){
-        elBody.innerHTML = "";
-        if(!state.branch){
-          renderBranchChooser();
-          setStepLabel();
-          setNavState();
-          return;
-        }
-
-        const steps = getSteps();
-        const step = steps[state.stepIndex];
-        if(!step){
-          renderBranchChooser();
-          setStepLabel();
-          setNavState();
-          return;
-        }
-
-        setStepLabel();
-
-        const h = document.createElement("h2");
-        h.className = "qTitle";
-        h.textContent = step.question;
-        elBody.appendChild(h);
-
-        if(step.hint){
-          const p = document.createElement("p");
-          p.className = "qHint";
-          p.textContent = step.hint;
-          elBody.appendChild(p);
-        }
-
-        if(step.type === "choice"){
-          renderChoice(step.id, step.options);
-        }else if(step.type === "choice_other"){
-          renderChoiceOther(step.id, step.options);
-        }else if(step.type === "dropdown_other"){
-          renderDropdownOther(step.id, step.options);
-        }else if(step.type === "location_simple"){
-          renderLocationSimple();
-        }else if(step.type === "location_full"){
-          renderLocationFull();
-        }else if(step.type === "contact"){
-          renderContact();
-        }
-
-        setNavState();
-
-        // special branching behavior for seller timing
-        if(step.id === "sell_timing"){
-          // If "not now", skip directly to contact
-          const v = state.answers["sell_timing"];
-          if(v === "not_now"){
-            // pre-position to last step (contact)
-            const idx = steps.findIndex(s => s.id === "contact");
-            if(idx >= 0){
-              state.stepIndex = idx;
-              render();
-              return;
-            }
-          }
-        }
-      }
-
-      function renderBranchChooser(){
-        const h = document.createElement("h2");
-        h.className = "qTitle";
-        h.textContent = "What are you here to do?";
-        elBody.appendChild(h);
-
-        const p = document.createElement("p");
-        p.className = "qHint";
-        p.textContent = "Choose one to start. You can switch later.";
-        elBody.appendChild(p);
-
-        const grid = document.createElement("div");
-        grid.className = "choicesGrid";
-        grid.style.gridTemplateColumns = "1fr 1fr";
-        grid.style.marginTop = "10px";
-
-        const tiles = [
-          {
-            branch: "seller",
-            title: "I want to sell my business",
-            sub: "Understand value, timeline, and the best next steps."
-          },
-          {
-            branch: "buyer",
-            title: "I want to buy a business",
-            sub: "Find the right type of deal without the franchise route."
-          }
-        ];
-
-        tiles.forEach((t) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "choiceTile";
-          btn.setAttribute("role","radio");
-          btn.setAttribute("aria-checked", (state.answers.branch === t.branch) ? "true" : "false");
-
-          btn.innerHTML =
-            '<span class="radio"><span class="radioDot"></span></span>' +
-            '<div><p class="tileTitle">' + escapeHtml(t.title) + '</p><p class="tileSub">' + escapeHtml(t.sub) + '</p></div>';
-
-          btn.addEventListener("click", () => {
-            state.answers.branch = t.branch;
-            state.branch = t.branch;
-            state.stepIndex = 0;
-            // Ensure we always advance into the funnel immediately
-            window.requestAnimationFrame(() => {
-              render();
-            });
-          });
-
-          grid.appendChild(btn);
-        });
-
-        elBody.appendChild(grid);
-
-        // Hide footer navigation on chooser (auto-advance)
-        elPrev.style.visibility = "hidden";
-        elNext.disabled = true;
-      }
-
-      function renderChoice(stepId, options){
-        const grid = document.createElement("div");
-        grid.className = "choicesGrid";
-
-        options.forEach((opt) => {
-          const value = (typeof opt === "string") ? opt : opt.value;
-          const label = (typeof opt === "string") ? opt : opt.label;
-
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "choiceTile";
-          btn.setAttribute("role","radio");
-          btn.setAttribute("aria-checked", (state.answers[stepId] === value) ? "true" : "false");
-          btn.innerHTML =
-            '<span class="radio"><span class="radioDot"></span></span>' +
-            '<div><p class="tileTitle">' + escapeHtml(label) + '</p>' + (typeof opt === "object" && opt.sub ? ('<p class="tileSub">' + escapeHtml(opt.sub) + '</p>') : '') + '</div>';
-
-          btn.addEventListener("click", () => {
-            state.answers[stepId] = value;
-            // re-render to update selected styles + enable Next
-            render();
-            if(AUTO_ADVANCE && value){
-              window.requestAnimationFrame(() => next());
-            }
-          });
-
-          grid.appendChild(btn);
-        });
-
-        elBody.appendChild(grid);
-      }
-
-      function renderChoiceOther(stepId, options){
-        const grid = document.createElement("div");
-        grid.className = "choicesGrid";
-
-        options.forEach((opt) => {
-          const value = (typeof opt === "string") ? opt : opt.value;
-          const label = (typeof opt === "string") ? opt : opt.label;
-          const sub = (typeof opt === "object" && opt.sub) ? opt.sub : "";
-
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "choiceTile";
-          btn.setAttribute("role","radio");
-          btn.setAttribute("aria-checked", (state.answers[stepId] === value) ? "true" : "false");
-          btn.innerHTML =
-            '<span class="radio"><span class="radioDot"></span></span>' +
-            '<div><p class="tileTitle">' + escapeHtml(label) + '</p>' + (sub ? ('<p class="tileSub">' + escapeHtml(sub) + '</p>') : '') + '</div>';
-
-          btn.addEventListener("click", () => {
-            state.answers[stepId] = value;
-            // clear old other text when not Other
-            if(value !== "Other") state.answers[stepId + "_other"] = "";
-            render();
-            if(AUTO_ADVANCE && value && value !== "Other"){
-              // Let the selection paint first
-              window.requestAnimationFrame(() => next());
-            }
-          });
-
-          grid.appendChild(btn);
-        });
-
-        elBody.appendChild(grid);
-
-        if(state.answers[stepId] === "Other"){
-          const f = document.createElement("div");
-          f.className = "field";
-          f.style.marginTop = "10px";
-          f.innerHTML = '<div class="label">Other (please specify)</div><input id="otherInput" class="input" type="text" placeholder="Type here..." autocomplete="off" />';
-          elBody.appendChild(f);
-
-          const other = f.querySelector("#otherInput");
-          other.value = state.answers[stepId + "_other"] || "";
-          other.addEventListener("input", () => {
-            state.answers[stepId + "_other"] = other.value;
-            setNavState();
-          });
-          other.addEventListener("blur", () => {
-            other.value = titleCase(other.value.trim());
-            state.answers[stepId + "_other"] = other.value;
-          });
-        }
-      }
-
-       function renderDropdownOther(stepId, options){
-         const field = document.createElement("div");
-         field.className = "field";
-         field.style.marginTop = "8px";
-
-         const label = document.createElement("div");
-         label.className = "label";
-         label.textContent = "Select";
-         field.appendChild(label);
-
-         const sel = document.createElement("select");
-         sel.id = "dropdown";
-         sel.className = "select";
-         sel.innerHTML = '<option value="">Select</option>' + options.map((o) => '<option value="' + escapeHtml(o) + '">' + escapeHtml(o) + '</option>').join('');
-         sel.value = state.answers[stepId] || "";
-         field.appendChild(sel);
-
-         elBody.appendChild(field);
-
-         function renderOther(){
-           const existing = document.getElementById("dropdownOtherWrap");
-           if(existing) existing.remove();
-
-           if(state.answers[stepId] !== "Other") return;
-
-           const f = document.createElement("div");
-           f.id = "dropdownOtherWrap";
-           f.className = "field";
-           f.style.marginTop = "10px";
-           f.innerHTML = '<div class="label">Other (please specify)</div><input id="otherInput" class="input" type="text" placeholder="Type here..." autocomplete="off" />';
-           elBody.appendChild(f);
-
-           const other = f.querySelector("#otherInput");
-           other.value = state.answers[stepId + "_other"] || "";
-           other.addEventListener("input", () => {
-             state.answers[stepId + "_other"] = other.value;
-             setNavState();
-             if(AUTO_ADVANCE && canGoNext()){
-               // give a moment for typing to settle
-               clearTimeout(window.__autoNextTimer);
-               window.__autoNextTimer = setTimeout(() => { if(canGoNext()) next(); }, 350);
-             }
-           });
-           other.addEventListener("blur", () => {
-             other.value = titleCase(other.value.trim());
-             state.answers[stepId + "_other"] = other.value;
-           });
-           other.focus();
-         }
-
-         sel.addEventListener("change", () => {
-           state.answers[stepId] = sel.value;
-           // clear old other text when not on Other
-           if(sel.value !== "Other") state.answers[stepId + "_other"] = "";
-           renderOther();
-           setNavState();
-           if(AUTO_ADVANCE && sel.value && sel.value !== "Other"){
-             next();
-           }
-         });
-
-         // initial other render if needed
-         renderOther();
-         setNavState();
-       }
-
-function renderLocationSimple(){
-        const wrap = document.createElement("div");
-        wrap.className = "fieldGrid";
-        wrap.innerHTML = `
-          <div class="field">
-            <div class="label">City</div>
-            <input id="city" class="input" type="text" placeholder="City" autocomplete="address-level2" />
-          </div>
-          <div class="field">
-            <div class="label">State</div>
-            <select id="state" class="select" autocomplete="address-level1"></select>
-          </div>
+      fetch("/api/funnel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(async (r) => {
+        if (!r.ok) throw new Error("Bad response: " + r.status);
+        return r.json().catch(() => ({ ok: true }));
+      })
+      .then(() => {
+        funnelBody.innerHTML = `
+          <h2 class="q-title">Success!</h2>
+          <p class="q-sub">Thanks. We will follow up shortly.</p>
         `;
-        elBody.appendChild(wrap);
-
-        const city = wrap.querySelector("#city");
-        const sel = wrap.querySelector("#state");
-
-        fillStates(sel, state.answers.state || "FL");
-
-        city.value = state.answers.city || "";
-        city.addEventListener("input", () => { state.answers.city = city.value; setNavState(); });
-        city.addEventListener("blur", () => { city.value = titleCase(city.value.trim()); state.answers.city = city.value; });
-
-        sel.addEventListener("change", () => { state.answers.state = sel.value; setNavState(); });
-
-        applyAutoCaps(elBody);
-      }
-
-      function renderLocationFull(){
-        const wrap = document.createElement("div");
-        wrap.innerHTML = `
-          <div class="fieldGrid">
-            <div class="field" style="grid-column: 1 / -1;">
-              <div class="label">Business Name</div>
-              <input id="businessName" class="input" type="text" placeholder="Business name" autocomplete="organization" />
-            </div>
-            <div class="field" style="grid-column: 1 / -1;">
-              <div class="label">Street address</div>
-              <input id="street" class="input" type="text" placeholder="Street address" autocomplete="street-address" />
-            </div>
-          </div>
-          <div class="fieldGrid three" style="margin-top: 12px;">
-            <div class="field">
-              <div class="label">City</div>
-              <input id="city" class="input" type="text" placeholder="City" autocomplete="address-level2" />
-            </div>
-            <div class="field">
-              <div class="label">State</div>
-              <select id="state" class="select" autocomplete="address-level1"></select>
-            </div>
-            <div class="field">
-              <div class="label">Zip</div>
-              <input id="zip" class="input" type="text" placeholder="Zip code" inputmode="numeric" autocomplete="postal-code" />
-            </div>
-          </div>
-        `;
-        elBody.appendChild(wrap);
-
-        const businessName = wrap.querySelector("#businessName");
-        const street = wrap.querySelector("#street");
-        const city = wrap.querySelector("#city");
-        const sel = wrap.querySelector("#state");
-        const zip = wrap.querySelector("#zip");
-
-        fillStates(sel, state.answers.state || "FL");
-
-        businessName.value = state.answers.businessName || "";
-        street.value = state.answers.street || "";
-        city.value = state.answers.city || "";
-        zip.value = state.answers.zip || "";
-
-        businessName.addEventListener("input", () => { state.answers.businessName = businessName.value; setNavState(); });
-        businessName.addEventListener("blur", () => { businessName.value = titleCase(businessName.value.trim()); state.answers.businessName = businessName.value; });
-
-        street.addEventListener("input", () => { state.answers.street = street.value; setNavState(); });
-
-        city.addEventListener("input", () => { state.answers.city = city.value; setNavState(); });
-        city.addEventListener("blur", () => { city.value = titleCase(city.value.trim()); state.answers.city = city.value; });
-
-        sel.addEventListener("change", () => { state.answers.state = sel.value; setNavState(); });
-
-        zip.addEventListener("input", () => {
-          zip.value = zip.value.replace(/\D/g,"").slice(0,10);
-          state.answers.zip = zip.value;
-          setNavState();
-        });
-
-        applyAutoCaps(elBody);
-      }
-
-      function renderContact(){
-        const wrap = document.createElement("div");
-        wrap.innerHTML = `
-          <div class="fieldGrid">
-            <div class="field">
-              <div class="label">First Name</div>
-              <input id="firstName" class="input" type="text" placeholder="" autocomplete="given-name" />
-            </div>
-            <div class="field">
-              <div class="label">Last Name</div>
-              <input id="lastName" class="input" type="text" placeholder="" autocomplete="family-name" />
-            </div>
-          </div>
-
-          <div class="field" style="margin-top: 12px;">
-            <div class="label">Email</div>
-            <input id="email" class="input" type="email" placeholder="" autocomplete="email" />
-          </div>
-
-          <div class="field" style="margin-top: 12px;">
-            <div class="label">Phone</div>
-            <input id="phone" class="input" type="tel" placeholder="" inputmode="tel" autocomplete="tel" />
-          </div>
-
-          <div class="field" style="margin-top: 12px;">
-            <div class="label">Anything else we should know?</div>
-            <textarea id="message" class="textarea" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps."></textarea>
-          </div>
-        `;
-        elBody.appendChild(wrap);
-
-        const firstName = wrap.querySelector("#firstName");
-        const lastName = wrap.querySelector("#lastName");
-        const email = wrap.querySelector("#email");
-        const phone = wrap.querySelector("#phone");
-        const message = wrap.querySelector("#message");
-
-        firstName.value = state.answers.firstName || "";
-        lastName.value = state.answers.lastName || "";
-        email.value = state.answers.email || "";
-        phone.value = state.answers.phone || "";
-        message.value = state.answers.message || "";
-
-        firstName.addEventListener("input", () => { state.answers.firstName = firstName.value; setNavState(); });
-        lastName.addEventListener("input", () => { state.answers.lastName = lastName.value; setNavState(); });
-        email.addEventListener("input", () => { state.answers.email = email.value; setNavState(); });
-
-        phone.addEventListener("input", () => {
-          phone.value = formatPhone(phone.value);
-          state.answers.phone = phone.value;
-          setNavState();
-        // Turnstile (only on Contact step, directly above Submit)
-        const tsWrap = document.createElement("div");
-        tsWrap.className = "turnstileWrap";
-        tsWrap.id = "turnstileMount";
-        tsWrap.innerHTML = '<div class="cf-turnstile" data-sitekey="" data-theme="light"></div>';
-        elBody.appendChild(tsWrap);
-
-        // Sync sitekey from <html data-turnstile-sitekey="...">
-        const sitekey = (document.documentElement.dataset.turnstileSitekey || "").trim();
-        if(sitekey){
-          const w = tsWrap.querySelector(".cf-turnstile");
-          if(w) w.setAttribute("data-sitekey", sitekey);
-        }
-
-      }
-);
-
-        message.addEventListener("input", () => { state.answers.message = message.value; });
-
-        applyAutoCaps(elBody);
-      }
-
-      function fillStates(selectEl, selected){
-        selectEl.innerHTML = "";
-        const first = document.createElement("option");
-        first.value = "";
-        first.textContent = "Select";
-        selectEl.appendChild(first);
-
-        STATES.forEach((s) => {
-          const opt = document.createElement("option");
-          opt.value = s.abbr;
-          opt.textContent = s.name;
-          if(s.abbr === selected) opt.selected = true;
-          selectEl.appendChild(opt);
-        });
-
-        state.answers.state = selectEl.value || selected || "";
-      }
-
-      function escapeHtml(s){
-        return String(s)
-          .replace(/&/g,"&amp;")
-          .replace(/</g,"&lt;")
-          .replace(/>/g,"&gt;")
-          .replace(/"/g,"&quot;")
-          .replace(/'/g,"&#039;");
-      }
-
-      function next(){
-        if(!state.branch) return;
-
-        const steps = getSteps();
-        const step = steps[state.stepIndex];
-
-        // seller timing skip logic happens in render()
-        const isLast = state.stepIndex >= steps.length - 1;
-        if(isLast){
-          if(tsMount){
-            const tokenEl = document.querySelector('textarea[name="cf-turnstile-response"]');
-            const token = tokenEl ? (tokenEl.value || "").trim() : "";
-            if(!token){
-              alert("Please complete the verification before submitting.");
-              return;
-            }
-            state.answers.turnstile_token = token;
-          }
-          // Submit: for now, just log payload (server submit wire-up can be added later)
-          const payload = {
-            branch: state.branch,
-            answers: state.answers
-          };
-          console.log("BBAS funnel payload:", payload);
-          alert("Submitted. Check console for payload.");
-          return;
-        }
-
-        state.stepIndex += 1;
-        render();
-      }
-
-      function prev(){
-        if(!state.branch) return;
-        if(state.stepIndex <= 0) return;
-        state.stepIndex -= 1;
-        render();
-      }
-
-      function reset(){
-        state.branch = null;
-        state.stepIndex = 0;
-        state.answers = {};
-        render();
-      }
-
-      elNext.addEventListener("click", () => {
-        if(elNext.disabled) return;
-        next();
+        navBar.style.display = "none";
+        progressBar.style.width = "100%";
+        stepLabel.textContent = "Submitted";
+      })
+      .catch((err) => {
+        console.error(err);
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Submit";
+        alert("Submission failed. Please try again.");
       });
-      elPrev.addEventListener("click", () => prev());
-      elStartOver.addEventListener("click", () => reset());
+    }
 
-      // initial render
-      render();
-    })();
+    function escapeHtml(s) {
+      return String(s || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function currentStep() {
+      if (!state.mode) return null;
+      return state.steps[state.stepIndex] || null;
+    }
+
+    // Init
+    startOver();
   </script>
 </body>
 </html>
