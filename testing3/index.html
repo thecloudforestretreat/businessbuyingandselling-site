@@ -28,9 +28,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260306-contrast-fix-7">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260306-contrast-fix-8">
 
-      <link rel="stylesheet" href="/assets/css/header.css?v=20260306-contrast-fix-7">
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260306-contrast-fix-8">
 <!-- Page-level polish (compact, scoped) -->
   <style id="page-structure-only">
   /* Structural/layout rules only. Visual styling should come from /assets/css/site.css and /assets/css/header.css */
@@ -946,6 +946,48 @@ lease terms, and what is included in the sale.</div>
     });
   }
 
+
+  function mountTurnstile(){
+    var host = document.querySelector(".turnstileWrap .cf-turnstile");
+    var tokenInput = document.getElementById("turnstileToken");
+    var hint = document.getElementById("turnstileHint");
+    if (!host || !tokenInput) return;
+
+    function syncToken(v){
+      tokenInput.value = v || "";
+      state.answers.turnstile_token = tokenInput.value || "";
+      try { tokenInput.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      if (hint) hint.textContent = tokenInput.value ? "Verification complete." : "Please complete verification before submitting.";
+      updateActions();
+    }
+
+    window.onTurnstileSuccess = function(token){ syncToken(token); };
+    window.onTurnstileExpired = function(){ syncToken(""); };
+    window.onTurnstileError = function(){ syncToken(""); };
+
+    function tryRender(){
+      if (!window.turnstile || !window.turnstile.render) {
+        window.setTimeout(tryRender, 150);
+        return;
+      }
+      host.innerHTML = "";
+      try{
+        window.turnstile.render(host, {
+          sitekey: document.documentElement.getAttribute("data-turnstile-sitekey") || "",
+          theme: "light",
+          callback: window.onTurnstileSuccess,
+          "expired-callback": window.onTurnstileExpired,
+          "error-callback": window.onTurnstileError
+        });
+      } catch(err) {
+        window.setTimeout(tryRender, 250);
+      }
+    }
+
+    syncToken(state.answers.turnstile_token || "");
+    tryRender();
+  }
+
   function renderContact(){
     var body = qs("#funnelBody");
     body.innerHTML = '' +
@@ -957,13 +999,7 @@ lease terms, and what is included in the sale.</div>
         '<div class="field field--full" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.">' + escapeHtml(state.answers.notes || "") + '</textarea></div>' +
       '</div>' +
       '<div class="turnstileWrap">' +
-        '<div class="cf-turnstile" ' +
-          'data-sitekey="' + escapeHtml(document.documentElement.getAttribute("data-turnstile-sitekey") || "") + '" ' +
-          'data-theme="light" ' +
-          'data-callback="onTurnstileSuccess" ' +
-          'data-expired-callback="onTurnstileExpired" ' +
-          'data-error-callback="onTurnstileError">' +
-        '</div>' +
+        '<div class="cf-turnstile"></div>' +
         '<input type="hidden" id="turnstileToken" value="' + escapeHtml(state.answers.turnstile_token || "") + '">' +
       '</div>' +
       '<div class="statusLine" id="turnstileHint">Please complete verification before submitting.</div>';
@@ -984,6 +1020,7 @@ lease terms, and what is included in the sale.</div>
       });
     }
 
+    mountTurnstile();
     setTimeout(function(){ updateActions(); }, 200);
   }
 
