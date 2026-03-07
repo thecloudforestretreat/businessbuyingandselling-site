@@ -6,8 +6,8 @@
   --bbas-blue:#2563EB;
   --bbas-light-blue:#60A5FA;
 
-  --bbas-text:#1F2937;
-  --bbas-text-secondary:#475569;
+  --bbas-text:#1B263B;
+  --bbas-text-secondary:#334155;
   --bbas-muted:#64748B;
   --bbas-disabled:#94A3B8;
 
@@ -20,7 +20,7 @@
   position:sticky;
   top:0;
   z-index:80;
-  background:rgba(250,250,250,.92);
+  background:rgba(250,250,250,.96);
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--bbas-border);
 }
@@ -32,7 +32,7 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
+  gap:16px;
 }
 
 .bbas-brand{
@@ -52,14 +52,15 @@
 .bbas-nav{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:16px;
 }
 
 .bbas-nav__link{
   font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  font-weight:600;
+  font-weight:700;
   font-size:14px;
-  color:var(--bbas-text);
+  line-height:1.2;
+  color:#1B263B;
   text-decoration:none;
   padding:10px 10px;
   border-radius:12px;
@@ -68,7 +69,7 @@
 
 .bbas-nav__link:hover{
   background:#EEF4FF;
-  color:var(--bbas-navy);
+  color:#0B1F3B;
 }
 
 .bbas-nav__link:focus-visible,
@@ -97,7 +98,7 @@
   display:block;
   width:18px;
   height:2px;
-  background:var(--bbas-text);
+  background:#1B263B;
   border-radius:2px;
 }
 
@@ -119,7 +120,7 @@
   font-weight:700;
   font-size:15px;
   text-decoration:none;
-  color:var(--bbas-text);
+  color:#1B263B;
   background:var(--bbas-white);
   border:1px solid var(--bbas-border);
   border-radius:14px;
@@ -130,7 +131,7 @@
 .bbas-mobile__link:hover{
   border-color:#BFD6FF;
   background:#FFFFFF;
-  color:var(--bbas-navy);
+  color:#0B1F3B;
 }
 
 @media (max-width:900px){
