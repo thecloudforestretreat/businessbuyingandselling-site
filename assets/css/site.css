@@ -1137,145 +1137,138 @@ footer.bbas-footer *{
 }
 
 
+
 /* =====================================================
-   FINAL PROGRESS FIX
-   Progress lives inside the card, hidden on first screen
+   FOOTER REFINEMENT
+   Clean horizontal social row + tighter content rhythm
    ===================================================== */
 
-body{
-  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+footer.bbas-footer{
+  padding:52px 0 22px !important;
 }
 
-.heroTop{
-  background:
-    linear-gradient(
-      90deg,
-      rgba(17,24,39,.88) 0%,
-      rgba(17,24,39,.78) 35%,
-      rgba(17,24,39,.58) 60%,
-      rgba(17,24,39,.46) 100%
-    ),
-    url("/assets/images/bbas_homepage_hero_03.jpg") !important;
-  background-size:cover !important;
-  background-position:center center !important;
-  background-repeat:no-repeat !important;
+.bbas-footer-inner{
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:0 28px !important;
+  display:grid !important;
+  grid-template-columns:1.2fr auto 1fr !important;
+  align-items:center !important;
+  gap:36px !important;
 }
 
-.heroTitle{
+.bbas-footer-brand{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:12px !important;
+}
+
+.bbas-footer-brand img,
+.bbas-footer-logo{
+  width:54px !important;
+  height:auto !important;
+}
+
+.bbas-footer-brand h4,
+.bbas-footer-title{
+  margin:0 !important;
+  font-size:17px !important;
+  line-height:1.25 !important;
+  font-weight:700 !important;
   color:#FFFFFF !important;
-  font-weight:700 !important;
-  letter-spacing:-0.03em !important;
-  text-shadow:0 3px 12px rgba(0,0,0,.32) !important;
 }
 
-.heroLead{
-  max-width:760px !important;
-  line-height:1.6 !important;
-  color:rgba(255,255,255,.94) !important;
+.bbas-footer-brand p,
+.bbas-footer-tagline{
+  margin:0 !important;
+  max-width:360px !important;
+  font-size:15px !important;
+  line-height:1.55 !important;
+  color:#CBD5E1 !important;
 }
 
-body[data-funnel-branch="none"] .funnelProgress{
-  display:none !important;
+.bbas-footer-social,
+.bbas-footer-icons{
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:14px !important;
 }
 
-.funnelProgress{
-  background:transparent !important;
-}
-
-.funnelProgressTrack{
-  background:#E5E7EB !important;
-  height:6px !important;
-  border-radius:999px !important;
-}
-
-.funnelProgressFill{
-  background:#60A5FA !important;
-}
-
-.funnelProgressMeta{
-  margin-top:2px !important;
-  padding:0 !important;
-}
-
-#funnelStepLabel{
+.bbas-footer-social a,
+.bbas-footer-icons a{
+  width:42px !important;
+  height:42px !important;
   display:inline-flex !important;
   align-items:center !important;
-  min-height:18px !important;
-  padding:0 !important;
-  background:transparent !important;
-  border:0 !important;
-  box-shadow:none !important;
-  color:#6B7280 !important;
-  font-size:12px !important;
-  line-height:1.2 !important;
-  font-weight:700 !important;
-  letter-spacing:.02em !important;
-  text-shadow:none !important;
-}
-
-#funnelRestartBtn,
-.linkBtn{
-  color:#2563EB !important;
-  font-weight:700 !important;
-}
-
-.choiceTile{
-  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
-  cursor:pointer !important;
-}
-
-.choiceTile:hover{
-  transform:translateY(-4px) !important;
-  box-shadow:0 12px 28px rgba(15,23,42,.12) !important;
-  border-color:#D1D5DB !important;
-}
-
-.choiceTile:active{
-  transform:translateY(-1px) !important;
-}
-
-.choiceTitle{
-  color:#1F2937 !important;
-  font-weight:700 !important;
-}
-
-.choiceSub{
-  color:#4B5563 !important;
-}
-
-.funnelQuestion{
-  color:#1F2937 !important;
-  font-weight:700 !important;
-}
-
-.funnelHelper,
-.trustSub,
-.trustText{
-  color:#4B5563 !important;
-}
-
-.trustPill{
-  display:inline-flex !important;
-  align-items:center !important;
-  gap:8px !important;
-  min-height:34px !important;
-  padding:7px 14px !important;
+  justify-content:center !important;
+  border:1px solid rgba(255,255,255,.14) !important;
   border-radius:999px !important;
-  border:1px solid #D6E4D8 !important;
-  background:#F3FAF4 !important;
-  color:#4B5563 !important;
+  background:rgba(255,255,255,.03) !important;
+  transition:transform .18s ease, border-color .18s ease, background-color .18s ease !important;
+}
+
+.bbas-footer-social a:hover,
+.bbas-footer-icons a:hover{
+  transform:translateY(-2px) !important;
+  border-color:rgba(255,255,255,.28) !important;
+  background:rgba(255,255,255,.07) !important;
+}
+
+.bbas-footer-social img,
+.bbas-footer-social svg,
+.bbas-footer-icons img,
+.bbas-footer-icons svg{
+  width:19px !important;
+  height:19px !important;
+  display:block !important;
+}
+
+.bbas-footer-links{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(120px, 1fr)) !important;
+  justify-items:start !important;
+  gap:14px 34px !important;
+  margin-left:auto !important;
+}
+
+.bbas-footer-links a{
+  font-size:15px !important;
+  line-height:1.35 !important;
+  color:#E2E8F0 !important;
+}
+
+.bbas-footer-bottom{
+  max-width:1180px !important;
+  margin:36px auto 0 !important;
+  padding:18px 28px 0 !important;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+  text-align:center !important;
   font-size:13px !important;
-  line-height:1.2 !important;
-  font-weight:700 !important;
+  color:#94A3B8 !important;
 }
 
-.trustPill .trustDot,
-.trustPill .dot{
-  width:10px !important;
-  height:10px !important;
-  border-radius:999px !important;
-  background:#22C55E !important;
-  box-shadow:0 0 0 6px rgba(34,197,94,.12) !important;
-  flex:0 0 auto !important;
+@media (max-width:900px){
+  .bbas-footer-inner{
+    grid-template-columns:1fr !important;
+    justify-items:start !important;
+    gap:24px !important;
+  }
+
+  .bbas-footer-social,
+  .bbas-footer-icons{
+    justify-content:flex-start !important;
+  }
+
+  .bbas-footer-links{
+    margin-left:0 !important;
+    gap:12px 26px !important;
+  }
+
+  .bbas-footer-bottom{
+    margin-top:28px !important;
+  }
 }
 
