@@ -1088,36 +1088,51 @@ footer.bbas-footer *{
 
 
 /* =====================================================
-   HERO TEXT CLARITY FIX
-   Make hero text darker, stronger, and above overlay
+   CARD TEXT HIERARCHY IMPROVEMENT
+   Improves readability for funnel cards and descriptions
    ===================================================== */
 
-.heroTop,
-.bbas-hero,
-.pageBg{
-  position:relative;
+/* Primary card headings */
+.funnel-card h3,
+.option-title,
+.card-title {
+  color:#1F2937;
+  font-weight:600;
 }
 
-.heroTitle,
-.bbas-hero h1{
-  font-weight:600 !important;
-  color:#FFFFFF !important;
-  opacity:1 !important;
-  text-shadow:0 2px 8px rgba(0,0,0,.35);
-  position:relative;
-  z-index:2;
+/* Card description text */
+.funnel-card p,
+.option-description,
+.card-description,
+.funnel-description {
+  color:#374151;
+  font-weight:400;
+  opacity:1;
 }
 
-.heroLead,
-.bbas-hero p{
-  color:rgba(255,255,255,.95) !important;
-  font-weight:500;
-  position:relative;
-  z-index:2;
+/* Supporting micro text */
+.funnel-meta,
+.card-meta,
+.funnel-footnote,
+.card-footnote {
+  color:#6B7280;
 }
 
-/* Ensure overlay sits behind text */
-.pageBg::after,
-.bbas-hero::before{
-  z-index:1 !important;
+/* Ensure all card content uses full contrast */
+.funnel-card *,
+.option-card *,
+.card * {
+  opacity:1;
 }
+
+/* Improve clickable option cards */
+.option-card {
+  transition: all .15s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  border-color:#2563EB;
+}
+
