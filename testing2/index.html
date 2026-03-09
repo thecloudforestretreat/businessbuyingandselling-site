@@ -28,345 +28,302 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-homepage-readability-1">
 
-      <link rel="stylesheet" href="/assets/css/header.css">
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260309-homepage-readability-1">
 <!-- Page-level polish (compact, scoped) -->
-  <style>
-    
-  .pageBg{position:fixed; inset:0; background-image:url(\'/assets/images/bbas_homepage_hero_03.jpg\'); background-size:cover; background-position:center; background-repeat:no-repeat; transform:none; will-change:auto; z-index:-2;}
-  .pageBg::after{content:\'\'; position:absolute; inset:0; background: radial-gradient(1200px 700px at 25% 20%, rgba(0,0,0,0.55), rgba(0,0,0,0.82));}
-:root{
-  --rhythm: 14px;
+  <style id="page-structure-only">
+  /* Structural/layout rules only. Visual styling should come from /assets/css/site.css and /assets/css/header.css */
+  .skip-link{
+    position:absolute;
+    left:-999px;
+    top:12px;
+    z-index:9999;
+    padding:10px 14px;
+    border-radius:12px;
+    background:var(--bg-white, #FFFFFF);
+    border:1px solid var(--border-light, #E5E7EB);
+    color:var(--text-primary, #1F2937);
+  }
+  .skip-link:focus{ left:12px; }
 
-      --bbas-navy:#1B263B;
-      --bbas-blue:#2563EB;
-      --bbas-ink:#0B1220;
-      --bbas-surface:#ffffff;
-      --bbas-soft:#F5F7FB;
-      --bbas-line:rgba(17,24,39,.10);
-      --bbas-text:#111827;
-      --bbas-muted:#6B7280;
-      --bbas-glow: rgba(37,99,235,.18);
-    }
-    .container{max-width:1160px;margin:0 auto;padding:0 22px;}
-    .narrow{max-width:940px;margin:0 auto;}
-    .bbas-page a{color:inherit}
+  body.bbas-page{
+    background:var(--bg-soft, #FAFAFA);
+    color:var(--text-primary, #1F2937);
+  }
 
-    .bbas-hero{
-      position:relative;
-      background:#0b1220 url('/assets/images/bbas_homepage_hero_03.jpg') center/cover no-repeat;
-      color:#fff;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .bbas-hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 12% 12%, rgba(96,165,250,.22), transparent 60%),
-        radial-gradient(900px 520px at 88% 18%, rgba(37,99,235,.22), transparent 60%),
-        linear-gradient(180deg, rgba(11,18,32,.70), rgba(11,18,32,.82));
-      pointer-events:none;
-    }
-    .bbas-hero-inner{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:26px;
-      padding:58px 0 34px;
-      align-items:start;
-    }
-    .bbas-badge{
-      display:inline-flex; gap:10px; align-items:center;
-      font-size:12px; font-weight:700; letter-spacing:.02em;
-      color:#EAF2FF; background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.16);
-      padding:8px 12px; border-radius:999px;
-      width:fit-content;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-dot{width:8px;height:8px;border-radius:50%;background:#F97316; box-shadow:0 0 0 4px rgba(249,115,22,.20);}
-    .bbas-hero h1{
-      margin:14px 0 10px;
-      font-size:46px; line-height:1.06;
-      letter-spacing:-0.02em;
-      max-width:18ch;
-    }
-    .bbas-hero p.lead{
-      font-size:18px;
-      color:rgba(255,255,255,.86);
-      max-width:62ch;
-      line-height:1.55;
-      margin:0 0 18px;
-    }
-    .bbas-points{
-      list-style:none; padding:0; margin:0 0 18px;
-      display:grid; gap:10px;
-    }
-    .bbas-points li{
-      display:flex; gap:10px; align-items:flex-start;
-      color:rgba(255,255,255,.90);
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      padding:12px 12px;
-    }
-    .bbas-check{
-      width:22px;height:22px;border-radius:9px;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:rgba(96,165,250,.18);
-      border:1px solid rgba(96,165,250,.26);
-      flex:0 0 auto;
-      margin-top:1px;
-      color:#EAF2FF;
-      font-weight:900;
-    }
-    .bbas-cta{
-      display:flex; flex-wrap:wrap; gap:12px;
-      margin-top:10px;
-    }
-    .bbas-btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      border-radius:14px;
-      padding:12px 16px;
-      font-weight:800;
-      text-decoration:none;
-      border:1px solid transparent;
-      cursor:pointer;
-      min-height:46px;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .bbas-btn-primary{background:var(--bbas-blue); color:#fff; box-shadow:0 14px 34px rgba(37,99,235,.28);}
-    .bbas-btn-primary:hover{filter:brightness(1.05);}
-    .bbas-btn-ghost{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.18);
-      color:#fff;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-btn-ghost:hover{background:rgba(255,255,255,.14);}
+  .hero--funnel{
+    position:relative;
+    padding:22px 0 64px;
+    background:transparent;
+  }
 
-    .bbas-hero-card{
-      background:rgba(255,255,255,.96);
-      color:var(--bbas-text);
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:18px;
-      box-shadow: 0 22px 60px rgba(0,0,0,.35);
-      overflow:hidden;
+  .hero--funnel .heroBg{
+    display:none;
+  }
+
+  .hero--funnel .container{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .heroTop{
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    padding:26px 26px 118px;
+  }
+
+  .heroBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 12px;
+    border-radius:999px;
+  }
+
+  .heroBadge .dot{
+    width:9px;
+    height:9px;
+    border-radius:999px;
+  }
+
+  .heroTitle{
+    margin:14px 0 10px;
+    max-width:720px;
+  }
+
+  .heroLead{
+    margin:0;
+    max-width:720px;
+  }
+
+  .funnelShell{
+    display:grid;
+    grid-template-columns:1.15fr .95fr;
+    gap:22px;
+    align-items:start;
+    margin-top:-86px;
+    position:relative;
+    z-index:3;
+  }
+
+  .funnelLeft,
+  .funnelRight{
+    min-width:0;
+  }
+
+  .funnelProgress{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin:0 0 14px;
+  }
+
+  .funnelProgressTrack{
+    height:6px;
+    border-radius:999px;
+    overflow:hidden;
+  }
+
+  .funnelProgressFill{
+    height:100%;
+    width:0;
+  }
+
+  .funnelProgressMeta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+
+  .linkBtn{
+    background:transparent;
+    border:0;
+    padding:0;
+    cursor:pointer;
+  }
+
+  .funnelCard{
+    overflow:hidden;
+  }
+
+  .funnelCardHeader{
+    padding:22px 22px 12px;
+  }
+
+  .funnelBody{
+    padding:16px 22px 12px;
+  }
+
+  .choiceGrid,
+  .optionList,
+  .trustGrid,
+  .inputGrid{
+    display:grid;
+    gap:12px;
+  }
+
+  .choiceGrid--two,
+  .optionList--two{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .choiceTile,
+  .optionRow{
+    width:100%;
+    text-align:left;
+    cursor:pointer;
+  }
+
+  .choiceTile{
+    min-height:96px;
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:12px;
+    align-items:flex-start;
+    padding:14px;
+  }
+
+  .choiceIcon{
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    margin-top:2px;
+  }
+
+  .optionRow{
+    min-height:58px;
+    display:grid;
+    grid-template-columns:18px 1fr;
+    gap:12px;
+    align-items:center;
+    padding:12px 14px;
+  }
+
+  .optionBullet{
+    width:18px;
+    height:18px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .optionBullet::after{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    display:block;
+  }
+
+  .inputGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .inputGrid--address .field--full{
+    grid-column:1 / -1;
+  }
+
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .funnelActions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 22px 14px;
+  }
+
+  body[data-funnel-branch="none"] #funnelActions{
+    display:none !important;
+  }
+
+  .btn{
+    min-width:120px;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+
+  .trustCard{
+    padding:22px;
+  }
+
+  .trustFooter{
+    margin-top:14px;
+    padding-top:12px;
+  }
+
+  .turnstileWrap{
+    display:flex;
+    justify-content:flex-start;
+    padding:12px 0 6px;
+  }
+
+  .statusLine{
+    margin-top:10px;
+    font-size:13px;
+  }
+
+  #siteFooter{
+    position:relative;
+    z-index:1;
+  }
+
+  @media (max-width:980px){
+    .heroTop{
+      padding:22px 22px 110px;
     }
-    .bbas-card-head{
-      padding:18px 18px 12px;
-      border-bottom:1px solid var(--bbas-line);
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    .funnelShell{
+      grid-template-columns:1fr;
+      margin-top:-74px;
     }
-    .bbas-card-head .kicker{
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.04em;
-      color:#1B263B;
-      text-transform:uppercase;
+  }
+
+  @media (max-width:720px){
+    .hero--funnel{
+      padding:16px 0 44px;
     }
-    .bbas-card-head h3{
-      margin:6px 0 0;
-      font-size:18px;
-      letter-spacing:-0.01em;
+    .hero--funnel .container{
+      padding:0 14px;
     }
-    .bbas-form{
-      padding:16px 18px 18px;
-      display:grid;
-      gap:12px;
+    .heroTop{
+      padding:18px 16px 84px;
+      border-radius:20px;
     }
-    .bbas-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-    .bbas-field label{display:block;font-size:12px;font-weight:800;color:#111827;margin:0 0 6px;}
-    .bbas-input, .bbas-select, .bbas-textarea{
+    .choiceGrid--two,
+    .optionList--two,
+    .trustGrid,
+    .inputGrid{
+      grid-template-columns:1fr;
+    }
+    .funnelCardHeader,
+    .funnelBody,
+    .funnelActions,
+    .trustCard{
+      padding-left:16px;
+      padding-right:16px;
+    }
+    .funnelActions{
+      flex-wrap:wrap;
+    }
+    .btn{
       width:100%;
-      border-radius:14px;
-      border:1px solid var(--bbas-line);
-      background:#F6F8FC;
-      padding:12px 12px;
-      font-size:14px;
-      outline:none;
+      min-width:0;
     }
-    .bbas-input:focus, .bbas-select:focus, .bbas-textarea:focus{
-      border-color: rgba(37,99,235,.35);
-      box-shadow:0 0 0 4px var(--bbas-glow);
-      background:#fff;
-    }
-    .bbas-textarea{min-height:92px; resize:vertical;}
-    .bbas-submit{width:100%;border:none;}
-    .bbas-fine{font-size:12px;color:var(--bbas-muted);line-height:1.45;}
-    .bbas-status{
-      display:none;
-      border-radius:14px;
-      border:1px solid var(--bbas-line);
-      padding:10px 12px;
-      font-size:13px;
-      background:#F6F8FC;
-      color:#374151;
-    }
-
-    .bbas-stats{
-      position:relative;
-      padding:18px 0 26px;
-      background: linear-gradient(180deg, rgba(11,18,32,.00), rgba(11,18,32,.10));
-    }
-    .bbas-stats-inner{
-      position:relative;
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:12px;
-    }
-    .bbas-stat{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:14px 14px;
-      backdrop-filter: blur(8px);
-    }
-    .bbas-stat .num{font-size:18px;font-weight:900;letter-spacing:-0.01em;}
-    .bbas-stat .lbl{font-size:12px;color:rgba(255,255,255,.82);margin-top:2px;line-height:1.35;}
-
-    .bbas-section{padding:44px 0;}
-    .bbas-section.alt{background:var(--bbas-soft); border-top:1px solid var(--bbas-line); border-bottom:1px solid var(--bbas-line);}
-    .bbas-section h2{font-size:30px;letter-spacing:-0.02em;margin:0 0 10px;color:var(--bbas-ink);}
-    .bbas-section p{color:var(--bbas-muted);font-size:16px;line-height:1.65;margin:0 0 14px;}
-    .bbas-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
-    .bbas-panel{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:18px 18px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-panel h3{margin:0 0 8px;font-size:18px;letter-spacing:-0.01em;color:#0b1220;}
-    .bbas-ul{margin:0;padding-left:18px;color:#374151;display:grid;gap:8px;}
-    .bbas-ul li{line-height:1.5;}
-
-    .bbas-grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:18px;}
-    .bbas-card{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:16px 16px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-card h4{margin:0 0 6px;font-size:16px;color:#0b1220;}
-    .bbas-card p{margin:0;font-size:14px;}
-    .bbas-pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-    .bbas-pill{
-      font-size:12px;border-radius:999px;padding:8px 10px;border:1px solid var(--bbas-line);
-      background:#F6F8FC;color:#374151;font-weight:700;
-    }
-
-    .bbas-preview{display:grid;grid-template-columns: 1.05fr .95fr;gap:14px;margin-top:18px;align-items:start;}
-    .bbas-listing{
-      background:#fff;border:1px solid var(--bbas-line);border-radius:18px;padding:16px 16px;
-      box-shadow:0 14px 34px rgba(17,24,39,.06);
-    }
-    .bbas-listing-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-    .bbas-listing h3{margin:0;font-size:18px;color:#0b1220;letter-spacing:-0.01em;}
-    .bbas-tag{
-      font-size:12px;font-weight:900;color:#1B263B;background:#EAF2FF;border:1px solid #D7E6FF;
-      padding:7px 10px;border-radius:999px;white-space:nowrap;
-    }
-    .bbas-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
-    .bbas-metric{background:#F6F8FC;border:1px solid var(--bbas-line);border-radius:14px;padding:10px 10px;}
-    .bbas-metric .k{font-size:12px;color:var(--bbas-muted);font-weight:800;}
-    .bbas-metric .v{font-size:16px;font-weight:900;color:#0b1220;margin-top:2px;}
-    .bbas-note{font-size:12px;color:var(--bbas-muted);margin-top:12px;line-height:1.45;}
-
-    .bbas-knowledge{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:16px;}
-
-    @media (max-width: 980px){
-      .bbas-hero-inner{grid-template-columns:1fr; padding:48px 0 26px;}
-      .bbas-hero h1{font-size:40px; max-width:22ch;}
-      .bbas-stats-inner{grid-template-columns: repeat(2, 1fr);}
-      .bbas-split{grid-template-columns:1fr;}
-      .bbas-grid{grid-template-columns:1fr;}
-      .bbas-preview{grid-template-columns:1fr;}
-      .bbas-knowledge{grid-template-columns:1fr;}
-    }
-    @media (max-width: 560px){
-      .bbas-hero h1{font-size:34px;}
-      .bbas-row{grid-template-columns:1fr;}
-      .bbas-section{padding:36px 0;}
-      .bbas-hero-inner{gap:14px;}
-      .bbas-stats{padding:14px 0 22px;}
-    }
-  
-/* Turnstile + form status */
-.turnstileWrap{margin-top: var(--rhythm);margin-bottom:14px;display:flex;justify-content:flex-start}
-.turnstileMount{min-height:65px;}
-.formStatus{min-height:18px;margin:0 0 10px 0;font-size:13px;line-height:1.25;color:var(--muted)}
-.formStatus.is-error{color:#EF4444}
-.formStatus.is-success{color:#22C55E}
-.formStatus.is-loading{color:var(--muted)}
-
-
-/* Ensure footer never overlays the funnel UI */
-#siteFooter{ position: relative; z-index: 1; }
-
-  .optionsGrid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 720px){ .optionsGrid2{ grid-template-columns: 1fr; } }
-
-  .optionList--two{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 720px){ .optionList--two{ grid-template-columns: 1fr; } }
-
-/* Reduce excess vertical space in step cards */
-.stepCard{
-  min-height: auto !important;
-}
-
-.stepBody{
-  padding-bottom: 20px !important;
-}
-
-/* Remove spacer pushing footer down */
-.stepSpacer,
-.formSpacer{
-  display: none !important;
-}
-
-
-/* Normalize spacing across all steps */
-.stepCard {
-  display: flex;
-  flex-direction: column;
-}
-
-.stepContent {
-  flex: 0 0 auto !important;
-}
-
-.stepFooter {
-  margin-top: 16px !important;
-  padding-top: 12px !important;
-  min-height: auto !important;
-}
-
-/* Remove legacy filler blocks */
-.stepFiller,
-.stepPad,
-.stepFill {
-  display: none !important;
-}
-
-
-/* ---- Spacing rhythm: keep the same gap between the last answer and the footer actions ---- */
-.qBody > :is(.answers,.optionList,.choiceList,.radioList,.optionsList,.options,.cardGrid,.choiceGrid){
-  margin-bottom: var(--answer-spacing) !important;
-}
-
-/* Footer actions should sit off the divider with the same rhythm as answer gaps */
-.funnelActions{
-  margin-top: var(--answer-spacing) !important;
-  padding-top: 14px !important;
-  padding-bottom: 10px !important;
-  align-items: center !important;
-}
-
-/* Reduce perceived empty space by tightening the note block */
-.funnelNote{
-  padding-top: 6px !important;
-  padding-bottom: 10px !important;
-  color: rgba(20,26,38,.38) !important;
-}
-
+  }
 </style>
 
   <!-- Google Analytics -->
@@ -378,740 +335,33 @@
     gtag('config', 'G-EH99SDCSFD');
   </script>
   <!-- Turnstile needs CSP to allow iframes from challenges.cloudflare.com (frame-src). -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=tsOnload&render=explicit" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+
+<script>
+  window.onTurnstileSuccess = function(token){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = token || "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+  window.onTurnstileExpired = function(){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+  window.onTurnstileError = function(){
+    var el = document.getElementById("turnstileToken");
+    if (el) {
+      el.value = "";
+      try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+    }
+  };
+</script>
 
-<style id="funnelStyles">
-  /* Funnel page additions. Built to match the approved site system. */
-  .hero--funnel { position: relative; padding: 44px 0 64px; }
-  .hero--funnel .heroBg{
-    position:absolute; inset:0;
-    background: transparent;
-    border-radius: 28px;
-    max-width: var(--container-max);
-    margin: 0 auto;
-    box-shadow: 0 24px 60px rgba(6, 14, 28, 0.20);
-  }
-  .hero--funnel .container{ position: relative; padding-top: 16px; }
-  .heroTop{
-  background: rgba(0,0,0,0.86) !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  border-radius: 20px !important;
-  padding: 20px 16px 22px !important;
-  box-shadow: 0 22px 56px rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(12px) !important;
-}
-
-  .heroBadge{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; background: rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.16); font-size: 13px; }
-  .heroBadge .dot{ width:10px; height:10px; border-radius:999px; background: #F59E0B; box-shadow: 0 0 0 6px rgba(245,158,11,0.18); }
-  .heroTitle{ margin: 14px 0 10px; font-size: clamp(32px, 4.1vw, 48px); line-height: 1.05; letter-spacing: -0.02em; }
-  .heroLead{ margin: 0; max-width: 56ch; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.88); }
-
-  .funnelShell{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; align-items:start; margin-top: 18px; 
-  position: relative;
-  z-index: 9999;
-}
-  .funnelLeft{ min-width:0; }
-  .funnelRight{ min-width:0; }
-
-  .funnelProgress{ display:flex; flex-direction:column; gap:10px; margin: 0 0 14px; }
-  .funnelProgressTrack{ height: 10px; border-radius: 999px; background: rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.18); overflow:hidden; }
-  .funnelProgressFill{height:100%;width:0;background:var(--bbas-blue);border-radius:999px;transition:width .35s ease;}
-  .funnelProgressMeta{ display:flex; align-items:center; justify-content:space-between; font-size: 13px; color: rgba(255,255,255,0.88); }
-  .linkBtn{ background: transparent; border: 0; padding: 0; color: rgba(255,255,255,0.88); text-decoration: underline; cursor: pointer; }
-  .linkBtn:hover{ color: #fff; }
-
-  .funnelCard{
-    background: rgba(255,255,255,0.96);
-    border: 1px solid rgba(17,24,39,0.10);
-    border-radius: 18px;
-    box-shadow: 0 18px 40px rgba(15,23,42,0.18);
-    overflow:hidden;
-  }
-  .funnelCardHeader{ padding: 18px 18px 10px; border-bottom: 1px solid rgba(17,24,39,0.08); }
-  .funnelQuestion{ margin:0; font-size: 22px; letter-spacing:-0.01em; color: #0f172a; }
-  .funnelHelper{ margin: 6px 0 0; color: rgba(15,23,42,0.70); font-size: 14px; line-height: 1.5; }
-
-  .funnelBody{ padding: 16px 18px 12px; }
-  .choiceGrid{ display:grid; gap: var(--answer-spacing); }
-  .choiceGrid--two{ grid-template-columns: 1fr 1fr; }
-  .choiceGrid--two .choiceTile{ min-height: 104px; }
-  .choiceTile{
-    display:flex; gap: 14px; align-items:flex-start;
-    padding: 14px 14px;
-    border-radius: 16px;
-    border: 1px solid rgba(15,23,42,0.14);
-    background: #fff;
-    cursor:pointer;
-    text-align:left;
-    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-  }
-  .choiceTile:hover{ transform: translateY(-1px); box-shadow: 0 10px 26px rgba(15,23,42,0.10); border-color: rgba(59,130,246,0.40); }
-  .choiceTile[aria-pressed="true"]{ border-color: rgba(59,130,246,0.65); box-shadow: 0 14px 34px rgba(59,130,246,0.18); }
-  .choiceIcon{ width: 40px; height: 40px; border-radius: 12px; display:flex; align-items:center; justify-content:center; background: rgba(59,130,246,0.10); font-size: 18px; }
-  .choiceTitle{ font-weight: 800; color:#0f172a; }
-  .choiceSub{ margin-top: 4px; font-size: 13px; color: rgba(15,23,42,0.68); line-height: 1.4; }
-  .choiceText{ flex:1; min-width:0; }
-
-  .optionList{ display:grid; gap: var(--answer-spacing); }
-  .optionRow{
-    display:flex; align-items:center; gap: 10px;
-    padding: 12px 12px;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,0.12);
-    background: #fff;
-    cursor:pointer;
-    transition: border-color .12s ease, box-shadow .12s ease;
-  }
-  .optionRow:hover{ border-color: rgba(59,130,246,0.40); box-shadow: 0 10px 24px rgba(15,23,42,0.08); }
-  .optionRow[aria-pressed="true"]{ border-color: rgba(59,130,246,0.65); }
-  .optionBullet{ width: 18px; height: 18px; border-radius: 999px; border:2px solid rgba(15,23,42,0.22); display:flex; align-items:center; justify-content:center; }
-  .optionRow[aria-pressed="true"] .optionBullet{ border-color: rgba(59,130,246,0.90); }
-  .optionBullet::after{ content:""; width: 8px; height: 8px; border-radius:999px; background: transparent; }
-  .optionRow[aria-pressed="true"] .optionBullet::after{ background: rgba(59,130,246,0.92); }
-  .optionLabel{ font-weight: 700; color: #0f172a; }
-  .optionHint{ display:block; margin-top: 2px; font-size: 12.5px; color: rgba(15,23,42,0.62); font-weight: 500; }
-  .optionText{ flex:1; }
-
-  .inputGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .field{ display:flex; flex-direction:column; gap: 6px; }
-  .field label{ font-size: 12px; font-weight: 800; color: rgba(15,23,42,0.70); }
-  .field input, .field select, .field textarea{
-    width: 100%;
-    border-radius: 14px;
-    border: 1px solid rgba(15,23,42,0.14);
-    padding: 12px 12px;
-    font-size: 14px;
-    outline: none;
-    background:#fff;
-  }
-  .field textarea{ min-height: 100px; resize: vertical; }
-  .field input:focus, .field select:focus, .field textarea:focus{ border-color: rgba(59,130,246,0.70); box-shadow: 0 0 0 4px rgba(59,130,246,0.12); }
-
-  .funnelActions{
-    display:flex;
-  align-items: center;
-    justify-content:space-between;
-    gap: 12px;
-    margin-top: var(--answer-spacing);
-    padding: 16px 18px 12px;
-    border-top: 1px solid rgba(15,23,42,0.08);
-    background: rgba(255,255,255,0.92);
-}
-  .funnelActions .btn{ flex: 0 0 auto; min-width: 130px; }
-  .btn{ border-radius: 999px; padding: 11px 16px; font-weight: 800; border: 1px solid rgba(15,23,42,0.14); cursor:pointer; }
-  .btn--primary{background:var(--bbas-blue);color:#fff;border:0;box-shadow:0 14px 30px rgba(0,0,0,.25);}
-  .btn--primary:hover{ filter: brightness(1.03); }
-  .btn--ghost{ background: #fff; color: #0f172a; }
-  .btn--ghost:hover{ background: rgba(15,23,42,0.03); }
-
-  .funnelNote{ padding: 6px 18px 14px; font-size: 12.5px; color: rgba(15,23,42,0.60); }
-
-  .trustCard{
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 18px;
-    padding: 16px;
-    color:#fff;
-    box-shadow: 0 18px 42px rgba(15,23,42,0.22);
-    backdrop-filter: blur(10px);
-  }
-  .trustPill{
-    display:inline-flex; align-items:center; gap: 10px; padding: 8px 12px; border-radius: 999px;
-    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16);
-    font-size: 12px; font-weight: 800;
-  }
-  .trustDot{ width: 9px; height: 9px; border-radius: 999px; background: #22C55E; box-shadow: 0 0 0 6px rgba(34,197,94,0.18); }
-  .trustTitle{ margin: 12px 0 6px; font-size: 18px; font-weight: 900; letter-spacing:-0.01em; }
-  .trustSub{ margin:0 0 12px; color: rgba(255,255,255,0.88); font-size: 13.5px; line-height: 1.55; }
-  .trustGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .trustItem{ padding: 12px; border-radius: 16px; background: rgba(15,23,42,0.34); border: 1px solid rgba(255,255,255,0.10); }
-  .trustKicker{ font-size: 12px; font-weight: 900; }
-  .trustText{ margin-top: 4px; font-size: 12.5px; color: rgba(255,255,255,0.86); line-height: 1.45; }
-  .trustFooter{ margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.16); }
-  .trustMini{ font-size: 12px; color: rgba(255,255,255,0.82); line-height: 1.45; }
-
-  .turnstileWrap{ display:flex; justify-content:flex-start; padding: 12px 0 6px; }
-  .statusLine{ margin-top: 10px; font-size: 13px; color: rgba(15,23,42,0.72); }
-  .statusLine--error{ color: #b91c1c; }
-
-  @media (max-width: 980px){
-    .funnelShell{ grid-template-columns: 1fr; }
-    .heroTop{ padding-left: 4px; padding-right: 4px; }
-    .trustGrid{ grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 640px){
-    .hero--funnel { padding: 22px 0 44px; }
-    .hero--funnel .heroBg{ border-radius: 22px; }
-    .choiceGrid--two{ grid-template-columns: 1fr; }
-    .inputGrid{ grid-template-columns: 1fr; }
-    .funnelActions{ flex-direction:column; }
-    .funnelActions .btn{ width: 100%; }
-    .trustGrid{ grid-template-columns: 1fr; }
-  }
-
-/* Funnel standardization fixes */
-.heroBg{
-  overflow:hidden;
-  isolation:isolate;
-}
-.heroBg::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(900px 520px at 30% 25%, rgba(0,0,0,0.82), rgba(0,0,0,0) 62%),
-    radial-gradient(900px 520px at 78% 18%, rgba(0,0,0,0.55), rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(0,0,0,0.86), rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.86));
-  pointer-events:none;
-  z-index:0;
-}
-.heroInner{ position:relative; z-index:1; }{ position:relative; z-index:1; }
-.heroTitle, .heroLead{
-  text-shadow: 0 3px 22px rgba(0,0,0,0.75);
-}
-.heroLead{ max-width: 48ch; }
-
-.hero--funnel{
-  min-height: 760px;
-  height: min(860px, calc(100vh - 140px));
-}
-@media (max-width: 900px){
-  .hero--funnel{
-    min-height: 860px;
-    height: auto; /* mobile can grow */
-  }
-}
-
-/* Keep background steady while steps change */
-.funnelCard{
-  max-height: calc(100vh - 290px);
-}
-@media (max-width: 900px){
-  .funnelCard{ max-height: none; }
-}
-
-/* Consistent answer tile sizing */
-.choiceTile{
-  min-height: 86px;
-}
-.choiceIcon{
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-}
-.optionRow{
-  min-height: 54px;
-  align-items: center;
-}
-.optionRow .optLabel{
-  line-height: 1.25;
-}
-
-/* Header include failsafe: keep injected header from being pushed by hero */
-#siteHeader{ position: relative; z-index: 20; }
-
-
-
-/* Funnel UX fixes: keep actions visible and prevent clipping at 100% zoom */
-.funnelCard{
-  display:flex;
-  flex-direction:column;
-  overflow:hidden; /* keep rounded corners */
-}
-.funnelCardHeader{flex:0 0 auto;}
-#funnelBody{
-    /* Do not create an inner scroll area or artificial empty space.
-       Let the card height be driven by content, and keep a consistent rhythm
-       between the last answer and the actions row. */
-    padding: 18px;
-    padding-bottom: var(--answer-spacing);
-    overflow: visible;
-    flex: 0 0 auto;
-}
-.funnelActions{
-  position:sticky;
-  bottom:0;
-  z-index:2;
-  flex:0 0 auto;
-}
-/* Allow the hero to grow on shorter viewports */
-.hero--funnel{
-  min-height: 920px;
-  height: auto;
-}
-.heroLead{ color: rgba(255,255,255,0.92); }
-/* Spacing adjustments to prevent overlaps */
-.funnelShell{ margin-top: 10px; }
-@media (max-height: 760px){
-  .hero--funnel{ padding-top: 26px; }
-}
-
-
-
-/* Hero copy legibility */
-.heroTop{
-  background: rgba(0,0,0,0.28);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
-  padding: 18px 14px 20px;
-  backdrop-filter: blur(10px);
-}
-.heroBadge{
-  background: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.20);
-}
-.heroTitle{ color: rgba(255,255,255,0.98); }
-.heroLead{ color: rgba(255,255,255,0.94); }
-
-
-
-/* Keep hero background stable while funnel content changes */
-.heroBg{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-.hero--funnel{
-  position: relative;
-}
-
-
-
-/* Stronger hero text contrast */
-.heroTop{
-  background: rgba(0,0,0,0.46);
-  border-color: rgba(255,255,255,0.14);
-}
-.heroTitle{
-  color: rgba(255,255,255,0.99);
-  letter-spacing: -0.02em;
-}
-.heroLead{
-  color: rgba(255,255,255,0.97);
-}
-
-
-
-/* Lock hero background so it never resizes/zooms when steps change */
-.heroBg{
-  position: fixed !important;
-  inset: 0 !important;
-  max-width: none !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  transform: none !important;
-}
-
-
-
-/* Stronger hero copy panel for readability */
-.heroTop{
-  background: rgba(0,0,0,0.62) !important;
-  border: 1px solid rgba(255,255,255,0.16) !important;
-  box-shadow: 0 18px 42px rgba(0,0,0,0.45) !important;
-}
-.heroTitle{
-  color: rgba(255,255,255,0.995) !important;
-  text-shadow: 0 4px 26px rgba(0,0,0,0.85) !important;
-}
-.heroLead{
-  color: rgba(255,255,255,0.985) !important;
-  text-shadow: 0 3px 22px rgba(0,0,0,0.80) !important;
-}
-
-
-
-.turnstileHint{
-  margin-top: 8px;
-  font-size: 12px;
-  color: rgba(20, 24, 33, 0.60);
-}
-
-
-
-/* Strong global hero scrim for readability */
-.hero--funnel::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.82), rgba(0,0,0,0.58) 55%, rgba(0,0,0,0.82));
-  pointer-events:none;
-  z-index:0;
-}
-.hero--funnel .heroInner,
-.hero--funnel .funnelShell{
-  position:relative;
-  z-index:1;
-}
-
-
-
-.turnstileHint{
-  margin-top: 10px;
-  font-size: 12px;
-  color: rgba(20,24,33,0.62);
-}
-
-
-
-/* Right panel readability */
-.trustCard{
-  background: rgba(12,14,18,0.72) !important;
-  border-color: rgba(255,255,255,0.16) !important;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(14px) !important;
-}
-.trustTitle{ color: rgba(255,255,255,0.985) !important; text-shadow: 0 3px 22px rgba(0,0,0,0.70) !important; }
-.trustDesc{ color: rgba(255,255,255,0.92) !important; }
-.trustBox{ background: rgba(0,0,0,0.32) !important; border-color: rgba(255,255,255,0.10) !important; }
-.trustBox h4{ color: rgba(255,255,255,0.96) !important; }
-.trustBox p{ color: rgba(255,255,255,0.86) !important; }
-.trustFoot{ color: rgba(255,255,255,0.70) !important; }
-
-
-/* Slightly stronger hero scrim */
-.hero--funnel::before{
-  background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.66) 55%, rgba(0,0,0,0.88)) !important;
-}
-
-
-
-/* Turnstile sizing */
-.turnstileWrap{
-  display:flex;
-  align-items:center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-#turnstileMount{
-  min-height: 70px;
-  width: 320px;
-  max-width: 100%;
-}
-.turnstileHint{
-  display:none;
-  font-size: 12px;
-  color: rgba(20,24,33,0.62);
-  max-width: 340px;
-}
-
-
-
-/* --- Hero badge text visibility --- */
-.heroBadge{
-  background: rgba(255,255,255,0.10) !important;
-  border-color: rgba(255,255,255,0.18) !important;
-}
-.heroBadge, .heroBadge *{
-  color: rgba(255,255,255,0.92) !important;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.65) !important;
-}
-
-/* --- Show more of the hero image (reduce black overlay) --- */
-.hero--funnel::before{
-  background: linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.44) 55%, rgba(0,0,0,0.70)) !important;
-}
-
-/* Keep copy readable while showing more image */
-.heroTop{
-  background: rgba(0,0,0,0.62) !important;
-}
-
-/* --- Consistent, tighter spacing in all step cards --- */
-.stepHeader{
-  padding-bottom: 14px !important;
-}
-.stepTitle{
-  margin-bottom: 6px !important;
-}
-.stepSub{
-  margin-top: 0 !important;
-  margin-bottom: 14px !important;
-}
-
-/* Reduce vertical gaps between option pills */
-.optionList, .choiceList, .radioList, .optionsList, .options{
-  gap: 10px !important;
-  margin-bottom: var(--rhythm) !important;
-}
-
-.optionRow, .choiceRow, .radioRow{
-  margin: 0 !important;
-}
-.optionRow + .optionRow,
-.choiceRow + .choiceRow,
-.radioRow + .radioRow{
-  margin-top: 10px !important;
-}
-
-/* Reduce extra blank space above footer buttons */
-.stepFooter{
-  margin-top: 12px !important;
-  padding-top: 10px !important;
-}
-
-
-
-/* --- Remove artificial empty space inside question cards --- */
-/* The blank area is caused by footer being pushed to the bottom (margin-top:auto / flex-grow). */
-/* Make cards content-driven, and only constrain height when viewport is small, using scroll instead of blank space. */
-
-.stepCard{
-  height: auto !important;
-  min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* Do NOT let the content area grow to fill remaining height */
-.stepBody, .stepContent{
-  flex: 0 0 auto !important;
-  min-height: 0 !important;
-}
-
-/* Footer should sit right after content (no auto push) */
-.stepFooter{
-  margin-top: 14px !important;
-}
-
-/* When content is taller than the viewport, scroll inside the card instead of creating empty space */
-@media (max-width: 980px){
-  .stepCard{
-    max-height: calc(100vh - 220px) !important;
-  }
-  .stepBody, .stepContent{
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  /* Keep buttons visible while scrolling content */
-  .stepFooter{
-    position: sticky !important;
-    bottom: 0 !important;
-    background: rgba(255,255,255,0.96) !important;
-    backdrop-filter: blur(10px);
-    padding-bottom: 10px !important;
-  }
-}
-
-@media (min-width: 981px){
-  .stepCard{
-    max-height: calc(100vh - 260px) !important;
-  }
-  .stepBody, .stepContent{
-    overflow: auto !important;
-  }
-  .stepFooter{
-    position: sticky !important;
-    bottom: 0 !important;
-    background: rgba(255,255,255,0.96) !important;
-    backdrop-filter: blur(10px);
-    padding-bottom: 10px !important;
-  }
-}
-
-
-
-/* --- REMOVE the remaining "filler" height (no forced tall cards) --- */
-/* We revert the sticky-footer/max-height approach. Cards should hug content. */
-.stepCard{
-  max-height: none !important;
-  height: auto !important;
-}
-
-.stepBody, .stepContent{
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-}
-
-.stepFooter{
-  position: static !important;
-  bottom: auto !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* If any internal wrapper is stretching, stop it */
-.stepInner, .stepMain, .stepGrid{
-  min-height: 0 !important;
-  height: auto !important;
-}
-
-
-
-
-/* === FIX: Remove the artificial blank space in funnel question cards === */
-/* Root cause was: #funnelBody { flex:1; padding-bottom:120px } + sticky .funnelActions. */
-/* That combo reserves empty "scroll room" even when the step content is short. */
-
-#funnelBody{
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-  padding-bottom: var(--answer-gap) !important;
-}
-
-.funnelActions{
-  position: static !important;
-  bottom: auto !important;
-  z-index: auto !important;
-  padding-top: 14px !important;
-}
-
-/* Ensure the card hugs content */
-.funnelCard{
-  height: auto !important;
-  max-height: none !important;
-}
-
-/* If any earlier rule makes the card a flex column, keep it but do not stretch children */
-.funnelCard{
-  display: flex !important;
-  flex-direction: column !important;
-}
-.funnelCardHeader{ flex: 0 0 auto !important; }
-
-
-
-
-/* === Consistent vertical rhythm between answers and buttons === */
-:root{
-  --qa-gap: 12px;
-}
-
-.optionList, .choiceList, .radioList, .optionsList, .options{
-  gap: var(--qa-gap) !important;
-}
-
-.optionRow + .optionRow,
-.choiceRow + .choiceRow,
-.radioRow + .radioRow{
-  margin-top: var(--qa-gap) !important;
-}
-
-/* Make the space between last answer and buttons match the answer gap */
-.stepBody .optionList,
-.stepBody .choiceList,
-.stepBody .radioList,
-.stepBody .optionsList,
-.stepBody .options,
-.stepContent .optionList,
-.stepContent .choiceList,
-.stepContent .radioList,
-.stepContent .optionsList,
-.stepContent .options{
-  margin-bottom: var(--qa-gap) !important;
-}
-
-/* If a step uses a grid of cards (2-up), keep same bottom spacing */
-.stepBody .cardGrid,
-.stepContent .cardGrid,
-.stepBody .choiceGrid,
-.stepContent .choiceGrid{
-  gap: var(--qa-gap) !important;
-  margin-bottom: var(--qa-gap) !important;
-}
-
-/* Normalize the actions/footer spacing */
-.funnelActions, .stepFooter{
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-
-
-
-/* === VERTICAL RHYTHM FIX (answers -> footer gap equals answer gap) === */
-:root{
-  --answer-spacing: 14px;
-}
-
-/* Normalize common answer containers to be a vertical stack with a single rhythm */
-.funnelAnswers,
-.answers,
-.optionList, .choiceList, .radioList, .optionsList, .options,
-.cardGrid, .choiceGrid{
-  gap: var(--answer-spacing) !important;
-}
-
-/* Ensure the distance from the last answer to the buttons matches the answer spacing */
-.funnelAnswers,
-.answers,
-.stepBody .optionList,
-.stepBody .choiceList,
-.stepBody .radioList,
-.stepBody .optionsList,
-.stepBody .options,
-.stepContent .optionList,
-.stepContent .choiceList,
-.stepContent .radioList,
-.stepContent .optionsList,
-.stepContent .options,
-.stepBody .cardGrid,
-.stepContent .cardGrid,
-.stepBody .choiceGrid,
-.stepContent .choiceGrid{
-  margin-bottom: var(--answer-spacing) !important;
-}
-
-/* Remove "collapsed" look when last option sits too close to footer */
-.funnelActions, .stepFooter{
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Avoid extra padding hacks that can break perceived rhythm */
-.funnelCard{
-  padding-bottom: 18px !important;
-}
-
-/* Mobile: keep same rhythm but slightly tighter card padding */
-@media (max-width: 768px){
-  :root{ --answer-spacing: 12px; }
-  .funnelCard{ padding-bottom: 14px !important; }
-}
-
-
-/* ---- Spacing rhythm: keep last answer and actions aligned ---- */
-#funnelBody > .optionList,
-#funnelBody > .choiceGrid,
-#funnelBody > .inputGrid{
-    margin-bottom: 0;
-}
-
-/* Final spacing rhythm (authoritative) */
-:root{--answer-spacing:18px;}
-.funnelBody{padding-bottom:0 !important;}
-/* gap between last answer block and action bar */
-#funnelBody{margin-bottom:var(--answer-spacing)!important;}
-/* prevent last answer block from collapsing oddly */
-#funnelBody > *:last-child{margin-bottom:0 !important;}
-/* action bar spacing from content */
-.funnelActions{margin-top:var(--answer-spacing)!important;}
-/* match answer spacing to controls spacing */
-.choiceList{gap:var(--answer-spacing)!important;}
-
-
-
-/* --- Funnel footer spacing + button alignment (final override) --- */
-.funnelActions{
-  display:flex !important;
-  gap:12px !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  position:static !important;
-  bottom:auto !important;
-  z-index:auto !important;
-  margin-top:0 !important;
-  padding: var(--answer-spacing) 18px 12px !important;
-  border-top:1px solid rgba(15,23,42,.08) !important;
-}
-.funnelNote{
-  padding: 8px 18px 14px !important;
-}
-</style>
 </head>
 
 <body class="bbas-page">
@@ -1226,6 +476,7 @@ lease terms, and what is included in the sale.</div>
 
   <div id="siteFooter"></div>
 
+  <!-- Single source of truth for header/footer injection. Do not duplicate this in inline scripts. -->
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
@@ -1290,255 +541,145 @@ lease terms, and what is included in the sale.</div>
 
 <script>
 (function(){
-  var form = document.getElementById('earlyAccessForm');
-  if (!form) return;
-
-  var statusEl = document.getElementById('earlyStatus') || document.getElementById('earlyAccessStatus');
-  var btn = form.querySelector('button[type="submit"]');
-
-  function setStatus(msg, kind){
-    if (!statusEl) return;
-    statusEl.textContent = msg || '';
-    statusEl.className = (statusEl.className || '').replace(/\bis-\w+\b/g,'').trim();
-    if (kind) statusEl.className = (statusEl.className + ' is-' + kind).trim();
+  function qs(sel){ return document.querySelector(sel); }
+  function escapeHtml(v){
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+  function phoneFormat(v){
+    var x = String(v || "").replace(/\D/g, "").slice(0, 10);
+    if (x.length > 6) return "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
+    if (x.length > 3) return "(" + x.slice(0,3) + ") " + x.slice(3);
+    return x;
+  }
+  function titleCaseWords(v){
+    return String(v || "")
+      .toLowerCase()
+      .replace(/\b([a-z])/g, function(m){ return m.toUpperCase(); });
   }
 
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-
-        var fd = new FormData(form);
-    var token = fd.get('cf-turnstile-response');
-
-    if (!token && window.turnstile && typeof window.turnstile.execute === 'function' && window.__tsWidgetId != null) {
-      try { window.turnstile.execute(window.__tsWidgetId); } catch (_) {}
-      await new Promise(function(res){ setTimeout(res, 900); });
-      fd = new FormData(form);
-      token = fd.get('cf-turnstile-response');
-    }
-    if (!token) {
-      setStatus('Please complete the security check.', 'error');
-      return;
-    }
-
-    if (btn) {
-      btn.disabled = true;
-      btn.setAttribute('aria-busy', 'true');
-    }
-    setStatus('Submitting...', 'loading');
-
-    try {
-      var res = await fetch('/api/early-access', {
-        method: 'POST',
-        body: fd
-      });
-
-      var data = {};
-      try { data = await res.json(); } catch (_) {}
-
-      if (!res.ok || !data || data.ok !== true) {
-        setStatus((data && data.error) ? data.error : 'Something went wrong. Please try again.', 'error');
-        if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-        return;
-      }
-
-      setStatus('Success. You are on the list.', 'success');
-      form.reset();
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } catch (err) {
-      setStatus('Network error. Please try again.', 'error');
-      if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.removeAttribute('aria-busy');
-      }
-    }
-  });
-})();
-</script>
-
-
-<script id="funnelScript">
-(function(){
-  function qs(sel, root){ return (root || document).querySelector(sel); }
-  
-  function getTurnstileSitekey(){
-    return document.documentElement.getAttribute("data-turnstile-sitekey") || "0x4AAAAAACgmGQoYfzwumYuZ";
-  }
-function qsa(sel, root){ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
-
-  var state = {
-    branch: null,
-    stepIndex: 0,
-    steps: [],
-    answers: {}
-  };
-
-  var STEPS_COMMON_CONTACT = {
-    id: "contact",
-    title: "Contact info",
-    helper: "We will only use this to send early access and next steps.",
-    type: "contact"
-  };
+  var BUSINESS_TYPES = [
+    { value: "auto_repair", label: "Auto Repair" },
+    { value: "construction", label: "Construction" },
+    { value: "car_washes", label: "Car washes" },
+    { value: "day_care", label: "Day care" },
+    { value: "dry_cleaners", label: "Dry Cleaners" },
+    { value: "dog_grooming", label: "Dog grooming" },
+    { value: "gas_station", label: "Gas Station" },
+    { value: "food_truck", label: "Food truck" },
+    { value: "hair_salon_barber", label: "Hair Salon/Barber Shop" },
+    { value: "heating_air", label: "Heating & Air" },
+    { value: "hotel_motels", label: "Hotel/Motels" },
+    { value: "ice_cream_shop", label: "Ice cream shop" },
+    { value: "liquor_store", label: "Liquor store" },
+    { value: "retail", label: "Retail" },
+    { value: "restaurants", label: "Restaurants" },
+    { value: "vape_shop", label: "Vape shop" },
+    { value: "other", label: "Other (please specify)" }
+  ];
 
   var SELL_STEPS = [
     {
-      id: "sell_timeline",
-      title: "How quickly do you want to sell your business?",
-      helper: "Pick the closest option. This helps us tailor the next steps.",
+      id: "sell_urgency",
+      title: "How soon are you looking to sell your business?",
+      helper: "",
       type: "choice",
       options: [
-        { value: "right_now", label: "I want to sell right now" },
-        { value: "6_months", label: "I want to sell in the next 6 months" },
-        { value: "1_2_years", label: "I want to sell in the next 1 to 2 years" },
-        { value: "2_5_years", label: "I want to sell in the next 2 to 5 years" }
+        { value: "ready_now", label: "I am ready now" },
+        { value: "not_right_now_talk", label: "Not right now, but want to speak with someone" }
       ]
     },
     {
       id: "sell_type",
-      title: "What type of business is it?",
-      helper: "This is for owner-operated, non-franchise businesses.",
+      title: "What type of business do you own?",
+      helper: "",
       type: "choice",
-      options: [
-        { value: "convenience_store", label: "Convenience store" },
-        { value: "gas_station", label: "Gas station" },
-        { value: "smoke_vape", label: "Smoke or vape shop" },
-        { value: "small_retail", label: "Small retail" },
-        { value: "service_business", label: "Local service business" },
-        { value: "auto_repair", label: "Auto repair" },
-        { value: "restaurant_deli", label: "Restaurant or deli" },
-        { value: "laundromat", label: "Laundromat" },
-        { value: "other", label: "Other" }
-      ]
+      options: BUSINESS_TYPES,
+      other: true,
+      otherKey: "sell_type_other",
+      otherPlaceholder: "Type your business"
     },
     {
-      id: "sell_revenue",
-      title: "Revenue last 12 months?",
-      helper: "A quick range is enough for now.",
+      id: "sell_gross_revenue",
+      title: "What was your Gross Revenue in the last 12 months?",
+      helper: "",
       type: "choice",
       options: [
-        { value: "under_250k", label: "Under $250,000" },
-        { value: "250k_500k", label: "$250,000 to $500,000" },
-        { value: "500k_1m", label: "$500,000 to $1 million" },
-        { value: "1m_2m", label: "$1 million to $2 million" },
-        { value: "2m_plus", label: "$2 million+" }
-      ]
-    },
-    {
-      id: "sell_profit",
-      title: "Business net profit last 12 months? (including your salary)",
-      helper: "Estimate is fine. We can refine later.",
-      type: "choice",
-      options: [
-        { value: "under_50k", label: "Under $50,000" },
-        { value: "50k_100k", label: "$50,000 to $100,000" },
-        { value: "100k_200k", label: "$100,000 to $200,000" },
-        { value: "200k_400k", label: "$200,000 to $400,000" },
-        { value: "400k_plus", label: "$400,000+" }
-      ]
-    },
-    {
-      id: "sell_employees",
-      title: "How many employees does your company have (including contractors)?",
-      helper: "This helps buyers understand how hands-on the business is.",
-      type: "choice",
-      options: [
-        { value: "0_5", label: "0 to 5" },
-        { value: "6_10", label: "6 to 10" },
-        { value: "11_20", label: "11 to 20" },
-        { value: "21_40", label: "21 to 40" },
-        { value: "40_100", label: "40 to 100" },
-        { value: "101_plus", label: "101+" }
-      ]
-    },
-    {
-      id: "sell_location_url",
-      title: "Where is your business located?",
-      helper: "Add a location and a website if you have one.",
-      type: "location_url"
-    },
-    STEPS_COMMON_CONTACT
-  ];
-
-  var BUY_STEPS = [
-    {
-      id: "buy_timeline",
-      title: "How soon do you want to buy a business?",
-      helper: "This helps us match you to the right type of opportunity.",
-      type: "choice",
-      options: [
-        { value: "now", label: "I am ready now" },
-        { value: "3_months", label: "In the next 3 months" },
-        { value: "6_months", label: "In the next 6 months" },
-        { value: "1_year_plus", label: "In 1 year or later" }
-      ]
-    },
-    {
-      id: "buy_type",
-      title: "What type of business are you interested in?",
-      helper: "Owner-operated businesses, not franchises.",
-      type: "choice",
-      options: [
-        { value: "convenience_store", label: "Convenience store" },
-        { value: "gas_station", label: "Gas station" },
-        { value: "smoke_vape", label: "Smoke or vape shop" },
-        { value: "small_retail", label: "Small retail" },
-        { value: "service_business", label: "Local service business" },
-        { value: "auto_repair", label: "Auto repair" },
-        { value: "restaurant_deli", label: "Restaurant or deli" },
-        { value: "laundromat", label: "Laundromat" },
-        { value: "open_to_options", label: "Open to options" }
-      ]
-    },
-    {
-      id: "buy_budget",
-      title: "What purchase price range fits your budget?",
-      helper: "A range is fine. This is only used for matching.",
-      type: "choice",
-      options: [
-        { value: "under_100k", label: "Under $100,000" },
-        { value: "100k_250k", label: "$100,000 to $250,000" },
-        { value: "250k_500k", label: "$250,000 to $500,000" },
-        { value: "500k_1m", label: "$500,000 to $1 million" },
+        { value: "under_250k", label: "Under $250k" },
+        { value: "250k_500k", label: "$250k - $500k" },
+        { value: "500k_750k", label: "$500k - $750k" },
         { value: "1m_plus", label: "$1 million+" }
       ]
     },
     {
-      id: "buy_financing",
-      title: "How do you plan to finance the purchase?",
-      helper: "We will use this to suggest realistic next steps.",
+      id: "sell_gross_profit",
+      title: "What was your Gross Profit in the last 12 months?",
+      helper: "",
       type: "choice",
       options: [
-        { value: "cash", label: "Cash" },
-        { value: "sba", label: "SBA loan" },
-        { value: "seller_financing", label: "Seller financing" },
-        { value: "mix", label: "Combination of options" },
-        { value: "not_sure", label: "Not sure yet" }
+        { value: "under_50k", label: "Under $50k" },
+        { value: "50k_150k", label: "$50k - $150k" },
+        { value: "150k_250k", label: "$150k - $250k" },
+        { value: "250k_500k", label: "$250k - $500k" }
       ]
     },
     {
-      id: "buy_involvement",
-      title: "How hands-on do you want to be?",
-      helper: "This affects the type of business that fits you.",
+      id: "sell_location_full",
+      title: "Where is the business located?",
+      helper: "Add the business name and address.",
+      type: "seller_location"
+    },
+    {
+      id: "contact",
+      title: "Contact info",
+      helper: "We will only use this to send early access and next steps.",
+      type: "contact"
+    }
+  ];
+
+  var BUY_STEPS = [
+    {
+      id: "buy_type",
+      title: "What type of Business?",
+      helper: "",
+      type: "choice",
+      options: BUSINESS_TYPES,
+      other: true,
+      otherKey: "buy_type_other",
+      otherPlaceholder: "Type your business"
+    },
+    {
+      id: "buy_purchase_price",
+      title: "What Purchase Price?",
+      helper: "Choose a range that fits your budget.",
       type: "choice",
       options: [
-        { value: "owner_operator", label: "Owner-operator (hands-on)" },
-        { value: "semi_absentee", label: "Semi-absentee (some management)" },
-        { value: "absentee", label: "Absentee (run by staff)" },
-        { value: "flexible", label: "Flexible" }
+        { value: "under_100k", label: "Under $100k" },
+        { value: "100k_250k", label: "$100k - $250k" },
+        { value: "250k_500k", label: "$250k - $500k" },
+        { value: "1m_plus", label: "$1 million+" }
       ]
     },
     {
-      id: "buy_location",
+      id: "buy_location_city_state",
       title: "Where do you want the business to be located?",
-      helper: "Choose a state and add a website if you have one.",
-      type: "location_url"
+      helper: "",
+      type: "buyer_location"
     },
-    STEPS_COMMON_CONTACT
+    {
+      id: "contact",
+      title: "Contact info",
+      helper: "We will only use this to send early access and next steps.",
+      type: "contact"
+    }
   ];
 
   var US_STATES = [
-    {v:"", t:"Choose a state"},
+    {v:"", t:"State"},
     {v:"AL", t:"Alabama"},{v:"AK", t:"Alaska"},{v:"AZ", t:"Arizona"},{v:"AR", t:"Arkansas"},
     {v:"CA", t:"California"},{v:"CO", t:"Colorado"},{v:"CT", t:"Connecticut"},{v:"DE", t:"Delaware"},
     {v:"FL", t:"Florida"},{v:"GA", t:"Georgia"},{v:"HI", t:"Hawaii"},{v:"ID", t:"Idaho"},
@@ -1554,668 +695,424 @@ function qsa(sel, root){ return Array.prototype.slice.call((root || document).qu
     {v:"WI", t:"Wisconsin"},{v:"WY", t:"Wyoming"}
   ];
 
-  function setBranch(branch){
-    state.branch = branch;
-    state.stepIndex = 0;
-    state.steps = (branch === "sell") ? SELL_STEPS.slice() : BUY_STEPS.slice();
-    state.answers = { branch: branch };
-    renderStep();
+  var state = {
+    branch: null,
+    stepIndex: 0,
+    steps: [],
+    answers: {}
+  };
+
+  function showStatus(msg, isError){
+    var note = qs("#funnelNote");
+    if (!note) return;
+    note.textContent = msg || "Built for owner-operated businesses. Not franchises. Not corporate M&A.";
+    note.style.color = isError ? "#b91c1c" : "rgba(15,23,42,.60)";
   }
 
-  function computeProgress(){
-    if (!state.steps.length) return 0;
-    return Math.round((state.stepIndex / (state.steps.length - 1)) * 100);
+  function currentStep(){
+    return state.steps[state.stepIndex] || null;
   }
 
   function setProgress(){
     var fill = qs("#funnelProgressFill");
     var label = qs("#funnelStepLabel");
+    if (!state.branch){
+      if (fill) fill.style.width = "0%";
+      if (label) label.textContent = "Step 1 of 1";
+      return;
+    }
     var total = state.steps.length || 1;
     var current = Math.min(state.stepIndex + 1, total);
-    if (fill) fill.style.width = computeProgress() + "%";
+    var pct = total <= 1 ? 0 : Math.round((state.stepIndex / (total - 1)) * 100);
+    if (fill) fill.style.width = pct + "%";
     if (label) label.textContent = "Step " + current + " of " + total;
   }
 
-  function setHeader(step){
-    qs("#funnelQuestion").textContent = step.title;
-    qs("#funnelHelper").textContent = step.helper || "";
+  function setHeader(title, helper){
+    qs("#funnelQuestion").textContent = title || "";
+    qs("#funnelHelper").textContent = helper || "";
+  }
+
+  function updateActions(){
+    var actions = qs("#funnelActions");
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    if (!actions || !backBtn || !nextBtn) return;
+
+    if (!state.branch){
+      actions.hidden = true;
+      return;
+    }
+
+    actions.hidden = false;
+    backBtn.style.visibility = "visible";
+    nextBtn.style.visibility = "visible";
+
+    backBtn.disabled = false;
+    nextBtn.disabled = !canProceed();
+
+    if (currentStep() && currentStep().type === "contact"){
+      nextBtn.textContent = "Submit";
+    } else {
+      nextBtn.textContent = "Next";
+    }
+  }
+
+  function canProceed(){
+    var step = currentStep();
+    if (!step) return false;
+
+    if (step.type === "choice"){
+      var val = state.answers[step.id];
+      if (!val) return false;
+      if (step.other && val === "other"){
+        var k = step.otherKey || (step.id + "_other");
+        return !!String(state.answers[k] || "").trim();
+      }
+      return true;
+    }
+
+    if (step.type === "seller_location"){
+      return !!(state.answers.business_name && state.answers.business_street && state.answers.business_city && state.answers.business_state && state.answers.business_zip);
+    }
+
+    if (step.type === "buyer_location"){
+      return !!(state.answers.want_city && state.answers.want_state);
+    }
+
+    if (step.type === "contact"){
+      var ready = !!(state.answers.first_name && state.answers.last_name && state.answers.email && state.answers.phone);
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      var token = tokenEl ? String(tokenEl.value || "").trim() : "";
+      return ready && !!token;
+    }
+
+    return false;
   }
 
   function renderBranchChoice(){
-    qs("#funnelActions").hidden = true;
-    qs("#funnelBody").innerHTML = '';
+    document.body.dataset.funnelBranch = "none";
+    setProgress();
+    setHeader("What are you here to do?", "Choose one to start. You can switch later.");
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+
     var body = qs("#funnelBody");
+    body.innerHTML = "";
 
     var grid = document.createElement("div");
     grid.className = "choiceGrid choiceGrid--two";
 
-    var sellBtn = tileButton("sell", "💼", "I want to sell my business", "Understand value, timeline, and the best next steps.");
-    var buyBtn = tileButton("buy", "🧾", "I want to buy a business", "Find the right type of deal without the franchise route.");
-
-    grid.appendChild(sellBtn);
-    grid.appendChild(buyBtn);
-    body.appendChild(grid);
-
-    function tileButton(branch, icon, title, sub){
+    function makeTile(branch, icon, title, sub){
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "choiceTile";
-      btn.setAttribute("data-branch", branch);
-
-      var ic = document.createElement("div");
-      ic.className = "choiceIcon";
-      ic.textContent = icon;
-
-      var tx = document.createElement("div");
-      tx.className = "choiceText";
-
-      var t = document.createElement("div");
-      t.className = "choiceTitle";
-      t.textContent = title;
-
-      var s = document.createElement("div");
-      s.className = "choiceSub";
-      s.textContent = sub;
-
-      tx.appendChild(t);
-      tx.appendChild(s);
-
-      btn.appendChild(ic);
-      btn.appendChild(tx);
-
-      btn.addEventListener("click", function(){
-        setBranch(branch);
+      btn.innerHTML =
+        '<div class="choiceIcon" aria-hidden="true">' + icon + '</div>' +
+        '<div class="choiceText">' +
+          '<div class="choiceTitle">' + escapeHtml(title) + '</div>' +
+          '<div class="choiceSub">' + escapeHtml(sub) + '</div>' +
+        '</div>';
+      btn.addEventListener("click", function(e){
+        e.preventDefault();
+        state.branch = branch;
+        document.body.dataset.funnelBranch = branch;
+        state.stepIndex = 0;
+        state.steps = branch === "sell" ? SELL_STEPS.slice() : BUY_STEPS.slice();
+        state.answers = { branch: branch };
+        showStatus("", false);
+        render();
       });
-
       return btn;
     }
 
-    qs("#funnelRestartBtn").style.visibility = "hidden";
-    qs("#funnelStepLabel").textContent = "Step 1 of 1";
-    qs("#funnelProgressFill").style.width = "0%";
-    qs("#funnelQuestion").textContent = "What are you here to do?";
-    qs("#funnelHelper").textContent = "Choose one to start. You can switch later.";
+    grid.appendChild(makeTile("sell", "💼", "I want to sell my business", "Understand value, timeline, and the best next steps."));
+    grid.appendChild(makeTile("buy", "🧾", "I want to buy a business", "Find the right type of deal without the franchise route."));
+    body.appendChild(grid);
+    updateActions();
   }
 
-  function renderChoice(step, grid){
+  function renderChoice(step){
     var body = qs("#funnelBody");
     body.innerHTML = "";
 
     var wrap = document.createElement("div");
-    wrap.className = grid ? "choiceGrid" : "optionList";
-    if (!grid && step.options && step.options.length >= 8) wrap.classList.add("optionList--two");
-    if (grid) {
-      wrap.classList.add("choiceGrid--two");
-      if (step.columns === 1) wrap.classList.remove("choiceGrid--two");
-      if (step.columns === 2) wrap.classList.add("choiceGrid--two");
-    }
-
-    var currentVal = state.answers[step.id];
+    wrap.className = "optionList" + ((step.options && step.options.length >= 8) ? " optionList--two" : "");
 
     step.options.forEach(function(opt){
       var row = document.createElement("button");
       row.type = "button";
-      if (grid) row.className = "choiceTile";
-      else row.className = "optionRow";
+      row.className = "optionRow";
+      row.setAttribute("aria-pressed", state.answers[step.id] === opt.value ? "true" : "false");
+      row.innerHTML =
+        '<span class="optionBullet" aria-hidden="true"></span>' +
+        '<span class="optionText"><span class="optionLabel">' + escapeHtml(opt.label) + '</span></span>';
 
-      row.setAttribute("aria-pressed", (currentVal === opt.value) ? "true" : "false");
-
-      if (grid) {
-        var ic = document.createElement("div");
-        ic.className = "choiceIcon";
-        ic.textContent = "✓";
-        ic.style.opacity = (currentVal === opt.value) ? "1" : "0.35";
-
-        var tx = document.createElement("div");
-        tx.className = "choiceText";
-
-        var t = document.createElement("div");
-        t.className = "choiceTitle";
-        t.textContent = opt.label;
-
-        tx.appendChild(t);
-
-        row.appendChild(ic);
-        row.appendChild(tx);
-      } else {
-        var bullet = document.createElement("div");
-        bullet.className = "optionBullet";
-
-        var tx2 = document.createElement("div");
-        tx2.className = "optionText";
-
-        var label = document.createElement("div");
-        label.className = "optionLabel";
-        label.textContent = opt.label;
-
-        tx2.appendChild(label);
-
-        row.appendChild(bullet);
-        row.appendChild(tx2);
-      }
-
-      row.addEventListener("click", function(){
+      row.addEventListener("click", function(e){
+        e.preventDefault();
         state.answers[step.id] = opt.value;
-        renderStep();
+        if (!(step.other && opt.value === "other")){
+          var ok = step.otherKey || (step.id + "_other");
+          delete state.answers[ok];
+        }
+        render();
+        if (!(step.other && opt.value === "other")){
+          setTimeout(function(){ goNext(); }, 60);
+        }
       });
-
       wrap.appendChild(row);
     });
 
     body.appendChild(wrap);
+
+    if (step.other && state.answers[step.id] === "other"){
+      var f = document.createElement("div");
+      f.className = "field";
+      f.style.marginTop = "12px";
+      f.innerHTML = '<label for="otherInput">Other</label><input id="otherInput" type="text" placeholder="' + escapeHtml(step.otherPlaceholder || "Type here...") + '">';
+      body.appendChild(f);
+
+      var inp = f.querySelector("#otherInput");
+      var key = step.otherKey || (step.id + "_other");
+      inp.value = state.answers[key] || "";
+      inp.addEventListener("input", function(){
+        state.answers[key] = inp.value;
+        updateActions();
+      });
+      inp.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter" && canProceed()){
+          ev.preventDefault();
+          goNext();
+        }
+      });
+      inp.focus();
+    }
   }
 
-  function renderLocationUrl(step, includeUrl){
+  function renderSellerLocation(){
     var body = qs("#funnelBody");
-    body.innerHTML = "";
+    body.innerHTML = '' +
+      '<div class="inputGrid inputGrid--address">' +
+        '<div class="field field--full"><label for="business_name">Business Name</label><input id="business_name" type="text" value="' + escapeHtml(state.answers.business_name || "") + '"></div>' +
+        '<div class="field field--full"><label for="business_street">Street</label><input id="business_street" type="text" value="' + escapeHtml(state.answers.business_street || "") + '"></div>' +
+        '<div class="field"><label for="business_city">City</label><input id="business_city" type="text" value="' + escapeHtml(state.answers.business_city || "") + '"></div>' +
+        '<div class="field"><label for="business_state">State</label><select id="business_state">' + US_STATES.map(function(s){ return '<option value="' + s.v + '"' + (state.answers.business_state === s.v ? ' selected' : '') + '>' + s.t + '</option>'; }).join('') + '</select></div>' +
+        '<div class="field"><label for="business_zip">Zip</label><input id="business_zip" type="text" inputmode="numeric" value="' + escapeHtml(state.answers.business_zip || "") + '"></div>' +
+      '</div>';
 
-    var grid = document.createElement("div");
-    grid.className = "inputGrid";
-
-    var loc = document.createElement("div");
-    loc.className = "field";
-    loc.innerHTML = '<label for="funnel_state">Choose a state</label>';
-    var sel = document.createElement("select");
-    sel.id = "funnel_state";
-    sel.name = "state";
-    sel.autocomplete = "address-level1";
-
-    US_STATES.forEach(function(s){
-      var o = document.createElement("option");
-      o.value = s.v;
-      o.textContent = s.t;
-      sel.appendChild(o);
-    });
-
-    if (state.answers.location_state) sel.value = state.answers.location_state;
-
-    sel.addEventListener("change", function(){
-      state.answers.location_state = sel.value;
-      updateNextEnabled();
-    });
-
-    loc.appendChild(sel);
-    grid.appendChild(loc);
-
-    if (includeUrl) {
-      var url = document.createElement("div");
-      url.className = "field";
-      url.innerHTML = '<label for="funnel_url">Business website URL</label>';
-      var inp = document.createElement("input");
-      inp.type = "url";
-      inp.id = "funnel_url";
-      inp.name = "business_url";
-      inp.placeholder = "https://";
-      inp.autocapitalize = "none";
-      inp.autocomplete = "url";
-      inp.value = state.answers.business_url || "";
-      inp.addEventListener("input", function(){
-        state.answers.business_url = inp.value;
-        updateNextEnabled();
+    ["business_name","business_street","business_city","business_zip"].forEach(function(id){
+      var el = qs("#" + id);
+      el.addEventListener("input", function(){
+        if (id === "business_name" || id === "business_city") {
+          el.value = titleCaseWords(el.value);
+        }
+        state.answers[id] = el.value.trim();
+        updateActions();
       });
-      url.appendChild(inp);
-      grid.appendChild(url);
+      el.addEventListener("blur", function(){
+        if (id === "business_name" || id === "business_city") {
+          el.value = titleCaseWords(el.value);
+          state.answers[id] = el.value.trim();
+          updateActions();
+        }
+      });
+    });
+    qs("#business_state").addEventListener("change", function(){
+      state.answers.business_state = this.value;
+      updateActions();
+    });
+  }
+
+  function renderBuyerLocation(){
+    var body = qs("#funnelBody");
+    body.innerHTML = '' +
+      '<div class="inputGrid">' +
+        '<div class="field"><label for="want_city">City</label><input id="want_city" type="text" value="' + escapeHtml(state.answers.want_city || "") + '"></div>' +
+        '<div class="field"><label for="want_state">State</label><select id="want_state">' + US_STATES.map(function(s){ return '<option value="' + s.v + '"' + (state.answers.want_state === s.v ? ' selected' : '') + '>' + s.t + '</option>'; }).join('') + '</select></div>' +
+      '</div>';
+
+    qs("#want_city").addEventListener("input", function(){
+      this.value = titleCaseWords(this.value);
+      state.answers.want_city = this.value.trim();
+      updateActions();
+    });
+    qs("#want_city").addEventListener("blur", function(){
+      this.value = titleCaseWords(this.value);
+      state.answers.want_city = this.value.trim();
+      updateActions();
+    });
+    qs("#want_state").addEventListener("change", function(){
+      state.answers.want_state = this.value;
+      updateActions();
+    });
+  }
+
+
+  function mountTurnstile(){
+    var host = document.querySelector(".turnstileWrap .cf-turnstile");
+    var tokenInput = document.getElementById("turnstileToken");
+    var hint = document.getElementById("turnstileHint");
+    if (!host || !tokenInput) return;
+
+    function syncToken(v){
+      tokenInput.value = v || "";
+      state.answers.turnstile_token = tokenInput.value || "";
+      try { tokenInput.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      if (hint) hint.textContent = tokenInput.value ? "Verification complete." : "Please complete verification before submitting.";
+      updateActions();
     }
 
-    body.appendChild(grid);
+    window.onTurnstileSuccess = function(token){ syncToken(token); };
+    window.onTurnstileExpired = function(){ syncToken(""); };
+    window.onTurnstileError = function(){ syncToken(""); };
+
+    function tryRender(){
+      if (!window.turnstile || !window.turnstile.render) {
+        window.setTimeout(tryRender, 150);
+        return;
+      }
+      host.innerHTML = "";
+      try{
+        window.turnstile.render(host, {
+          sitekey: document.documentElement.getAttribute("data-turnstile-sitekey") || "",
+          theme: "light",
+          callback: window.onTurnstileSuccess,
+          "expired-callback": window.onTurnstileExpired,
+          "error-callback": window.onTurnstileError
+        });
+      } catch(err) {
+        window.setTimeout(tryRender, 250);
+      }
+    }
+
+    syncToken(state.answers.turnstile_token || "");
+    tryRender();
   }
 
   function renderContact(){
     var body = qs("#funnelBody");
-    body.innerHTML = "";
+    body.innerHTML = '' +
+      '<div class="inputGrid">' +
+        '<div class="field"><label for="firstName">First Name</label><input id="firstName" type="text" value="' + escapeHtml(state.answers.first_name || "") + '"></div>' +
+        '<div class="field"><label for="lastName">Last Name</label><input id="lastName" type="text" value="' + escapeHtml(state.answers.last_name || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" type="email" value="' + escapeHtml(state.answers.email || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" type="tel" value="' + escapeHtml(state.answers.phone || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps.">' + escapeHtml(state.answers.notes || "") + '</textarea></div>' +
+      '</div>' +
+      '<div class="turnstileWrap">' +
+        '<div class="cf-turnstile"></div>' +
+        '<input type="hidden" id="turnstileToken" value="' + escapeHtml(state.answers.turnstile_token || "") + '">' +
+      '</div>' +
+      '<div class="statusLine" id="turnstileHint">Please complete verification before submitting.</div>';
 
-    var form = document.createElement("form");
-    form.id = "funnelContactForm";
-    form.noValidate = true;
+    qs("#firstName").addEventListener("input", function(){ this.value = titleCaseWords(this.value); state.answers.first_name = this.value.trim(); updateActions(); });
+    qs("#firstName").addEventListener("blur", function(){ this.value = titleCaseWords(this.value); state.answers.first_name = this.value.trim(); updateActions(); });
+    qs("#lastName").addEventListener("input", function(){ this.value = titleCaseWords(this.value); state.answers.last_name = this.value.trim(); updateActions(); });
+    qs("#lastName").addEventListener("blur", function(){ this.value = titleCaseWords(this.value); state.answers.last_name = this.value.trim(); updateActions(); });
+    qs("#emailAddress").addEventListener("input", function(){ state.answers.email = this.value.trim(); updateActions(); });
+    qs("#phoneNumber").addEventListener("input", function(){ this.value = phoneFormat(this.value); state.answers.phone = this.value.trim(); updateActions(); });
+    qs("#notes").addEventListener("input", function(){ state.answers.notes = this.value; });
 
-    form.innerHTML = [
-      '<div class="inputGrid">',
-        '<div class="field"><label for="first_name">First Name</label><input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" required></div>',
-        '<div class="field"><label for="last_name">Last Name</label><input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" name="email" type="email" autocomplete="email" autocapitalize="none" required></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" name="phone" type="tel" autocomplete="tel" autocapitalize="none"></div>',
-        '<div class="field" style="grid-column:1 / -1;"><label for="notes">Anything else we should know?</label><textarea id="notes" name="notes" placeholder="Example: I am looking for a convenience store and want to understand timeline and next steps." autocapitalize="sentences"></textarea></div>',
-      '</div>',
-      '<div class="turnstileWrap">',
-        '<div id="turnstileMount" class="turnstileMount"></div>',
-        '<div class="turnstileHint" id="turnstileHint">Security check loads here.</div>',
-        '<input type="hidden" id="turnstileToken" name="cf-turnstile-response" required>',
-      '</div>',
-      '<div class="statusLine" id="funnelStatus" aria-live="polite"></div>'
-    ].join("");
-
-    // restore prior values
-    function restore(id, key){
-      var el = qs("#" + id, form);
-      if (!el) return;
-      if (state.answers[key]) el.value = state.answers[key];
-      el.addEventListener("input", function(){ state.answers[key] = el.value; });
-    }
-    restore("firstName", "contact_first_name");
-    restore("lastName", "contact_last_name");
-    restore("emailAddress", "contact_email");
-    restore("phoneNumber", "contact_phone");
-    restore("notes", "contact_notes");
-
-    // persist on blur for required fields too
-    qsa("input, textarea", form).forEach(function(el){
-      el.addEventListener("blur", function(){
-        var map = {
-          "firstName":"contact_first_name",
-          "lastName":"contact_last_name",
-          "emailAddress":"contact_email",
-          "phoneNumber":"contact_phone",
-          "notes":"contact_notes"
-        };
-        if (map[el.id]) state.answers[map[el.id]] = el.value;
-      });
-    });
-
-    body.appendChild(form);
-  }
-
-  function updateNextEnabled(){
-    var nextBtn = qs('#funnelNextBtn');
-    if(!nextBtn) return;
-    nextBtn.disabled = !canGoNext();
-    nextBtn.style.opacity = nextBtn.disabled ? '0.6' : '1';
-  }
-
-  function canGoNext(){
-    if (!state.steps.length) return false;
-    var step = state.steps[state.stepIndex];
-    if (!step) return false;
-
-    if (step.type === "choice" || step.type === "choice_grid") {
-      return !!state.answers[step.id];
-    }
-
-    if (step.type === "location_url") {
-      return !!state.answers.location_state;
-    }
-
-    if (step.type === "location_only") {
-      return !!state.answers.location_state;
-    }
-
-    if (step.type === "contact") {
-      var form = qs("#funnelContactForm");
-      if (!form) return false;
-      var first = qs("#firstName", form);
-      var last = qs("#lastName", form);
-      var email = qs("#emailAddress", form);
-      return !!(first && last && email && first.value.trim() && last.value.trim() && email.value.trim());
-    }
-    return true;
-  }
-
-  
-
-  // ---- Contact input helpers (auto-cap + phone format) ----
-  function titleCaseName(value) {
-    const raw = String(value || "").trim();
-    if (!raw) return "";
-    return raw
-      .split(/\s+/)
-      .map((word) => {
-        return word
-          .split("-")
-          .map((part) =>
-            part
-              .split("'")
-              .map((p) => (p ? p.charAt(0).toUpperCase() + p.slice(1).toLowerCase() : ""))
-              .join("'")
-          )
-          .join("-");
-      })
-      .join(" ");
-  }
-
-  function bindContactEnhancements() {
-    const first = qs("#firstName");
-    const last = qs("#lastName");
-    const phone = qs("#phoneNumber");
-
-    if (first && !first.dataset.capBound) {
-      first.dataset.capBound = "1";
-      first.autocomplete = "given-name";
-      first.addEventListener("blur", () => {
-        first.value = titleCaseName(first.value);
+    var ts = document.getElementById("turnstileToken");
+    if (ts) {
+      ts.addEventListener("input", function(){
+        state.answers.turnstile_token = ts.value || "";
+        updateActions();
       });
     }
 
-    if (last && !last.dataset.capBound) {
-      last.dataset.capBound = "1";
-      last.autocomplete = "family-name";
-      last.addEventListener("blur", () => {
-        last.value = titleCaseName(last.value);
-      });
-    }
-
-    if (phone && !phone.dataset.phoneBound) {
-      phone.dataset.phoneBound = "1";
-      phone.addEventListener("input", () => {
-        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
-        let out = "";
-        if (digits.length > 0) out = "(" + digits.slice(0, 3);
-        if (digits.length >= 4) out += ") " + digits.slice(3, 6);
-        if (digits.length >= 7) out += "-" + digits.slice(6, 10);
-        phone.value = out || "";
-      });
-      phone.addEventListener("blur", () => {
-        // finalize formatting on blur
-        const digits = phone.value.replace(/\D/g, "").slice(0, 10);
-        if (digits.length === 10) {
-          phone.value = "(" + digits.slice(0, 3) + ") " + digits.slice(3, 6) + "-" + digits.slice(6);
-        }
-      });
-    }
+    mountTurnstile();
+    setTimeout(function(){ updateActions(); }, 200);
   }
 
-  // ---- Turnstile explicit render (step is injected after page load) ----
-  function ensureTurnstileMounted(force){
-    const mount = qs("#turnstileMount");
-    if (!mount) return;
-
-    // If we re-enter the contact step, allow a clean re-render.
-    if (force) {
-      mount.dataset.rendered = "0";
-      mount.innerHTML = "";
-    }
-
-    if (mount.dataset.rendered === "1") return;
-
-    const sitekey = getTurnstileSitekey();
-
-    if (window.turnstile && typeof window.turnstile.render === "function") {
-      try {
-        mount.innerHTML = "";
-        window.__tsWidgetId = window.turnstile.render(mount, {
-          sitekey: sitekey,
-          theme: "light",
-          size: "normal",
-                    callback: function (token) {
-            const tokenInput = qs("#turnstileToken");
-            if (tokenInput) tokenInput.value = token || "";
-            var hint = qs("#turnstileHint");
-            if (hint) hint.style.display = "none";
-          },
-          "error-callback": function () {
-            const tokenInput = qs("#turnstileToken");
-            if (tokenInput) tokenInput.value = "";
-          },
-          "expired-callback": function () {
-            const tokenInput = qs("#turnstileToken");
-            if (tokenInput) tokenInput.value = "";
-          }
-        
-        });
-
-        mount.dataset.rendered = "1";
-
-        // If nothing visible rendered, show a clear hint (commonly blocked by extensions or CSP)
-        setTimeout(function(){
-          var hasFrame = !!mount.querySelector("iframe");
-          var tokenNow = "";
-          var tokenEl = qs("#turnstileToken");
-          if (tokenEl) tokenNow = (tokenEl.value || "").trim();
-          var hint = qs("#turnstileHint");
-          if (!hint) return;
-
-          if (hasFrame || tokenNow) {
-            hint.style.display = "none";
-            return;
-          }
-
-          hint.style.display = "block";
-          hint.textContent = "Security check blocked. Disable blockers. If you use a Content-Security-Policy header, allow frame-src https://challenges.cloudflare.com.";
-        }, 1400);
-        return;
-      } catch (_) {
-        // fall through to retry
-      }
-    }
-
-    // try again shortly if the script has not loaded yet
-    setTimeout(function(){ ensureTurnstileMounted(force); }, 300);
-  }
-
-  // Turnstile API onload hook (render=explicit)
-  window.tsOnload = function(){
-    try { ensureTurnstileMounted(true); } catch (_) {}
-  };
-function renderStep(){
-    if (!state.branch) {
+  function render(){
+    if (!state.branch){
       renderBranchChoice();
       return;
     }
-
-    var step = state.steps[state.stepIndex];
-    if (!step) return;
-
     qs("#funnelRestartBtn").style.visibility = "visible";
-    setHeader(step);
+    var step = currentStep();
+    setHeader(step.title, step.helper || "");
     setProgress();
 
-    if (step.type === "choice") renderChoice(step, false);
-    else if (step.type === "choice_grid") renderChoice(step, true);
-    else if (step.type === "location_url") renderLocationUrl(step, true);
-    else if (step.type === "location_only") renderLocationUrl(step, false);
+    if (step.type === "choice") renderChoice(step);
+    else if (step.type === "seller_location") renderSellerLocation(step);
+    else if (step.type === "buyer_location") renderBuyerLocation(step);
     else if (step.type === "contact") renderContact();
 
-    var actions = qs("#funnelActions");
-    actions.hidden = false;
+    updateActions();
+  }
 
-    var backBtn = qs("#funnelBackBtn");
-    var nextBtn = qs("#funnelNextBtn");
-
-    backBtn.disabled = (state.stepIndex === 0);
-    backBtn.style.opacity = backBtn.disabled ? "0.5" : "1";
-
-    nextBtn.textContent = (step.type === "contact") ? "Submit" : "Next";
-    nextBtn.disabled = !canGoNext();
-    nextBtn.style.opacity = nextBtn.disabled ? "0.6" : "1";
-
-    if (step.type === "contact") {
-      bindContactEnhancements();
-      ensureTurnstileMounted(true);
+  function goPrev(){
+    if (!state.branch) return;
+    if (state.stepIndex <= 0){
+      state.branch = null;
+      state.steps = [];
+      state.stepIndex = 0;
+      state.answers = {};
+      render();
+      return;
     }
-
-
-    // update selection styling for choice steps
-    qsa('[aria-pressed]', qs("#funnelBody")).forEach(function(btn){
-      btn.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          btn.click();
-        }
-      });
-    });
+    state.stepIndex -= 1;
+    render();
   }
 
-  function showStatus(msg, isError){
-    var el = qs("#funnelStatus");
-    if (!el) return;
-    el.textContent = msg || "";
-    el.className = "statusLine" + (isError ? " statusLine--error" : "");
-  }
+  function goNext(){
+    if (!state.branch) return;
+    var step = currentStep();
+    if (!step) return;
 
-  async function submitFunnel(){
-    var form = qs("#funnelContactForm");
-    if (!form) return;
-
-    var first = titleCaseName(qs("#firstName", form).value);
-    var last = titleCaseName(qs("#lastName", form).value);
-    var email = qs("#emailAddress", form).value.trim();
-    var phone = qs("#phoneNumber", form).value.trim();
-    var notes = qs("#notes", form).value.trim();
-
-    state.answers.contact_first_name = first;
-    state.answers.contact_last_name = last;
-    state.answers.contact_email = email;
-    state.answers.contact_phone = phone;
-    state.answers.contact_notes = notes;
-
-    var tokenEl = form.querySelector('#turnstileToken') || form.querySelector('input[name="cf-turnstile-response"]');
-    var token = tokenEl ? String(tokenEl.value || "").trim() : "";
-
-    if (!token) {
-      showStatus("Please complete the Turnstile check, then submit again.", true);
+    if (!canProceed()){
+      updateActions();
       return;
     }
 
-    var formData = new FormData();
-    formData.append("source", "funnel");
-    formData.append("branch", state.branch);
-    formData.append("answers_json", JSON.stringify(state.answers));
-    formData.append("first_name", first);
-    formData.append("last_name", last);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("message", notes);
-    formData.append("cf-turnstile-response", token);
-
-    showStatus("Submitting...", false);
-
-    try {
-      var resp = await fetch("/api/early-access", {
-        method: "POST",
-        body: formData
-      });
-
-      if (!resp.ok) {
-        var txt = await resp.text();
-        throw new Error(txt || "Request failed");
-      }
-
-      showStatus("Success. You are on the early access list.", false);
-      qs("#funnelNextBtn").disabled = true;
-      qs("#funnelBackBtn").disabled = true;
-      qs("#funnelRestartBtn").disabled = false;
-    } catch (e) {
-      showStatus("Something went wrong. Please try again in a moment.", true);
+    if (step.type === "contact"){
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      state.answers.turnstile_token = tokenEl ? (tokenEl.value || "") : "";
+      console.log("Funnel payload", state.answers);
+      alert("Form submit wiring comes next. Data is ready to send to Apps Script.");
+      return;
     }
+
+    if (state.branch === "sell" && step.id === "sell_urgency" && state.answers.sell_urgency === "not_right_now_talk"){
+      state.stepIndex = state.steps.length - 1;
+      render();
+      return;
+    }
+
+    state.stepIndex += 1;
+    if (state.stepIndex >= state.steps.length) state.stepIndex = state.steps.length - 1;
+    render();
   }
 
   function bindActions(){
-    qs("#funnelRestartBtn").addEventListener("click", function(){
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    var restartBtn = qs("#funnelRestartBtn");
+    if (backBtn) backBtn.addEventListener("click", function(e){ e.preventDefault(); goPrev(); });
+    if (nextBtn) nextBtn.addEventListener("click", function(e){ e.preventDefault(); goNext(); });
+    if (restartBtn) restartBtn.addEventListener("click", function(e){
+      e.preventDefault();
       state.branch = null;
-      state.stepIndex = 0;
       state.steps = [];
+      state.stepIndex = 0;
       state.answers = {};
-      renderBranchChoice();
-    });
-
-    qs("#funnelBackBtn").addEventListener("click", function(){
-      if (state.stepIndex > 0) {
-        state.stepIndex -= 1;
-        showStatus("", false);
-        renderStep();
-      }
-    });
-
-    qs("#funnelNextBtn").addEventListener("click", function(){
-      if (!state.steps.length) return;
-
-      var step = state.steps[state.stepIndex];
-      if (!step) return;
-
-      if (step.type === "contact") {
-        submitFunnel();
-        return;
-      }
-
-      if (!canGoNext()) {
-        renderStep();
-        return;
-      }
-
-      if (state.stepIndex < state.steps.length - 1) {
-        state.stepIndex += 1;
-        showStatus("", false);
-        renderStep();
-      }
-    });
-
-    // keep Next button enabled state in sync for contact typing
-    document.addEventListener("input", function(){
-      if (!state.branch) return;
-      updateNextEnabled();
-    });
-    document.addEventListener("change", function(){
-      if (!state.branch) return;
-      updateNextEnabled();
+      render();
     });
   }
 
   function init(){
+    document.body.dataset.funnelBranch = "none";
     bindActions();
-    renderBranchChoice();
+    render();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})()
 </script>
 
-<script>
-/* Failsafe: load header/footer includes if includes.js did not (works on subpaths too). */
-(function(){
-  function inject(id, url){
-    var el = document.getElementById(id);
-    if(!el) return;
-    if(el.childElementCount > 0) return;
-    fetch(url, { cache: "no-cache" })
-      .then(function(r){ return r.ok ? r.text() : ""; })
-      .then(function(markup){
-        if(!markup) return;
-        el.innerHTML = markup;
-        if (typeof window.initSiteNav === "function") { try { window.initSiteNav(); } catch(e) {} }
-        if (typeof window.initMobileNav === "function") { try { window.initMobileNav(); } catch(e) {} }
-      })
-      .catch(function(){});
-  }
-  document.addEventListener("DOMContentLoaded", function(){
-    inject("siteHeader", "/assets/includes/header.html");
-    inject("siteFooter", "/assets/includes/footer.html");
-  });
-})();
 
-  // Turnstile: dynamic render (contact step is injected after page load)
-  let __turnstileWidgetId = null;
-  function initTurnstileIfNeeded(){
-    const mount = document.getElementById('turnstileMount');
-    const token = document.getElementById('turnstileToken');
-    if(!mount || !token) return;
-    const siteKey = document.documentElement.getAttribute('data-turnstile-sitekey') || '';
-    // If already rendered, keep token as-is (Turnstile manages it)
-    if(__turnstileWidgetId !== null) return;
-    // Script may not be loaded yet
-    if(!window.turnstile || !siteKey){
-      setTimeout(initTurnstileIfNeeded, 250);
-      return;
-    }
-    __turnstileWidgetId = window.turnstile.render(mount, {
-      sitekey: siteKey,
-      theme: 'light',
-      callback: (t) => { token.value = t || ''; },
-      'expired-callback': () => { token.value = ''; },
-      'error-callback': () => { token.value = ''; }
-    });
-  }
-
-  function resetTurnstile(){
-    const token = document.getElementById('turnstileToken');
-    if(token) token.value = '';
-    if(window.turnstile && __turnstileWidgetId !== null){
-      try{ window.turnstile.reset(__turnstileWidgetId); } catch(e){}
-    }
-  }
-
-</script>
 
 </body>
 </html>
