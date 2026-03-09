@@ -54,7 +54,7 @@ html,body{
 }
 
 body{
-  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--text-primary);
   background:var(--bg-soft);
   line-height:1.6;
@@ -941,6 +941,120 @@ footer.bbas-footer span{
 @media (max-width:720px){
   .funnelNote{
     padding:14px 16px 18px !important;
+  }
+}
+
+
+
+/* =====================================================
+   PROGRESS META + TRUST PILL POLISH
+   ===================================================== */
+
+.funnelProgress{
+  margin-bottom:18px !important;
+}
+
+.funnelProgressMeta{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  margin-top:10px !important;
+}
+
+#funnelStepLabel{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:20px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  color:rgba(255,255,255,.82) !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  letter-spacing:.04em !important;
+  text-shadow:0 1px 2px rgba(0,0,0,.22) !important;
+  opacity:1 !important;
+}
+
+#funnelRestartBtn,
+.linkBtn{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:20px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  color:rgba(255,255,255,.92) !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  letter-spacing:.02em !important;
+  text-decoration:none !important;
+  opacity:1 !important;
+}
+
+#funnelRestartBtn:hover,
+.linkBtn:hover{
+  color:#FFFFFF !important;
+}
+
+.trustPill{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  min-height:34px !important;
+  padding:7px 14px !important;
+  border-radius:999px !important;
+  border:1px solid #D6E4D8 !important;
+  background:#F3FAF4 !important;
+  color:#4B5563 !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  letter-spacing:-0.01em !important;
+  box-shadow:none !important;
+}
+
+.trustPill .trustDot,
+.trustPill .dot{
+  width:10px !important;
+  height:10px !important;
+  border-radius:999px !important;
+  background:#22C55E !important;
+  box-shadow:0 0 0 6px rgba(34,197,94,.12) !important;
+  flex:0 0 auto !important;
+}
+
+.trustHead{
+  margin-bottom:16px !important;
+}
+
+.trustTitle{
+  margin-top:10px !important;
+}
+
+@media (max-width: 720px){
+  .funnelProgress{
+    margin-bottom:14px !important;
+  }
+
+  .funnelProgressMeta{
+    margin-top:8px !important;
+  }
+
+  #funnelStepLabel,
+  #funnelRestartBtn,
+  .linkBtn{
+    font-size:11.5px !important;
+  }
+
+  .trustPill{
+    min-height:32px !important;
+    padding:6px 12px !important;
   }
 }
 
