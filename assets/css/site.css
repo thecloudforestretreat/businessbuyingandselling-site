@@ -54,7 +54,7 @@ html,body{
 }
 
 body{
-  font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--text-primary);
   background:var(--bg-soft);
   line-height:1.6;
