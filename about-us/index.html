@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Business Buying and Selling</title>
 
-  <!-- Global styles (do not change) -->
   <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/header.css" />
 
-  <!-- Page styles: scoped to this page only -->
   <style>
     :root {
       --bbas-text: #1F2937;
@@ -30,7 +29,6 @@
       background: #f6f8fb;
     }
 
-    /* Keep body width aligned with header/footer */
     .bbas-page {
       width: 100%;
       overflow-x: hidden;
@@ -44,17 +42,17 @@
     }
 
     .bbas-main {
-      padding: 26px 0 40px;
+      padding: 26px 0 42px;
     }
 
-    /* Hero */
     .bbas-hero {
       position: relative;
       border-radius: 26px;
       overflow: hidden;
-      background: radial-gradient(1200px 600px at 10% 0%, rgba(96,165,250,0.30), transparent 55%),
-                  radial-gradient(900px 500px at 85% 10%, rgba(245,158,11,0.18), transparent 60%),
-                  linear-gradient(135deg, #111827, #1B263B);
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(96,165,250,0.30), transparent 55%),
+        radial-gradient(900px 500px at 85% 10%, rgba(245,158,11,0.18), transparent 60%),
+        linear-gradient(135deg, #111827, #1B263B);
       color: #fff;
       box-shadow: var(--bbas-shadow);
       border: 1px solid rgba(255,255,255,0.10);
@@ -62,7 +60,7 @@
 
     .bbas-hero-inner {
       display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
+      grid-template-columns: 1.2fr 0.95fr;
       gap: 18px;
       padding: 34px;
       align-items: center;
@@ -102,15 +100,15 @@
       margin: 0;
       color: rgba(255,255,255,0.86);
       font-size: 15px;
-      line-height: 1.55;
-      max-width: 60ch;
+      line-height: 1.6;
+      max-width: 62ch;
     }
 
     .bbas-hero-cta {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .bbas-btn {
@@ -155,17 +153,17 @@
     }
 
     .bbas-hero-panel h3 {
-      margin: 0 0 4px;
-      font-size: 14px;
+      margin: 0 0 6px;
+      font-size: 15px;
       letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255,255,255,0.94);
     }
 
     .bbas-hero-panel p {
       margin: 0 0 12px;
-      font-size: 12.5px;
+      font-size: 12.75px;
       color: rgba(255,255,255,0.78);
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .bbas-pillgrid {
@@ -195,7 +193,6 @@
       line-height: 1.35;
     }
 
-    /* Sections */
     .bbas-section {
       margin-top: 22px;
     }
@@ -209,12 +206,12 @@
     }
 
     .bbas-section-head {
-      padding: 18px 18px 0;
+      padding: 20px 20px 0;
     }
 
     .bbas-section-title {
       margin: 0;
-      font-size: 24px;
+      font-size: 26px;
       color: var(--bbas-text);
       letter-spacing: -0.01em;
     }
@@ -223,42 +220,43 @@
       margin: 8px 0 0;
       color: var(--bbas-muted);
       font-size: 14px;
-      line-height: 1.55;
-      max-width: 80ch;
+      line-height: 1.6;
+      max-width: 76ch;
+    }
+
+    .bbas-grid-2,
+    .bbas-grid-3 {
+      display: grid;
+      gap: 14px;
+      padding: 18px 20px 20px;
+    }
+
+    .bbas-grid-2 {
+      grid-template-columns: 1fr 1fr;
     }
 
     .bbas-grid-3 {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      padding: 16px 18px 18px;
     }
 
     .bbas-mini {
       border-radius: 16px;
       border: 1px solid var(--bbas-border);
       background: linear-gradient(180deg, #ffffff, #fbfdff);
-      padding: 14px;
+      padding: 16px;
     }
 
     .bbas-mini h4 {
-      margin: 0 0 6px;
-      font-size: 14px;
+      margin: 0 0 8px;
+      font-size: 15px;
       color: var(--bbas-text);
     }
 
     .bbas-mini p {
       margin: 0;
-      font-size: 12.75px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.6;
       color: var(--bbas-muted);
-    }
-
-    .bbas-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      padding: 16px 18px 18px;
     }
 
     .bbas-list {
@@ -266,14 +264,14 @@
       padding-left: 18px;
       color: var(--bbas-muted);
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .bbas-kicker {
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.18);
@@ -293,20 +291,48 @@
       box-shadow: 0 0 0 3px rgba(34,197,94,0.20);
     }
 
-    /* Responsive */
+    .bbas-story-wrap {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      padding: 18px 20px 20px;
+    }
+
+    .bbas-story-box {
+      border-radius: 18px;
+      border: 1px solid var(--bbas-border);
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+      padding: 18px;
+    }
+
+    .bbas-story-box h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--bbas-text);
+      letter-spacing: -0.01em;
+    }
+
+    .bbas-story-box p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--bbas-muted);
+    }
+
     @media (max-width: 980px) {
-      .bbas-hero-inner {
+      .bbas-hero-inner,
+      .bbas-grid-2,
+      .bbas-grid-3,
+      .bbas-story-wrap {
         grid-template-columns: 1fr;
+      }
+
+      .bbas-hero-inner {
         padding: 26px;
       }
+
       .bbas-hero h1 {
         font-size: 36px;
-      }
-      .bbas-grid-3 {
-        grid-template-columns: 1fr;
-      }
-      .bbas-grid-2 {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -314,24 +340,21 @@
       .bbas-container {
         padding: 0 16px;
       }
+
       .bbas-hero h1 {
         font-size: 30px;
       }
+
       .bbas-pillgrid {
         grid-template-columns: 1fr;
       }
     }
 
-    /* Prevent any accidental full-width elements */
     img, video, iframe { max-width: 100%; height: auto; }
   </style>
-
-    <link rel="stylesheet" href="/assets/css/site.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-  </head>
+</head>
 <body>
   <div class="bbas-page">
-    <!-- Header include mount -->
     <div id="siteHeader"></div>
 
     <main class="bbas-main">
@@ -343,8 +366,7 @@
               <div class="bbas-chip"><span class="bbas-dot" aria-hidden="true"></span>About Business Buying and Selling</div>
               <h1>A clearer path to buying or selling a real business.</h1>
               <p>
-                We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses
-                like convenience stores, gas stations, smoke and vape shops, small retail, service shops, and local operators.
+                We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses.
                 Our mission is to reduce confusion, raise clarity, and help buyers and owners move with confidence.
               </p>
               <div class="bbas-hero-cta">
@@ -355,74 +377,99 @@
               <div class="bbas-kicker"><i aria-hidden="true"></i>Built for owners and first-time buyers. Not franchises. Not corporate M&amp;A.</div>
             </div>
 
-            <aside class="bbas-hero-panel" aria-label="What we optimize for">
-              <h3>What we optimize for</h3>
-              <p>Less confusion. Better decisions. Faster momentum for buyers and owners who want options.</p>
+            <aside class="bbas-hero-panel" aria-label="What guides us">
+              <h3>What guides us</h3>
+              <p>We focus on clarity, trust, confidentiality, and practical next steps for real buyers and owners.</p>
               <div class="bbas-pillgrid">
-                <div class="bbas-pill"><strong>Clarity</strong><span>Structured listings, clean numbers, real context</span></div>
-                <div class="bbas-pill"><strong>Trust</strong><span>Verification cues and guided next steps</span></div>
-                <div class="bbas-pill"><strong>Speed</strong><span>Qualify interest without endless back and forth</span></div>
-                <div class="bbas-pill"><strong>Education</strong><span>Playbooks that make the process feel doable</span></div>
+                <div class="bbas-pill"><strong>Clarity</strong><span>Simple structure, cleaner listings, fewer surprises</span></div>
+                <div class="bbas-pill"><strong>Trust</strong><span>Transparent communication and real guidance</span></div>
+                <div class="bbas-pill"><strong>Confidentiality</strong><span>Professional handling of sensitive information</span></div>
+                <div class="bbas-pill"><strong>Personal attention</strong><span>Dedicated support throughout the process</span></div>
               </div>
             </aside>
           </div>
         </section>
 
-        <section class="bbas-section" aria-label="Why we exist">
+        <section class="bbas-section" aria-label="Our story and confidentiality">
           <div class="bbas-section-card">
             <div class="bbas-section-head">
-              <h2 class="bbas-section-title">Why we exist</h2>
+              <h2 class="bbas-section-title">Built on trust, transparency, and results.</h2>
               <p class="bbas-section-sub">
-                Buying or selling a small business should not feel like walking into a fog. Too many listings lack the basics,
-                too many conversations start without alignment, and too many people waste time.
-                We are building a better experience for everyday owners and first-time buyers.
+                We want this page to feel clear and direct, just like the experience we are building for buyers and owners.
               </p>
             </div>
 
-            <div class="bbas-grid-3">
-              <div class="bbas-mini">
-                <h4>Cleaner listings</h4>
-                <p>Standard fields that matter: revenue, cash flow, margin, lease, and what is included in the sale.</p>
+            <div class="bbas-story-wrap">
+              <div class="bbas-story-box">
+                <h3>Our Story</h3>
+                <p>
+                  We are passionate about helping businesses like yours achieve their full potential. Our goal is to build long-lasting relationships based on trust, transparency, and results.
+                </p>
               </div>
-              <div class="bbas-mini">
-                <h4>Buyer readiness</h4>
-                <p>Guides and checklists that help you move from interest to action without guesswork.</p>
-              </div>
-              <div class="bbas-mini">
-                <h4>Owner confidence</h4>
-                <p>Plain-language steps that make selling feel possible even if you have never done it before.</p>
+
+              <div class="bbas-story-box">
+                <h3>Confidentiality and Discretion</h3>
+                <p>
+                  Your personal financial information will be treated with the utmost confidentiality and professionalism. Throughout the entire process, you can expect comprehensive marketing support and dedicated personal attention from your broker.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="bbas-section" aria-label="Who this platform is for">
+        <section class="bbas-section" aria-label="What we believe">
           <div class="bbas-section-card">
             <div class="bbas-section-head">
-              <h2 class="bbas-section-title">Who this platform is for</h2>
+              <h2 class="bbas-section-title">What we believe</h2>
               <p class="bbas-section-sub">
-                Built for owners and buyers. Not franchise sales. Not corporate M&amp;A. Real, local businesses.
+                Buying or selling a small business should feel structured, understandable, and achievable.
+              </p>
+            </div>
+
+            <div class="bbas-grid-3">
+              <div class="bbas-mini">
+                <h4>Clarity over noise</h4>
+                <p>We believe buyers and owners make better decisions when the basics are presented clearly and the next step is obvious.</p>
+              </div>
+              <div class="bbas-mini">
+                <h4>Real support</h4>
+                <p>We value dedicated personal attention, practical guidance, and communication that respects your time and goals.</p>
+              </div>
+              <div class="bbas-mini">
+                <h4>Relationships that last</h4>
+                <p>We are not trying to create one-time transactions. We want to build trust that lasts beyond a single deal.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bbas-section" aria-label="Who we serve">
+          <div class="bbas-section-card">
+            <div class="bbas-section-head">
+              <h2 class="bbas-section-title">Who we serve</h2>
+              <p class="bbas-section-sub">
+                We are focused on practical outcomes for real operators, owners, and buyers.
               </p>
             </div>
 
             <div class="bbas-grid-2">
               <div class="bbas-mini">
-                <h4>If you own a business</h4>
-                <p>You might not be ready to sell today. But you want to know your options.</p>
+                <h4>For business owners</h4>
+                <p>You may be exploring options, thinking about timing, or preparing for a future sale. We help create a clearer path forward.</p>
                 <ul class="bbas-list">
-                  <li>Understand what makes your business sellable and valuable.</li>
-                  <li>Learn what buyers ask for and how to prepare your numbers.</li>
-                  <li>Explore timelines and what a smooth process can look like.</li>
+                  <li>Understand how to position your business with more confidence.</li>
+                  <li>Prepare for buyer questions with better organization and clarity.</li>
+                  <li>Move through the process with discretion and dedicated support.</li>
                 </ul>
               </div>
 
               <div class="bbas-mini">
-                <h4>If you want to buy a business</h4>
-                <p>You are tired of the 9 to 5 and do not want the franchise route.</p>
+                <h4>For buyers</h4>
+                <p>You want a practical route into business ownership without unnecessary confusion or friction.</p>
                 <ul class="bbas-list">
-                  <li>Find owner-operated deals with clear metrics and context.</li>
-                  <li>Qualify faster with simple readiness steps and checklists.</li>
-                  <li>Understand what a smart first purchase looks like.</li>
+                  <li>Explore owner-operated opportunities with better structure.</li>
+                  <li>Understand the process with simple guidance and next steps.</li>
+                  <li>Move faster with more confidence and less guesswork.</li>
                 </ul>
               </div>
             </div>
@@ -432,7 +479,6 @@
       </div>
     </main>
 
-    <!-- Footer include mount -->
     <div id="siteFooter"></div>
   </div>
 
