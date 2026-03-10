@@ -4,6 +4,7 @@
     var root = document.querySelector("[data-bbas-header]");
     var toggle = document.querySelector("[data-bbas-nav-toggle]");
     var mobile = document.querySelector("[data-bbas-mobile-nav]");
+
     if (!root || !toggle || !mobile) return false;
     if (toggle.dataset.bbasNavBound === "true") return true;
 
@@ -26,6 +27,7 @@
     toggle.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
+
       var expanded = toggle.getAttribute("aria-expanded") === "true";
       if (expanded) closeMenu();
       else openMenu();
@@ -69,7 +71,7 @@
     });
 
     window.setTimeout(function () {
-      if (observer) observer.disconnect();
+      observer.disconnect();
       initMobileNav();
     }, 4000);
   }
