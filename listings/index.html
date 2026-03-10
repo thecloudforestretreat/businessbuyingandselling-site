@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listings | Business Buying and Selling</title>
+<meta name="description" content="Explore available businesses for sale. Discover owner‑operated opportunities with transparent numbers and real potential.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/header.css">
+
+<style>
+
+body{
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
+background:#FAFAFA;
+color:#1F2937;
+}
+
+.container{
+max-width:1120px;
+margin:auto;
+padding:0 20px;
+}
+
+.hero{
+margin-top:20px;
+border-radius:24px;
+padding:42px;
+color:white;
+background:
+linear-gradient(90deg,rgba(17,24,39,.9),rgba(17,24,39,.65)),
+url("/assets/images/bbas_homepage_hero_03.jpg");
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:44px;
+line-height:1.1;
+margin-bottom:14px;
+}
+
+.hero p{
+max-width:560px;
+font-size:17px;
+opacity:.92;
+}
+
+.filters{
+margin-top:26px;
+background:white;
+border:1px solid #E5E7EB;
+border-radius:18px;
+padding:18px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+box-shadow:0 8px 24px rgba(0,0,0,.05);
+}
+
+.filters select,
+.filters input{
+width:100%;
+border:1px solid #CBD5E1;
+border-radius:12px;
+padding:10px 12px;
+font-size:14px;
+}
+
+.listings{
+margin-top:30px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.card{
+background:white;
+border:1px solid #E5E7EB;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 24px rgba(0,0,0,.06);
+display:flex;
+flex-direction:column;
+}
+
+.card-img{
+height:160px;
+background:#1B263B;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:14px;
+}
+
+.card-body{
+padding:18px;
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.card h3{
+font-size:18px;
+margin-bottom:6px;
+}
+
+.location{
+font-size:13px;
+color:#64748B;
+margin-bottom:10px;
+}
+
+.metrics{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:6px;
+font-size:13px;
+margin-bottom:14px;
+}
+
+.metric strong{
+display:block;
+font-size:14px;
+}
+
+.card button{
+margin-top:auto;
+border:none;
+background:#2563EB;
+color:white;
+padding:12px;
+border-radius:999px;
+font-weight:700;
+cursor:pointer;
+}
+
+.card button:hover{
+background:#1D4ED8;
+}
+
+.investor{
+margin-top:40px;
+background:white;
+border-radius:20px;
+border:1px solid #E5E7EB;
+padding:30px;
+}
+
+.investor h2{
+margin-bottom:12px;
+}
+
+.investor-grid{
+margin-top:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+}
+
+.investor-card{
+border:1px solid #E5E7EB;
+border-radius:16px;
+padding:16px;
+background:#FAFAFA;
+}
+
+@media (max-width:900px){
+
+.listings{
+grid-template-columns:1fr;
+}
+
+.filters{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.investor-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="siteHeader"></div>
+
+<main>
+
+<div class="container">
+
+<section class="hero">
+<h1>Discover businesses ready for their next chapter.</h1>
+<p>
+Our marketplace focuses on real owner operated opportunities. Each listing highlights the numbers, context, and potential buyers actually care about.
+</p>
+</section>
+
+<section class="filters">
+
+<select>
+<option>Business Type</option>
+<option>Retail</option>
+<option>Convenience Store</option>
+<option>Gas Station</option>
+<option>Restaurant</option>
+<option>Service Business</option>
+</select>
+
+<select>
+<option>Location</option>
+<option>California</option>
+<option>Texas</option>
+<option>Florida</option>
+<option>New York</option>
+</select>
+
+<select>
+<option>Price Range</option>
+<option>$100k - $250k</option>
+<option>$250k - $500k</option>
+<option>$500k - $1M</option>
+<option>$1M+</option>
+</select>
+
+<input placeholder="Search keywords">
+
+</section>
+
+<section class="listings">
+
+<div class="card">
+<div class="card-img">Listing Image</div>
+<div class="card-body">
+<h3>Neighborhood Convenience Store</h3>
+<div class="location">Phoenix, Arizona</div>
+<div class="metrics">
+<div class="metric"><strong>$780k</strong>Revenue</div>
+<div class="metric"><strong>$145k</strong>Cash Flow</div>
+<div class="metric"><strong>$420k</strong>Asking Price</div>
+<div class="metric"><strong>12 yrs</strong>Established</div>
+</div>
+<button>View Details</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">Listing Image</div>
+<div class="card-body">
+<h3>Local Service Company</h3>
+<div class="location">Austin, Texas</div>
+<div class="metrics">
+<div class="metric"><strong>$520k</strong>Revenue</div>
+<div class="metric"><strong>$160k</strong>Cash Flow</div>
+<div class="metric"><strong>$495k</strong>Asking Price</div>
+<div class="metric"><strong>8 yrs</strong>Established</div>
+</div>
+<button>View Details</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">Listing Image</div>
+<div class="card-body">
+<h3>Independent Coffee Shop</h3>
+<div class="location">San Diego, California</div>
+<div class="metrics">
+<div class="metric"><strong>$640k</strong>Revenue</div>
+<div class="metric"><strong>$120k</strong>Cash Flow</div>
+<div class="metric"><strong>$350k</strong>Asking Price</div>
+<div class="metric"><strong>6 yrs</strong>Established</div>
+</div>
+<button>View Details</button>
+</div>
+</div>
+
+</section>
+
+<section class="investor">
+
+<h2>Why investors and buyers like this marketplace</h2>
+
+<p>
+Traditional business listings often lack clarity. Our platform focuses on transparency, better buyer readiness, and structured information that helps both sides move forward confidently.
+</p>
+
+<div class="investor-grid">
+
+<div class="investor-card">
+<strong>Clear numbers</strong>
+<p>Revenue, cash flow, and deal structure presented in a consistent format.</p>
+</div>
+
+<div class="investor-card">
+<strong>Serious buyers</strong>
+<p>Buyers move through readiness steps before accessing deeper listing details.</p>
+</div>
+
+<div class="investor-card">
+<strong>Owner support</strong>
+<p>Sellers receive guidance on documentation, valuation context, and deal preparation.</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="/assets/js/includes.js"></script>
+<script src="/assets/js/site.js"></script>
+
+</body>
+</html>
