@@ -1,1 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy a Business | Business Buying and Selling</title>
+  <meta name="description" content="Guidance, support, and practical next steps for buyers exploring business ownership." />
+  <meta property="og:title" content="Buy a Business | Business Buying and Selling" />
+  <meta property="og:description" content="A clearer, more confident path into business ownership." />
+  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg" />
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-buy-page-1" />
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260309-buy-page-1" />
+
+  <style>
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:12px;
+      z-index:9999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      color:#1F2937;
+    }
+    .skip-link:focus{ left:12px; }
+
+    body.bbas-page{
+      background:#FAFAFA;
+      color:#1F2937;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    .bbas-main{
+      padding:22px 0 46px;
+    }
+
+    .bbas-container{
+      width:min(1120px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .buy-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      padding:30px 30px 34px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(17,24,39,.90) 0%,
+          rgba(17,24,39,.80) 35%,
+          rgba(17,24,39,.60) 60%,
+          rgba(17,24,39,.48) 100%
+        ),
+        url("/assets/images/bbas_homepage_hero_03.jpg");
+      background-size:cover;
+      background-position:center center;
+      background-repeat:no-repeat;
+      box-shadow:0 18px 42px rgba(15,23,42,.12);
+    }
+
+    .buy-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
+      pointer-events:none;
+    }
+
+    .buy-hero > *{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.90);
+      font-size:13px;
+      font-weight:600;
+      line-height:1.2;
+    }
+
+    .hero-badge .dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:#22C55E;
+      box-shadow:0 0 0 6px rgba(34,197,94,.16);
+      flex:0 0 auto;
+    }
+
+    .buy-hero-grid{
+      display:grid;
+      grid-template-columns:1.16fr .84fr;
+      gap:22px;
+      align-items:start;
+      margin-top:14px;
+    }
+
+    .buy-hero h1{
+      margin:0 0 12px;
+      color:#FFFFFF;
+      font-size:clamp(2.6rem, 5vw, 4.25rem);
+      line-height:1.02;
+      letter-spacing:-0.03em;
+      font-weight:700;
+      text-shadow:0 3px 12px rgba(0,0,0,.28);
+      max-width:10ch;
+    }
+
+    .buy-hero-copy{
+      color:rgba(255,255,255,.92);
+      font-size:16px;
+      line-height:1.7;
+      max-width:60ch;
+    }
+
+    .buy-hero-copy p{
+      margin:0 0 14px;
+      color:inherit;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .hero-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      transition:border-color .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .hero-btn:hover{ transform:translateY(-1px); }
+
+    .hero-btn-primary{
+      background:#2563EB;
+      color:#FFFFFF;
+      box-shadow:0 14px 28px rgba(37,99,235,.22);
+    }
+
+    .hero-btn-primary:hover{ background:#1D4ED8; }
+
+    .hero-btn-secondary{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.18);
+      color:#FFFFFF;
+    }
+
+    .hero-btn-secondary:hover{
+      background:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.28);
+    }
+
+    .buy-sidecard{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:20px;
+      padding:18px;
+      backdrop-filter:blur(10px);
+    }
+
+    .buy-sidepill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:34px;
+      padding:7px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.92);
+      font-size:13px;
+      font-weight:700;
+      line-height:1.2;
+      margin-bottom:12px;
+    }
+
+    .buy-sidepill .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:#F59E0B;
+      box-shadow:0 0 0 6px rgba(245,158,11,.14);
+      flex:0 0 auto;
+    }
+
+    .buy-sidecard h2{
+      margin:0 0 8px;
+      color:#FFFFFF;
+      font-size:clamp(1.6rem, 2.2vw, 2.2rem);
+      line-height:1.15;
+      letter-spacing:-0.02em;
+      font-weight:700;
+    }
+
+    .buy-sidecard p{
+      margin:0 0 14px;
+      color:rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .side-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .side-item{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .side-item strong{
+      display:block;
+      margin:0 0 4px;
+      color:#FFFFFF;
+      font-size:14px;
+      font-weight:700;
+      line-height:1.35;
+    }
+
+    .side-item span{
+      display:block;
+      color:rgba(255,255,255,.78);
+      font-size:12.5px;
+      line-height:1.55;
+    }
+
+    .buy-sections{
+      display:grid;
+      gap:22px;
+      margin-top:22px;
+    }
+
+    .buy-card{
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      border-radius:20px;
+      box-shadow:0 12px 30px rgba(15,23,42,.08);
+      overflow:hidden;
+    }
+
+    .buy-card-head{
+      padding:22px 22px 0;
+    }
+
+    .buy-card h2{
+      margin:0;
+      color:#1F2937;
+      font-size:clamp(1.8rem, 3vw, 2.3rem);
+      line-height:1.12;
+      letter-spacing:-0.02em;
+      font-weight:700;
+    }
+
+    .buy-card-sub{
+      margin:8px 0 0;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.65;
+      max-width:72ch;
+    }
+
+    .buy-grid-3,
+    .buy-grid-2{
+      display:grid;
+      gap:14px;
+      padding:18px 22px 22px;
+    }
+
+    .buy-grid-3{ grid-template-columns:repeat(3,1fr); }
+    .buy-grid-2{ grid-template-columns:1fr 1fr; }
+
+    .buy-mini{
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .buy-mini h3{
+      margin:0 0 8px;
+      color:#1F2937;
+      font-size:18px;
+      line-height:1.25;
+      font-weight:700;
+      letter-spacing:-0.01em;
+    }
+
+    .buy-mini p{
+      margin:0;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .buy-list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#4B5563;
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .buy-list li{ margin-bottom:8px; }
+
+    @media (max-width: 980px){
+      .buy-hero-grid,
+      .buy-grid-3,
+      .buy-grid-2{
+        grid-template-columns:1fr;
+      }
+
+      .buy-hero{ padding:24px 24px 28px; }
+      .side-grid{ grid-template-columns:1fr 1fr; }
+    }
+
+    @media (max-width: 720px){
+      .bbas-main{ padding:16px 0 34px; }
+      .bbas-container{ width:min(1120px, calc(100% - 24px)); }
+      .buy-hero{
+        padding:18px 16px 22px;
+        border-radius:20px;
+      }
+      .hero-actions{ flex-direction:column; }
+      .hero-btn{ width:100%; }
+      .side-grid{ grid-template-columns:1fr; }
+      .buy-card-head,
+      .buy-grid-3,
+      .buy-grid-2{
+        padding-left:16px;
+        padding-right:16px;
+      }
+    }
+  </style>
+</head>
+<body class="bbas-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="siteHeader"></div>
+
+  <main id="main" class="bbas-main">
+    <div class="bbas-container">
+
+      <section class="buy-hero" aria-label="Buy a business hero">
+        <div class="hero-badge"><span class="dot" aria-hidden="true"></span>Buy a Business</div>
+
+        <div class="buy-hero-grid">
+          <div>
+            <h1>Buy a business with more clarity and less guesswork.</h1>
+            <div class="buy-hero-copy">
+              <p>Buying a business does not have to be overwhelming. We guide buyers through the entire process, providing comprehensive guidance and support.</p>
+              <p>From identifying potential opportunities that align with your financial and professional goals to conducting thoughtful due diligence, our goal is to make the path into ownership feel clearer, steadier, and more achievable.</p>
+            </div>
+
+            <div class="hero-actions">
+              <a class="hero-btn hero-btn-primary" href="/">Start here</a>
+              <a class="hero-btn hero-btn-secondary" href="/listings/">Browse listings</a>
+              <a class="hero-btn hero-btn-secondary" href="/contact/">Contact</a>
+            </div>
+          </div>
+
+          <aside class="buy-sidecard" aria-label="What buyers need">
+            <div class="buy-sidepill"><span class="dot" aria-hidden="true"></span>What buyers need</div>
+            <h2>Guidance, support, and practical next steps.</h2>
+            <p>We aim to help buyers move from curiosity to confidence with structure, honest advice, and clearer expectations.</p>
+
+            <div class="side-grid">
+              <div class="side-item">
+                <strong>Aligned opportunities</strong>
+                <span>Businesses that fit your financial goals, background, and level of involvement.</span>
+              </div>
+              <div class="side-item">
+                <strong>Better due diligence</strong>
+                <span>A clearer view of the numbers, risks, and questions that matter before you commit.</span>
+              </div>
+              <div class="side-item">
+                <strong>Honest guidance</strong>
+                <span>Support that is candid, practical, and centered on long-term fit.</span>
+              </div>
+              <div class="side-item">
+                <strong>Smoother transitions</strong>
+                <span>A steadier path into ownership so the move feels structured, not chaotic.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="buy-sections">
+
+        <section class="buy-card" aria-label="Buying support">
+          <div class="buy-card-head">
+            <h2>Support that helps buyers move with confidence.</h2>
+            <p class="buy-card-sub">We know that buying a business can feel like a big step. The right process should reduce uncertainty, not add more of it.</p>
+          </div>
+
+          <div class="buy-grid-3">
+            <div class="buy-mini">
+              <h3>Opportunity fit</h3>
+              <p>We help buyers focus on businesses that align with their financial goals, experience, and long-term professional direction.</p>
+            </div>
+
+            <div class="buy-mini">
+              <h3>Practical due diligence</h3>
+              <p>We emphasize the details that matter, from business fundamentals to the questions that can shape a better buying decision.</p>
+            </div>
+
+            <div class="buy-mini">
+              <h3>Long-term ownership</h3>
+              <p>Our goal is not just to help close a deal, but to support a transition that leads to stability and a successful next phase of life as an owner.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="buy-card" aria-label="What buyers can expect">
+          <div class="buy-card-head">
+            <h2>What buyers can expect</h2>
+            <p class="buy-card-sub">A better buyer experience comes from clarity, candid communication, and support that stays grounded in reality.</p>
+          </div>
+
+          <div class="buy-grid-2">
+            <div class="buy-mini">
+              <h3>Clearer decision-making</h3>
+              <p>We help buyers sort through opportunities in a way that feels structured and understandable.</p>
+              <ul class="buy-list">
+                <li>Identify businesses that align with your financial and professional goals.</li>
+                <li>Understand the process with less confusion and less wasted time.</li>
+                <li>Focus attention on opportunities that make sense for you.</li>
+              </ul>
+            </div>
+
+            <div class="buy-mini">
+              <h3>Smoother transitions</h3>
+              <p>It is our goal that every buyer experience supports a smooth and successful transition into ownership.</p>
+              <ul class="buy-list">
+                <li>Move forward with more confidence and fewer avoidable surprises.</li>
+                <li>Approach due diligence with better questions and clearer expectations.</li>
+                <li>Build toward a long tenure in this new phase of life as a business owner.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
