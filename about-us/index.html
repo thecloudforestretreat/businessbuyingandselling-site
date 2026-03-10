@@ -4,508 +4,540 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us | Business Buying and Selling</title>
+  <meta name="description" content="Learn about Business Buying and Selling, our story, and our commitment to confidentiality, transparency, and results." />
+  <meta property="og:title" content="About Us | Business Buying and Selling" />
+  <meta property="og:description" content="A clearer path to buying or selling a real business." />
+  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg" />
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
-  <link rel="stylesheet" href="/assets/css/site.css" />
-  <link rel="stylesheet" href="/assets/css/header.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-about-aligned-1" />
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260309-about-aligned-1" />
 
   <style>
-    :root {
-      --bbas-text: #1F2937;
-      --bbas-muted: #6B7280;
-      --bbas-border: #E5E7EB;
-      --bbas-surface: #FFFFFF;
-      --bbas-bg: #FAFAFA;
-      --bbas-blue: #2563EB;
-      --bbas-sky: #60A5FA;
-      --bbas-navy: #1B263B;
-      --bbas-midnight: #111827;
-      --bbas-amber: #F59E0B;
-      --bbas-green: #22C55E;
-      --bbas-radius: 20px;
-      --bbas-shadow: 0 10px 30px rgba(17, 24, 39, 0.10);
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:12px;
+      z-index:9999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      color:#1F2937;
+    }
+    .skip-link:focus{ left:12px; }
+
+    body.bbas-page{
+      background:#FAFAFA;
+      color:#1F2937;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
-    body {
-      background: #f6f8fb;
+    .bbas-main{
+      padding:22px 0 46px;
     }
 
-    .bbas-page {
-      width: 100%;
-      overflow-x: hidden;
+    .bbas-container{
+      width:min(1120px, calc(100% - 32px));
+      margin:0 auto;
     }
 
-    .bbas-container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .bbas-main {
-      padding: 26px 0 42px;
-    }
-
-    .bbas-hero {
-      position: relative;
-      border-radius: 26px;
-      overflow: hidden;
+    .about-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      padding:30px 30px 34px;
       background:
-        radial-gradient(1200px 600px at 10% 0%, rgba(96,165,250,0.30), transparent 55%),
-        radial-gradient(900px 500px at 85% 10%, rgba(245,158,11,0.18), transparent 60%),
-        linear-gradient(135deg, #111827, #1B263B);
-      color: #fff;
-      box-shadow: var(--bbas-shadow);
-      border: 1px solid rgba(255,255,255,0.10);
+        linear-gradient(
+          90deg,
+          rgba(17,24,39,.90) 0%,
+          rgba(17,24,39,.80) 35%,
+          rgba(17,24,39,.60) 60%,
+          rgba(17,24,39,.48) 100%
+        ),
+        url("/assets/images/bbas_homepage_hero_03.jpg");
+      background-size:cover;
+      background-position:center center;
+      background-repeat:no-repeat;
+      box-shadow:0 18px 42px rgba(15,23,42,.12);
     }
 
-    .bbas-hero-inner {
-      display: grid;
-      grid-template-columns: 1.2fr 0.95fr;
-      gap: 18px;
-      padding: 34px;
-      align-items: center;
+    .about-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
+      pointer-events:none;
     }
 
-    .bbas-chip {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.92);
-      font-size: 13px;
-      line-height: 1;
-      width: fit-content;
+    .about-hero > *{
+      position:relative;
+      z-index:1;
     }
 
-    .bbas-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: var(--bbas-amber);
-      box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
-      flex: 0 0 auto;
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.90);
+      font-size:13px;
+      font-weight:600;
+      line-height:1.2;
     }
 
-    .bbas-hero h1 {
-      margin: 14px 0 10px;
-      font-size: 44px;
-      line-height: 1.06;
-      letter-spacing: -0.02em;
+    .hero-badge .dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:#F59E0B;
+      box-shadow:0 0 0 6px rgba(245,158,11,.18);
+      flex:0 0 auto;
     }
 
-    .bbas-hero p {
-      margin: 0;
-      color: rgba(255,255,255,0.86);
-      font-size: 15px;
-      line-height: 1.6;
-      max-width: 62ch;
+    .about-hero-grid{
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:22px;
+      align-items:start;
+      margin-top:14px;
     }
 
-    .bbas-hero-cta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
+    .about-hero h1{
+      margin:0 0 12px;
+      color:#FFFFFF;
+      font-size:clamp(2.6rem, 5vw, 4.25rem);
+      line-height:1.02;
+      letter-spacing:-0.03em;
+      font-weight:700;
+      text-shadow:0 3px 12px rgba(0,0,0,.28);
+      max-width:11ch;
     }
 
-    .bbas-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-      transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+    .about-hero-copy{
+      color:rgba(255,255,255,.92);
+      font-size:16px;
+      line-height:1.7;
+      max-width:60ch;
     }
 
-    .bbas-btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.26);
+    .about-hero-copy p{
+      margin:0 0 14px;
+      color:inherit;
     }
 
-    .bbas-btn-primary {
-      background: linear-gradient(135deg, rgba(37,99,235,1), rgba(96,165,250,1));
-      border-color: rgba(255,255,255,0.18);
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
     }
 
-    .bbas-btn-primary:hover {
-      background: linear-gradient(135deg, rgba(37,99,235,1), rgba(37,99,235,0.92));
+    .hero-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      transition:border-color .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
     }
 
-    .bbas-hero-panel {
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
+    .hero-btn:hover{
+      transform:translateY(-1px);
     }
 
-    .bbas-hero-panel h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-      letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.94);
+    .hero-btn-primary{
+      background:#2563EB;
+      color:#FFFFFF;
+      box-shadow:0 14px 28px rgba(37,99,235,.22);
     }
 
-    .bbas-hero-panel p {
-      margin: 0 0 12px;
-      font-size: 12.75px;
-      color: rgba(255,255,255,0.78);
-      line-height: 1.5;
+    .hero-btn-primary:hover{
+      background:#1D4ED8;
     }
 
-    .bbas-pillgrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .hero-btn-secondary{
+      background:rgba(255,255,255,.10);
+      border-color:rgba(255,255,255,.18);
+      color:#FFFFFF;
     }
 
-    .bbas-pill {
-      border-radius: 14px;
-      padding: 10px 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+    .hero-btn-secondary:hover{
+      background:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.28);
     }
 
-    .bbas-pill strong {
-      display: block;
-      font-size: 12.5px;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: 2px;
+    .about-sidecard{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:20px;
+      padding:18px;
+      backdrop-filter:blur(10px);
     }
 
-    .bbas-pill span {
-      display: block;
-      font-size: 11.5px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.35;
+    .about-sidepill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:34px;
+      padding:7px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.92);
+      font-size:13px;
+      font-weight:700;
+      line-height:1.2;
+      margin-bottom:12px;
     }
 
-    .bbas-section {
-      margin-top: 22px;
+    .about-sidepill .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:#22C55E;
+      box-shadow:0 0 0 6px rgba(34,197,94,.14);
+      flex:0 0 auto;
     }
 
-    .bbas-section-card {
-      background: var(--bbas-surface);
-      border: 1px solid var(--bbas-border);
-      border-radius: var(--bbas-radius);
-      box-shadow: 0 10px 26px rgba(17, 24, 39, 0.06);
-      overflow: hidden;
+    .about-sidecard h2{
+      margin:0 0 8px;
+      color:#FFFFFF;
+      font-size:clamp(1.6rem, 2.2vw, 2.2rem);
+      line-height:1.15;
+      letter-spacing:-0.02em;
+      font-weight:700;
     }
 
-    .bbas-section-head {
-      padding: 20px 20px 0;
+    .about-sidecard p{
+      margin:0 0 14px;
+      color:rgba(255,255,255,.82);
+      font-size:14px;
+      line-height:1.65;
     }
 
-    .bbas-section-title {
-      margin: 0;
-      font-size: 26px;
-      color: var(--bbas-text);
-      letter-spacing: -0.01em;
+    .side-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
     }
 
-    .bbas-section-sub {
-      margin: 8px 0 0;
-      color: var(--bbas-muted);
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 76ch;
+    .side-item{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:14px;
     }
 
-    .bbas-grid-2,
-    .bbas-grid-3 {
-      display: grid;
-      gap: 14px;
-      padding: 18px 20px 20px;
+    .side-item strong{
+      display:block;
+      margin:0 0 4px;
+      color:#FFFFFF;
+      font-size:14px;
+      font-weight:700;
+      line-height:1.35;
     }
 
-    .bbas-grid-2 {
-      grid-template-columns: 1fr 1fr;
+    .side-item span{
+      display:block;
+      color:rgba(255,255,255,.78);
+      font-size:12.5px;
+      line-height:1.55;
     }
 
-    .bbas-grid-3 {
-      grid-template-columns: repeat(3, 1fr);
+    .about-sections{
+      display:grid;
+      gap:22px;
+      margin-top:22px;
     }
 
-    .bbas-mini {
-      border-radius: 16px;
-      border: 1px solid var(--bbas-border);
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
-      padding: 16px;
+    .about-card{
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      border-radius:20px;
+      box-shadow:0 12px 30px rgba(15,23,42,.08);
+      overflow:hidden;
     }
 
-    .bbas-mini h4 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      color: var(--bbas-text);
+    .about-card-head{
+      padding:22px 22px 0;
     }
 
-    .bbas-mini p {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--bbas-muted);
+    .about-card h2{
+      margin:0;
+      color:#1F2937;
+      font-size:clamp(1.8rem, 3vw, 2.3rem);
+      line-height:1.12;
+      letter-spacing:-0.02em;
+      font-weight:700;
     }
 
-    .bbas-list {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--bbas-muted);
-      font-size: 13px;
-      line-height: 1.7;
+    .about-card-sub{
+      margin:8px 0 0;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.65;
+      max-width:72ch;
     }
 
-    .bbas-kicker {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      margin-top: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
-      color: #FAFAFA;
-      font-size: 12px;
-      font-weight: 700;
-      width: fit-content;
+    .about-story-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:18px 22px 22px;
     }
 
-    .bbas-kicker i {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--bbas-green);
-      box-shadow: 0 0 0 3px rgba(34,197,94,0.20);
+    .about-story-box,
+    .about-mini{
+      background:#FFFFFF;
+      border:1px solid #E5E7EB;
+      border-radius:16px;
+      padding:18px;
     }
 
-    .bbas-story-wrap {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 14px;
-      padding: 18px 20px 20px;
+    .about-story-box h3,
+    .about-mini h3{
+      margin:0 0 8px;
+      color:#1F2937;
+      font-size:18px;
+      line-height:1.25;
+      font-weight:700;
+      letter-spacing:-0.01em;
     }
 
-    .bbas-story-box {
-      border-radius: 18px;
-      border: 1px solid var(--bbas-border);
-      background: linear-gradient(180deg, #ffffff, #fbfdff);
-      padding: 18px;
+    .about-story-box p,
+    .about-mini p{
+      margin:0;
+      color:#4B5563;
+      font-size:14px;
+      line-height:1.7;
     }
 
-    .bbas-story-box h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      color: var(--bbas-text);
-      letter-spacing: -0.01em;
+    .about-grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      padding:18px 22px 22px;
     }
 
-    .bbas-story-box p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--bbas-muted);
+    .about-grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:18px 22px 22px;
     }
 
-    @media (max-width: 980px) {
-      .bbas-hero-inner,
-      .bbas-grid-2,
-      .bbas-grid-3,
-      .bbas-story-wrap {
-        grid-template-columns: 1fr;
+    .about-list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#4B5563;
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .about-list li{
+      margin-bottom:8px;
+    }
+
+    @media (max-width: 980px){
+      .about-hero-grid,
+      .about-story-grid,
+      .about-grid-3,
+      .about-grid-2{
+        grid-template-columns:1fr;
       }
 
-      .bbas-hero-inner {
-        padding: 26px;
+      .about-hero{
+        padding:24px 24px 28px;
       }
 
-      .bbas-hero h1 {
-        font-size: 36px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .bbas-container {
-        padding: 0 16px;
-      }
-
-      .bbas-hero h1 {
-        font-size: 30px;
-      }
-
-      .bbas-pillgrid {
-        grid-template-columns: 1fr;
+      .side-grid{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    img, video, iframe { max-width: 100%; height: auto; }
+    @media (max-width: 720px){
+      .bbas-main{
+        padding:16px 0 34px;
+      }
+
+      .bbas-container{
+        width:min(1120px, calc(100% - 24px));
+      }
+
+      .about-hero{
+        padding:18px 16px 22px;
+        border-radius:20px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .hero-btn{
+        width:100%;
+      }
+
+      .side-grid{
+        grid-template-columns:1fr;
+      }
+
+      .about-card-head,
+      .about-story-grid,
+      .about-grid-3,
+      .about-grid-2{
+        padding-left:16px;
+        padding-right:16px;
+      }
+    }
   </style>
 </head>
-<body>
-  <div class="bbas-page">
-    <div id="siteHeader"></div>
+<body class="bbas-page">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <main class="bbas-main">
-      <div class="bbas-container">
+  <div id="siteHeader"></div>
 
-        <section class="bbas-hero" aria-label="About hero">
-          <div class="bbas-hero-inner">
-            <div>
-              <div class="bbas-chip"><span class="bbas-dot" aria-hidden="true"></span>About Business Buying and Selling</div>
-              <h1>A clearer path to buying or selling a real business.</h1>
-              <p>
-                We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses.
-                Our mission is to reduce confusion, raise clarity, and help buyers and owners move with confidence.
-              </p>
-              <div class="bbas-hero-cta">
-                <a class="bbas-btn bbas-btn-primary" href="/">Join early access</a>
-                <a class="bbas-btn" href="/listings/">Browse listings</a>
-                <a class="bbas-btn" href="/contact/">Contact</a>
-              </div>
-              <div class="bbas-kicker"><i aria-hidden="true"></i>Built for owners and first-time buyers. Not franchises. Not corporate M&amp;A.</div>
+  <main id="main" class="bbas-main">
+    <div class="bbas-container">
+
+      <section class="about-hero" aria-label="About Business Buying and Selling">
+        <div class="hero-badge"><span class="dot" aria-hidden="true"></span>About Business Buying and Selling</div>
+
+        <div class="about-hero-grid">
+          <div>
+            <h1>A clearer path to buying or selling a real business.</h1>
+            <div class="about-hero-copy">
+              <p>We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses.</p>
+              <p>Our mission is to reduce confusion, raise clarity, and help buyers and owners move with confidence.</p>
             </div>
 
-            <aside class="bbas-hero-panel" aria-label="What guides us">
-              <h3>What guides us</h3>
-              <p>We focus on clarity, trust, confidentiality, and practical next steps for real buyers and owners.</p>
-              <div class="bbas-pillgrid">
-                <div class="bbas-pill"><strong>Clarity</strong><span>Simple structure, cleaner listings, fewer surprises</span></div>
-                <div class="bbas-pill"><strong>Trust</strong><span>Transparent communication and real guidance</span></div>
-                <div class="bbas-pill"><strong>Confidentiality</strong><span>Professional handling of sensitive information</span></div>
-                <div class="bbas-pill"><strong>Personal attention</strong><span>Dedicated support throughout the process</span></div>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section class="bbas-section" aria-label="Our story and confidentiality">
-          <div class="bbas-section-card">
-            <div class="bbas-section-head">
-              <h2 class="bbas-section-title">Built on trust, transparency, and results.</h2>
-              <p class="bbas-section-sub">
-                We want this page to feel clear and direct, just like the experience we are building for buyers and owners.
-              </p>
-            </div>
-
-            <div class="bbas-story-wrap">
-              <div class="bbas-story-box">
-                <h3>Our Story</h3>
-                <p>
-                  We are passionate about helping businesses like yours achieve their full potential. Our goal is to build long-lasting relationships based on trust, transparency, and results.
-                </p>
-              </div>
-
-              <div class="bbas-story-box">
-                <h3>Confidentiality and Discretion</h3>
-                <p>
-                  Your personal financial information will be treated with the utmost confidentiality and professionalism. Throughout the entire process, you can expect comprehensive marketing support and dedicated personal attention from your broker.
-                </p>
-              </div>
+            <div class="hero-actions">
+              <a class="hero-btn hero-btn-primary" href="/">Join early access</a>
+              <a class="hero-btn hero-btn-secondary" href="/listings/">Browse listings</a>
+              <a class="hero-btn hero-btn-secondary" href="/contact/">Contact</a>
             </div>
           </div>
-        </section>
 
-        <section class="bbas-section" aria-label="What we believe">
-          <div class="bbas-section-card">
-            <div class="bbas-section-head">
-              <h2 class="bbas-section-title">What we believe</h2>
-              <p class="bbas-section-sub">
-                Buying or selling a small business should feel structured, understandable, and achievable.
-              </p>
+          <aside class="about-sidecard" aria-label="What guides us">
+            <div class="about-sidepill"><span class="dot" aria-hidden="true"></span>What guides us</div>
+            <h2>Clarity first. Trust always.</h2>
+            <p>We focus on confidentiality, transparency, and practical next steps so buyers and owners can move forward with confidence.</p>
+
+            <div class="side-grid">
+              <div class="side-item">
+                <strong>Confidentiality</strong>
+                <span>Professional handling of sensitive financial information.</span>
+              </div>
+              <div class="side-item">
+                <strong>Transparency</strong>
+                <span>Clear expectations, cleaner communication, fewer surprises.</span>
+              </div>
+              <div class="side-item">
+                <strong>Personal attention</strong>
+                <span>Dedicated support throughout the process from your broker.</span>
+              </div>
+              <div class="side-item">
+                <strong>Results</strong>
+                <span>Long-term relationships built on trust, consistency, and outcomes.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="about-sections">
+
+        <section class="about-card" aria-label="Our story and confidentiality">
+          <div class="about-card-head">
+            <h2>Built on trust, transparency, and results.</h2>
+            <p class="about-card-sub">We want this page to feel clear and direct, just like the experience we are building for buyers and owners.</p>
+          </div>
+
+          <div class="about-story-grid">
+            <div class="about-story-box">
+              <h3>Our Story</h3>
+              <p>We are passionate about helping businesses like yours achieve their full potential. Our goal is to build long-lasting relationships based on trust, transparency, and results.</p>
             </div>
 
-            <div class="bbas-grid-3">
-              <div class="bbas-mini">
-                <h4>Clarity over noise</h4>
-                <p>We believe buyers and owners make better decisions when the basics are presented clearly and the next step is obvious.</p>
-              </div>
-              <div class="bbas-mini">
-                <h4>Real support</h4>
-                <p>We value dedicated personal attention, practical guidance, and communication that respects your time and goals.</p>
-              </div>
-              <div class="bbas-mini">
-                <h4>Relationships that last</h4>
-                <p>We are not trying to create one-time transactions. We want to build trust that lasts beyond a single deal.</p>
-              </div>
+            <div class="about-story-box">
+              <h3>Confidentiality and Discretion</h3>
+              <p>Your personal financial information will be treated with the utmost confidentiality and professionalism. Throughout the entire process, you can expect comprehensive marketing support and dedicated personal attention from your broker.</p>
             </div>
           </div>
         </section>
 
-        <section class="bbas-section" aria-label="Who we serve">
-          <div class="bbas-section-card">
-            <div class="bbas-section-head">
-              <h2 class="bbas-section-title">Who we serve</h2>
-              <p class="bbas-section-sub">
-                We are focused on practical outcomes for real operators, owners, and buyers.
-              </p>
+        <section class="about-card" aria-label="What we believe">
+          <div class="about-card-head">
+            <h2>What we believe</h2>
+            <p class="about-card-sub">Buying or selling a small business should feel structured, understandable, and achievable.</p>
+          </div>
+
+          <div class="about-grid-3">
+            <div class="about-mini">
+              <h3>Clarity over noise</h3>
+              <p>We believe buyers and owners make better decisions when the basics are presented clearly and the next step is obvious.</p>
             </div>
 
-            <div class="bbas-grid-2">
-              <div class="bbas-mini">
-                <h4>For business owners</h4>
-                <p>You may be exploring options, thinking about timing, or preparing for a future sale. We help create a clearer path forward.</p>
-                <ul class="bbas-list">
-                  <li>Understand how to position your business with more confidence.</li>
-                  <li>Prepare for buyer questions with better organization and clarity.</li>
-                  <li>Move through the process with discretion and dedicated support.</li>
-                </ul>
-              </div>
+            <div class="about-mini">
+              <h3>Real support</h3>
+              <p>We value dedicated personal attention, practical guidance, and communication that respects your time and goals.</p>
+            </div>
 
-              <div class="bbas-mini">
-                <h4>For buyers</h4>
-                <p>You want a practical route into business ownership without unnecessary confusion or friction.</p>
-                <ul class="bbas-list">
-                  <li>Explore owner-operated opportunities with better structure.</li>
-                  <li>Understand the process with simple guidance and next steps.</li>
-                  <li>Move faster with more confidence and less guesswork.</li>
-                </ul>
-              </div>
+            <div class="about-mini">
+              <h3>Relationships that last</h3>
+              <p>We are not trying to create one-time transactions. We want to build trust that lasts beyond a single deal.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="about-card" aria-label="Who we serve">
+          <div class="about-card-head">
+            <h2>Who we serve</h2>
+            <p class="about-card-sub">We are focused on practical outcomes for real operators, owners, and buyers.</p>
+          </div>
+
+          <div class="about-grid-2">
+            <div class="about-mini">
+              <h3>For business owners</h3>
+              <p>You may be exploring options, thinking about timing, or preparing for a future sale. We help create a clearer path forward.</p>
+              <ul class="about-list">
+                <li>Understand how to position your business with more confidence.</li>
+                <li>Prepare for buyer questions with better organization and clarity.</li>
+                <li>Move through the process with discretion and dedicated support.</li>
+              </ul>
+            </div>
+
+            <div class="about-mini">
+              <h3>For buyers</h3>
+              <p>You want a practical route into business ownership without unnecessary confusion or friction.</p>
+              <ul class="about-list">
+                <li>Explore owner-operated opportunities with better structure.</li>
+                <li>Understand the process with simple guidance and next steps.</li>
+                <li>Move faster with more confidence and less guesswork.</li>
+              </ul>
             </div>
           </div>
         </section>
 
       </div>
-    </main>
+    </div>
+  </main>
 
-    <div id="siteFooter"></div>
-  </div>
+  <div id="siteFooter"></div>
 
-  <script>
-    (function () {
-      var headerMount = document.getElementById('siteHeader');
-      var footerMount = document.getElementById('siteFooter');
-
-      function inject(url, mount) {
-        return fetch(url, { cache: 'no-cache' })
-          .then(function (r) {
-            if (!r.ok) throw new Error('Failed to load ' + url);
-            return r.text();
-          })
-          .then(function (html) {
-            mount.innerHTML = html;
-          });
-      }
-
-      Promise.all([
-        inject('/assets/includes/header.html', headerMount),
-        inject('/assets/includes/footer.html', footerMount)
-      ]).catch(function (e) {
-        console.warn(e);
-      });
-    })();
-  </script>
+  <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
