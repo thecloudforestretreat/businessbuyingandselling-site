@@ -91,6 +91,7 @@
       font-size:13px;
       font-weight:600;
       line-height:1.2;
+      margin:0 auto;
     }
 
     .hero-badge .dot{
@@ -110,8 +111,27 @@
       margin-top:14px;
     }
 
+
+    .contact-hero-grid > div{
+      text-align:center;
+      margin:0 auto;
+    }
+
+    .contact-sidecard{
+      text-align:center;
+    }
+
+    .side-item{
+      text-align:center;
+    }
+
+    .contact-card,
+    .contact-info-card{
+      text-align:center;
+    }
+
     .contact-hero h1{
-      margin:0 0 12px;
+      margin:0 auto 12px;
       color:#FFFFFF;
       font-size:clamp(2.6rem, 5vw, 4.25rem);
       line-height:1.02;
@@ -119,18 +139,22 @@
       font-weight:700;
       text-shadow:0 3px 12px rgba(0,0,0,.28);
       max-width:10ch;
+      text-align:center;
     }
 
     .contact-hero-copy{
-      color:rgba(255,255,255,.92);
+      color:#FFFFFF;
       font-size:16px;
       line-height:1.7;
-      max-width:60ch;
+      max-width:720px;
+      margin:0 auto;
+      text-align:center;
     }
 
     .contact-hero-copy p{
       margin:0 0 14px;
       color:inherit;
+      text-align:center;
     }
 
     .contact-sidecard{
@@ -154,7 +178,7 @@
       font-size:13px;
       font-weight:700;
       line-height:1.2;
-      margin-bottom:12px;
+      margin:0 auto 12px auto;
     }
 
     .contact-sidepill .dot{
@@ -173,13 +197,15 @@
       line-height:1.15;
       letter-spacing:-0.02em;
       font-weight:700;
+      text-align:center;
     }
 
     .contact-sidecard p{
       margin:0 0 14px;
-      color:rgba(255,255,255,.82);
+      color:rgba(255,255,255,.92);
       font-size:14px;
       line-height:1.65;
+      text-align:center;
     }
 
     .side-grid{
@@ -202,13 +228,15 @@
       font-size:14px;
       font-weight:700;
       line-height:1.35;
+      text-align:center;
     }
 
     .side-item span{
       display:block;
-      color:rgba(255,255,255,.78);
+      color:rgba(255,255,255,.82);
       font-size:12.5px;
       line-height:1.55;
+      text-align:center;
     }
 
     .contact-section{
@@ -244,15 +272,17 @@
       line-height:1.12;
       letter-spacing:-0.02em;
       font-weight:700;
+      text-align:center;
     }
 
     .contact-card-sub,
     .contact-info-sub{
-      margin:8px 0 0;
+      margin:8px auto 0;
       color:#4B5563;
       font-size:14px;
       line-height:1.65;
       max-width:72ch;
+      text-align:center;
     }
 
     .contact-form{
@@ -282,6 +312,7 @@
       font-size:13px;
       font-weight:700;
       line-height:1.4;
+      text-align:center;
     }
 
     .field input,
@@ -322,12 +353,13 @@
       color:#6B7280;
       font-size:12px;
       line-height:1.55;
+      text-align:center;
     }
 
     .turnstile-wrap{
       margin-top:18px;
       display:flex;
-      justify-content:flex-start;
+      justify-content:center;
     }
 
     .status-line{
@@ -335,12 +367,13 @@
       color:#6B7280;
       font-size:13px;
       line-height:1.6;
+      text-align:center;
     }
 
     .contact-actions{
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:center;
       gap:12px;
       margin-top:18px;
       flex-wrap:wrap;
@@ -405,6 +438,7 @@
       font-size:16px;
       font-weight:700;
       line-height:1.3;
+      text-align:center;
     }
 
     .contact-info-item p{
@@ -412,14 +446,17 @@
       color:#4B5563;
       font-size:14px;
       line-height:1.65;
+      text-align:center;
     }
 
     .contact-info-list{
       margin:10px 0 0;
-      padding-left:18px;
+      padding-left:0;
+      list-style-position:inside;
       color:#4B5563;
       font-size:13px;
       line-height:1.7;
+      text-align:center;
     }
 
     .contact-info-list li{
@@ -568,7 +605,7 @@
               <p class="contact-card-sub">Keep it simple. Tell us what you need, and we will make sure it gets to the right place.</p>
             </div>
 
-            <form class="contact-form" id="contactForm" action="REPLACE_WITH_APPS_SCRIPT_URL" method="post" novalidate>
+            <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec" method="post" novalidate>
               <div class="form-grid">
                 <div class="field">
                   <label for="firstName">First Name</label>
@@ -732,18 +769,11 @@
       }
 
       form.addEventListener("submit", function(e){
-        var hasEndpoint = form.getAttribute("action") && form.getAttribute("action").indexOf("REPLACE_WITH_APPS_SCRIPT_URL") === -1;
         var hasToken = token && String(token.value || "").trim();
 
         if (!hasToken){
           e.preventDefault();
           status.textContent = "Please complete verification before submitting.";
-          return;
-        }
-
-        if (!hasEndpoint){
-          e.preventDefault();
-          status.textContent = "Form wiring comes next. Replace the Apps Script URL in the form action.";
           return;
         }
 
@@ -760,51 +790,73 @@
   </script>
 
 <script>
-
 const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec";
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function(){
+  const form = document.querySelector("#contactForm");
+  const status = document.getElementById("contactStatus");
+  const token = document.getElementById("turnstileToken");
+  if (!form) return;
 
-const form = document.querySelector("#contactForm");
-if(!form) return;
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
 
-form.addEventListener("submit", async function(e){
-e.preventDefault();
+    const hasToken = token && String(token.value || "").trim();
+    if (!hasToken) {
+      if (status) status.textContent = "Please complete verification before submitting.";
+      return;
+    }
 
-const data = {
-first_name:form.first_name.value,
-last_name:form.last_name.value,
-email:form.email.value,
-phone:form.phone.value,
-city:form.city.value,
-state:form.state.value,
-topic:form.topic.value,
-message:form.message.value
-};
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const resetBtn = form.querySelector('button[type="reset"]');
+    const originalText = submitBtn ? submitBtn.textContent : "Send message";
 
-try{
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+    if (resetBtn) resetBtn.disabled = true;
+    if (status) status.textContent = "Submitting...";
 
-const res = await fetch(CONTACT_ENDPOINT,{
-method:"POST",
-body:JSON.stringify(data)
-});
+    const formBody = new URLSearchParams();
+    formBody.append("first_name", form.first_name.value || "");
+    formBody.append("last_name", form.last_name.value || "");
+    formBody.append("email", form.email.value || "");
+    formBody.append("phone", form.phone.value || "");
+    formBody.append("city", form.city.value || "");
+    formBody.append("state", form.state.value || "");
+    formBody.append("topic", form.topic.value || "");
+    formBody.append("message", form.message.value || "");
+    formBody.append("turnstile_token", token.value || "");
 
-const json = await res.json();
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        body: formBody
+      });
 
-if(json.success){
-const success = document.querySelector("#formSuccess");
-if(success) success.style.display="block";
-form.reset();
-}else{
-alert("Submission failed: "+json.message);
-}
+      const json = await res.json();
 
-}catch(err){
-alert("Network error");
-}
+      if (json.success) {
+        if (status) status.textContent = "Your message has been sent successfully.";
+        form.reset();
+        if (token) token.value = "";
+        return;
+      }
 
-});
-
+      alert("Submission failed: " + (json.message || "Please try again."));
+      if (status) status.textContent = "Please complete verification before submitting.";
+    } catch (err) {
+      alert("Network error. Please try again.");
+      if (status) status.textContent = "Please complete verification before submitting.";
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+      if (resetBtn) resetBtn.disabled = false;
+    }
+  });
 });
 </script>
 
