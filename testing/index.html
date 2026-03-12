@@ -1245,12 +1245,14 @@ lease terms, and what is included in the sale.</div>
       }
       if (backBtn) backBtn.disabled = true;
 
+      var formBody = new URLSearchParams();
+      Object.keys(state.answers).forEach(function(key){
+        formBody.append(key, state.answers[key] == null ? "" : String(state.answers[key]));
+      });
+
       fetch("https://script.google.com/macros/s/AKfycbwmWUUusHoIwkRKi0Lw48ZstQK_n9fAZh_d_VR4ggnxx3nvXSeAvSCswC8uclI3PU-GfQ/exec", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(state.answers)
+        body: formBody
       })
       .then(function(res){ return res.json(); })
       .then(function(data){
