@@ -2,8 +2,11 @@
 <html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
   <meta charset="utf-8">
-  <title>Business Buying and Selling | Marketplace + Knowledge Hub</title>
+  <title>Business Buying and Selling | Centered Marketing Style Variant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- SEO -->
   <meta name="description" content="A modern marketplace and knowledge hub for buying and selling real, owner-operated businesses. Explore listings, learn valuation basics, and move with confidence.">
@@ -14,13 +17,13 @@
   <meta property="og:url" content="https://businessbuyingandselling.com/">
   <meta property="og:title" content="Business Buying and Selling">
   <meta property="og:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
-  <meta property="og:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
+  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Business Buying and Selling">
   <meta name="twitter:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
-  <meta name="twitter:image" content="https://businessbuyingandselling.com/assets/images/bbas_homepage_hero_03.jpg">
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico">
@@ -28,12 +31,11 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260306-contrast-fix-8">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-inter-clarity-1">
 
-      <link rel="stylesheet" href="/assets/css/header.css?v=20260306-contrast-fix-8">
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260309-inter-clarity-1">
 <!-- Page-level polish (compact, scoped) -->
   <style id="page-structure-only">
-  /* Structural/layout rules only. Visual styling should come from /assets/css/site.css and /assets/css/header.css */
   .skip-link{
     position:absolute;
     left:-999px;
@@ -58,9 +60,7 @@
     background:transparent;
   }
 
-  .hero--funnel .heroBg{
-    display:none;
-  }
+  .hero--funnel .heroBg{ display:none; }
 
   .hero--funnel .container{
     position:relative;
@@ -97,7 +97,7 @@
 
   .heroLead{
     margin:0;
-    max-width:720px;
+    max-width:760px;
   }
 
   .funnelShell{
@@ -115,11 +115,23 @@
     min-width:0;
   }
 
+  .linkBtn{
+    background:transparent;
+    border:0;
+    padding:0;
+    cursor:pointer;
+  }
+
+  .funnelCard{
+    overflow:hidden;
+  }
+
   .funnelProgress{
     display:flex;
     flex-direction:column;
     gap:10px;
-    margin:0 0 14px;
+    padding:20px 22px 0;
+    margin:0;
   }
 
   .funnelProgressTrack{
@@ -138,21 +150,11 @@
     align-items:center;
     justify-content:space-between;
     gap:12px;
-  }
-
-  .linkBtn{
-    background:transparent;
-    border:0;
-    padding:0;
-    cursor:pointer;
-  }
-
-  .funnelCard{
-    overflow:hidden;
+    margin-top:2px;
   }
 
   .funnelCardHeader{
-    padding:22px 22px 12px;
+    padding:18px 22px 12px;
   }
 
   .funnelBody{
@@ -282,6 +284,27 @@
     z-index:1;
   }
 
+  /* First screen: hide progress entirely */
+  body[data-funnel-branch="none"] .funnelProgress{
+    display:none !important;
+  }
+
+  /* Later steps: progress lives neatly inside the card */
+  .funnelCard #funnelStepLabel{
+    color:#6B7280;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.2;
+    letter-spacing:.02em;
+  }
+
+  .funnelCard #funnelRestartBtn{
+    color:#2563EB;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.2;
+  }
+
   @media (max-width:980px){
     .heroTop{
       padding:22px 22px 110px;
@@ -309,6 +332,7 @@
     .inputGrid{
       grid-template-columns:1fr;
     }
+    .funnelProgress,
     .funnelCardHeader,
     .funnelBody,
     .funnelActions,
@@ -362,6 +386,88 @@
   };
 </script>
 
+
+<style id="centered-variant-overrides">
+/* Centered marketing style preview */
+.heroTop{
+  text-align:center !important;
+}
+.heroBadge{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.heroTitle{
+  max-width:14ch !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.heroLead{
+  max-width:760px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  text-align:center !important;
+}
+.funnelCardHeader{
+  text-align:center !important;
+}
+.funnelQuestion,
+.funnelHelper{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.choiceTile{
+  text-align:center !important;
+  grid-template-columns:1fr !important;
+  justify-items:center !important;
+}
+.choiceIcon{
+  margin:0 auto 4px !important;
+}
+.choiceText,
+.choiceTitle,
+.choiceSub{
+  text-align:center !important;
+}
+.trustHead{
+  text-align:center !important;
+}
+.trustPill{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.trustTitle,
+.trustSub{
+  text-align:center !important;
+}
+.trustItem,
+.trustKicker,
+.trustText,
+.trustMini{
+  text-align:center !important;
+}
+.trustFooter{
+  text-align:center !important;
+}
+.funnelNote{
+  text-align:center !important;
+}
+.optionRow{
+  text-align:center !important;
+  grid-template-columns:1fr !important;
+  justify-items:center !important;
+}
+.optionText,
+.optionLabel{
+  text-align:center !important;
+}
+@media (max-width:720px){
+  .heroTitle{
+    max-width:12ch !important;
+  }
+}
+</style>
+
 </head>
 
 <body class="bbas-page">
@@ -377,14 +483,17 @@
       <div class="heroTop">
         <div class="heroBadge">
           <span class="dot" aria-hidden="true"></span>
-          <span>Get started in under 60 seconds.</span>
+          <span>Centered marketing style preview</span>
         </div>
         <h1 class="heroTitle">Buy or sell a business, with confidence.</h1>
-        <p class="heroLead">Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.</p>
+        <p class="heroLead">Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.<br><br>We use your answers to match you with the right opportunities, resources, and next actions so you move forward with confidence.</p>
       </div>
 
       <div class="funnelShell">
         <div class="funnelLeft">
+
+          <div class="funnelCard" role="region" aria-live="polite" aria-label="Questions">
+
           <div class="funnelProgress" aria-label="Progress">
             <div class="funnelProgressTrack" aria-hidden="true">
               <div class="funnelProgressFill" id="funnelProgressFill" style="width:0%"></div>
@@ -395,7 +504,6 @@
             </div>
           </div>
 
-          <div class="funnelCard" role="region" aria-live="polite" aria-label="Questions">
             <div class="funnelCardHeader">
               <h2 class="funnelQuestion" id="funnelQuestion">What are you here to do?</h2>
               <p class="funnelHelper" id="funnelHelper">Choose one to start. You can switch later.</p>
@@ -719,6 +827,7 @@ lease terms, and what is included in the sale.</div>
     if (!state.branch){
       if (fill) fill.style.width = "0%";
       if (label) label.textContent = "Step 1 of 1";
+      document.body.dataset.funnelStep = "1";
       return;
     }
     var total = state.steps.length || 1;
@@ -726,6 +835,7 @@ lease terms, and what is included in the sale.</div>
     var pct = total <= 1 ? 0 : Math.round((state.stepIndex / (total - 1)) * 100);
     if (fill) fill.style.width = pct + "%";
     if (label) label.textContent = "Step " + current + " of " + total;
+    document.body.dataset.funnelStep = String(current);
   }
 
   function setHeader(title, helper){
