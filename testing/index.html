@@ -370,6 +370,11 @@
       text-align:center;
     }
 
+    .status-line.is-success{
+      color:#166534;
+      font-weight:700;
+    }
+
     .contact-actions{
       display:flex;
       align-items:center;
@@ -782,7 +787,7 @@
 
       form.addEventListener("reset", function(){
         window.setTimeout(function(){
-          if (status) status.textContent = "Please complete verification before submitting.";
+          if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
           if (token) token.value = "";
         }, 0);
       });
@@ -803,7 +808,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const hasToken = token && String(token.value || "").trim();
     if (!hasToken) {
-      if (status) status.textContent = "Please complete verification before submitting.";
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
       return;
     }
 
@@ -816,7 +821,7 @@ document.addEventListener("DOMContentLoaded", function(){
       submitBtn.textContent = "Submitting...";
     }
     if (resetBtn) resetBtn.disabled = true;
-    if (status) status.textContent = "Submitting...";
+    if (status) { status.textContent = "Submitting..."; status.style.color = "#374151"; status.style.fontWeight = "600"; }
 
     const formBody = new URLSearchParams();
     formBody.append("first_name", form.first_name.value || "");
@@ -845,10 +850,10 @@ document.addEventListener("DOMContentLoaded", function(){
       }
 
       alert("Submission failed: " + (json.message || "Please try again."));
-      if (status) status.textContent = "Please complete verification before submitting.";
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
     } catch (err) {
       alert("Network error. Please try again.");
-      if (status) status.textContent = "Please complete verification before submitting.";
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
