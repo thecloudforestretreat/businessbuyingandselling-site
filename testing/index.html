@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us | Business Buying and Selling</title>
-  <meta name="description" content="Learn about Business Buying and Selling, our story, and our commitment to confidentiality, transparency, and results." />
-  <meta property="og:title" content="About Us | Business Buying and Selling" />
-  <meta property="og:description" content="A clearer path to buying or selling a real business." />
+  <title>Contact | Business Buying and Selling</title>
+  <meta name="description" content="Get in touch with Business Buying and Selling. Reach out about buying, selling, listings, or general questions." />
+  <meta property="og:title" content="Contact | Business Buying and Selling" />
+  <meta property="og:description" content="Reach out with questions about buying, selling, listings, or next steps." />
   <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg" />
   <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-about-aligned-1" />
-  <link rel="stylesheet" href="/assets/css/header.css?v=20260309-about-aligned-1" />
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-contact-page-1" />
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260309-contact-page-1" />
 
   <style>
     .skip-link{
@@ -46,7 +46,7 @@
       margin:0 auto;
     }
 
-    .about-hero{
+    .contact-hero{
       position:relative;
       overflow:hidden;
       border-radius:24px;
@@ -66,7 +66,7 @@
       box-shadow:0 18px 42px rgba(15,23,42,.12);
     }
 
-    .about-hero::before{
+    .contact-hero::before{
       content:"";
       position:absolute;
       inset:0;
@@ -74,7 +74,7 @@
       pointer-events:none;
     }
 
-    .about-hero > *{
+    .contact-hero > *{
       position:relative;
       z-index:1;
     }
@@ -91,118 +91,49 @@
       font-size:13px;
       font-weight:600;
       line-height:1.2;
-      margin:0 auto;
     }
 
     .hero-badge .dot{
       width:9px;
       height:9px;
       border-radius:999px;
-      background:#F59E0B;
-      box-shadow:0 0 0 6px rgba(245,158,11,.18);
+      background:#60A5FA;
+      box-shadow:0 0 0 6px rgba(96,165,250,.18);
       flex:0 0 auto;
     }
 
-    .about-hero-grid{
+    .contact-hero-grid{
       display:grid;
-      grid-template-columns:1.18fr .82fr;
+      grid-template-columns:1.12fr .88fr;
       gap:22px;
       align-items:start;
       margin-top:14px;
     }
 
-    
-.about-hero-grid > div{
-text-align:center;
-margin:0 auto;
-}
-
-.about-sidecard{
-text-align:center;
-}
-
-.side-item{
-text-align:center;
-}
-
-.about-card{
-text-align:center;
-}
-
-.about-hero h1{
-      margin:0 auto 12px;
+    .contact-hero h1{
+      margin:0 0 12px;
       color:#FFFFFF;
       font-size:clamp(2.6rem, 5vw, 4.25rem);
       line-height:1.02;
       letter-spacing:-0.03em;
       font-weight:700;
       text-shadow:0 3px 12px rgba(0,0,0,.28);
-      max-width:11ch;
-      text-align:center;
+      max-width:10ch;
     }
 
-    .about-hero-copy{
-      color:#FFFFFF;
+    .contact-hero-copy{
+      color:rgba(255,255,255,.92);
       font-size:16px;
       line-height:1.7;
-      max-width:720px;
-      margin:0 auto;
-      text-align:center;
+      max-width:60ch;
     }
 
-    .about-hero-copy p{
+    .contact-hero-copy p{
       margin:0 0 14px;
       color:inherit;
     }
 
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
-      justify-content:center;
-    }
-
-    .hero-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-      padding:0 18px;
-      border-radius:999px;
-      border:1px solid transparent;
-      font-size:14px;
-      font-weight:700;
-      text-decoration:none;
-      transition:border-color .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-
-    .hero-btn:hover{
-      transform:translateY(-1px);
-    }
-
-    .hero-btn-primary{
-      background:#2563EB;
-      color:#FFFFFF;
-      box-shadow:0 14px 28px rgba(37,99,235,.22);
-    }
-
-    .hero-btn-primary:hover{
-      background:#1D4ED8;
-    }
-
-    .hero-btn-secondary{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.18);
-      color:#FFFFFF;
-    }
-
-    .hero-btn-secondary:hover{
-      background:rgba(255,255,255,.14);
-      border-color:rgba(255,255,255,.28);
-    }
-
-    .about-sidecard{
+    .contact-sidecard{
       background:rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.14);
       border-radius:20px;
@@ -210,7 +141,7 @@ text-align:center;
       backdrop-filter:blur(10px);
     }
 
-    .about-sidepill{
+    .contact-sidepill{
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -226,7 +157,7 @@ text-align:center;
       margin-bottom:12px;
     }
 
-    .about-sidepill .dot{
+    .contact-sidepill .dot{
       width:10px;
       height:10px;
       border-radius:999px;
@@ -235,22 +166,20 @@ text-align:center;
       flex:0 0 auto;
     }
 
-    .about-sidecard h2{
+    .contact-sidecard h2{
       margin:0 0 8px;
       color:#FFFFFF;
       font-size:clamp(1.6rem, 2.2vw, 2.2rem);
       line-height:1.15;
       letter-spacing:-0.02em;
       font-weight:700;
-      text-align:center;
     }
 
-    .about-sidecard p{
+    .contact-sidecard p{
       margin:0 0 14px;
-      color:rgba(255,255,255,.92);
+      color:rgba(255,255,255,.82);
       font-size:14px;
       line-height:1.65;
-      text-align:center;
     }
 
     .side-grid{
@@ -273,24 +202,28 @@ text-align:center;
       font-size:14px;
       font-weight:700;
       line-height:1.35;
-      text-align:center;
     }
 
     .side-item span{
       display:block;
-      color:rgba(255,255,255,.82);
+      color:rgba(255,255,255,.78);
       font-size:12.5px;
       line-height:1.55;
-      text-align:center;
     }
 
-    .about-sections{
-      display:grid;
-      gap:22px;
+    .contact-section{
       margin-top:22px;
     }
 
-    .about-card{
+    .contact-shell{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .contact-card,
+    .contact-info-card{
       background:#FFFFFF;
       border:1px solid #E5E7EB;
       border-radius:20px;
@@ -298,79 +231,190 @@ text-align:center;
       overflow:hidden;
     }
 
-    .about-card-head{
+    .contact-card-head,
+    .contact-info-head{
       padding:22px 22px 0;
     }
 
-    .about-card h2{
+    .contact-card h2,
+    .contact-info-card h2{
       margin:0;
       color:#1F2937;
       font-size:clamp(1.8rem, 3vw, 2.3rem);
       line-height:1.12;
       letter-spacing:-0.02em;
       font-weight:700;
-      text-align:center;
     }
 
-    .about-card-sub{
-      margin:8px auto 0;
+    .contact-card-sub,
+    .contact-info-sub{
+      margin:8px 0 0;
       color:#4B5563;
       font-size:14px;
       line-height:1.65;
       max-width:72ch;
-      text-align:center;
     }
 
-    .about-story-grid{
+    .contact-form{
+      padding:18px 22px 22px;
+    }
+
+    .form-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .field--full{
+      grid-column:1 / -1;
+    }
+
+    .field label{
+      display:block;
+      margin:0;
+      color:#374151;
+      font-size:13px;
+      font-weight:700;
+      line-height:1.4;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      min-height:48px;
+      padding:12px 14px;
+      border:1px solid #CBD5E1;
+      border-radius:14px;
+      background:#FFFFFF;
+      color:#1F2937;
+      outline:none;
+      transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+      font:inherit;
+    }
+
+    .field textarea{
+      min-height:148px;
+      resize:vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:#2563EB;
+      box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder{
+      color:#6B7280;
+      opacity:1;
+    }
+
+    .form-note{
+      margin-top:8px;
+      color:#6B7280;
+      font-size:12px;
+      line-height:1.55;
+    }
+
+    .turnstile-wrap{
+      margin-top:18px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .status-line{
+      margin-top:12px;
+      color:#6B7280;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .contact-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+
+    .contact-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-size:14px;
+      font-weight:700;
+      text-decoration:none;
+      transition:border-color .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+      cursor:pointer;
+    }
+
+    .contact-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .contact-btn-primary{
+      background:#2563EB;
+      color:#FFFFFF;
+      box-shadow:0 14px 28px rgba(37,99,235,.22);
+    }
+
+    .contact-btn-primary:hover{
+      background:#1D4ED8;
+    }
+
+    .contact-btn-secondary{
+      background:#FFFFFF;
+      color:#1F2937;
+      border-color:#D1D5DB;
+    }
+
+    .contact-btn-secondary:hover{
+      border-color:#C7D2FE;
+      box-shadow:0 1px 2px rgba(15,23,42,.06);
+    }
+
+    .contact-info-grid{
+      display:grid;
       gap:14px;
       padding:18px 22px 22px;
     }
 
-    .about-story-box,
-    .about-mini{
+    .contact-info-item{
       background:#FFFFFF;
       border:1px solid #E5E7EB;
       border-radius:16px;
-      padding:18px;
+      padding:16px;
     }
 
-    .about-story-box h3,
-    .about-mini h3{
-      margin:0 0 8px;
+    .contact-info-item h3{
+      margin:0 0 6px;
       color:#1F2937;
-      font-size:18px;
-      line-height:1.25;
+      font-size:16px;
       font-weight:700;
-      letter-spacing:-0.01em;
-      text-align:center;
+      line-height:1.3;
     }
 
-    .about-story-box p,
-    .about-mini p{
+    .contact-info-item p{
       margin:0;
       color:#4B5563;
       font-size:14px;
-      line-height:1.7;
-      text-align:center;
+      line-height:1.65;
     }
 
-    .about-grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      padding:18px 22px 22px;
-    }
-
-    .about-grid-2{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      padding:18px 22px 22px;
-    }
-
-    .about-list{
+    .contact-info-list{
       margin:10px 0 0;
       padding-left:18px;
       color:#4B5563;
@@ -378,19 +422,17 @@ text-align:center;
       line-height:1.7;
     }
 
-    .about-list li{
+    .contact-info-list li{
       margin-bottom:8px;
     }
 
-    @media (max-width: 980px){
-      .about-hero-grid,
-      .about-story-grid,
-      .about-grid-3,
-      .about-grid-2{
+    @media (max-width:980px){
+      .contact-hero-grid,
+      .contact-shell{
         grid-template-columns:1fr;
       }
 
-      .about-hero{
+      .contact-hero{
         padding:24px 24px 28px;
       }
 
@@ -399,7 +441,7 @@ text-align:center;
       }
     }
 
-    @media (max-width: 720px){
+    @media (max-width:720px){
       .bbas-main{
         padding:16px 0 34px;
       }
@@ -408,32 +450,67 @@ text-align:center;
         width:min(1120px, calc(100% - 24px));
       }
 
-      .about-hero{
+      .contact-hero{
         padding:18px 16px 22px;
         border-radius:20px;
       }
 
-      .hero-actions{
-        flex-direction:column;
-      }
-
-      .hero-btn{
-        width:100%;
-      }
-
-      .side-grid{
+      .side-grid,
+      .form-grid{
         grid-template-columns:1fr;
       }
 
-      .about-card-head,
-      .about-story-grid,
-      .about-grid-3,
-      .about-grid-2{
+      .contact-card-head,
+      .contact-info-head,
+      .contact-form,
+      .contact-info-grid{
         padding-left:16px;
         padding-right:16px;
       }
+
+      .contact-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .contact-btn{
+        width:100%;
+      }
     }
   </style>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    window.onTurnstileSuccess = function(token){
+      var el = document.getElementById("turnstileToken");
+      var status = document.getElementById("contactStatus");
+      if (el) {
+        el.value = token || "";
+        try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      }
+      if (status) status.textContent = token ? "Verification complete." : "Please complete verification before submitting.";
+    };
+
+    window.onTurnstileExpired = function(){
+      var el = document.getElementById("turnstileToken");
+      var status = document.getElementById("contactStatus");
+      if (el) {
+        el.value = "";
+        try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      }
+      if (status) status.textContent = "Verification expired. Please verify again.";
+    };
+
+    window.onTurnstileError = function(){
+      var el = document.getElementById("turnstileToken");
+      var status = document.getElementById("contactStatus");
+      if (el) {
+        el.value = "";
+        try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      }
+      if (status) status.textContent = "Verification failed. Please try again.";
+    };
+  </script>
 </head>
 <body class="bbas-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -443,126 +520,155 @@ text-align:center;
   <main id="main" class="bbas-main">
     <div class="bbas-container">
 
-      <section class="about-hero" aria-label="About Business Buying and Selling">
-        <div class="hero-badge"><span class="dot" aria-hidden="true"></span>About Business Buying and Selling</div>
+      <section class="contact-hero" aria-label="Contact hero">
+        <div class="hero-badge"><span class="dot" aria-hidden="true"></span>Contact</div>
 
-        <div class="about-hero-grid">
+        <div class="contact-hero-grid">
           <div>
-            <h1>A clearer path to buying or selling a business.</h1>
-            <div class="about-hero-copy">
-              <p>We are building a modern marketplace and knowledge hub for owner-operated, non-franchise businesses.</p>
-              <p>Our mission is to reduce confusion, raise clarity, and help buyers and owners move with confidence.</p>
-            </div>
-
-            <div class="hero-actions">
-              <a class="hero-btn hero-btn-primary" href="/">Join early access</a>
-              <a class="hero-btn hero-btn-secondary" href="/listings/">Browse listings</a>
-              <a class="hero-btn hero-btn-secondary" href="/contact/">Contact</a>
+            <h1>Start the conversation with clarity.</h1>
+            <div class="contact-hero-copy">
+              <p>Whether you are buying, selling, exploring listings, or just have questions, we want reaching out to feel simple and straightforward.</p>
+              <p>Send us a message and we will point you to the right next step with the same direct, trust-first approach used across the rest of the site.</p>
             </div>
           </div>
 
-          <aside class="about-sidecard" aria-label="What guides us">
-            <div class="about-sidepill"><span class="dot" aria-hidden="true"></span>What guides us</div>
-            <h2>Clarity first. Trust always.</h2>
-            <p>We focus on confidentiality, transparency, and practical next steps so buyers and owners can move forward with confidence.</p>
+          <aside class="contact-sidecard" aria-label="What to expect">
+            <div class="contact-sidepill"><span class="dot" aria-hidden="true"></span>What to expect</div>
+            <h2>Quick, clear, and professional.</h2>
+            <p>We keep communication focused, confidential, and helpful so you can move forward without extra noise.</p>
 
             <div class="side-grid">
               <div class="side-item">
+                <strong>Buying questions</strong>
+                <span>Guidance on opportunities, fit, and what to review next.</span>
+              </div>
+              <div class="side-item">
+                <strong>Selling questions</strong>
+                <span>Discreet support around timing, preparation, and next steps.</span>
+              </div>
+              <div class="side-item">
+                <strong>Listings and access</strong>
+                <span>Help finding the right information or page for your situation.</span>
+              </div>
+              <div class="side-item">
                 <strong>Confidentiality</strong>
-                <span>Professional handling of sensitive financial information.</span>
-              </div>
-              <div class="side-item">
-                <strong>Transparency</strong>
-                <span>Clear expectations, cleaner communication, fewer surprises.</span>
-              </div>
-              <div class="side-item">
-                <strong>Personal attention</strong>
-                <span>Dedicated support throughout the process from your broker.</span>
-              </div>
-              <div class="side-item">
-                <strong>Results</strong>
-                <span>Long-term relationships built on trust, consistency, and outcomes.</span>
+                <span>Sensitive details handled professionally and with discretion.</span>
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <div class="about-sections">
+      <section class="contact-section" aria-label="Contact form">
+        <div class="contact-shell">
 
-        <section class="about-card" aria-label="Our story and confidentiality">
-          <div class="about-card-head">
-            <h2>Built on trust, transparency, and results.</h2>
-            <p class="about-card-sub">We want this page to feel clear and direct, just like the experience we are building for buyers and owners.</p>
-          </div>
-
-          <div class="about-story-grid">
-            <div class="about-story-box">
-              <h3>Our Story</h3>
-              <p>We are passionate about helping businesses like yours achieve their full potential. Our goal is to build long-lasting relationships based on trust, transparency, and results.</p>
+          <section class="contact-card">
+            <div class="contact-card-head">
+              <h2>Send us a message</h2>
+              <p class="contact-card-sub">Keep it simple. Tell us what you need, and we will make sure it gets to the right place.</p>
             </div>
 
-            <div class="about-story-box">
-              <h3>Confidentiality and Discretion</h3>
-              <p>Your personal financial information will be treated with the utmost confidentiality and professionalism. Throughout the entire process, you can expect comprehensive marketing support and dedicated personal attention from your broker.</p>
+            <form class="contact-form" id="contactForm" action="REPLACE_WITH_APPS_SCRIPT_URL" method="post" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="firstName">First Name</label>
+                  <input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" placeholder="First name" required />
+                </div>
+
+                <div class="field">
+                  <label for="lastName">Last Name</label>
+                  <input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" placeholder="Last name" required />
+                </div>
+
+                <div class="field">
+                  <label for="emailAddress">Email</label>
+                  <input id="emailAddress" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="phoneNumber">Phone</label>
+                  <input id="phoneNumber" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
+                </div>
+
+                <div class="field">
+                  <label for="city">City</label>
+                  <input id="city" name="city" type="text" autocomplete="address-level2" autocapitalize="words" placeholder="City" />
+                </div>
+
+                <div class="field">
+                  <label for="state">State</label>
+                  <input id="state" name="state" type="text" autocapitalize="words" placeholder="State" />
+                </div>
+
+                <div class="field field--full">
+                  <label for="topic">What is this about?</label>
+                  <select id="topic" name="topic" required>
+                    <option value="">Select one</option>
+                    <option value="buying">Buying a business</option>
+                    <option value="selling">Selling a business</option>
+                    <option value="listings">Listings or opportunities</option>
+                    <option value="general">General question</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="field field--full">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" autocapitalize="sentences" placeholder="Tell us a little about what you are looking for or what you need help with." required></textarea>
+                  <div class="form-note">Use this space for details, goals, timing, or any context that would help us respond more clearly.</div>
+                </div>
+              </div>
+
+              <div class="turnstile-wrap">
+                <div class="cf-turnstile"
+                  data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ"
+                  data-theme="light"
+                  data-callback="onTurnstileSuccess"
+                  data-expired-callback="onTurnstileExpired"
+                  data-error-callback="onTurnstileError"></div>
+                <input type="hidden" id="turnstileToken" name="turnstile_token" value="" />
+              </div>
+
+              <div class="status-line" id="contactStatus">Please complete verification before submitting.</div>
+
+              <div class="contact-actions">
+                <button class="contact-btn contact-btn-secondary" type="reset">Clear form</button>
+                <button class="contact-btn contact-btn-primary" type="submit">Send message</button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="contact-info-card" aria-label="Contact details and guidance">
+            <div class="contact-info-head">
+              <h2>Before you send</h2>
+              <p class="contact-info-sub">A few simple notes to help you get a better response faster.</p>
             </div>
-          </div>
-        </section>
 
-        <section class="about-card" aria-label="What we believe">
-          <div class="about-card-head">
-            <h2>What we believe</h2>
-            <p class="about-card-sub">Buying or selling a small business should feel structured, understandable, and achievable.</p>
-          </div>
+            <div class="contact-info-grid">
+              <div class="contact-info-item">
+                <h3>Be specific</h3>
+                <p>The clearer your situation is, the easier it is to point you toward the right next step.</p>
+              </div>
 
-          <div class="about-grid-3">
-            <div class="about-mini">
-              <h3>Clarity over noise</h3>
-              <p>We believe buyers and owners make better decisions when the basics are presented clearly and the next step is obvious.</p>
+              <div class="contact-info-item">
+                <h3>Confidentiality matters</h3>
+                <p>If your message relates to a sale or sensitive financial details, we will treat it professionally and with discretion.</p>
+              </div>
+
+              <div class="contact-info-item">
+                <h3>Helpful details to include</h3>
+                <ul class="contact-info-list">
+                  <li>Whether you are buying, selling, or just exploring</li>
+                  <li>Your timing and what stage you are in</li>
+                  <li>Any business type, location, or budget context that matters</li>
+                </ul>
+              </div>
             </div>
+          </aside>
 
-            <div class="about-mini">
-              <h3>Real support</h3>
-              <p>We value dedicated personal attention, practical guidance, and communication that respects your time and goals.</p>
-            </div>
+        </div>
+      </section>
 
-            <div class="about-mini">
-              <h3>Relationships that last</h3>
-              <p>We are not trying to create one-time transactions. We want to build trust that lasts beyond a single deal.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="about-card" aria-label="Who we serve">
-          <div class="about-card-head">
-            <h2>Who we serve</h2>
-            <p class="about-card-sub">We are focused on practical outcomes for real operators, owners, and buyers.</p>
-          </div>
-
-          <div class="about-grid-2">
-            <div class="about-mini">
-              <h3>For business owners</h3>
-              <p>You may be exploring options, thinking about timing, or preparing for a future sale. We help create a clearer path forward.</p>
-              <ul class="about-list">
-                <li>Understand how to position your business with more confidence.</li>
-                <li>Prepare for buyer questions with better organization and clarity.</li>
-                <li>Move through the process with discretion and dedicated support.</li>
-              </ul>
-            </div>
-
-            <div class="about-mini">
-              <h3>For buyers</h3>
-              <p>You want a practical route into business ownership without unnecessary confusion or friction.</p>
-              <ul class="about-list">
-                <li>Explore owner-operated opportunities with better structure.</li>
-                <li>Understand the process with simple guidance and next steps.</li>
-                <li>Move faster with more confidence and less guesswork.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-      </div>
     </div>
   </main>
 
@@ -570,5 +676,137 @@ text-align:center;
 
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js" defer></script>
+  <script>
+    (function(){
+      function titleCaseWords(value){
+        return String(value || "")
+          .toLowerCase()
+          .replace(/\b([a-z])/g, function(m){ return m.toUpperCase(); });
+      }
+
+      function sentenceCase(value){
+        var text = String(value || "");
+        if (!text) return text;
+        return text.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, function(match){
+          return match.toUpperCase();
+        });
+      }
+
+      function phoneFormat(v){
+        var x = String(v || "").replace(/\D/g, "").slice(0, 10);
+        if (x.length > 6) return "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
+        if (x.length > 3) return "(" + x.slice(0,3) + ") " + x.slice(3);
+        return x;
+      }
+
+      var firstName = document.getElementById("firstName");
+      var lastName = document.getElementById("lastName");
+      var city = document.getElementById("city");
+      var state = document.getElementById("state");
+      var message = document.getElementById("message");
+      var phone = document.getElementById("phoneNumber");
+      var form = document.getElementById("contactForm");
+      var status = document.getElementById("contactStatus");
+      var token = document.getElementById("turnstileToken");
+
+      [firstName, lastName, city, state].forEach(function(el){
+        if (!el) return;
+        el.addEventListener("input", function(){
+          el.value = titleCaseWords(el.value);
+        });
+        el.addEventListener("blur", function(){
+          el.value = titleCaseWords(el.value);
+        });
+      });
+
+      if (message){
+        message.addEventListener("blur", function(){
+          message.value = sentenceCase(message.value);
+        });
+      }
+
+      if (phone){
+        phone.addEventListener("input", function(){
+          phone.value = phoneFormat(phone.value);
+        });
+      }
+
+      form.addEventListener("submit", function(e){
+        var hasEndpoint = form.getAttribute("action") && form.getAttribute("action").indexOf("REPLACE_WITH_APPS_SCRIPT_URL") === -1;
+        var hasToken = token && String(token.value || "").trim();
+
+        if (!hasToken){
+          e.preventDefault();
+          status.textContent = "Please complete verification before submitting.";
+          return;
+        }
+
+        if (!hasEndpoint){
+          e.preventDefault();
+          status.textContent = "Form wiring comes next. Replace the Apps Script URL in the form action.";
+          return;
+        }
+
+        status.textContent = "Submitting...";
+      });
+
+      form.addEventListener("reset", function(){
+        window.setTimeout(function(){
+          if (status) status.textContent = "Please complete verification before submitting.";
+          if (token) token.value = "";
+        }, 0);
+      });
+    })();
+  </script>
+
+<script>
+
+const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec";
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const form = document.querySelector("#contactForm");
+if(!form) return;
+
+form.addEventListener("submit", async function(e){
+e.preventDefault();
+
+const data = {
+first_name:form.first_name.value,
+last_name:form.last_name.value,
+email:form.email.value,
+phone:form.phone.value,
+city:form.city.value,
+state:form.state.value,
+topic:form.topic.value,
+message:form.message.value
+};
+
+try{
+
+const res = await fetch(CONTACT_ENDPOINT,{
+method:"POST",
+body:JSON.stringify(data)
+});
+
+const json = await res.json();
+
+if(json.success){
+const success = document.querySelector("#formSuccess");
+if(success) success.style.display="block";
+form.reset();
+}else{
+alert("Submission failed: "+json.message);
+}
+
+}catch(err){
+alert("Network error");
+}
+
+});
+
+});
+</script>
+
 </body>
 </html>
