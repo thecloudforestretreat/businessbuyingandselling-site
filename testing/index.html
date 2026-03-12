@@ -773,21 +773,17 @@
         });
       }
 
-      form.addEventListener("submit", function(e){
-        var hasToken = token && String(token.value || "").trim();
-
-        if (!hasToken){
-          e.preventDefault();
-          status.textContent = "Please complete verification before submitting.";
-          return;
-        }
-
-        status.textContent = "Submitting...";
-      });
-
       form.addEventListener("reset", function(){
         window.setTimeout(function(){
-          if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
+          if (form.dataset.skipResetStatus === "1"){
+            form.dataset.skipResetStatus = "0";
+            return;
+          }
+          if (status) {
+            status.textContent = "Please complete verification before submitting.";
+            status.style.color = "#6B7280";
+            status.style.fontWeight = "500";
+          }
           if (token) token.value = "";
         }, 0);
       });
@@ -843,9 +839,14 @@ document.addEventListener("DOMContentLoaded", function(){
       const json = await res.json();
 
       if (json.success) {
-        if (status) status.textContent = "Your message has been sent successfully.";
+        form.dataset.skipResetStatus = "1";
         form.reset();
         if (token) token.value = "";
+        if (status) {
+          status.textContent = "Thank you. Your message has been sent successfully.";
+          status.style.color = "#166534";
+          status.style.fontWeight = "700";
+        }
         return;
       }
 
