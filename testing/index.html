@@ -15,7 +15,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" content="Business Buying and Selling">
+  <meta property="og:title" co ntent="Business Buying and Selling">
   <meta property="og:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
   <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
@@ -904,6 +904,8 @@ lease terms, and what is included in the sale.</div>
     }
 
     actions.hidden = false;
+    actions.style.justifyContent = "";
+    backBtn.style.display = "";
     backBtn.style.visibility = "visible";
     nextBtn.style.visibility = "visible";
 
@@ -1264,13 +1266,17 @@ lease terms, and what is included in the sale.</div>
             body.innerHTML =
               '<div class="trustItem" style="text-align:center;padding:24px;">' +
                 '<div class="trustKicker" style="margin-bottom:8px;">Submission received</div>' +
-                '<div class="trustText">Your request has been sent successfully. You can start again below if needed.</div>' +
+                '<div class="trustText">Your request has been sent successfully.<br>You can start again below if needed.</div>' +
               '</div>';
           }
-          if (actions) actions.hidden = false;
+          if (actions) {
+            actions.hidden = false;
+            actions.style.justifyContent = "center";
+          }
           if (backBtn) {
             backBtn.disabled = false;
             backBtn.style.visibility = "hidden";
+            backBtn.style.display = "none";
           }
           if (nextBtn) {
             nextBtn.disabled = false;
