@@ -15,7 +15,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" content="Business Buying and Selling">
+  <meta property="og:title" co ntent="Business Buying and Selling">
   <meta property="og:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
   <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
@@ -31,9 +31,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260309-inter-clarity-1">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260312-funnel-submit-1">
 
-      <link rel="stylesheet" href="/assets/css/header.css?v=20260309-inter-clarity-1">
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260312-funnel-submit-1">
 <!-- Page-level polish (compact, scoped) -->
   <style id="page-structure-only">
   .skip-link{
@@ -517,6 +517,24 @@
 }
 </style>
 
+
+<style id="funnel-action-alignment-fix">
+.funnelActions{
+  justify-content:center !important;
+  gap:16px !important;
+}
+.funnelActions .btn{
+  min-width:122px !important;
+}
+#funnelBackBtn,
+#funnelNextBtn{
+  margin:0 !important;
+}
+#funnelNextBtn{
+  display:inline-flex !important;
+}
+</style>
+
 </head>
 
 <body class="bbas-page">
@@ -904,6 +922,8 @@ lease terms, and what is included in the sale.</div>
     }
 
     actions.hidden = false;
+    actions.style.justifyContent = "";
+    backBtn.style.display = "";
     backBtn.style.visibility = "visible";
     nextBtn.style.visibility = "visible";
 
@@ -1228,8 +1248,97 @@ lease terms, and what is included in the sale.</div>
     if (step.type === "contact"){
       var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
       state.answers.turnstile_token = tokenEl ? (tokenEl.value || "") : "";
-      console.log("Funnel payload", state.answers);
-      alert("Form submit wiring comes next. Data is ready to send to Apps Script.");
+
+      var nextBtn = qs("#funnelNextBtn");
+      var backBtn = qs("#funnelBackBtn");
+      var question = qs("#funnelQuestion");
+      var helper = qs("#funnelHelper");
+      var body = qs("#funnelBody");
+      var actions = qs("#funnelActions");
+      var note = qs("#funnelNote");
+      var progress = qs(".funnelProgress");
+      var originalNextText = nextBtn ? nextBtn.textContent : "Submit";
+
+      if (nextBtn) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Submitting...";
+      }
+      if (backBtn) backBtn.disabled = true;
+
+      var formBody = new URLSearchParams();
+      Object.keys(state.answers).forEach(function(key){
+        formBody.append(key, state.answers[key] == null ? "" : String(state.answers[key]));
+      });
+
+      fetch("https://script.google.com/macros/s/AKfycbwmWUUusHoIwkRKi0Lw48ZstQK_n9fAZh_d_VR4ggnxx3nvXSeAvSCswC8uclI3PU-GfQ/exec", {
+        method: "POST",
+        body: formBody
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data && data.success) {
+          if (progress) progress.style.display = "none";
+          if (question) question.textContent = "Thank you. We received your information.";
+          if (helper) helper.textContent = "A confirmation email is on the way, and someone from our team will follow up with the right next step.";
+          if (body) {
+            body.innerHTML =
+              '<div class="trustItem" style="text-align:center;padding:24px;">' +
+                '<div class="trustKicker" style="margin-bottom:12px;text-align:center;">Submission received</div>' +
+                '<div class="trustText" style="text-align:center;line-height:1.6;">' +
+                  'Your request has been sent successfully.<br>' +
+                  'You can start again below if needed.' +
+                '</div>' +
+              '</div>';
+          }
+          if (actions) {
+            actions.hidden = false;
+            actions.style.justifyContent = "center";
+          }
+          if (backBtn) {
+            backBtn.disabled = false;
+            backBtn.style.visibility = "hidden";
+            backBtn.style.display = "none";
+          }
+          if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent = "Start over";
+          }
+          if (note) {
+            note.textContent = "Thank you for choosing Business Buying and Selling.";
+            note.style.color = "rgba(15,23,42,.60)";
+          }
+
+          state.branch = null;
+          state.steps = [];
+          state.stepIndex = 0;
+          state.answers = {};
+
+          if (nextBtn) {
+            nextBtn.onclick = function(e) {
+              e.preventDefault();
+              nextBtn.onclick = null;
+              render();
+            };
+          }
+          return;
+        }
+
+        alert((data && data.message) || "Submission failed. Please try again.");
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.textContent = originalNextText;
+        }
+        if (backBtn) backBtn.disabled = false;
+      })
+      .catch(function(){
+        alert("Network error. Please try again.");
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.textContent = originalNextText;
+        }
+        if (backBtn) backBtn.disabled = false;
+      });
+
       return;
     }
 
