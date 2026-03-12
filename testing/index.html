@@ -517,6 +517,18 @@
 }
 </style>
 
+
+<style id="success-center-fix">
+.funnelActions{
+  justify-content:center !important;
+  text-align:center !important;
+}
+#funnelNextBtn{
+  display:block !important;
+  margin:18px auto 0 auto !important;
+}
+</style>
+
 </head>
 
 <body class="bbas-page">
@@ -1265,8 +1277,11 @@ lease terms, and what is included in the sale.</div>
           if (body) {
             body.innerHTML =
               '<div class="trustItem" style="text-align:center;padding:24px;">' +
-                '<div class="trustKicker" style="margin-bottom:8px;">Submission received</div>' +
-                '<div class="trustText">Your request has been sent successfully.<br>You can start again below if needed.</div>' +
+                '<div class="trustKicker" style="margin-bottom:12px;text-align:center;">Submission received</div>' +
+                '<div class="trustText" style="text-align:center;line-height:1.6;">' +
+                  'Your request has been sent successfully.<br>' +
+                  'You can start again below if needed.' +
+                '</div>' +
               '</div>';
           }
           if (actions) {
