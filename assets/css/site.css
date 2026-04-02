@@ -1415,92 +1415,153 @@ footer.bbas-footer{
 
 
 /* =====================================================
-   ALIGNMENT SYSTEM
-   Hero centered, decision content left aligned
+   GLOBAL PAGE ALIGNMENT SYSTEM
+   Keep hero content centered.
+   Keep all decision-heavy and informational content left aligned.
+   Homepage funnel can retain page-level handling where needed.
    ===================================================== */
 
-.bbas-page .heroTop{
-  text-align:center;
-}
-
-.bbas-page .heroBadge{
+/* About page */
+.bbas-page .about-hero .hero-badge{
   margin-left:auto;
   margin-right:auto;
 }
-
-.bbas-page .heroTitle{
+.bbas-page .about-hero h1{
   margin-left:auto;
   margin-right:auto;
   text-align:center;
-  max-width:14ch;
 }
-
-.bbas-page .heroLead{
+.bbas-page .about-hero-copy{
   margin-left:auto;
   margin-right:auto;
   text-align:center;
-  max-width:760px;
+}
+.bbas-page .about-hero-copy p{
+  text-align:center;
+}
+.bbas-page .hero-actions{
+  justify-content:center;
+}
+.bbas-page .about-sidecard h2,
+.bbas-page .about-sidecard p,
+.bbas-page .side-item strong,
+.bbas-page .side-item span,
+.bbas-page .about-card h2,
+.bbas-page .about-card-sub,
+.bbas-page .about-story-box h3,
+.bbas-page .about-story-box p,
+.bbas-page .about-mini h3,
+.bbas-page .about-mini p{
+  text-align:left;
+}
+.bbas-page .about-card-sub{
+  margin-left:0;
+  margin-right:0;
+}
+.bbas-page .about-list{
+  text-align:left;
 }
 
-.bbas-page .funnelCardHeader,
-.bbas-page .funnelQuestion,
-.bbas-page .funnelHelper,
-.bbas-page .choiceText,
-.bbas-page .choiceTitle,
-.bbas-page .choiceSub,
-.bbas-page .funnelNote,
-.bbas-page .trustHead,
-.bbas-page .trustTitle,
-.bbas-page .trustSub,
-.bbas-page .trustItem,
-.bbas-page .trustKicker,
-.bbas-page .trustText,
-.bbas-page .trustMini,
-.bbas-page .trustFooter,
-.bbas-page .optionText,
-.bbas-page .optionLabel,
+/* Contact page */
+.bbas-page .contact-hero .hero-badge,
+.bbas-page .contact-hero .contact-sidepill{
+  margin-left:auto;
+  margin-right:auto;
+}
+.bbas-page .contact-hero h1{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-page .contact-hero-copy{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-page .contact-hero-copy p{
+  text-align:center;
+}
+.bbas-page .contact-sidecard h2,
+.bbas-page .contact-sidecard p,
+.bbas-page .contact-card h2,
+.bbas-page .contact-card-sub,
+.bbas-page .contact-info-card h2,
+.bbas-page .contact-info-sub,
 .bbas-page .field label,
-.bbas-page .statusLine{
+.bbas-page .form-note,
+.bbas-page .status-line,
+.bbas-page .contact-info-item h3,
+.bbas-page .contact-info-item p,
+.bbas-page .contact-info-list,
+.bbas-page .side-item strong,
+.bbas-page .side-item span{
   text-align:left;
 }
-
-.bbas-page .choiceGrid{
-  justify-content:stretch;
+.bbas-page .contact-card-sub,
+.bbas-page .contact-info-sub{
+  margin-left:0;
+  margin-right:0;
 }
-
-.bbas-page .choiceTile{
-  text-align:left;
-  grid-template-columns:40px 1fr;
-  justify-items:start;
-  align-items:start;
+.bbas-page .turnstile-wrap{
+  justify-content:flex-start;
 }
-
-.bbas-page .choiceIcon{
-  margin:2px 0 0;
-}
-
-.bbas-page .optionRow{
-  text-align:left;
-  grid-template-columns:18px 1fr;
-  justify-items:start;
-}
-
-.bbas-page .turnstileWrap{
+.bbas-page .contact-actions{
   justify-content:flex-start;
 }
 
-.bbas-page .funnelActions{
-  justify-content:space-between;
-  gap:12px;
+/* Sell page */
+.bbas-page .sell-hero .hero-badge{
+  margin-left:auto;
+  margin-right:auto;
+}
+.bbas-page .sell-hero h1{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-page .sell-copy{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-page .sell-copy p{
+  text-align:center;
+}
+.bbas-page .sell-side h2,
+.bbas-page .sell-side p,
+.bbas-page .side-item strong,
+.bbas-page .side-item span,
+.bbas-page .section-card h2,
+.bbas-page .section-card > p,
+.bbas-page .mini h3,
+.bbas-page .mini p{
+  text-align:left;
+}
+.bbas-page .section-card > p{
+  margin-left:0;
+  margin-right:0;
 }
 
-@media (max-width:720px){
-  .bbas-page .heroTitle{
-    max-width:12ch;
-  }
-
-  .bbas-page .funnelActions{
-    justify-content:stretch;
-  }
+/* Listings page */
+.bbas-listings-page .hero h1{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-listings-page .hero p{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.bbas-listings-page .card h3,
+.bbas-listings-page .location,
+.bbas-listings-page .metric,
+.bbas-listings-page .metric strong,
+.bbas-listings-page .investor h2,
+.bbas-listings-page .investor p,
+.bbas-listings-page .investor-card,
+.bbas-listings-page .investor-card strong,
+.bbas-listings-page .investor-card p{
+  text-align:left;
 }
 
