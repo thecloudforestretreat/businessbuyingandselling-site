@@ -1,324 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Listings | Business Buying and Selling</title>
-<meta name="description" content="Explore available businesses for sale. Discover owner-operated opportunities with transparent numbers and real potential.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sell Your Business | Business Buying and Selling</title>
+<meta name="description" content="Discreet, structured guidance for business owners preparing to sell." />
+<meta property="og:title" content="Sell Your Business | Business Buying and Selling" />
+<meta property="og:description" content="A confidential and structured path to selling your business." />
+<meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg" />
+<meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/css/site.css">
-<link rel="stylesheet" href="/assets/css/header.css">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260309-sell-page-1" />
+<link rel="stylesheet" href="/assets/css/header.css?v=20260309-sell-page-1" />
 
 <style>
-
-body{
-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;
-background:#FAFAFA;
+.skip-link{
+position:absolute;
+left:-999px;
+top:12px;
+z-index:9999;
+padding:10px 14px;
+border-radius:12px;
+background:#FFFFFF;
+border:1px solid #E5E7EB;
 color:#1F2937;
 }
+.skip-link:focus{ left:12px; }
 
-.container{
-max-width:1120px;
-margin:auto;
-padding:0 20px;
+body.bbas-page{
+background:#FAFAFA;
+color:#1F2937;
+font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-.hero{
-margin-top:20px;
+.bbas-main{ padding:22px 0 46px; }
+
+.bbas-container{
+width:min(1120px, calc(100% - 32px));
+margin:0 auto;
+}
+
+.sell-hero{
+position:relative;
+overflow:hidden;
 border-radius:24px;
-padding:42px;
-color:white;
+padding:30px 30px 34px;
 background:
-linear-gradient(90deg,rgba(17,24,39,.9),rgba(17,24,39,.65)),
+linear-gradient(
+90deg,
+rgba(17,24,39,.90) 0%,
+rgba(17,24,39,.80) 35%,
+rgba(17,24,39,.60) 60%,
+rgba(17,24,39,.48) 100%
+),
 url("/assets/images/bbas_homepage_hero_03.jpg");
 background-size:cover;
-background-position:center;
+background-position:center center;
+background-repeat:no-repeat;
+box-shadow:0 18px 42px rgba(15,23,42,.12);
 }
 
-.hero h1{
-font-size:44px;
-line-height:1.1;
-margin:0 0 14px;
-color:#FFFFFF;
+.sell-hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
+pointer-events:none;
 }
 
-.hero p{
-max-width:720px;
-margin:0;
-font-size:17px;
-color:#FFFFFF;
-opacity:1;
+.sell-hero>*{
+position:relative;
+z-index:1;
 }
 
-.filters{
-margin-top:26px;
-background:white;
-border:1px solid #E5E7EB;
-border-radius:18px;
-padding:18px;
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-box-shadow:0 8px 24px rgba(0,0,0,.05);
-}
-
-.filters select,
-.filters input{
-width:100%;
-border:1px solid #CBD5E1;
-border-radius:12px;
-padding:10px 12px;
-font-size:14px;
-}
-
-.listings{
-margin-top:30px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
-.card{
-background:white;
-border:1px solid #E5E7EB;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 10px 24px rgba(0,0,0,.06);
-display:flex;
-flex-direction:column;
-}
-
-.card-img{
-height:160px;
-background:#1B263B;
-display:block;
-overflow:hidden;
-}
-
-.card-img img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.card-body{
-padding:18px;
-flex:1;
-display:flex;
-flex-direction:column;
-}
-
-.card h3{
-font-size:18px;
-margin-bottom:6px;
-}
-
-.location{
+.hero-badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(255,255,255,.10);
+border:1px solid rgba(255,255,255,.16);
+color:rgba(255,255,255,.90);
 font-size:13px;
-color:#64748B;
-margin-bottom:10px;
+font-weight:600;
+margin:0 auto;
 }
 
-.metrics{
+.hero-badge .dot{
+width:9px;
+height:9px;
+border-radius:999px;
+background:#F59E0B;
+box-shadow:0 0 0 6px rgba(245,158,11,.18);
+}
+
+.sell-grid{
+
+display:grid;
+grid-template-columns:1.15fr .85fr;
+gap:22px;
+margin-top:14px;
+}
+
+.sell-grid > div{
+margin:0 auto;
+}
+
+.section-card > p{
+max-width:860px;
+margin:0;
+}
+
+.sell-hero h1{
+margin:0 auto 12px;
+color:#FFFFFF;
+font-size:clamp(2.6rem,5vw,4.25rem);
+line-height:1.02;
+letter-spacing:-0.03em;
+font-weight:700;
+max-width:10ch;
+text-align:center;
+text-shadow:0 3px 12px rgba(0,0,0,.28);
+}
+
+.sell-copy{
+color:#FFFFFF !important;
+font-size:16px;
+line-height:1.7;
+max-width:720px;
+margin:20px auto 0 auto;
+text-align:center;
+}
+
+.sell-copy p{
+margin:0 0 16px;
+color:#FFFFFF !important;
+text-align:center;
+font-weight:500;
+}
+
+.hero-actions{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:18px;
+justify-content:center;
+}
+
+.hero-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:46px;
+padding:0 18px;
+border-radius:999px;
+border:1px solid transparent;
+font-size:14px;
+font-weight:700;
+text-decoration:none;
+transition:all .18s ease;
+}
+
+.hero-btn-primary{
+background:#2563EB;
+color:#FFFFFF;
+box-shadow:0 14px 28px rgba(37,99,235,.22);
+}
+
+.hero-btn-primary:hover{ background:#1D4ED8; }
+
+.hero-btn-secondary{
+background:rgba(255,255,255,.10);
+border-color:rgba(255,255,255,.18);
+color:#FFFFFF;
+}
+
+.hero-btn-secondary:hover{
+background:rgba(255,255,255,.14);
+border-color:rgba(255,255,255,.28);
+}
+
+.sell-side{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.14);
+border-radius:20px;
+padding:18px;
+backdrop-filter:blur(10px);
+}
+
+.sell-side h2{
+margin:0 0 10px;
+color:#FFFFFF;
+font-size:clamp(1.6rem,2.2vw,2.2rem);
+font-weight:700;
+text-align:left;
+}
+
+.sell-side p{
+color:rgba(255,255,255,.92);
+font-size:14px;
+line-height:1.65;
+margin-bottom:14px;
+text-align:left;
+}
+
+.side-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:6px;
-font-size:13px;
-margin-bottom:14px;
+gap:12px;
 }
 
-.metric strong{
+.side-item{
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.14);
+border-radius:16px;
+padding:14px;
+}
+
+.side-item strong{
 display:block;
+color:#FFFFFF;
 font-size:14px;
+margin-bottom:4px;
+text-align:left;
 }
 
-.card button{
-margin-top:auto;
-border:none;
-background:#2563EB;
-color:white;
-padding:12px;
-border-radius:999px;
-font-weight:700;
-cursor:pointer;
+.side-item span{
+color:rgba(255,255,255,.82);
+font-size:12.5px;
+display:block;
+text-align:left;
 }
 
-.card button:hover{
-background:#1D4ED8;
+.section{
+margin-top:24px;
 }
 
-.investor{
-margin-top:40px;
-background:white;
-border-radius:20px;
+.section-card{
+background:#FFFFFF;
 border:1px solid #E5E7EB;
-padding:30px;
+border-radius:20px;
+padding:22px;
+box-shadow:0 12px 30px rgba(15,23,42,.08);
 }
 
-.investor h2{
-margin-bottom:12px;
+.section-card h2{
+margin:0 0 10px;
+font-size:clamp(1.8rem,3vw,2.3rem);
+letter-spacing:-0.02em;
+text-align:left;
 }
 
-.investor-grid{
-margin-top:20px;
+.section-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:16px;
+gap:14px;
+margin-top:16px;
 }
 
-.investor-card{
+.mini{
+background:#FFFFFF;
 border:1px solid #E5E7EB;
 border-radius:16px;
 padding:16px;
-background:#FAFAFA;
 }
 
-@media (max-width:900px){
+.mini h3{
+margin:0 0 6px;
+font-size:18px;
+text-align:left;
+}
 
-.listings{
+.mini p{
+margin:0;
+font-size:14px;
+color:#4B5563;
+line-height:1.7;
+text-align:left;
+}
+
+@media (max-width:980px){
+.sell-grid,
+.section-grid{
 grid-template-columns:1fr;
 }
-
-.filters{
-grid-template-columns:1fr;
 }
-
-.hero h1{
-font-size:34px;
-}
-
-.investor-grid{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
 </head>
 
-<body class="bbas-page bbas-listings-page">
+<body class="bbas-page">
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
 
-<main>
+<main id="main" class="bbas-main">
+<div class="bbas-container">
 
-<div class="container">
+<section class="sell-hero">
 
-<section class="hero">
-<h1>Discover businesses ready for their next chapter.</h1>
-<p>
-Our marketplace focuses on real owner operated opportunities. Each listing highlights the numbers, context, and potential buyers actually care about.
-</p>
+<div class="hero-badge"><span class="dot"></span>Sell Your Business</div>
+
+<div class="sell-grid">
+
+<div>
+<h1>Sell your business with discretion and confidence.</h1>
+
+<div class="sell-copy">
+<p>Selling a business is a sensitive process in which confidentiality is often paramount. Many owners understand the importance of discretion, knowing that prematurely announcing a sale can negatively impact employee morale and customer confidence.</p>
+
+<p>Our role is to guide owners through this process carefully, helping maintain stability while preparing the business for a successful transition.</p>
+</div>
+
+<div class="hero-actions">
+<a class="hero-btn hero-btn-primary" href="/contact/">Start a conversation</a>
+<a class="hero-btn hero-btn-secondary" href="/">Explore options</a>
+</div>
+</div>
+
+<aside class="sell-side">
+
+<h2>Confidential. Structured. Professional.</h2>
+
+<p>Our experienced business brokers manage the process discreetly, ensuring that only qualified buyers are introduced while protecting the stability of your business.</p>
+
+<div class="side-grid">
+
+<div class="side-item">
+<strong>Confidential marketing</strong>
+<span>A discreet strategy designed to attract serious buyers.</span>
+</div>
+
+<div class="side-item">
+<strong>Buyer qualification</strong>
+<span>We carefully identify and screen potential buyers.</span>
+</div>
+
+<div class="side-item">
+<strong>Negotiation guidance</strong>
+<span>Support through offers, structure, and deal terms.</span>
+</div>
+
+<div class="side-item">
+<strong>Smooth transition</strong>
+<span>A process designed to protect value and continuity.</span>
+</div>
+
+</div>
+</aside>
+
+</div>
 </section>
 
-<section class="filters">
+<section class="section">
 
-<select>
-<option>Business Type</option>
-<option>Retail</option>
-<option>Convenience Store</option>
-<option>Gas Station</option>
-<option>Restaurant</option>
-<option>Service Business</option>
-</select>
+<div class="section-card">
 
-<select>
-<option>Location</option>
-<option>California</option>
-<option>Texas</option>
-<option>Florida</option>
-<option>New York</option>
-</select>
+<h2>Helping owners achieve the best possible outcome.</h2>
 
-<select>
-<option>Price Range</option>
-<option>$100k - $250k</option>
-<option>$250k - $500k</option>
-<option>$500k - $1M</option>
-<option>$1M+</option>
-</select>
+<p>As we take the lead on getting your business sold, you will be free to focus on running your business successfully. Maintaining strong operations during the sales process helps secure the best possible price and ensures a smoother transaction.</p>
 
-<input placeholder="Search keywords">
+<div class="section-grid">
 
-</section>
-
-<section class="listings">
-
-<div class="card">
-<div class="card-img"><img src="/assets/images/listings/placeholders/bbas_placeholder_01.jpg" alt="Neighborhood Convenience Store placeholder image"></div>
-<div class="card-body">
-<h3>Neighborhood Convenience Store</h3>
-<div class="location">Phoenix, Arizona</div>
-<div class="metrics">
-<div class="metric"><strong>$780k</strong>Revenue</div>
-<div class="metric"><strong>$145k</strong>Cash Flow</div>
-<div class="metric"><strong>$420k</strong>Asking Price</div>
-<div class="metric"><strong>12 yrs</strong>Established</div>
-</div>
-<button>View Details</button>
-</div>
+<div class="mini">
+<h3>Preparation</h3>
+<p>Organizing financials, positioning the business properly, and preparing materials that help buyers understand the opportunity.</p>
 </div>
 
-<div class="card">
-<div class="card-img"><img src="/assets/images/listings/placeholders/bbas_placeholder_02.jpg" alt="Local Service Company placeholder image"></div>
-<div class="card-body">
-<h3>Local Service Company</h3>
-<div class="location">Austin, Texas</div>
-<div class="metrics">
-<div class="metric"><strong>$520k</strong>Revenue</div>
-<div class="metric"><strong>$160k</strong>Cash Flow</div>
-<div class="metric"><strong>$495k</strong>Asking Price</div>
-<div class="metric"><strong>8 yrs</strong>Established</div>
-</div>
-<button>View Details</button>
-</div>
+<div class="mini">
+<h3>Confidential outreach</h3>
+<p>Marketing the business in a way that protects confidentiality while still attracting qualified and serious buyers.</p>
 </div>
 
-<div class="card">
-<div class="card-img"><img src="/assets/images/listings/placeholders/bbas_placeholder_03.jpg" alt="Independent Coffee Shop placeholder image"></div>
-<div class="card-body">
-<h3>Independent Coffee Shop</h3>
-<div class="location">San Diego, California</div>
-<div class="metrics">
-<div class="metric"><strong>$640k</strong>Revenue</div>
-<div class="metric"><strong>$120k</strong>Cash Flow</div>
-<div class="metric"><strong>$350k</strong>Asking Price</div>
-<div class="metric"><strong>6 yrs</strong>Established</div>
-</div>
-<button>View Details</button>
-</div>
+<div class="mini">
+<h3>Successful transition</h3>
+<p>Managing negotiations, timelines, and buyer expectations so the final transaction is stable and successful.</p>
 </div>
 
-</section>
-
-<section class="investor">
-
-<h2>Why investors and buyers like this marketplace</h2>
-
-<p>
-Traditional business listings often lack clarity. Our platform focuses on transparency, better buyer readiness, and structured information that helps both sides move forward confidently.
-</p>
-
-<div class="investor-grid">
-
-<div class="investor-card">
-<strong>Clear numbers</strong>
-<p>Revenue, cash flow, and deal structure presented in a consistent format.</p>
-</div>
-
-<div class="investor-card">
-<strong>Serious buyers</strong>
-<p>Buyers move through readiness steps before accessing deeper listing details.</p>
-</div>
-
-<div class="investor-card">
-<strong>Owner support</strong>
-<p>Sellers receive guidance on documentation, valuation context, and deal preparation.</p>
 </div>
 
 </div>
@@ -326,13 +389,12 @@ Traditional business listings often lack clarity. Our platform focuses on transp
 </section>
 
 </div>
-
 </main>
 
 <div id="siteFooter"></div>
 
 <script src="/assets/js/includes.js"></script>
-<script src="/assets/js/site.js"></script>
+<script src="/assets/js/site.js" defer></script>
 
 </body>
 </html>
