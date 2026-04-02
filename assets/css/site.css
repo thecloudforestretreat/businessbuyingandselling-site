@@ -1412,3 +1412,95 @@ footer.bbas-footer{
     margin-top:28px !important;
   }
 }
+
+
+/* =====================================================
+   ALIGNMENT SYSTEM
+   Hero centered, decision content left aligned
+   ===================================================== */
+
+.bbas-page .heroTop{
+  text-align:center;
+}
+
+.bbas-page .heroBadge{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.bbas-page .heroTitle{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  max-width:14ch;
+}
+
+.bbas-page .heroLead{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  max-width:760px;
+}
+
+.bbas-page .funnelCardHeader,
+.bbas-page .funnelQuestion,
+.bbas-page .funnelHelper,
+.bbas-page .choiceText,
+.bbas-page .choiceTitle,
+.bbas-page .choiceSub,
+.bbas-page .funnelNote,
+.bbas-page .trustHead,
+.bbas-page .trustTitle,
+.bbas-page .trustSub,
+.bbas-page .trustItem,
+.bbas-page .trustKicker,
+.bbas-page .trustText,
+.bbas-page .trustMini,
+.bbas-page .trustFooter,
+.bbas-page .optionText,
+.bbas-page .optionLabel,
+.bbas-page .field label,
+.bbas-page .statusLine{
+  text-align:left;
+}
+
+.bbas-page .choiceGrid{
+  justify-content:stretch;
+}
+
+.bbas-page .choiceTile{
+  text-align:left;
+  grid-template-columns:40px 1fr;
+  justify-items:start;
+  align-items:start;
+}
+
+.bbas-page .choiceIcon{
+  margin:2px 0 0;
+}
+
+.bbas-page .optionRow{
+  text-align:left;
+  grid-template-columns:18px 1fr;
+  justify-items:start;
+}
+
+.bbas-page .turnstileWrap{
+  justify-content:flex-start;
+}
+
+.bbas-page .funnelActions{
+  justify-content:space-between;
+  gap:12px;
+}
+
+@media (max-width:720px){
+  .bbas-page .heroTitle{
+    max-width:12ch;
+  }
+
+  .bbas-page .funnelActions{
+    justify-content:stretch;
+  }
+}
+
