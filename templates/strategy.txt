@@ -1,0 +1,79 @@
+What I would start with first
+
+For North and South Carolina, I would start with these categories first:
+	•	gas stations
+	•	car washes
+	•	liquor stores
+	•	dry cleaners
+	•	dog grooming
+	•	auto repair
+	•	HVAC
+	•	restaurants
+	•	hotels/motels
+
+Why these first:
+	•	easier to identify locally
+	•	often have physical footprints
+	•	many are owner-operator or family-run
+	•	easier to enrich from public signals
+	•	more likely to have observable distress / transition signals
+
+
+  The best creative workflow
+
+Layer 1: discover businesses
+
+Start with public or semi-public sources that help you find candidate businesses by category and geography:
+	•	Google Maps / Google Business Profiles for local discovery by category and city
+	•	North Carolina Secretary of State / Business Registration, including the state’s search for companies and assumed names, which is useful because many local businesses operate under DBAs rather than formal brand/entity matches.  ￼
+	•	South Carolina Secretary of State Business Entities / Registered Agent search for registered entities and agent information. South Carolina explicitly provides entity and registered agent search, but also notes that sole proprietorships and general partnerships do not file with the Secretary of State, so you will miss many local small businesses if you rely on SOS alone.  ￼
+	•	local city/county business license records where public
+	•	local health inspection databases for restaurants, food trucks, daycare-adjacent licensed operations, etc.
+	•	county GIS/property tax records for owner-occupied sites like car washes, gas stations, hotels, and some retail
+
+Layer 2: enrich the record
+
+Once a business is found, create a structured row in your data sheet with fields like:
+	•	business name
+	•	category
+	•	city
+	•	state
+	•	website
+	•	phone
+	•	Google rating / review count
+	•	entity name match
+	•	DBA match
+	•	registered agent
+	•	mailing address
+	•	real estate owner name if public
+	•	likely owner-occupied vs tenant
+	•	multi-location vs single-location
+	•	signals of distress or opportunity
+	•	notes for broker outreach
+
+This is where the automation gets valuable. You are not publishing these as listings. You are building a private sourcing database.
+
+Layer 3: score the opportunity
+
+Add scoring rules like:
+	•	high rating but outdated site
+	•	closed temporarily
+	•	low review count after many years
+	•	owner-operator categories
+	•	single location
+	•	older branding
+	•	visible lease or property issues
+	•	categories known to transact often, like gas stations, restaurants, car washes, liquor stores, dry cleaners, auto repair
+
+That turns a giant messy list into a ranked broker outreach queue.
+
+Layer 4: outreach workflow
+
+Then your broker partner works the best leads:
+	•	owner outreach
+	•	“would you consider selling?”
+	•	“interested in valuation?”
+	•	“quiet market check”
+	•	“confidential buyer demand in your category”
+
+That is the real guerrilla advantage.
