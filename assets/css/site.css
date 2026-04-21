@@ -2996,496 +2996,54 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 
 /* =====================================================
-   CLEAN SLATE REUSABLE BUSINESS BLOG ARTICLE SYSTEM
+   FULL MASTER BLOG ARTICLE SYSTEM
    ===================================================== */
 
-.business-article-page{
-  background:var(--bg-soft);
-}
-
-.business-article{
-  padding-bottom:42px;
-}
-
-.business-article-hero{
-  padding:22px 0 26px;
-}
-
-.business-article-breadcrumbs{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center;
-  margin-bottom:18px;
-  color:#64748B;
-  font-size:13px;
-  line-height:1.5;
-}
-
-.business-article-breadcrumbs a{
-  color:#2563EB;
-}
-
-.business-article-hero-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);
-  gap:26px;
-  align-items:stretch;
-}
-
-.business-article-hero-copy{
-  position:relative;
-  overflow:hidden;
-  border-radius:24px;
-  padding:34px 32px;
-  background:linear-gradient(135deg, rgba(17,24,39,.96) 0%, rgba(27,38,59,.92) 100%);
-  color:#FFFFFF;
-  box-shadow:var(--shadow-lg);
-}
-
-.business-article-hero-copy::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 86% 20%, rgba(96,165,250,.24), transparent 18%),
-    radial-gradient(circle at 12% 84%, rgba(59,130,246,.16), transparent 24%);
-  pointer-events:none;
-}
-
-.business-article-hero-copy > *{
-  position:relative;
-  z-index:1;
-}
-
-.business-article-hero-copy h1{
-  color:#FFFFFF;
-  margin:18px 0 14px;
-  font-size:clamp(2.55rem, 5vw, 4.4rem);
-  line-height:.98;
-  letter-spacing:-.045em;
-  max-width:11ch;
-}
-
-.business-article-lead{
-  color:rgba(255,255,255,.88) !important;
-  font-size:17px;
-  line-height:1.76;
-  max-width:62ch;
-}
-
-.business-article-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:20px;
-}
-
-.business-article-meta span{
-  display:inline-flex;
-  align-items:center;
-  min-height:34px;
-  padding:7px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  color:#FFFFFF;
-  font-size:12px;
-  font-weight:700;
-  line-height:1.2;
-}
-
-.business-article-hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:22px;
-}
-
-.business-article-hero-media{
-  min-width:0;
-}
-
-.business-article-hero-image{
-  min-height:100%;
-  height:100%;
-  border-radius:24px;
-  background:
-    linear-gradient(180deg, rgba(17,24,39,.16), rgba(17,24,39,.40)),
-    url('https://businessbuyingandselling.com/og-image.jpg') center/cover no-repeat;
-  box-shadow:var(--shadow-lg);
-}
-
-.business-article-content{
-  padding-top:10px;
-}
-
-.business-article-shell{
-  width:min(860px, 100%);
-  margin:0 auto;
-}
-
-.business-article-main p{
-  font-size:17px;
-  line-height:1.88;
-}
-
-.business-article-intro,
-.business-article-quick-answer,
-.business-article-section,
-.business-article-feature-band,
-.business-article-risk-band,
-.business-article-cta,
-.business-article-faq{
-  padding:28px;
-  border-radius:24px;
-  background:var(--bg-white);
-  border:1px solid var(--border-light);
-  box-shadow:var(--shadow-md);
-}
-
-.business-article-intro{
-  margin-bottom:18px;
-}
-
-.business-article-quick-answer{
-  margin-bottom:18px;
-}
-
-.business-article-quick-answer h2{
-  margin-top:12px;
-  margin-bottom:16px;
-}
-
-.business-article-summary-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:14px;
-}
-
-.business-article-summary-item{
-  display:flex;
-  flex-direction:column;
-  min-height:126px;
-  padding:18px;
-  border-radius:20px;
-  background:#F8FAFC;
-  border:1px solid #E2E8F0;
-}
-
-.business-article-summary-item strong{
-  margin-bottom:8px;
-  font-size:1rem;
-  line-height:1.35;
-}
-
-.business-article-summary-item span{
-  color:var(--text-secondary);
-  font-size:14px;
-  line-height:1.72;
-}
-
-.business-article-section{
-  margin-bottom:18px;
-}
-
-.business-article-section h2{
-  margin-top:0;
-  margin-bottom:12px;
-  font-size:clamp(1.8rem, 3vw, 2.5rem);
-  line-height:1.06;
-}
-
-.business-article-checklist{
-  margin-top:18px;
-  padding:22px;
-  border-radius:22px;
-  background:linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
-  border:1px solid #E2E8F0;
-}
-
-.business-article-checklist-title{
-  font-size:14px;
-  font-weight:800;
-  color:var(--text-primary);
-  margin-bottom:12px;
-}
-
-.business-article-checklist ul{
-  margin:0;
-  padding-left:18px;
-}
-
-.business-article-checklist li{
-  margin:0 0 10px;
-  font-size:16px;
-  line-height:1.75;
-}
-
-.business-article-split{
-  display:grid;
-  grid-template-columns:minmax(0,.98fr) minmax(280px,.72fr);
-  gap:18px;
-  align-items:start;
-  margin-bottom:18px;
-  padding:28px;
-  border-radius:24px;
-  background:var(--bg-white);
-  border:1px solid var(--border-light);
-  box-shadow:var(--shadow-md);
-}
-
-.business-article-split h2{
-  margin-top:0;
-  margin-bottom:12px;
-  font-size:clamp(1.8rem, 3vw, 2.5rem);
-  line-height:1.06;
-}
-
-.business-article-split-panel{
-  padding:22px;
-  border-radius:20px;
-  background:#F8FAFC;
-  border:1px solid #E2E8F0;
-}
-
-.business-article-split-panel ul{
-  margin:0;
-  padding-left:18px;
-}
-
-.business-article-split-panel li{
-  margin:0 0 10px;
-  font-size:16px;
-  line-height:1.75;
-}
-
-.business-article-grid-cards,
-.business-article-risk-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:14px;
-  margin-top:18px;
-}
-
-.business-article-card,
-.business-article-risk-card{
-  display:flex;
-  flex-direction:column;
-  min-height:146px;
-  padding:18px;
-  border-radius:20px;
-  background:#F8FAFC;
-  border:1px solid #E2E8F0;
-}
-
-.business-article-card strong,
-.business-article-risk-card strong{
-  margin-bottom:8px;
-  font-size:1rem;
-  line-height:1.35;
-}
-
-.business-article-card span,
-.business-article-risk-card span{
-  color:var(--text-secondary);
-  font-size:14px;
-  line-height:1.72;
-}
-
-.business-article-note{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-top:18px;
-  padding:20px 22px;
-  border-radius:20px;
-  background:#EEF4FF;
-  border:1px solid #BFDBFE;
-}
-
-.business-article-note strong{
-  font-size:14px;
-}
-
-.business-article-risk-band{
-  margin-bottom:18px;
-  background:#FFF7ED;
-  border-color:#FED7AA;
-}
-
-.business-article-risk-band h2{
-  margin-top:0;
-  margin-bottom:12px;
-  font-size:clamp(1.8rem, 3vw, 2.5rem);
-  line-height:1.06;
-}
-
-.business-article-cta{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:18px;
-  align-items:center;
-  margin:26px 0 18px;
-  background:linear-gradient(135deg, #0F172A 0%, #111827 100%);
-  box-shadow:var(--shadow-lg);
-}
-
-.business-article-cta-copy h3{
-  color:#FFFFFF;
-  margin-top:12px;
-  margin-bottom:10px;
-}
-
-.business-article-cta-copy p{
-  color:rgba(255,255,255,.84);
-  margin-bottom:0;
-}
-
-.business-article-cta-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  justify-content:flex-end;
-}
-
-.business-article-faq{
-  margin-top:8px;
-}
-
-.business-article-faq h2{
-  margin-top:12px;
-  margin-bottom:16px;
-  font-size:clamp(1.8rem, 3vw, 2.5rem);
-  line-height:1.06;
-}
-
-.business-article-faq-list{
-  display:grid;
-  gap:14px;
-}
-
-.business-article-faq-item{
-  padding:20px 22px;
-  border-radius:20px;
-  background:#F8FAFC;
-  border:1px solid #E2E8F0;
-}
-
-.business-article-faq-item h3{
-  font-size:1.18rem;
-  line-height:1.32;
-  margin-bottom:8px;
-}
-
-.business-article-faq-item p{
-  margin-bottom:0;
-  font-size:15px;
-  line-height:1.8;
-}
-
-.business-article-related{
-  margin-top:24px;
-}
-
-.business-article-related h2{
-  margin-top:12px;
-  margin-bottom:16px;
-  font-size:clamp(1.8rem, 3vw, 2.5rem);
-  line-height:1.06;
-}
-
-.business-article-related-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:18px;
-}
-
-.business-article-related-card{
-  display:flex;
-  flex-direction:column;
-  min-height:180px;
-  padding:24px;
-  border-radius:22px;
-  background:var(--bg-white);
-  border:1px solid var(--border-light);
-  box-shadow:var(--shadow-md);
-  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-}
-
-.business-article-related-card:hover{
-  border-color:#C7D2FE;
-  box-shadow:var(--shadow-lg);
-  transform:translateY(-2px);
-}
-
-.business-article-related-card strong{
-  font-size:1.06rem;
-  line-height:1.4;
-  margin-bottom:10px;
-}
-
-.business-article-related-card span{
-  color:var(--text-secondary);
-  font-size:14px;
-  line-height:1.72;
-}
-
-@media (max-width:1100px){
-  .business-article-hero-grid,
-  .business-article-split,
-  .business-article-cta{
-    grid-template-columns:1fr;
-  }
-
-  .business-article-cta-actions{
-    justify-content:flex-start;
-  }
-
-  .business-article-hero-image{
-    min-height:320px;
-  }
-}
-
-@media (max-width:900px){
-  .business-article-summary-grid,
-  .business-article-grid-cards,
-  .business-article-risk-grid,
-  .business-article-related-grid{
-    grid-template-columns:1fr;
-  }
-
-  .business-article-intro,
-  .business-article-quick-answer,
-  .business-article-section,
-  .business-article-split,
-  .business-article-risk-band,
-  .business-article-cta,
-  .business-article-faq{
-    padding:22px 18px;
-  }
-
-  .business-article-hero-copy h1{
-    max-width:11ch;
-  }
-}
-
-@media (max-width:720px){
-  .business-article-hero{
-    padding:16px 0 20px;
-  }
-
-  .business-article-hero-copy h1{
-    font-size:clamp(2.3rem, 11vw, 3.4rem);
-  }
-
-  .business-article-main p{
-    font-size:16px;
-    line-height:1.82;
-  }
-
-  .business-article-hero-actions .btn,
-  .business-article-cta-actions .btn{
-    width:100%;
-  }
+.business-article-page{background:#f8fafc}
+.business-article{padding-bottom:42px}
+.business-article-hero{padding:24px 0}
+.business-article-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px;color:#64748b;font-size:13px;line-height:1.5}
+.business-article-breadcrumbs a{color:#2563EB}
+.business-article-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.business-article-hero-copy{background:linear-gradient(135deg,#111827,#1e3a8a);color:#fff;padding:36px;border-radius:24px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.business-article-hero-copy::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 86% 20%, rgba(96,165,250,.24), transparent 18%),radial-gradient(circle at 12% 84%, rgba(59,130,246,.16), transparent 24%);pointer-events:none}
+.business-article-hero-copy > *{position:relative;z-index:1}
+.business-article-hero-copy h1{color:#fff;font-size:clamp(2.6rem,5vw,4.4rem);line-height:.96;margin:14px 0;max-width:11ch}
+.business-article-lead{color:rgba(255,255,255,.88)!important}
+.business-article-hero-image{border-radius:24px;min-height:460px;background:linear-gradient(180deg, rgba(17,24,39,.16), rgba(17,24,39,.40)),url('https://businessbuyingandselling.com/og-image.jpg') center/cover no-repeat;box-shadow:var(--shadow-lg)}
+.business-article-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.business-article-meta span{background:rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;font-size:12px;color:#fff;border:1px solid rgba(255,255,255,.14)}
+.business-article-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.business-article-shell{max-width:920px;margin:0 auto}
+.business-article-intro,.business-article-quick-answer,.business-article-section,.business-article-split,.business-article-risk-band,.business-article-cta,.business-article-faq{background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:28px;margin-bottom:18px;box-shadow:var(--shadow-md)}
+.business-article-quick-answer h2,.business-article-section h2,.business-article-risk-band h2,.business-article-faq h2,.business-article-related h2,.business-article-split h2{margin-top:0}
+.business-article-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.business-article-summary-item,.business-article-card,.business-article-risk-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:18px}
+.business-article-summary-item strong,.business-article-card strong,.business-article-risk-card strong{display:block;margin-bottom:8px}
+.business-article-checklist{margin-top:18px;padding:22px;border-radius:20px;background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);border:1px solid #e2e8f0}
+.business-article-checklist-title{font-size:14px;font-weight:800;margin-bottom:12px}
+.business-article-checklist ul,.business-article-split-panel ul{padding-left:18px}
+.business-article-checklist li,.business-article-split-panel li{margin:0 0 10px}
+.business-article-split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.business-article-split-panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:20px}
+.business-article-grid-cards,.business-article-risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.business-article-note{display:flex;flex-direction:column;gap:8px;margin-top:18px;padding:20px;border-radius:18px;background:#eef4ff;border:1px solid #bfdafe}
+.business-article-risk-band{background:#fff7ed;border-color:#fed7aa}
+.business-article-cta{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:#0f172a;color:#fff}
+.business-article-cta h3,.business-article-cta p{color:#fff}
+.business-article-cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+.business-article-faq-list{display:grid;gap:14px}
+.business-article-faq-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:20px}
+.business-article-faq-item p{margin-bottom:0}
+.business-article-related{margin-top:24px}
+.business-article-related-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.business-article-related-card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:22px;min-height:160px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:var(--shadow-md)}
+.business-article-related-card strong{display:block;margin-bottom:8px}
+@media(max-width:980px){
+  .business-article-hero-grid,.business-article-split,.business-article-cta,.business-article-related-grid,.business-article-risk-grid,.business-article-grid-cards,.business-article-summary-grid{grid-template-columns:1fr}
+  .business-article-hero-image{min-height:300px}
+}
+@media(max-width:720px){
+  .business-article-hero-actions .btn,.business-article-cta-actions .btn{width:100%}
+  .business-article-intro,.business-article-quick-answer,.business-article-section,.business-article-split,.business-article-risk-band,.business-article-cta,.business-article-faq{padding:22px 18px}
 }
