@@ -204,6 +204,29 @@ lease terms, and what is included in the sale.</div>
   </section>
 
 
+    <section class="home-metrics" aria-label="Why buyers and sellers use Business Buying and Selling">
+      <div class="container">
+        <div class="home-metrics-grid">
+          <article class="home-metric">
+            <strong>Buyer education</strong>
+            <span>Due diligence, valuation, financing, and next-step guidance built for serious buyers.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Seller readiness</strong>
+            <span>Preparation, positioning, confidentiality, and value-building resources for owners.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Listings that matter</strong>
+            <span>Owner-operated businesses across core categories instead of generic marketplace clutter.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Action-focused flow</strong>
+            <span>Every section routes users toward the right page, article, or conversation.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section home-overview">
       <div class="container">
         <div class="home-section-head">
@@ -259,6 +282,39 @@ lease terms, and what is included in the sale.</div>
       </div>
     </section>
 
+    <section class="section home-featured">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Featured opportunities</div>
+          <h2>Listings worth a closer look</h2>
+          <p>Use this area to push visitors deeper into your listings archive while reinforcing the quality of businesses you focus on.</p>
+        </div>
+
+        <div class="home-listing-grid">
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Retail</div>
+            <h3>Profitable Neighborhood Liquor Store</h3>
+            <p>Established repeat traffic, simple operations, and steady local demand make this a strong buyer-interest profile.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Food and beverage</div>
+            <h3>Established Quick Service Restaurant</h3>
+            <p>Visible location, consistent customer base, and operational upside for buyers looking for a hands-on opportunity.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Service</div>
+            <h3>Local Auto Repair Business</h3>
+            <p>Loyal clientele, included equipment, and a durable community footprint with room for growth.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section home-articles">
       <div class="container">
         <div class="home-section-head home-section-head--tight">
@@ -297,7 +353,7 @@ lease terms, and what is included in the sale.</div>
           <div class="home-cta-copy">
             <div class="home-eyebrow home-eyebrow--dark">Ready to move forward?</div>
             <h2>Whether you are buying or selling, start with the right path</h2>
-            <p>Use the guided funnel above, browse current listings, or jump directly into buyer and seller resources to move forward with more clarity.</p>
+            <p>Use the guided funnel above, browse listings, or move directly into buyer and seller resources with a clearer next step and stronger context.</p>
           </div>
           <div class="home-cta-actions">
             <a class="btn btn--primary" href="/buy-a-business/">Buy a Business</a>
@@ -316,64 +372,7 @@ lease terms, and what is included in the sale.</div>
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
-  <script>
-    (function () {
-      document.addEventListener("click", function (e) {
-        var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
-        if (!a) return;
-        var href = a.getAttribute("href");
-        if (!href || href.length < 2) return;
-        var el = document.querySelector(href);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
 
-      var phone = document.getElementById("phone");
-      if (phone) {
-        phone.addEventListener("input", function () {
-          var x = String(phone.value || "").replace(/\D/g, "").slice(0, 10);
-          var out = x;
-          if (x.length > 6) out = "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
-          else if (x.length > 3) out = "(" + x.slice(0,3) + ") " + x.slice(3);
-          phone.value = out;
-        });
-      }
-
-      var form = document.getElementById("earlyForm");
-      var statusBox = document.getElementById("earlyStatus");
-      if (form && statusBox) {
-        var action = form.getAttribute("action") || "";
-        var hasEndpoint = action && action.indexOf("REPLACE_ME") === -1;
-
-        form.addEventListener("submit", async function (e) {
-          if (!hasEndpoint) {
-            e.preventDefault();
-            statusBox.style.display = "block";
-            statusBox.textContent = "Form is not wired yet. Replace the Formspree endpoint to collect submissions.";
-            return;
-          }
-
-          e.preventDefault();
-          statusBox.style.display = "block";
-          statusBox.textContent = "Submitting...";
-
-          try {
-            var fd = new FormData(form);
-            var res = await fetch(action, { method: "POST", body: fd, headers: { "Accept": "application/json" } });
-            if (res.ok) {
-              form.reset();
-              statusBox.textContent = "Thanks. You are on the list. We will reach out with launch updates.";
-              return;
-            }
-            statusBox.textContent = "Submission failed. Please try again.";
-          } catch (err) {
-            statusBox.textContent = "Network error. Please try again.";
-          }
-        });
-      }
-    })();
-  </script>
 
 <script>
 (function(){
