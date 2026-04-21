@@ -1968,6 +1968,20 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   padding-top:16px;
 }
 
+.home-support-copy{
+  max-width:960px;
+  margin:18px auto 0;
+  padding:0 4px;
+}
+
+.home-support-copy p{
+  margin:0;
+  color:var(--text-secondary);
+  font-size:15px;
+  line-height:1.75;
+}
+
+
 .home-section-head{
   max-width:760px;
   margin:0 0 26px;
@@ -2018,8 +2032,11 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .home-info-card,
 .home-link-card,
-.home-article-card{
-  display:block;
+.home-article-card,
+.home-listing-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
   background:var(--bg-white);
   border:1px solid var(--border-light);
   border-radius:22px;
@@ -2083,7 +2100,8 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  margin-top:14px;
+  margin-top:auto;
+  padding-top:14px;
   color:var(--marketplace-blue);
   font-size:14px;
   font-weight:700;
@@ -2250,8 +2268,18 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   .home-info-card,
   .home-link-card,
   .home-article-card,
+  .home-listing-card,
   .home-cta-panel{
     padding:22px;
+  }
+
+  .home-support-copy{
+    margin-top:16px;
+    padding:0 2px;
+  }
+
+  .home-featured-note{
+    margin-top:16px;
   }
 }
 
@@ -2336,6 +2364,14 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .home-listing-card p{
   margin-bottom:0;
+}
+
+.home-featured-note{
+  max-width:860px;
+  margin:18px 0 0;
+  color:var(--text-secondary);
+  font-size:15px;
+  line-height:1.75;
 }
 
 .home-page .heroTop{
