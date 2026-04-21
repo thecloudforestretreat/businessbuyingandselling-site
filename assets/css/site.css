@@ -3046,4 +3046,351 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 @media(max-width:720px){
   .business-article-hero-actions .btn,.business-article-cta-actions .btn{width:100%}
   .business-article-intro,.business-article-quick-answer,.business-article-section,.business-article-split,.business-article-risk-band,.business-article-cta,.business-article-faq{padding:22px 18px}
+}\n\n
+
+/* =====================================================
+   ARTICLE V2 CLEAN REBUILD
+   Full single-column article system
+   ===================================================== */
+
+.business-article-v2{
+  background:var(--bg-soft);
+}
+
+.article-v2{
+  padding-bottom:42px;
+}
+
+.article-v2-hero{
+  padding:24px 0;
+}
+
+.article-v2-breadcrumbs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  margin-bottom:18px;
+  color:#64748B;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.article-v2-breadcrumbs a{
+  color:#2563EB;
+}
+
+.article-v2-hero-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+.article-v2-hero-copy{
+  position:relative;
+  overflow:hidden;
+  padding:36px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#111827,#1E3A8A);
+  color:#FFFFFF;
+  box-shadow:var(--shadow-lg);
+}
+
+.article-v2-hero-copy::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(96,165,250,.22), transparent 18%),
+    radial-gradient(circle at 14% 84%, rgba(59,130,246,.16), transparent 22%);
+  pointer-events:none;
+}
+
+.article-v2-hero-copy > *{
+  position:relative;
+  z-index:1;
+}
+
+.article-v2-hero-copy h1{
+  color:#FFFFFF;
+  font-size:clamp(2.7rem,5vw,4.5rem);
+  line-height:.95;
+  letter-spacing:-.05em;
+  max-width:11ch;
+  margin:14px 0;
+}
+
+.article-v2-lead{
+  color:rgba(255,255,255,.9)!important;
+  font-size:17px;
+  line-height:1.76;
+  max-width:58ch;
+}
+
+.article-v2-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.article-v2-meta span{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#FFFFFF;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.2;
+}
+
+.article-v2-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.article-v2-hero-media{
+  min-width:0;
+}
+
+.article-v2-hero-image{
+  min-height:440px;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg, rgba(17,24,39,.15), rgba(17,24,39,.34)),
+    url('https://businessbuyingandselling.com/og-image.jpg') center/cover no-repeat;
+  box-shadow:var(--shadow-lg);
+}
+
+.article-v2-shell{
+  width:min(860px,100%);
+  margin:0 auto;
+}
+
+.article-v2-intro,
+.article-v2-quick-answer,
+.article-v2-section,
+.article-v2-split,
+.article-v2-risk-band,
+.article-v2-cta,
+.article-v2-faq{
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  border-radius:22px;
+  box-shadow:var(--shadow-md);
+  padding:28px;
+  margin-bottom:18px;
+}
+
+.article-v2-intro p,
+.article-v2-section p{
+  font-size:17px;
+  line-height:1.86;
+}
+
+.article-v2-quick-answer h2,
+.article-v2-section h2,
+.article-v2-risk-band h2,
+.article-v2-faq h2,
+.article-v2-related h2,
+.article-v2-split h2{
+  margin-top:0;
+  margin-bottom:14px;
+}
+
+.article-v2-takeaways-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:16px;
+}
+
+.article-v2-takeaway,
+.article-v2-card,
+.article-v2-risk-card{
+  background:#F8FAFC;
+  border:1px solid #E2E8F0;
+  border-radius:18px;
+  padding:18px;
+}
+
+.article-v2-takeaway strong,
+.article-v2-card strong,
+.article-v2-risk-card strong{
+  display:block;
+  margin-bottom:8px;
+}
+
+.article-v2-takeaway span,
+.article-v2-card span,
+.article-v2-risk-card span{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.article-v2-checklist,
+.article-v2-inline-list{
+  margin-top:18px;
+  padding:22px;
+  border-radius:20px;
+  background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);
+  border:1px solid #E2E8F0;
+}
+
+.article-v2-checklist-title,
+.article-v2-inline-list-title{
+  font-size:14px;
+  font-weight:800;
+  color:var(--text-primary);
+  margin-bottom:12px;
+}
+
+.article-v2-checklist ul,
+.article-v2-inline-list ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.article-v2-checklist li,
+.article-v2-inline-list li{
+  margin:0 0 10px;
+  font-size:16px;
+  line-height:1.72;
+}
+
+.article-v2-cards-grid,
+.article-v2-risk-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+.article-v2-note{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:18px;
+  padding:20px 22px;
+  border-radius:18px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+}
+
+.article-v2-note strong{
+  font-size:14px;
+}
+
+.article-v2-risk-band{
+  background:#FFF7ED;
+  border-color:#FED7AA;
+}
+
+.article-v2-cta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:18px;
+  align-items:center;
+  background:#0F172A;
+}
+
+.article-v2-cta-copy h3,
+.article-v2-cta-copy p{
+  color:#FFFFFF;
+}
+
+.article-v2-cta-copy h3{
+  margin-top:12px;
+  margin-bottom:8px;
+}
+
+.article-v2-faq-list{
+  display:grid;
+  gap:14px;
+}
+
+.article-v2-faq-item{
+  background:#F8FAFC;
+  border:1px solid #E2E8F0;
+  border-radius:18px;
+  padding:20px;
+}
+
+.article-v2-faq-item p{
+  margin-bottom:0;
+}
+
+.article-v2-related{
+  margin-top:24px;
+}
+
+.article-v2-related-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.article-v2-related-card{
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  border-radius:20px;
+  box-shadow:var(--shadow-md);
+  padding:22px;
+  min-height:160px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+
+.article-v2-related-card strong{
+  display:block;
+  margin-bottom:8px;
+}
+
+.article-v2-related-card span{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.7;
+}
+
+@media (max-width:980px){
+  .article-v2-hero-grid,
+  .article-v2-cta,
+  .article-v2-related-grid,
+  .article-v2-risk-grid,
+  .article-v2-cards-grid,
+  .article-v2-takeaways-grid{
+    grid-template-columns:1fr;
+  }
+
+  .article-v2-hero-image{
+    min-height:300px;
+  }
+}
+
+@media (max-width:720px){
+  .article-v2-hero-copy h1{
+    font-size:clamp(2.3rem,11vw,3.5rem);
+  }
+
+  .article-v2-intro,
+  .article-v2-quick-answer,
+  .article-v2-section,
+  .article-v2-risk-band,
+  .article-v2-cta,
+  .article-v2-faq{
+    padding:22px 18px;
+  }
+
+  .article-v2-actions .btn{
+    width:100%;
+  }
 }
