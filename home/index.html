@@ -2,28 +2,38 @@
 <html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
   <meta charset="utf-8">
-  <title>Business Buying and Selling | Centered Layout Preview</title>
+  <title>Buy or Sell a Business | Listings & Expert Guidance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- SEO -->
-  <meta name="description" content="A modern marketplace and knowledge hub for buying and selling real, owner-operated businesses. Explore listings, learn valuation basics, and move with confidence.">
+  <meta name="description" content="Buy or sell a business with confidence. Explore listings, learn valuations, and connect with experts for smooth transactions.">
   <link rel="canonical" href="https://businessbuyingandselling.com/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://businessbuyingandselling.com/">
-  <meta property="og:title" co ntent="Business Buying and Selling">
-  <meta property="og:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
+  <meta property="og:title" content="Buy or Sell a Business | Listings & Expert Guidance">
+  <meta property="og:description" content="Buy or sell a business with confidence. Explore listings, valuations, and expert guidance.">
   <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Business Buying and Selling">
-  <meta name="twitter:description" content="Buy or sell a real business with clarity. Listings, learning, and a better path to ownership.">
+  <meta name="twitter:title" content="Buy or Sell a Business | Listings & Expert Guidance">
+  <meta name="twitter:description" content="Buy or sell a business with confidence. Explore listings, valuations, and expert guidance.">
   <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Business Buying and Selling",
+    "description": "Marketplace and expert resource for buying and selling businesses, including listings, valuations, and brokerage guidance.",
+    "url": "https://businessbuyingandselling.com/"
+  }
+  </script>
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico">
@@ -31,324 +41,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260312-funnel-submit-1">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260421-home-final">
 
-      <link rel="stylesheet" href="/assets/css/header.css?v=20260312-funnel-submit-1">
-<!-- Page-level polish (compact, scoped) -->
-  <style id="page-structure-only">
-  .skip-link{
-    position:absolute;
-    left:-999px;
-    top:12px;
-    z-index:9999;
-    padding:10px 14px;
-    border-radius:12px;
-    background:var(--bg-white, #FFFFFF);
-    border:1px solid var(--border-light, #E5E7EB);
-    color:var(--text-primary, #1F2937);
-  }
-  .skip-link:focus{ left:12px; }
-
-  body.bbas-page{
-    background:var(--bg-soft, #FAFAFA);
-    color:var(--text-primary, #1F2937);
-  }
-
-  .hero--funnel{
-    position:relative;
-    padding:22px 0 64px;
-    background:transparent;
-  }
-
-  .hero--funnel .heroBg{ display:none; }
-
-  .hero--funnel .container{
-    position:relative;
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  .heroTop{
-    position:relative;
-    overflow:hidden;
-    border-radius:24px;
-    padding:26px 26px 118px;
-  }
-
-  .heroBadge{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 12px;
-    border-radius:999px;
-  }
-
-  .heroBadge .dot{
-    width:9px;
-    height:9px;
-    border-radius:999px;
-  }
-
-  .heroTitle{
-    margin:14px 0 10px;
-    max-width:720px;
-  }
-
-  .heroLead{
-    margin:0;
-    max-width:760px;
-  }
-
-  .funnelShell{
-    display:grid;
-    grid-template-columns:1.15fr .95fr;
-    gap:22px;
-    align-items:start;
-    margin-top:-86px;
-    position:relative;
-    z-index:3;
-  }
-
-  .funnelLeft,
-  .funnelRight{
-    min-width:0;
-  }
-
-  .linkBtn{
-    background:transparent;
-    border:0;
-    padding:0;
-    cursor:pointer;
-  }
-
-  .funnelCard{
-    overflow:hidden;
-  }
-
-  .funnelProgress{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding:20px 22px 0;
-    margin:0;
-  }
-
-  .funnelProgressTrack{
-    height:6px;
-    border-radius:999px;
-    overflow:hidden;
-  }
-
-  .funnelProgressFill{
-    height:100%;
-    width:0;
-  }
-
-  .funnelProgressMeta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-top:2px;
-  }
-
-  .funnelCardHeader{
-    padding:18px 22px 12px;
-  }
-
-  .funnelBody{
-    padding:16px 22px 12px;
-  }
-
-  .choiceGrid,
-  .optionList,
-  .trustGrid,
-  .inputGrid{
-    display:grid;
-    gap:12px;
-  }
-
-  .choiceGrid--two,
-  .optionList--two{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .choiceTile,
-  .optionRow{
-    width:100%;
-    text-align:left;
-    cursor:pointer;
-  }
-
-  .choiceTile{
-    min-height:96px;
-    display:grid;
-    grid-template-columns:40px 1fr;
-    gap:12px;
-    align-items:flex-start;
-    padding:14px;
-  }
-
-  .choiceIcon{
-    width:28px;
-    height:28px;
-    display:grid;
-    place-items:center;
-    margin-top:2px;
-  }
-
-  .optionRow{
-    min-height:58px;
-    display:grid;
-    grid-template-columns:18px 1fr;
-    gap:12px;
-    align-items:center;
-    padding:12px 14px;
-  }
-
-  .optionBullet{
-    width:18px;
-    height:18px;
-    border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .optionBullet::after{
-    content:"";
-    width:8px;
-    height:8px;
-    border-radius:999px;
-    display:block;
-  }
-
-  .inputGrid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .inputGrid--address .field--full{
-    grid-column:1 / -1;
-  }
-
-  .field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-
-  .funnelActions{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 22px 14px;
-  }
-
-  body[data-funnel-branch="none"] #funnelActions{
-    display:none !important;
-  }
-
-  .btn{
-    min-width:120px;
-    min-height:44px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-  }
-
-  .trustCard{
-    padding:22px;
-  }
-
-  .trustFooter{
-    margin-top:14px;
-    padding-top:12px;
-  }
-
-  .turnstileWrap{
-    display:flex;
-    justify-content:flex-start;
-    padding:12px 0 6px;
-  }
-
-  .statusLine{
-    margin-top:10px;
-    font-size:13px;
-  }
-
-  #siteFooter{
-    position:relative;
-    z-index:1;
-  }
-
-  /* First screen: hide progress entirely */
-  body[data-funnel-branch="none"] .funnelProgress{
-    display:none !important;
-  }
-
-  /* Later steps: progress lives neatly inside the card */
-  .funnelCard #funnelStepLabel{
-    color:#6B7280;
-    font-size:12px;
-    font-weight:700;
-    line-height:1.2;
-    letter-spacing:.02em;
-  }
-
-  .funnelCard #funnelRestartBtn{
-    color:#2563EB;
-    font-size:12px;
-    font-weight:700;
-    line-height:1.2;
-  }
-
-  @media (max-width:980px){
-    .heroTop{
-      padding:22px 22px 110px;
-    }
-    .funnelShell{
-      grid-template-columns:1fr;
-      margin-top:-74px;
-    }
-  }
-
-  @media (max-width:720px){
-    .hero--funnel{
-      padding:16px 0 44px;
-    }
-    .hero--funnel .container{
-      padding:0 14px;
-    }
-    .heroTop{
-      padding:18px 16px 84px;
-      border-radius:20px;
-    }
-    .choiceGrid--two,
-    .optionList--two,
-    .trustGrid,
-    .inputGrid{
-      grid-template-columns:1fr;
-    }
-    .funnelProgress,
-    .funnelCardHeader,
-    .funnelBody,
-    .funnelActions,
-    .trustCard{
-      padding-left:16px;
-      padding-right:16px;
-    }
-    .funnelActions{
-      flex-wrap:wrap;
-    }
-    .btn{
-      width:100%;
-      min-width:0;
-    }
-  }
-</style>
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260421-home-final">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
@@ -386,158 +81,9 @@
   };
 </script>
 
-
-<style id="centered-layout-preview-overrides">
-/* Centered layout preview for client review */
-
-.heroTop{
-  text-align:center !important;
-}
-
-.heroBadge{
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-
-.heroTitle{
-  margin-left:auto !important;
-  margin-right:auto !important;
-  text-align:center !important;
-  max-width:14ch !important;
-}
-
-.heroLead{
-  margin-left:auto !important;
-  margin-right:auto !important;
-  text-align:center !important;
-  max-width:760px !important;
-}
-
-.funnelCardHeader{
-  text-align:center !important;
-}
-
-.funnelQuestion{
-  text-align:center !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-
-.funnelHelper{
-  text-align:center !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-
-.choiceGrid{
-  justify-content:center !important;
-}
-
-.choiceTile{
-  text-align:center !important;
-  grid-template-columns:1fr !important;
-  justify-items:center !important;
-  align-items:center !important;
-  padding:18px !important;
-}
-
-.choiceIcon{
-  margin:0 auto 8px !important;
-}
-
-.choiceText,
-.choiceTitle,
-.choiceSub{
-  text-align:center !important;
-}
-
-.funnelNote{
-  text-align:center !important;
-}
-
-.trustHead{
-  text-align:center !important;
-}
-
-.trustPill{
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-
-.trustTitle,
-.trustSub{
-  text-align:center !important;
-}
-
-.trustItem{
-  text-align:center !important;
-}
-
-.trustKicker,
-.trustText,
-.trustMini{
-  text-align:center !important;
-}
-
-.trustFooter{
-  text-align:center !important;
-}
-
-.optionRow{
-  text-align:center !important;
-  grid-template-columns:1fr !important;
-  justify-items:center !important;
-}
-
-.optionText,
-.optionLabel{
-  text-align:center !important;
-}
-
-.field label{
-  text-align:center !important;
-}
-
-.statusLine{
-  text-align:center !important;
-}
-
-.turnstileWrap{
-  justify-content:center !important;
-}
-
-.funnelActions{
-  justify-content:center !important;
-}
-
-@media (max-width:720px){
-  .heroTitle{
-    max-width:12ch !important;
-  }
-}
-</style>
-
-
-<style id="funnel-action-alignment-fix">
-.funnelActions{
-  justify-content:center !important;
-  gap:16px !important;
-}
-.funnelActions .btn{
-  min-width:122px !important;
-}
-#funnelBackBtn,
-#funnelNextBtn{
-  margin:0 !important;
-}
-#funnelNextBtn{
-  display:inline-flex !important;
-}
-</style>
-
 </head>
 
-<body class="bbas-page">
+<body class="bbas-page home-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="siteHeader"></div>
@@ -550,10 +96,20 @@
       <div class="heroTop">
         <div class="heroBadge">
           <span class="dot" aria-hidden="true"></span>
-          <span>Centered layout preview</span>
+          <span>Listings, guidance, and a smarter path to ownership</span>
         </div>
-        <h1 class="heroTitle">Buy or sell a business, with confidence.</h1>
-        <p class="heroLead">Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.<br><br>We use your answers to match you with the right opportunities, resources, and next actions so you move forward with confidence.</p>
+        <h1 class="heroTitle">Buy or Sell a Business with Confidence</h1>
+        <p class="heroLead">Explore business listings, understand valuation, and move forward with a clearer plan whether you are buying your first business or preparing to sell for maximum value.</p>
+        <div class="home-hero-actions">
+          <a class="btn btn--primary" href="/listings/">Browse Listings</a>
+          <a class="btn btn--ghost btn--ghost-light" href="/sell-your-business/">Sell Your Business</a>
+        </div>
+        <div class="home-hero-proof">
+          <div class="home-proof-pill">For buyers</div>
+          <div class="home-proof-pill">For sellers</div>
+          <div class="home-proof-pill">Owner-operated businesses</div>
+          <div class="home-proof-pill">Actionable education</div>
+        </div>
       </div>
 
       <div class="funnelShell">
@@ -604,6 +160,25 @@
             <div class="funnelNote" id="funnelNote">
               Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.
             </div>
+
+            <div class="funnelSupport" aria-label="What happens next">
+              <div class="funnelSupport__eyebrow">What happens next</div>
+              <div class="funnelSupport__title">Choose your path, then move with more clarity.</div>
+              <div class="funnelSupport__grid">
+                <div class="funnelSupport__item">
+                  <strong>For buyers</strong>
+                  <span>Browse listings, learn financing basics, and understand what to review before contacting a seller.</span>
+                </div>
+                <div class="funnelSupport__item">
+                  <strong>For sellers</strong>
+                  <span>Get clearer on valuation, timing, confidentiality, and what serious buyers expect before going to market.</span>
+                </div>
+                <div class="funnelSupport__item">
+                  <strong>For both sides</strong>
+                  <span>Use the blog, listings, and next-step pages to reduce confusion and move into better conversations faster.</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -646,6 +221,169 @@ lease terms, and what is included in the sale.</div>
       </div>
     </div>
   </section>
+
+
+    <section class="home-metrics" aria-label="Why buyers and sellers use Business Buying and Selling">
+      <div class="container">
+        <div class="home-metrics-grid">
+          <article class="home-metric">
+            <strong>Buyer education</strong>
+            <span>Due diligence, valuation, financing, and next-step guidance built for serious buyers.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Seller readiness</strong>
+            <span>Preparation, positioning, confidentiality, and value-building resources for owners.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Listings that matter</strong>
+            <span>Owner-operated businesses across core categories instead of generic marketplace clutter.</span>
+          </article>
+          <article class="home-metric">
+            <strong>Action-focused flow</strong>
+            <span>Every section routes users toward the right page, article, or conversation.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-overview">
+      <div class="container">
+        <div class="home-section-head">
+          <div class="home-eyebrow">Why this site works</div>
+          <h2>Built to help serious buyers and sellers move faster</h2>
+          <p>Business Buying and Selling is designed to make the early stages of buying or selling a business clearer, more organized, and more actionable. Instead of forcing users to guess the next step, the homepage should route them quickly into the right path, listings, and educational content.</p>
+        </div>
+
+        <div class="home-overview-grid">
+          <article class="home-info-card">
+            <h3>For buyers</h3>
+            <p>Browse listings, understand due diligence, learn how financing works, and reduce the mistakes that stall or kill deals.</p>
+            <a class="home-text-link" href="/buy-a-business/">Explore the buyer path</a>
+          </article>
+
+          <article class="home-info-card">
+            <h3>For sellers</h3>
+            <p>Learn what affects value, how long a sale may take, what buyers want to see, and how to position your business more effectively.</p>
+            <a class="home-text-link" href="/sell-your-business/">Explore the seller path</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-links">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Start here</div>
+          <h2>Find the right next step</h2>
+        </div>
+
+        <div class="home-link-grid">
+          <a class="home-link-card" href="/buy-a-business/">
+            <h3>Buy a Business</h3>
+            <p>Understand valuation, financing, readiness, and what to do before contacting a seller.</p>
+          </a>
+
+          <a class="home-link-card" href="/sell-your-business/">
+            <h3>Sell Your Business</h3>
+            <p>Learn how to prepare, protect confidentiality, and improve perceived value before going to market.</p>
+          </a>
+
+          <a class="home-link-card" href="/listings/">
+            <h3>Browse Listings</h3>
+            <p>See active opportunities across retail, service, food and beverage, and other owner-operated categories.</p>
+          </a>
+
+          <a class="home-link-card" href="/contact/">
+            <h3>Talk to Us</h3>
+            <p>Get help choosing the right path, understanding timing, or starting a more serious conversation.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-featured">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Featured opportunities</div>
+          <h2>Listings worth a closer look</h2>
+          <p>Use this area to push visitors deeper into your listings archive while reinforcing the quality of businesses you focus on.</p>
+        </div>
+
+        <div class="home-listing-grid">
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Retail</div>
+            <h3>Profitable Neighborhood Liquor Store</h3>
+            <p>Established repeat traffic, simple operations, and steady local demand make this a strong buyer-interest profile.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Food and beverage</div>
+            <h3>Established Quick Service Restaurant</h3>
+            <p>Visible location, consistent customer base, and operational upside for buyers looking for a hands-on opportunity.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Service</div>
+            <h3>Local Auto Repair Business</h3>
+            <p>Loyal clientele, included equipment, and a durable community footprint with room for growth.</p>
+            <a class="home-text-link" href="/listings/">View listing</a>
+          </article>
+        </div>
+
+        <p class="home-featured-note">These featured opportunities are just a starting point. View all listings to explore more businesses and find the opportunity that fits your goals, budget, and timeline.</p>
+      </div>
+    </section>
+
+    <section class="section home-articles">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Popular resources</div>
+          <h2>Content that supports rankings and real user decisions</h2>
+          <p>These articles strengthen SEO, improve internal linking, and help users understand what matters before they buy or sell.</p>
+        </div>
+
+        <div class="home-article-grid">
+          <a class="home-article-card" href="/blog/how-to-sell-your-business-for-maximum-value/">
+            <h3>How to Sell Your Business for Maximum Value</h3>
+            <p>Guidance for owners who want to improve positioning, understand value, and attract more serious buyers.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">
+            <h3>How to Buy a Small Business Without Costly Mistakes</h3>
+            <p>A practical starting point for buyers who want better questions, fewer surprises, and stronger decisions.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/what-your-business-is-worth-before-you-sell/">
+            <h3>What Your Business Is Really Worth Before You Sell</h3>
+            <p>Understand the value conversation before entering the market or speaking with potential buyers.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/due-diligence-checklist-buying-or-selling-business/">
+            <h3>Due Diligence Checklist for Buying or Selling a Business</h3>
+            <p>A shared reference point for both sides of the transaction and a strong internal link destination.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-cta-band">
+      <div class="container">
+        <div class="home-cta-panel">
+          <div class="home-cta-copy">
+            <div class="home-eyebrow home-eyebrow--dark">Ready to move forward?</div>
+            <h2>Whether you are buying or selling, start with the right path</h2>
+            <p>Use the guided funnel above, browse listings, or move directly into buyer and seller resources with a clearer next step and stronger context.</p>
+          </div>
+          <div class="home-cta-actions">
+            <a class="btn btn--primary" href="/buy-a-business/">Buy a Business</a>
+            <a class="btn btn--ghost btn--ghost-light" href="/contact/">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
 </main>
 
 
@@ -655,64 +393,7 @@ lease terms, and what is included in the sale.</div>
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/site.js"></script>
 
-  <script>
-    (function () {
-      document.addEventListener("click", function (e) {
-        var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
-        if (!a) return;
-        var href = a.getAttribute("href");
-        if (!href || href.length < 2) return;
-        var el = document.querySelector(href);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
 
-      var phone = document.getElementById("phone");
-      if (phone) {
-        phone.addEventListener("input", function () {
-          var x = String(phone.value || "").replace(/\D/g, "").slice(0, 10);
-          var out = x;
-          if (x.length > 6) out = "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
-          else if (x.length > 3) out = "(" + x.slice(0,3) + ") " + x.slice(3);
-          phone.value = out;
-        });
-      }
-
-      var form = document.getElementById("earlyForm");
-      var statusBox = document.getElementById("earlyStatus");
-      if (form && statusBox) {
-        var action = form.getAttribute("action") || "";
-        var hasEndpoint = action && action.indexOf("REPLACE_ME") === -1;
-
-        form.addEventListener("submit", async function (e) {
-          if (!hasEndpoint) {
-            e.preventDefault();
-            statusBox.style.display = "block";
-            statusBox.textContent = "Form is not wired yet. Replace the Formspree endpoint to collect submissions.";
-            return;
-          }
-
-          e.preventDefault();
-          statusBox.style.display = "block";
-          statusBox.textContent = "Submitting...";
-
-          try {
-            var fd = new FormData(form);
-            var res = await fetch(action, { method: "POST", body: fd, headers: { "Accept": "application/json" } });
-            if (res.ok) {
-              form.reset();
-              statusBox.textContent = "Thanks. You are on the list. We will reach out with launch updates.";
-              return;
-            }
-            statusBox.textContent = "Submission failed. Please try again.";
-          } catch (err) {
-            statusBox.textContent = "Network error. Please try again.";
-          }
-        });
-      }
-    })();
-  </script>
 
 <script>
 (function(){
