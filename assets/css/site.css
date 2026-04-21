@@ -2996,22 +2996,22 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 
 /* =====================================================
-   REUSABLE BUSINESS BLOG ARTICLE SYSTEM
+   CLEAN SLATE REUSABLE BUSINESS BLOG ARTICLE SYSTEM
    ===================================================== */
 
-.bbas-article-page{
+.business-article-page{
   background:var(--bg-soft);
 }
 
-.bbas-article{
+.business-article{
   padding-bottom:42px;
 }
 
-.bbas-article-hero{
+.business-article-hero{
   padding:22px 0 26px;
 }
 
-.bbas-article-breadcrumbs{
+.business-article-breadcrumbs{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
@@ -3022,18 +3022,18 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   line-height:1.5;
 }
 
-.bbas-article-breadcrumbs a{
+.business-article-breadcrumbs a{
   color:#2563EB;
 }
 
-.bbas-article-hero-grid{
+.business-article-hero-grid{
   display:grid;
   grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);
   gap:26px;
   align-items:stretch;
 }
 
-.bbas-article-hero-copy{
+.business-article-hero-copy{
   position:relative;
   overflow:hidden;
   border-radius:24px;
@@ -3043,7 +3043,7 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   box-shadow:var(--shadow-lg);
 }
 
-.bbas-article-hero-copy::after{
+.business-article-hero-copy::after{
   content:"";
   position:absolute;
   inset:0;
@@ -3053,12 +3053,12 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   pointer-events:none;
 }
 
-.bbas-article-hero-copy > *{
+.business-article-hero-copy > *{
   position:relative;
   z-index:1;
 }
 
-.bbas-article-hero-copy h1{
+.business-article-hero-copy h1{
   color:#FFFFFF;
   margin:18px 0 14px;
   font-size:clamp(2.55rem, 5vw, 4.4rem);
@@ -3067,21 +3067,21 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   max-width:11ch;
 }
 
-.bbas-article-lead{
+.business-article-lead{
   color:rgba(255,255,255,.88) !important;
   font-size:17px;
   line-height:1.76;
   max-width:62ch;
 }
 
-.bbas-article-meta{
+.business-article-meta{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
   margin-top:20px;
 }
 
-.bbas-article-meta span{
+.business-article-meta span{
   display:inline-flex;
   align-items:center;
   min-height:34px;
@@ -3095,18 +3095,18 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   line-height:1.2;
 }
 
-.bbas-article-hero-actions{
+.business-article-hero-actions{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
   margin-top:22px;
 }
 
-.bbas-article-hero-media{
+.business-article-hero-media{
   min-width:0;
 }
 
-.bbas-article-hero-image{
+.business-article-hero-image{
   min-height:100%;
   height:100%;
   border-radius:24px;
@@ -3116,33 +3116,27 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   box-shadow:var(--shadow-lg);
 }
 
-.bbas-article-body{
+.business-article-content{
   padding-top:10px;
 }
 
-.bbas-article-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 300px;
-  gap:26px;
-  align-items:start;
+.business-article-shell{
+  width:min(860px, 100%);
+  margin:0 auto;
 }
 
-.bbas-article-main{
-  min-width:0;
-}
-
-.bbas-article-main p{
+.business-article-main p{
   font-size:17px;
   line-height:1.88;
 }
 
-.bbas-article-intro,
-.bbas-article-quick-answer,
-.bbas-article-section,
-.bbas-article-feature-band,
-.bbas-article-warning,
-.bbas-article-cta,
-.bbas-article-faq{
+.business-article-intro,
+.business-article-quick-answer,
+.business-article-section,
+.business-article-feature-band,
+.business-article-risk-band,
+.business-article-cta,
+.business-article-faq{
   padding:28px;
   border-radius:24px;
   background:var(--bg-white);
@@ -3150,26 +3144,26 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   box-shadow:var(--shadow-md);
 }
 
-.bbas-article-intro{
+.business-article-intro{
   margin-bottom:18px;
 }
 
-.bbas-article-quick-answer{
+.business-article-quick-answer{
   margin-bottom:18px;
 }
 
-.bbas-article-quick-answer h2{
+.business-article-quick-answer h2{
   margin-top:12px;
   margin-bottom:16px;
 }
 
-.bbas-article-summary-grid{
+.business-article-summary-grid{
   display:grid;
   grid-template-columns:repeat(2, minmax(0,1fr));
   gap:14px;
 }
 
-.bbas-article-summary-item{
+.business-article-summary-item{
   display:flex;
   flex-direction:column;
   min-height:126px;
@@ -3179,30 +3173,30 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   border:1px solid #E2E8F0;
 }
 
-.bbas-article-summary-item strong{
+.business-article-summary-item strong{
   margin-bottom:8px;
   font-size:1rem;
   line-height:1.35;
 }
 
-.bbas-article-summary-item span{
+.business-article-summary-item span{
   color:var(--text-secondary);
   font-size:14px;
   line-height:1.72;
 }
 
-.bbas-article-section{
+.business-article-section{
   margin-bottom:18px;
 }
 
-.bbas-article-section h2{
+.business-article-section h2{
   margin-top:0;
   margin-bottom:12px;
   font-size:clamp(1.8rem, 3vw, 2.5rem);
   line-height:1.06;
 }
 
-.bbas-article-callout{
+.business-article-checklist{
   margin-top:18px;
   padding:22px;
   border-radius:22px;
@@ -3210,66 +3204,72 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   border:1px solid #E2E8F0;
 }
 
-.bbas-article-callout-title{
+.business-article-checklist-title{
   font-size:14px;
   font-weight:800;
   color:var(--text-primary);
   margin-bottom:12px;
 }
 
-.bbas-article-callout ul{
+.business-article-checklist ul{
   margin:0;
   padding-left:18px;
 }
 
-.bbas-article-callout li{
+.business-article-checklist li{
   margin:0 0 10px;
   font-size:16px;
   line-height:1.75;
 }
 
-.bbas-article-feature-band{
+.business-article-split{
   display:grid;
   grid-template-columns:minmax(0,.98fr) minmax(280px,.72fr);
   gap:18px;
   align-items:start;
   margin-bottom:18px;
+  padding:28px;
+  border-radius:24px;
+  background:var(--bg-white);
+  border:1px solid var(--border-light);
+  box-shadow:var(--shadow-md);
 }
 
-.bbas-article-feature-band h2{
+.business-article-split h2{
+  margin-top:0;
   margin-bottom:12px;
   font-size:clamp(1.8rem, 3vw, 2.5rem);
   line-height:1.06;
 }
 
-.bbas-article-feature-panel{
+.business-article-split-panel{
   padding:22px;
   border-radius:20px;
   background:#F8FAFC;
   border:1px solid #E2E8F0;
 }
 
-.bbas-article-feature-panel ul{
+.business-article-split-panel ul{
   margin:0;
   padding-left:18px;
 }
 
-.bbas-article-feature-panel li{
+.business-article-split-panel li{
   margin:0 0 10px;
   font-size:16px;
   line-height:1.75;
 }
 
-.bbas-article-card-grid,
-.bbas-article-warning-grid{
+.business-article-grid-cards,
+.business-article-risk-grid{
   display:grid;
   grid-template-columns:repeat(2, minmax(0,1fr));
   gap:14px;
   margin-top:18px;
 }
 
-.bbas-article-card,
-.bbas-article-warning-card{
+.business-article-card,
+.business-article-risk-card{
   display:flex;
   flex-direction:column;
   min-height:146px;
@@ -3279,21 +3279,21 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   border:1px solid #E2E8F0;
 }
 
-.bbas-article-card strong,
-.bbas-article-warning-card strong{
+.business-article-card strong,
+.business-article-risk-card strong{
   margin-bottom:8px;
   font-size:1rem;
   line-height:1.35;
 }
 
-.bbas-article-card span,
-.bbas-article-warning-card span{
+.business-article-card span,
+.business-article-risk-card span{
   color:var(--text-secondary);
   font-size:14px;
   line-height:1.72;
 }
 
-.bbas-article-note{
+.business-article-note{
   display:flex;
   flex-direction:column;
   gap:8px;
@@ -3304,23 +3304,24 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   border:1px solid #BFDBFE;
 }
 
-.bbas-article-note strong{
+.business-article-note strong{
   font-size:14px;
 }
 
-.bbas-article-warning{
+.business-article-risk-band{
   margin-bottom:18px;
   background:#FFF7ED;
   border-color:#FED7AA;
 }
 
-.bbas-article-warning h2{
+.business-article-risk-band h2{
+  margin-top:0;
   margin-bottom:12px;
   font-size:clamp(1.8rem, 3vw, 2.5rem);
   line-height:1.06;
 }
 
-.bbas-article-cta{
+.business-article-cta{
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   gap:18px;
@@ -3330,77 +3331,77 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   box-shadow:var(--shadow-lg);
 }
 
-.bbas-article-cta-copy h3{
+.business-article-cta-copy h3{
   color:#FFFFFF;
   margin-top:12px;
   margin-bottom:10px;
 }
 
-.bbas-article-cta-copy p{
+.business-article-cta-copy p{
   color:rgba(255,255,255,.84);
   margin-bottom:0;
 }
 
-.bbas-article-cta-actions{
+.business-article-cta-actions{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
   justify-content:flex-end;
 }
 
-.bbas-article-faq{
+.business-article-faq{
   margin-top:8px;
 }
 
-.bbas-article-faq h2{
+.business-article-faq h2{
   margin-top:12px;
   margin-bottom:16px;
   font-size:clamp(1.8rem, 3vw, 2.5rem);
   line-height:1.06;
 }
 
-.bbas-article-faq-list{
+.business-article-faq-list{
   display:grid;
   gap:14px;
 }
 
-.bbas-article-faq-item{
+.business-article-faq-item{
   padding:20px 22px;
   border-radius:20px;
   background:#F8FAFC;
   border:1px solid #E2E8F0;
 }
 
-.bbas-article-faq-item h3{
+.business-article-faq-item h3{
   font-size:1.18rem;
   line-height:1.32;
   margin-bottom:8px;
 }
 
-.bbas-article-faq-item p{
+.business-article-faq-item p{
   margin-bottom:0;
   font-size:15px;
   line-height:1.8;
 }
 
-.bbas-article-related{
+.business-article-related{
   margin-top:24px;
 }
 
-.bbas-article-related h2{
+.business-article-related h2{
   margin-top:12px;
   margin-bottom:16px;
   font-size:clamp(1.8rem, 3vw, 2.5rem);
   line-height:1.06;
 }
 
-.bbas-article-related-grid{
+.business-article-related-grid{
   display:grid;
   grid-template-columns:repeat(3, minmax(0,1fr));
   gap:18px;
 }
 
-.bbas-article-related-card{
+.business-article-related-card{
   display:flex;
   flex-direction:column;
   min-height:180px;
@@ -3412,93 +3413,79 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 
-.bbas-article-related-card:hover{
+.business-article-related-card:hover{
   border-color:#C7D2FE;
   box-shadow:var(--shadow-lg);
   transform:translateY(-2px);
 }
 
-.bbas-article-related-card strong{
+.business-article-related-card strong{
   font-size:1.06rem;
   line-height:1.4;
   margin-bottom:10px;
 }
 
-.bbas-article-related-card span{
+.business-article-related-card span{
   color:var(--text-secondary);
   font-size:14px;
   line-height:1.72;
 }
 
-.bbas-article-sidebar{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  position:sticky;
-  top:104px;
-}
-
 @media (max-width:1100px){
-  .bbas-article-hero-grid,
-  .bbas-article-layout,
-  .bbas-article-feature-band,
-  .bbas-article-cta{
+  .business-article-hero-grid,
+  .business-article-split,
+  .business-article-cta{
     grid-template-columns:1fr;
   }
 
-  .bbas-article-sidebar{
-    position:relative;
-    top:auto;
-  }
-
-  .bbas-article-cta-actions{
+  .business-article-cta-actions{
     justify-content:flex-start;
   }
 
-  .bbas-article-hero-image{
+  .business-article-hero-image{
     min-height:320px;
   }
 }
 
 @media (max-width:900px){
-  .bbas-article-summary-grid,
-  .bbas-article-card-grid,
-  .bbas-article-warning-grid,
-  .bbas-article-related-grid{
+  .business-article-summary-grid,
+  .business-article-grid-cards,
+  .business-article-risk-grid,
+  .business-article-related-grid{
     grid-template-columns:1fr;
   }
 
-  .bbas-article-intro,
-  .bbas-article-quick-answer,
-  .bbas-article-section,
-  .bbas-article-feature-band,
-  .bbas-article-warning,
-  .bbas-article-cta,
-  .bbas-article-faq{
+  .business-article-intro,
+  .business-article-quick-answer,
+  .business-article-section,
+  .business-article-split,
+  .business-article-risk-band,
+  .business-article-cta,
+  .business-article-faq{
     padding:22px 18px;
   }
 
-  .bbas-article-hero-copy h1{
+  .business-article-hero-copy h1{
     max-width:11ch;
   }
 }
 
 @media (max-width:720px){
-  .bbas-article-hero{
+  .business-article-hero{
     padding:16px 0 20px;
   }
 
-  .bbas-article-hero-copy h1{
+  .business-article-hero-copy h1{
     font-size:clamp(2.3rem, 11vw, 3.4rem);
   }
 
-  .bbas-article-main p{
+  .business-article-main p{
     font-size:16px;
     line-height:1.82;
   }
 
-  .bbas-article-hero-actions .btn,
-  .bbas-article-cta-actions .btn{
+  .business-article-hero-actions .btn,
+  .business-article-cta-actions .btn{
     width:100%;
   }
 }
