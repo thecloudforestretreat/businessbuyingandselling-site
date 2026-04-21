@@ -1957,6 +1957,67 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   min-height:120px;
 }
 
+.home-page .funnelSupport{
+  margin-top:auto;
+  padding:18px 22px 22px;
+  background:#F8FAFC;
+  border-top:1px solid var(--border-light);
+}
+
+.home-page .funnelSupport__eyebrow{
+  display:inline-flex;
+  align-items:center;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+  color:var(--marketplace-blue);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+.home-page .funnelSupport__title{
+  margin:0 0 14px;
+  color:var(--text-primary);
+  font-size:18px;
+  font-weight:800;
+  line-height:1.3;
+}
+
+.home-page .funnelSupport__grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.home-page .funnelSupport__item{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+  padding:14px;
+  background:#FFFFFF;
+  border:1px solid var(--border-light);
+  border-radius:16px;
+}
+
+.home-page .funnelSupport__item strong{
+  display:block;
+  margin-bottom:6px;
+  color:var(--text-primary);
+  font-size:13px;
+  line-height:1.35;
+}
+
+.home-page .funnelSupport__item span{
+  display:block;
+  color:var(--text-secondary);
+  font-size:12.5px;
+  line-height:1.65;
+}
+
 .home-overview,
 .home-links,
 .home-articles,
@@ -1968,18 +2029,6 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   padding-top:16px;
 }
 
-.home-support-copy{
-  max-width:960px;
-  margin:18px auto 0;
-  padding:0 4px;
-}
-
-.home-support-copy p{
-  margin:0;
-  color:var(--text-secondary);
-  font-size:15px;
-  line-height:1.75;
-}
 
 
 .home-section-head{
@@ -2087,13 +2136,23 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .home-info-card p,
 .home-link-card p,
-.home-article-card p{
+.home-article-card p,
+.home-listing-card p{
   margin-bottom:0;
 }
 
 .home-link-card p{
   font-size:14px;
   line-height:1.72;
+}
+
+.home-info-card .home-text-link,
+.home-listing-card .home-text-link,
+.home-info-card .btn,
+.home-listing-card .btn,
+.home-link-card .btn,
+.home-article-card .btn{
+  margin-top:auto;
 }
 
 .home-text-link{
@@ -2227,7 +2286,8 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   .home-page .inputGrid,
   .home-overview-grid,
   .home-link-grid,
-  .home-article-grid{
+  .home-article-grid,
+  .home-page .funnelSupport__grid{
     grid-template-columns:1fr;
   }
 
@@ -2235,7 +2295,8 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   .home-page .funnelCardHeader,
   .home-page .funnelBody,
   .home-page .funnelActions,
-  .home-page .trustCard{
+  .home-page .trustCard,
+  .home-page .funnelSupport{
     padding-left:16px;
     padding-right:16px;
   }
@@ -2271,11 +2332,6 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   .home-listing-card,
   .home-cta-panel{
     padding:22px;
-  }
-
-  .home-support-copy{
-    margin-top:16px;
-    padding:0 2px;
   }
 
   .home-featured-note{
