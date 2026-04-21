@@ -2903,9 +2903,6 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   line-height:1.7;
 }
 
-.blog-featured-card--primary .blog-card-media-image{
-  min-height:260px;
-}
 
 .blog-authority-strip{
   padding-top:0;
@@ -2957,5 +2954,41 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   .blog-quick-nav-card,
   .blog-authority-item{
     min-height:0;
+  }
+}
+
+
+
+/* =====================================================
+   BLOG FEATURED CARD CONSISTENCY FIX
+   ===================================================== */
+
+.blog-featured-grid{
+  align-items:stretch;
+}
+
+.blog-featured-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.blog-featured-card .blog-card-media-image{
+  min-height:220px;
+}
+
+.blog-featured-card .blog-card-body{
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+}
+
+.blog-featured-card .home-text-link{
+  margin-top:auto;
+}
+
+@media (max-width:900px){
+  .blog-featured-card .blog-card-media-image{
+    min-height:200px;
   }
 }
