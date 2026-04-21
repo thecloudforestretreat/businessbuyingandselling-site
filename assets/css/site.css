@@ -3404,3 +3404,386 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
     width:100%;
   }
 }
+
+
+
+/* =====================================================
+   ADVISORY ARTICLE TEMPLATE
+   Cleaner editorial + advisory layout for blog articles
+   ===================================================== */
+
+.advisory-article-page{
+  background:var(--bg-soft);
+}
+
+.advisory-article-wrap{
+  padding-bottom:42px;
+}
+
+.advisory-hero{
+  padding:22px 0 26px;
+}
+
+.advisory-hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);
+  gap:26px;
+  align-items:stretch;
+}
+
+.advisory-hero-copy{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  padding:34px 32px;
+  background:linear-gradient(135deg, rgba(17,24,39,.96) 0%, rgba(27,38,59,.92) 100%);
+  color:#FFFFFF;
+  box-shadow:var(--shadow-lg);
+}
+
+.advisory-hero-copy::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 86% 20%, rgba(96,165,250,.24), transparent 18%),
+    radial-gradient(circle at 12% 84%, rgba(59,130,246,.16), transparent 24%);
+  pointer-events:none;
+}
+
+.advisory-hero-copy > *{
+  position:relative;
+  z-index:1;
+}
+
+.advisory-hero-copy h1{
+  color:#FFFFFF;
+  margin:18px 0 14px;
+  font-size:clamp(2.55rem, 5vw, 4.4rem);
+  line-height:.98;
+  letter-spacing:-.045em;
+  max-width:11ch;
+}
+
+.advisory-hero-lead{
+  color:rgba(255,255,255,.88) !important;
+  font-size:17px;
+  line-height:1.76;
+  max-width:62ch;
+}
+
+.advisory-hero-media{
+  min-width:0;
+}
+
+.advisory-hero-image{
+  min-height:100%;
+  height:100%;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg, rgba(17,24,39,.16), rgba(17,24,39,.40)),
+    url('https://businessbuyingandselling.com/og-image.jpg') center/cover no-repeat;
+  box-shadow:var(--shadow-lg);
+}
+
+.advisory-article-body{
+  padding-top:10px;
+}
+
+.advisory-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:26px;
+  align-items:start;
+}
+
+.advisory-main{
+  min-width:0;
+}
+
+.advisory-main p{
+  font-size:17px;
+  line-height:1.88;
+}
+
+.advisory-intro,
+.advisory-summary,
+.advisory-section,
+.advisory-inline-cta,
+.advisory-faq{
+  padding:28px;
+  border-radius:24px;
+  background:var(--bg-white);
+  border:1px solid var(--border-light);
+  box-shadow:var(--shadow-md);
+}
+
+.advisory-intro{
+  margin-bottom:18px;
+}
+
+.advisory-summary{
+  margin-bottom:18px;
+}
+
+.advisory-summary h2{
+  margin-top:12px;
+  margin-bottom:16px;
+}
+
+.advisory-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:14px;
+}
+
+.advisory-summary-item{
+  display:flex;
+  flex-direction:column;
+  min-height:126px;
+  padding:18px;
+  border-radius:20px;
+  background:#F8FAFC;
+  border:1px solid #E2E8F0;
+}
+
+.advisory-summary-item strong{
+  margin-bottom:8px;
+  font-size:1rem;
+  line-height:1.35;
+}
+
+.advisory-summary-item span{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.72;
+}
+
+.advisory-section{
+  margin-bottom:18px;
+}
+
+.advisory-section-head{
+  margin-bottom:14px;
+}
+
+.advisory-section h2{
+  margin-top:12px;
+  margin-bottom:12px;
+  font-size:clamp(1.8rem, 3vw, 2.5rem);
+  line-height:1.06;
+}
+
+.advisory-checklist{
+  margin-top:18px;
+  padding:22px;
+  border-radius:22px;
+  background:linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  border:1px solid #E2E8F0;
+}
+
+.advisory-checklist-title{
+  font-size:14px;
+  font-weight:800;
+  color:var(--text-primary);
+  margin-bottom:12px;
+}
+
+.advisory-checklist ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.advisory-checklist li{
+  margin:0 0 10px;
+  font-size:16px;
+  line-height:1.75;
+}
+
+.advisory-section--split{
+  display:grid;
+  grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);
+  gap:18px;
+  align-items:start;
+}
+
+.advisory-insight-grid,
+.advisory-risk-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:14px;
+}
+
+.advisory-insight-card,
+.advisory-risk-card{
+  display:flex;
+  flex-direction:column;
+  min-height:146px;
+  padding:18px;
+  border-radius:20px;
+  background:#F8FAFC;
+  border:1px solid #E2E8F0;
+}
+
+.advisory-insight-card strong,
+.advisory-risk-card strong{
+  margin-bottom:8px;
+  font-size:1rem;
+  line-height:1.35;
+}
+
+.advisory-insight-card span,
+.advisory-risk-card span{
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.72;
+}
+
+.advisory-note-band{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:18px;
+  padding:20px 22px;
+  border-radius:20px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+}
+
+.advisory-note-band strong{
+  font-size:14px;
+}
+
+.advisory-inline-cta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:18px;
+  align-items:center;
+  margin:26px 0 18px;
+  background:linear-gradient(135deg, #0F172A 0%, #111827 100%);
+  box-shadow:var(--shadow-lg);
+}
+
+.advisory-inline-cta-copy h3{
+  color:#FFFFFF;
+  margin-top:12px;
+  margin-bottom:10px;
+}
+
+.advisory-inline-cta-copy p{
+  color:rgba(255,255,255,.84);
+  margin-bottom:0;
+}
+
+.advisory-inline-cta-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:flex-end;
+}
+
+.section-reset{
+  margin-top:0;
+}
+
+.advisory-faq{
+  margin-top:8px;
+}
+
+.advisory-faq-list{
+  display:grid;
+  gap:14px;
+}
+
+.advisory-faq-item{
+  padding:20px 22px;
+  border-radius:20px;
+  background:#F8FAFC;
+  border:1px solid #E2E8F0;
+}
+
+.advisory-faq-item h3{
+  font-size:1.18rem;
+  line-height:1.32;
+  margin-bottom:8px;
+}
+
+.advisory-faq-item p{
+  margin-bottom:0;
+  font-size:15px;
+  line-height:1.8;
+}
+
+.advisory-related{
+  margin-top:24px;
+}
+
+.advisory-sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  position:sticky;
+  top:104px;
+}
+
+@media (max-width:1100px){
+  .advisory-hero-grid,
+  .advisory-layout,
+  .advisory-inline-cta,
+  .advisory-section--split{
+    grid-template-columns:1fr;
+  }
+
+  .advisory-sidebar{
+    position:relative;
+    top:auto;
+  }
+
+  .advisory-inline-cta-actions{
+    justify-content:flex-start;
+  }
+
+  .advisory-hero-image{
+    min-height:320px;
+  }
+}
+
+@media (max-width:900px){
+  .advisory-summary-grid,
+  .advisory-insight-grid,
+  .advisory-risk-grid{
+    grid-template-columns:1fr;
+  }
+
+  .advisory-intro,
+  .advisory-summary,
+  .advisory-section,
+  .advisory-inline-cta,
+  .advisory-faq{
+    padding:22px 18px;
+  }
+
+  .advisory-hero-copy h1{
+    max-width:11ch;
+  }
+}
+
+@media (max-width:720px){
+  .advisory-hero{
+    padding:16px 0 20px;
+  }
+
+  .advisory-hero-copy h1{
+    font-size:clamp(2.3rem, 11vw, 3.4rem);
+  }
+
+  .advisory-main p{
+    font-size:16px;
+    line-height:1.82;
+  }
+
+  .article-hero-actions .btn,
+  .advisory-inline-cta-actions .btn{
+    width:100%;
+  }
+}
