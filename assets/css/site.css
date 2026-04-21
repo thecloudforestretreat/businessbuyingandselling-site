@@ -1571,10 +1571,9 @@ footer.bbas-footer{
   text-align:left;
 }
 
-
 /* =====================================================
-   HOMEPAGE CLEANUP SYSTEM
-   Global homepage styles moved out of inline page CSS
+   HOMEPAGE FINAL SYSTEM
+   Consolidated homepage production styles
    ===================================================== */
 
 .skip-link{
@@ -1598,9 +1597,13 @@ footer.bbas-footer{
   color:var(--text-primary);
 }
 
+.home-page .siteMain{
+  min-height:60vh;
+}
+
 .home-page .hero--funnel{
   position:relative;
-  padding:22px 0 64px;
+  padding:20px 0 48px;
   background:transparent;
 }
 
@@ -1619,8 +1622,11 @@ footer.bbas-footer{
   position:relative;
   overflow:hidden;
   border-radius:24px;
-  padding:26px 26px 118px;
-  text-align:center;
+  padding:34px 36px 134px;
+  text-align:left;
+  background:
+    radial-gradient(circle at top left, rgba(96,165,250,.18), transparent 28%),
+    linear-gradient(115deg, rgba(17,24,39,.96) 0%, rgba(27,38,59,.92) 48%, rgba(17,24,39,.96) 100%);
 }
 
 .home-page .heroBadge{
@@ -1629,8 +1635,11 @@ footer.bbas-footer{
   gap:10px;
   padding:8px 12px;
   border-radius:999px;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left:0;
+  margin-right:0;
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.16);
+  color:rgba(255,255,255,.92);
 }
 
 .home-page .heroBadge .dot{
@@ -1640,23 +1649,69 @@ footer.bbas-footer{
 }
 
 .home-page .heroTitle{
-  margin:14px auto 10px;
-  max-width:14ch;
-  text-align:center;
+  max-width:10ch;
+  margin:18px 0 14px;
+  text-align:left;
+  font-size:clamp(3rem, 6vw, 5.3rem);
+  line-height:.94;
+  letter-spacing:-.05em;
 }
 
 .home-page .heroLead{
-  margin:0 auto;
-  max-width:760px;
-  text-align:center;
+  margin:0;
+  max-width:62ch;
+  text-align:left;
+  font-size:18px;
+  line-height:1.72;
+  color:rgba(255,255,255,.90) !important;
+}
+
+.home-hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+
+.home-page .btn--ghost-light{
+  background:rgba(255,255,255,.10);
+  color:#FFFFFF !important;
+  border:1px solid rgba(255,255,255,.18);
+}
+
+.home-page .btn--ghost-light:hover{
+  background:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.26);
+  box-shadow:none;
+}
+
+.home-hero-proof{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:24px;
+}
+
+.home-proof-pill{
+  display:inline-flex;
+  align-items:center;
+  min-height:36px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.90);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.02em;
 }
 
 .home-page .funnelShell{
   display:grid;
-  grid-template-columns:1.15fr .95fr;
-  gap:22px;
-  align-items:start;
-  margin-top:-86px;
+  grid-template-columns:minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap:18px;
+  align-items:stretch;
+  margin-top:-96px;
   position:relative;
   z-index:3;
 }
@@ -1664,6 +1719,7 @@ footer.bbas-footer{
 .home-page .funnelLeft,
 .home-page .funnelRight{
   min-width:0;
+  display:flex;
 }
 
 .home-page .linkBtn{
@@ -1673,8 +1729,22 @@ footer.bbas-footer{
   cursor:pointer;
 }
 
+.home-page .funnelCard,
+.home-page .trustCard{
+  width:100%;
+}
+
 .home-page .funnelCard{
   overflow:hidden;
+  box-shadow:0 18px 42px rgba(15,23,42,.12);
+}
+
+.home-page .trustCard{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 18px 42px rgba(15,23,42,.10);
 }
 
 .home-page .funnelProgress{
@@ -1683,17 +1753,20 @@ footer.bbas-footer{
   gap:10px;
   padding:20px 22px 0;
   margin:0;
+  background:transparent !important;
 }
 
 .home-page .funnelProgressTrack{
   height:6px;
   border-radius:999px;
   overflow:hidden;
+  background:#E5E7EB !important;
 }
 
 .home-page .funnelProgressFill{
   height:100%;
   width:0;
+  background:#60A5FA !important;
 }
 
 .home-page .funnelProgressMeta{
@@ -1702,6 +1775,7 @@ footer.bbas-footer{
   justify-content:space-between;
   gap:12px;
   margin-top:2px;
+  padding:0;
 }
 
 .home-page .funnelCardHeader{
@@ -1738,7 +1812,18 @@ footer.bbas-footer{
   grid-template-columns:40px 1fr;
   gap:12px;
   align-items:flex-start;
-  padding:14px;
+  padding:16px !important;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease !important;
+}
+
+.home-page .choiceTile:hover{
+  transform:translateY(-4px) !important;
+  box-shadow:0 12px 28px rgba(15,23,42,.12) !important;
+  border-color:#D1D5DB !important;
+}
+
+.home-page .choiceTile:active{
+  transform:translateY(-1px) !important;
 }
 
 .home-page .choiceIcon{
@@ -1755,7 +1840,7 @@ footer.bbas-footer{
   grid-template-columns:18px 1fr;
   gap:12px;
   align-items:center;
-  padding:12px 14px;
+  padding:15px 16px !important;
 }
 
 .home-page .optionBullet{
@@ -1797,7 +1882,6 @@ footer.bbas-footer{
   padding:14px 22px 14px;
 }
 
-.home-page body[data-funnel-branch="none"] #funnelActions,
 body.home-page[data-funnel-branch="none"] #funnelActions{
   display:none !important;
 }
@@ -1811,13 +1895,9 @@ body.home-page[data-funnel-branch="none"] #funnelActions{
   cursor:pointer;
 }
 
-.home-page .trustCard{
-  padding:22px;
-}
-
 .home-page .trustFooter{
   margin-top:14px;
-  padding-top:12px;
+  padding-top:14px;
 }
 
 .home-page .turnstileWrap{
@@ -1841,18 +1921,51 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 }
 
 .home-page .funnelCard #funnelStepLabel{
-  color:#6B7280;
-  font-size:12px;
-  font-weight:700;
-  line-height:1.2;
-  letter-spacing:.02em;
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:18px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  color:#6B7280 !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  letter-spacing:.02em !important;
+  text-shadow:none !important;
 }
 
-.home-page .funnelCard #funnelRestartBtn{
+.home-page .funnelCard #funnelRestartBtn,
+.home-page .linkBtn{
   color:#2563EB;
   font-size:12px;
   font-weight:700;
   line-height:1.2;
+}
+
+.home-page .trustTitle{
+  font-size:clamp(1.6rem, 2vw, 2.1rem);
+}
+
+.home-page .trustGrid{
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.home-page .trustItem{
+  min-height:120px;
+}
+
+.home-overview,
+.home-links,
+.home-articles,
+.home-cta-band{
+  position:relative;
+}
+
+.home-overview{
+  padding-top:16px;
 }
 
 .home-section-head{
@@ -1862,6 +1975,11 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .home-section-head--tight{
   margin-bottom:22px;
+}
+
+.home-section-head h2{
+  max-width:16ch;
+  margin-bottom:12px;
 }
 
 .home-eyebrow{
@@ -1902,11 +2020,24 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 .home-link-card,
 .home-article-card{
   display:block;
-  padding:24px;
   background:var(--bg-white);
   border:1px solid var(--border-light);
-  border-radius:20px;
-  box-shadow:var(--shadow-sm);
+  border-radius:22px;
+  box-shadow:0 10px 26px rgba(15,23,42,.06);
+}
+
+.home-info-card{
+  padding:30px;
+}
+
+.home-link-card{
+  min-height:210px;
+  padding:26px;
+}
+
+.home-article-card{
+  min-height:200px;
+  padding:26px;
 }
 
 .home-link-card,
@@ -1921,17 +2052,31 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   transform:translateY(-2px);
 }
 
-.home-info-card h3,
-.home-link-card h3,
+.home-info-card h3{
+  margin-bottom:8px;
+  font-size:clamp(1.55rem, 2vw, 2rem);
+}
+
+.home-link-card h3{
+  margin-bottom:8px;
+  font-size:1.18rem;
+}
+
 .home-article-card h3{
   margin-bottom:8px;
-  font-size:1.1rem;
+  font-size:1.22rem;
+  line-height:1.3;
 }
 
 .home-info-card p,
 .home-link-card p,
 .home-article-card p{
   margin-bottom:0;
+}
+
+.home-link-card p{
+  font-size:14px;
+  line-height:1.72;
 }
 
 .home-text-link{
@@ -1942,6 +2087,74 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   color:var(--marketplace-blue);
   font-size:14px;
   font-weight:700;
+}
+
+.home-cta-band{
+  padding-top:8px;
+  padding-bottom:68px;
+}
+
+.home-cta-panel{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) auto;
+  gap:20px;
+  align-items:center;
+  padding:30px;
+  border-radius:24px;
+  background:linear-gradient(135deg, #1B263B, #111827);
+  box-shadow:var(--shadow-lg);
+}
+
+.home-eyebrow--dark{
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.16);
+  color:#FFFFFF;
+}
+
+.home-cta-panel h2{
+  color:#FFFFFF;
+  margin-top:12px;
+}
+
+.home-cta-panel p{
+  margin-bottom:0;
+  color:rgba(255,255,255,.84);
+  max-width:62ch;
+}
+
+.home-cta-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+@media (max-width:1100px){
+  .home-page .heroTitle{
+    max-width:11ch;
+    font-size:clamp(2.7rem, 6vw, 4.4rem);
+  }
+
+  .home-page .funnelShell{
+    grid-template-columns:1fr;
+    margin-top:-72px;
+  }
+
+  .home-page .trustGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .home-link-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .home-cta-panel{
+    grid-template-columns:1fr;
+  }
+
+  .home-cta-actions{
+    justify-content:flex-start;
+  }
 }
 
 @media (max-width:980px){
@@ -1969,12 +2182,25 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   }
 
   .home-page .heroTop{
-    padding:18px 16px 84px;
+    padding:22px 18px 92px;
     border-radius:20px;
   }
 
+  .home-page .heroBadge,
+  .home-page .heroTitle,
+  .home-page .heroLead{
+    margin-left:0;
+    margin-right:0;
+    text-align:left;
+  }
+
   .home-page .heroTitle{
-    max-width:12ch;
+    max-width:11ch;
+    font-size:clamp(2.4rem, 12vw, 3.5rem);
+  }
+
+  .home-page .heroLead{
+    font-size:16px;
   }
 
   .home-page .choiceGrid--two,
@@ -2000,14 +2226,168 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
     flex-wrap:wrap;
   }
 
-  .home-page .btn{
+  .home-page .btn,
+  .home-cta-actions .btn,
+  .home-hero-actions .btn{
     width:100%;
     min-width:0;
   }
 
+  .home-hero-actions,
+  .home-hero-proof{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .home-proof-pill{
+    justify-content:center;
+  }
+
+  .home-page .funnelShell{
+    margin-top:-54px;
+  }
+
   .home-info-card,
   .home-link-card,
-  .home-article-card{
-    padding:20px;
+  .home-article-card,
+  .home-cta-panel{
+    padding:22px;
+  }
+}
+
+
+/* =====================================================
+   HOMEPAGE LAUNCH POLISH PASS
+   Tightens desktop rhythm and strengthens visual hierarchy
+   ===================================================== */
+
+.home-metrics{
+  position:relative;
+  margin-top:-18px;
+  padding:0 0 12px;
+}
+
+.home-metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+
+.home-metric,
+.home-listing-card{
+  background:var(--bg-white);
+  border:1px solid var(--border-light);
+  border-radius:20px;
+  box-shadow:0 10px 26px rgba(15,23,42,.06);
+}
+
+.home-metric{
+  padding:18px;
+}
+
+.home-metric strong{
+  display:block;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.home-metric span{
+  display:block;
+  color:var(--text-secondary);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.home-featured{
+  padding-top:4px;
+}
+
+.home-listing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.home-listing-card{
+  min-height:228px;
+  padding:26px;
+}
+
+.home-listing-meta{
+  display:inline-flex;
+  margin-bottom:12px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:#F8FAFC;
+  border:1px solid var(--border-light);
+  color:var(--text-muted);
+  font-size:11px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+.home-listing-card h3{
+  margin-bottom:8px;
+  font-size:1.24rem;
+  line-height:1.3;
+}
+
+.home-listing-card p{
+  margin-bottom:0;
+}
+
+.home-page .heroTop{
+  padding:38px 40px 138px;
+}
+
+.home-page .heroLead{
+  max-width:58ch;
+}
+
+.home-page .funnelShell{
+  grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);
+  gap:20px;
+}
+
+.home-page .trustCard{
+  padding:24px;
+}
+
+.home-page .trustItem{
+  min-height:128px;
+}
+
+.home-section-head{
+  margin-bottom:22px;
+}
+
+.home-overview{
+  padding-top:10px;
+}
+
+@media (max-width:1100px){
+  .home-metrics-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .home-listing-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:720px){
+  .home-metrics{
+    margin-top:-6px;
+  }
+
+  .home-metrics-grid,
+  .home-listing-grid{
+    grid-template-columns:1fr;
+  }
+
+  .home-page .heroTop{
+    padding:24px 18px 94px;
   }
 }
