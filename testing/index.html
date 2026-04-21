@@ -41,324 +41,9 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260312-funnel-submit-1">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260421-home-cleanup-1">
 
-      <link rel="stylesheet" href="/assets/css/header.css?v=20260312-funnel-submit-1">
-<!-- Page-level polish (compact, scoped) -->
-  <style id="page-structure-only">
-  .skip-link{
-    position:absolute;
-    left:-999px;
-    top:12px;
-    z-index:9999;
-    padding:10px 14px;
-    border-radius:12px;
-    background:var(--bg-white, #FFFFFF);
-    border:1px solid var(--border-light, #E5E7EB);
-    color:var(--text-primary, #1F2937);
-  }
-  .skip-link:focus{ left:12px; }
-
-  body.bbas-page{
-    background:var(--bg-soft, #FAFAFA);
-    color:var(--text-primary, #1F2937);
-  }
-
-  .hero--funnel{
-    position:relative;
-    padding:22px 0 64px;
-    background:transparent;
-  }
-
-  .hero--funnel .heroBg{ display:none; }
-
-  .hero--funnel .container{
-    position:relative;
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-
-  .heroTop{
-    position:relative;
-    overflow:hidden;
-    border-radius:24px;
-    padding:26px 26px 118px;
-  }
-
-  .heroBadge{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:8px 12px;
-    border-radius:999px;
-  }
-
-  .heroBadge .dot{
-    width:9px;
-    height:9px;
-    border-radius:999px;
-  }
-
-  .heroTitle{
-    margin:14px 0 10px;
-    max-width:720px;
-  }
-
-  .heroLead{
-    margin:0;
-    max-width:760px;
-  }
-
-  .funnelShell{
-    display:grid;
-    grid-template-columns:1.15fr .95fr;
-    gap:22px;
-    align-items:start;
-    margin-top:-86px;
-    position:relative;
-    z-index:3;
-  }
-
-  .funnelLeft,
-  .funnelRight{
-    min-width:0;
-  }
-
-  .linkBtn{
-    background:transparent;
-    border:0;
-    padding:0;
-    cursor:pointer;
-  }
-
-  .funnelCard{
-    overflow:hidden;
-  }
-
-  .funnelProgress{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding:20px 22px 0;
-    margin:0;
-  }
-
-  .funnelProgressTrack{
-    height:6px;
-    border-radius:999px;
-    overflow:hidden;
-  }
-
-  .funnelProgressFill{
-    height:100%;
-    width:0;
-  }
-
-  .funnelProgressMeta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-top:2px;
-  }
-
-  .funnelCardHeader{
-    padding:18px 22px 12px;
-  }
-
-  .funnelBody{
-    padding:16px 22px 12px;
-  }
-
-  .choiceGrid,
-  .optionList,
-  .trustGrid,
-  .inputGrid{
-    display:grid;
-    gap:12px;
-  }
-
-  .choiceGrid--two,
-  .optionList--two{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .choiceTile,
-  .optionRow{
-    width:100%;
-    text-align:left;
-    cursor:pointer;
-  }
-
-  .choiceTile{
-    min-height:96px;
-    display:grid;
-    grid-template-columns:40px 1fr;
-    gap:12px;
-    align-items:flex-start;
-    padding:14px;
-  }
-
-  .choiceIcon{
-    width:28px;
-    height:28px;
-    display:grid;
-    place-items:center;
-    margin-top:2px;
-  }
-
-  .optionRow{
-    min-height:58px;
-    display:grid;
-    grid-template-columns:18px 1fr;
-    gap:12px;
-    align-items:center;
-    padding:12px 14px;
-  }
-
-  .optionBullet{
-    width:18px;
-    height:18px;
-    border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .optionBullet::after{
-    content:"";
-    width:8px;
-    height:8px;
-    border-radius:999px;
-    display:block;
-  }
-
-  .inputGrid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .inputGrid--address .field--full{
-    grid-column:1 / -1;
-  }
-
-  .field{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-  }
-
-  .funnelActions{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:14px 22px 14px;
-  }
-
-  body[data-funnel-branch="none"] #funnelActions{
-    display:none !important;
-  }
-
-  .btn{
-    min-width:120px;
-    min-height:44px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-  }
-
-  .trustCard{
-    padding:22px;
-  }
-
-  .trustFooter{
-    margin-top:14px;
-    padding-top:12px;
-  }
-
-  .turnstileWrap{
-    display:flex;
-    justify-content:flex-start;
-    padding:12px 0 6px;
-  }
-
-  .statusLine{
-    margin-top:10px;
-    font-size:13px;
-  }
-
-  #siteFooter{
-    position:relative;
-    z-index:1;
-  }
-
-  /* First screen: hide progress entirely */
-  body[data-funnel-branch="none"] .funnelProgress{
-    display:none !important;
-  }
-
-  /* Later steps: progress lives neatly inside the card */
-  .funnelCard #funnelStepLabel{
-    color:#6B7280;
-    font-size:12px;
-    font-weight:700;
-    line-height:1.2;
-    letter-spacing:.02em;
-  }
-
-  .funnelCard #funnelRestartBtn{
-    color:#2563EB;
-    font-size:12px;
-    font-weight:700;
-    line-height:1.2;
-  }
-
-  @media (max-width:980px){
-    .heroTop{
-      padding:22px 22px 110px;
-    }
-    .funnelShell{
-      grid-template-columns:1fr;
-      margin-top:-74px;
-    }
-  }
-
-  @media (max-width:720px){
-    .hero--funnel{
-      padding:16px 0 44px;
-    }
-    .hero--funnel .container{
-      padding:0 14px;
-    }
-    .heroTop{
-      padding:18px 16px 84px;
-      border-radius:20px;
-    }
-    .choiceGrid--two,
-    .optionList--two,
-    .trustGrid,
-    .inputGrid{
-      grid-template-columns:1fr;
-    }
-    .funnelProgress,
-    .funnelCardHeader,
-    .funnelBody,
-    .funnelActions,
-    .trustCard{
-      padding-left:16px;
-      padding-right:16px;
-    }
-    .funnelActions{
-      flex-wrap:wrap;
-    }
-    .btn{
-      width:100%;
-      min-width:0;
-    }
-  }
-</style>
+      <link rel="stylesheet" href="/assets/css/header.css?v=20260421-home-cleanup-1">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EH99SDCSFD"></script>
@@ -396,36 +81,9 @@
   };
 </script>
 
-<style id="hero-centered-only">
-/* Approved alignment: hero centered, decision content left-aligned */
-.heroTop{
-  text-align:center !important;
-}
-.heroBadge{
-  margin-left:auto !important;
-  margin-right:auto !important;
-}
-.heroTitle{
-  margin-left:auto !important;
-  margin-right:auto !important;
-  text-align:center !important;
-  max-width:14ch !important;
-}
-.heroLead{
-  margin-left:auto !important;
-  margin-right:auto !important;
-  text-align:center !important;
-  max-width:760px !important;
-}
-@media (max-width:720px){
-  .heroTitle{
-    max-width:12ch !important;
-  }
-}
-</style>
 </head>
 
-<body class="bbas-page">
+<body class="bbas-page home-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div id="siteHeader"></div>
@@ -438,10 +96,10 @@
       <div class="heroTop">
         <div class="heroBadge">
           <span class="dot" aria-hidden="true"></span>
-          <span>Hero centered preview</span>
+          <span>Buyer and Seller Marketplace</span>
         </div>
         <h1 class="heroTitle">Buy or Sell a Business with Confidence</h1>
-        <p class="heroLead">Answer a few quick questions so we can guide you to the right next step. No pressure, no spam.<br><br>We use your answers to match you with the right opportunities, resources, and next actions so you move forward with confidence.</p>
+        <p class="heroLead">Explore business listings, learn what drives business value, and take the next step with practical guidance for buyers and sellers.<br><br>Use the quick path below to tell us what you need, and we will point you toward the right listings, articles, and next actions.</p>
       </div>
 
       <div class="funnelShell">
@@ -534,6 +192,93 @@ lease terms, and what is included in the sale.</div>
       </div>
     </div>
   </section>
+
+  <section class="section home-overview" aria-labelledby="home-overview-title">
+    <div class="container">
+      <div class="home-section-head">
+        <span class="home-eyebrow">Business marketplace and knowledge hub</span>
+        <h2 id="home-overview-title">A smarter path for buying and selling small businesses</h2>
+        <p>Business Buying and Selling helps serious buyers and owners move with more clarity. Explore businesses for sale, learn what affects value, understand timelines, and get practical guidance that reduces wasted time on both sides of the deal.</p>
+      </div>
+
+      <div class="home-overview-grid">
+        <article class="home-info-card">
+          <h3>For buyers</h3>
+          <p>Search businesses for sale, understand red flags, compare opportunities, and learn what due diligence questions matter before you commit.</p>
+          <a class="home-text-link" href="/buy-a-business/">Explore the buyer path</a>
+        </article>
+
+        <article class="home-info-card">
+          <h3>For sellers</h3>
+          <p>Understand what your business may be worth, what buyers expect, how long the process can take, and how to prepare for a smoother exit.</p>
+          <a class="home-text-link" href="/sell-your-business/">Explore the seller path</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-paths" aria-labelledby="home-paths-title">
+    <div class="container">
+      <div class="home-section-head home-section-head--tight">
+        <span class="home-eyebrow">Start here</span>
+        <h2 id="home-paths-title">Find the right next step</h2>
+      </div>
+
+      <div class="home-link-grid">
+        <a class="home-link-card" href="/buy-a-business/">
+          <h3>Buy a Business</h3>
+          <p>Learn how to evaluate opportunities, avoid costly mistakes, and move forward with confidence.</p>
+        </a>
+
+        <a class="home-link-card" href="/sell-your-business/">
+          <h3>Sell Your Business</h3>
+          <p>Understand valuation drivers, timelines, buyer expectations, and the steps that lead to better outcomes.</p>
+        </a>
+
+        <a class="home-link-card" href="/listings/">
+          <h3>Business Listings</h3>
+          <p>Browse available businesses for sale and review the details that matter most to buyers.</p>
+        </a>
+
+        <a class="home-link-card" href="/blog/">
+          <h3>Read the Blog</h3>
+          <p>Get practical buyer and seller guidance designed to answer real questions and support real transactions.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-insights" aria-labelledby="home-insights-title">
+    <div class="container">
+      <div class="home-section-head home-section-head--tight">
+        <span class="home-eyebrow">Featured insights</span>
+        <h2 id="home-insights-title">Popular topics for buyers and sellers</h2>
+      </div>
+
+      <div class="home-article-grid">
+        <a class="home-article-card" href="/blog/how-to-sell-your-business-for-maximum-value/">
+          <h3>How to Sell Your Business for Maximum Value</h3>
+          <p>Learn the actions that can strengthen buyer interest and improve your position before going to market.</p>
+        </a>
+
+        <a class="home-article-card" href="/blog/what-your-business-is-worth-before-you-sell/">
+          <h3>What Your Business Is Really Worth Before You Sell</h3>
+          <p>Understand the numbers, expectations, and common valuation misunderstandings that shape a sale.</p>
+        </a>
+
+        <a class="home-article-card" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">
+          <h3>How to Buy a Small Business Without Costly Mistakes</h3>
+          <p>See where buyers go wrong and how to ask better questions before making a serious move.</p>
+        </a>
+
+        <a class="home-article-card" href="/blog/due-diligence-checklist-buying-or-selling-business/">
+          <h3>Due Diligence Checklist for Buying or Selling a Business</h3>
+          <p>Review the key documents, questions, and checkpoints that help deals move forward with less friction.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 
