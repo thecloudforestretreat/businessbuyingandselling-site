@@ -198,3 +198,12 @@ html.bbas-menu-open body{
     padding:12px 16px 18px;
   }
 }
+
+
+/* BLOG NAV UPDATE */
+.bbas-nav{gap:12px;}
+.bbas-nav__link{padding:10px 9px;}
+@media (max-width:1024px){
+  .bbas-nav{gap:8px;}
+  .bbas-nav__link{font-size:13px;padding:9px 8px;}
+}
