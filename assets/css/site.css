@@ -4150,6 +4150,61 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 }
 
 /* =====================================================
+   HERO TAG UX IMPROVEMENT
+   Reduce confusion with CTA buttons
+   ===================================================== */
+
+.home-page .home-hero-proof{
+  gap:8px !important;
+  margin-top:18px !important;
+}
+
+.home-page .home-proof-pill{
+  min-height:30px !important;
+  padding:6px 10px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  color:rgba(255,255,255,.78) !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  letter-spacing:.02em !important;
+  box-shadow:none !important;
+  cursor:default !important;
+  pointer-events:none !important;
+}
+
+.home-page .home-proof-pill:hover{
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+@media (max-width:720px){
+  .home-page .home-hero-proof{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+    margin-top:16px !important;
+  }
+
+  .home-page .home-proof-pill{
+    justify-content:center !important;
+    width:100% !important;
+    min-height:28px !important;
+    padding:6px 8px !important;
+    font-size:10.5px !important;
+  }
+
+  .home-page .home-proof-pill:nth-child(4){
+    display:none !important;
+  }
+
+  .home-page .home-proof-pill:nth-child(3){
+    grid-column:1 / -1 !important;
+  }
+}
+
+/* =====================================================
    PAGE HERO ALIGNMENT CONSISTENCY FIX
    Match core interior pages to the buy-page pattern
    Left align hero content on desktop and mobile
