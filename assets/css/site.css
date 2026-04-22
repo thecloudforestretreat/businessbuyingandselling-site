@@ -3436,7 +3436,7 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 }
 
 /* =====================================================
-   BBAS ARTICLE SYSTEM V2
+   BBAS ARTICLE SYSTEM V3
    Premium editorial system for all blog articles
    ===================================================== */
 
@@ -3465,7 +3465,7 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .bbx-hero{
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  grid-template-columns:minmax(0,1.02fr) minmax(340px,.98fr);
   gap:22px;
   align-items:stretch;
   margin-bottom:32px;
@@ -3475,10 +3475,10 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   position:relative;
   overflow:hidden;
   border-radius:24px;
-  padding:40px 38px;
+  padding:34px 32px;
   background:
-    radial-gradient(circle at 82% 18%, rgba(96,165,250,.22), transparent 18%),
-    radial-gradient(circle at 14% 84%, rgba(96,165,250,.14), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(96,165,250,.18), transparent 18%),
+    radial-gradient(circle at 14% 84%, rgba(96,165,250,.12), transparent 24%),
     linear-gradient(135deg,#0f172a 0%, #16233b 58%, #1f3f8f 100%);
   box-shadow:var(--shadow-lg);
   color:#fff;
@@ -3501,18 +3501,19 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .bbx-hero-copy h1{
   color:#fff;
-  max-width:10.2ch;
-  margin:16px 0 14px;
-  font-size:clamp(2.7rem,5.2vw,4.8rem);
-  line-height:.94;
-  letter-spacing:-.05em;
+  max-width:9.8ch;
+  margin:16px 0 16px;
+  font-size:clamp(2.35rem,4.8vw,4.15rem);
+  line-height:.96;
+  letter-spacing:-.045em;
+  text-wrap:balance;
 }
 
 .bbx-hero-copy p{
   color:rgba(255,255,255,.9);
-  max-width:58ch;
+  max-width:42ch;
   margin-bottom:0;
-  font-size:18px;
+  font-size:16px;
   line-height:1.78;
 }
 
@@ -3520,7 +3521,7 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:20px;
+  margin-top:18px;
 }
 
 .bbx-meta span{
@@ -3540,7 +3541,7 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
-  margin-top:22px;
+  margin-top:20px;
 }
 
 .bbx-hero-media{
@@ -3579,12 +3580,15 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
 
 .bbx-authority-card h2{
   margin:14px 0 10px;
-  font-size:clamp(1.5rem,2.2vw,2rem);
+  font-size:clamp(1.45rem,2vw,1.9rem);
   line-height:1.08;
+  text-wrap:balance;
 }
 
 .bbx-authority-card > p{
   margin-bottom:0;
+  font-size:15px;
+  line-height:1.72;
 }
 
 .bbx-authority-grid{
@@ -3953,7 +3957,8 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
   }
 
   .bbx-hero-copy h1{
-    font-size:clamp(2.35rem,11vw,3.9rem);
+    font-size:clamp(2.15rem,10.2vw,3.45rem);
+    max-width:10.5ch;
   }
 
   .bbx-section,
