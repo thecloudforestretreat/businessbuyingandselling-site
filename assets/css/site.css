@@ -4269,3 +4269,64 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
     align-items:stretch !important;
   }
 }
+
+
+
+/* =====================================================
+   CENTER HERO META PILLS
+   Keep headlines/buttons left aligned
+   Center support chips for better balance
+   ===================================================== */
+
+/* Buy / Sell / About / Contact page hero chip groups */
+.bbas-page .sell-hero .hero-pills,
+.bbas-page .buy-hero .hero-pills,
+.bbas-page .about-hero .hero-pills,
+.bbas-page .contact-hero .hero-pills,
+.bbas-page .sell-pills,
+.bbas-page .buy-pills,
+.bbas-page .about-pills,
+.bbas-page .contact-pills{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  justify-content:center !important;
+  align-items:center !important;
+  margin-top:18px !important;
+}
+
+.bbas-page .sell-hero .hero-pills .pill,
+.bbas-page .buy-hero .hero-pills .pill,
+.bbas-page .about-hero .hero-pills .pill,
+.bbas-page .contact-hero .hero-pills .pill,
+.bbas-page .sell-pills .pill,
+.bbas-page .buy-pills .pill,
+.bbas-page .about-pills .pill,
+.bbas-page .contact-pills .pill,
+.bbas-page .sell-pills .tag,
+.bbas-page .buy-pills .tag{
+  margin:0 !important;
+}
+
+/* Homepage hero proof chips centered */
+.home-page .home-hero-proof{
+  justify-content:center !important;
+  align-items:center !important;
+}
+
+@media (max-width:720px){
+  .bbas-page .sell-hero .hero-pills,
+  .bbas-page .buy-hero .hero-pills,
+  .bbas-page .about-hero .hero-pills,
+  .bbas-page .contact-hero .hero-pills,
+  .bbas-page .sell-pills,
+  .bbas-page .buy-pills,
+  .bbas-page .about-pills,
+  .bbas-page .contact-pills{
+    gap:8px !important;
+  }
+
+  .home-page .home-hero-proof{
+    justify-content:center !important;
+  }
+}
