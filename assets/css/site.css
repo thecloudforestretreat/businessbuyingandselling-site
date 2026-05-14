@@ -5860,3 +5860,426 @@ body.sell-page .cta-actions{
     padding:22px;
   }
 }
+
+
+/* =====================================================
+   SAFE BUY PAGE SEO + CONVERSION PATCH
+   Date: 2026-05-14
+   Scope: /buy-a-business/ only
+   Purpose:
+   - Preserve existing global CSS
+   - Remove page-level CSS dependency
+   - Restore professional buyer page layout
+   ===================================================== */
+
+body.buy-page{
+  background:#FAFAFA;
+}
+
+body.buy-page .bbas-main{
+  padding:22px 0 56px;
+  background:
+    radial-gradient(circle at top left,rgba(37,99,235,.07),transparent 30%),
+    linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 44%,#F8FAFC 100%);
+}
+
+body.buy-page .bbas-container{
+  width:min(1120px, calc(100% - 32px));
+  margin:0 auto;
+}
+
+/* Hero */
+body.buy-page .buy-hero{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  padding:30px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17,24,39,.92) 0%,
+      rgba(17,24,39,.82) 38%,
+      rgba(17,24,39,.64) 70%,
+      rgba(17,24,39,.50) 100%
+    ),
+    url("/assets/images/bbas_homepage_hero_03.jpg");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  box-shadow:0 18px 42px rgba(15,23,42,.12);
+}
+
+body.buy-page .buy-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.30) 100%);
+  pointer-events:none;
+}
+
+body.buy-page .buy-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+body.buy-page .hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  width:max-content;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.90);
+  font-size:13px;
+  font-weight:700;
+  line-height:1.2;
+  margin:0;
+}
+
+body.buy-page .hero-badge .dot{
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:#22C55E;
+  box-shadow:0 0 0 6px rgba(34,197,94,.16);
+}
+
+body.buy-page .buy-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:0;
+  margin-top:16px;
+  align-items:stretch;
+}
+
+body.buy-page .buy-copy-wrap{
+  min-width:0;
+}
+
+body.buy-page .buy-hero h1{
+  margin:18px 0 14px;
+  max-width:11.8ch;
+  color:#FFFFFF;
+  font-size:clamp(2.7rem,5.1vw,4.55rem);
+  line-height:1;
+  letter-spacing:-.045em;
+  font-weight:800;
+  text-align:left;
+  text-shadow:0 3px 12px rgba(0,0,0,.30);
+}
+
+body.buy-page .buy-copy{
+  max-width:760px;
+  margin-top:16px;
+  text-align:left;
+}
+
+body.buy-page .buy-copy p{
+  margin:0 0 14px;
+  color:rgba(255,255,255,.92) !important;
+  font-size:16px;
+  line-height:1.68;
+  font-weight:600;
+  text-align:left;
+}
+
+body.buy-page .hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-start;
+  margin-top:20px;
+}
+
+body.buy-page .hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:0 18px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-size:14px;
+  font-weight:800;
+  text-decoration:none;
+  transition:all .18s ease;
+}
+
+body.buy-page .hero-btn:hover{
+  transform:translateY(-1px);
+}
+
+body.buy-page .hero-btn-primary{
+  background:linear-gradient(180deg,#3B82F6 0%,#2563EB 100%);
+  color:#FFFFFF !important;
+  box-shadow:0 14px 28px rgba(37,99,235,.22);
+}
+
+body.buy-page .hero-btn-primary:hover{
+  background:#1D4ED8;
+  box-shadow:0 18px 34px rgba(37,99,235,.26);
+}
+
+body.buy-page .hero-btn-secondary{
+  background:rgba(255,255,255,.10);
+  border-color:rgba(255,255,255,.18);
+  color:#FFFFFF !important;
+}
+
+body.buy-page .hero-btn-secondary:hover{
+  background:rgba(255,255,255,.16);
+  border-color:rgba(255,255,255,.28);
+}
+
+body.buy-page .hero-pills,
+body.buy-page .buy-side{
+  display:none !important;
+}
+
+/* Content sections */
+body.buy-page .section{
+  margin-top:24px;
+  padding:0;
+}
+
+body.buy-page .section-card{
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
+}
+
+body.buy-page .section-card h2{
+  max-width:18ch;
+  margin:0 0 12px;
+  color:#1F2937;
+  font-size:clamp(1.85rem,3vw,2.45rem);
+  line-height:1.08;
+  letter-spacing:-.03em;
+  font-weight:800;
+  text-align:left;
+}
+
+body.buy-page .section-card > p{
+  max-width:860px;
+  margin:0 0 16px;
+  color:#4B5563;
+  font-size:16px;
+  line-height:1.72;
+  text-align:left;
+}
+
+body.buy-page .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  min-height:32px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+  color:#2563EB;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  margin:0 0 12px;
+}
+
+body.buy-page .eyebrow--dark{
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(255,255,255,.18) !important;
+  color:#FFFFFF !important;
+}
+
+body.buy-page .quick-grid,
+body.buy-page .section-grid,
+body.buy-page .link-grid,
+body.buy-page .faq-grid{
+  display:grid;
+  gap:14px;
+  margin-top:16px;
+}
+
+body.buy-page .quick-grid,
+body.buy-page .section-grid,
+body.buy-page .link-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+body.buy-page .faq-grid{
+  grid-template-columns:1fr;
+}
+
+body.buy-page .mini,
+body.buy-page .link-card,
+body.buy-page .faq-item{
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 24px rgba(15,23,42,.055);
+}
+
+body.buy-page .mini{
+  min-height:150px;
+}
+
+body.buy-page .link-card{
+  display:flex;
+  flex-direction:column;
+  min-height:190px;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+body.buy-page .link-card:hover{
+  transform:translateY(-2px);
+  border-color:#C7D2FE;
+  box-shadow:0 16px 34px rgba(15,23,42,.09);
+}
+
+body.buy-page .mini h3,
+body.buy-page .link-card h3,
+body.buy-page .faq-item h3{
+  margin:0 0 8px;
+  color:#1F2937;
+  font-size:1.08rem;
+  line-height:1.25;
+  font-weight:800;
+  text-align:left;
+}
+
+body.buy-page .mini p,
+body.buy-page .link-card p,
+body.buy-page .faq-item p{
+  margin:0;
+  color:#4B5563;
+  font-size:14px;
+  line-height:1.65;
+  text-align:left;
+}
+
+body.buy-page .info-band{
+  margin-top:18px;
+  padding:18px;
+  border-radius:18px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+}
+
+body.buy-page .info-band p{
+  margin:0;
+  color:#1F2937;
+  font-size:15px;
+  line-height:1.7;
+}
+
+body.buy-page .info-band a,
+body.buy-page .section-card a{
+  color:#2563EB;
+  font-weight:800;
+}
+
+body.buy-page .cta-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:20px;
+  align-items:center;
+  padding:30px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at top right,rgba(96,165,250,.20),transparent 30%),
+    linear-gradient(135deg,#081A33 0%,#111827 100%);
+  box-shadow:0 18px 42px rgba(15,23,42,.12);
+}
+
+body.buy-page .cta-panel h2{
+  margin:0 0 8px;
+  color:#FFFFFF;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  line-height:1.05;
+  letter-spacing:-.03em;
+}
+
+body.buy-page .cta-panel p{
+  margin:0;
+  color:rgba(255,255,255,.84);
+  max-width:62ch;
+  font-size:16px;
+  line-height:1.65;
+}
+
+body.buy-page .cta-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+/* Responsive */
+@media (max-width:980px){
+  body.buy-page .quick-grid,
+  body.buy-page .section-grid,
+  body.buy-page .link-grid,
+  body.buy-page .cta-panel{
+    grid-template-columns:1fr;
+  }
+
+  body.buy-page .cta-actions{
+    justify-content:flex-start;
+  }
+}
+
+@media (max-width:720px){
+  body.buy-page .bbas-main{
+    padding:18px 0 44px;
+  }
+
+  body.buy-page .bbas-container{
+    width:min(1120px, calc(100% - 24px));
+  }
+
+  body.buy-page .buy-hero{
+    padding:22px 18px 24px;
+    border-radius:22px;
+  }
+
+  body.buy-page .buy-hero h1{
+    max-width:11ch;
+    font-size:clamp(2.35rem,10.5vw,3.4rem);
+    line-height:1.02;
+  }
+
+  body.buy-page .buy-copy p{
+    font-size:15.5px;
+    line-height:1.62;
+  }
+
+  body.buy-page .hero-actions,
+  body.buy-page .cta-actions{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  body.buy-page .hero-btn{
+    width:100%;
+  }
+
+  body.buy-page .quick-grid,
+  body.buy-page .section-grid,
+  body.buy-page .link-grid{
+    grid-template-columns:1fr;
+  }
+
+  body.buy-page .section-card{
+    padding:20px 16px;
+  }
+
+  body.buy-page .cta-panel{
+    padding:22px;
+  }
+}
