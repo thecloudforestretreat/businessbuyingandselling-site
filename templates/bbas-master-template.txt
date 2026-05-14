@@ -388,7 +388,7 @@ About/contact pages link to:
 - /blog/
 
 Anchor text should be descriptive.
-Avoid generic repeated anchors like “click here.”
+Avoid generic repeated anchors like "click here."
 
 ============================================================
 SCHEMA RULES
@@ -600,6 +600,148 @@ Launch QA:
 - Submit URL inspection in Google Search Console
 - Request indexing for important pages
 - Update sitemap if URL is new
+
+============================================================
+FINAL DESIGN GOVERNANCE RULES
+============================================================
+
+Use these rules on every future BusinessBuyingAndSelling.com page.
+
+1. Every section must justify its existence.
+A section should remain only if it improves at least one of:
+- SEO
+- trust
+- conversion
+- user clarity
+- internal linking
+- lead quality
+
+If a section does not improve one of those outcomes, remove it.
+
+2. Avoid AI-heavy marketing pages.
+Do not create long generic copy, oversized decorative cards, vague benefit grids, or filler paragraphs.
+Write like an experienced business advisor helping real buyers and sellers make practical decisions.
+
+3. Service pages must use the canonical service-page structure:
+- Focused hero
+- Decision framework
+- Process guidance
+- Risks or mistakes
+- Internal resources
+- Final CTA
+- FAQ
+
+4. Service page hero rules:
+- Buy and sell service pages must use the same hero architecture.
+- Hero content should be left-aligned.
+- Do not add right-side dashboard panels unless they create clear conversion value.
+- Do not center service-page hero text unless the user explicitly requests it.
+- Do not let old broad CSS rules override service-page hero alignment.
+
+5. Homepage hero rules:
+- Homepage may use a stronger marketplace hero.
+- Homepage can include the buyer/seller funnel.
+- Homepage should still avoid oversized text, overbuilt cards, and unnecessary explanatory blocks.
+
+6. Global CSS first.
+- Do not use large page-level style blocks.
+- Add reusable styles to /assets/css/site.css.
+- If a page needs unique CSS, scope it tightly to body.PAGE_CLASS.
+- Never replace the full CSS file with a smaller version unless the entire site has been regression-tested.
+
+7. Hero consistency rule:
+The following pages must visually feel related:
+- /
+- /buy-a-business/
+- /sell-your-business/
+
+But they do not need to be identical:
+- Homepage = marketplace decision entry
+- Buy page = buyer guidance and listings path
+- Sell page = seller advisory and consultation path
+
+8. Content density rule:
+Pages should not feel empty.
+Use concise but useful copy, practical cards, FAQs, internal links, and clear CTAs.
+Do not strip pages down so far that they lose SEO value or user confidence.
+
+9. CTA hierarchy:
+Every page should make the next action obvious:
+- Buyer page: Browse Listings, Talk to Us
+- Seller page: Start a Conversation, Read Seller Guide
+- Listings page: View details, Contact Us
+- Blog posts: related service page or contact CTA
+
+10. Analytics rule:
+All page tracking must be centralized in /assets/js/site.js.
+Every enhanced page view must include:
+- page_title
+- page_location
+- page_path
+- canonical_url
+- page_type
+- primary_goal
+- content_group
+
+Do not add manual GA snippets to individual pages.
+
+11. QA rule for final files:
+Before calling a page live-ready, check:
+- desktop hero alignment
+- mobile hero wrapping
+- CTA visibility
+- internal links
+- schema and visible FAQ match
+- no duplicate header/footer
+- no duplicate GA
+- no unnecessary page-level CSS
+- GA4 receives page_title and page_path
+
+============================================================
+CANONICAL SERVICE PAGE FRAMEWORK
+============================================================
+
+Use this for /buy-a-business/, /sell-your-business/, local SEO service pages, and future industry/service pages.
+
+Required section order:
+1. Hero
+   - Hero badge
+   - H1 with primary keyword or close semantic match
+   - 1 to 2 concise paragraphs
+   - 2 CTAs maximum
+
+2. Decision Framework
+   - Explain what matters most
+   - 3 cards maximum if possible
+
+3. Process Guidance
+   - 4 to 6 practical cards
+   - Keep copy short but useful
+
+4. Risks / Mistakes
+   - 3 cards maximum
+   - Explain what to avoid
+
+5. Resource Links
+   - 4 to 6 internal links
+   - Use descriptive anchors
+
+6. Final CTA
+   - One strong conversion section
+
+7. FAQ
+   - 3 useful questions
+   - Must match FAQ schema if schema is included
+
+Do not include decorative side panels, fake metrics, vague benefits, or redundant pill sections unless they clearly improve conversion.
+
+============================================================
+PROMPT ADDITION FOR FUTURE PAGE UPDATES
+============================================================
+
+When asking ChatGPT to update a page, include this:
+
+"Use the BBAS master template. Keep the page SEO-heavy but not text-heavy. Use global CSS first, no large page-level CSS, preserve header/footer/includes/site.js/header.css, keep the tone practical and advisory, and make every section justify its existence. For service pages, use the canonical service-page framework and keep hero content left-aligned."
 
 ============================================================
 FINAL OUTPUT REQUIREMENTS
