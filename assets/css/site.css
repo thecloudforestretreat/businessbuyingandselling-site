@@ -6389,3 +6389,418 @@ body.sell-page .faq-item{
     max-width:11ch !important;
   }
 }
+/* =====================================================
+   BBAS FINAL GLOBAL CONSISTENCY SYSTEM
+   Date: 2026-05-14
+   Scope: homepage, buy service page, sell service page
+   Purpose:
+   - Stop older broad CSS rules from changing hero alignment and text scale
+   - Standardize service-page hero rhythm
+   - Keep homepage hero visually related but intentionally distinct
+   - Preserve current global CSS instead of replacing the whole file
+   ===================================================== */
+
+/* Shared dark hero background for the main conversion pages */
+body.home-page .heroTop,
+body.buy-page .buy-hero,
+body.sell-page .sell-hero{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(17,24,39,.90) 0%,
+      rgba(17,24,39,.80) 38%,
+      rgba(17,24,39,.62) 68%,
+      rgba(17,24,39,.50) 100%
+    ),
+    url("/assets/images/bbas_homepage_hero_03.jpg") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  border-radius:24px !important;
+  box-shadow:0 18px 42px rgba(15,23,42,.12) !important;
+}
+
+/* Homepage hero keeps its larger marketplace positioning but uses final scale */
+body.home-page .heroTop{
+  padding:40px 42px 120px !important;
+  min-height:390px !important;
+}
+
+body.home-page .heroBadge{
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+body.home-page .heroTitle{
+  max-width:11ch !important;
+  margin:18px 0 14px !important;
+  text-align:left !important;
+  color:#FFFFFF !important;
+  font-size:clamp(2.7rem,4.8vw,4.45rem) !important;
+  line-height:.96 !important;
+  letter-spacing:-.05em !important;
+  font-weight:800 !important;
+  text-shadow:0 5px 20px rgba(0,0,0,.34) !important;
+}
+
+body.home-page .heroLead{
+  max-width:58ch !important;
+  margin:0 !important;
+  text-align:left !important;
+  color:rgba(255,255,255,.92) !important;
+  font-size:clamp(1rem,1.2vw,1.12rem) !important;
+  line-height:1.62 !important;
+  font-weight:600 !important;
+}
+
+body.home-page .home-hero-actions{
+  justify-content:flex-start !important;
+}
+
+/* Service pages use one consistent advisory hero system */
+body.buy-page .buy-hero,
+body.sell-page .sell-hero{
+  position:relative !important;
+  overflow:hidden !important;
+  padding:30px !important;
+  min-height:0 !important;
+}
+
+body.buy-page .buy-hero::before,
+body.sell-page .sell-hero::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  background:linear-gradient(180deg,rgba(0,0,0,.06) 0%,rgba(0,0,0,.25) 100%) !important;
+  pointer-events:none !important;
+}
+
+body.buy-page .buy-hero > *,
+body.sell-page .sell-hero > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+body.buy-page .hero-badge,
+body.sell-page .hero-badge{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  width:max-content !important;
+  margin:0 !important;
+  padding:8px 12px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.10) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  color:rgba(255,255,255,.92) !important;
+  font-size:13px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+}
+
+body.buy-page .hero-badge .dot,
+body.sell-page .hero-badge .dot{
+  width:9px !important;
+  height:9px !important;
+  border-radius:999px !important;
+  flex:0 0 auto !important;
+}
+
+body.buy-page .hero-badge .dot{
+  background:#22C55E !important;
+  box-shadow:0 0 0 6px rgba(34,197,94,.16) !important;
+}
+
+body.sell-page .hero-badge .dot{
+  background:#F59E0B !important;
+  box-shadow:0 0 0 6px rgba(245,158,11,.18) !important;
+}
+
+body.buy-page .buy-grid,
+body.buy-page .buy-grid.buy-grid--single,
+body.sell-page .sell-grid,
+body.sell-page .sell-grid.sell-grid--single{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:0 !important;
+  margin-top:16px !important;
+  align-items:stretch !important;
+}
+
+body.buy-page .buy-copy-wrap,
+body.sell-page .sell-copy-wrap{
+  max-width:860px !important;
+  min-width:0 !important;
+}
+
+body.buy-page .buy-hero h1,
+body.sell-page .sell-hero h1{
+  max-width:11.8ch !important;
+  margin:18px 0 14px !important;
+  color:#FFFFFF !important;
+  font-size:clamp(2.7rem,5.1vw,4.55rem) !important;
+  line-height:1 !important;
+  letter-spacing:-.045em !important;
+  font-weight:800 !important;
+  text-align:left !important;
+  text-shadow:0 3px 12px rgba(0,0,0,.30) !important;
+}
+
+body.buy-page .buy-copy,
+body.sell-page .sell-copy{
+  max-width:760px !important;
+  margin:16px 0 0 !important;
+  text-align:left !important;
+}
+
+body.buy-page .buy-copy p,
+body.sell-page .sell-copy p{
+  margin:0 0 14px !important;
+  color:rgba(255,255,255,.92) !important;
+  font-size:16px !important;
+  line-height:1.68 !important;
+  font-weight:600 !important;
+  text-align:left !important;
+}
+
+body.buy-page .hero-actions,
+body.sell-page .hero-actions{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:12px !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  margin-top:20px !important;
+}
+
+body.buy-page .hero-btn,
+body.sell-page .hero-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:46px !important;
+  padding:0 18px !important;
+  border-radius:999px !important;
+  border:1px solid transparent !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  text-decoration:none !important;
+  transition:all .18s ease !important;
+}
+
+body.buy-page .hero-btn-primary,
+body.sell-page .hero-btn-primary{
+  background:linear-gradient(180deg,#3B82F6 0%,#2563EB 100%) !important;
+  color:#FFFFFF !important;
+  box-shadow:0 14px 28px rgba(37,99,235,.22) !important;
+}
+
+body.buy-page .hero-btn-secondary,
+body.sell-page .hero-btn-secondary{
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(255,255,255,.18) !important;
+  color:#FFFFFF !important;
+}
+
+/* Service page content grid normalization */
+body.buy-page .bbas-main,
+body.sell-page .bbas-main{
+  padding:22px 0 56px !important;
+  background:
+    radial-gradient(circle at top left,rgba(37,99,235,.07),transparent 30%),
+    linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 44%,#F8FAFC 100%) !important;
+}
+
+body.buy-page .bbas-container,
+body.sell-page .bbas-container{
+  width:min(1120px, calc(100% - 32px)) !important;
+  margin:0 auto !important;
+}
+
+body.buy-page .section,
+body.sell-page .section{
+  margin-top:24px !important;
+  padding:0 !important;
+}
+
+body.buy-page .section-card,
+body.sell-page .section-card{
+  background:#FFFFFF !important;
+  border:1px solid #E5E7EB !important;
+  border-radius:22px !important;
+  padding:24px !important;
+  box-shadow:0 12px 30px rgba(15,23,42,.08) !important;
+}
+
+body.buy-page .quick-grid,
+body.buy-page .section-grid,
+body.buy-page .link-grid,
+body.buy-page .faq-grid,
+body.sell-page .quick-grid,
+body.sell-page .section-grid,
+body.sell-page .link-grid,
+body.sell-page .faq-grid{
+  display:grid !important;
+  gap:14px !important;
+  margin-top:16px !important;
+}
+
+body.buy-page .quick-grid,
+body.buy-page .section-grid,
+body.buy-page .link-grid,
+body.sell-page .quick-grid,
+body.sell-page .section-grid,
+body.sell-page .link-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+
+body.buy-page .faq-grid,
+body.sell-page .faq-grid{
+  grid-template-columns:1fr !important;
+}
+
+body.buy-page .mini,
+body.buy-page .link-card,
+body.buy-page .faq-item,
+body.sell-page .mini,
+body.sell-page .link-card,
+body.sell-page .faq-item{
+  background:#FFFFFF !important;
+  border:1px solid #E5E7EB !important;
+  border-radius:18px !important;
+  padding:18px !important;
+  box-shadow:0 10px 24px rgba(15,23,42,.055) !important;
+  text-decoration:none !important;
+}
+
+body.buy-page .link-card,
+body.sell-page .link-card{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:190px !important;
+}
+
+body.buy-page .cta-panel,
+body.sell-page .cta-panel{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  gap:20px !important;
+  align-items:center !important;
+  padding:30px !important;
+  border-radius:24px !important;
+  background:
+    radial-gradient(circle at top right,rgba(96,165,250,.20),transparent 30%),
+    linear-gradient(135deg,#081A33 0%,#111827 100%) !important;
+  box-shadow:0 18px 42px rgba(15,23,42,.12) !important;
+}
+
+body.buy-page .cta-panel h2,
+body.sell-page .cta-panel h2{
+  color:#FFFFFF !important;
+}
+
+body.buy-page .cta-panel p,
+body.sell-page .cta-panel p{
+  color:rgba(255,255,255,.84) !important;
+}
+
+/* Kill old centered service hero alignment without affecting About/Contact */
+body.buy-page .buy-hero .hero-badge,
+body.sell-page .sell-hero .hero-badge,
+body.buy-page .buy-hero h1,
+body.sell-page .sell-hero h1,
+body.buy-page .buy-copy,
+body.sell-page .sell-copy{
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+/* Mobile consistency */
+@media (max-width:980px){
+  body.buy-page .quick-grid,
+  body.buy-page .section-grid,
+  body.buy-page .link-grid,
+  body.buy-page .cta-panel,
+  body.sell-page .quick-grid,
+  body.sell-page .section-grid,
+  body.sell-page .link-grid,
+  body.sell-page .cta-panel{
+    grid-template-columns:1fr !important;
+  }
+
+  body.buy-page .cta-actions,
+  body.sell-page .cta-actions{
+    justify-content:flex-start !important;
+  }
+}
+
+@media (max-width:720px){
+  body.home-page .heroTop{
+    padding:24px 18px 92px !important;
+    border-radius:22px !important;
+  }
+
+  body.home-page .heroTitle{
+    max-width:10.5ch !important;
+    font-size:clamp(2.35rem,11vw,3.35rem) !important;
+    line-height:.98 !important;
+  }
+
+  body.home-page .heroLead{
+    font-size:15.5px !important;
+    line-height:1.58 !important;
+  }
+
+  body.buy-page .bbas-main,
+  body.sell-page .bbas-main{
+    padding:18px 0 44px !important;
+  }
+
+  body.buy-page .bbas-container,
+  body.sell-page .bbas-container{
+    width:min(1120px, calc(100% - 24px)) !important;
+  }
+
+  body.buy-page .buy-hero,
+  body.sell-page .sell-hero{
+    padding:22px 18px 24px !important;
+    border-radius:22px !important;
+  }
+
+  body.buy-page .buy-hero h1,
+  body.sell-page .sell-hero h1{
+    max-width:11ch !important;
+    font-size:clamp(2.35rem,10.5vw,3.4rem) !important;
+    line-height:1.02 !important;
+  }
+
+  body.buy-page .buy-copy p,
+  body.sell-page .sell-copy p{
+    font-size:15.5px !important;
+    line-height:1.62 !important;
+  }
+
+  body.buy-page .hero-actions,
+  body.buy-page .cta-actions,
+  body.sell-page .hero-actions,
+  body.sell-page .cta-actions{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+
+  body.buy-page .hero-btn,
+  body.sell-page .hero-btn{
+    width:100% !important;
+  }
+
+  body.buy-page .section-card,
+  body.sell-page .section-card{
+    padding:20px 16px !important;
+  }
+
+  body.buy-page .cta-panel,
+  body.sell-page .cta-panel{
+    padding:22px !important;
+  }
+}
