@@ -4330,3 +4330,344 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
     justify-content:center !important;
   }
 }
+
+
+/* =====================================================
+   BBAS GLOBAL PAGE GENERATION SYSTEM V1
+   Use these reusable classes for future pages instead of page-level CSS.
+   ===================================================== */
+
+.bbas-main{
+  padding:22px 0 56px;
+}
+
+.bbas-container{
+  width:min(var(--container), calc(100% - 32px));
+  margin-inline:auto;
+}
+
+.bbas-page-hero{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  padding:30px 30px 34px;
+  background:
+    linear-gradient(90deg,rgba(17,24,39,.90) 0%,rgba(17,24,39,.80) 35%,rgba(17,24,39,.62) 60%,rgba(17,24,39,.48) 100%),
+    url("/assets/images/bbas_homepage_hero_03.jpg");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  box-shadow:var(--shadow-lg);
+}
+
+.bbas-page-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.10) 0%,rgba(0,0,0,.28) 100%);
+  pointer-events:none;
+}
+
+.bbas-page-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+.bbas-page-hero__grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:22px;
+  margin-top:16px;
+  align-items:stretch;
+}
+
+.bbas-page-hero__title{
+  margin:18px 0 12px;
+  color:#FFFFFF;
+  font-size:clamp(2.7rem,5.2vw,4.5rem);
+  line-height:1.01;
+  letter-spacing:-0.04em;
+  font-weight:700;
+  max-width:10.8ch;
+  text-shadow:0 3px 12px rgba(0,0,0,.28);
+}
+
+.bbas-page-hero__lead{
+  margin:0 0 16px;
+  color:#FFFFFF !important;
+  font-size:16px;
+  line-height:1.72;
+  font-weight:500;
+  max-width:700px;
+}
+
+.bbas-page-hero__side,
+.bbas-hero-side{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:20px;
+  padding:18px;
+  backdrop-filter:blur(10px);
+}
+
+.bbas-page-hero__side h2,
+.bbas-hero-side h2{
+  margin:0 0 10px;
+  color:#FFFFFF;
+  font-size:clamp(1.55rem,2.2vw,2.15rem);
+  line-height:1.1;
+}
+
+.bbas-page-hero__side p,
+.bbas-hero-side p{
+  color:rgba(255,255,255,.92) !important;
+  font-size:14px;
+  line-height:1.65;
+  margin-bottom:14px;
+}
+
+.bbas-chip-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+}
+
+.bbas-chip{
+  display:inline-flex;
+  align-items:center;
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.78);
+  font-size:11px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:.02em;
+  box-shadow:none;
+  cursor:default;
+}
+
+.bbas-card-grid{
+  display:grid;
+  gap:18px;
+}
+
+.bbas-card-grid--2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.bbas-card-grid--3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+.bbas-card-grid--4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+
+.bbas-info-card,
+.bbas-resource-card{
+  background:#FFFFFF;
+  border:1px solid var(--border-light);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow-md);
+}
+
+.bbas-info-card h3,
+.bbas-resource-card h3{
+  margin:0 0 8px;
+  font-size:1.15rem;
+  line-height:1.3;
+}
+
+.bbas-info-card p,
+.bbas-resource-card p{
+  margin:0;
+  color:var(--text-secondary);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.bbas-final-cta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:20px;
+  align-items:center;
+  background:linear-gradient(135deg,#0F172A 0%,#16233B 100%);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:var(--shadow-lg);
+  color:#FFFFFF;
+}
+
+.bbas-final-cta h2{
+  color:#FFFFFF;
+  margin:0 0 8px;
+}
+
+.bbas-final-cta p{
+  color:rgba(255,255,255,.86) !important;
+  margin:0;
+  max-width:720px;
+}
+
+.bbas-faq-list{
+  display:grid;
+  gap:14px;
+}
+
+.bbas-faq-item{
+  background:#FFFFFF;
+  border:1px solid var(--border-light);
+  border-radius:16px;
+  padding:16px;
+}
+
+.bbas-faq-item summary{
+  cursor:pointer;
+  color:var(--text-primary);
+  font-weight:800;
+}
+
+.bbas-faq-item p{
+  margin-top:10px;
+  margin-bottom:0;
+}
+
+@media (max-width:980px){
+  .bbas-page-hero__grid,
+  .bbas-final-cta,
+  .bbas-card-grid--2,
+  .bbas-card-grid--3,
+  .bbas-card-grid--4{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:720px){
+  .bbas-main{ padding:18px 0 44px; }
+  .bbas-container{ width:min(var(--container), calc(100% - 24px)); }
+  .bbas-page-hero{ padding:22px 18px 24px; border-radius:20px; }
+  .bbas-page-hero__title{ max-width:11ch; }
+  .bbas-chip-row{ gap:8px; }
+  .bbas-final-cta{ padding:22px; }
+}
+
+/* =====================================================
+   FINAL PRODUCTION OVERRIDE
+   Main hero content left aligned, supporting chips centered.
+   This intentionally overrides older centered hero rules.
+   ===================================================== */
+
+.bbas-page .buy-hero .hero-badge,
+.bbas-page .sell-hero .hero-badge,
+.bbas-page .about-hero .hero-badge,
+.bbas-page .contact-hero .hero-badge,
+.bbas-page .listings-hero .hero-badge{
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+.bbas-page .buy-hero h1,
+.bbas-page .sell-hero h1,
+.bbas-page .about-hero h1,
+.bbas-page .contact-hero h1,
+.bbas-page .listings-hero h1,
+.bbas-listings-page .hero h1{
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+.bbas-page .hero-copy,
+.bbas-page .buy-copy,
+.bbas-page .sell-copy,
+.bbas-page .about-hero-copy,
+.bbas-page .contact-hero-copy,
+.bbas-listings-page .hero p{
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+.bbas-page .hero-copy p,
+.bbas-page .buy-copy p,
+.bbas-page .sell-copy p,
+.bbas-page .about-hero-copy p,
+.bbas-page .contact-hero-copy p{
+  text-align:left !important;
+}
+
+.bbas-page .hero-actions,
+.bbas-page .contact-actions,
+.bbas-page .cta-actions,
+.bbas-page .home-hero-actions{
+  justify-content:flex-start !important;
+}
+
+/* Center only low-priority supporting chips/pills */
+.bbas-page .hero-pills,
+.bbas-page .buy-hero .hero-pills,
+.bbas-page .sell-hero .hero-pills,
+.bbas-page .about-hero .hero-pills,
+.bbas-page .contact-hero .hero-pills,
+.bbas-page .listings-hero .hero-pills,
+.home-page .home-hero-proof{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  justify-content:center !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+/* Reduce tag/button confusion */
+.home-page .home-proof-pill,
+.bbas-page .hero-pill{
+  min-height:30px !important;
+  padding:6px 10px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.05) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  color:rgba(255,255,255,.78) !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  letter-spacing:.02em !important;
+  box-shadow:none !important;
+  cursor:default !important;
+  pointer-events:none !important;
+}
+
+.home-page .home-proof-pill:hover,
+.bbas-page .hero-pill:hover{
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+@media (max-width:720px){
+  .bbas-page .hero-actions,
+  .bbas-page .contact-actions,
+  .bbas-page .cta-actions,
+  .bbas-page .home-hero-actions{
+    flex-direction:column !important;
+    align-items:stretch !important;
+  }
+
+  .bbas-page .hero-btn,
+  .bbas-page .listing-btn,
+  .bbas-page .contact-btn,
+  .bbas-page .btn,
+  .home-page .home-hero-actions .btn{
+    width:100% !important;
+  }
+
+  .home-page .home-hero-proof{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+
+  .home-page .home-proof-pill:nth-child(4){
+    display:none !important;
+  }
+
+  .home-page .home-proof-pill:nth-child(3){
+    grid-column:1 / -1 !important;
+  }
+}
