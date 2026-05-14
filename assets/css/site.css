@@ -5321,3 +5321,55 @@ body.home-page[data-funnel-branch="none"] .funnelProgress{
     grid-template-columns:1fr !important;
   }
 }
+
+/* =====================================================
+   HOMEPAGE HERO TYPOGRAPHY POLISH V5
+   Final executive refinement: calmer, more premium hero scale
+   ===================================================== */
+
+.home-page .heroTitle{
+  max-width:11ch !important;
+  font-size:clamp(2.7rem,4.8vw,4.45rem) !important;
+  line-height:.96 !important;
+  letter-spacing:-.05em !important;
+}
+
+.home-page .heroLead{
+  max-width:58ch !important;
+  font-size:clamp(1rem,1.2vw,1.12rem) !important;
+  line-height:1.62 !important;
+}
+
+.home-page .heroTop{
+  padding-top:40px !important;
+  padding-bottom:120px !important;
+}
+
+.home-page .home-hero-actions{
+  margin-top:26px !important;
+}
+
+@media (max-width:1100px){
+  .home-page .heroTitle{
+    max-width:11ch !important;
+    font-size:clamp(2.55rem,5.6vw,4rem) !important;
+  }
+}
+
+@media (max-width:720px){
+  .home-page .heroTitle{
+    max-width:10.5ch !important;
+    font-size:clamp(2.35rem,11vw,3.35rem) !important;
+    line-height:.98 !important;
+  }
+
+  .home-page .heroLead{
+    font-size:15.5px !important;
+    line-height:1.58 !important;
+  }
+
+  .home-page .heroTop{
+    padding-top:24px !important;
+    padding-bottom:92px !important;
+  }
+}
