@@ -8318,3 +8318,127 @@ body.blog-page .blog-hero h1{
     padding:15px 16px !important;
   }
 }
+/* =====================================================
+   BLOG HUB HERO HIGH-END POLISH V3
+   Date: 2026-05-14
+   Scope: /blog/ only
+   Purpose:
+   - Organize topic chips into a cleaner premium row system
+   - Reduce right-side image/card gap
+   - Keep hero image large and sophisticated
+   ===================================================== */
+
+body.blog-page .blog-hero-shell{
+  grid-template-columns:minmax(0,0.95fr) minmax(420px,1.05fr) !important;
+  gap:26px !important;
+  align-items:center !important;
+  padding:30px !important;
+}
+
+body.blog-page .blog-hero-copy{
+  justify-content:center !important;
+}
+
+body.blog-page .blog-hero-actions{
+  margin-top:18px !important;
+}
+
+body.blog-page .blog-hero-pills{
+  display:grid !important;
+  grid-template-columns:repeat(3,max-content) !important;
+  gap:9px !important;
+  align-items:center !important;
+  justify-content:start !important;
+  max-width:430px !important;
+  margin-top:18px !important;
+}
+
+body.blog-page .blog-pill{
+  min-height:30px !important;
+  padding:7px 12px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.075) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+  color:rgba(255,255,255,.88) !important;
+  font-size:11.5px !important;
+  font-weight:800 !important;
+  line-height:1.2 !important;
+  letter-spacing:-.01em !important;
+  white-space:nowrap !important;
+  box-shadow:none !important;
+}
+
+body.blog-page .blog-hero-media{
+  align-self:center !important;
+  display:grid !important;
+  grid-template-rows:auto auto !important;
+  gap:10px !important;
+}
+
+body.blog-page .blog-hero-image{
+  height:360px !important;
+  min-height:360px !important;
+  border-radius:20px !important;
+}
+
+body.blog-page .blog-hero-card{
+  margin-top:0 !important;
+  padding:16px 18px !important;
+  border-radius:18px !important;
+}
+
+body.blog-page .blog-hero-card-kicker{
+  margin-bottom:6px !important;
+}
+
+body.blog-page .blog-hero-card h2{
+  max-width:18ch !important;
+  margin-bottom:6px !important;
+}
+
+@media (max-width:1100px){
+  body.blog-page .blog-hero-shell{
+    grid-template-columns:1fr !important;
+  }
+
+  body.blog-page .blog-hero-pills{
+    grid-template-columns:repeat(3,max-content) !important;
+    max-width:100% !important;
+  }
+
+  body.blog-page .blog-hero-media{
+    max-width:760px !important;
+  }
+
+  body.blog-page .blog-hero-image{
+    height:330px !important;
+    min-height:330px !important;
+  }
+}
+
+@media (max-width:720px){
+  body.blog-page .blog-hero-shell{
+    gap:20px !important;
+  }
+
+  body.blog-page .blog-hero-pills{
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+
+  body.blog-page .blog-pill{
+    justify-content:center !important;
+    width:100% !important;
+    white-space:normal !important;
+    text-align:center !important;
+  }
+
+  body.blog-page .blog-hero-media{
+    gap:10px !important;
+  }
+
+  body.blog-page .blog-hero-image{
+    height:245px !important;
+    min-height:245px !important;
+  }
+}
