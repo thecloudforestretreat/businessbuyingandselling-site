@@ -1,0 +1,614 @@
+BUSINESSBUYINGANDSELLING.COM
+MASTER GLOBAL PAGE UPDATE + QA TEMPLATE
+Version: 2026-05-14 Consolidated Workflow System
+
+PURPOSE
+Use this master template every time you create, update, audit, or QA a page for BusinessBuyingAndSelling.com.
+
+The goal is to keep every page:
+- SEO-maximized
+- conversion-focused
+- mobile-first
+- internally linked
+- schema-ready
+- analytics-ready
+- visually consistent
+- built with global CSS
+- free of duplicate headers, footers, analytics scripts, and page-level CSS unless truly necessary
+
+============================================================
+CORE RULE
+============================================================
+
+Always produce complete ready-to-upload files unless partial snippets are explicitly requested.
+
+Never provide placeholders unless the user specifically requests placeholders.
+
+Never remove working functionality without replacing it.
+
+Always preserve:
+- <div id="siteHeader"></div>
+- <div id="siteFooter"></div>
+- /assets/js/includes.js
+- /assets/js/site.js
+- /assets/css/site.css
+- /assets/css/header.css
+
+Do not hardcode header or footer inside individual pages.
+Do not duplicate Google Analytics inside page files.
+Do not add page-level CSS unless absolutely necessary.
+Use global CSS classes and existing design systems first.
+
+============================================================
+MASTER SITE CONTEXT
+============================================================
+
+Site: Business Buying and Selling
+Domain: https://businessbuyingandselling.com
+Brand positioning: Professional advisory marketplace for buyers and sellers of owner-operated businesses.
+Tone: Trustworthy, clear, experienced, practical, no fluff, no hype, no AI-sounding language.
+Primary users:
+- Buyers looking for businesses for sale
+- Owners thinking about selling
+- Investors evaluating acquisition opportunities
+- First-time business buyers
+- Owner-operators in local business categories
+
+Primary conversion goals:
+- listing_inquiry
+- seller_consultation
+- buyer_consultation
+- contact_submit
+- listing_view
+- blog_to_contact
+
+Core site pages:
+/
+/buy-a-business/
+/sell-your-business/
+/listings/
+/about-us/
+/contact/
+/blog/
+
+Core blog pages:
+/blog/how-to-sell-your-business-for-maximum-value/
+/blog/why-most-business-sales-fail/
+/blog/what-your-business-is-worth-before-you-sell/
+/blog/how-long-does-it-take-to-sell-a-business/
+/blog/seller-financing-helps-you-sell-faster/
+/blog/how-to-increase-business-value-before-selling/
+/blog/buying-a-business-vs-starting-one/
+/blog/how-to-buy-a-small-business-without-costly-mistakes/
+/blog/red-flags-when-buying-a-business/
+/blog/due-diligence-checklist-buying-or-selling-business/
+/blog/how-to-qualify-for-an-sba-loan/
+/blog/buying-a-closed-gas-station/
+
+============================================================
+GLOBAL FILE RULES
+============================================================
+
+Every page must include only these global assets unless there is a specific justified reason:
+
+CSS:
+<link rel="stylesheet" href="/assets/css/site.css?v=YYYYMMDD-page-key">
+<link rel="stylesheet" href="/assets/css/header.css?v=YYYYMMDD-page-key">
+
+JS at bottom:
+<script src="/assets/js/includes.js"></script>
+<script src="/assets/js/site.js" defer></script>
+
+Important:
+- Do not include manual gtag snippets in pages.
+- Do not include duplicate analytics scripts in pages.
+- Do not include duplicate header/footer markup.
+- Do not include large <style> blocks for normal layout.
+- Use the global CSS system.
+- Page-level CSS is allowed only when a unique component cannot be safely covered globally.
+
+Current GA4 Measurement ID:
+G-EH99SDCSFD
+
+GA4 belongs in /assets/js/site.js only.
+
+============================================================
+STANDARD PAGE SKELETON
+============================================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ SEO_TITLE }}</title>
+<meta name="description" content="{{ META_DESCRIPTION }}">
+<link rel="canonical" href="{{ CANONICAL_URL }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ OG_TITLE }}">
+<meta property="og:description" content="{{ OG_DESCRIPTION }}">
+<meta property="og:url" content="{{ CANONICAL_URL }}">
+<meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ OG_TITLE }}">
+<meta name="twitter:description" content="{{ OG_DESCRIPTION }}">
+<meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
+
+<script type="application/ld+json">
+{{ JSON_LD_SCHEMA }}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/assets/css/site.css?v={{ CACHE_VERSION }}">
+<link rel="stylesheet" href="/assets/css/header.css?v={{ CACHE_VERSION }}">
+</head>
+
+<body class="bbas-page {{ PAGE_CLASS }}" data-page-type="{{ PAGE_TYPE }}" data-primary-goal="{{ PRIMARY_GOAL }}">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="siteHeader"></div>
+
+<main id="main" class="bbas-main">
+  <div class="bbas-container">
+    {{ PAGE_CONTENT }}
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="/assets/js/includes.js"></script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
+
+============================================================
+SEO REQUIREMENTS FOR EVERY PAGE
+============================================================
+
+Each page must include:
+1. SEO Title
+2. Meta Description
+3. H1 aligned with title/search intent
+4. OG Title same as SEO title unless there is a strong CTR reason
+5. OG Description same as meta description
+6. Schema Name, title without pipes
+7. Schema Description same as meta description
+8. Canonical URL
+9. One primary keyword
+10. Secondary keywords
+11. Search intent
+12. Clear CTA goal
+13. Internal links
+14. FAQ section when useful
+15. Schema that matches visible content
+
+Keyword placement:
+- Primary keyword in title
+- Primary keyword in meta description
+- Primary keyword in H1 or close semantic variation
+- Primary keyword in first 100 words
+- Primary keyword or variation in at least one H2
+- Primary keyword in schema name or description when natural
+
+Meta rules:
+- Title target: under 60 characters when possible
+- Meta target: 150 to 160 characters when possible
+- Avoid keyword stuffing
+- Use strong commercial or informational CTR wording
+
+============================================================
+PAGE TYPES
+============================================================
+
+Use these body page types:
+- homepage
+- buyer_service_page
+- seller_service_page
+- listings_page
+- listing_detail_page
+- about_page
+- contact_page
+- blog_hub
+- blog_post
+- calculator_page
+- local_seo_page
+- resource_page
+
+Recommended primary goals:
+- listing_inquiry
+- seller_consultation
+- buyer_consultation
+- contact_submit
+- listing_view
+- blog_engagement
+- calculator_lead
+
+============================================================
+GLOBAL COMPONENT SYSTEM
+============================================================
+
+Use existing global classes first:
+- bbas-main
+- bbas-container
+- section
+- section-card
+- hero-badge
+- hero-actions
+- hero-btn
+- hero-btn-primary
+- hero-btn-secondary
+- hero-pills
+- hero-pill
+- side-grid
+- side-item
+- eyebrow
+- quick-grid
+- section-grid
+- link-grid
+- resource-grid
+- metric-grid
+- card
+- panel
+- btn
+- btn--primary
+- btn--ghost
+- cta-panel
+- cta-actions
+
+New standardized component classes to prefer going forward:
+- bbas-page-hero
+- bbas-page-hero__grid
+- bbas-page-hero__copy
+- bbas-page-hero__side
+- bbas-page-hero__title
+- bbas-page-hero__lead
+- bbas-chip-row
+- bbas-chip
+- bbas-card-grid
+- bbas-card-grid--2
+- bbas-card-grid--3
+- bbas-card-grid--4
+- bbas-info-card
+- bbas-resource-card
+- bbas-final-cta
+- bbas-form-card
+- bbas-faq-list
+- bbas-faq-item
+
+Do not create page-specific styles for normal sections.
+
+============================================================
+ANALYTICS STANDARD
+============================================================
+
+All analytics must be centralized in:
+/assets/js/site.js
+
+Do not add page-level GA scripts.
+
+Use data attributes for important CTAs:
+
+data-analytics-event="cta_click"
+data-analytics-label="Browse Listings"
+data-analytics-location="hero"
+data-analytics-section="homepage_hero"
+data-analytics-page-type="homepage"
+data-analytics-goal="listing_view"
+
+For forms:
+
+data-analytics-form="contact"
+data-analytics-goal="contact_submit"
+
+For listing cards:
+
+data-analytics-event="listing_click"
+data-analytics-label="Established Brake and Repair Operation"
+data-analytics-section="listings_grid"
+
+For blog links:
+
+data-analytics-event="blog_link_click"
+data-analytics-label="Due Diligence Checklist"
+data-analytics-section="related_reads"
+
+site.js should track:
+- page_view_enhanced
+- scroll_depth
+- internal_link_click
+- outbound_link_click
+- cta_click
+- listing_click
+- blog_link_click
+- phone_click
+- email_click
+- form_start
+- form_submit_attempt
+- form_submit_success when custom event is dispatched
+- form_submit_error when custom event is dispatched
+- faq_expand
+
+============================================================
+INTERNAL LINKING SYSTEM
+============================================================
+
+Core links:
+Homepage links to:
+- /buy-a-business/
+- /sell-your-business/
+- /listings/
+- /blog/
+- /contact/
+
+Buyer pages link to:
+- /listings/
+- /contact/
+- /blog/how-to-buy-a-small-business-without-costly-mistakes/
+- /blog/red-flags-when-buying-a-business/
+- /blog/due-diligence-checklist-buying-or-selling-business/
+- /blog/how-to-qualify-for-an-sba-loan/
+- /blog/buying-a-business-vs-starting-one/
+
+Seller pages link to:
+- /contact/
+- /blog/how-to-sell-your-business-for-maximum-value/
+- /blog/why-most-business-sales-fail/
+- /blog/what-your-business-is-worth-before-you-sell/
+- /blog/how-long-does-it-take-to-sell-a-business/
+- /blog/seller-financing-helps-you-sell-faster/
+- /blog/how-to-increase-business-value-before-selling/
+
+Listings pages link to:
+- /buy-a-business/
+- /contact/
+- buyer education blog posts
+- relevant industry acquisition pages
+
+Blog posts link to:
+- relevant cluster posts
+- /buy-a-business/ for buyer intent
+- /sell-your-business/ for seller intent
+- /listings/ for buyer intent
+- /contact/ for shared or advisory intent
+
+About/contact pages link to:
+- /buy-a-business/
+- /sell-your-business/
+- /listings/
+- /blog/
+
+Anchor text should be descriptive.
+Avoid generic repeated anchors like “click here.”
+
+============================================================
+SCHEMA RULES
+============================================================
+
+Use schema that matches visible content.
+
+Recommended schema:
+- Homepage: WebSite + WebPage
+- Buy page: WebPage + Service + FAQPage when FAQ exists
+- Sell page: WebPage + Service + FAQPage when FAQ exists
+- Listings hub: CollectionPage + ItemList
+- Listing detail: Product or OfferCatalog cautiously, or WebPage + ItemList if details are limited
+- Blog hub: Blog
+- Blog post: BlogPosting + FAQPage when FAQ exists
+- About page: AboutPage
+- Contact page: ContactPage
+- Calculator pages: WebApplication or WebPage
+
+Never mark up fake reviews, fake ratings, or invisible FAQs.
+
+============================================================
+BLOG ARTICLE TEMPLATE
+============================================================
+
+Use this for every blog post.
+
+Inputs:
+Article Topic:
+Primary Keyword:
+Secondary Keywords:
+Slug:
+Search Intent:
+Audience:
+Buyer / Seller / Both:
+Cluster:
+Related Internal Links:
+CTA Goal:
+
+Mandatory output:
+TITLE:
+META:
+H1:
+OG TITLE:
+OG DESCRIPTION:
+SCHEMA NAME:
+SCHEMA DESCRIPTION:
+CANONICAL:
+
+ARTICLE BODY:
+1. Hero Summary
+2. Intro
+3. Quick Answer
+4. 5 to 7 Main Sections
+5. Risks / Mistakes Section
+6. CTA Section
+7. FAQ Section with 3 questions
+8. Related Reads
+9. Final Thoughts
+
+Content rules:
+- short paragraphs
+- clear advice
+- no filler
+- no robotic wording
+- no generic repetition
+- sound like an experienced advisor
+
+CTA rules:
+Seller intent:
+- Sell Your Business
+- Contact Us
+
+Buyer intent:
+- Buy a Business
+- View Listings
+
+Shared intent:
+- Contact Us
+
+============================================================
+LISTING PAGE TEMPLATE
+============================================================
+
+Use this for listing detail pages or anonymized listing summaries.
+
+Important privacy rules:
+- Do not publish seller personal information
+- Do not publish broker names unless approved
+- Do not publish exact addresses unless approved
+- Do not publish business names unless approved
+- Use category, region, broad business type, asking price, annual sales, staffing, inventory, and operating profile when available
+
+Required sections:
+1. SEO metadata
+2. Confidential listing hero
+3. Key highlights
+4. Financial snapshot
+5. Operations overview
+6. Assets and inventory
+7. Growth opportunities
+8. Ideal buyer profile
+9. Buyer diligence notes
+10. CTA
+11. Related buyer resources
+12. FAQ if useful
+
+Listing image rules:
+- Use approved placeholder images until real images are available
+- Always include alt text
+- Compress future images and prefer WebP if possible
+
+Placeholder images:
+/assets/images/listings/placeholders/bbas_placeholder_01.jpg
+/assets/images/listings/placeholders/bbas_placeholder_02.jpg
+/assets/images/listings/placeholders/bbas_placeholder_03.jpg
+
+============================================================
+LOCAL SEO PAGE TEMPLATE
+============================================================
+
+Use for:
+- Buying a Business in North Carolina
+- Selling a Business in North Carolina
+- Businesses for Sale in Charlotte
+- Gas Stations for Sale in North Carolina
+
+Required sections:
+1. Hero with geo keyword
+2. Why the market matters
+3. Buyer or seller process
+4. Popular business categories in that location
+5. Local diligence considerations
+6. Financing or valuation context
+7. Related listings CTA
+8. Related guides
+9. FAQ
+10. Contact CTA
+
+Do not fabricate local facts. If specific market data is needed, verify first.
+
+============================================================
+QA CHECKLIST BEFORE FINAL FILE
+============================================================
+
+Content QA:
+- Is the H1 aligned with the SEO title?
+- Is the primary keyword in the first 100 words?
+- Is the content specific, useful, and non-generic?
+- Does the CTA match the page intent?
+- Are there enough internal links?
+- Is the tone professional and advisory?
+
+SEO QA:
+- Unique title
+- Unique meta description
+- Canonical URL
+- OG title and description
+- Twitter tags
+- JSON-LD schema
+- No duplicate H1
+- Clean heading order
+- Internal links included
+- Image alt text included
+
+Technical QA:
+- Header placeholder included
+- Footer placeholder included
+- includes.js included once
+- site.js included once
+- site.css included once
+- header.css included once
+- No duplicate GA scripts
+- No duplicate headers or footers
+- No unnecessary page-level CSS
+- Mobile layout considered
+- Buttons and links are accessible
+- Forms have labels
+- Skip link included
+
+Analytics QA:
+- Body has data-page-type
+- Body has data-primary-goal
+- Important CTAs have data-analytics attributes
+- Forms have data-analytics-form
+- Listing links have data-analytics labels
+- No page-level GA snippet
+- site.js controls analytics globally
+
+Mobile QA:
+- Hero fits without awkward wrapping
+- CTAs stack cleanly
+- Cards stack in one column
+- Chips do not look like buttons
+- Footer remains readable
+- Hamburger menu works
+
+CSS QA:
+- No large page-level <style> block unless justified
+- New patterns use global classes
+- If new styles are needed, update /assets/css/site.css instead of inline CSS
+- Avoid duplicating existing component names unnecessarily
+
+Launch QA:
+- Upload files
+- Hard refresh
+- Test desktop
+- Test mobile
+- Submit URL inspection in Google Search Console
+- Request indexing for important pages
+- Update sitemap if URL is new
+
+============================================================
+FINAL OUTPUT REQUIREMENTS
+============================================================
+
+When generating files for the user:
+- Provide downloadable .txt files for HTML/CSS/JS unless another format is requested
+- Use complete files only
+- No partials
+- No placeholders unless explicitly allowed
+- Mention exactly which server path each file should replace
+- Keep final response concise
