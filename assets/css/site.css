@@ -8236,3 +8236,85 @@ body.blog-page .home-text-link{
     padding:22px !important;
   }
 }
+/* =====================================================
+   BLOG HUB HERO IMAGE SCALE REFINEMENT
+   Date: 2026-05-14
+   Scope: /blog/ only
+   Purpose:
+   - Keep the premium dark hero system
+   - Make the selected blog image larger and more prominent
+   - Keep the right column balanced with the H1 and not overly text-heavy
+   ===================================================== */
+
+body.blog-page .blog-hero-shell{
+  grid-template-columns:minmax(0,0.95fr) minmax(420px,1.05fr) !important;
+  gap:28px !important;
+  align-items:center !important;
+}
+
+body.blog-page .blog-hero-media{
+  display:grid !important;
+  grid-template-rows:auto auto !important;
+  gap:14px !important;
+  align-self:stretch !important;
+}
+
+body.blog-page .blog-hero-image{
+  width:100% !important;
+  height:360px !important;
+  min-height:360px !important;
+  object-fit:cover !important;
+  object-position:center center !important;
+  border-radius:20px !important;
+  border:1px solid rgba(255,255,255,.20) !important;
+  box-shadow:0 22px 48px rgba(0,0,0,.24) !important;
+}
+
+body.blog-page .blog-hero-card{
+  padding:16px 18px !important;
+  border-radius:18px !important;
+}
+
+body.blog-page .blog-hero-card h2{
+  max-width:16ch !important;
+  font-size:clamp(1.25rem,1.8vw,1.65rem) !important;
+  line-height:1.12 !important;
+  margin-bottom:6px !important;
+}
+
+body.blog-page .blog-hero-card p{
+  font-size:13.5px !important;
+  line-height:1.55 !important;
+}
+
+body.blog-page .blog-hero h1{
+  max-width:11.8ch !important;
+  font-size:clamp(2.55rem,4.65vw,4.2rem) !important;
+}
+
+@media (max-width:1100px){
+  body.blog-page .blog-hero-shell{
+    grid-template-columns:1fr !important;
+  }
+
+  body.blog-page .blog-hero-media{
+    max-width:720px !important;
+  }
+
+  body.blog-page .blog-hero-image{
+    height:330px !important;
+    min-height:330px !important;
+  }
+}
+
+@media (max-width:720px){
+  body.blog-page .blog-hero-image{
+    height:245px !important;
+    min-height:245px !important;
+    border-radius:18px !important;
+  }
+
+  body.blog-page .blog-hero-card{
+    padding:15px 16px !important;
+  }
+}
