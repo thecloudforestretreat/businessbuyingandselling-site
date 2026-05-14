@@ -6283,3 +6283,109 @@ body.buy-page .cta-actions{
     padding:22px;
   }
 }
+/* =====================================================
+   FINAL BUY + SELL SERVICE PAGE QA PATCH
+   Date: 2026-05-14
+   Scope: /buy-a-business/ and /sell-your-business/
+   Purpose:
+   - Final live QA alignment
+   - Force removed side panels to single-column hero layout
+   - Keep all fixes scoped to service pages only
+   ===================================================== */
+
+/* Seller hero single-column after side panel removal */
+body.sell-page .sell-grid,
+body.sell-page .sell-grid.sell-grid--single{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:0 !important;
+  margin-top:16px !important;
+  align-items:stretch !important;
+}
+
+body.sell-page .sell-copy-wrap{
+  max-width:860px !important;
+}
+
+body.sell-page .sell-hero h1{
+  max-width:11.8ch !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+body.sell-page .sell-copy{
+  max-width:760px !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+body.sell-page .sell-copy p{
+  text-align:left !important;
+}
+
+body.sell-page .sell-hero .hero-actions{
+  justify-content:flex-start !important;
+}
+
+/* Buyer hero final alignment */
+body.buy-page .buy-grid,
+body.buy-page .buy-grid.buy-grid--single{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  gap:0 !important;
+}
+
+body.buy-page .buy-copy-wrap{
+  max-width:860px !important;
+}
+
+body.buy-page .buy-hero h1{
+  max-width:11.8ch !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+body.buy-page .buy-copy{
+  max-width:760px !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  text-align:left !important;
+}
+
+body.buy-page .buy-copy p{
+  text-align:left !important;
+}
+
+body.buy-page .buy-hero .hero-actions{
+  justify-content:flex-start !important;
+}
+
+/* Shared service page CTA polish */
+body.buy-page .cta-panel,
+body.sell-page .cta-panel{
+  margin-top:0 !important;
+}
+
+body.buy-page .link-card,
+body.sell-page .link-card,
+body.buy-page .mini,
+body.sell-page .mini,
+body.buy-page .faq-item,
+body.sell-page .faq-item{
+  text-decoration:none !important;
+}
+
+@media (max-width:720px){
+  body.buy-page .buy-copy-wrap,
+  body.sell-page .sell-copy-wrap{
+    max-width:100% !important;
+  }
+
+  body.buy-page .buy-hero h1,
+  body.sell-page .sell-hero h1{
+    max-width:11ch !important;
+  }
+}
