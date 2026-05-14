@@ -1,991 +1,1014 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <title>Buy or Sell a Business | Listings & Expert Guidance</title>
+  <meta name="description" content="Buy or sell a business with confidence. Browse listings, explore seller options, and take the next step toward a smarter business transaction.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://businessbuyingandselling.com/">
 
-<title>Businesses for Sale | Owner-Operated Listings & Buyer Guidance</title>
-<meta name="description" content="Browse owner-operated businesses for sale, compare opportunities, and explore buyer guidance on valuation, financing, due diligence, and next steps.">
-<link rel="canonical" href="https://businessbuyingandselling.com/listings/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://businessbuyingandselling.com/">
+  <meta property="og:title" content="Buy or Sell a Business | Listings & Expert Guidance">
+  <meta property="og:description" content="Buy or sell a business with confidence. Browse listings, explore seller options, and take the next step toward a smarter business transaction.">
+  <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Businesses for Sale | Owner-Operated Listings & Buyer Guidance">
-<meta property="og:description" content="Browse owner-operated businesses for sale, compare opportunities, and explore buyer guidance on valuation, financing, due diligence, and next steps.">
-<meta property="og:url" content="https://businessbuyingandselling.com/listings/">
-<meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy or Sell a Business | Listings & Expert Guidance">
+  <meta name="twitter:description" content="Buy or sell a business with confidence. Browse listings, explore seller options, and take the next step toward a smarter business transaction.">
+  <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Businesses for Sale | Owner-Operated Listings & Buyer Guidance">
-<meta name="twitter:description" content="Browse owner-operated businesses for sale, compare opportunities, and explore buyer guidance on valuation, financing, due diligence, and next steps.">
-<meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"CollectionPage",
-  "name":"Businesses for Sale Owner-Operated Listings and Buyer Guidance",
-  "description":"Browse owner-operated businesses for sale, compare opportunities, and explore buyer guidance on valuation, financing, due diligence, and next steps.",
-  "url":"https://businessbuyingandselling.com/listings/"
-}
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="/assets/css/site.css?v=20260423-listings-elite-final">
-<link rel="stylesheet" href="/assets/css/header.css?v=20260423-listings-elite-final">
-
-<style>
-.skip-link{
-  position:absolute;
-  left:-999px;
-  top:12px;
-  z-index:9999;
-  padding:10px 14px;
-  border-radius:12px;
-  background:#FFFFFF;
-  border:1px solid #E5E7EB;
-  color:#1F2937;
-}
-.skip-link:focus{ left:12px; }
-
-body.bbas-page{
-  background:#FAFAFA;
-  color:#1F2937;
-  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-
-.bbas-main{ padding:22px 0 56px; }
-.bbas-container{ width:min(1120px, calc(100% - 32px)); margin:0 auto; }
-
-.listings-hero{
-  position:relative;
-  overflow:hidden;
-  border-radius:24px;
-  padding:30px 30px 34px;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(17,24,39,.90) 0%,
-      rgba(17,24,39,.80) 35%,
-      rgba(17,24,39,.62) 60%,
-      rgba(17,24,39,.48) 100%
-    ),
-    url("/assets/images/bbas_homepage_hero_03.jpg");
-  background-size:cover;
-  background-position:center center;
-  background-repeat:no-repeat;
-  box-shadow:0 18px 42px rgba(15,23,42,.12);
-}
-.listings-hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
-  pointer-events:none;
-}
-.listings-hero > *{ position:relative; z-index:1; }
-
-.hero-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:8px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.16);
-  color:rgba(255,255,255,.90);
-  font-size:13px;
-  font-weight:600;
-}
-.hero-badge .dot{
-  width:9px;
-  height:9px;
-  border-radius:999px;
-  background:#60A5FA;
-  box-shadow:0 0 0 6px rgba(96,165,250,.18);
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.08fr .92fr;
-  gap:22px;
-  margin-top:16px;
-}
-
-.listings-hero h1{
-  margin:18px 0 12px;
-  color:#FFFFFF;
-  font-size:clamp(2.7rem,5.2vw,4.5rem);
-  line-height:1.01;
-  letter-spacing:-0.04em;
-  font-weight:700;
-  max-width:10.4ch;
-  text-shadow:0 3px 12px rgba(0,0,0,.28);
-}
-
-.hero-copy p{
-  margin:0 0 16px;
-  color:#FFFFFF;
-  font-size:16px;
-  line-height:1.72;
-  font-weight:500;
-  max-width:700px;
-}
-
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-
-.hero-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:46px;
-  padding:0 18px;
-  border-radius:999px;
-  border:1px solid transparent;
-  font-size:14px;
-  font-weight:700;
-  text-decoration:none;
-  transition:all .18s ease;
-}
-.hero-btn:hover{ transform:translateY(-1px); }
-.hero-btn-primary{
-  background:#2563EB;
-  color:#FFFFFF;
-  box-shadow:0 14px 28px rgba(37,99,235,.22);
-}
-.hero-btn-primary:hover{ background:#1D4ED8; }
-.hero-btn-secondary{
-  background:rgba(255,255,255,.10);
-  border-color:rgba(255,255,255,.18);
-  color:#FFFFFF;
-}
-.hero-btn-secondary:hover{
-  background:rgba(255,255,255,.14);
-  border-color:rgba(255,255,255,.28);
-}
-
-.hero-pills{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  margin-top:18px;
-}
-.hero-pill{
-  display:inline-flex;
-  align-items:center;
-  min-height:32px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  color:rgba(255,255,255,.78);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.02em;
-}
-
-.hero-side{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:20px;
-  padding:18px;
-  backdrop-filter:blur(10px);
-}
-.hero-side h2{
-  margin:0 0 10px;
-  color:#FFFFFF;
-  font-size:clamp(1.55rem,2.2vw,2.15rem);
-  line-height:1.1;
-}
-.hero-side p{
-  color:rgba(255,255,255,.92);
-  font-size:14px;
-  line-height:1.65;
-  margin-bottom:14px;
-}
-.side-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.side-item{
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:16px;
-  padding:14px;
-}
-.side-item strong{
-  display:block;
-  color:#FFFFFF;
-  font-size:14px;
-  margin-bottom:4px;
-}
-.side-item span{
-  display:block;
-  color:rgba(255,255,255,.82);
-  font-size:12.5px;
-  line-height:1.55;
-}
-
-.section{ margin-top:24px; }
-
-.section-card{
-  background:#FFFFFF;
-  border:1px solid #E5E7EB;
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 12px 30px rgba(15,23,42,.08);
-}
-
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  min-height:32px;
-  padding:6px 12px;
-  border-radius:999px;
-  background:#EEF4FF;
-  border:1px solid #BFDBFE;
-  color:#2563EB;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.02em;
-  margin-bottom:12px;
-}
-
-.section-card h2{
-  margin:0 0 10px;
-  font-size:clamp(1.8rem,3vw,2.3rem);
-  letter-spacing:-0.02em;
-}
-
-.section-card > p{
-  margin:0 0 16px;
-  max-width:860px;
-}
-
-.listings-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:20px;
-}
-
-.listing-card{
-  background:#FFFFFF;
-  border:1px solid #E5E7EB;
-  border-radius:22px;
-  box-shadow:0 12px 30px rgba(15,23,42,.08);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  min-height:100%;
-}
-
-.listing-media{
-  padding:16px 16px 0;
-}
-
-.listing-carousel{
-  display:grid;
-  grid-template-columns:2.1fr 1fr;
-  gap:10px;
-}
-
-.listing-main-image,
-.listing-side-stack span{
-  display:block;
-  border-radius:16px;
-  overflow:hidden;
-  background:#0F172A;
-}
-
-.listing-main-image{
-  min-height:224px;
-  background-size:cover;
-  background-position:center;
-}
-
-.listing-side-stack{
-  display:grid;
-  grid-template-rows:1fr 1fr;
-  gap:10px;
-}
-
-.listing-side-stack span{
-  min-height:107px;
-  background-size:cover;
-  background-position:center;
-}
-
-.listing-body{
-  padding:18px 18px 20px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
-
-.listing-topline{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.listing-type{
-  display:inline-flex;
-  align-items:center;
-  min-height:30px;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#F8FAFC;
-  border:1px solid #E5E7EB;
-  color:#64748B;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.03em;
-  text-transform:uppercase;
-}
-
-.listing-region{
-  color:#64748B;
-  font-size:13px;
-  font-weight:600;
-}
-
-.listing-card h3{
-  margin:0 0 10px;
-  font-size:clamp(1.35rem,2.2vw,1.7rem);
-  line-height:1.16;
-}
-
-.listing-summary{
-  color:#4B5563;
-  font-size:14px;
-  line-height:1.72;
-  margin-bottom:16px;
-}
-
-.metric-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:10px;
-  margin-bottom:18px;
-}
-
-.metric{
-  background:#F8FAFC;
-  border:1px solid #E5E7EB;
-  border-radius:14px;
-  padding:12px;
-}
-
-.metric strong{
-  display:block;
-  color:#111827;
-  font-size:16px;
-  line-height:1.2;
-  margin-bottom:4px;
-}
-
-.metric span{
-  display:block;
-  color:#64748B;
-  font-size:12px;
-  line-height:1.45;
-}
-
-.listing-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:auto;
-}
-
-.listing-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:44px;
-  padding:0 16px;
-  border-radius:999px;
-  border:1px solid transparent;
-  font-size:14px;
-  font-weight:700;
-  text-decoration:none;
-  transition:all .18s ease;
-}
-.listing-btn:hover{ transform:translateY(-1px); }
-.listing-btn-primary{
-  background:#2563EB;
-  color:#FFFFFF;
-  box-shadow:0 14px 28px rgba(37,99,235,.18);
-}
-.listing-btn-primary:hover{ background:#1D4ED8; }
-.listing-btn-secondary{
-  background:#FFFFFF;
-  color:#1F2937;
-  border-color:#D1D5DB;
-}
-.listing-btn-secondary:hover{
-  border-color:#C7D2FE;
-  box-shadow:0 1px 2px rgba(15,23,42,.06);
-}
-
-.resource-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:16px;
-}
-
-.resource-card{
-  background:#FFFFFF;
-  border:1px solid #E5E7EB;
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 10px 24px rgba(15,23,42,.06);
-  display:flex;
-  flex-direction:column;
-  min-height:100%;
-}
-
-.resource-card h3{
-  margin:0 0 8px;
-  font-size:1.08rem;
-  line-height:1.3;
-}
-
-.resource-card p{
-  margin:0;
-  color:#4B5563;
-  font-size:14px;
-  line-height:1.7;
-}
-
-.resource-link{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:auto;
-  padding-top:14px;
-  color:#2563EB;
-  font-size:14px;
-  font-weight:700;
-}
-
-.cta-panel{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:20px;
-  align-items:center;
-  background:linear-gradient(135deg,#0F172A 0%, #16233B 100%);
-  border-radius:22px;
-  padding:26px;
-  box-shadow:0 18px 42px rgba(15,23,42,.12);
-}
-.cta-panel h2{
-  margin:0 0 8px;
-  color:#FFFFFF;
-}
-.cta-panel p{
-  margin:0;
-  color:rgba(255,255,255,.86);
-  max-width:720px;
-}
-.cta-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-@media (max-width:980px){
-  .hero-grid,
-  .cta-panel{
-    grid-template-columns:1fr;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Business Buying and Selling",
+    "description": "Marketplace and advisory resource for buying and selling owner-operated businesses.",
+    "url": "https://businessbuyingandselling.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://businessbuyingandselling.com/listings/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
+  </script>
 
-  .listings-grid,
-  .resource-grid{
-    grid-template-columns:1fr;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Buy or Sell a Business Listings and Expert Guidance",
+    "description": "Buy or sell a business with confidence. Browse listings, explore seller options, and take the next step toward a smarter business transaction.",
+    "url": "https://businessbuyingandselling.com/"
   }
+  </script>
 
-  .cta-actions{
-    justify-content:flex-start;
-  }
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-@media (max-width:720px){
-  .bbas-main{ padding:18px 0 44px; }
-  .bbas-container{ width:min(1120px, calc(100% - 24px)); }
-  .listings-hero{ padding:22px 18px 24px; }
-  .listings-hero h1{ max-width:11ch; }
-  .hero-actions,
-  .cta-actions,
-  .listing-actions{
-    flex-direction:column;
-    align-items:stretch;
-  }
-  .hero-btn,
-  .listing-btn{
-    width:100%;
-  }
-  .side-grid,
-  .metric-grid{
-    grid-template-columns:1fr;
-  }
-  .section-card{
-    padding:20px 16px;
-  }
-  .listing-body{
-    padding:16px 16px 18px;
-  }
-  .listing-media{
-    padding:12px 12px 0;
-  }
-  .listing-carousel{
-    grid-template-columns:1fr;
-  }
-  .listing-main-image{
-    min-height:220px;
-  }
-  .listing-side-stack{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:none;
-  }
-  .listing-side-stack span{
-    min-height:86px;
-  }
-  .hero-pills{
-    gap:8px;
-  }
-}
-</style>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260514-home-conversion-v1">
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260514-home-conversion-v1">
+
+  <style>
+    /* Homepage hook refinement: intentionally small and scoped for review */
+    .home-page .funnelSupport{display:none !important;}
+    .home-page .funnelCardHeader{padding-bottom:8px !important;}
+    .home-page .funnelQuestion{font-size:clamp(2.1rem,4vw,3.35rem) !important;line-height:1.02 !important;letter-spacing:-.04em !important;}
+    .home-page .funnelHelper{font-size:16px !important;max-width:58ch !important;}
+    .home-page .choiceGrid--two{gap:18px !important;}
+    .home-page .choiceTile{
+      min-height:170px !important;
+      grid-template-columns:52px 1fr !important;
+      align-items:center !important;
+      padding:24px !important;
+      border-radius:20px !important;
+      border-color:#CBD5E1 !important;
+    }
+    .home-page .choiceIcon{width:40px !important;height:40px !important;font-size:21px !important;border-radius:14px !important;}
+    .home-page .choiceTitle{font-size:clamp(1.25rem,2.1vw,1.65rem) !important;line-height:1.12 !important;letter-spacing:-.02em !important;}
+    .home-page .choiceSub{font-size:15px !important;line-height:1.55 !important;margin-top:8px !important;}
+    .home-page .funnelNote{font-size:13px !important;font-weight:700 !important;text-align:center !important;}
+    .home-page .trustCard{justify-content:center !important;}
+    .home-page .trustTitle{font-size:clamp(1.65rem,2.7vw,2.35rem) !important;}
+    .home-page .trustSub{display:none !important;}
+    .home-page .trustGrid{margin-top:16px !important;}
+    .home-page .trustText{display:none !important;}
+    .home-page .trustItem{min-height:auto !important;padding:18px !important;}
+    .home-page .home-metrics,.home-page .home-overview{display:none !important;}
+    .home-page .home-links{padding-top:34px !important;}
+    .home-page .home-section-head p,.home-page .home-featured-note{display:none !important;}
+    .home-page .home-link-card,.home-page .home-article-card,.home-page .home-listing-card{min-height:auto !important;}
+    @media(max-width:720px){
+      .home-page .funnelQuestion{font-size:clamp(2rem,9vw,2.65rem) !important;}
+      .home-page .choiceTile{min-height:150px !important;grid-template-columns:44px 1fr !important;padding:20px !important;}
+      .home-page .choiceIcon{width:34px !important;height:34px !important;}
+    }
+  </style>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
-<body class="bbas-page bbas-listings-page">
-<a class="skip-link" href="#main">Skip to content</a>
+<body class="bbas-page home-page" data-page-type="homepage" data-primary-goal="listing_inquiry">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<div id="siteHeader"></div>
+  <div id="siteHeader"></div>
 
-<main id="main" class="bbas-main">
-  <div class="bbas-container">
+  <main id="main" class="siteMain">
+    <section class="hero hero--funnel" aria-label="Buy or sell a business">
+      <div class="heroBg" aria-hidden="true"></div>
 
-    <section class="listings-hero">
-      <div class="hero-badge"><span class="dot"></span>Listings</div>
-
-      <div class="hero-grid">
-        <div>
-          <h1>Businesses for sale with clearer buyer context.</h1>
-          <div class="hero-copy">
-            <p>Browse owner-operated businesses for sale across retail, food service, medical transport, service, and specialty categories. This page is built to help buyers compare opportunities faster while keeping the presentation clean, structured, and privacy-conscious.</p>
-            <p>Each opportunity below is summarized without sensitive identifying details, while still giving buyers useful context on category, price, revenue profile, and fit.</p>
+      <div class="container">
+        <div class="heroTop">
+          <div class="heroBadge">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Owner-operated businesses for buyers and sellers</span>
           </div>
 
-          <div class="hero-actions">
-            <a class="hero-btn hero-btn-primary" href="/buy-a-business/">Buy a Business</a>
-            <a class="hero-btn hero-btn-secondary" href="/contact/">Talk to Us</a>
+          <h1 class="heroTitle">Buy or Sell a Business with Confidence</h1>
+
+          <p class="heroLead">Browse current opportunities or tell us about the business you want to sell.</p>
+
+          <div class="home-hero-actions">
+            <a class="btn btn--primary" href="/listings/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Browse Listings"
+               data-analytics-location="hero"
+               data-analytics-section="homepage_hero"
+               data-analytics-goal="listing_view">Browse Listings</a>
+
+            <a class="btn btn--ghost btn--ghost-light" href="/sell-your-business/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Sell Your Business"
+               data-analytics-location="hero"
+               data-analytics-section="homepage_hero"
+               data-analytics-goal="seller_consultation">Sell Your Business</a>
           </div>
 
-          <div class="hero-pills">
-            <span class="hero-pill">Owner-operated listings</span>
-            <span class="hero-pill">Buyer-ready summaries</span>
-            <span class="hero-pill">Confidential presentation</span>
-            <span class="hero-pill">Practical next steps</span>
+          <div class="home-hero-proof" aria-label="Business focus">
+            <div class="home-proof-pill">For buyers</div>
+            <div class="home-proof-pill">For sellers</div>
+            <div class="home-proof-pill">Owner-operated businesses</div>
           </div>
         </div>
 
-        <aside class="hero-side">
-          <h2>What this page is built to do</h2>
-          <p>Generic listing pages waste time. This one is designed to help buyers compare opportunities, understand broad fit, and move into the right next step with stronger context.</p>
+        <div class="funnelShell">
+          <div class="funnelLeft">
+            <div class="funnelCard" role="region" aria-live="polite" aria-label="Choose buying or selling path">
+              <div class="funnelProgress" aria-label="Progress">
+                <div class="funnelProgressTrack" aria-hidden="true">
+                  <div class="funnelProgressFill" id="funnelProgressFill" style="width:0%"></div>
+                </div>
+                <div class="funnelProgressMeta">
+                  <span id="funnelStepLabel">Step 1 of 1</span>
+                  <button type="button" class="linkBtn" id="funnelRestartBtn">Start over</button>
+                </div>
+              </div>
 
-          <div class="side-grid">
-            <div class="side-item">
-              <strong>Cleaner comparison</strong>
-              <span>Review category, asking price, sales profile, and operating context quickly.</span>
-            </div>
-            <div class="side-item">
-              <strong>Confidential format</strong>
-              <span>Protects sensitive listing details while still helping serious buyers evaluate fit.</span>
-            </div>
-            <div class="side-item">
-              <strong>Buyer education</strong>
-              <span>Use guides on financing, red flags, and diligence before you move deeper.</span>
-            </div>
-            <div class="side-item">
-              <strong>Better next steps</strong>
-              <span>Move into buyer resources, seller resources, or a direct conversation.</span>
+              <div class="funnelCardHeader">
+                <h2 class="funnelQuestion" id="funnelQuestion">What are you here to do?</h2>
+                <p class="funnelHelper" id="funnelHelper">Choose your path. We will guide the next step.</p>
+              </div>
+
+              <div class="funnelBody" id="funnelBody">
+                <div class="choiceGrid choiceGrid--two">
+                  <button type="button" class="choiceTile" data-branch="sell">
+                    <div class="choiceIcon" aria-hidden="true">💼</div>
+                    <div class="choiceText">
+                      <div class="choiceTitle">I want to sell my business</div>
+                      <div class="choiceSub">Get a clearer path for value, timing, and serious buyer conversations.</div>
+                    </div>
+                  </button>
+
+                  <button type="button" class="choiceTile" data-branch="buy">
+                    <div class="choiceIcon" aria-hidden="true">🧾</div>
+                    <div class="choiceText">
+                      <div class="choiceTitle">I want to buy a business</div>
+                      <div class="choiceSub">Tell us what you are looking for and review businesses that fit.</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <div class="funnelActions" id="funnelActions" hidden>
+                <button type="button" class="btn btn--ghost" id="funnelBackBtn">Previous</button>
+                <button type="button" class="btn btn--primary" id="funnelNextBtn">Next</button>
+              </div>
+
+              <div class="funnelNote" id="funnelNote">
+                Built for owner-operated businesses. Not franchises. Not corporate M&amp;A.
+              </div>
             </div>
           </div>
-        </aside>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">Available opportunities</div>
-        <h2>Current owner-operated listings</h2>
-        <p>These summaries intentionally avoid personal information, exact addresses, business names, and broker details. Placeholder listing images are being used for now and can be swapped later.</p>
+          <aside class="funnelRight" aria-label="What you get">
+            <div class="trustCard">
+              <div class="trustHead">
+                <div class="trustPill">
+                  <span class="trustDot" aria-hidden="true"></span>
+                  <span>What you get</span>
+                </div>
+                <div class="trustTitle">A faster path to the right next move.</div>
+              </div>
 
-        <div class="listings-grid">
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+              <div class="trustGrid">
+                <div class="trustItem">
+                  <div class="trustKicker">For buyers</div>
+                  <div class="trustText">Listings, fit, financing basics, and diligence.</div>
+                </div>
+                <div class="trustItem">
+                  <div class="trustKicker">For sellers</div>
+                  <div class="trustText">Value, timing, confidentiality, and buyer readiness.</div>
+                </div>
+                <div class="trustItem">
+                  <div class="trustKicker">Current listings</div>
+                  <div class="trustText">Owner-operated businesses across practical categories.</div>
+                </div>
+                <div class="trustItem">
+                  <div class="trustKicker">Direct next step</div>
+                  <div class="trustText">Use the funnel or contact us when ready.</div>
                 </div>
               </div>
             </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Automotive Service</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Established Brake and Repair Operation</h3>
-              <p class="listing-summary">A service-focused automotive opportunity with a six-figure revenue base and modest staffing profile. Strong fit for a hands-on operator seeking a proven local service business.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$499,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$872,122</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>3</strong><span>Employees</span></div>
-                <div class="metric"><strong>Included</strong><span>Inventory profile</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Convenience Store</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Standalone Convenience Store Opportunity</h3>
-              <p class="listing-summary">A convenience retail listing positioned for buyers looking for local traffic, simple daily operations, and a category with durable small-business buyer demand.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$625,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>Retail format</strong><span>Business profile</span></div>
-                <div class="metric"><strong>Undisclosed</strong><span>Sales detail</span></div>
-                <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Convenience Store + Grill</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Community Grocery and Grill Concept</h3>
-              <p class="listing-summary">A small-format store and grill concept with local convenience appeal. Suitable for buyers looking for a more hands-on retail and prepared-food hybrid.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$299,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>Grill + grocery</strong><span>Operating model</span></div>
-                <div class="metric"><strong>$65,000</strong><span>Inventory estimate</span></div>
-                <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Food Service Bakery</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Bakery and Counter-Service Food Business</h3>
-              <p class="listing-summary">A recognizable food-service format with an established revenue base, suitable for buyers interested in branded daily traffic and structured operating systems.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$450,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$810,000</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>$5K-$10K</strong><span>Inventory estimate</span></div>
-                <div class="metric"><strong>Food service</strong><span>Category fit</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Food Service</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Small Footprint Cafe Opportunity</h3>
-              <p class="listing-summary">A lower-price food-service business with manageable staffing and a smaller purchase price, appealing to buyers looking for a more accessible entry point.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$149,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$252,306</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>3 + owner</strong><span>Staffing</span></div>
-                <div class="metric"><strong>$8,000</strong><span>Inventory estimate</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/buying-a-business-vs-starting-one/">Buying vs Starting</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Medical Transport</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Non-Emergency Medical Transport Business</h3>
-              <p class="listing-summary">A service business with seven-figure asking price territory and substantial revenue scale, likely best suited for an operator or investor comfortable with managed transportation services.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$1,100,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$920,190</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>9</strong><span>Employees</span></div>
-                <div class="metric"><strong>Medical</strong><span>Service category</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Retail Butcher Shop</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Specialty Butcher and Meat Retail Operation</h3>
-              <p class="listing-summary">A niche retail food opportunity with strong sales relative to asking price. This profile may appeal to a buyer who understands specialty retail and local demand patterns.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$150,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$1,278,230</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>4</strong><span>Employees</span></div>
-                <div class="metric"><strong>$35,000</strong><span>Inventory estimate</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Specialty Foods Retail</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Multi-Location Specialty Foods Retail Group</h3>
-              <p class="listing-summary">A larger-ticket specialty retail opportunity with multi-unit characteristics and substantial sales scale. Better suited for a more experienced buyer or investor group.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$2,250,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$2,361,936</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>Multi-location</strong><span>Structure</span></div>
-                <div class="metric"><strong>$125K +/-</strong><span>Inventory estimate</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Retail</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Established Retail Store with Strong Revenue Base</h3>
-              <p class="listing-summary">A general retail opportunity with a meaningful revenue base and inventory component. Suitable for buyers looking for a traditional storefront business with operating history.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$575,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$935,454</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>10</strong><span>Employees</span></div>
-                <div class="metric"><strong>$55,000</strong><span>Inventory estimate</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="listing-card">
-            <div class="listing-media">
-              <div class="listing-carousel">
-                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
-                <div class="listing-side-stack">
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
-                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
-                </div>
-              </div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-topline">
-                <span class="listing-type">Service Business</span>
-                <span class="listing-region">North Carolina</span>
-              </div>
-              <h3>Scaled Coin Laundry and Ancillary Revenue Business</h3>
-              <p class="listing-summary">A larger owner-operated service opportunity with substantial sales, larger staffing, and a premium asking price profile. Likely best for buyers seeking a bigger operating platform.</p>
-              <div class="metric-grid">
-                <div class="metric"><strong>$1,690,000</strong><span>Asking price</span></div>
-                <div class="metric"><strong>$879,799</strong><span>Annual sales</span></div>
-                <div class="metric"><strong>22</strong><span>Employees</span></div>
-                <div class="metric"><strong>199</strong><span>Maximum capacity</span></div>
-              </div>
-              <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
-                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
-              </div>
-            </div>
-          </article>
-
+          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">Helpful buyer resources</div>
-        <h2>Use the right guides before you inquire</h2>
-        <p>Listings work better when paired with education. Buyers who understand financing, diligence, and red flags usually make stronger decisions and waste less time.</p>
+    <section class="section home-links">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Start here</div>
+          <h2>Choose the path that fits</h2>
+        </div>
 
-        <div class="resource-grid">
-          <div class="resource-card">
+        <div class="home-link-grid">
+          <a class="home-link-card" href="/buy-a-business/"
+             data-analytics-event="cta_click"
+             data-analytics-label="Buy a Business"
+             data-analytics-section="homepage_paths"
+             data-analytics-goal="buyer_consultation">
+            <h3>Buy a Business</h3>
+            <p>See how to evaluate opportunities, financing, and risk before you inquire.</p>
+          </a>
+
+          <a class="home-link-card" href="/sell-your-business/"
+             data-analytics-event="cta_click"
+             data-analytics-label="Sell Your Business"
+             data-analytics-section="homepage_paths"
+             data-analytics-goal="seller_consultation">
+            <h3>Sell Your Business</h3>
+            <p>Prepare for valuation, confidentiality, buyer questions, and next steps.</p>
+          </a>
+
+          <a class="home-link-card" href="/listings/"
+             data-analytics-event="listing_click"
+             data-analytics-label="Browse Listings"
+             data-analytics-section="homepage_paths"
+             data-analytics-goal="listing_view">
+            <h3>Browse Listings</h3>
+            <p>Review current businesses for sale in practical owner-operated categories.</p>
+          </a>
+
+          <a class="home-link-card" href="/contact/"
+             data-analytics-event="cta_click"
+             data-analytics-label="Contact Us"
+             data-analytics-section="homepage_paths"
+             data-analytics-goal="contact_submit">
+            <h3>Talk to Us</h3>
+            <p>Have a question about buying, selling, listings, or the next step?</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-featured">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Listings</div>
+          <h2>Current opportunities</h2>
+        </div>
+
+        <div class="home-listing-grid">
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Retail</div>
+            <h3>Specialty retail and local service businesses</h3>
+            <a class="home-text-link" href="/listings/"
+               data-analytics-event="listing_click"
+               data-analytics-label="View Retail Listings"
+               data-analytics-section="homepage_featured">View listings</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Food service</div>
+            <h3>Cafes, bakeries, stores, and food-related operations</h3>
+            <a class="home-text-link" href="/listings/"
+               data-analytics-event="listing_click"
+               data-analytics-label="View Food Service Listings"
+               data-analytics-section="homepage_featured">View listings</a>
+          </article>
+
+          <article class="home-listing-card">
+            <div class="home-listing-meta">Service</div>
+            <h3>Automotive, laundry, transport, and service businesses</h3>
+            <a class="home-text-link" href="/listings/"
+               data-analytics-event="listing_click"
+               data-analytics-label="View Service Listings"
+               data-analytics-section="homepage_featured">View listings</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-articles">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Guides</div>
+          <h2>Read before you move</h2>
+        </div>
+
+        <div class="home-article-grid">
+          <a class="home-article-card" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/"
+             data-analytics-event="blog_link_click"
+             data-analytics-label="How to Buy a Small Business Without Costly Mistakes"
+             data-analytics-section="homepage_guides">
             <h3>How to Buy a Small Business Without Costly Mistakes</h3>
-            <p>Start with the core buyer framework before comparing opportunities too quickly.</p>
-            <a class="resource-link" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Read article</a>
-          </div>
-          <div class="resource-card">
-            <h3>Red Flags to Watch for When Buying a Business</h3>
-            <p>Know what to question before enthusiasm turns into avoidable risk.</p>
-            <a class="resource-link" href="/blog/red-flags-when-buying-a-business/">Read article</a>
-          </div>
-          <div class="resource-card">
-            <h3>Due Diligence Checklist for Buying or Selling a Business</h3>
-            <p>Use a structured diligence framework before moving deeper into any deal.</p>
-            <a class="resource-link" href="/blog/due-diligence-checklist-buying-or-selling-business/">Read article</a>
-          </div>
+            <p>For buyers who want fewer surprises and better questions.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/how-to-sell-your-business-for-maximum-value/"
+             data-analytics-event="blog_link_click"
+             data-analytics-label="How to Sell Your Business for Maximum Value"
+             data-analytics-section="homepage_guides">
+            <h3>How to Sell Your Business for Maximum Value</h3>
+            <p>For owners preparing for a cleaner, stronger sale process.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/due-diligence-checklist-buying-or-selling-business/"
+             data-analytics-event="blog_link_click"
+             data-analytics-label="Due Diligence Checklist"
+             data-analytics-section="homepage_guides">
+            <h3>Due Diligence Checklist</h3>
+            <p>A shared guide for both sides before serious deal conversations.</p>
+          </a>
+
+          <a class="home-article-card" href="/blog/how-to-qualify-for-an-sba-loan/"
+             data-analytics-event="blog_link_click"
+             data-analytics-label="How to Qualify for an SBA Loan"
+             data-analytics-section="homepage_guides">
+            <h3>How to Qualify for an SBA Loan</h3>
+            <p>For buyers thinking about financing a business purchase.</p>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="cta-panel">
-        <div>
-          <div class="eyebrow" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18);color:#FFFFFF;">Next step</div>
-          <h2>Use listings, buyer education, and direct contact together.</h2>
-          <p>The strongest buyers compare opportunities with context, understand their financing path, and move into serious conversations only after the basics are clear.</p>
-        </div>
+    <section class="section home-cta-band">
+      <div class="container">
+        <div class="home-cta-panel">
+          <div class="home-cta-copy">
+            <div class="home-eyebrow home-eyebrow--dark">Ready?</div>
+            <h2>Start with buying, selling, or listings.</h2>
+            <p>Choose the path that fits and move forward with a clearer next step.</p>
+          </div>
 
-        <div class="cta-actions">
-          <a class="hero-btn hero-btn-primary" href="/buy-a-business/">Buy a Business</a>
-          <a class="hero-btn hero-btn-secondary" href="/contact/">Contact Us</a>
+          <div class="home-cta-actions">
+            <a class="btn btn--primary" href="/listings/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Browse Listings Footer CTA"
+               data-analytics-section="homepage_final_cta"
+               data-analytics-goal="listing_view">Browse Listings</a>
+
+            <a class="btn btn--ghost btn--ghost-light" href="/contact/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Contact Us Footer CTA"
+               data-analytics-section="homepage_final_cta"
+               data-analytics-goal="contact_submit">Contact Us</a>
+          </div>
         </div>
       </div>
     </section>
+  </main>
 
-  </div>
-</main>
+  <div id="siteFooter"></div>
 
-<div id="siteFooter"></div>
+  <script src="/assets/js/includes.js"></script>
+  <script src="/assets/js/site.js" defer></script>
 
-<script src="/assets/js/includes.js"></script>
-<script src="/assets/js/site.js"></script>
+<script>
+(function(){
+  function qs(sel){ return document.querySelector(sel); }
+  function escapeHtml(v){
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+  function phoneFormat(v){
+    var x = String(v || "").replace(/\D/g, "").slice(0, 10);
+    if (x.length > 6) return "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
+    if (x.length > 3) return "(" + x.slice(0,3) + ") " + x.slice(3);
+    return x;
+  }
+  function titleCaseWords(v){
+    return String(v || "")
+      .toLowerCase()
+      .replace(/\b([a-z])/g, function(m){ return m.toUpperCase(); });
+  }
+
+  var BUSINESS_TYPES = [
+    { value: "auto_repair", label: "Auto Repair" },
+    { value: "construction", label: "Construction" },
+    { value: "car_washes", label: "Car Washes" },
+    { value: "day_care", label: "Day Care" },
+    { value: "dry_cleaners", label: "Dry Cleaners" },
+    { value: "dog_grooming", label: "Dog Grooming" },
+    { value: "gas_station", label: "Gas Station" },
+    { value: "food_truck", label: "Food Truck" },
+    { value: "hair_salon_barber", label: "Hair Salon/Barber Shop" },
+    { value: "heating_air", label: "Heating & Air" },
+    { value: "hotel_motels", label: "Hotel/Motels" },
+    { value: "ice_cream_shop", label: "Ice Cream Shop" },
+    { value: "liquor_store", label: "Liquor Store" },
+    { value: "retail", label: "Retail" },
+    { value: "restaurants", label: "Restaurants" },
+    { value: "vape_shop", label: "Vape Shop" },
+    { value: "other", label: "Other" }
+  ];
+
+  var SELL_STEPS = [
+    {
+      id: "sell_urgency",
+      title: "How soon are you looking to sell?",
+      helper: "",
+      type: "choice",
+      options: [
+        { value: "ready_now", label: "I am ready now" },
+        { value: "not_right_now_talk", label: "Not right now, but I want to talk" }
+      ]
+    },
+    {
+      id: "sell_type",
+      title: "What type of business do you own?",
+      helper: "",
+      type: "choice",
+      options: BUSINESS_TYPES,
+      other: true,
+      otherKey: "sell_type_other",
+      otherPlaceholder: "Type your business"
+    },
+    {
+      id: "sell_gross_revenue",
+      title: "Gross revenue last 12 months?",
+      helper: "",
+      type: "choice",
+      options: [
+        { value: "under_250k", label: "Under $250k" },
+        { value: "250k_500k", label: "$250k - $500k" },
+        { value: "500k_750k", label: "$500k - $750k" },
+        { value: "1m_plus", label: "$1 million+" }
+      ]
+    },
+    {
+      id: "sell_gross_profit",
+      title: "Gross profit last 12 months?",
+      helper: "",
+      type: "choice",
+      options: [
+        { value: "under_50k", label: "Under $50k" },
+        { value: "50k_150k", label: "$50k - $150k" },
+        { value: "150k_250k", label: "$150k - $250k" },
+        { value: "250k_500k", label: "$250k - $500k" }
+      ]
+    },
+    {
+      id: "sell_location_full",
+      title: "Where is the business located?",
+      helper: "This stays private.",
+      type: "seller_location"
+    },
+    {
+      id: "contact",
+      title: "Where should we follow up?",
+      helper: "",
+      type: "contact"
+    }
+  ];
+
+  var BUY_STEPS = [
+    {
+      id: "buy_type",
+      title: "What type of business?",
+      helper: "",
+      type: "choice",
+      options: BUSINESS_TYPES,
+      other: true,
+      otherKey: "buy_type_other",
+      otherPlaceholder: "Type your business"
+    },
+    {
+      id: "buy_purchase_price",
+      title: "Purchase price range?",
+      helper: "",
+      type: "choice",
+      options: [
+        { value: "under_100k", label: "Under $100k" },
+        { value: "100k_250k", label: "$100k - $250k" },
+        { value: "250k_500k", label: "$250k - $500k" },
+        { value: "1m_plus", label: "$1 million+" }
+      ]
+    },
+    {
+      id: "buy_location_city_state",
+      title: "Where do you want to buy?",
+      helper: "",
+      type: "buyer_location"
+    },
+    {
+      id: "contact",
+      title: "Where should we follow up?",
+      helper: "",
+      type: "contact"
+    }
+  ];
+
+  var US_STATES = [
+    {v:"", t:"State"},
+    {v:"AL", t:"Alabama"},{v:"AK", t:"Alaska"},{v:"AZ", t:"Arizona"},{v:"AR", t:"Arkansas"},
+    {v:"CA", t:"California"},{v:"CO", t:"Colorado"},{v:"CT", t:"Connecticut"},{v:"DE", t:"Delaware"},
+    {v:"FL", t:"Florida"},{v:"GA", t:"Georgia"},{v:"HI", t:"Hawaii"},{v:"ID", t:"Idaho"},
+    {v:"IL", t:"Illinois"},{v:"IN", t:"Indiana"},{v:"IA", t:"Iowa"},{v:"KS", t:"Kansas"},
+    {v:"KY", t:"Kentucky"},{v:"LA", t:"Louisiana"},{v:"ME", t:"Maine"},{v:"MD", t:"Maryland"},
+    {v:"MA", t:"Massachusetts"},{v:"MI", t:"Michigan"},{v:"MN", t:"Minnesota"},{v:"MS", t:"Mississippi"},
+    {v:"MO", t:"Missouri"},{v:"MT", t:"Montana"},{v:"NE", t:"Nebraska"},{v:"NV", t:"Nevada"},
+    {v:"NH", t:"New Hampshire"},{v:"NJ", t:"New Jersey"},{v:"NM", t:"New Mexico"},{v:"NY", t:"New York"},
+    {v:"NC", t:"North Carolina"},{v:"ND", t:"North Dakota"},{v:"OH", t:"Ohio"},{v:"OK", t:"Oklahoma"},
+    {v:"OR", t:"Oregon"},{v:"PA", t:"Pennsylvania"},{v:"RI", t:"Rhode Island"},{v:"SC", t:"South Carolina"},
+    {v:"SD", t:"South Dakota"},{v:"TN", t:"Tennessee"},{v:"TX", t:"Texas"},{v:"UT", t:"Utah"},
+    {v:"VT", t:"Vermont"},{v:"VA", t:"Virginia"},{v:"WA", t:"Washington"},{v:"WV", t:"West Virginia"},
+    {v:"WI", t:"Wisconsin"},{v:"WY", t:"Wyoming"}
+  ];
+
+  var state = { branch: null, stepIndex: 0, steps: [], answers: {} };
+
+  function showStatus(msg, isError){
+    var note = qs("#funnelNote");
+    if (!note) return;
+    note.textContent = msg || "Built for owner-operated businesses. Not franchises. Not corporate M&A.";
+    note.style.color = isError ? "#b91c1c" : "rgba(15,23,42,.60)";
+  }
+
+  function currentStep(){ return state.steps[state.stepIndex] || null; }
+
+  function setProgress(){
+    var fill = qs("#funnelProgressFill");
+    var label = qs("#funnelStepLabel");
+    if (!state.branch){
+      if (fill) fill.style.width = "0%";
+      if (label) label.textContent = "Step 1 of 1";
+      document.body.dataset.funnelStep = "1";
+      return;
+    }
+    var total = state.steps.length || 1;
+    var current = Math.min(state.stepIndex + 1, total);
+    var pct = total <= 1 ? 0 : Math.round((state.stepIndex / (total - 1)) * 100);
+    if (fill) fill.style.width = pct + "%";
+    if (label) label.textContent = "Step " + current + " of " + total;
+    document.body.dataset.funnelStep = String(current);
+  }
+
+  function setHeader(title, helper){
+    qs("#funnelQuestion").textContent = title || "";
+    qs("#funnelHelper").textContent = helper || "";
+  }
+
+  function updateActions(){
+    var actions = qs("#funnelActions");
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    if (!actions || !backBtn || !nextBtn) return;
+
+    if (!state.branch){
+      actions.hidden = true;
+      return;
+    }
+
+    actions.hidden = false;
+    backBtn.disabled = false;
+    nextBtn.disabled = !canProceed();
+    nextBtn.textContent = currentStep() && currentStep().type === "contact" ? "Submit" : "Next";
+  }
+
+  function canProceed(){
+    var step = currentStep();
+    if (!step) return false;
+
+    if (step.type === "choice"){
+      var val = state.answers[step.id];
+      if (!val) return false;
+      if (step.other && val === "other"){
+        var k = step.otherKey || (step.id + "_other");
+        return !!String(state.answers[k] || "").trim();
+      }
+      return true;
+    }
+
+    if (step.type === "seller_location"){
+      return !!(state.answers.business_name && state.answers.business_street && state.answers.business_city && state.answers.business_state && state.answers.business_zip);
+    }
+
+    if (step.type === "buyer_location"){
+      return !!(state.answers.want_city && state.answers.want_state);
+    }
+
+    if (step.type === "contact"){
+      var ready = !!(state.answers.first_name && state.answers.last_name && state.answers.email && state.answers.phone);
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      var token = tokenEl ? String(tokenEl.value || "").trim() : "";
+      return ready && !!token;
+    }
+
+    return false;
+  }
+
+  function renderBranchChoice(){
+    document.body.dataset.funnelBranch = "none";
+    setProgress();
+    setHeader("What are you here to do?", "Choose your path. We will guide the next step.");
+    qs("#funnelRestartBtn").style.visibility = "hidden";
+
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var grid = document.createElement("div");
+    grid.className = "choiceGrid choiceGrid--two";
+
+    function makeTile(branch, icon, title, sub){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choiceTile";
+      btn.innerHTML =
+        '<div class="choiceIcon" aria-hidden="true">' + icon + '</div>' +
+        '<div class="choiceText">' +
+          '<div class="choiceTitle">' + escapeHtml(title) + '</div>' +
+          '<div class="choiceSub">' + escapeHtml(sub) + '</div>' +
+        '</div>';
+      btn.addEventListener("click", function(e){
+        e.preventDefault();
+        state.branch = branch;
+        document.body.dataset.funnelBranch = branch;
+        state.stepIndex = 0;
+        state.steps = branch === "sell" ? SELL_STEPS.slice() : BUY_STEPS.slice();
+        state.answers = { branch: branch };
+        showStatus("", false);
+        render();
+      });
+      return btn;
+    }
+
+    grid.appendChild(makeTile("sell", "💼", "I want to sell my business", "Get a clearer path for value, timing, and serious buyer conversations."));
+    grid.appendChild(makeTile("buy", "🧾", "I want to buy a business", "Tell us what you are looking for and review businesses that fit."));
+    body.appendChild(grid);
+    updateActions();
+  }
+
+  function renderChoice(step){
+    var body = qs("#funnelBody");
+    body.innerHTML = "";
+
+    var wrap = document.createElement("div");
+    wrap.className = "optionList" + ((step.options && step.options.length >= 8) ? " optionList--two" : "");
+
+    step.options.forEach(function(opt){
+      var row = document.createElement("button");
+      row.type = "button";
+      row.className = "optionRow";
+      row.setAttribute("aria-pressed", state.answers[step.id] === opt.value ? "true" : "false");
+      row.innerHTML =
+        '<span class="optionBullet" aria-hidden="true"></span>' +
+        '<span class="optionText"><span class="optionLabel">' + escapeHtml(opt.label) + '</span></span>';
+
+      row.addEventListener("click", function(e){
+        e.preventDefault();
+        state.answers[step.id] = opt.value;
+        if (!(step.other && opt.value === "other")){
+          var ok = step.otherKey || (step.id + "_other");
+          delete state.answers[ok];
+        }
+        render();
+        if (!(step.other && opt.value === "other")){
+          setTimeout(function(){ goNext(); }, 60);
+        }
+      });
+      wrap.appendChild(row);
+    });
+
+    body.appendChild(wrap);
+
+    if (step.other && state.answers[step.id] === "other"){
+      var f = document.createElement("div");
+      f.className = "field";
+      f.style.marginTop = "12px";
+      f.innerHTML = '<label for="otherInput">Other</label><input id="otherInput" type="text" placeholder="' + escapeHtml(step.otherPlaceholder || "Type here...") + '">';
+      body.appendChild(f);
+
+      var inp = f.querySelector("#otherInput");
+      var key = step.otherKey || (step.id + "_other");
+      inp.value = state.answers[key] || "";
+      inp.addEventListener("input", function(){
+        state.answers[key] = inp.value;
+        updateActions();
+      });
+      inp.addEventListener("keydown", function(ev){
+        if (ev.key === "Enter" && canProceed()){
+          ev.preventDefault();
+          goNext();
+        }
+      });
+      inp.focus();
+    }
+  }
+
+  function renderSellerLocation(){
+    var body = qs("#funnelBody");
+    body.innerHTML = '' +
+      '<div class="inputGrid inputGrid--address">' +
+        '<div class="field field--full"><label for="business_name">Business Name</label><input id="business_name" type="text" value="' + escapeHtml(state.answers.business_name || "") + '"></div>' +
+        '<div class="field field--full"><label for="business_street">Street</label><input id="business_street" type="text" value="' + escapeHtml(state.answers.business_street || "") + '"></div>' +
+        '<div class="field"><label for="business_city">City</label><input id="business_city" type="text" value="' + escapeHtml(state.answers.business_city || "") + '"></div>' +
+        '<div class="field"><label for="business_state">State</label><select id="business_state">' + US_STATES.map(function(s){ return '<option value="' + s.v + '"' + (state.answers.business_state === s.v ? ' selected' : '') + '>' + s.t + '</option>'; }).join('') + '</select></div>' +
+        '<div class="field"><label for="business_zip">Zip</label><input id="business_zip" type="text" inputmode="numeric" value="' + escapeHtml(state.answers.business_zip || "") + '"></div>' +
+      '</div>';
+
+    ["business_name","business_street","business_city","business_zip"].forEach(function(id){
+      var el = qs("#" + id);
+      el.addEventListener("input", function(){
+        if (id === "business_name" || id === "business_city") el.value = titleCaseWords(el.value);
+        state.answers[id] = el.value.trim();
+        updateActions();
+      });
+    });
+    qs("#business_state").addEventListener("change", function(){
+      state.answers.business_state = this.value;
+      updateActions();
+    });
+  }
+
+  function renderBuyerLocation(){
+    var body = qs("#funnelBody");
+    body.innerHTML = '' +
+      '<div class="inputGrid">' +
+        '<div class="field"><label for="want_city">City</label><input id="want_city" type="text" value="' + escapeHtml(state.answers.want_city || "") + '"></div>' +
+        '<div class="field"><label for="want_state">State</label><select id="want_state">' + US_STATES.map(function(s){ return '<option value="' + s.v + '"' + (state.answers.want_state === s.v ? ' selected' : '') + '>' + s.t + '</option>'; }).join('') + '</select></div>' +
+      '</div>';
+
+    qs("#want_city").addEventListener("input", function(){
+      this.value = titleCaseWords(this.value);
+      state.answers.want_city = this.value.trim();
+      updateActions();
+    });
+    qs("#want_state").addEventListener("change", function(){
+      state.answers.want_state = this.value;
+      updateActions();
+    });
+  }
+
+  function mountTurnstile(){
+    var host = document.querySelector(".turnstileWrap .cf-turnstile");
+    var tokenInput = document.getElementById("turnstileToken");
+    var hint = document.getElementById("turnstileHint");
+    if (!host || !tokenInput) return;
+
+    function syncToken(v){
+      tokenInput.value = v || "";
+      state.answers.turnstile_token = tokenInput.value || "";
+      try { tokenInput.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+      if (hint) hint.textContent = tokenInput.value ? "Verification complete." : "Please complete verification before submitting.";
+      updateActions();
+    }
+
+    window.onTurnstileSuccess = function(token){ syncToken(token); };
+    window.onTurnstileExpired = function(){ syncToken(""); };
+    window.onTurnstileError = function(){ syncToken(""); };
+
+    function tryRender(){
+      if (!window.turnstile || !window.turnstile.render) {
+        window.setTimeout(tryRender, 150);
+        return;
+      }
+      host.innerHTML = "";
+      try{
+        window.turnstile.render(host, {
+          sitekey: document.documentElement.getAttribute("data-turnstile-sitekey") || "",
+          theme: "light",
+          callback: window.onTurnstileSuccess,
+          "expired-callback": window.onTurnstileExpired,
+          "error-callback": window.onTurnstileError
+        });
+      } catch(err) {
+        window.setTimeout(tryRender, 250);
+      }
+    }
+
+    syncToken(state.answers.turnstile_token || "");
+    tryRender();
+  }
+
+  function renderContact(){
+    var body = qs("#funnelBody");
+    body.innerHTML = '' +
+      '<div class="inputGrid">' +
+        '<div class="field"><label for="firstName">First Name</label><input id="firstName" type="text" value="' + escapeHtml(state.answers.first_name || "") + '"></div>' +
+        '<div class="field"><label for="lastName">Last Name</label><input id="lastName" type="text" value="' + escapeHtml(state.answers.last_name || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="emailAddress">Email</label><input id="emailAddress" type="email" value="' + escapeHtml(state.answers.email || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="phoneNumber">Phone</label><input id="phoneNumber" type="tel" value="' + escapeHtml(state.answers.phone || "") + '"></div>' +
+        '<div class="field field--full" style="grid-column:1 / -1;"><label for="notes">Anything else?</label><textarea id="notes" placeholder="Optional">' + escapeHtml(state.answers.notes || "") + '</textarea></div>' +
+      '</div>' +
+      '<div class="turnstileWrap">' +
+        '<div class="cf-turnstile"></div>' +
+        '<input type="hidden" id="turnstileToken" value="' + escapeHtml(state.answers.turnstile_token || "") + '">' +
+      '</div>' +
+      '<div class="statusLine" id="turnstileHint">Please complete verification before submitting.</div>';
+
+    qs("#firstName").addEventListener("input", function(){ this.value = titleCaseWords(this.value); state.answers.first_name = this.value.trim(); updateActions(); });
+    qs("#lastName").addEventListener("input", function(){ this.value = titleCaseWords(this.value); state.answers.last_name = this.value.trim(); updateActions(); });
+    qs("#emailAddress").addEventListener("input", function(){ state.answers.email = this.value.trim(); updateActions(); });
+    qs("#phoneNumber").addEventListener("input", function(){ this.value = phoneFormat(this.value); state.answers.phone = this.value.trim(); updateActions(); });
+    qs("#notes").addEventListener("input", function(){ state.answers.notes = this.value; });
+
+    var ts = document.getElementById("turnstileToken");
+    if (ts) {
+      ts.addEventListener("input", function(){
+        state.answers.turnstile_token = ts.value || "";
+        updateActions();
+      });
+    }
+
+    mountTurnstile();
+    setTimeout(function(){ updateActions(); }, 200);
+  }
+
+  function render(){
+    if (!state.branch){
+      renderBranchChoice();
+      return;
+    }
+    qs("#funnelRestartBtn").style.visibility = "visible";
+    var step = currentStep();
+    setHeader(step.title, step.helper || "");
+    setProgress();
+
+    if (step.type === "choice") renderChoice(step);
+    else if (step.type === "seller_location") renderSellerLocation(step);
+    else if (step.type === "buyer_location") renderBuyerLocation(step);
+    else if (step.type === "contact") renderContact();
+
+    updateActions();
+  }
+
+  function goPrev(){
+    if (!state.branch) return;
+    if (state.stepIndex <= 0){
+      state.branch = null;
+      state.steps = [];
+      state.stepIndex = 0;
+      state.answers = {};
+      render();
+      return;
+    }
+    state.stepIndex -= 1;
+    render();
+  }
+
+  function goNext(){
+    if (!state.branch) return;
+    var step = currentStep();
+    if (!step) return;
+
+    if (!canProceed()){
+      updateActions();
+      return;
+    }
+
+    if (step.type === "contact"){
+      var tokenEl = document.getElementById("turnstileToken") || document.querySelector('textarea[name="cf-turnstile-response"], input[name="cf-turnstile-response"]');
+      state.answers.turnstile_token = tokenEl ? (tokenEl.value || "") : "";
+
+      var nextBtn = qs("#funnelNextBtn");
+      var backBtn = qs("#funnelBackBtn");
+      var question = qs("#funnelQuestion");
+      var helper = qs("#funnelHelper");
+      var body = qs("#funnelBody");
+      var actions = qs("#funnelActions");
+      var note = qs("#funnelNote");
+      var progress = qs(".funnelProgress");
+      var originalNextText = nextBtn ? nextBtn.textContent : "Submit";
+
+      if (nextBtn) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = "Submitting...";
+      }
+      if (backBtn) backBtn.disabled = true;
+
+      var formBody = new URLSearchParams();
+      Object.keys(state.answers).forEach(function(key){
+        formBody.append(key, state.answers[key] == null ? "" : String(state.answers[key]));
+      });
+
+      fetch("https://script.google.com/macros/s/AKfycbwmWUUusHoIwkRKi0Lw48ZstQK_n9fAZh_d_VR4ggnxx3nvXSeAvSCswC8uclI3PU-GfQ/exec", {
+        method: "POST",
+        body: formBody
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data && data.success) {
+          if (window.BBAS && window.BBAS.formSuccess) window.BBAS.formSuccess(null, state.branch === "sell" ? "seller_consultation" : "buyer_consultation");
+          if (progress) progress.style.display = "none";
+          if (question) question.textContent = "Thank you. We received your information.";
+          if (helper) helper.textContent = "We will follow up with the right next step.";
+          if (body) {
+            body.innerHTML =
+              '<div class="trustItem" style="text-align:center;padding:24px;">' +
+                '<div class="trustKicker" style="margin-bottom:12px;text-align:center;">Submission received</div>' +
+                '<div class="trustText" style="text-align:center;line-height:1.6;">Your request has been sent successfully.</div>' +
+              '</div>';
+          }
+          if (actions) {
+            actions.hidden = false;
+            actions.style.justifyContent = "center";
+          }
+          if (backBtn) {
+            backBtn.disabled = false;
+            backBtn.style.visibility = "hidden";
+            backBtn.style.display = "none";
+          }
+          if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent = "Start over";
+          }
+          if (note) {
+            note.textContent = "Thank you for choosing Business Buying and Selling.";
+            note.style.color = "rgba(15,23,42,.60)";
+          }
+
+          state.branch = null;
+          state.steps = [];
+          state.stepIndex = 0;
+          state.answers = {};
+
+          if (nextBtn) {
+            nextBtn.onclick = function(e) {
+              e.preventDefault();
+              nextBtn.onclick = null;
+              render();
+            };
+          }
+          return;
+        }
+
+        if (window.BBAS && window.BBAS.formError) window.BBAS.formError(null, (data && data.message) || "Submission failed");
+        alert((data && data.message) || "Submission failed. Please try again.");
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.textContent = originalNextText;
+        }
+        if (backBtn) backBtn.disabled = false;
+      })
+      .catch(function(){
+        if (window.BBAS && window.BBAS.formError) window.BBAS.formError(null, "Network error");
+        alert("Network error. Please try again.");
+        if (nextBtn) {
+          nextBtn.disabled = false;
+          nextBtn.textContent = originalNextText;
+        }
+        if (backBtn) backBtn.disabled = false;
+      });
+
+      return;
+    }
+
+    if (state.branch === "sell" && step.id === "sell_urgency" && state.answers.sell_urgency === "not_right_now_talk"){
+      state.stepIndex = state.steps.length - 1;
+      render();
+      return;
+    }
+
+    state.stepIndex += 1;
+    if (state.stepIndex >= state.steps.length) state.stepIndex = state.steps.length - 1;
+    render();
+  }
+
+  function bindActions(){
+    var backBtn = qs("#funnelBackBtn");
+    var nextBtn = qs("#funnelNextBtn");
+    var restartBtn = qs("#funnelRestartBtn");
+    if (backBtn) backBtn.addEventListener("click", function(e){ e.preventDefault(); goPrev(); });
+    if (nextBtn) nextBtn.addEventListener("click", function(e){ e.preventDefault(); goNext(); });
+    if (restartBtn) restartBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      state.branch = null;
+      state.steps = [];
+      state.stepIndex = 0;
+      state.answers = {};
+      render();
+    });
+  }
+
+  function init(){
+    document.body.dataset.funnelBranch = "none";
+    bindActions();
+    render();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
 </body>
 </html>
