@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-turnstile-sitekey="0x4AAAAAACgmGQoYfzwumYuZ">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Business Buying and Selling Experts | About Us</title>
-<meta name="description" content="Meet Business Buying and Selling, a trusted advisory marketplace helping buyers and owners make smarter decisions when buying or selling a business." />
-<link rel="canonical" href="https://businessbuyingandselling.com/about-us/" />
+<title>Contact a Business Broker | Business Buying & Selling</title>
+<meta name="description" content="Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps." />
+<link rel="canonical" href="https://businessbuyingandselling.com/contact/" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Business Buying and Selling Experts | About Us" />
-<meta property="og:description" content="Meet Business Buying and Selling, a trusted advisory marketplace helping buyers and owners make smarter decisions when buying or selling a business." />
-<meta property="og:url" content="https://businessbuyingandselling.com/about-us/" />
+<meta property="og:title" content="Contact a Business Broker | Business Buying & Selling" />
+<meta property="og:description" content="Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps." />
+<meta property="og:url" content="https://businessbuyingandselling.com/contact/" />
 <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Business Buying and Selling Experts | About Us" />
-<meta name="twitter:description" content="Meet Business Buying and Selling, a trusted advisory marketplace helping buyers and owners make smarter decisions when buying or selling a business." />
+<meta name="twitter:title" content="Contact a Business Broker | Business Buying & Selling" />
+<meta name="twitter:description" content="Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps." />
 <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg" />
 
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
-  "@type":"AboutPage",
-  "name":"Business Buying and Selling Experts About Us",
-  "description":"Meet Business Buying and Selling, a trusted advisory marketplace helping buyers and owners make smarter decisions when buying or selling a business.",
-  "url":"https://businessbuyingandselling.com/about-us/",
+  "@type":"ContactPage",
+  "name":"Contact a Business Broker Business Buying and Selling",
+  "description":"Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps.",
+  "url":"https://businessbuyingandselling.com/contact/",
   "mainEntity":{
     "@type":"Organization",
     "name":"Business Buying and Selling",
@@ -49,8 +49,8 @@
     {
       "@type":"ListItem",
       "position":2,
-      "name":"About Us",
-      "item":"https://businessbuyingandselling.com/about-us/"
+      "name":"Contact",
+      "item":"https://businessbuyingandselling.com/contact/"
     }
   ]
 }
@@ -63,26 +63,26 @@
   "mainEntity":[
     {
       "@type":"Question",
-      "name":"What does Business Buying and Selling help with?",
+      "name":"Can I contact Business Buying and Selling about buying a business?",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"Business Buying and Selling helps buyers explore businesses for sale and helps owners understand the process of preparing, valuing, and selling a business."
+        "text":"Yes. Buyers can contact Business Buying and Selling with questions about listings, business fit, financing, due diligence, or next steps."
       }
     },
     {
       "@type":"Question",
-      "name":"Does Business Buying and Selling work with both buyers and sellers?",
+      "name":"Can I contact Business Buying and Selling about selling my business?",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"Yes. The platform is built for both business buyers and business owners, with resources, listings, and guidance for each side of the transaction."
+        "text":"Yes. Business owners can reach out with questions about valuation, timing, confidentiality, buyer readiness, and preparing to sell."
       }
     },
     {
       "@type":"Question",
-      "name":"Why is confidentiality important when buying or selling a business?",
+      "name":"What should I include in my contact message?",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"Confidentiality helps protect employees, customers, vendors, sellers, and buyers while serious conversations, diligence, and next steps are being evaluated."
+        "text":"Helpful details include whether you are buying or selling, your timeline, business type, location, budget, and the specific question or listing you want help with."
       }
     }
   ]
@@ -97,11 +97,44 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260514-about-final-v1" />
-<link rel="stylesheet" href="/assets/css/header.css?v=20260514-about-final-v1" />
+<link rel="stylesheet" href="/assets/css/site.css?v=20260514-contact-final-v1" />
+<link rel="stylesheet" href="/assets/css/header.css?v=20260514-contact-final-v1" />
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+window.onTurnstileSuccess = function(token){
+  var el = document.getElementById("turnstileToken");
+  var status = document.getElementById("contactStatus");
+  if (el) {
+    el.value = token || "";
+    try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+  }
+  if (status) status.textContent = token ? "Verification complete." : "Please complete verification before submitting.";
+};
+
+window.onTurnstileExpired = function(){
+  var el = document.getElementById("turnstileToken");
+  var status = document.getElementById("contactStatus");
+  if (el) {
+    el.value = "";
+    try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+  }
+  if (status) status.textContent = "Verification expired. Please verify again.";
+};
+
+window.onTurnstileError = function(){
+  var el = document.getElementById("turnstileToken");
+  var status = document.getElementById("contactStatus");
+  if (el) {
+    el.value = "";
+    try { el.dispatchEvent(new Event("input", { bubbles: true })); } catch(e) {}
+  }
+  if (status) status.textContent = "Verification failed. Please try again.";
+};
+</script>
 </head>
 
-<body class="bbas-page about-page" data-page-type="about_page" data-primary-goal="contact_submit">
+<body class="bbas-page contact-page" data-page-type="contact_page" data-primary-goal="contact_submit">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
@@ -109,191 +142,201 @@
 <main id="main" class="bbas-main">
   <div class="bbas-container">
 
-    <section class="about-hero">
-      <div class="hero-badge"><span class="dot" aria-hidden="true"></span>About Us</div>
+    <section class="contact-hero" aria-label="Contact Business Buying and Selling">
+      <div class="hero-badge"><span class="dot" aria-hidden="true"></span>Contact Us</div>
 
-      <div class="about-grid about-grid--single">
-        <div class="about-copy-wrap">
-          <h1>Business buying and selling experts for real decisions.</h1>
+      <div class="contact-hero-grid contact-hero-grid--single">
+        <div class="contact-copy-wrap">
+          <h1>Contact a business broker with confidence.</h1>
 
-          <div class="about-copy">
-            <p>Business Buying and Selling is built to give buyers and owners a clearer way to understand business opportunities, sale preparation, confidentiality, and the steps that matter before a transaction moves forward.</p>
-            <p>Our focus is practical guidance, organized information, and a more confident path for people buying or selling owner-operated businesses.</p>
+          <div class="contact-hero-copy">
+            <p>Reach out if you are buying a business, selling a business, reviewing listings, or trying to understand the right next step.</p>
+            <p>The goal is simple: help you get clear direction without confusion, pressure, or unnecessary back-and-forth.</p>
           </div>
 
           <div class="hero-actions">
-            <a class="hero-btn hero-btn-primary" href="/contact/"
+            <a class="hero-btn hero-btn-primary" href="#contactForm"
                data-analytics-event="cta_click"
-               data-analytics-label="Talk to Us"
+               data-analytics-label="Send Message"
                data-analytics-location="hero"
-               data-analytics-section="about_hero"
-               data-analytics-goal="contact_submit">Talk to Us</a>
+               data-analytics-section="contact_hero"
+               data-analytics-goal="contact_submit">Send a Message</a>
 
             <a class="hero-btn hero-btn-secondary btn-light" href="/listings/"
                data-analytics-event="cta_click"
                data-analytics-label="Browse Listings"
                data-analytics-location="hero"
-               data-analytics-section="about_hero"
+               data-analytics-section="contact_hero"
                data-analytics-goal="listing_view">Browse Listings</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">Our purpose</div>
-        <h2>A clearer marketplace for business buyers and sellers</h2>
-        <p>Buying or selling a business can feel fragmented, emotional, and difficult to evaluate. We help organize the process around what matters most: fit, value, timing, confidentiality, financing, due diligence, and next steps.</p>
-
-        <div class="quick-grid">
-          <div class="mini">
-            <h3>Clear guidance</h3>
-            <p>We focus on practical information that helps people understand what to do before they move forward.</p>
+    <section class="section" aria-label="Contact form">
+      <div class="contact-shell">
+        <section class="contact-card">
+          <div class="contact-card-head">
+            <div class="eyebrow">Send a message</div>
+            <h2>Tell us what you need help with</h2>
+            <p class="contact-card-sub">Share whether you are buying, selling, exploring listings, or asking a general business transaction question.</p>
           </div>
 
-          <div class="mini">
-            <h3>Real opportunities</h3>
-            <p>Our listings and resources are designed around owner-operated businesses and serious acquisition intent.</p>
+          <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
+            <div class="form-grid">
+              <div class="field">
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="first_name" type="text" autocomplete="given-name" autocapitalize="words" placeholder="First name" required />
+              </div>
+
+              <div class="field">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="last_name" type="text" autocomplete="family-name" autocapitalize="words" placeholder="Last name" required />
+              </div>
+
+              <div class="field">
+                <label for="emailAddress">Email</label>
+                <input id="emailAddress" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="field">
+                <label for="phoneNumber">Phone</label>
+                <input id="phoneNumber" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" />
+              </div>
+
+              <div class="field">
+                <label for="city">City</label>
+                <input id="city" name="city" type="text" autocomplete="address-level2" autocapitalize="words" placeholder="City" />
+              </div>
+
+              <div class="field">
+                <label for="state">State</label>
+                <input id="state" name="state" type="text" autocapitalize="words" placeholder="State" />
+              </div>
+
+              <div class="field field--full">
+                <label for="topic">What is this about?</label>
+                <select id="topic" name="topic" required>
+                  <option value="">Select one</option>
+                  <option value="buying">Buying a business</option>
+                  <option value="selling">Selling a business</option>
+                  <option value="listings">Listings or opportunities</option>
+                  <option value="general">General question</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="field field--full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" autocapitalize="sentences" placeholder="Tell us a little about what you are looking for or what you need help with." required></textarea>
+                <div class="form-note">Helpful details include whether you are buying or selling, your timing, and any budget, business type, or location context that matters.</div>
+              </div>
+            </div>
+
+            <div class="turnstile-wrap">
+              <div class="cf-turnstile"
+                data-sitekey="0x4AAAAAACgmGQoYfzwumYuZ"
+                data-theme="light"
+                data-callback="onTurnstileSuccess"
+                data-expired-callback="onTurnstileExpired"
+                data-error-callback="onTurnstileError"></div>
+              <input type="hidden" id="turnstileToken" name="turnstile_token" value="" />
+            </div>
+
+            <div class="status-line" id="contactStatus">Please complete verification before submitting.</div>
+
+            <div class="contact-actions">
+              <button class="contact-btn contact-btn-secondary" type="reset">Clear form</button>
+              <button class="contact-btn contact-btn-primary" type="submit">Send message</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="contact-info-card" aria-label="Helpful contact guidance">
+          <div class="contact-info-head">
+            <div class="eyebrow">Before you send</div>
+            <h2>Help us point you in the right direction</h2>
+            <p class="contact-info-sub">A specific message helps us understand the right path and respond more clearly.</p>
           </div>
 
-          <div class="mini">
-            <h3>Better decisions</h3>
-            <p>Buyers and sellers need structure, not noise, when evaluating a business transaction.</p>
-          </div>
-        </div>
+          <div class="contact-info-grid">
+            <div class="contact-info-item">
+              <h3>Buying a business</h3>
+              <p>Include the business type, location, budget range, and whether you have financing started.</p>
+            </div>
 
-        <div class="info-band">
-          <p>Start with the path that fits your goal: <a href="/buy-a-business/">Buy a Business</a> or <a href="/sell-your-business/">Sell Your Business</a>.</p>
-        </div>
+            <div class="contact-info-item">
+              <h3>Selling a business</h3>
+              <p>Include your industry, timing, broad location, and whether you are ready now or planning ahead.</p>
+            </div>
+
+            <div class="contact-info-item">
+              <h3>Listings or opportunities</h3>
+              <p>Mention the listing category or opportunity type so we can route your question properly.</p>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section class="section">
       <div class="section-card">
-        <div class="eyebrow">Who we help</div>
-        <h2>Built for owners, buyers, and acquisition-minded operators</h2>
-
-        <div class="section-grid">
-          <div class="mini">
-            <h3>Business owners</h3>
-            <p>Owners can learn how to prepare for valuation, buyer screening, confidentiality, timing, and sale conversations.</p>
-          </div>
-
-          <div class="mini">
-            <h3>First-time buyers</h3>
-            <p>Buyers can understand business fit, financing readiness, diligence, and the risks that should be reviewed early.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Experienced operators</h3>
-            <p>Operators can review business categories, current listings, and useful acquisition resources before outreach.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Investors</h3>
-            <p>Investors can compare opportunities through a practical lens around cash flow, operations, and transition risk.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Local business buyers</h3>
-            <p>Local buyers can explore service, retail, food, gas station, convenience, and owner-operated business categories.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Future sellers</h3>
-            <p>Owners who are not ready today can still prepare records, reduce risk, and improve buyer confidence over time.</p>
-          </div>
-        </div>
-
-        <div class="info-band">
-          <p>Review current opportunities on our <a href="/listings/">business listings page</a> or read our <a href="/blog/">business buying and selling guides</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">How we think</div>
-        <h2>What matters in a serious business transaction</h2>
-
-        <div class="section-grid">
-          <div class="mini">
-            <h3>Confidentiality</h3>
-            <p>Privacy matters for sellers, buyers, employees, customers, vendors, and the ongoing health of the business.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Practical expectations</h3>
-            <p>Better expectations around value, financing, timeline, and diligence create stronger conversations.</p>
-          </div>
-
-          <div class="mini">
-            <h3>Transaction readiness</h3>
-            <p>A good deal needs more than interest. It needs records, fit, buyer capability, and a realistic path to close.</p>
-          </div>
-        </div>
-
-        <div class="info-band">
-          <p>Helpful next reads: <a href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence Checklist</a>, <a href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">How to Buy a Small Business</a>, and <a href="/blog/how-to-sell-your-business-for-maximum-value/">How to Sell Your Business</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">Helpful resources</div>
-        <h2>Start with the guides most people need first</h2>
-        <p>These resources support buyers and sellers before serious conversations, diligence, financing, or sale preparation begins.</p>
+        <div class="eyebrow">Useful pages</div>
+        <h2>Helpful pages before or after you reach out</h2>
+        <p>These pages answer common questions and can help you move faster before the first conversation.</p>
 
         <div class="link-grid">
-          <a class="link-card" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/"
-             data-analytics-event="blog_link_click"
-             data-analytics-label="How to Buy a Small Business Without Costly Mistakes"
-             data-analytics-section="about_resources">
-            <h3>How to Buy a Small Business Without Costly Mistakes</h3>
-            <p>Understand fit, financing, diligence, and smarter buyer habits.</p>
+          <a class="link-card" href="/buy-a-business/"
+             data-analytics-event="cta_click"
+             data-analytics-label="Buy a Business"
+             data-analytics-section="contact_helpful_links"
+             data-analytics-goal="buyer_consultation">
+            <h3>Buy a Business</h3>
+            <p>Understand how buyers should approach opportunities, financing, diligence, and next steps.</p>
           </a>
 
-          <a class="link-card" href="/blog/how-to-sell-your-business-for-maximum-value/"
+          <a class="link-card" href="/sell-your-business/"
+             data-analytics-event="cta_click"
+             data-analytics-label="Sell Your Business"
+             data-analytics-section="contact_helpful_links"
+             data-analytics-goal="seller_consultation">
+            <h3>Sell Your Business</h3>
+            <p>Review value, timing, confidentiality, and how to prepare before going to market.</p>
+          </a>
+
+          <a class="link-card" href="/listings/"
+             data-analytics-event="listing_click"
+             data-analytics-label="Browse Listings"
+             data-analytics-section="contact_helpful_links"
+             data-analytics-goal="listing_view">
+            <h3>Browse Listings</h3>
+            <p>Explore available businesses and get a clearer sense of fit, category, and opportunity.</p>
+          </a>
+
+          <a class="link-card" href="/about-us/"
+             data-analytics-event="cta_click"
+             data-analytics-label="About Us"
+             data-analytics-section="contact_helpful_links">
+            <h3>About Us</h3>
+            <p>Learn more about our mission, trust-first approach, and the experience we are building.</p>
+          </a>
+
+          <a class="link-card" href="/blog/"
              data-analytics-event="blog_link_click"
-             data-analytics-label="How to Sell Your Business for Maximum Value"
-             data-analytics-section="about_resources">
-            <h3>How to Sell Your Business for Maximum Value</h3>
-            <p>Prepare for valuation, buyer confidence, and a stronger sale process.</p>
+             data-analytics-label="Visit Blog"
+             data-analytics-section="contact_helpful_links"
+             data-analytics-goal="blog_engagement">
+            <h3>Visit the Blog</h3>
+            <p>Use practical guides on valuation, due diligence, financing, and smarter transactions.</p>
           </a>
 
           <a class="link-card" href="/blog/due-diligence-checklist-buying-or-selling-business/"
              data-analytics-event="blog_link_click"
              data-analytics-label="Due Diligence Checklist"
-             data-analytics-section="about_resources">
-            <h3>Due Diligence Checklist for Buying or Selling a Business</h3>
-            <p>Review the areas buyers and sellers should understand before closing.</p>
+             data-analytics-section="contact_helpful_links">
+            <h3>Due Diligence Checklist</h3>
+            <p>Review the areas buyers and sellers should understand before moving forward.</p>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="cta-panel">
-        <div>
-          <div class="eyebrow eyebrow--dark">Next step</div>
-          <h2>Ready to explore your options?</h2>
-          <p>Whether you want to buy a business, sell a business, or understand the path ahead, start with the next step that fits your goal.</p>
-        </div>
-
-        <div class="cta-actions">
-          <a class="hero-btn hero-btn-primary" href="/contact/"
-             data-analytics-event="cta_click"
-             data-analytics-label="Contact Us Bottom CTA"
-             data-analytics-section="about_final_cta"
-             data-analytics-goal="contact_submit">Contact Us</a>
-
-          <a class="hero-btn hero-btn-secondary btn-light" href="/blog/"
-             data-analytics-event="cta_click"
-             data-analytics-label="Visit Blog Bottom CTA"
-             data-analytics-section="about_final_cta"
-             data-analytics-goal="blog_engagement">Visit Blog</a>
         </div>
       </div>
     </section>
@@ -301,22 +344,22 @@
     <section class="section">
       <div class="section-card">
         <div class="eyebrow">Frequently asked questions</div>
-        <h2>Common questions about Business Buying and Selling</h2>
+        <h2>Common contact questions</h2>
 
         <div class="faq-grid">
           <div class="faq-item">
-            <h3>What does Business Buying and Selling help with?</h3>
-            <p>We help buyers explore businesses for sale and help owners understand the process of preparing, valuing, and selling a business.</p>
+            <h3>Can I contact you about buying a business?</h3>
+            <p>Yes. Buyers can reach out with questions about listings, business fit, financing, diligence, or next steps.</p>
           </div>
 
           <div class="faq-item">
-            <h3>Do you work with both buyers and sellers?</h3>
-            <p>Yes. The platform is built for both sides, with listings, buyer education, seller resources, and contact paths for next-step conversations.</p>
+            <h3>Can I contact you about selling my business?</h3>
+            <p>Yes. Owners can reach out about valuation, timing, confidentiality, buyer readiness, and preparing for a future sale.</p>
           </div>
 
           <div class="faq-item">
-            <h3>Why is confidentiality important?</h3>
-            <p>Confidentiality helps protect employees, customers, vendors, sellers, and buyers while serious conversations and diligence are being evaluated.</p>
+            <h3>What should I include in my message?</h3>
+            <p>Include whether you are buying or selling, your timing, business type, location, budget, and the specific question or listing you want help with.</p>
           </div>
         </div>
       </div>
@@ -329,5 +372,165 @@
 
 <script src="/assets/js/includes.js"></script>
 <script src="/assets/js/site.js" defer></script>
+
+<script>
+(function(){
+  function titleCaseWords(value){
+    return String(value || "")
+      .toLowerCase()
+      .replace(/\b([a-z])/g, function(m){ return m.toUpperCase(); });
+  }
+
+  function sentenceCase(value){
+    var text = String(value || "");
+    if (!text) return text;
+    return text.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, function(match){
+      return match.toUpperCase();
+    });
+  }
+
+  function phoneFormat(v){
+    var x = String(v || "").replace(/\D/g, "").slice(0, 10);
+    if (x.length > 6) return "(" + x.slice(0,3) + ") " + x.slice(3,6) + "-" + x.slice(6);
+    if (x.length > 3) return "(" + x.slice(0,3) + ") " + x.slice(3);
+    return x;
+  }
+
+  var firstName = document.getElementById("firstName");
+  var lastName = document.getElementById("lastName");
+  var city = document.getElementById("city");
+  var state = document.getElementById("state");
+  var message = document.getElementById("message");
+  var phone = document.getElementById("phoneNumber");
+  var form = document.getElementById("contactForm");
+  var status = document.getElementById("contactStatus");
+  var token = document.getElementById("turnstileToken");
+
+  [firstName, lastName, city, state].forEach(function(el){
+    if (!el) return;
+    el.addEventListener("input", function(){
+      el.value = titleCaseWords(el.value);
+    });
+    el.addEventListener("blur", function(){
+      el.value = titleCaseWords(el.value);
+    });
+  });
+
+  if (message){
+    message.addEventListener("blur", function(){
+      message.value = sentenceCase(message.value);
+    });
+  }
+
+  if (phone){
+    phone.addEventListener("input", function(){
+      phone.value = phoneFormat(phone.value);
+    });
+  }
+
+  form.addEventListener("reset", function(){
+    window.setTimeout(function(){
+      if (form.dataset.skipResetStatus === "1"){
+        form.dataset.skipResetStatus = "0";
+        return;
+      }
+      if (status) {
+        status.textContent = "Please complete verification before submitting.";
+        status.style.color = "#6B7280";
+        status.style.fontWeight = "500";
+      }
+      if (token) token.value = "";
+    }, 0);
+  });
+})();
+</script>
+
+<script>
+const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec";
+
+document.addEventListener("DOMContentLoaded", function(){
+  const form = document.querySelector("#contactForm");
+  const status = document.getElementById("contactStatus");
+  const token = document.getElementById("turnstileToken");
+  if (!form) return;
+
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const hasToken = token && String(token.value || "").trim();
+    if (!hasToken) {
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const resetBtn = form.querySelector('button[type="reset"]');
+    const originalText = submitBtn ? submitBtn.textContent : "Send message";
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+    if (resetBtn) resetBtn.disabled = true;
+    if (status) { status.textContent = "Submitting..."; status.style.color = "#374151"; status.style.fontWeight = "600"; }
+
+    const formBody = new URLSearchParams();
+    formBody.append("first_name", form.first_name.value || "");
+    formBody.append("last_name", form.last_name.value || "");
+    formBody.append("email", form.email.value || "");
+    formBody.append("phone", form.phone.value || "");
+    formBody.append("city", form.city.value || "");
+    formBody.append("state", form.state.value || "");
+    formBody.append("topic", form.topic.value || "");
+    formBody.append("message", form.message.value || "");
+    formBody.append("turnstile_token", token.value || "");
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        body: formBody
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        if (window.BBAS && typeof window.BBAS.formSuccess === "function") {
+          window.BBAS.formSuccess(form, "contact_submit");
+        }
+
+        form.dataset.skipResetStatus = "1";
+        form.reset();
+        if (token) token.value = "";
+        if (status) {
+          status.textContent = "Thank you. Your message has been sent successfully.";
+          status.style.color = "#166534";
+          status.style.fontWeight = "700";
+        }
+        return;
+      }
+
+      if (window.BBAS && typeof window.BBAS.formError === "function") {
+        window.BBAS.formError(form, json.message || "Submission failed");
+      }
+
+      alert("Submission failed: " + (json.message || "Please try again."));
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
+    } catch (err) {
+      if (window.BBAS && typeof window.BBAS.formError === "function") {
+        window.BBAS.formError(form, "Network error");
+      }
+
+      alert("Network error. Please try again.");
+      if (status) { status.textContent = "Please complete verification before submitting."; status.style.color = "#6B7280"; status.style.fontWeight = "500"; }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+      if (resetBtn) resetBtn.disabled = false;
+    }
+  });
+});
+</script>
 </body>
 </html>
