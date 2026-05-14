@@ -1,4 +1,8 @@
-/* /assets/js/site.js */
+/* /assets/js/site.js
+   BusinessBuyingAndSelling.com
+   Final global analytics, navigation, form, FAQ, and interaction tracking
+   Version: 2026-05-14 Final QA
+*/
 (function () {
   "use strict";
 
@@ -27,12 +31,29 @@
     return document.body ? (document.body.getAttribute("data-primary-goal") || "unknown") : "unknown";
   }
 
+  function getCanonical() {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    return canonical && canonical.href ? canonical.href : window.location.href;
+  }
+
   function getPath(url) {
     try {
       return new URL(url, window.location.origin).pathname;
     } catch (e) {
       return String(url || "");
     }
+  }
+
+  function getPagePayload() {
+    return {
+      page_title: document.title || "",
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.search,
+      canonical_url: getCanonical(),
+      page_type: getPageType(),
+      primary_goal: getPrimaryGoal(),
+      content_group: getPageType()
+    };
   }
 
   function ensureAnalytics() {
@@ -51,9 +72,13 @@
 
     if (!window.__BBAS_GA4_CONFIGURED__) {
       window.gtag("js", new Date());
-      window.gtag("config", GA4_ID, {
-        send_page_view: false
-      });
+
+      /* Send the standard GA4 page_view with page title/location/path so
+         Realtime and Pages reports show page names correctly. */
+      window.gtag("config", GA4_ID, Object.assign({
+        send_page_view: true
+      }, getPagePayload()));
+
       window.__BBAS_GA4_CONFIGURED__ = true;
     }
   }
@@ -62,18 +87,13 @@
     ensureAnalytics();
     if (typeof window.gtag !== "function") return;
 
-    var payload = Object.assign({
-      page_type: getPageType(),
-      primary_goal: getPrimaryGoal(),
-      page_path: window.location.pathname,
-      page_title: document.title
-    }, params || {});
-
+    var payload = Object.assign({}, getPagePayload(), params || {});
     window.gtag("event", eventName, payload);
   }
 
   window.BBAS = window.BBAS || {};
   window.BBAS.track = track;
+  window.BBAS.pagePayload = getPagePayload;
 
   function initMobileNav() {
     var root = document.querySelector("[data-bbas-header]");
@@ -155,7 +175,6 @@
   function initEnhancedPageView() {
     track("page_view_enhanced", {
       event_category: "page",
-      canonical_url: document.querySelector('link[rel="canonical"]') ? document.querySelector('link[rel="canonical"]').href : window.location.href,
       referrer: document.referrer || ""
     });
   }
@@ -165,7 +184,15 @@
       var doc = document.documentElement;
       var body = document.body;
       var scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
-      var height = Math.max(body.scrollHeight, doc.scrollHeight, body.offsetHeight, doc.offsetHeight, body.clientHeight, doc.clientHeight) - window.innerHeight;
+      var height = Math.max(
+        body.scrollHeight,
+        doc.scrollHeight,
+        body.offsetHeight,
+        doc.offsetHeight,
+        body.clientHeight,
+        doc.clientHeight
+      ) - window.innerHeight;
+
       if (height <= 0) return;
 
       var percent = Math.min(100, Math.round((scrollTop / height) * 100));
@@ -188,8 +215,10 @@
     document.addEventListener("click", function (e) {
       var link = closest(e.target, "a[href]");
       var explicit = closest(e.target, "[data-analytics-event]");
+      var explicitTracked = false;
 
       if (explicit) {
+        explicitTracked = true;
         track(explicit.getAttribute("data-analytics-event") || "cta_click", {
           event_category: "interaction",
           event_label: explicit.getAttribute("data-analytics-label") || explicit.textContent.trim().slice(0, 120),
@@ -221,6 +250,10 @@
         track("phone_click", { event_category: "lead", event_label: text || href, destination_url: href });
         return;
       }
+
+      /* Avoid double-counting a CTA/listing/blog link when it already has
+         an explicit data-analytics-event attribute. */
+      if (explicitTracked) return;
 
       if (url.origin === window.location.origin) {
         var eventName = "internal_link_click";
@@ -299,6 +332,7 @@
     document.addEventListener("toggle", function (e) {
       var details = e.target;
       if (!details || details.tagName !== "DETAILS" || !details.open) return;
+
       var summary = details.querySelector("summary");
       track("faq_expand", {
         event_category: "engagement",
@@ -308,44 +342,21 @@
     }, true);
   }
 
-  function boot() {
-    ensureAnalytics();
-    initMobileNavBoot();
-    initEnhancedPageView();
-    initScrollDepth();
-    initClickTracking();
-    initFormTracking();
-    initFaqTracking();
-  }
+  function initFormHelpers() {
+    window.BBAS = window.BBAS || {};
 
-  ready(boot);
-})();
-
-/* =====================================================
-   FINAL PRODUCTION FORM EVENT HELPERS
-   Optional helpers for AJAX forms to report success/error to global analytics.
-   Existing pages can call:
-   window.BBAS.formSuccess(form, goal)
-   window.BBAS.formError(form, message)
-   ===================================================== */
-(function(){
-  window.BBAS = window.BBAS || {};
-
-  if (!window.BBAS.formSuccess) {
-    window.BBAS.formSuccess = function(form, goal){
+    window.BBAS.formSuccess = window.BBAS.formSuccess || function (form, goal) {
       var formId = form && (form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form")) || "form";
       document.dispatchEvent(new CustomEvent("bbas:form-success", {
         detail: {
           form_id: formId,
           form_name: form && form.getAttribute("data-analytics-form") || formId,
-          goal: goal || (document.body && document.body.getAttribute("data-primary-goal")) || "unknown"
+          goal: goal || getPrimaryGoal()
         }
       }));
     };
-  }
 
-  if (!window.BBAS.formError) {
-    window.BBAS.formError = function(form, message){
+    window.BBAS.formError = window.BBAS.formError || function (form, message) {
       var formId = form && (form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form")) || "form";
       document.dispatchEvent(new CustomEvent("bbas:form-error", {
         detail: {
@@ -356,4 +367,17 @@
       }));
     };
   }
+
+  function boot() {
+    ensureAnalytics();
+    initFormHelpers();
+    initMobileNavBoot();
+    initEnhancedPageView();
+    initScrollDepth();
+    initClickTracking();
+    initFormTracking();
+    initFaqTracking();
+  }
+
+  ready(boot);
 })();
