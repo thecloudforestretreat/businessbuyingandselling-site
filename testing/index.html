@@ -43,6 +43,65 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Business Buying and Selling",
+    "url": "https://businessbuyingandselling.com/",
+    "logo": "https://businessbuyingandselling.com/assets/images/logo.png",
+    "sameAs": []
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://businessbuyingandselling.com/"
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can Business Buying and Selling help me buy a business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Buyers can browse businesses for sale, review buyer guides, and use the guided form to share their target business type, budget, and location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this site to prepare to sell my business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Sellers can start with the sell your business path, learn about valuation, timing, confidentiality, and buyer readiness, then contact the team for next steps."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are business listings confidential?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Listings are presented with privacy in mind. Sensitive business names, exact addresses, and seller details are protected until the right next step."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -51,550 +110,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260514-home-balanced-seo-v3">
-  <link rel="stylesheet" href="/assets/css/header.css?v=20260514-home-balanced-seo-v3">
-
-  <style>
-    /* =====================================================
-       HOMEPAGE BALANCED SEO + CONVERSION PASS
-       Scoped to homepage for review.
-       Reduces empty feel, keeps copy concise, strengthens CTA flow.
-       ===================================================== */
-
-    .home-page .siteMain{
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,.08), transparent 30%),
-        linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 44%,#F8FAFC 100%);
-    }
-
-    .home-page .hero--funnel{
-      padding:22px 0 44px !important;
-    }
-
-    .home-page .hero--funnel .container{
-      max-width:1180px !important;
-      padding:0 24px !important;
-    }
-
-    .home-page .heroTop{
-      min-height:390px !important;
-      padding:38px 42px 118px !important;
-      border-radius:28px !important;
-      background:
-        linear-gradient(90deg, rgba(8,15,30,.91) 0%, rgba(11,22,43,.82) 44%, rgba(11,22,43,.58) 100%),
-        url("/assets/images/bbas_homepage_hero_03.jpg") !important;
-      background-size:cover !important;
-      background-position:center center !important;
-      box-shadow:0 22px 60px rgba(15,23,42,.18) !important;
-    }
-
-    .home-page .heroTop::after{
-      content:"";
-      position:absolute;
-      inset:auto 0 0 0;
-      height:38%;
-      background:linear-gradient(180deg,transparent,rgba(8,15,30,.72));
-      pointer-events:none;
-    }
-
-    .home-page .heroTop > *{
-      position:relative;
-      z-index:2;
-    }
-
-    .home-page .heroBadge{
-      min-height:36px;
-      padding:8px 13px !important;
-      background:rgba(255,255,255,.09) !important;
-      border:1px solid rgba(255,255,255,.15) !important;
-      color:rgba(255,255,255,.88) !important;
-      backdrop-filter:blur(10px);
-    }
-
-    .home-page .heroTitle{
-      max-width:10.2ch !important;
-      margin:18px 0 14px !important;
-      font-size:clamp(3rem,5.4vw,5.15rem) !important;
-      line-height:.95 !important;
-      letter-spacing:-.055em !important;
-      text-shadow:0 5px 20px rgba(0,0,0,.36) !important;
-    }
-
-    .home-page .heroLead{
-      max-width:54ch !important;
-      margin:0 !important;
-      color:rgba(255,255,255,.91) !important;
-      font-size:clamp(1.02rem,1.3vw,1.18rem) !important;
-      line-height:1.58 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-hero-actions{
-      margin-top:24px !important;
-      display:flex !important;
-      gap:12px !important;
-      align-items:center !important;
-      flex-wrap:wrap !important;
-    }
-
-    .home-page .home-hero-actions .btn{
-      min-height:48px !important;
-      padding:0 22px !important;
-      font-size:14px !important;
-    }
-
-    .home-page .home-hero-proof{
-      justify-content:flex-start !important;
-      gap:8px !important;
-      margin-top:16px !important;
-    }
-
-    .home-page .home-proof-pill{
-      min-height:28px !important;
-      padding:6px 10px !important;
-      font-size:11px !important;
-      background:rgba(255,255,255,.055) !important;
-      border:1px solid rgba(255,255,255,.10) !important;
-      color:rgba(255,255,255,.74) !important;
-      box-shadow:none !important;
-      pointer-events:none !important;
-    }
-
-    .home-page .funnelShell{
-      display:block !important;
-      margin-top:-84px !important;
-      position:relative !important;
-      z-index:4 !important;
-    }
-
-    .home-page .funnelLeft{
-      display:block !important;
-      width:100% !important;
-    }
-
-    .home-page .funnelRight{
-      display:none !important;
-    }
-
-    .home-page .funnelCard{
-      width:100% !important;
-      max-width:none !important;
-      overflow:hidden !important;
-      background:rgba(255,255,255,.98) !important;
-      border:1px solid rgba(203,213,225,.96) !important;
-      border-radius:26px !important;
-      box-shadow:0 22px 58px rgba(15,23,42,.13) !important;
-      backdrop-filter:blur(12px);
-    }
-
-    .home-page .funnelProgress{
-      display:none !important;
-    }
-
-    .home-page .funnelCardHeader{
-      padding:28px 30px 8px !important;
-    }
-
-    .home-page .funnelQuestion{
-      max-width:none !important;
-      margin:0 0 8px !important;
-      color:#081A33 !important;
-      font-size:clamp(2.25rem,3.6vw,3.4rem) !important;
-      line-height:1.02 !important;
-      letter-spacing:-.045em !important;
-      font-weight:800 !important;
-    }
-
-    .home-page .funnelHelper{
-      margin:0 !important;
-      max-width:58ch !important;
-      color:#334155 !important;
-      font-size:15px !important;
-      line-height:1.5 !important;
-      font-weight:700 !important;
-    }
-
-    .home-page .funnelBody{
-      padding:22px 30px 24px !important;
-    }
-
-    .home-page .choiceGrid--two{
-      grid-template-columns:1fr 1fr !important;
-      gap:18px !important;
-    }
-
-    .home-page .choiceTile{
-      min-height:188px !important;
-      display:grid !important;
-      grid-template-columns:54px 1fr !important;
-      gap:18px !important;
-      align-items:center !important;
-      padding:26px !important;
-      border-radius:24px !important;
-      border:1px solid #C9D5E5 !important;
-      background:linear-gradient(180deg,#FFFFFF 0%,#F8FAFC 100%) !important;
-      box-shadow:0 12px 28px rgba(15,23,42,.055) !important;
-      text-align:left !important;
-      position:relative !important;
-      overflow:hidden !important;
-    }
-
-    .home-page .choiceTile::after{
-      content:"";
-      position:absolute;
-      top:0;
-      right:0;
-      width:110px;
-      height:110px;
-      background:radial-gradient(circle, rgba(37,99,235,.10), transparent 68%);
-      opacity:.8;
-      pointer-events:none;
-    }
-
-    .home-page .choiceTile:hover{
-      transform:translateY(-4px) !important;
-      border-color:#2563EB !important;
-      box-shadow:0 20px 44px rgba(37,99,235,.14) !important;
-    }
-
-    .home-page .choiceIcon{
-      width:46px !important;
-      height:46px !important;
-      display:grid !important;
-      place-items:center !important;
-      margin:0 !important;
-      border-radius:16px !important;
-      background:#EEF4FF !important;
-      border:1px solid #C7D2FE !important;
-      font-size:21px !important;
-      box-shadow:0 10px 20px rgba(37,99,235,.08) !important;
-    }
-
-    .home-page .choiceTitle{
-      max-width:13ch !important;
-      color:#081A33 !important;
-      font-size:clamp(1.55rem,2.2vw,2.05rem) !important;
-      line-height:1.04 !important;
-      letter-spacing:-.04em !important;
-      font-weight:800 !important;
-    }
-
-    .home-page .choiceSub{
-      max-width:34ch !important;
-      margin-top:10px !important;
-      color:#334155 !important;
-      font-size:14.5px !important;
-      line-height:1.48 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .funnelNote{
-      margin:0 !important;
-      padding:15px 24px 18px !important;
-      background:#F8FAFC !important;
-      border-top:1px solid #E5E7EB !important;
-      color:#334155 !important;
-      font-size:13px !important;
-      font-weight:800 !important;
-      text-align:center !important;
-      letter-spacing:-.01em !important;
-    }
-
-    .home-page .funnelSupport{
-      display:none !important;
-    }
-
-    .home-page .home-metrics,
-    .home-page .home-overview{
-      display:none !important;
-    }
-
-    .home-page .section{
-      padding:46px 0 !important;
-    }
-
-    .home-page .home-links{
-      padding-top:56px !important;
-    }
-
-    .home-page .home-section-head{
-      max-width:none !important;
-      margin-bottom:22px !important;
-    }
-
-    .home-page .home-section-head h2{
-      max-width:16ch !important;
-      margin:0 !important;
-      color:#081A33 !important;
-      font-size:clamp(2rem,3.1vw,3rem) !important;
-      line-height:1.02 !important;
-      letter-spacing:-.04em !important;
-    }
-
-    .home-page .home-section-head p{
-      max-width:68ch !important;
-      margin:12px 0 0 !important;
-      color:#475569 !important;
-      font-size:15.5px !important;
-      line-height:1.65 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-eyebrow{
-      margin-bottom:10px !important;
-    }
-
-    .home-page .home-link-grid{
-      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      gap:16px !important;
-    }
-
-    .home-page .home-link-card,
-    .home-page .home-listing-card,
-    .home-page .home-article-card{
-      border-radius:22px !important;
-      background:#FFFFFF !important;
-      border:1px solid #DDE5F0 !important;
-      box-shadow:0 14px 32px rgba(15,23,42,.055) !important;
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
-    }
-
-    .home-page .home-link-card:hover,
-    .home-page .home-listing-card:hover,
-    .home-page .home-article-card:hover{
-      transform:translateY(-3px) !important;
-      border-color:#BFD2F5 !important;
-      box-shadow:0 20px 42px rgba(15,23,42,.09) !important;
-    }
-
-    .home-page .home-link-card{
-      min-height:218px !important;
-      padding:24px !important;
-    }
-
-    .home-page .home-link-card h3,
-    .home-page .home-listing-card h3,
-    .home-page .home-article-card h3{
-      color:#081A33 !important;
-      letter-spacing:-.025em !important;
-    }
-
-    .home-page .home-link-card h3{
-      font-size:1.28rem !important;
-      line-height:1.12 !important;
-    }
-
-    .home-page .home-link-card p{
-      margin:0 !important;
-      color:#475569 !important;
-      font-size:14px !important;
-      line-height:1.6 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-featured{
-      padding-top:38px !important;
-    }
-
-    .home-page .home-listing-grid{
-      grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-      gap:16px !important;
-    }
-
-    .home-page .home-listing-card{
-      min-height:198px !important;
-      padding:24px !important;
-    }
-
-    .home-page .home-listing-card h3{
-      font-size:1.24rem !important;
-      line-height:1.22 !important;
-    }
-
-    .home-page .home-listing-card p{
-      margin:0 0 12px !important;
-      color:#475569 !important;
-      font-size:14px !important;
-      line-height:1.58 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-featured-note{
-      max-width:78ch !important;
-      margin:18px 0 0 !important;
-      color:#475569 !important;
-      font-size:15px !important;
-      line-height:1.65 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-text-link{
-      color:#2563EB !important;
-      font-weight:800 !important;
-    }
-
-    .home-page .home-articles{
-      padding-top:34px !important;
-    }
-
-    .home-page .home-article-grid{
-      grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-      gap:16px !important;
-    }
-
-    .home-page .home-article-card{
-      min-height:190px !important;
-      padding:23px !important;
-    }
-
-    .home-page .home-article-card h3{
-      font-size:1.08rem !important;
-      line-height:1.25 !important;
-    }
-
-    .home-page .home-article-card p{
-      margin:0 !important;
-      color:#64748B !important;
-      font-size:13.5px !important;
-      line-height:1.52 !important;
-      font-weight:600 !important;
-    }
-
-    .home-page .home-cta-band{
-      padding-top:36px !important;
-      padding-bottom:70px !important;
-    }
-
-    .home-page .home-cta-panel{
-      border-radius:28px !important;
-      padding:32px !important;
-      background:
-        radial-gradient(circle at top right, rgba(96,165,250,.24), transparent 30%),
-        linear-gradient(135deg,#081A33 0%,#111827 100%) !important;
-      box-shadow:0 26px 70px rgba(15,23,42,.20) !important;
-    }
-
-    .home-page .home-cta-panel h2{
-      max-width:15ch !important;
-      font-size:clamp(2rem,3vw,3rem) !important;
-      line-height:1 !important;
-      letter-spacing:-.045em !important;
-    }
-
-    .home-page .home-cta-panel p{
-      max-width:52ch !important;
-      color:rgba(255,255,255,.78) !important;
-      font-size:15px !important;
-      line-height:1.6 !important;
-      font-weight:600 !important;
-    }
-
-    @media(max-width:1100px){
-      .home-page .home-link-grid,
-      .home-page .home-article-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-      }
-    }
-
-    @media(max-width:720px){
-      .home-page .hero--funnel{
-        padding:16px 0 36px !important;
-      }
-
-      .home-page .hero--funnel .container{
-        padding:0 14px !important;
-      }
-
-      .home-page .heroTop{
-        min-height:0 !important;
-        padding:26px 18px 90px !important;
-        border-radius:22px !important;
-      }
-
-      .home-page .heroTitle{
-        max-width:10ch !important;
-        font-size:clamp(2.55rem,12vw,3.75rem) !important;
-      }
-
-      .home-page .heroLead{
-        font-size:15.5px !important;
-      }
-
-      .home-page .home-hero-actions{
-        flex-direction:column !important;
-        align-items:stretch !important;
-      }
-
-      .home-page .home-hero-proof{
-        display:grid !important;
-        grid-template-columns:1fr 1fr !important;
-        justify-content:center !important;
-      }
-
-      .home-page .home-proof-pill:nth-child(3){
-        grid-column:1 / -1 !important;
-      }
-
-      .home-page .funnelShell{
-        margin-top:-52px !important;
-      }
-
-      .home-page .funnelCardHeader,
-      .home-page .funnelBody{
-        padding-left:18px !important;
-        padding-right:18px !important;
-      }
-
-      .home-page .funnelQuestion{
-        font-size:clamp(2rem,9vw,2.75rem) !important;
-      }
-
-      .home-page .choiceGrid--two,
-      .home-page .home-link-grid,
-      .home-page .home-listing-grid,
-      .home-page .home-article-grid{
-        grid-template-columns:1fr !important;
-      }
-
-      .home-page .choiceTile{
-        min-height:156px !important;
-        grid-template-columns:44px 1fr !important;
-        padding:20px !important;
-      }
-
-      .home-page .choiceIcon{
-        width:38px !important;
-        height:38px !important;
-      }
-
-      .home-page .choiceTitle{
-        max-width:12ch !important;
-        font-size:clamp(1.55rem,7.5vw,2.1rem) !important;
-      }
-
-      .home-page .section{
-        padding:36px 0 !important;
-      }
-
-      .home-page .home-links{
-        padding-top:42px !important;
-      }
-
-      .home-page .home-cta-panel{
-        grid-template-columns:1fr !important;
-        padding:24px !important;
-      }
-
-      .home-page .home-cta-actions{
-        justify-content:flex-start !important;
-      }
-
-      .home-page .home-cta-actions .btn{
-        width:100% !important;
-      }
-    }
-  </style>
-
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260514-home-balanced-seo-v4">
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260514-home-balanced-seo-v4">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
@@ -825,6 +342,76 @@
             <h3>What Are the Qualifications to Apply for an SBA Loan?</h3>
             <p>Financing basics for buyers preparing to purchase a business.</p>
           </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section home-trust">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Why it works</div>
+          <h2>Built for serious business decisions</h2>
+          <p>Buying or selling a business is not about browsing endlessly. It is about knowing what matters, asking better questions, and moving only when the fit is real.</p>
+        </div>
+
+        <div class="home-trust-grid">
+          <article class="home-trust-card">
+            <h3>Clear buyer path</h3>
+            <p>Start with business type, budget, location, financing readiness, and due diligence before chasing a deal.</p>
+            <a class="home-text-link" href="/buy-a-business/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Buyer Path Trust Section"
+               data-analytics-section="homepage_trust"
+               data-analytics-goal="buyer_consultation">Explore buying</a>
+          </article>
+
+          <article class="home-trust-card">
+            <h3>Stronger seller preparation</h3>
+            <p>Understand value, timing, confidentiality, records, buyer quality, and the work needed before going to market.</p>
+            <a class="home-text-link" href="/sell-your-business/"
+               data-analytics-event="cta_click"
+               data-analytics-label="Seller Path Trust Section"
+               data-analytics-section="homepage_trust"
+               data-analytics-goal="seller_consultation">Prepare to sell</a>
+          </article>
+
+          <article class="home-trust-card">
+            <h3>Practical listings</h3>
+            <p>Review owner-operated business categories with privacy-conscious summaries and useful buyer context.</p>
+            <a class="home-text-link" href="/listings/"
+               data-analytics-event="listing_click"
+               data-analytics-label="Listings Trust Section"
+               data-analytics-section="homepage_trust"
+               data-analytics-goal="listing_view">View listings</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-faq">
+      <div class="container">
+        <div class="home-section-head home-section-head--tight">
+          <div class="home-eyebrow">Questions</div>
+          <h2>Quick answers before you start</h2>
+          <p>Use these basics before you browse listings, prepare to sell, or contact us about your next step.</p>
+        </div>
+
+        <div class="home-faq-list">
+          <details class="home-faq-item">
+            <summary>Can Business Buying and Selling help me buy a business?</summary>
+            <p>Yes. Start with <a href="/listings/">businesses for sale</a>, then review the <a href="/buy-a-business/">buy a business</a> path and buyer guides before requesting more information.</p>
+          </details>
+
+          <details class="home-faq-item">
+            <summary>Can I use this site to prepare to sell my business?</summary>
+            <p>Yes. The <a href="/sell-your-business/">sell your business</a> path helps owners think through valuation, timing, confidentiality, buyer readiness, and next steps.</p>
+          </details>
+
+          <details class="home-faq-item">
+            <summary>Are business listings confidential?</summary>
+            <p>Yes. Listings are presented with privacy in mind. Sensitive business names, exact addresses, and seller details are protected until the right next step.</p>
+          </details>
         </div>
       </div>
     </section>
