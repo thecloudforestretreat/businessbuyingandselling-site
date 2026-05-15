@@ -78,8 +78,8 @@
 }
 </script>
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260514-sell-value-article-final">
-<link rel="stylesheet" href="/assets/css/header.css?v=20260514-sell-value-article-final">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260514-sell-value-highlights-v2">
+<link rel="stylesheet" href="/assets/css/header.css?v=20260514-sell-value-highlights-v2">
 
 <style>
 /* Scoped article refinement only: keeps this quick-read blog consistent without changing global CSS. */
@@ -154,16 +154,47 @@ body.bbx-article-page.sell-value-article .sell-value-faq h2{
   letter-spacing:-.035em;
 }
 body.bbx-article-page.sell-value-article .sell-value-highlights ul{
+  list-style:none;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px 26px;
+  gap:0 34px;
   margin:0;
-  padding-left:18px;
+  padding:0;
 }
 body.bbx-article-page.sell-value-article .sell-value-highlights li{
+  position:relative;
+  min-height:54px;
+  padding:15px 0 15px 34px;
   color:#334155;
   font-size:.98rem;
   line-height:1.55;
+  border-top:1px solid #e8eef7;
+}
+body.bbx-article-page.sell-value-article .sell-value-highlights li:nth-child(1),
+body.bbx-article-page.sell-value-article .sell-value-highlights li:nth-child(2){
+  border-top:0;
+}
+body.bbx-article-page.sell-value-article .sell-value-highlights li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:21px;
+  width:15px;
+  height:15px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#7c3aed 0%,#2563eb 100%);
+  box-shadow:0 0 0 5px rgba(37,99,235,.10);
+}
+body.bbx-article-page.sell-value-article .sell-value-highlights li::after{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:25px;
+  width:5px;
+  height:8px;
+  border-right:2px solid #fff;
+  border-bottom:2px solid #fff;
+  transform:rotate(45deg);
 }
 body.bbx-article-page.sell-value-article .sell-value-cta{
   margin-top:22px;
@@ -224,6 +255,9 @@ body.bbx-article-page.sell-value-article .sell-value-panel a{
   }
   body.bbx-article-page.sell-value-article .sell-value-highlights ul{
     grid-template-columns:1fr;
+  }
+  body.bbx-article-page.sell-value-article .sell-value-highlights li:nth-child(2){
+    border-top:1px solid #e8eef7;
   }
   body.bbx-article-page.sell-value-article .sell-value-cta{
     grid-template-columns:1fr;
@@ -291,11 +325,11 @@ data-analytics-goal="contact_submit">Contact Us</a>
 <h2>Highlights</h2>
 <ul>
 <li>Clean financial reporting improves buyer confidence.</li>
-<li>Stable operations make the business feel easier to transfer.</li>
+<li>Stable operations make the business easier to transfer.</li>
 <li>Lower owner dependence can support stronger offers.</li>
 <li>Realistic pricing keeps serious negotiations moving.</li>
 <li>Documented systems help buyers understand the business faster.</li>
-<li>Early preparation reduces friction during due diligence.</li>
+<li>Early preparation reduces friction during diligence.</li>
 </ul>
 </div>
 
