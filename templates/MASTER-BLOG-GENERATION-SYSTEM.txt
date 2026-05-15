@@ -196,3 +196,106 @@ CANONICAL:
 
 ARTICLE BODY:
 (fully written)
+
+
+==================================================
+2026 BLOG UX + CRO OVERRIDE RULES
+==================================================
+
+All future blog posts must follow these rules.
+
+PRIMARY GOAL
+- Quick informative read
+- Strong SEO signals
+- Clear CTA path
+- Minimal scrolling
+- Premium editorial feel
+
+DO NOT CREATE
+- Endless scrolling articles
+- 5-7 large sections
+- Repetitive boxed layouts
+- Giant comparison grids
+- Multiple stacked cards
+- Long educational copy
+- Generic filler content
+
+NEW REQUIRED BLOG STRUCTURE
+==================================================
+
+1. Large full-width hero
+   - same visual system as homepage/service pages
+   - strong left alignment
+   - image background preferred
+   - max 2 CTA buttons
+
+2. Intro section
+   - maximum 2 paragraphs TOTAL
+   - concise and practical
+   - keyword naturally included
+
+3. Highlights section
+   - 4 to 6 bullets only
+   - symmetrical balanced layout
+   - premium spacing
+   - quick scanning UX
+
+4. CTA section
+   - compact
+   - direct
+   - no oversized marketing copy
+
+5. FAQ section
+   - 3 concise FAQs maximum
+
+6. Internal links / related reads
+   - tightly relevant only
+
+CONTENT STYLE
+==================================================
+
+Write like:
+- an experienced business advisor
+- a practical operator
+- a serious broker
+
+Do NOT sound like:
+- AI-generated SEO spam
+- an ebook
+- a course
+- a chapter in a textbook
+
+TARGET EXPERIENCE
+==================================================
+
+The user should:
+- understand the topic quickly
+- gain immediate value
+- trust the business
+- take action fast
+
+The ideal feeling is:
+"high-end advisory website"
+not
+"SEO content farm."
+
+VISUAL RULES
+==================================================
+
+- Maintain strong alignment and symmetry
+- Avoid awkward gaps
+- Avoid uneven chip rows
+- Avoid random card stacks
+- Keep layouts balanced
+- Every section must justify its existence
+
+SEO RULES
+==================================================
+
+Even with shorter articles:
+- maintain strong keyword placement
+- preserve internal linking
+- include FAQ schema when FAQs exist
+- include CTA intent alignment
+- maintain semantic relevance
+- maintain commercial search intent optimization
