@@ -414,6 +414,82 @@ Never mark up fake reviews, fake ratings, or invisible FAQs.
 BLOG ARTICLE TEMPLATE
 ============================================================
 
+IMPORTANT BLOG UX RULES
+============================================================
+
+Blog articles must feel:
+- fast to read
+- practical
+- visually clean
+- high-end
+- conversion-oriented
+- SEO-maximized without feeling long
+
+Do NOT create:
+- endless scrolling pages
+- stacked repetitive cards
+- oversized FAQ sections
+- excessive boxed layouts
+- chapter-style educational content
+- long intros
+- filler paragraphs
+- decorative sections without purpose
+
+Preferred blog structure:
+1. Full-width consistent hero
+2. 1 short intro section (2 paragraphs max total)
+3. Highlights section
+   - 4 to 6 concise bullets
+   - balanced/symmetrical layout
+   - premium spacing
+4. Single CTA section
+5. FAQ section
+6. Internal links / related reads
+
+Blog articles should usually stay visually compact and feel "in and out."
+
+============================================================
+BLOG HERO RULES
+============================================================
+
+All blog hero sections should:
+- visually align with homepage/buy/sell hero system
+- use large full-width image backgrounds
+- maintain strong left alignment
+- avoid small boxed hero cards
+- avoid uneven spacing
+- use the same visual language site-wide
+
+Hero image containers should feel premium:
+- large enough for impact
+- not overly tall
+- no awkward empty gaps
+- mobile-friendly
+
+============================================================
+CONTENT DENSITY RULE
+============================================================
+
+Use:
+- 1 to 2 concise paragraphs TOTAL before highlights
+- practical bullets
+- clear internal links
+- actionable insights
+- short FAQs
+
+Avoid:
+- over-explaining
+- repeating the same point
+- long educational sections
+- multiple repetitive card grids
+
+The site should feel like:
+"clear guidance from experienced advisors"
+not
+"a giant content farm article."
+
+============================================================
+
 Use this for every blog post.
 
 Inputs:
