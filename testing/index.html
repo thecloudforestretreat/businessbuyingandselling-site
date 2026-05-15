@@ -33,702 +33,909 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260514-listings-final">
-<link rel="stylesheet" href="/assets/css/header.css?v=20260514-listings-final">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260514-listings-10-final-v2">
+<link rel="stylesheet" href="/assets/css/header.css?v=20260514-listings-10-final-v2">
 
 <style>
-.listings-shell{
-  width:min(1180px,calc(100% - 32px));
-  margin:0 auto;
+.skip-link{
+  position:absolute;
+  left:-999px;
+  top:12px;
+  z-index:9999;
+  padding:10px 14px;
+  border-radius:12px;
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  color:#1F2937;
 }
+.skip-link:focus{ left:12px; }
+
+body.bbas-page{
+  background:#FAFAFA;
+  color:#1F2937;
+  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.bbas-main{ padding:22px 0 56px; }
+.bbas-container{ width:min(1120px, calc(100% - 32px)); margin:0 auto; }
 
 .listings-hero{
   position:relative;
   overflow:hidden;
   border-radius:28px;
-  padding:40px;
-  margin-top:20px;
+  min-height:430px;
+  padding:44px;
+  display:flex;
+  align-items:center;
   background:
-    linear-gradient(90deg,rgba(8,15,32,.92) 0%,rgba(8,15,32,.82) 42%,rgba(8,15,32,.52) 100%),
+    linear-gradient(
+      90deg,
+      rgba(17,24,39,.92) 0%,
+      rgba(17,24,39,.82) 42%,
+      rgba(17,24,39,.54) 100%
+    ),
     url("/assets/images/bbas_homepage_hero_03.jpg");
   background-size:cover;
-  background-position:center;
-  box-shadow:0 24px 60px rgba(15,23,42,.16);
+  background-position:center center;
+  background-repeat:no-repeat;
+  box-shadow:0 22px 54px rgba(15,23,42,.16);
 }
-
-.listings-hero-grid{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:28px;
-  align-items:end;
+.listings-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.28) 100%);
+  pointer-events:none;
 }
+.listings-hero > *{ position:relative; z-index:1; }
 
 .hero-badge{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  padding:8px 14px;
+  padding:8px 12px;
   border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  color:#fff;
-  font-size:12px;
-  font-weight:700;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.90);
+  font-size:13px;
+  font-weight:600;
 }
-
-.hero-badge::before{
-  content:"";
+.hero-badge .dot{
   width:9px;
   height:9px;
   border-radius:999px;
   background:#60A5FA;
+  box-shadow:0 0 0 6px rgba(96,165,250,.18);
+}
+
+.hero-grid{
+  display:block;
+  margin-top:16px;
+  max-width:760px;
 }
 
 .listings-hero h1{
-  margin:18px 0 16px;
-  color:#fff;
-  font-size:clamp(3.2rem,5vw,5.4rem);
-  line-height:.96;
-  letter-spacing:-.05em;
-  max-width:9ch;
-}
-
-.hero-copy{
-  max-width:680px;
+  margin:18px 0 14px;
+  color:#FFFFFF;
+  font-size:clamp(3rem,5.6vw,5.2rem);
+  line-height:.98;
+  letter-spacing:-0.055em;
+  font-weight:800;
+  max-width:10ch;
+  text-shadow:0 3px 12px rgba(0,0,0,.28);
 }
 
 .hero-copy p{
-  margin:0 0 14px;
-  color:rgba(255,255,255,.92);
-  line-height:1.72;
+  margin:0 0 16px;
+  color:#FFFFFF;
   font-size:16px;
+  line-height:1.72;
+  font-weight:500;
+  max-width:700px;
 }
 
 .hero-actions{
   display:flex;
-  gap:14px;
-  margin-top:24px;
+  gap:12px;
   flex-wrap:wrap;
+  margin-top:18px;
 }
 
 .hero-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:48px;
-  padding:0 20px;
+  min-height:46px;
+  padding:0 18px;
   border-radius:999px;
-  text-decoration:none;
-  font-weight:700;
+  border:1px solid transparent;
   font-size:14px;
-  transition:.2s ease;
+  font-weight:700;
+  text-decoration:none;
+  transition:all .18s ease;
 }
-
+.hero-btn:hover{ transform:translateY(-1px); }
 .hero-btn-primary{
   background:#2563EB;
-  color:#fff;
+  color:#FFFFFF;
+  box-shadow:0 14px 28px rgba(37,99,235,.22);
 }
-
+.hero-btn-primary:hover{ background:#1D4ED8; }
 .hero-btn-secondary{
   background:rgba(255,255,255,.10);
-  border:1px solid rgba(255,255,255,.14);
-  color:#fff;
+  border-color:rgba(255,255,255,.18);
+  color:#FFFFFF;
+}
+.hero-btn-secondary:hover{
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,255,255,.28);
 }
 
-.hero-btn:hover{
-  transform:translateY(-1px);
+.hero-pills{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:10px;
+  margin-top:20px;
+}
+.hero-pill{
+  display:inline-flex;
+  align-items:center;
+  min-height:32px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  color:rgba(255,255,255,.78);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
 }
 
-.hero-highlights{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
 
-.hero-highlight{
-  padding:18px;
-  border-radius:18px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(8px);
-}
 
-.hero-highlight strong{
-  display:block;
-  color:#fff;
-  margin-bottom:6px;
-  font-size:15px;
-}
 
-.hero-highlight span{
-  color:rgba(255,255,255,.82);
-  font-size:13px;
-  line-height:1.6;
-}
 
-.listings-intro{
-  padding:30px 12px 12px;
-  max-width:920px;
-}
+.section{ margin-top:24px; }
 
-.listings-intro p{
-  font-size:16px;
-  line-height:1.8;
-  color:#374151;
-  margin:0 0 18px;
-}
-
-.quick-points{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
-  margin-top:22px;
-}
-
-.quick-point{
-  background:#fff;
+.section-card{
+  background:#FFFFFF;
   border:1px solid #E5E7EB;
-  border-radius:18px;
-  padding:18px;
+  border-radius:20px;
+  padding:24px;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
 }
 
-.quick-point strong{
-  display:block;
-  margin-bottom:6px;
-  color:#111827;
-  font-size:15px;
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  min-height:32px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#EEF4FF;
+  border:1px solid #BFDBFE;
+  color:#2563EB;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.02em;
+  margin-bottom:12px;
 }
 
-.quick-point span{
-  color:#4B5563;
-  line-height:1.6;
-  font-size:13px;
+.section-card h2{
+  margin:0 0 10px;
+  font-size:clamp(1.8rem,3vw,2.3rem);
+  letter-spacing:-0.02em;
 }
 
-.section-title{
-  margin:46px 0 20px;
-}
-
-.section-title h2{
-  margin:0 0 8px;
-  font-size:clamp(2rem,3vw,3rem);
-  letter-spacing:-.03em;
-  color:#111827;
-}
-
-.section-title p{
-  margin:0;
-  color:#4B5563;
-  line-height:1.7;
+.section-card > p{
+  margin:0 0 16px;
+  max-width:860px;
 }
 
 .listings-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:22px;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:20px;
 }
 
 .listing-card{
-  overflow:hidden;
-  border-radius:24px;
-  background:#fff;
+  background:#FFFFFF;
   border:1px solid #E5E7EB;
-  box-shadow:0 16px 40px rgba(15,23,42,.08);
+  border-radius:22px;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
 }
 
-.listing-image{
-  height:280px;
+.listing-media{
+  padding:16px 16px 0;
+}
+
+.listing-carousel{
+  display:grid;
+  grid-template-columns:2.1fr 1fr;
+  gap:10px;
+}
+
+.listing-main-image,
+.listing-side-stack span{
+  display:block;
+  border-radius:16px;
+  overflow:hidden;
+  background:#0F172A;
+}
+
+.listing-main-image{
+  min-height:224px;
   background-size:cover;
   background-position:center;
 }
 
-.listing-content{
-  padding:24px;
+.listing-side-stack{
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  gap:10px;
 }
 
-.listing-meta{
+.listing-side-stack span{
+  min-height:107px;
+  background-size:cover;
+  background-position:center;
+}
+
+.listing-body{
+  padding:18px 18px 20px;
   display:flex;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:14px;
+  flex-direction:column;
+  flex:1;
+}
+
+.listing-topline{
+  display:flex;
   flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  margin-bottom:12px;
 }
 
 .listing-type{
   display:inline-flex;
   align-items:center;
   min-height:30px;
-  padding:6px 12px;
+  padding:6px 10px;
   border-radius:999px;
-  background:#EEF4FF;
-  color:#2563EB;
+  background:#F8FAFC;
+  border:1px solid #E5E7EB;
+  color:#64748B;
   font-size:11px;
   font-weight:800;
   letter-spacing:.03em;
+  text-transform:uppercase;
 }
 
-.listing-location{
+.listing-region{
   color:#64748B;
   font-size:13px;
   font-weight:600;
 }
 
 .listing-card h3{
-  margin:0 0 12px;
-  font-size:1.8rem;
-  line-height:1.1;
-  letter-spacing:-.03em;
+  margin:0 0 10px;
+  font-size:clamp(1.35rem,2.2vw,1.7rem);
+  line-height:1.16;
 }
 
-.listing-card p{
+.listing-summary{
   color:#4B5563;
-  line-height:1.75;
-  margin:0 0 18px;
+  font-size:14px;
+  line-height:1.72;
+  margin-bottom:16px;
 }
 
-.metric-row{
+.metric-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-  margin-bottom:20px;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:10px;
+  margin-bottom:18px;
 }
 
 .metric{
-  padding:14px;
-  border-radius:16px;
   background:#F8FAFC;
   border:1px solid #E5E7EB;
+  border-radius:14px;
+  padding:12px;
 }
 
 .metric strong{
   display:block;
-  margin-bottom:4px;
   color:#111827;
+  font-size:16px;
+  line-height:1.2;
+  margin-bottom:4px;
 }
 
 .metric span{
+  display:block;
   color:#64748B;
   font-size:12px;
+  line-height:1.45;
 }
 
 .listing-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:auto;
+}
+
+.listing-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 16px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-size:14px;
+  font-weight:700;
+  text-decoration:none;
+  transition:all .18s ease;
+}
+.listing-btn:hover{ transform:translateY(-1px); }
+.listing-btn-primary{
+  background:#2563EB;
+  color:#FFFFFF;
+  box-shadow:0 14px 28px rgba(37,99,235,.18);
+}
+.listing-btn-primary:hover{ background:#1D4ED8; }
+.listing-btn-secondary{
+  background:#FFFFFF;
+  color:#1F2937;
+  border-color:#D1D5DB;
+}
+.listing-btn-secondary:hover{
+  border-color:#C7D2FE;
+  box-shadow:0 1px 2px rgba(15,23,42,.06);
+}
+
+.resource-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:16px;
+}
+
+.resource-card{
+  background:#FFFFFF;
+  border:1px solid #E5E7EB;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+
+.resource-card h3{
+  margin:0 0 8px;
+  font-size:1.08rem;
+  line-height:1.3;
+}
+
+.resource-card p{
+  margin:0;
+  color:#4B5563;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.resource-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:auto;
+  padding-top:14px;
+  color:#2563EB;
+  font-size:14px;
+  font-weight:700;
+}
+
+.cta-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:20px;
+  align-items:center;
+  background:linear-gradient(135deg,#0F172A 0%, #16233B 100%);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:0 18px 42px rgba(15,23,42,.12);
+}
+.cta-panel h2{
+  margin:0 0 8px;
+  color:#FFFFFF;
+}
+.cta-panel p{
+  margin:0;
+  color:rgba(255,255,255,.86);
+  max-width:720px;
+}
+.cta-actions{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
 }
 
-.resources{
-  margin-top:54px;
-  padding:34px;
-  border-radius:28px;
-  background:#fff;
-  border:1px solid #E5E7EB;
-}
-
-.resources-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-  margin-top:22px;
-}
-
-.resource{
-  padding:22px;
-  border-radius:18px;
-  background:#F8FAFC;
-  border:1px solid #E5E7EB;
-}
-
-.resource h3{
-  margin:0 0 10px;
-  font-size:1.2rem;
-  line-height:1.3;
-}
-
-.resource p{
-  margin:0 0 14px;
-  color:#4B5563;
-  line-height:1.7;
-}
-
-.resource a{
-  color:#2563EB;
-  font-weight:700;
-  text-decoration:none;
-}
-
-.final-cta{
-  margin:54px 0 70px;
-  padding:34px;
-  border-radius:28px;
-  background:linear-gradient(135deg,#081020 0%,#132750 100%);
-}
-
-.final-cta h2{
-  margin:0 0 12px;
-  color:#fff;
-  font-size:clamp(2rem,3vw,3rem);
-  letter-spacing:-.03em;
-}
-
-.final-cta p{
-  margin:0;
-  color:rgba(255,255,255,.84);
-  line-height:1.75;
-  max-width:760px;
-}
-
-.final-cta .hero-actions{
-  margin-top:22px;
-}
-
 @media (max-width:980px){
-  .listings-hero-grid,
-  .listings-grid,
-  .resources-grid,
-  .quick-points{
+  .hero-grid,
+  .cta-panel{
     grid-template-columns:1fr;
   }
 
-  .metric-row{
-    grid-template-columns:1fr 1fr;
+  .listings-grid,
+  .resource-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cta-actions{
+    justify-content:flex-start;
   }
 }
 
 @media (max-width:720px){
-  .listings-shell{
-    width:min(1180px,calc(100% - 22px));
-  }
-
-  .listings-hero{
-    padding:26px 20px;
-  }
-
+  .bbas-main{ padding:18px 0 44px; }
+  .bbas-container{ width:min(1120px, calc(100% - 24px)); }
+  .listings-hero{ min-height:0; padding:26px 20px; }
+  .listings-hero h1{
+  margin:18px 0 14px;
+  color:#FFFFFF;
+  font-size:clamp(3rem,5.6vw,5.2rem);
+  line-height:.98;
+  letter-spacing:-0.055em;
+  font-weight:800;
+  max-width:10ch;
+  text-shadow:0 3px 12px rgba(0,0,0,.28);
+}
   .hero-actions,
+  .cta-actions,
   .listing-actions{
     flex-direction:column;
+    align-items:stretch;
   }
-
-  .hero-btn{
+  .hero-btn,
+  .listing-btn{
     width:100%;
   }
-
-  .metric-row,
-  .hero-highlights{
+  .side-grid,
+  .metric-grid{
     grid-template-columns:1fr;
   }
-
-  .listing-image{
-    height:220px;
+  .section-card{
+    padding:20px 16px;
   }
+  .listing-body{
+    padding:16px 16px 18px;
+  }
+  .listing-media{
+    padding:12px 12px 0;
+  }
+  .listing-carousel{
+    grid-template-columns:1fr;
+  }
+  .listing-main-image{
+    min-height:220px;
+  }
+  .listing-side-stack{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:none;
+  }
+  .listing-side-stack span{
+    min-height:86px;
+  }
+  .hero-pills{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:10px;
+  margin-top:20px;
+}
 }
 </style>
 </head>
 
-<body class="bbas-page listings-page" data-page-type="listings_page" data-primary-goal="listing_view">
-
+<body class="bbas-page bbas-listings-page" data-page-type="listings_page" data-primary-goal="listing_view">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
 
 <main id="main" class="bbas-main">
-<div class="listings-shell">
+  <div class="bbas-container">
 
-<section class="listings-hero">
-  <div class="listings-hero-grid">
+    <section class="listings-hero">
+      <div class="hero-badge"><span class="dot"></span>Listings</div>
 
-    <div>
-      <div class="hero-badge">Businesses for sale</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Businesses for Sale</h1>
+          <div class="hero-copy">
+            <p>Browse businesses for sale and review confidential opportunities for buyers looking at acquisition, ownership, and local business growth.</p><p>Each opportunity is summarized without personal information, exact addresses, broker names, or private business identifiers while still giving buyers useful context on category, price, revenue profile, and fit.</p>
+          </div>
 
-      <h1>Browse businesses with clearer buyer context.</h1>
+          <div class="hero-actions">
+            <a class="hero-btn hero-btn-primary" href="/buy-a-business/" data-analytics-event="cta_click" data-analytics-label="Buy a Business" data-analytics-location="hero" data-analytics-section="listings_hero" data-analytics-goal="buyer_consultation">Buy a Business</a>
+            <a class="hero-btn hero-btn-secondary" href="/contact/" data-analytics-event="cta_click" data-analytics-label="Talk to Us" data-analytics-location="hero" data-analytics-section="listings_hero" data-analytics-goal="contact_submit">Talk to Us</a>
+          </div>
 
-      <div class="hero-copy">
-        <p>Browse businesses for sale across service, retail, food, automotive, and specialty categories while keeping the process more organized, confidential, and buyer-focused.</p>
-
-        <p>Each listing is structured to help serious buyers compare opportunities faster, understand broad fit, and move into better conversations around valuation, financing, due diligence, and next steps.</p>
-      </div>
-
-      <div class="hero-actions">
-        <a class="hero-btn hero-btn-primary" href="/buy-a-business/" data-analytics-event="cta_click">Buy a Business</a>
-
-        <a class="hero-btn hero-btn-secondary" href="/contact/" data-analytics-event="cta_click">Talk to Us</a>
-      </div>
-    </div>
-
-    <div class="hero-highlights">
-      <div class="hero-highlight">
-        <strong>Confidential presentation</strong>
-        <span>Listings avoid exposing sensitive owner and business information publicly.</span>
-      </div>
-
-      <div class="hero-highlight">
-        <strong>Buyer-focused summaries</strong>
-        <span>Review revenue profile, category fit, and operational context faster.</span>
-      </div>
-
-      <div class="hero-highlight">
-        <strong>Practical acquisition guidance</strong>
-        <span>Connect listings with financing, diligence, and valuation resources.</span>
-      </div>
-
-      <div class="hero-highlight">
-        <strong>Cleaner next steps</strong>
-        <span>Move from browsing into qualified conversations without wasted time.</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="listings-intro">
-
-  <p>Most buyers do not need endless listing descriptions. They need enough information to compare opportunities intelligently, understand likely fit, and decide whether a conversation makes sense. This page is built around that idea.</p>
-
-  <p>Whether you are looking for a first acquisition, a cash-flow business, or a larger operating platform, these opportunities are paired with practical buyer resources designed to help you avoid costly mistakes and make better decisions.</p>
-
-  <div class="quick-points">
-
-    <div class="quick-point">
-      <strong>Owner-operated focus</strong>
-      <span>Built around practical small-business acquisitions.</span>
-    </div>
-
-    <div class="quick-point">
-      <strong>Buyer education</strong>
-      <span>Guides around financing, diligence, and valuation.</span>
-    </div>
-
-    <div class="quick-point">
-      <strong>Confidential listings</strong>
-      <span>Structured summaries without oversharing seller details.</span>
-    </div>
-
-    <div class="quick-point">
-      <strong>Clear next steps</strong>
-      <span>Simple paths into inquiries and buyer conversations.</span>
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-title">
-  <h2>Current businesses for sale</h2>
-  <p>Browse a selection of owner-operated opportunities currently structured for buyer review.</p>
+          <div class="hero-pills">
+            <span class="hero-pill">Owner-operated listings</span>
+            <span class="hero-pill">Buyer-ready summaries</span>
+            <span class="hero-pill">Confidential presentation</span>
+            <span class="hero-pill">Practical next steps</span>
+          </div>
+        </div>
 </div>
+    </section>
 
-<section class="listings-grid">
+    <section class="section">
+      <div class="section-card">
+        <div class="eyebrow">Available opportunities</div>
+        <h2>Current owner-operated listings</h2>
+        <p>These summaries intentionally avoid personal information, exact addresses, business names, and broker details. Placeholder listing images are being used for now and can be swapped later.</p>
 
-<article class="listing-card">
-  <div class="listing-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></div>
+        <div class="listings-grid">
 
-  <div class="listing-content">
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Automotive Service</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Established Brake and Repair Operation</h3>
+              <p class="listing-summary">A service-focused automotive opportunity with a six-figure revenue base and modest staffing profile. Strong fit for a hands-on operator seeking a proven local service business.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$499,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$872,122</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>3</strong><span>Employees</span></div>
+                <div class="metric"><strong>Included</strong><span>Inventory profile</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
+              </div>
+            </div>
+          </article>
 
-    <div class="listing-meta">
-      <span class="listing-type">Automotive Service</span>
-      <span class="listing-location">North Carolina</span>
-    </div>
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Convenience Store</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Standalone Convenience Store Opportunity</h3>
+              <p class="listing-summary">A convenience retail listing positioned for buyers looking for local traffic, simple daily operations, and a category with durable small-business buyer demand.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$625,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>Retail format</strong><span>Business profile</span></div>
+                <div class="metric"><strong>Undisclosed</strong><span>Sales detail</span></div>
+                <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
+              </div>
+            </div>
+          </article>
 
-    <h3>Established Brake and Repair Operation</h3>
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Convenience Store + Grill</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Community Grocery and Grill Concept</h3>
+              <p class="listing-summary">A small-format store and grill concept with local convenience appeal. Suitable for buyers looking for a more hands-on retail and prepared-food hybrid.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$299,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>Grill + grocery</strong><span>Operating model</span></div>
+                <div class="metric"><strong>$65,000</strong><span>Inventory estimate</span></div>
+                <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
+              </div>
+            </div>
+          </article>
 
-    <p>Established local automotive service business with recurring customer demand, manageable staffing, and an operational history suited for a hands-on owner or experienced operator.</p>
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Food Service Bakery</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Bakery and Counter-Service Food Business</h3>
+              <p class="listing-summary">A recognizable food-service format with an established revenue base, suitable for buyers interested in branded daily traffic and structured operating systems.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$450,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$810,000</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>$5K-$10K</strong><span>Inventory estimate</span></div>
+                <div class="metric"><strong>Food service</strong><span>Category fit</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
+              </div>
+            </div>
+          </article>
 
-    <div class="metric-row">
-      <div class="metric">
-        <strong>$499,000</strong>
-        <span>Asking price</span>
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Food Service</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Small Footprint Cafe Opportunity</h3>
+              <p class="listing-summary">A lower-price food-service business with manageable staffing and a smaller purchase price, appealing to buyers looking for a more accessible entry point.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$149,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$252,306</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>3 + owner</strong><span>Staffing</span></div>
+                <div class="metric"><strong>$8,000</strong><span>Inventory estimate</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/buying-a-business-vs-starting-one/">Buying vs Starting</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Medical Transport</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Non-Emergency Medical Transport Business</h3>
+              <p class="listing-summary">A service business with seven-figure asking price territory and substantial revenue scale, likely best suited for an operator or investor comfortable with managed transportation services.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$1,100,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$920,190</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>9</strong><span>Employees</span></div>
+                <div class="metric"><strong>Medical</strong><span>Service category</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Retail Butcher Shop</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Specialty Butcher and Meat Retail Operation</h3>
+              <p class="listing-summary">A niche retail food opportunity with strong sales relative to asking price. This profile may appeal to a buyer who understands specialty retail and local demand patterns.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$150,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$1,278,230</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>4</strong><span>Employees</span></div>
+                <div class="metric"><strong>$35,000</strong><span>Inventory estimate</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Specialty Foods Retail</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Multi-Location Specialty Foods Retail Group</h3>
+              <p class="listing-summary">A larger-ticket specialty retail opportunity with multi-unit characteristics and substantial sales scale. Better suited for a more experienced buyer or investor group.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$2,250,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$2,361,936</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>Multi-location</strong><span>Structure</span></div>
+                <div class="metric"><strong>$125K +/-</strong><span>Inventory estimate</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Retail</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Established Retail Store with Strong Revenue Base</h3>
+              <p class="listing-summary">A general retail opportunity with a meaningful revenue base and inventory component. Suitable for buyers looking for a traditional storefront business with operating history.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$575,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$935,454</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>10</strong><span>Employees</span></div>
+                <div class="metric"><strong>$55,000</strong><span>Inventory estimate</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="listing-card">
+            <div class="listing-media">
+              <div class="listing-carousel">
+                <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
+                <div class="listing-side-stack">
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
+                  <span style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
+                </div>
+              </div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-topline">
+                <span class="listing-type">Service Business</span>
+                <span class="listing-region">North Carolina</span>
+              </div>
+              <h3>Scaled Coin Laundry and Ancillary Revenue Business</h3>
+              <p class="listing-summary">A larger owner-operated service opportunity with substantial sales, larger staffing, and a premium asking price profile. Likely best for buyers seeking a bigger operating platform.</p>
+              <div class="metric-grid">
+                <div class="metric"><strong>$1,690,000</strong><span>Asking price</span></div>
+                <div class="metric"><strong>$879,799</strong><span>Annual sales</span></div>
+                <div class="metric"><strong>22</strong><span>Employees</span></div>
+                <div class="metric"><strong>199</strong><span>Maximum capacity</span></div>
+              </div>
+              <div class="listing-actions">
+                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
+    </section>
 
-      <div class="metric">
-        <strong>$872,122</strong>
-        <span>Annual sales</span>
+    <section class="section">
+      <div class="section-card">
+        <div class="eyebrow">Helpful buyer resources</div>
+        <h2>Use the right guides before you inquire</h2>
+        <p>Listings work better when paired with education. Buyers who understand financing, diligence, and red flags usually make stronger decisions and waste less time.</p>
+
+        <div class="resource-grid">
+          <div class="resource-card">
+            <h3>How to Buy a Small Business Without Costly Mistakes</h3>
+            <p>Start with the core buyer framework before comparing opportunities too quickly.</p>
+            <a class="resource-link" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Read article</a>
+          </div>
+          <div class="resource-card">
+            <h3>Red Flags to Watch for When Buying a Business</h3>
+            <p>Know what to question before enthusiasm turns into avoidable risk.</p>
+            <a class="resource-link" href="/blog/red-flags-when-buying-a-business/">Read article</a>
+          </div>
+          <div class="resource-card">
+            <h3>Due Diligence Checklist for Buying or Selling a Business</h3>
+            <p>Use a structured diligence framework before moving deeper into any deal.</p>
+            <a class="resource-link" href="/blog/due-diligence-checklist-buying-or-selling-business/">Read article</a>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="metric">
-        <strong>3 Employees</strong>
-        <span>Current staffing</span>
+    <section class="section">
+      <div class="cta-panel">
+        <div>
+          <div class="eyebrow" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18);color:#FFFFFF;">Next step</div>
+          <h2>Use listings, buyer education, and direct contact together.</h2>
+          <p>The strongest buyers compare opportunities with context, understand their financing path, and move into serious conversations only after the basics are clear.</p>
+        </div>
+
+        <div class="cta-actions">
+          <a class="hero-btn hero-btn-primary" href="/buy-a-business/" data-analytics-event="cta_click" data-analytics-label="Buy a Business" data-analytics-location="hero" data-analytics-section="listings_hero" data-analytics-goal="buyer_consultation">Buy a Business</a>
+          <a class="hero-btn hero-btn-secondary" href="/contact/">Contact Us</a>
+        </div>
       </div>
-    </div>
-
-    <div class="listing-actions">
-      <a class="hero-btn hero-btn-primary" href="/contact/">Request Information</a>
-      <a class="hero-btn hero-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
-    </div>
+    </section>
 
   </div>
-</article>
-
-<article class="listing-card">
-  <div class="listing-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></div>
-
-  <div class="listing-content">
-
-    <div class="listing-meta">
-      <span class="listing-type">Medical Transport</span>
-      <span class="listing-location">North Carolina</span>
-    </div>
-
-    <h3>Non-Emergency Medical Transport Business</h3>
-
-    <p>Service-focused transportation operation with larger revenue scale, recurring demand characteristics, and a profile better suited for experienced operators or growth-minded buyers.</p>
-
-    <div class="metric-row">
-      <div class="metric">
-        <strong>$1.1M</strong>
-        <span>Asking price</span>
-      </div>
-
-      <div class="metric">
-        <strong>$920K</strong>
-        <span>Annual sales</span>
-      </div>
-
-      <div class="metric">
-        <strong>9 Employees</strong>
-        <span>Current staffing</span>
-      </div>
-    </div>
-
-    <div class="listing-actions">
-      <a class="hero-btn hero-btn-primary" href="/contact/">Request Information</a>
-      <a class="hero-btn hero-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
-    </div>
-
-  </div>
-</article>
-
-<article class="listing-card">
-  <div class="listing-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></div>
-
-  <div class="listing-content">
-
-    <div class="listing-meta">
-      <span class="listing-type">Food Service</span>
-      <span class="listing-location">North Carolina</span>
-    </div>
-
-    <h3>Bakery and Counter-Service Food Business</h3>
-
-    <p>Recognizable local food-service concept with existing revenue, operational systems, and a structure that may appeal to buyers seeking daily customer traffic.</p>
-
-    <div class="metric-row">
-      <div class="metric">
-        <strong>$450,000</strong>
-        <span>Asking price</span>
-      </div>
-
-      <div class="metric">
-        <strong>$810,000</strong>
-        <span>Annual sales</span>
-      </div>
-
-      <div class="metric">
-        <strong>Food Service</strong>
-        <span>Business category</span>
-      </div>
-    </div>
-
-    <div class="listing-actions">
-      <a class="hero-btn hero-btn-primary" href="/contact/">Request Information</a>
-      <a class="hero-btn hero-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
-    </div>
-
-  </div>
-</article>
-
-<article class="listing-card">
-  <div class="listing-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></div>
-
-  <div class="listing-content">
-
-    <div class="listing-meta">
-      <span class="listing-type">Specialty Retail</span>
-      <span class="listing-location">North Carolina</span>
-    </div>
-
-    <h3>Specialty Butcher and Meat Retail Operation</h3>
-
-    <p>High-revenue specialty retail business with strong local positioning and a profile that may appeal to buyers familiar with operational retail businesses.</p>
-
-    <div class="metric-row">
-      <div class="metric">
-        <strong>$150,000</strong>
-        <span>Asking price</span>
-      </div>
-
-      <div class="metric">
-        <strong>$1.27M</strong>
-        <span>Annual sales</span>
-      </div>
-
-      <div class="metric">
-        <strong>4 Employees</strong>
-        <span>Current staffing</span>
-      </div>
-    </div>
-
-    <div class="listing-actions">
-      <a class="hero-btn hero-btn-primary" href="/contact/">Request Information</a>
-      <a class="hero-btn hero-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
-    </div>
-
-  </div>
-</article>
-
-</section>
-
-<section class="resources">
-
-  <div class="section-title" style="margin-top:0;">
-    <h2>Buyer resources worth reviewing first</h2>
-
-    <p>Most acquisition mistakes happen before the deal closes. These resources help buyers evaluate opportunities more carefully before moving deeper into conversations.</p>
-  </div>
-
-  <div class="resources-grid">
-
-    <div class="resource">
-      <h3>How to Buy a Small Business Without Costly Mistakes</h3>
-      <p>Understand what experienced buyers review before moving forward.</p>
-      <a href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Read article</a>
-    </div>
-
-    <div class="resource">
-      <h3>Red Flags When Buying a Business</h3>
-      <p>Learn what often weakens deals, buyer confidence, and future performance.</p>
-      <a href="/blog/red-flags-when-buying-a-business/">Read article</a>
-    </div>
-
-    <div class="resource">
-      <h3>Due Diligence Checklist</h3>
-      <p>Use a cleaner process before reviewing financials, operations, and contracts.</p>
-      <a href="/blog/due-diligence-checklist-buying-or-selling-business/">Read article</a>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="final-cta">
-
-  <h2>Ready to review businesses more seriously?</h2>
-
-  <p>Use the listings, buyer resources, and direct conversations together to evaluate opportunities more confidently and move through the acquisition process with better clarity.</p>
-
-  <div class="hero-actions">
-    <a class="hero-btn hero-btn-primary" href="/buy-a-business/">Buy a Business</a>
-    <a class="hero-btn hero-btn-secondary" href="/contact/">Contact Us</a>
-  </div>
-
-</section>
-
-</div>
 </main>
 
 <div id="siteFooter"></div>
 
 <script src="/assets/js/includes.js"></script>
 <script src="/assets/js/site.js" defer></script>
-
 </body>
 </html>
