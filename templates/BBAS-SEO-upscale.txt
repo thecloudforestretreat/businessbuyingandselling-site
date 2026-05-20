@@ -1,0 +1,181 @@
+BUSINESS BUYING AND SELLING FINAL PRODUCTION SEO UPSCALE + QA + TSV PATCH-SAFE WORKFLOW
+
+Use this prompt for BusinessBuyingAndSelling.com page-by-page SEO upscale work after the master CSV has been generated.
+
+INPUTS TO PROVIDE EACH TIME
+- HTML page file for the page being updated
+- Original TSV row copied from the BBAS master SEO CSV
+- Any relevant global files only if changed: header.html, footer.html, site.css, header.css, site.js, includes.js
+
+PRIMARY GOAL
+Perform a final production pass for the uploaded page and return:
+1. Complete updated downloadable .txt file
+2. Full updated TSV row
+3. Short production QA summary
+
+SITE CONTEXT
+Business Buying and Selling is a business brokerage / marketplace and advisory resource for buyers and sellers of owner-operated businesses. The SEO strategy should strengthen buyer intent, seller intent, confidential listing trust, valuation clarity, financing/due-diligence education, and practical conversion paths to listing inquiry, seller consultation, buyer consultation, and contact forms.
+
+STRATEGIC PRIORITIES
+1. Production stability
+2. Strong buyer/seller conversion paths
+3. Listings, valuation, due diligence, and SBA financing topical authority
+4. Confidentiality and trust signals
+5. Clear internal authority flow from guides/tools to listings/contact
+6. Technical SEO QA
+7. TSV synchronization
+
+CRITICAL TSV RULE
+Never regenerate TSV rows from memory.
+Always patch the original TSV row as the base structure.
+Preserve exact column count, exact column order, exact empty-column placement, and exact trailing empty columns.
+
+TSV COLUMN SAFETY
+The BBAS master CSV contains 138 columns.
+The duplicate header names priority and status must remain exactly where they are.
+Do not collapse duplicate headers.
+Do not remove blank placeholder fields.
+Do not insert new values into url_structure_issue_flags, seo_issue_flags, or content_quality_flags unless that exact field is intentionally being updated.
+
+CRAWL FIELD PRESERVATION
+Crawl-observed fields are historical crawl data from Screaming Frog. Preserve them unless a new crawl export is provided.
+Never manually rewrite:
+- crawl_title
+- crawl_title_length
+- crawl_meta_description
+- crawl_meta_description_length
+- crawl_h1
+- crawl_h1_length
+- crawl_h2_1
+- crawl_canonical
+- crawl_last_modified
+- crawl_language
+- crawl_source_file
+- crawl response/status metrics
+- crawl word count
+- crawl inlink/outlink metrics
+
+CQ / CR / CS SAFETY
+Before returning TSV rows, verify:
+- crawl_last_modified remains in its original column
+- crawl_language remains in its original column
+- crawl_source_file remains in its original column
+- no downstream fields shifted
+
+GSC RULE
+GSC fields represent the imported report state. Do not manually recalculate them during page-upscale work unless the user provides a new GSC export.
+When generating a new master CSV, aggregate GSC URL variants by normalized canonical URL. http/https and www/non-www variants of the same path must be combined before filling clicks, impressions, CTR, and weighted average position.
+
+DOMAIN-SAFE GSC NORMALIZATION RULE
+Allowed hosts for the BBAS master CSV:
+- businessbuyingandselling.com
+- www.businessbuyingandselling.com
+
+Do NOT merge, rewrite, or convert subdomain/external URLs into main-site rows.
+If GSC contains staging, blog, app, CRM, or other subdomain URLs, exclude them from the main-site master CSV unless explicitly requested as a separate audit.
+
+SEO UPSCALE REQUIREMENTS
+Review and improve where needed:
+- title
+- meta description
+- H1/H2 structure
+- semantic coverage
+- internal links
+- buyer/seller CTAs
+- listing inquiry paths
+- confidentiality/trust copy
+- valuation/financing/due-diligence clarity
+- FAQ usefulness
+- schema
+- breadcrumbs
+- Open Graph
+- Twitter metadata
+- canonical
+- image alt text
+- analytics attributes
+
+DO NOT
+- redesign stable pages unnecessarily
+- rewrite global CSS architecture unless broken
+- duplicate header/footer loaders
+- add generic filler content
+- keyword stuff
+- provide legal, tax, valuation, lending, or investment guarantees
+- force unrelated internal links
+- overwrite crawl fields manually
+- place the word resolved into issue-flag columns unless that is explicitly the correct field value
+
+BUSINESS / FINANCIAL CONTENT SAFETY
+Use practical, educational language.
+Do not promise sale price, financing approval, valuation outcome, tax result, legal result, or investment return.
+Encourage professional legal, tax, accounting, lending, or valuation review where appropriate.
+
+SCHEMA RULES
+JSON-LD must parse as valid JSON.
+All schema objects must remain inside the same @graph array when an @graph exists.
+Do not append orphan schema objects after the @graph or root object.
+No trailing commas.
+Use appropriate types such as WebPage, Article, CollectionPage, Service, Organization, WebSite, FAQPage, BreadcrumbList, ContactPage, AboutPage, SoftwareApplication, or LocalBusiness when appropriate.
+
+ANALYTICS RULE
+Preserve centralized tracking architecture and data-analytics attributes.
+Verify CTA, form, listing click, FAQ, internal link, and outbound link tracking where present.
+Do not rebuild analytics unnecessarily.
+
+INTERNAL LINKING RULES
+Add contextual links only where genuinely relevant.
+Prioritize:
+- /listings/
+- /buy-a-business/
+- /sell-your-business/
+- /contact/
+- calculators and due diligence resources
+- tightly related blog guides
+Avoid excessive crosslinking, irrelevant article spam, and authority dilution.
+
+READY TO GO LIVE STANDARD
+Only mark ready/go-live style fields as complete when:
+- SEO metadata is complete
+- canonical is correct
+- schema parses
+- metadata parity is complete
+- header/footer/site.js loading is stable
+- CTAs work
+- internal links are valid
+- buyer/seller conversion paths are clear
+- legal/financial language is safe
+- TSV row alignment is verified
+
+CRAWL BLANK FIELD RULE
+Blank crawl_* fields are valid when a URL exists in the sitemap, planning CSV, or GSC export but does not appear in the Screaming Frog internal HTML crawl export. Do not fill crawl_status_code, crawl_status, crawl_indexability, crawl_depth, crawl_title, crawl_meta_description, crawl_h1, crawl_canonical, crawl_language, or crawl_source_file by inference. Leave crawl fields blank and use audit_status/source flags to show why the row exists.
+
+MASTER CSV EXCLUSION RULE
+The page-level master SEO CSV should not include non-page technical resources such as /assets/ files, /cdn-cgi/ email-protection URLs, scripts, CSS files, images, or implementation assets unless the user explicitly requests a technical asset crawl audit.
+
+FINAL OUTPUT FORMAT
+Return:
+1. Download link for complete updated .txt file
+2. Plain TSV code block with the full updated TSV row
+3. Very short QA note
+
+Do not use markdown tables for TSV.
+Do not quote TSV fields.
+Do not remove trailing tabs.
+Do not return partial snippets.
+
+FINAL TSV VALIDATION
+Before returning TSV rows:
+- validate exact total column count matches the source row
+- validate all downstream columns remain aligned
+- validate CQ crawl_last_modified remains in place
+- validate CR crawl_language remains in place
+- validate CS crawl_source_file remains in place
+- validate trailing empty columns remain preserved
+- validate Google Sheets paste integrity
+
+QA SUMMARY REQUIREMENT
+The QA summary MUST explicitly state:
+- Live page metadata updated: YES/NO
+- Crawl-observed fields preserved intentionally: YES/NO
+- Recrawl required to refresh crawl fields: YES/NO
+- TSV synchronization: passed/failed
