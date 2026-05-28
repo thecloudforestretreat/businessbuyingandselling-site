@@ -179,3 +179,67 @@ The QA summary MUST explicitly state:
 - Crawl-observed fields preserved intentionally: YES/NO
 - Recrawl required to refresh crawl fields: YES/NO
 - TSV synchronization: passed/failed
+
+==================================================
+CLUSTER + AUTHORITY BUILDING RULES
+==================================================
+
+Every page must belong to a cluster.
+
+Examples:
+
+BUYER CLUSTER
+- /buy-a-business/
+- acquisition guides
+- due diligence
+- SBA financing
+- valuation resources
+
+SELLER CLUSTER
+- /sell-your-business/
+- valuation pages
+- exit planning
+- seller financing
+- preparation guides
+
+LISTINGS CLUSTER
+- /listings/
+- listing detail pages
+- industry acquisition pages
+
+LOCAL SEO CLUSTER
+- city pages
+- state pages
+- regional acquisition content
+
+TOOLS CLUSTER
+- calculators
+- templates
+- checklists
+- downloadable resources
+
+Before finalizing any page, provide:
+
+CLUSTER:
+PARENT PAGE:
+CHILD PAGES:
+OUTGOING INTERNAL LINKS:
+RECOMMENDED INLINKS:
+ANCHOR TEXT RECOMMENDATIONS:
+INDEXING PRIORITY:
+SITEMAP STATUS:
+
+No page may exist in isolation.
+
+Every page must strengthen:
+- its cluster
+- its parent page
+- its child pages
+- at least one core conversion page
+
+Required conversion destinations:
+
+/buy-a-business/
+/sell-your-business/
+/listings/
+/contact/
