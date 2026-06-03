@@ -43,7 +43,7 @@
       "name":"SBA Loan Calculator for Buying a Business",
       "applicationCategory":"FinanceApplication",
       "operatingSystem":"Web",
-      "description":"A web calculator that estimates monthly SBA loan payments, loan amount, down payment, and total repayment scenarios for buying a business.",
+      "description":"A web calculator that estimates monthly SBA loan payments, loan amount, down payment, cash to close, and total repayment scenarios for buying a business.",
       "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
     },
     {
@@ -52,7 +52,7 @@
         {
           "@type":"Question",
           "name":"What does an SBA loan calculator estimate?",
-          "acceptedAnswer":{"@type":"Answer","text":"An SBA loan calculator estimates possible loan amount, down payment, monthly payment, total payments, and interest based on purchase price, down payment, rate, and loan term assumptions."}
+          "acceptedAnswer":{"@type":"Answer","text":"An SBA loan calculator estimates possible loan amount, down payment, monthly payment, total payments, cash to close, and interest based on purchase price, down payment, rate, fees, reserves, and loan term assumptions."}
         },
         {
           "@type":"Question",
@@ -70,658 +70,102 @@
 }
 </script>
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260602-sba-calculator-v101">
-<link rel="stylesheet" href="/assets/css/header.css?v=20260602-sba-calculator-v101">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260603-sba-calculator-v102">
+<link rel="stylesheet" href="/assets/css/header.css?v=20260603-sba-calculator-v102">
 
 <style>
-body.bbx-tool-page.sba-calculator-page .tool-hero{
-  position:relative;
-  overflow:hidden;
-  border-radius:24px;
-  min-height:410px;
-  padding:46px;
-  display:flex;
-  align-items:center;
-  background:
-    linear-gradient(90deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.84) 44%,rgba(15,23,42,.54) 100%),
-    url("/assets/images/blog/bbas_blog_01.jpg");
-  background-size:cover;
-  background-position:center;
-  box-shadow:0 22px 54px rgba(15,23,42,.16);
-}
-body.bbx-tool-page.sba-calculator-page .tool-hero__copy{
-  width:min(100%,760px);
-}
-body.bbx-tool-page.sba-calculator-page .tool-hero h1{
-  margin:18px 0 16px;
-  max-width:12ch;
-  color:#fff;
-  font-size:clamp(2.65rem,5vw,4.75rem);
-  line-height:.98;
-  letter-spacing:-.055em;
-  font-weight:800;
-}
-body.bbx-tool-page.sba-calculator-page .tool-hero p{
-  max-width:66ch;
-  margin:0;
-  color:rgba(255,255,255,.92);
-  font-size:1.05rem;
-  line-height:1.65;
-  font-weight:650;
-}
-body.bbx-tool-page.sba-calculator-page .tool-hero .bbx-actions{
-  margin-top:24px;
-}
-body.bbx-tool-page.sba-calculator-page .tool-body{
-  max-width:1040px;
-  margin:24px auto 0;
-}
-body.bbx-tool-page.sba-calculator-page .tool-intro{
-  max-width:900px;
-  margin:0 auto 22px;
-  background:#fff;
-  border:1px solid #dbe6f6;
-  border-radius:22px;
-  padding:26px 28px;
-  box-shadow:0 12px 34px rgba(15,23,42,.08);
-}
-body.bbx-tool-page.sba-calculator-page .tool-intro p{
-  color:#334155;
-  font-size:1rem;
-  line-height:1.78;
-}
-body.bbx-tool-page.sba-calculator-page .tool-intro p + p{
-  margin-top:16px;
-}
-body.bbx-tool-page.sba-calculator-page .tool-intro a,
-body.bbx-tool-page.sba-calculator-page .tool-links a{
-  color:#2563eb;
-  font-weight:800;
-}
-body.bbx-tool-page.sba-calculator-page .calculator-shell{
-  display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
-  gap:20px;
-  align-items:stretch;
-}
-body.bbx-tool-page.sba-calculator-page .calculator-card,
-body.bbx-tool-page.sba-calculator-page .result-card{
-  background:#fff;
-  border:1px solid #dbe6f6;
-  border-radius:24px;
-  padding:26px;
-  box-shadow:0 16px 42px rgba(15,23,42,.09);
-}
-body.bbx-tool-page.sba-calculator-page .calculator-card h2,
-body.bbx-tool-page.sba-calculator-page .result-card h2,
-body.bbx-tool-page.sba-calculator-page .tool-faq h2,
-body.bbx-tool-page.sba-calculator-page .tool-related h2{
-  margin:0 0 14px;
-  color:#1f2937;
-  font-size:clamp(1.65rem,2.4vw,2.2rem);
-  line-height:1.08;
-  letter-spacing:-.035em;
-}
-body.bbx-tool-page.sba-calculator-page .calc-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
-}
-body.bbx-tool-page.sba-calculator-page .field{
-  display:grid;
-  gap:7px;
-}
-body.bbx-tool-page.sba-calculator-page .field label{
-  color:#1f2937;
-  font-size:.88rem;
-  font-weight:850;
-}
-body.bbx-tool-page.sba-calculator-page .field input,
-body.bbx-tool-page.sba-calculator-page .field select{
-  width:100%;
-  min-height:48px;
-  border:1px solid #cbd8ea;
-  border-radius:14px;
-  padding:11px 12px;
-  color:#111827;
-  background:#f8fafc;
-  font-size:1rem;
-  outline:none;
-}
-body.bbx-tool-page.sba-calculator-page .field input:focus,
-body.bbx-tool-page.sba-calculator-page .field select:focus{
-  border-color:#2563eb;
-  box-shadow:0 0 0 4px rgba(37,99,235,.12);
-  background:#fff;
-}
-body.bbx-tool-page.sba-calculator-page .calc-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-body.bbx-tool-page.sba-calculator-page .calc-note{
-  margin-top:14px;
-  color:#64748b;
-  font-size:.9rem;
-  line-height:1.55;
-}
-body.bbx-tool-page.sba-calculator-page .result-number{
-  padding:20px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#081a33 0%,#151235 100%);
-  color:#fff;
-  margin-bottom:14px;
-}
-body.bbx-tool-page.sba-calculator-page .result-number span{
-  display:block;
-  color:rgba(255,255,255,.72);
-  font-size:.86rem;
-  font-weight:800;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-body.bbx-tool-page.sba-calculator-page .result-number strong{
-  display:block;
-  margin-top:8px;
-  font-size:clamp(2rem,4vw,3.2rem);
-  letter-spacing:-.05em;
-  line-height:1;
-}
-body.bbx-tool-page.sba-calculator-page .result-list{
-  display:grid;
-  gap:10px;
-}
-body.bbx-tool-page.sba-calculator-page .result-row{
-  display:flex;
-  justify-content:space-between;
-  gap:16px;
-  padding:13px 0;
-  border-top:1px solid #e5edf8;
-  color:#334155;
-  font-size:.96rem;
-}
-body.bbx-tool-page.sba-calculator-page .result-row:first-child{
-  border-top:0;
-}
-body.bbx-tool-page.sba-calculator-page .result-row strong{
-  color:#111827;
-  text-align:right;
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights{
-  max-width:900px;
-  margin:22px auto 0;
-  background:#fff;
-  border:1px solid #dbe6f6;
-  border-radius:22px;
-  padding:26px 28px;
-  box-shadow:0 12px 34px rgba(15,23,42,.08);
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights h2{
-  margin:0 0 14px;
-  color:#1f2937;
-  font-size:clamp(1.65rem,2.4vw,2.2rem);
-  line-height:1.08;
-  letter-spacing:-.035em;
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights ul{
-  list-style:none;
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:0 34px;
-  margin:0;
-  padding:0;
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights li{
-  position:relative;
-  min-height:54px;
-  padding:15px 0 15px 34px;
-  color:#334155;
-  font-size:.98rem;
-  line-height:1.55;
-  border-top:1px solid #e8eef7;
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(1),
-body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(2){
-  border-top:0;
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:21px;
-  width:15px;
-  height:15px;
-  border-radius:999px;
-  background:linear-gradient(180deg,#7c3aed 0%,#2563eb 100%);
-  box-shadow:0 0 0 5px rgba(37,99,235,.10);
-}
-body.bbx-tool-page.sba-calculator-page .tool-highlights li::after{
-  content:"";
-  position:absolute;
-  left:5px;
-  top:25px;
-  width:5px;
-  height:8px;
-  border-right:2px solid #fff;
-  border-bottom:2px solid #fff;
-  transform:rotate(45deg);
-}
-body.bbx-tool-page.sba-calculator-page .tool-cta{
-  max-width:900px;
-  margin:22px auto 0;
-  border-radius:22px;
-  padding:26px;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:22px;
-  align-items:center;
-  background:linear-gradient(135deg,#081a33 0%,#151235 100%);
-  box-shadow:0 16px 36px rgba(15,23,42,.14);
-}
-body.bbx-tool-page.sba-calculator-page .tool-cta h2{
-  margin:0 0 8px;
-  color:#fff;
-  font-size:clamp(1.6rem,2.6vw,2.2rem);
-  line-height:1.08;
-}
-body.bbx-tool-page.sba-calculator-page .tool-cta p{
-  margin:0;
-  max-width:62ch;
-  color:rgba(255,255,255,.82);
-  line-height:1.6;
-}
-body.bbx-tool-page.sba-calculator-page .tool-faq,
-body.bbx-tool-page.sba-calculator-page .tool-related{
-  max-width:900px;
-  margin:22px auto 0;
-}
-body.bbx-tool-page.sba-calculator-page .bbx-faq-list{
-  display:grid;
-  gap:10px;
-}
-body.bbx-tool-page.sba-calculator-page .bbx-faq-item{
-  padding:18px;
-}
-body.bbx-tool-page.sba-calculator-page .tool-related{
-  background:#fff;
-  border:1px solid #dbe6f6;
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 12px 34px rgba(15,23,42,.06);
-}
-body.bbx-tool-page.sba-calculator-page .tool-related-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-}
-body.bbx-tool-page.sba-calculator-page .tool-related-card{
-  display:block;
-  padding:16px;
-  border-radius:16px;
-  background:#f8fafc;
-  border:1px solid #e5edf8;
-  text-decoration:none;
-  color:#1f2937;
-}
-body.bbx-tool-page.sba-calculator-page .tool-related-card strong{
-  display:block;
-  font-size:.98rem;
-  line-height:1.25;
-  margin-bottom:8px;
-  color:#111827;
-}
-body.bbx-tool-page.sba-calculator-page .tool-related-card span{
-  display:block;
-  color:#64748b;
-  font-size:.9rem;
-  line-height:1.45;
-}
-body.bbx-tool-page.sba-calculator-page .bbx-authority-note{
-  max-width:900px;
-  margin:18px auto 0;
-  padding:18px;
-  border-radius:18px;
-  background:#f8fafc;
-  border:1px solid #e5edf8;
-  color:#475569;
-  font-size:.94rem;
-  line-height:1.65;
-}
-@media (max-width:820px){
-  body.bbx-tool-page.sba-calculator-page .calculator-shell{
-    grid-template-columns:1fr;
-  }
-}
-@media (max-width:720px){
-  body.bbx-tool-page.sba-calculator-page .tool-hero{
-    min-height:0;
-    padding:26px 20px;
-    border-radius:22px;
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-hero h1{
-    font-size:clamp(2.25rem,10vw,3.35rem);
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-intro,
-  body.bbx-tool-page.sba-calculator-page .calculator-card,
-  body.bbx-tool-page.sba-calculator-page .result-card,
-  body.bbx-tool-page.sba-calculator-page .tool-highlights,
-  body.bbx-tool-page.sba-calculator-page .tool-cta,
-  body.bbx-tool-page.sba-calculator-page .tool-related{
-    padding:20px;
-  }
-  body.bbx-tool-page.sba-calculator-page .calc-grid,
-  body.bbx-tool-page.sba-calculator-page .tool-highlights ul,
-  body.bbx-tool-page.sba-calculator-page .tool-related-grid{
-    grid-template-columns:1fr;
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(2){
-    border-top:1px solid #e8eef7;
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-cta{
-    grid-template-columns:1fr;
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-cta .bbx-cta-actions,
-  body.bbx-tool-page.sba-calculator-page .calc-actions{
-    align-items:stretch;
-    flex-direction:column;
-  }
-  body.bbx-tool-page.sba-calculator-page .tool-cta .btn,
-  body.bbx-tool-page.sba-calculator-page .calc-actions .btn{
-    width:100%;
-  }
-}
+body.bbx-tool-page.sba-calculator-page{background:radial-gradient(circle at top left, rgba(37,99,235,.08), transparent 34rem),linear-gradient(180deg,#f8fafc 0%,#f6f8fb 100%)}
+body.bbx-tool-page.sba-calculator-page .tool-hero{position:relative;overflow:hidden;border-radius:28px;min-height:430px;padding:48px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(7,17,34,.96) 0%,rgba(8,27,55,.88) 45%,rgba(8,27,55,.48) 100%),url("/assets/images/blog/bbas_blog_01.jpg");background-size:cover;background-position:center;box-shadow:0 26px 64px rgba(15,23,42,.18)}
+body.bbx-tool-page.sba-calculator-page .tool-hero::after{content:"";position:absolute;inset:auto 0 0;height:44%;background:linear-gradient(180deg,transparent,rgba(5,12,25,.38));pointer-events:none}
+body.bbx-tool-page.sba-calculator-page .tool-hero__copy{position:relative;z-index:1;width:min(100%,780px)}
+body.bbx-tool-page.sba-calculator-page .tool-hero h1{margin:18px 0 16px;max-width:13ch;color:#fff;font-size:clamp(2.7rem,5vw,4.9rem);line-height:.96;letter-spacing:-.06em;font-weight:850;text-shadow:0 4px 20px rgba(0,0,0,.22)}
+body.bbx-tool-page.sba-calculator-page .tool-hero p{max-width:64ch;margin:0;color:rgba(255,255,255,.92);font-size:1.08rem;line-height:1.68;font-weight:650}
+body.bbx-tool-page.sba-calculator-page .tool-hero .bbx-actions{margin-top:24px}
+body.bbx-tool-page.sba-calculator-page .tool-trust-row{display:flex;flex-wrap:wrap;gap:18px 28px;margin-top:28px}
+body.bbx-tool-page.sba-calculator-page .tool-trust-item{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:center;min-width:180px}
+body.bbx-tool-page.sba-calculator-page .tool-trust-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:14px;border:1px solid rgba(147,197,253,.34);background:rgba(37,99,235,.18);color:#93c5fd;font-size:19px}
+body.bbx-tool-page.sba-calculator-page .tool-trust-item strong{display:block;color:#fff;font-size:.92rem;line-height:1.25}
+body.bbx-tool-page.sba-calculator-page .tool-trust-item span{display:block;margin-top:3px;color:rgba(255,255,255,.72);font-size:.8rem;line-height:1.35}
+body.bbx-tool-page.sba-calculator-page .tool-body{max-width:1120px;margin:-54px auto 0;position:relative;z-index:3}
+body.bbx-tool-page.sba-calculator-page .calculator-shell{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);gap:22px;align-items:stretch;padding:24px;border-radius:28px;background:rgba(255,255,255,.86);border:1px solid rgba(191,219,254,.9);box-shadow:0 28px 70px rgba(15,23,42,.13),inset 0 1px 0 rgba(255,255,255,.86);backdrop-filter:blur(12px)}
+body.bbx-tool-page.sba-calculator-page .calculator-card,body.bbx-tool-page.sba-calculator-page .result-card{border-radius:24px}
+body.bbx-tool-page.sba-calculator-page .calculator-card{background:#fff;border:1px solid #e2eaf7;padding:30px;box-shadow:0 12px 34px rgba(15,23,42,.06)}
+body.bbx-tool-page.sba-calculator-page .result-card{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 10%, rgba(96,165,250,.28), transparent 16rem),linear-gradient(145deg,#061b37 0%,#09264b 55%,#07152d 100%);border:1px solid rgba(96,165,250,.22);padding:30px;color:#fff;box-shadow:0 18px 46px rgba(7,21,45,.24)}
+body.bbx-tool-page.sba-calculator-page .result-card::after{content:"";position:absolute;inset:-40% -30% auto auto;width:260px;height:260px;border-radius:999px;background:rgba(37,99,235,.22);filter:blur(22px);pointer-events:none}
+body.bbx-tool-page.sba-calculator-page .calculator-heading{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #e5edf8}
+body.bbx-tool-page.sba-calculator-page .calculator-heading-icon,body.bbx-tool-page.sba-calculator-page .results-heading-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:#eef4ff;border:1px solid #bfd8ff;color:#2563eb;font-size:21px}
+body.bbx-tool-page.sba-calculator-page .results-heading-icon{background:rgba(37,99,235,.20);border-color:rgba(147,197,253,.32);color:#93c5fd}
+body.bbx-tool-page.sba-calculator-page .calculator-heading h2,body.bbx-tool-page.sba-calculator-page .result-card h2,body.bbx-tool-page.sba-calculator-page .tool-faq h2,body.bbx-tool-page.sba-calculator-page .tool-related h2{margin:0;color:#0f172a;font-size:clamp(1.55rem,2.25vw,2.05rem);line-height:1.08;letter-spacing:-.035em}
+body.bbx-tool-page.sba-calculator-page .result-card h2{color:#fff}
+body.bbx-tool-page.sba-calculator-page .calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px}
+body.bbx-tool-page.sba-calculator-page .field{display:grid;gap:8px;margin:0}
+body.bbx-tool-page.sba-calculator-page .field label{display:flex;align-items:center;gap:6px;margin:0;color:#172033;font-size:.88rem;font-weight:850}
+body.bbx-tool-page.sba-calculator-page .input-shell{position:relative}
+body.bbx-tool-page.sba-calculator-page .input-shell input,body.bbx-tool-page.sba-calculator-page .input-shell select{width:100%;min-height:54px;border:1px solid #cbd8ea;border-radius:15px;padding:13px 42px 13px 14px;color:#0f172a;background:linear-gradient(180deg,#fff 0%,#f8fbff 100%);font-size:1.05rem;font-weight:760;outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.72)}
+body.bbx-tool-page.sba-calculator-page .input-shell input:focus,body.bbx-tool-page.sba-calculator-page .input-shell select:focus{border-color:#2563eb;box-shadow:0 0 0 4px rgba(37,99,235,.13),0 8px 18px rgba(15,23,42,.06);background:#fff}
+body.bbx-tool-page.sba-calculator-page .input-affix{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#2563eb;font-size:.95rem;font-weight:900;pointer-events:none}
+body.bbx-tool-page.sba-calculator-page .input-help{margin:0;color:#64748b;font-size:.78rem;line-height:1.35}
+body.bbx-tool-page.sba-calculator-page .calc-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(140px,.46fr);gap:12px;margin-top:24px}
+body.bbx-tool-page.sba-calculator-page .calc-actions .btn{min-height:52px;border-radius:14px;font-weight:850}
+body.bbx-tool-page.sba-calculator-page .calc-note{margin:18px 0 0;color:#52637b;font-size:.9rem;line-height:1.65}
+body.bbx-tool-page.sba-calculator-page .result-card *{position:relative;z-index:1}
+body.bbx-tool-page.sba-calculator-page .result-head{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+body.bbx-tool-page.sba-calculator-page .result-number{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.16)}
+body.bbx-tool-page.sba-calculator-page .result-number span{display:block;color:rgba(255,255,255,.72);font-size:.86rem;font-weight:850;letter-spacing:.01em}
+body.bbx-tool-page.sba-calculator-page .result-number strong{display:block;margin-top:8px;color:#fff;font-size:clamp(2rem,4vw,3.25rem);letter-spacing:-.055em;line-height:1}
+body.bbx-tool-page.sba-calculator-page .result-number.result-primary strong{color:#a7f36d}
+body.bbx-tool-page.sba-calculator-page .result-list{display:grid;gap:0;margin-top:4px}
+body.bbx-tool-page.sba-calculator-page .result-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.78);font-size:.93rem;line-height:1.4}
+body.bbx-tool-page.sba-calculator-page .result-row:first-child{border-top:0}
+body.bbx-tool-page.sba-calculator-page .result-row strong{color:#fff;text-align:right;white-space:nowrap}
+body.bbx-tool-page.sba-calculator-page .cash-card{margin-top:16px;padding:16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+body.bbx-tool-page.sba-calculator-page .cash-card .result-row{padding:8px 0}
+body.bbx-tool-page.sba-calculator-page .cash-card .result-row:last-child{margin-top:6px;padding-top:12px;border-top:1px solid rgba(255,255,255,.18)}
+body.bbx-tool-page.sba-calculator-page .cash-card .result-row:last-child strong{color:#a7f36d}
+body.bbx-tool-page.sba-calculator-page .tool-intro,body.bbx-tool-page.sba-calculator-page .tool-highlights{max-width:900px;margin:22px auto 0;background:#fff;border:1px solid #dbe6f6;border-radius:22px;padding:26px 28px;box-shadow:0 12px 34px rgba(15,23,42,.08)}
+body.bbx-tool-page.sba-calculator-page .tool-intro p,body.bbx-tool-page.sba-calculator-page .tool-highlights p{color:#334155;font-size:1rem;line-height:1.78}
+body.bbx-tool-page.sba-calculator-page .tool-intro p + p{margin-top:16px}
+body.bbx-tool-page.sba-calculator-page .tool-intro a,body.bbx-tool-page.sba-calculator-page .tool-links a{color:#2563eb;font-weight:800}
+body.bbx-tool-page.sba-calculator-page .tool-highlights h2{margin:0 0 14px;color:#1f2937;font-size:clamp(1.65rem,2.4vw,2.2rem);line-height:1.08;letter-spacing:-.035em}
+body.bbx-tool-page.sba-calculator-page .tool-highlights ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px;margin:0;padding:0}
+body.bbx-tool-page.sba-calculator-page .tool-highlights li{position:relative;min-height:54px;padding:15px 0 15px 34px;color:#334155;font-size:.98rem;line-height:1.55;border-top:1px solid #e8eef7}
+body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(1),body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(2){border-top:0}
+body.bbx-tool-page.sba-calculator-page .tool-highlights li::before{content:"";position:absolute;left:0;top:21px;width:15px;height:15px;border-radius:999px;background:linear-gradient(180deg,#7c3aed 0%,#2563eb 100%);box-shadow:0 0 0 5px rgba(37,99,235,.10)}
+body.bbx-tool-page.sba-calculator-page .tool-highlights li::after{content:"";position:absolute;left:5px;top:25px;width:5px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(45deg)}
+body.bbx-tool-page.sba-calculator-page .tool-links{margin-top:18px;color:#475569;font-size:.95rem;line-height:1.7}
+body.bbx-tool-page.sba-calculator-page .tool-cta{max-width:900px;margin:22px auto 0;border-radius:22px;padding:26px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;background:linear-gradient(135deg,#081a33 0%,#151235 100%);box-shadow:0 16px 36px rgba(15,23,42,.14)}
+body.bbx-tool-page.sba-calculator-page .tool-cta h2{margin:0 0 8px;color:#fff;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.08}
+body.bbx-tool-page.sba-calculator-page .tool-cta p{margin:0;max-width:62ch;color:rgba(255,255,255,.82);line-height:1.6}
+body.bbx-tool-page.sba-calculator-page .tool-faq,body.bbx-tool-page.sba-calculator-page .tool-related{max-width:900px;margin:22px auto 0}
+body.bbx-tool-page.sba-calculator-page .bbx-faq-list{display:grid;gap:10px}
+body.bbx-tool-page.sba-calculator-page .bbx-faq-item{padding:18px}
+body.bbx-tool-page.sba-calculator-page .tool-related{background:#fff;border:1px solid #dbe6f6;border-radius:22px;padding:24px;box-shadow:0 12px 34px rgba(15,23,42,.06)}
+body.bbx-tool-page.sba-calculator-page .tool-related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+body.bbx-tool-page.sba-calculator-page .tool-related-card{display:block;padding:16px;border-radius:16px;background:#f8fafc;border:1px solid #e5edf8;text-decoration:none;color:#1f2937}
+body.bbx-tool-page.sba-calculator-page .tool-related-card strong{display:block;font-size:.98rem;line-height:1.25;margin-bottom:8px;color:#111827}
+body.bbx-tool-page.sba-calculator-page .tool-related-card span{display:block;color:#64748b;font-size:.9rem;line-height:1.45}
+body.bbx-tool-page.sba-calculator-page .bbx-authority-note{max-width:900px;margin:18px auto 0;padding:18px;border-radius:18px;background:#f8fafc;border:1px solid #e5edf8;color:#475569;font-size:.94rem;line-height:1.65}
+@media (max-width:900px){body.bbx-tool-page.sba-calculator-page .calculator-shell{grid-template-columns:1fr}body.bbx-tool-page.sba-calculator-page .tool-body{margin-top:-36px}}
+@media (max-width:720px){body.bbx-tool-page.sba-calculator-page .tool-hero{min-height:0;padding:28px 20px 72px;border-radius:22px}body.bbx-tool-page.sba-calculator-page .tool-hero h1{font-size:clamp(2.25rem,10vw,3.35rem)}body.bbx-tool-page.sba-calculator-page .tool-trust-row{gap:14px}body.bbx-tool-page.sba-calculator-page .calculator-shell{padding:14px;border-radius:24px}body.bbx-tool-page.sba-calculator-page .calculator-card,body.bbx-tool-page.sba-calculator-page .result-card,body.bbx-tool-page.sba-calculator-page .tool-intro,body.bbx-tool-page.sba-calculator-page .tool-highlights,body.bbx-tool-page.sba-calculator-page .tool-cta,body.bbx-tool-page.sba-calculator-page .tool-related{padding:20px}body.bbx-tool-page.sba-calculator-page .calc-grid,body.bbx-tool-page.sba-calculator-page .tool-highlights ul,body.bbx-tool-page.sba-calculator-page .tool-related-grid{grid-template-columns:1fr}body.bbx-tool-page.sba-calculator-page .tool-highlights li:nth-child(2){border-top:1px solid #e8eef7}body.bbx-tool-page.sba-calculator-page .calc-actions,body.bbx-tool-page.sba-calculator-page .tool-cta{grid-template-columns:1fr}body.bbx-tool-page.sba-calculator-page .tool-cta .bbx-cta-actions{align-items:stretch}body.bbx-tool-page.sba-calculator-page .tool-cta .btn,body.bbx-tool-page.sba-calculator-page .calc-actions .btn{width:100%}}
 </style>
 </head>
 
 <body class="bbas-page bbx-tool-page sba-calculator-page" data-page-type="tool_page" data-primary-goal="buyer_consultation">
 <a class="skip-link" href="#main">Skip to content</a>
-
 <div id="siteHeader"></div>
-
 <main id="main" class="bbx-article-shell">
 <div class="container">
-
-<nav class="bbx-article-breadcrumbs" aria-label="Breadcrumb">
-<a href="/">Home</a>
-<span>/</span>
-<a href="/buy-a-business/">Buy a Business</a>
-<span>/</span>
-<span>SBA Loan Calculator</span>
-</nav>
-
-<section class="tool-hero" aria-label="SBA Loan Calculator for Buying a Business">
-<div class="tool-hero__copy">
-<div class="bbx-kicker">Buyer Financing Tool</div>
-
-<h1>SBA Loan Calculator for Buying a Business</h1>
-
-<p>Use this SBA loan calculator to estimate business acquisition payments, down payment needs, loan amount, interest rate scenarios, and monthly payment expectations before making an offer.</p>
-
-<div class="bbx-actions">
-<a href="#calculator" class="btn btn--primary"
-data-analytics-event="cta_click"
-data-analytics-label="Use SBA Calculator"
-data-analytics-location="hero"
-data-analytics-section="sba_calculator_hero"
-data-analytics-goal="tool_engagement">Use Calculator</a>
-
-<a href="/listings/" class="btn btn--ghost"
-data-analytics-event="cta_click"
-data-analytics-label="View Listings"
-data-analytics-location="hero"
-data-analytics-section="sba_calculator_hero"
-data-analytics-goal="listing_view">View Listings</a>
-</div>
-</div>
-</section>
-
+<nav class="bbx-article-breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/buy-a-business/">Buy a Business</a><span>/</span><span>SBA Loan Calculator</span></nav>
+<section class="tool-hero" aria-label="SBA Loan Calculator for Buying a Business"><div class="tool-hero__copy"><div class="bbx-kicker">Free Calculator</div><h1>SBA Loan Calculator for Buying a Business</h1><p>Estimate your monthly SBA loan payment, cash needed to close, and financing assumptions before you compare businesses or make an acquisition offer.</p><div class="bbx-actions"><a href="#calculator" class="btn btn--primary" data-analytics-event="cta_click" data-analytics-label="Use SBA Calculator" data-analytics-location="hero" data-analytics-section="sba_calculator_hero" data-analytics-goal="tool_engagement">Use Calculator</a><a href="/listings/" class="btn btn--ghost" data-analytics-event="cta_click" data-analytics-label="View Listings" data-analytics-location="hero" data-analytics-section="sba_calculator_hero" data-analytics-goal="listing_view">View Listings</a></div><div class="tool-trust-row" aria-label="SBA calculator trust notes"><div class="tool-trust-item"><div class="tool-trust-icon">✓</div><div><strong>SBA planning</strong><span>504, 7(a), and more</span></div></div><div class="tool-trust-item"><div class="tool-trust-icon">↗</div><div><strong>Scenario clarity</strong><span>Payment and cash estimates</span></div></div><div class="tool-trust-item"><div class="tool-trust-icon">⌁</div><div><strong>Private estimate</strong><span>Calculations stay on page</span></div></div></div></div></section>
 <div class="tool-body">
-
-<section class="tool-intro">
-<p>An SBA loan calculator can help buyers quickly estimate whether a business acquisition may fit their budget before they speak with a lender. Enter a purchase price, down payment, interest rate, and term to review estimated monthly payments and total repayment assumptions.</p>
-
-<p>This tool is for planning only and does not represent loan approval, lender terms, tax advice, legal advice, or a final financing offer. Before relying on the numbers, review <a href="/blog/how-to-qualify-for-an-sba-loan/">SBA loan qualifications</a>, compare active <a href="/listings/">businesses for sale</a>, and complete a <a href="/blog/due-diligence-checklist-buying-or-selling-business/">business due diligence checklist</a>.</p>
-</section>
-
-<section class="calculator-shell" id="calculator" aria-label="SBA loan payment calculator">
-<div class="calculator-card">
-<div class="bbx-kicker" style="background:#eef4ff;border-color:#bfd8ff;color:#2563eb">Calculator</div>
-<h2 style="margin-top:14px">Estimate SBA Loan Payments</h2>
-
-<form id="sbaLoanForm" novalidate>
-<div class="calc-grid">
-<div class="field">
-<label for="purchasePrice">Business purchase price</label>
-<input id="purchasePrice" name="purchasePrice" type="number" min="0" step="1000" value="750000" inputmode="decimal">
-</div>
-
-<div class="field">
-<label for="downPaymentPercent">Down payment</label>
-<input id="downPaymentPercent" name="downPaymentPercent" type="number" min="0" max="100" step="0.1" value="10" inputmode="decimal">
-</div>
-
-<div class="field">
-<label for="interestRate">Annual interest rate</label>
-<input id="interestRate" name="interestRate" type="number" min="0" max="30" step="0.01" value="10.5" inputmode="decimal">
-</div>
-
-<div class="field">
-<label for="loanTerm">Loan term</label>
-<select id="loanTerm" name="loanTerm">
-<option value="120">10 years</option>
-<option value="84">7 years</option>
-<option value="60">5 years</option>
-<option value="36">3 years</option>
-</select>
-</div>
-
-<div class="field">
-<label for="closingCosts">Estimated closing / fees</label>
-<input id="closingCosts" name="closingCosts" type="number" min="0" step="500" value="15000" inputmode="decimal">
-</div>
-
-<div class="field">
-<label for="workingCapital">Working capital reserve</label>
-<input id="workingCapital" name="workingCapital" type="number" min="0" step="500" value="50000" inputmode="decimal">
-</div>
-</div>
-
-<div class="calc-actions">
-<button type="button" class="btn btn--primary" id="calculateSba"
-data-analytics-event="calculator_submit"
-data-analytics-label="Calculate SBA Loan Payment"
-data-analytics-section="sba_loan_calculator"
-data-analytics-goal="tool_engagement">Calculate Payment</button>
-
-<button type="reset" class="btn btn--ghost" id="resetSba"
-data-analytics-event="calculator_reset"
-data-analytics-label="Reset SBA Loan Calculator"
-data-analytics-section="sba_loan_calculator"
-data-analytics-goal="tool_engagement">Reset</button>
-</div>
-
-<p class="calc-note">Educational estimate only. Actual SBA financing depends on lender underwriting, borrower qualifications, business cash flow, SBA program rules, collateral, seller financing, fees, and deal structure.</p>
-</form>
-</div>
-
-<aside class="result-card" aria-live="polite">
-<div class="bbx-kicker" style="background:#eef4ff;border-color:#bfd8ff;color:#2563eb">Estimated Result</div>
-<h2 style="margin-top:14px">Payment Scenario</h2>
-
-<div class="result-number">
-<span>Estimated monthly payment</span>
-<strong id="monthlyPayment">$0</strong>
-</div>
-
-<div class="result-list">
-<div class="result-row"><span>Estimated loan amount</span><strong id="loanAmount">$0</strong></div>
-<div class="result-row"><span>Estimated down payment</span><strong id="downPayment">$0</strong></div>
-<div class="result-row"><span>Cash needed before reserves</span><strong id="cashNeeded">$0</strong></div>
-<div class="result-row"><span>Total monthly payments</span><strong id="totalPayments">$0</strong></div>
-<div class="result-row"><span>Estimated total interest</span><strong id="totalInterest">$0</strong></div>
-</div>
-</aside>
-</section>
-
-<section class="tool-highlights">
-<h2>What Buyers Should Review</h2>
-<ul>
-<li>Monthly payment against realistic business cash flow.</li>
-<li>Down payment, closing costs, reserves, and working capital needs.</li>
-<li>Debt service coverage and lender underwriting expectations.</li>
-<li>Seller financing, collateral, credit strength, and buyer experience.</li>
-<li>Lease terms, business records, valuation, and transition risk.</li>
-<li>How financing affects offer price, timing, and negotiation strategy.</li>
-</ul>
-
-<div class="tool-links">
-Also helpful: <a href="/blog/how-to-value-a-small-business/">how to value a small business before buying</a>, <a href="/blog/questions-to-ask-before-buying-a-business/">questions to ask before buying</a>, <a href="/blog/why-small-business-acquisitions-fail/">why small business acquisitions fail</a>, and the <a href="/contact/">contact page</a>.
-</div>
-</section>
-
-<section class="tool-cta" aria-label="SBA loan calculator call to action">
-<div>
-<div class="bbx-kicker">Buyer Financing</div>
-<h2>Need to compare financing against real opportunities?</h2>
-<p>Use the calculator as a planning tool, then review listings, cash flow, valuation, and due diligence before making an offer.</p>
-</div>
-
-<div class="bbx-cta-actions">
-<a href="/listings/" class="btn btn--primary"
-data-analytics-event="cta_click"
-data-analytics-label="View Listings CTA"
-data-analytics-section="sba_calculator_cta"
-data-analytics-goal="listing_view">View Listings</a>
-
-<a href="/buy-a-business/" class="btn btn--ghost"
-data-analytics-event="cta_click"
-data-analytics-label="Buy a Business CTA"
-data-analytics-section="sba_calculator_cta"
-data-analytics-goal="buyer_consultation">Buy a Business</a>
-</div>
-</section>
-
-<section class="tool-faq" id="faq">
-<h2>Frequently Asked Questions</h2>
-
-<div class="bbx-faq-list">
-<div class="bbx-faq-item">
-<h3>What does an SBA loan calculator estimate?</h3>
-<p>An SBA loan calculator estimates possible loan amount, down payment, monthly payment, total payments, and interest based on purchase price, down payment, rate, and loan term assumptions.</p>
-</div>
-
-<div class="bbx-faq-item">
-<h3>Is this SBA calculator a financing approval?</h3>
-<p>No. This calculator is an educational estimate only. Actual SBA loan terms depend on the lender, borrower qualifications, business cash flow, collateral, program rules, and underwriting review.</p>
-</div>
-
-<div class="bbx-faq-item">
-<h3>What should buyers review before using SBA financing?</h3>
-<p>Buyers should review cash flow, debt service coverage, down payment, working capital, seller financing, business records, valuation, and lender requirements before relying on SBA financing.</p>
-</div>
-</div>
-</section>
-
-<section class="tool-related" aria-label="Related buyer tools and resources">
-<div class="bbx-kicker" style="background:#eef4ff;border-color:#bfd8ff;color:#2563eb">Related Resources</div>
-<h2 style="margin-top:14px">Continue Your Acquisition Research</h2>
-
-<div class="tool-related-grid">
-<a href="/business-valuation-calculator/" class="tool-related-card"
-data-analytics-event="internal_link_click"
-data-analytics-label="Business Valuation Calculator"
-data-analytics-section="sba_calculator_related">
-<strong>Business Valuation Calculator</strong>
-<span>Estimate value using earnings, multiples, and risk assumptions.</span>
-</a>
-
-<a href="/blog/how-to-qualify-for-an-sba-loan/" class="tool-related-card"
-data-analytics-event="internal_link_click"
-data-analytics-label="SBA Loan Qualifications"
-data-analytics-section="sba_calculator_related">
-<strong>SBA Loan Qualifications</strong>
-<span>Understand borrower strength, equity injection, and lender review.</span>
-</a>
-
-<a href="/due-diligence-template/" class="tool-related-card"
-data-analytics-event="internal_link_click"
-data-analytics-label="Due Diligence Template"
-data-analytics-section="sba_calculator_related">
-<strong>Due Diligence Template</strong>
-<span>Review financials, leases, contracts, operations, and risk.</span>
-</a>
-</div>
-</section>
-
-<div class="bbx-authority-note">
-Cluster: Tools + Buyer Financing. Parent page: <a href="/buy-a-business/">Buy a Business</a>. Child pages: business valuation calculator, due diligence template, seller proceeds calculator, SBA loan qualifications, buyer guides, and listings. Outgoing internal links: /buy-a-business/, /listings/, /business-valuation-calculator/, /due-diligence-template/, /blog/how-to-qualify-for-an-sba-loan/, /blog/how-to-value-a-small-business/, /blog/questions-to-ask-before-buying-a-business/, /blog/why-small-business-acquisitions-fail/, and /contact/. Recommended inlinks: buy-a-business page, listings page, SBA loan qualifications article, how to value a small business, questions to ask before buying, best businesses to buy, and due diligence checklist. Suggested anchors: SBA loan calculator, SBA loan calculator for buying a business, estimate SBA loan payments, business acquisition financing calculator, and SBA business purchase payment estimate. Sitemap status: add immediately. Indexing priority: Very High.
-</div>
-
-</div>
-</div>
-</main>
-
-<div id="siteFooter"></div>
-
-<script src="/assets/js/includes.js"></script>
-<script src="/assets/js/site.js" defer></script>
+<section class="calculator-shell" id="calculator" aria-label="SBA loan payment calculator"><div class="calculator-card"><div class="calculator-heading"><div class="calculator-heading-icon">▦</div><h2>Loan Details</h2></div><form id="sbaLoanForm" novalidate><div class="calc-grid"><div class="field"><label for="purchasePrice">Business purchase price</label><div class="input-shell"><input id="purchasePrice" name="purchasePrice" type="text" value="$750,000" inputmode="decimal" data-format="currency"></div></div><div class="field"><label for="downPaymentPercent">Down payment (%)</label><div class="input-shell"><input id="downPaymentPercent" name="downPaymentPercent" type="text" value="10%" inputmode="decimal" data-format="percent"><span class="input-affix">%</span></div><p class="input-help">Min. 10% is commonly used for planning.</p></div><div class="field"><label for="interestRate">Annual interest rate (%)</label><div class="input-shell"><input id="interestRate" name="interestRate" type="text" value="10.49%" inputmode="decimal" data-format="percent"><span class="input-affix">%</span></div></div><div class="field"><label for="loanTerm">Loan term</label><div class="input-shell"><select id="loanTerm" name="loanTerm"><option value="120">10 years</option><option value="84">7 years</option><option value="60">5 years</option><option value="36">3 years</option></select></div><p class="input-help" id="termHelp">120 monthly payments.</p></div><div class="field"><label for="closingCosts">Estimated closing / fees</label><div class="input-shell"><input id="closingCosts" name="closingCosts" type="text" value="$15,000" inputmode="decimal" data-format="currency"></div></div><div class="field"><label for="workingCapital">Working capital reserve</label><div class="input-shell"><input id="workingCapital" name="workingCapital" type="text" value="$50,000" inputmode="decimal" data-format="currency"></div></div></div><div class="calc-actions"><button type="button" class="btn btn--primary" id="calculateSba" data-analytics-event="calculator_submit" data-analytics-label="Calculate SBA Loan Payment" data-analytics-section="sba_loan_calculator" data-analytics-goal="tool_engagement">Calculate Payment</button><button type="reset" class="btn btn--ghost" id="resetSba" data-analytics-event="calculator_reset" data-analytics-label="Reset SBA Loan Calculator" data-analytics-section="sba_loan_calculator" data-analytics-goal="tool_engagement">Reset</button></div><p class="calc-note">Educational estimate only. Actual SBA financing depends on lender underwriting, borrower qualifications, business cash flow, SBA program rules, collateral, seller financing, fees, and deal structure.</p></form></div><aside class="result-card" aria-live="polite"><div class="result-head"><div class="results-heading-icon">↗</div><h2>Estimated Results</h2></div><div class="result-number result-primary"><span>Estimated loan amount</span><strong id="loanAmount">$0</strong></div><div class="result-number"><span>Monthly payment</span><strong id="monthlyPayment">$0</strong></div><div class="result-list"><div class="result-row"><span>Total monthly payments</span><strong id="totalPayments">$0</strong></div><div class="result-row"><span>Estimated total interest</span><strong id="totalInterest">$0</strong></div></div><div class="cash-card"><div class="result-row"><span>Down payment</span><strong id="downPayment">$0</strong></div><div class="result-row"><span>Closing / fees</span><strong id="closingResult">$0</strong></div><div class="result-row"><span>Working capital reserve</span><strong id="reserveResult">$0</strong></div><div class="result-row"><span>Total cash to close</span><strong id="cashNeeded">$0</strong></div></div></aside></section>
+<section class="tool-intro"><p>An SBA loan calculator can help buyers quickly estimate whether a business acquisition may fit their budget before they speak with a lender. Enter a purchase price, down payment, interest rate, term, fees, and working capital reserve to review estimated monthly payments and cash needed to close.</p><p>This tool is for planning only and does not represent loan approval, lender terms, tax advice, legal advice, or a final financing offer. Before relying on the numbers, review <a href="/blog/how-to-qualify-for-an-sba-loan/">SBA loan qualifications</a>, compare active <a href="/listings/">businesses for sale</a>, and complete a <a href="/blog/due-diligence-checklist-buying-or-selling-business/">business due diligence checklist</a>.</p></section>
+<section class="tool-highlights"><h2>What Buyers Should Review</h2><ul><li>Monthly payment against realistic business cash flow.</li><li>Down payment, closing costs, reserves, and working capital needs.</li><li>Debt service coverage and lender underwriting expectations.</li><li>Seller financing, collateral, credit strength, and buyer experience.</li><li>Lease terms, business records, valuation, and transition risk.</li><li>How financing affects offer price, timing, and negotiation strategy.</li></ul><div class="tool-links">Also helpful: <a href="/blog/how-to-value-a-small-business/">how to value a small business before buying</a>, <a href="/blog/questions-to-ask-before-buying-a-business/">questions to ask before buying</a>, <a href="/blog/why-small-business-acquisitions-fail/">why small business acquisitions fail</a>, and the <a href="/contact/">contact page</a>.</div></section>
+<section class="tool-cta" aria-label="SBA loan calculator call to action"><div><div class="bbx-kicker">Buyer Financing</div><h2>Need to compare financing against real opportunities?</h2><p>Use the calculator as a planning tool, then review listings, cash flow, valuation, and due diligence before making an offer.</p></div><div class="bbx-cta-actions"><a href="/listings/" class="btn btn--primary" data-analytics-event="cta_click" data-analytics-label="View Listings CTA" data-analytics-section="sba_calculator_cta" data-analytics-goal="listing_view">View Listings</a><a href="/buy-a-business/" class="btn btn--ghost" data-analytics-event="cta_click" data-analytics-label="Buy a Business CTA" data-analytics-section="sba_calculator_cta" data-analytics-goal="buyer_consultation">Buy a Business</a></div></section>
+<section class="tool-faq" id="faq"><h2>Frequently Asked Questions</h2><div class="bbx-faq-list"><div class="bbx-faq-item"><h3>What does an SBA loan calculator estimate?</h3><p>An SBA loan calculator estimates possible loan amount, down payment, monthly payment, total payments, cash to close, and interest based on purchase price, down payment, rate, fees, reserves, and loan term assumptions.</p></div><div class="bbx-faq-item"><h3>Is this SBA calculator a financing approval?</h3><p>No. This calculator is an educational estimate only. Actual SBA loan terms depend on the lender, borrower qualifications, business cash flow, collateral, program rules, and underwriting review.</p></div><div class="bbx-faq-item"><h3>What should buyers review before using SBA financing?</h3><p>Buyers should review cash flow, debt service coverage, down payment, working capital, seller financing, business records, valuation, and lender requirements before relying on SBA financing.</p></div></div></section>
+<section class="tool-related" aria-label="Related buyer tools and resources"><div class="bbx-kicker" style="background:#eef4ff;border-color:#bfd8ff;color:#2563eb">Related Resources</div><h2 style="margin-top:14px">Continue Your Acquisition Research</h2><div class="tool-related-grid"><a href="/business-valuation-calculator/" class="tool-related-card" data-analytics-event="internal_link_click" data-analytics-label="Business Valuation Calculator" data-analytics-section="sba_calculator_related"><strong>Business Valuation Calculator</strong><span>Estimate value using earnings, multiples, and risk assumptions.</span></a><a href="/blog/how-to-qualify-for-an-sba-loan/" class="tool-related-card" data-analytics-event="internal_link_click" data-analytics-label="SBA Loan Qualifications" data-analytics-section="sba_calculator_related"><strong>SBA Loan Qualifications</strong><span>Understand borrower strength, equity injection, and lender review.</span></a><a href="/due-diligence-template/" class="tool-related-card" data-analytics-event="internal_link_click" data-analytics-label="Due Diligence Template" data-analytics-section="sba_calculator_related"><strong>Due Diligence Template</strong><span>Review financials, leases, contracts, operations, and risk.</span></a></div></section>
+<div class="bbx-authority-note">Cluster: Tools + Buyer Financing. Parent page: <a href="/buy-a-business/">Buy a Business</a>. Child pages: business valuation calculator, due diligence template, seller proceeds calculator, SBA loan qualifications, buyer guides, and listings. Outgoing internal links: /buy-a-business/, /listings/, /business-valuation-calculator/, /due-diligence-template/, /blog/how-to-qualify-for-an-sba-loan/, /blog/how-to-value-a-small-business/, /blog/questions-to-ask-before-buying-a-business/, /blog/why-small-business-acquisitions-fail/, and /contact/. Recommended inlinks: buy-a-business page, listings page, SBA loan qualifications article, how to value a small business, questions to ask before buying, best businesses to buy, and due diligence checklist. Suggested anchors: SBA loan calculator, SBA loan calculator for buying a business, estimate SBA loan payments, business acquisition financing calculator, and SBA business purchase payment estimate. Sitemap status: add immediately. Indexing priority: Very High.</div>
+</div></div></main><div id="siteFooter"></div><script src="/assets/js/includes.js"></script><script src="/assets/js/site.js" defer></script>
 <script>
-(function(){
-  var form = document.getElementById("sbaLoanForm");
-  if(!form){return;}
-
-  function money(value){
-    var number = Number(value);
-    if(!isFinite(number)){number = 0;}
-    return number.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});
-  }
-
-  function getNumber(id){
-    var field = document.getElementById(id);
-    var value = field ? parseFloat(field.value) : 0;
-    return isFinite(value) ? value : 0;
-  }
-
-  function calculate(){
-    var purchasePrice = Math.max(0,getNumber("purchasePrice"));
-    var downPaymentPercent = Math.min(100,Math.max(0,getNumber("downPaymentPercent")));
-    var interestRate = Math.max(0,getNumber("interestRate"));
-    var months = Math.max(1,getNumber("loanTerm"));
-    var closingCosts = Math.max(0,getNumber("closingCosts"));
-    var workingCapital = Math.max(0,getNumber("workingCapital"));
-
-    var downPayment = purchasePrice * (downPaymentPercent / 100);
-    var loanAmount = Math.max(0,purchasePrice - downPayment);
-    var monthlyRate = interestRate / 100 / 12;
-    var monthlyPayment = 0;
-
-    if(monthlyRate === 0){
-      monthlyPayment = loanAmount / months;
-    }else{
-      monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-    }
-
-    var totalPayments = monthlyPayment * months;
-    var totalInterest = Math.max(0,totalPayments - loanAmount);
-    var cashNeeded = downPayment + closingCosts + workingCapital;
-
-    document.getElementById("monthlyPayment").textContent = money(monthlyPayment);
-    document.getElementById("loanAmount").textContent = money(loanAmount);
-    document.getElementById("downPayment").textContent = money(downPayment);
-    document.getElementById("cashNeeded").textContent = money(cashNeeded);
-    document.getElementById("totalPayments").textContent = money(totalPayments);
-    document.getElementById("totalInterest").textContent = money(totalInterest);
-  }
-
-  document.getElementById("calculateSba").addEventListener("click", calculate);
-  form.addEventListener("input", calculate);
-  form.addEventListener("reset", function(){
-    window.setTimeout(calculate, 0);
-  });
-
-  calculate();
-})();
-</script>
-</body>
-</html>
+(function(){var form=document.getElementById("sbaLoanForm");if(!form){return}var defaults={purchasePrice:"$750,000",downPaymentPercent:"10%",interestRate:"10.49%",loanTerm:"120",closingCosts:"$15,000",workingCapital:"$50,000"};function rawNumber(value){var number=String(value||"").replace(/[^0-9.]/g,"");var parsed=parseFloat(number);return isFinite(parsed)?parsed:0}function money(value){var number=Number(value);if(!isFinite(number)){number=0}return number.toLocaleString("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0})}function percent(value){var number=Number(value);if(!isFinite(number)){number=0}return number.toLocaleString("en-US",{maximumFractionDigits:2})+"%"}function getInput(id){return document.getElementById(id)}function getNumber(id){var field=getInput(id);return field?rawNumber(field.value):0}function formatField(field){if(!field){return}var type=field.getAttribute("data-format");var value=rawNumber(field.value);if(type==="currency"){field.value=money(value)}if(type==="percent"){field.value=percent(value)}}function calculate(){var purchasePrice=Math.max(0,getNumber("purchasePrice"));var downPaymentPercent=Math.min(100,Math.max(0,getNumber("downPaymentPercent")));var interestRate=Math.max(0,getNumber("interestRate"));var months=Math.max(1,getNumber("loanTerm"));var closingCosts=Math.max(0,getNumber("closingCosts"));var workingCapital=Math.max(0,getNumber("workingCapital"));var downPayment=purchasePrice*(downPaymentPercent/100);var loanAmount=Math.max(0,purchasePrice-downPayment);var monthlyRate=interestRate/100/12;var monthlyPayment=0;if(monthlyRate===0){monthlyPayment=loanAmount/months}else{monthlyPayment=loanAmount*(monthlyRate*Math.pow(1+monthlyRate,months))/(Math.pow(1+monthlyRate,months)-1)}var totalPayments=monthlyPayment*months;var totalInterest=Math.max(0,totalPayments-loanAmount);var cashNeeded=downPayment+closingCosts+workingCapital;document.getElementById("monthlyPayment").textContent=money(monthlyPayment);document.getElementById("loanAmount").textContent=money(loanAmount);document.getElementById("downPayment").textContent=money(downPayment);document.getElementById("closingResult").textContent=money(closingCosts);document.getElementById("reserveResult").textContent=money(workingCapital);document.getElementById("cashNeeded").textContent=money(cashNeeded);document.getElementById("totalPayments").textContent=money(totalPayments);document.getElementById("totalInterest").textContent=money(totalInterest)}Array.prototype.forEach.call(form.querySelectorAll("input[data-format]"),function(input){input.addEventListener("focus",function(){input.value=rawNumber(input.value)||"";window.setTimeout(function(){input.select()},0)});input.addEventListener("blur",function(){formatField(input);calculate()});input.addEventListener("input",calculate)});document.getElementById("loanTerm").addEventListener("change",function(){var help=document.getElementById("termHelp");if(help){help.textContent=String(getNumber("loanTerm"))+" monthly payments."}calculate()});document.getElementById("calculateSba").addEventListener("click",function(){Array.prototype.forEach.call(form.querySelectorAll("input[data-format]"),formatField);calculate()});form.addEventListener("reset",function(){window.setTimeout(function(){Object.keys(defaults).forEach(function(key){var field=getInput(key);if(field){field.value=defaults[key]}});calculate()},0)});calculate()})();
+</script></body></html>
