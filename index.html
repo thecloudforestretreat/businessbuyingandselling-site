@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <title>Buy or Sell a Business | Listings & Expert Guidance</title>
-  <meta name="description" content="Buy or sell a business with confidence. Browse businesses for sale, prepare to sell, and get practical guidance for smarter business transactions.">
+  <meta name="description" content="Buy or sell a business with confidence. Browse listings, use acquisition calculators, prepare to sell, and get practical guidance for smarter business transactions.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://businessbuyingandselling.com/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://businessbuyingandselling.com/">
   <meta property="og:title" content="Buy or Sell a Business | Listings & Expert Guidance">
-  <meta property="og:description" content="Buy or sell a business with confidence. Browse businesses for sale, prepare to sell, and get practical guidance for smarter business transactions.">
+  <meta property="og:description" content="Buy or sell a business with confidence. Browse listings, use acquisition calculators, prepare to sell, and get practical guidance for smarter business transactions.">
   <meta property="og:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Buy or Sell a Business | Listings & Expert Guidance">
-  <meta name="twitter:description" content="Buy or sell a business with confidence. Browse businesses for sale, prepare to sell, and get practical guidance for smarter business transactions.">
+  <meta name="twitter:description" content="Buy or sell a business with confidence. Browse listings, use acquisition calculators, prepare to sell, and get practical guidance for smarter business transactions.">
   <meta name="twitter:image" content="https://businessbuyingandselling.com/og-image.jpg">
 
   <script type="application/ld+json">
@@ -102,6 +102,42 @@
   }
   </script>
 
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Business Buying and Selling Tools",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "SBA Loan Calculator",
+        "url": "https://businessbuyingandselling.com/sba-loan-calculator/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Business Valuation Calculator",
+        "url": "https://businessbuyingandselling.com/business-valuation-calculator/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Seller Proceeds Calculator",
+        "url": "https://businessbuyingandselling.com/seller-proceeds-calculator/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Business Acquisition Due Diligence Template",
+        "url": "https://businessbuyingandselling.com/due-diligence-template/"
+      }
+    ]
+  }
+  </script>
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -110,9 +146,130 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="/assets/css/site.css?v=20260514-home-balanced-seo-v4">
-  <link rel="stylesheet" href="/assets/css/header.css?v=20260514-home-balanced-seo-v4">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20260603-home-tools-v101">
+  <link rel="stylesheet" href="/assets/css/header.css?v=20260603-home-tools-v101">
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <style>
+    body.home-page .home-tools-panel{
+      border:1px solid #dbe6f6;
+      background:#fff;
+      border-radius:26px;
+      padding:28px;
+      box-shadow:0 12px 34px rgba(15,23,42,.07);
+    }
+
+    body.home-page .home-tools-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:24px;
+      margin-bottom:20px;
+    }
+
+    body.home-page .home-tools-head .home-section-head{
+      margin:0;
+      max-width:760px;
+    }
+
+    body.home-page .home-tools-head .home-section-head p{
+      max-width:70ch;
+    }
+
+    body.home-page .home-tools-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    body.home-page .home-tool-card{
+      display:flex;
+      flex-direction:column;
+      min-height:220px;
+      padding:20px;
+      border-radius:20px;
+      background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);
+      border:1px solid #dbe6f6;
+      text-decoration:none;
+      color:#0f172a;
+      box-shadow:0 8px 22px rgba(15,23,42,.05);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    body.home-page .home-tool-card:hover{
+      transform:translateY(-3px);
+      border-color:#bfdbfe;
+      box-shadow:0 14px 30px rgba(15,23,42,.09);
+    }
+
+    body.home-page .home-tool-icon{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:15px;
+      margin-bottom:14px;
+      background:#eef4ff;
+      border:1px solid #bfd8ff;
+      color:#2563eb;
+      font-size:20px;
+      font-weight:900;
+    }
+
+    body.home-page .home-tool-card strong{
+      display:block;
+      color:#0f172a;
+      font-size:1.08rem;
+      line-height:1.2;
+      letter-spacing:-.025em;
+    }
+
+    body.home-page .home-tool-card span{
+      display:block;
+      margin-top:8px;
+      color:#64748b;
+      font-size:.92rem;
+      line-height:1.5;
+    }
+
+    body.home-page .home-tool-card em{
+      display:block;
+      margin-top:auto;
+      padding-top:16px;
+      color:#2563eb;
+      font-style:normal;
+      font-size:.86rem;
+      font-weight:850;
+    }
+
+    body.home-page .home-tools-note{
+      margin:18px 0 0;
+      color:#52637b;
+      font-size:.9rem;
+      line-height:1.6;
+    }
+
+    @media (max-width:980px){
+      body.home-page .home-tools-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      body.home-page .home-tools-head{
+        display:block;
+      }
+    }
+
+    @media (max-width:680px){
+      body.home-page .home-tools-panel{
+        padding:22px;
+      }
+
+      body.home-page .home-tools-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
 </head>
 
 <body class="bbas-page home-page" data-page-type="homepage" data-primary-goal="listing_inquiry">
@@ -254,6 +411,69 @@
             <h3>Talk to Us</h3>
             <p>Ask about buying, selling, listings, valuation questions, financing, or the best next step for your situation.</p>
           </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section home-tools" aria-label="Business buying and selling calculators and templates">
+      <div class="container">
+        <div class="home-tools-panel">
+          <div class="home-tools-head">
+            <div class="home-section-head home-section-head--tight">
+              <div class="home-eyebrow">Tools and calculators</div>
+              <h2>Run the numbers before the next serious conversation</h2>
+              <p>Use these planning tools to estimate financing, business value, seller proceeds, and due diligence readiness before you inquire, negotiate, or prepare to sell.</p>
+            </div>
+          </div>
+
+          <div class="home-tools-grid">
+            <a class="home-tool-card" href="/sba-loan-calculator/"
+               data-analytics-event="internal_link_click"
+               data-analytics-label="SBA Loan Calculator"
+               data-analytics-section="homepage_tools"
+               data-analytics-goal="tool_engagement">
+              <div class="home-tool-icon">▦</div>
+              <strong>SBA Loan Calculator</strong>
+              <span>Estimate monthly payments, down payment, loan amount, fees, reserves, and cash needed to close.</span>
+              <em>Use calculator</em>
+            </a>
+
+            <a class="home-tool-card" href="/business-valuation-calculator/"
+               data-analytics-event="internal_link_click"
+               data-analytics-label="Business Valuation Calculator"
+               data-analytics-section="homepage_tools"
+               data-analytics-goal="tool_engagement">
+              <div class="home-tool-icon">%</div>
+              <strong>Business Valuation Calculator</strong>
+              <span>Estimate small business value using earnings, multiples, add-backs, growth, and buyer risk.</span>
+              <em>Use calculator</em>
+            </a>
+
+            <a class="home-tool-card" href="/seller-proceeds-calculator/"
+               data-analytics-event="internal_link_click"
+               data-analytics-label="Seller Proceeds Calculator"
+               data-analytics-section="homepage_tools"
+               data-analytics-goal="tool_engagement">
+              <div class="home-tool-icon">$</div>
+              <strong>Seller Proceeds Calculator</strong>
+              <span>Estimate net sale proceeds after debt, fees, taxes, working capital, and deal structure.</span>
+              <em>Use calculator</em>
+            </a>
+
+            <a class="home-tool-card" href="/due-diligence-template/"
+               data-analytics-event="internal_link_click"
+               data-analytics-label="Due Diligence Template"
+               data-analytics-section="homepage_tools"
+               data-analytics-goal="tool_engagement">
+              <div class="home-tool-icon">✓</div>
+              <strong>Due Diligence Template</strong>
+              <span>Review financials, operations, leases, contracts, assets, risks, and closing readiness.</span>
+              <em>Use template</em>
+            </a>
+          </div>
+
+          <p class="home-tools-note">These tools are educational planning resources only and do not replace legal, tax, lending, valuation, or transaction advice.</p>
         </div>
       </div>
     </section>
