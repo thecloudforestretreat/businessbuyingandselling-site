@@ -70,8 +70,8 @@
 }
 </script>
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260603-due-diligence-template-v101">
-<link rel="stylesheet" href="/assets/css/header.css?v=20260603-due-diligence-template-v101">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260603-due-diligence-template-v103">
+<link rel="stylesheet" href="/assets/css/header.css?v=20260603-due-diligence-template-v103">
 
 <style>
 body.bbx-tool-page.due-diligence-page{
@@ -691,6 +691,121 @@ body.bbx-tool-page.due-diligence-page .tool-related-card span{
   font-size:.9rem;
   line-height:1.45;
 }
+
+body.bbx-tool-page.due-diligence-page .print-document-header{
+  display:none;
+}
+
+@media print{
+  @page{
+    margin:0.55in 0.48in 0.62in;
+  }
+
+  body.bbx-tool-page.due-diligence-page{
+    background:#fff !important;
+    color:#111827 !important;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-header{
+    display:grid !important;
+    grid-template-columns:170px minmax(0,1fr) 170px;
+    align-items:center;
+    gap:18px;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    padding:0 0 12px;
+    margin:0;
+    border-bottom:2px solid #dbe6f6;
+    background:#fff;
+    z-index:9999;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-logo{
+    display:flex;
+    align-items:center;
+    min-height:44px;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-logo img{
+    max-height:40px;
+    max-width:155px;
+    width:auto;
+    object-fit:contain;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-title{
+    text-align:center;
+    line-height:1.25;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-title strong{
+    display:block;
+    color:#0f172a;
+    font-size:18px;
+    font-weight:850;
+    letter-spacing:-.02em;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-title span{
+    display:block;
+    margin-top:3px;
+    color:#475569;
+    font-size:11px;
+    font-weight:700;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-meta{
+    text-align:right;
+    color:#334155;
+    font-size:11px;
+    line-height:1.35;
+    font-weight:800;
+  }
+
+  body.bbx-tool-page.due-diligence-page .print-document-meta::after{
+    content:"Page " counter(page) " of " counter(pages);
+    display:block;
+    margin-top:3px;
+    color:#64748b;
+    font-weight:700;
+  }
+
+  body.bbx-tool-page.due-diligence-page .container{
+    max-width:none !important;
+    width:100% !important;
+    padding:0 !important;
+  }
+
+  body.bbx-tool-page.due-diligence-page .tool-body{
+    max-width:none !important;
+    margin:72px 0 0 !important;
+    position:static !important;
+  }
+
+  body.bbx-tool-page.due-diligence-page .checklist-card{
+    padding-top:4px !important;
+  }
+
+  body.bbx-tool-page.due-diligence-page .checklist-section{
+    page-break-inside:avoid;
+    break-inside:avoid;
+    margin-bottom:18px;
+  }
+
+  body.bbx-tool-page.due-diligence-page .dd-item{
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+
+  body.bbx-tool-page.due-diligence-page .checklist-heading{
+    margin-top:0 !important;
+  }
+}
+
 @media print{
   #siteHeader,#siteFooter,.tool-hero,.tool-suite,.tool-cta,.tool-related,.tool-faq,.bbx-article-breadcrumbs,.checklist-tabs,.checklist-actions{display:none!important;}
   .checklist-section{display:block!important;break-inside:avoid;}
@@ -777,6 +892,19 @@ body.bbx-tool-page.due-diligence-page .tool-related-card span{
 </head>
 
 <body class="bbas-page bbx-tool-page due-diligence-page" data-page-type="tool_page" data-primary-goal="buyer_consultation">
+
+<div class="print-document-header" aria-hidden="true">
+  <div class="print-document-logo">
+    <img src="/assets/images/logo.png" alt="Business Buying and Selling">
+  </div>
+  <div class="print-document-title">
+    <strong>Business Buying and Selling</strong>
+    <span>Business Acquisition Due Diligence Template</span>
+  </div>
+  <div class="print-document-meta">
+    <span id="printDate">Print Date</span>
+  </div>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
@@ -1233,7 +1361,17 @@ data-analytics-section="due_diligence_related">
     reset.addEventListener("click", function(){
       checks.forEach(function(check){ check.checked = false; });
       setTab("financial");
-      updateProgress();
+    
+  var printDate = document.getElementById("printDate");
+  if(printDate){
+    printDate.textContent = "Print Date: " + new Date().toLocaleDateString("en-US", {
+      year:"numeric",
+      month:"short",
+      day:"numeric"
+    });
+  }
+
+  updateProgress();
     });
   }
 
