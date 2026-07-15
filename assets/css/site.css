@@ -8527,3 +8527,36 @@ body.blog-page .blog-hero-card{
     gap:8px !important;
   }
 }
+
+
+/* =====================================================
+   BLOG HUB CONTRAST + BREADCRUMB FIX — 2026-07-15
+   Scoped to the blog page to avoid changing global type.
+   ===================================================== */
+body.blog-page .blog-hero-lead,
+body.blog-page .blog-hero-lead strong{
+  color:#F1F5F9 !important;
+  font-weight:600;
+  text-shadow:0 1px 3px rgba(0,0,0,.32);
+}
+
+body.blog-page .breadcrumbs{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:16px 0 0;
+  color:#64748B;
+  font-size:.9rem;
+  line-height:1.4;
+}
+
+body.blog-page .breadcrumbs a{
+  color:#2563EB;
+  text-decoration:none;
+  font-weight:700;
+}
+
+body.blog-page .breadcrumbs a:hover{
+  text-decoration:underline;
+}
