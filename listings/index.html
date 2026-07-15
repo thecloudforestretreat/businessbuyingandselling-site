@@ -21,11 +21,118 @@
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"CollectionPage",
-  "name":"Businesses for Sale",
-  "description":"Browse businesses for sale and review confidential opportunities for buyers looking at acquisition, ownership, and local business growth.",
-  "url":"https://businessbuyingandselling.com/listings/"
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://businessbuyingandselling.com/listings/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://businessbuyingandselling.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Businesses for Sale",
+          "item": "https://businessbuyingandselling.com/listings/"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://businessbuyingandselling.com/listings/#listings",
+      "name": "Current Business Listings",
+      "numberOfItems": 10,
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Established Brake and Repair Operation"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Standalone Convenience Store Opportunity"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Community Grocery and Grill Concept"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Bakery and Counter-Service Food Business"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Small Footprint Cafe Opportunity"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Non-Emergency Medical Transport Business"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Specialty Butcher and Meat Retail Operation"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Multi-Location Specialty Foods Retail Group"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Established Retail Store with Strong Revenue Base"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Scaled Coin Laundry and Ancillary Revenue Business"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://businessbuyingandselling.com/listings/#webpage",
+      "url": "https://businessbuyingandselling.com/listings/",
+      "name": "Businesses for Sale | Business Buying & Selling",
+      "description": "Browse businesses for sale and review confidential opportunities for buyers looking at acquisition, ownership, and local business growth.",
+      "dateModified": "2026-07-15",
+      "breadcrumb": {
+        "@id": "https://businessbuyingandselling.com/listings/#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://businessbuyingandselling.com/listings/#listings"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Businesses for sale"
+        },
+        {
+          "@type": "Thing",
+          "name": "Business acquisition opportunities"
+        },
+        {
+          "@type": "Thing",
+          "name": "Buyer due diligence"
+        },
+        {
+          "@type": "Thing",
+          "name": "Acquisition financing"
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -541,16 +648,28 @@ body.bbas-page{
   margin-top:20px;
 }
 }
+body.bbas-listings-page .buyer-framework-grid,body.bbas-listings-page .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+body.bbas-listings-page .buyer-framework-card,body.bbas-listings-page .faq-item{padding:18px;border:1px solid #dbe6f6;border-radius:16px;background:#f8fafc}
+body.bbas-listings-page .buyer-framework-card h3,body.bbas-listings-page .faq-item h3{margin:0 0 8px;color:#172554;font-size:1.08rem}
+body.bbas-listings-page .buyer-framework-card p,body.bbas-listings-page .faq-item p{margin:0;color:#475569;line-height:1.65}
+body.bbas-listings-page .listing-disclosure{margin-top:18px;padding:18px;border:1px solid #bfdbfe;border-radius:16px;background:#eff6ff;color:#334155;line-height:1.65}
+body.bbas-listings-page .listing-disclosure p{margin:0}
+body.bbas-listings-page .listing-disclosure p+p{margin-top:10px}
+body.bbas-listings-page .eyebrow--dark{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18);color:#fff}
+@media(max-width:720px){body.bbas-listings-page .buyer-framework-grid,body.bbas-listings-page .faq-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 
-<body class="bbas-page bbas-listings-page" data-page-type="listings_page" data-primary-goal="listing_view">
+<body class="bbas-page bbas-listings-page" data-page-type="listings_page" data-page-path="/listings/" data-topic-cluster="business_listings" data-primary-goal="qualified_listing_inquiry">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
 
 <main id="main" class="bbas-main">
   <div class="bbas-container">
+
+    <nav class="bbx-article-breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Businesses for Sale</span></nav>
 
     <section class="listings-hero">
       <div class="hero-badge"><span class="dot"></span>Listings</div>
@@ -559,7 +678,7 @@ body.bbas-page{
         <div>
           <h1>Businesses for Sale</h1>
           <div class="hero-copy">
-            <p>Browse businesses for sale and review confidential opportunities for buyers looking at acquisition, ownership, and local business growth.</p><p>Each opportunity is summarized without personal information, exact addresses, broker names, or private business identifiers while still giving buyers useful context on category, price, revenue profile, and fit.</p>
+            <p>Business listings help buyers compare category, location, asking price, reported sales, staffing, inventory, and operating fit before requesting confidential details. Every summary is preliminary: buyers should confirm availability, ownership, financial records, cash flow, assets, liabilities, contracts, licenses, property, working capital, financing, and transition requirements through authorized due diligence and qualified professional review.</p>
           </div>
 
           <div class="hero-actions">
@@ -581,11 +700,11 @@ body.bbas-page{
       <div class="section-card">
         <div class="eyebrow">Available opportunities</div>
         <h2>Current owner-operated listings</h2>
-        <p>These summaries intentionally avoid personal information, exact addresses, business names, and broker details. Placeholder listing images are being used for now and can be swapped later.</p>
+        <p>These summaries intentionally omit personal information, exact addresses, business names, and broker details. Placeholder images are decorative and do not depict the listed companies. Availability and every financial, operational, legal, property, licensing, asset, inventory, employee, and financing statement require confirmation.</p><div class="listing-disclosure"><p><strong>Listing-use standard:</strong> asking price is not an independent valuation; annual sales are not profit or cash flow; an inventory estimate may change; employee count does not define replacement labor; and a regional label is not a complete location or market analysis.</p><p>Use “Request Information” to identify the opportunity and your buyer profile. Do not contact employees, customers, landlords, suppliers, or a business you believe you have identified without authorization.</p></div>
 
         <div class="listings-grid">
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-auto-service" data-listing-title="Established Brake and Repair Operation">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
@@ -609,13 +728,13 @@ body.bbas-page{
                 <div class="metric"><strong>Included</strong><span>Inventory profile</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Established Brake and Repair Operation" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-auto-service" data-listing-title="Established Brake and Repair Operation" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-convenience-store" data-listing-title="Standalone Convenience Store Opportunity">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
@@ -639,13 +758,13 @@ body.bbas-page{
                 <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Standalone Convenience Store Opportunity" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-convenience-store" data-listing-title="Standalone Convenience Store Opportunity" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-grocery-grill" data-listing-title="Community Grocery and Grill Concept">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
@@ -669,13 +788,13 @@ body.bbas-page{
                 <div class="metric"><strong>North Carolina</strong><span>Region</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Community Grocery and Grill Concept" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-grocery-grill" data-listing-title="Community Grocery and Grill Concept" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-bakery-food-service" data-listing-title="Bakery and Counter-Service Food Business">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
@@ -699,13 +818,13 @@ body.bbas-page{
                 <div class="metric"><strong>Food service</strong><span>Category fit</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Bakery and Counter-Service Food Business" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-bakery-food-service" data-listing-title="Bakery and Counter-Service Food Business" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-small-cafe" data-listing-title="Small Footprint Cafe Opportunity">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
@@ -729,13 +848,13 @@ body.bbas-page{
                 <div class="metric"><strong>$8,000</strong><span>Inventory estimate</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Small Footprint Cafe Opportunity" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-small-cafe" data-listing-title="Small Footprint Cafe Opportunity" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/buying-a-business-vs-starting-one/">Buying vs Starting</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-medical-transport" data-listing-title="Non-Emergency Medical Transport Business">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
@@ -759,13 +878,13 @@ body.bbas-page{
                 <div class="metric"><strong>Medical</strong><span>Service category</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Non-Emergency Medical Transport Business" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-medical-transport" data-listing-title="Non-Emergency Medical Transport Business" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-butcher-retail" data-listing-title="Specialty Butcher and Meat Retail Operation">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
@@ -789,13 +908,13 @@ body.bbas-page{
                 <div class="metric"><strong>$35,000</strong><span>Inventory estimate</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Specialty Butcher and Meat Retail Operation" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-butcher-retail" data-listing-title="Specialty Butcher and Meat Retail Operation" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/red-flags-when-buying-a-business/">Red Flags Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-specialty-foods-group" data-listing-title="Multi-Location Specialty Foods Retail Group">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_02.jpg');"></span>
@@ -819,13 +938,13 @@ body.bbas-page{
                 <div class="metric"><strong>$125K +/-</strong><span>Inventory estimate</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Multi-Location Specialty Foods Retail Group" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-specialty-foods-group" data-listing-title="Multi-Location Specialty Foods Retail Group" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/how-to-qualify-for-an-sba-loan/">SBA Loan Guide</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-established-retail" data-listing-title="Established Retail Store with Strong Revenue Base">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_03.jpg');"></span>
@@ -849,13 +968,13 @@ body.bbas-page{
                 <div class="metric"><strong>$55,000</strong><span>Inventory estimate</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Established Retail Store with Strong Revenue Base" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-established-retail" data-listing-title="Established Retail Store with Strong Revenue Base" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/due-diligence-checklist-buying-or-selling-business/">Due Diligence</a>
               </div>
             </div>
           </article>
 
-          <article class="listing-card">
+          <article class="listing-card" data-listing-id="nc-coin-laundry" data-listing-title="Scaled Coin Laundry and Ancillary Revenue Business">
             <div class="listing-media">
               <div class="listing-carousel">
                 <span class="listing-main-image" style="background-image:url('/assets/images/listings/placeholders/bbas_placeholder_01.jpg');"></span>
@@ -879,7 +998,7 @@ body.bbas-page{
                 <div class="metric"><strong>199</strong><span>Maximum capacity</span></div>
               </div>
               <div class="listing-actions">
-                <a class="listing-btn listing-btn-primary" href="/contact/">Request Information</a>
+                <a class="listing-btn listing-btn-primary" href="/contact/" data-analytics-event="listing_inquiry" data-analytics-label="Request Information: Scaled Coin Laundry and Ancillary Revenue Business" data-analytics-location="listing_card" data-analytics-section="current_listings" data-listing-id="nc-coin-laundry" data-listing-title="Scaled Coin Laundry and Ancillary Revenue Business" data-analytics-goal="qualified_listing_inquiry">Request Information</a>
                 <a class="listing-btn listing-btn-secondary" href="/blog/how-to-buy-a-small-business-without-costly-mistakes/">Buyer Guide</a>
               </div>
             </div>
@@ -888,6 +1007,28 @@ body.bbas-page{
         </div>
       </div>
     </section>
+
+    <section class="section"><div class="section-card"><div class="eyebrow">Compare opportunities consistently</div><h2>What to Review Before Requesting More Information</h2><div class="buyer-framework-grid">
+      <div class="buyer-framework-card"><h3>Buyer fit and operating role</h3><p>Ask whether the industry, location, schedule, owner duties, licenses, staffing, customer interaction, physical demands, and transition fit your skills, resources, and desired involvement.</p></div>
+      <div class="buyer-framework-card"><h3>Earnings and price context</h3><p>Request support for revenue, expenses, owner adjustments, payroll, inventory, debt, capital expenditure, working capital, cash flow, and the assumptions behind the asking price.</p></div>
+      <div class="buyer-framework-card"><h3>Revenue durability</h3><p>Review customer concentration, contracts, renewal, churn, seasonality, collections, margins, channels, pricing, competitive position, reputation, and dependence on the seller.</p></div>
+      <div class="buyer-framework-card"><h3>Assets and property</h3><p>Confirm what is owned, leased, financed, excluded, obsolete, encumbered, damaged, under-maintained, or due for replacement, plus lease assignment and landlord consent.</p></div>
+      <div class="buyer-framework-card"><h3>Legal and transferability</h3><p>Identify entity or asset structure, liens, liabilities, taxes, claims, contracts, licenses, permits, insurance, employees, privacy obligations, and change-of-control or assignment requirements.</p></div>
+      <div class="buyer-framework-card"><h3>Financing and cash reserves</h3><p>Test equity injection, lender eligibility, debt service, collateral, buyer experience, working capital, inventory, transaction costs, post-closing capital, and downside scenarios.</p></div>
+    </div><div class="listing-disclosure"><p>A lower asking price does not automatically mean a more affordable acquisition, and high reported sales do not establish profit, value, financing capacity, or buyer return. Compare supported normalized cash flow, total capital required, risk, transition, and fit.</p></div></div></section>
+
+    <section class="section"><div class="section-card"><div class="eyebrow">Inquiry process</div><h2>What Happens After You Request Listing Information</h2><div class="buyer-framework-grid">
+      <div class="buyer-framework-card"><h3>1. Identify the listing</h3><p>Use the listing title or category and provide your preferred geography, industry, price range, operating role, acquisition timing, and the question you want to resolve.</p></div>
+      <div class="buyer-framework-card"><h3>2. Share buyer context</h3><p>Describe relevant operating experience, available equity, financing stage, partners or decision makers, adviser involvement, and any requirements that affect fit.</p></div>
+      <div class="buyer-framework-card"><h3>3. Review access requirements</h3><p>Additional information may require identity confirmation, buyer qualification, confidentiality terms, seller authorization, or staged access. Do not send unnecessary sensitive personal or financial data initially.</p></div>
+      <div class="buyer-framework-card"><h3>4. Verify the opportunity</h3><p>Compare seller-provided information with source records, authorized interviews, inspections, third-party confirmations, financing review, and qualified legal, accounting, tax, licensing, environmental, and industry advice.</p></div>
+    </div><div class="listing-disclosure"><p>An inquiry does not reserve a business, verify availability, create an agency or professional relationship, approve financing, guarantee disclosure, or establish price, value, earnings, return, or closing.</p></div></div></section>
+
+    <section class="section"><div class="section-card"><div class="eyebrow">Buyer tools</div><h2>Move from Discovery to Evidence</h2><div class="resource-grid">
+      <div class="resource-card"><h3>Due Diligence Template</h3><p>Track requests, source evidence, findings, financial effects, owners, deadlines, protections, and resolution.</p><a class="resource-link" href="/due-diligence-template/" data-analytics-event="tool_card_click" data-analytics-label="Due Diligence Template" data-analytics-section="listing_tools">Open template</a></div>
+      <div class="resource-card"><h3>SBA Loan Calculator</h3><p>Model price, equity, loan amount, rate, term, payment, and debt-service assumptions before lender review.</p><a class="resource-link" href="/sba-loan-calculator/" data-analytics-event="tool_card_click" data-analytics-label="SBA Loan Calculator" data-analytics-section="listing_tools">Model financing</a></div>
+      <div class="resource-card"><h3>Business Valuation Calculator</h3><p>Test normalized earnings, multiple, assets, liabilities, and sensitivity assumptions without treating output as an appraisal.</p><a class="resource-link" href="/business-valuation-calculator/" data-analytics-event="tool_card_click" data-analytics-label="Business Valuation Calculator" data-analytics-section="listing_tools">Test value</a></div>
+    </div><div class="listing-disclosure"><p>The SBA’s <a href="https://www.sba.gov/business-guide/plan-your-business/buy-existing-business-or-franchise" data-analytics-event="outbound_link_click" data-analytics-label="SBA buying an existing business" data-analytics-section="listing_sources">guidance on buying an existing business</a> encourages buyers to review the full landscape, including contracts, leases, cash flow, inventory, value, and professional support. It does not validate any listing shown here.</p><p><strong>Listings-page methodology reviewed July 15, 2026.</strong> Listing fields are presented as discovery inputs and must be verified for the actual opportunity. Educational information only—not brokerage, legal, tax, accounting, valuation, lending, environmental, licensing, or investment advice.</p></div></div></section>
 
     <section class="section">
       <div class="section-card">
@@ -915,17 +1056,25 @@ body.bbas-page{
       </div>
     </section>
 
+    <section class="section"><div class="section-card"><div class="eyebrow">Frequently asked questions</div><h2>Questions About Businesses for Sale</h2><div class="faq-grid">
+      <div class="faq-item"><h3>How are listings evaluated?</h3><p>Listings provide preliminary discovery information based on available fields. Buyers must independently verify availability, ownership, financial records, cash flow, assets, liabilities, contracts, licenses, property, employees, inventory, working capital, financing, and transition before relying on a summary.</p></div>
+      <div class="faq-item"><h3>Why is some listing information confidential?</h3><p>Early summaries may omit names, exact addresses, personal information, customer details, employee information, contracts, and other sensitive facts to reduce unnecessary disclosure. Additional access may depend on qualification, confidentiality terms, seller authorization, and a legitimate need for the information.</p></div>
+      <div class="faq-item"><h3>How do I request more details?</h3><p>Select “Request Information” on the relevant card and identify the listing title, your acquisition criteria, experience, geography, timing, equity and financing stage, decision makers, and specific questions. Avoid sending unnecessary sensitive information in the initial inquiry.</p></div>
+      <div class="faq-item"><h3>Does asking price represent business value?</h3><p>No. Asking price is a seller-side transaction input, not an independent valuation. Buyers should analyze supported normalized earnings, assets, liabilities, capital needs, working capital, market evidence, financing, risk, structure, and professional review.</p></div>
+      <div class="faq-item"><h3>Are the listing images photographs of the businesses?</h3><p>No. The current cards use placeholder images for layout and category presentation. They should not be used to identify, inspect, locate, or infer the condition, assets, site, brand, or operations of a listed company.</p></div>
+    </div></div></section>
+
     <section class="section">
       <div class="cta-panel">
         <div>
-          <div class="eyebrow" style="background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.18);color:#FFFFFF;">Next step</div>
+          <div class="eyebrow eyebrow--dark">Next step</div>
           <h2>Use listings, buyer education, and direct contact together.</h2>
           <p>The strongest buyers compare opportunities with context, understand their financing path, and move into serious conversations only after the basics are clear.</p>
         </div>
 
         <div class="cta-actions">
-          <a class="hero-btn hero-btn-primary" href="/buy-a-business/" data-analytics-event="cta_click" data-analytics-label="Buy a Business" data-analytics-location="hero" data-analytics-section="listings_hero" data-analytics-goal="buyer_consultation">Buy a Business</a>
-          <a class="hero-btn hero-btn-secondary" href="/contact/">Contact Us</a>
+          <a class="hero-btn hero-btn-primary" href="/buy-a-business/" data-analytics-event="cta_click" data-analytics-label="Buy a Business" data-analytics-location="end_page" data-analytics-section="listings_final_cta" data-analytics-goal="buyer_consultation">Buy a Business</a>
+          <a class="hero-btn hero-btn-secondary" href="/contact/" data-analytics-event="cta_click" data-analytics-label="Contact About a Listing" data-analytics-location="end_page" data-analytics-section="listings_final_cta" data-analytics-goal="qualified_listing_inquiry">Contact About a Listing</a>
         </div>
       </div>
     </section>
