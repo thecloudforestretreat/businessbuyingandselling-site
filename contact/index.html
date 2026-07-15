@@ -21,69 +21,64 @@
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"ContactPage",
-  "name":"Contact a Business Broker Business Buying and Selling",
-  "description":"Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps.",
-  "url":"https://businessbuyingandselling.com/contact/",
-  "mainEntity":{
-    "@type":"Organization",
-    "name":"Business Buying and Selling",
-    "url":"https://businessbuyingandselling.com/",
-    "description":"Professional advisory marketplace for buyers and sellers of owner-operated businesses."
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"BreadcrumbList",
-  "itemListElement":[
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@type":"ListItem",
-      "position":1,
-      "name":"Home",
-      "item":"https://businessbuyingandselling.com/"
+      "@type": "BreadcrumbList",
+      "@id": "https://businessbuyingandselling.com/contact/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://businessbuyingandselling.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://businessbuyingandselling.com/contact/"
+        }
+      ]
     },
     {
-      "@type":"ListItem",
-      "position":2,
-      "name":"Contact",
-      "item":"https://businessbuyingandselling.com/contact/"
-    }
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {
-      "@type":"Question",
-      "name":"Can I contact Business Buying and Selling about buying a business?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. Buyers can contact Business Buying and Selling with questions about listings, business fit, financing, due diligence, or next steps."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"Can I contact Business Buying and Selling about selling my business?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. Business owners can reach out with questions about valuation, timing, confidentiality, buyer readiness, and preparing to sell."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"What should I include in my contact message?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Helpful details include whether you are buying or selling, your timeline, business type, location, budget, and the specific question or listing you want help with."
-      }
+      "@type": "ContactPage",
+      "@id": "https://businessbuyingandselling.com/contact/#webpage",
+      "url": "https://businessbuyingandselling.com/contact/",
+      "name": "Contact a Business Broker | Business Buying & Selling",
+      "description": "Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps.",
+      "dateModified": "2026-07-15",
+      "breadcrumb": {
+        "@id": "https://businessbuyingandselling.com/contact/#breadcrumb"
+      },
+      "audience": [
+        {
+          "@type": "Audience",
+          "audienceType": "Business buyers"
+        },
+        {
+          "@type": "Audience",
+          "audienceType": "Business owners and sellers"
+        }
+      ],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Business buyer inquiry"
+        },
+        {
+          "@type": "Thing",
+          "name": "Business seller inquiry"
+        },
+        {
+          "@type": "Thing",
+          "name": "Business listing inquiry"
+        },
+        {
+          "@type": "Thing",
+          "name": "Business transaction question"
+        }
+      ]
     }
   ]
 }
@@ -134,7 +129,7 @@ window.onTurnstileError = function(){
 </script>
 </head>
 
-<body class="bbas-page contact-page" data-page-type="contact_page" data-primary-goal="contact_submit">
+<body class="bbas-page contact-page" data-page-type="contact_page" data-page-path="/contact/" data-topic-cluster="brand_trust_and_conversion" data-primary-goal="qualified_contact_submit">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <div id="siteHeader"></div>
@@ -142,16 +137,17 @@ window.onTurnstileError = function(){
 <main id="main" class="bbas-main">
   <div class="bbas-container">
 
+    <nav class="bbx-article-breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Contact</span></nav>
+
     <section class="contact-hero" aria-label="Contact Business Buying and Selling">
       <div class="hero-badge"><span class="dot" aria-hidden="true"></span>Contact Us</div>
 
       <div class="contact-hero-grid contact-hero-grid--single">
         <div class="contact-copy-wrap">
-          <h1>Contact a business broker with confidence.</h1>
+          <h1>Contact a Business Broker with Confidence</h1>
 
           <div class="contact-hero-copy">
-            <p>Reach out if you are buying a business, selling a business, reviewing listings, or trying to understand the right next step.</p>
-            <p>The goal is simple: help you get clear direction without confusion, pressure, or unnecessary back-and-forth.</p>
+            <p>Contact Business Buying and Selling when you are evaluating a purchase, preparing to sell, requesting information about a listing, using a calculator, or researching a transaction question. Identify your goal, relevant business or page, geography, timing, experience, financing stage, and the decision you need to make—without sending unnecessary sensitive information initially.</p>
           </div>
 
           <div class="hero-actions">
@@ -179,7 +175,7 @@ window.onTurnstileError = function(){
           <div class="contact-card-head">
             <div class="eyebrow">Send a message</div>
             <h2>Tell us what you need help with</h2>
-            <p class="contact-card-sub">Share whether you are buying, selling, exploring listings, or asking a general business transaction question.</p>
+            <p class="contact-card-sub">Share whether you are buying, selling, exploring listings, or asking a general business transaction question. Do not include Social Security numbers, passwords, bank credentials, payment-card data, complete tax returns, employee/customer files, health information, or other unnecessary sensitive records in the initial message.</p>
           </div>
 
           <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
@@ -279,6 +275,20 @@ window.onTurnstileError = function(){
       </div>
     </section>
 
+    <section class="section"><div class="section-card"><div class="eyebrow">Better inquiry routing</div><h2>What to Include for a More Useful First Review</h2><div class="link-grid">
+      <div class="link-card"><h3>Buying a business</h3><p>Describe industries and locations, operating experience, preferred owner role, price range, available equity, financing stage, acquisition timing, partners or decision makers, and the question you need to resolve.</p></div>
+      <div class="link-card"><h3>Selling a business</h3><p>Describe the industry, broad location, owner objectives, approximate timing, readiness of financial records, desired transition, and confidentiality concerns. Avoid sharing names or sensitive documents until access requirements are clear.</p></div>
+      <div class="link-card"><h3>Listing information</h3><p>Identify the exact listing title or category and explain buyer fit, geography, experience, capital and financing stage, timing, and the additional fact you need. Do not contact a company you believe you identified without authorization.</p></div>
+      <div class="link-card"><h3>Tool or content question</h3><p>Name the calculator, template, article, assumption, or output involved. Include the inputs you used only when they do not expose sensitive information, and remember that tools provide illustrations rather than professional conclusions.</p></div>
+    </div></div></section>
+
+    <section class="section"><div class="section-card"><div class="eyebrow">Privacy, scope, and expectations</div><h2>What an Inquiry Does—and Does Not—Establish</h2><p>A message provides initial context for routing and review. Additional information may be requested to understand the question, confirm identity, assess fit, or identify an appropriate next step. Submission does not guarantee a response time, listing availability, buyer or seller match, confidentiality agreement, professional engagement, valuation, financing, transaction, or closing.</p><div class="link-grid">
+      <div class="link-card"><h3>Share in stages</h3><p>Begin with the minimum information needed to identify the goal. Use an appropriate secure, authorized process before transmitting sensitive financial, employee, customer, legal, tax, credential, health, payment, or regulated data.</p></div>
+      <div class="link-card"><h3>Confidentiality has limits</h3><p>Information can be handled carefully, but no website, form, process, or agreement eliminates every risk of disclosure, breach, subpoena, third-party action, or legally required communication.</p></div>
+      <div class="link-card"><h3>No automatic professional relationship</h3><p>Contact alone does not create an attorney-client, accountant-client, lender-borrower, broker-client, valuation, fiduciary, or other professional relationship. Applicable scope and terms require separate confirmation.</p></div>
+      <div class="link-card"><h3>Use qualified specialists</h3><p>Material legal, tax, accounting, valuation, lending, environmental, licensing, employment, cybersecurity, property, insurance, and investment questions may require qualified professionals with the actual facts and documents.</p></div>
+    </div><div class="info-band"><p><strong>Contact-page methodology reviewed July 15, 2026.</strong> The routing framework separates the visitor’s goal, relevant opportunity or resource, context, question, sensitivity level, and next step. It does not represent a response commitment or professional opinion.</p></div></div></section>
+
     <section class="section">
       <div class="section-card">
         <div class="eyebrow">Useful pages</div>
@@ -341,29 +351,13 @@ window.onTurnstileError = function(){
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-card">
-        <div class="eyebrow">Frequently asked questions</div>
-        <h2>Common contact questions</h2>
-
-        <div class="faq-grid">
-          <div class="faq-item">
-            <h3>Can I contact you about buying a business?</h3>
-            <p>Yes. Buyers can reach out with questions about listings, business fit, financing, diligence, or next steps.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3>Can I contact you about selling my business?</h3>
-            <p>Yes. Owners can reach out about valuation, timing, confidentiality, buyer readiness, and preparing for a future sale.</p>
-          </div>
-
-          <div class="faq-item">
-            <h3>What should I include in my message?</h3>
-            <p>Include whether you are buying or selling, your timing, business type, location, budget, and the specific question or listing you want help with.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="section"><div class="section-card"><div class="eyebrow">Frequently asked questions</div><h2>Common Contact Questions</h2><div class="faq-grid">
+      <div class="faq-item"><h3>Can I contact you about buying a business?</h3><p>Yes. Identify your acquisition criteria, location, operating experience, preferred role, available equity, financing stage, timing, and the opportunity or decision you are evaluating. A message does not verify a listing, reserve an opportunity, approve financing, or recommend a purchase.</p></div>
+      <div class="faq-item"><h3>Can I contact you about selling my business?</h3><p>Yes. Share your industry, broad location, objectives, timing, preparation status, and the question you need to resolve. Avoid sending unnecessary names, complete records, employee/customer information, or sensitive documents until an appropriate access process is confirmed.</p></div>
+      <div class="faq-item"><h3>What should I include in my message?</h3><p>State whether the inquiry concerns buying, selling, a listing, a tool, or a general transaction question. Include relevant geography, business type, timing, experience, financing stage, page or listing title, and a specific requested next step.</p></div>
+      <div class="faq-item"><h3>Should I send confidential documents through the initial form?</h3><p>No. Do not send unnecessary sensitive personal, financial, employee, customer, legal, health, payment, credential, or regulated information in the first message. Begin with summary context and confirm an authorized, appropriately secure process before transmitting documents.</p></div>
+      <div class="faq-item"><h3>What happens after I submit the form?</h3><p>The message can be reviewed for its stated purpose, and additional context may be requested. Submission does not guarantee response timing, a match, listing access, engagement, professional relationship, financing, valuation, confidentiality, transaction, or closing.</p></div>
+    </div></div></section>
 
   </div>
 </main>
