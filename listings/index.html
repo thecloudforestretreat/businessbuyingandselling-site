@@ -626,6 +626,14 @@ body.bbas-page{
   flex-wrap:wrap;
 }
 
+/* Keep paired desktop cards on the same visual baseline. */
+@media (min-width:981px){
+  .listing-topline{min-height:30px}
+  .listing-card h3{min-height:calc(1.16em * 2)}
+  .listing-summary{min-height:calc(1.72em * 4)}
+  .metric-grid{grid-auto-rows:1fr}
+}
+
 @media (max-width:980px){
   .hero-grid,
   .cta-panel{
