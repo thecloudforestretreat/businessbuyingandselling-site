@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /private-listings/
+Disallow: /api/admin/
+Disallow: /api/private/
 Sitemap: https://businessbuyingandselling.com/sitemap.xml

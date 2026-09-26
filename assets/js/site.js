@@ -85,10 +85,50 @@
 
   function track(eventName, params) {
     ensureAnalytics();
-    if (typeof window.gtag !== "function") return;
-
     var payload = Object.assign({}, getPagePayload(), params || {});
-    window.gtag("event", eventName, payload);
+    if (typeof window.gtag === "function") window.gtag("event", eventName, payload);
+    trackFirstParty(eventName, payload);
+  }
+
+  function trackingSessionId() {
+    try {
+      var existing = window.sessionStorage.getItem("bbas_tracking_session");
+      if (existing) return existing;
+      var value = window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : String(Date.now()) + "-" + Math.random().toString(36).slice(2);
+      window.sessionStorage.setItem("bbas_tracking_session", value);
+      return value;
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function trackFirstParty(eventName, payload) {
+    var allowed = ["page_view_enhanced", "listing_click", "listing_inquiry", "listing_filter", "form_start", "form_submit_success", "private_access_requested"];
+    if (allowed.indexOf(eventName) === -1) return;
+    var params = new URLSearchParams(window.location.search);
+    var listingId = (document.body && document.body.getAttribute("data-listing-id")) || payload.listing_id || "";
+    var event = {
+      event_name: eventName,
+      listing_id: listingId,
+      page_path: window.location.pathname,
+      session_id: trackingSessionId(),
+      source: params.get("utm_source") || "",
+      medium: params.get("utm_medium") || "",
+      campaign: params.get("utm_campaign") || "",
+      metadata: {
+        page_type: getPageType(),
+        event_label: payload.event_label || "",
+        event_section: payload.event_section || ""
+      }
+    };
+    var data = JSON.stringify(event);
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon("/api/events", new Blob([data], { type: "application/json" }));
+      } else {
+        fetch("/api/events", { method: "POST", headers: { "content-type": "application/json" }, body: data, keepalive: true }).catch(function(){});
+      }
+    } catch (e) {}
   }
 
   window.BBAS = window.BBAS || {};
@@ -234,6 +274,7 @@
           event_location: explicit.getAttribute("data-analytics-location") || "unknown",
           event_section: explicit.getAttribute("data-analytics-section") || "unknown",
           event_goal: explicit.getAttribute("data-analytics-goal") || getPrimaryGoal(),
+          listing_id: explicit.getAttribute("data-listing-id") || (closest(explicit, "[data-listing-id]") && closest(explicit, "[data-listing-id]").getAttribute("data-listing-id")) || "",
           destination_url: explicit.getAttribute("href") || ""
         });
       }

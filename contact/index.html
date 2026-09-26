@@ -94,6 +94,7 @@
 
 <link rel="stylesheet" href="/assets/css/site.css?v=20260514-contact-final-v1" />
 <link rel="stylesheet" href="/assets/css/header.css?v=20260514-contact-final-v1" />
+<link rel="stylesheet" href="/assets/css/confidential-listings.css?v=20260926" />
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
@@ -178,7 +179,14 @@ window.onTurnstileError = function(){
             <p class="contact-card-sub">Share whether you are buying, selling, exploring listings, or asking a general business transaction question. Do not include Social Security numbers, passwords, bank credentials, payment-card data, complete tax returns, employee/customer files, health information, or other unnecessary sensitive records in the initial message.</p>
           </div>
 
+          <div class="listing-context-box" id="listingContext" role="status">
+            <strong>Confidential listing inquiry</strong>
+            <span id="listingContextText"></span>
+          </div>
+
           <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
+            <input type="hidden" id="listingReference" name="listing_reference" value="" />
+            <input type="hidden" id="sourceUrl" name="source_url" value="" />
             <div class="form-grid">
               <div class="field">
                 <label for="firstName">First Name</label>
@@ -399,6 +407,43 @@ window.onTurnstileError = function(){
   var form = document.getElementById("contactForm");
   var status = document.getElementById("contactStatus");
   var token = document.getElementById("turnstileToken");
+  var listingReference = document.getElementById("listingReference");
+  var sourceUrl = document.getElementById("sourceUrl");
+  var listingContext = document.getElementById("listingContext");
+  var listingContextText = document.getElementById("listingContextText");
+  var listingTitles = {
+    "NC-AUTO-SERVICE":"Established Brake and Repair Operation",
+    "NC-CONVENIENCE-STORE":"Standalone Convenience Store Opportunity",
+    "NC-GROCERY-GRILL":"Community Grocery and Grill Concept",
+    "NC-BAKERY-FOOD-SERVICE":"Bakery and Counter-Service Food Business",
+    "NC-SMALL-CAFE":"Small Footprint Cafe Opportunity",
+    "NC-MEDICAL-TRANSPORT":"Non-Emergency Medical Transport Business",
+    "NC-BUTCHER-RETAIL":"Specialty Butcher and Meat Retail Operation",
+    "NC-SPECIALTY-FOODS-GROUP":"Multi-Location Specialty Foods Retail Group",
+    "NC-ESTABLISHED-RETAIL":"Established Retail Store with Strong Revenue Base",
+    "NC-COIN-LAUNDRY":"Scaled Coin Laundry and Ancillary Revenue Business",
+    "BBAS-101":"Confidential Lodging Property Opportunity",
+    "BBAS-102":"Recently Improved Convenience Retail Opportunity",
+    "BBAS-103":"High-Volume Specialty Beverage Retail Opportunity",
+    "BBAS-104":"Branded Fuel and Convenience Retail Opportunity",
+    "BBAS-105":"Fuel, Convenience and Specialty Retail Property",
+    "BBAS-106":"Fuel and Convenience Store with Real Estate",
+    "BBAS-107":"Neighborhood Convenience Store and Real Estate",
+    "BBAS-108":"Dessert and Beverage Shop Opportunity"
+  };
+
+  var listingParam = (new URLSearchParams(window.location.search).get("listing") || "").toUpperCase();
+  if (sourceUrl) sourceUrl.value = document.referrer || window.location.href;
+  if (listingParam && listingTitles[listingParam]) {
+    if (listingReference) listingReference.value = listingParam;
+    if (listingContext && listingContextText) {
+      listingContextText.textContent = listingParam + " - " + listingTitles[listingParam] + ". We will use this reference throughout the qualification and NDA process.";
+      listingContext.classList.add("is-visible");
+    }
+    if (form && form.topic) form.topic.value = "listings";
+    if (message && !message.value) message.placeholder = "Please share your acquisition experience, available capital or financing stage, timing, intended operating role, and questions about " + listingParam + ".";
+    if (form) form.setAttribute("data-listing-id", listingParam);
+  }
 
   [firstName, lastName, city, state].forEach(function(el){
     if (!el) return;
@@ -477,13 +522,20 @@ document.addEventListener("DOMContentLoaded", function(){
     formBody.append("state", form.state.value || "");
     formBody.append("topic", form.topic.value || "");
     formBody.append("message", form.message.value || "");
+    formBody.append("listing_reference", form.listing_reference ? form.listing_reference.value || "" : "");
+    formBody.append("source_url", form.source_url ? form.source_url.value || "" : window.location.href);
     formBody.append("turnstile_token", token.value || "");
 
     try {
-      const res = await fetch(CONTACT_ENDPOINT, {
-        method: "POST",
-        body: formBody
-      });
+      const listingEndpoint = form.listing_reference && form.listing_reference.value ? "/api/listing-inquiry" : CONTACT_ENDPOINT;
+      const requestOptions = listingEndpoint === CONTACT_ENDPOINT
+        ? { method: "POST", body: formBody }
+        : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(formBody.entries())) };
+      let res = await fetch(listingEndpoint, requestOptions);
+      if (listingEndpoint !== CONTACT_ENDPOINT && res.status === 503) {
+        // Keep production inquiries working while the secure D1 binding is being provisioned.
+        res = await fetch(CONTACT_ENDPOINT, { method: "POST", body: formBody });
+      }
 
       const json = await res.json();
 
