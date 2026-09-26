@@ -99,6 +99,7 @@
     var root = document.querySelector("[data-bbas-header]");
     var toggle = document.querySelector("[data-bbas-nav-toggle]");
     var mobile = document.querySelector("[data-bbas-mobile-nav]");
+    var resourceMenu = root && root.querySelector(".bbas-nav__menu");
 
     if (!root || !toggle || !mobile) return false;
     if (toggle.dataset.bbasNavBound === "true") return true;
@@ -130,6 +131,10 @@
     });
 
     document.addEventListener("click", function (e) {
+      if (resourceMenu && resourceMenu.open && !resourceMenu.contains(e.target)) {
+        resourceMenu.removeAttribute("open");
+      }
+
       var closeHit = closest(e.target, "[data-bbas-nav-close]");
       if (closeHit) {
         closeMenu();
@@ -143,11 +148,15 @@
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
+      if (e.key === "Escape") {
+        closeMenu();
+        if (resourceMenu) resourceMenu.removeAttribute("open");
+      }
     });
 
     window.addEventListener("resize", function () {
       if (window.innerWidth >= 901) closeMenu();
+      else if (resourceMenu) resourceMenu.removeAttribute("open");
     });
 
     closeMenu();

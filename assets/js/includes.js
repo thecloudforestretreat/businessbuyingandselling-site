@@ -21,8 +21,20 @@
   }
 
   onReady(function () {
-    // Adjust these paths only if you store includes elsewhere
-    inject("siteHeader", "/assets/includes/header.html");
+    // Pin the shared navigation assets to the current release so returning
+    // visitors do not keep an older cached menu or positioning rule.
+    var headerCss = document.querySelector('link[href*="/assets/css/header.css"]');
+    if (!headerCss) {
+      headerCss = document.createElement("link");
+      headerCss.rel = "stylesheet";
+      document.head.appendChild(headerCss);
+    }
+    headerCss.href = "/assets/css/header.css?v=20260926-sticky-tools-v1";
+
+    var resourceCss = document.querySelector('link[href*="/assets/css/resource.css"]');
+    if (resourceCss) resourceCss.href = "/assets/css/resource.css?v=20260926-sticky-tools-v1";
+
+    inject("siteHeader", "/assets/includes/header.html?v=20260926-sticky-tools-v1");
     inject("siteFooter", "/assets/includes/footer.html");
   });
 })();
