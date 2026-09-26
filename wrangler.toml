@@ -1,0 +1,16 @@
+# Cloudflare Pages production configuration.
+name = "businessbuyingandselling-site"
+pages_build_output_dir = ""
+compatibility_date = "2026-02-18"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bbas-production"
+database_id = "4d856ffb-217c-4e12-9c22-2d40488bf962"
+
+[vars]
+PUBLIC_SITE_URL = "https://businessbuyingandselling.com"
+CF_ACCESS_TEAM_DOMAIN = "tcfr-mbw.cloudflareaccess.com"
+CF_ACCESS_AUD = "56325ca515cf21834616ff84ad5ca570c5e03ffa2979b397ba20d76224eef97d"
+
+[env.production]
