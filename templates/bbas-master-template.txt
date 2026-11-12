@@ -107,8 +107,9 @@ Important:
 - Use the global CSS system.
 - Page-level CSS is allowed only when a unique component cannot be safely covered globally.
 
-Current GA4 Measurement ID:
-G-EH99SDCSFD
+Current GA4 Measurement IDs:
+G-EH99SDCSFD (legacy property)
+G-EZNS547QYN (controlled replacement property)
 
 GA4 belongs in /assets/js/site.js only.
 

@@ -6,7 +6,10 @@
 (function () {
   "use strict";
 
-  var GA4_ID = "G-EH99SDCSFD";
+  /* Keep the legacy property collecting while the replacement property builds
+     history under the controlled owner account. Load gtag.js once, then
+     configure each destination exactly once. */
+  var GA4_IDS = ["G-EH99SDCSFD", "G-EZNS547QYN"];
   var SCROLL_DEPTHS = [25, 50, 75, 90, 100];
   var sentScrollDepths = {};
   var formStarted = {};
@@ -62,11 +65,11 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 
-    var existing = document.querySelector('script[src*="googletagmanager.com/gtag/js?id=' + GA4_ID + '"]');
+    var existing = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
     if (!existing) {
       var script = document.createElement("script");
       script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID);
+      script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_IDS[0]);
       document.head.appendChild(script);
     }
 
@@ -75,9 +78,11 @@
 
       /* Send the standard GA4 page_view with page title/location/path so
          Realtime and Pages reports show page names correctly. */
-      window.gtag("config", GA4_ID, Object.assign({
-        send_page_view: true
-      }, getPagePayload()));
+      GA4_IDS.forEach(function (id) {
+        window.gtag("config", id, Object.assign({
+          send_page_view: true
+        }, getPagePayload()));
+      });
 
       window.__BBAS_GA4_CONFIGURED__ = true;
     }

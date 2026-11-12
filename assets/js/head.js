@@ -1,6 +1,4 @@
 (function () {
-  const GA_ID = "G-EH99SDCSFD";
-
   const defaults = {
     title: "Business Buying and Selling",
     description: "A marketplace and resource for buying and selling established businesses.",
@@ -92,14 +90,5 @@
   addLink("preconnect", "https://fonts.gstatic.com", { crossorigin: "" });
   addLink("stylesheet", "https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&family=DM+Sans:wght@400;500&display=swap");
 
-  // Google Analytics (gtag)
-  addScript(`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`, true);
-  const inline = document.createElement("script");
-  inline.text = `
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${GA_ID}');
-  `;
-  document.head.appendChild(inline);
+  // Analytics is initialized once by /assets/js/site.js.
 })();
