@@ -29,6 +29,33 @@ test("every inline browser script parses", () => {
   assert.deepEqual(errors, []);
 });
 
+test("every JSON-LD block parses", () => {
+  const errors = [];
+  for (const file of files(root, ".html")) {
+    const html = readFileSync(file, "utf8");
+    const scripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+    scripts.forEach((match, index) => {
+      try { JSON.parse(match[1]); }
+      catch (error) { errors.push(`${relative(root, file)} JSON-LD ${index + 1}: ${error.message}`); }
+    });
+  }
+  assert.deepEqual(errors, []);
+});
+
+test("priority opportunity pages expose answer-engine structured data", () => {
+  const expectations = [
+    ["blog/business-valuation-multiples-by-industry/index.html", /"@type":"Dataset"/, /"@type":"FAQPage"/],
+    ["due-diligence-template/index.html", /"@type": "FAQPage"/, /Checklist Template \+ CSV/],
+    ["blog/how-to-buy-a-convenience-store/index.html", /"@type": "HowTo"/, /"@type": "FAQPage"/],
+    ["sba-loan-calculator/index.html", /"@type": "FAQPage"/, /"@type":"WebApplication"/],
+    ["seller-proceeds-calculator/index.html", /"@type": "FAQPage"/, /Free Seller Proceeds Calculator/]
+  ];
+  for (const [file, ...patterns] of expectations) {
+    const source = readFileSync(join(root, file), "utf8");
+    for (const pattern of patterns) assert.match(source, pattern, file);
+  }
+});
+
 test("analytics uses one loader with controlled dual destinations", () => {
   const site = readFileSync(join(root, "assets/js/site.js"), "utf8");
   assert.match(site, /G-EH99SDCSFD/);
