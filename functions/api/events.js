@@ -2,7 +2,8 @@ import { body, clean, id, json, requireBinding, cors } from "../_lib/http.js";
 
 const ALLOWED = new Set([
   "page_view_enhanced", "listing_click", "listing_inquiry", "listing_filter",
-  "form_start", "form_submit_success", "private_access_requested"
+  "form_start", "calculator_submit", "email_click", "phone_click",
+  "private_access_requested"
 ]);
 
 export async function onRequestOptions({ request }) {

@@ -1,0 +1,9 @@
+{
+  "name": "businessbuyingandselling-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "qa": "npm test && node --check assets/js/site.js && node --check assets/js/resource-calculators.js"
+  }
+}

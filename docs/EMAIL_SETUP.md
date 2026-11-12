@@ -6,7 +6,8 @@ This site is prepared to use `info@businessbuyingandselling.com` without making 
 
 - `/api/contact` stores general contact requests in the existing D1 `inquiries` table.
 - `/api/consultation` stores homepage buyer and seller consultation requests in the same table.
-- Listing-specific inquiries continue through `/api/listing-inquiry`.
+- Listing-specific inquiries use `/api/listing-inquiry` and the same save-and-notify pipeline as general contact and consultation requests.
+- A successfully saved lead returns an inquiry ID. If Resend cannot deliver the internal alert, the submission remains in D1 and a `lead_notification_failed` activity event is recorded for admin follow-up.
 - Saved leads appear in the protected admin dashboard even when an email provider is unavailable.
 - Email notifications are optional and are attempted only after the D1 record exists.
 

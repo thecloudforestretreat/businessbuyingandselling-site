@@ -538,7 +538,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
       if (json.success) {
         if (window.BBAS && typeof window.BBAS.formSuccess === "function") {
-          window.BBAS.formSuccess(form, "contact_submit");
+          const listingId = form.listing_reference ? form.listing_reference.value || "" : "";
+          window.BBAS.formSuccess(form, listingId ? "listing_inquiry" : "contact_submit", {
+            lead_type: listingId ? "listing_inquiry" : "general_contact",
+            listing_id: listingId,
+            inquiry_id: json.inquiry_id || "",
+            notification_sent: json.notification_sent === true
+          });
         }
 
         form.dataset.skipResetStatus = "1";

@@ -13,13 +13,14 @@ export async function onRequestPost(context) {
     const token = clean(data.turnstile_token || data["cf-turnstile-response"], 3000);
     if (!email.includes("@") || !firstName || !lastName || !message || !topic) return json({ success: false, message: "Required contact fields are missing." }, 400);
     if (!await verifyTurnstile(context.request, context.env, token)) return json({ success: false, message: "Verification failed. Please try again." }, 403);
-    const url = new URL(context.request.url);
+    let sourceParams = new URL(context.request.url).searchParams;
+    try { sourceParams = new URL(data.source_url || context.request.url).searchParams; } catch (_) {}
     const lead = {
       firstName, lastName, email, phone: data.phone, city: data.city, state: data.state,
       message: `Topic: ${topic}\n\n${message}`,
-      sourceUrl: data.source_url, pagePath: "/contact/", source: clean(data.utm_source || url.searchParams.get("utm_source"), 120) || "website",
-      medium: clean(data.utm_medium || url.searchParams.get("utm_medium"), 120) || "contact_form",
-      campaign: clean(data.utm_campaign || url.searchParams.get("utm_campaign"), 120) || topic,
+      sourceUrl: data.source_url, pagePath: "/contact/", source: clean(data.utm_source || sourceParams.get("utm_source"), 120) || "website",
+      medium: clean(data.utm_medium || sourceParams.get("utm_medium"), 120) || "contact_form",
+      campaign: clean(data.utm_campaign || sourceParams.get("utm_campaign"), 120) || topic,
       leadType: "general_contact", subject: `${topic.replace(/_/g, " ")} inquiry`
     };
     const saved = await saveInquiry(context.env, lead);

@@ -934,6 +934,14 @@
         state.stepIndex = 0;
         state.steps = branch === "sell" ? SELL_STEPS.slice() : BUY_STEPS.slice();
         state.answers = { branch: branch };
+        if (window.BBAS && window.BBAS.track) {
+          window.BBAS.track("form_start", {
+            form_id: "consultation_funnel",
+            form_name: "consultation_funnel",
+            event_goal: branch === "sell" ? "seller_consultation" : "buyer_consultation",
+            lead_type: branch === "sell" ? "seller_consultation" : "buyer_consultation"
+          });
+        }
         showStatus("", false);
         render();
       });
@@ -1188,6 +1196,11 @@
       Object.keys(state.answers).forEach(function(key){
         formBody.append(key, state.answers[key] == null ? "" : String(state.answers[key]));
       });
+      var attribution = new URLSearchParams(window.location.search);
+      formBody.set("source_url", window.location.href);
+      ["utm_source", "utm_medium", "utm_campaign"].forEach(function(key){
+        if (attribution.get(key)) formBody.set(key, attribution.get(key));
+      });
 
       fetch("/api/consultation", {
         method: "POST",
@@ -1197,7 +1210,13 @@
       .then(function(res){ return res.json(); })
       .then(function(data){
         if (data && data.success) {
-          if (window.BBAS && window.BBAS.formSuccess) window.BBAS.formSuccess(null, state.branch === "sell" ? "seller_consultation" : "buyer_consultation");
+          if (window.BBAS && window.BBAS.formSuccess) window.BBAS.formSuccess(null, state.branch === "sell" ? "seller_consultation" : "buyer_consultation", {
+            form_id: "consultation_funnel",
+            form_name: "consultation_funnel",
+            lead_type: state.branch === "sell" ? "seller_consultation" : "buyer_consultation",
+            inquiry_id: data.inquiry_id || "",
+            notification_sent: data.notification_sent === true
+          });
           if (progress) progress.style.display = "none";
           if (question) question.textContent = "Thank you. We received your information.";
           if (helper) helper.textContent = "We will follow up with the right next step.";

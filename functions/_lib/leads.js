@@ -45,11 +45,24 @@ function escapeHtml(value) {
 }
 
 export async function notifyLead(env, lead, inquiryId) {
-  if (!env.RESEND_API_KEY || !env.CONTACT_NOTIFICATION_EMAIL || !env.CONTACT_FROM_EMAIL) return { sent: false, reason: "email-not-configured" };
+  async function failed(reason) {
+    if (env.DB) {
+      try {
+        await env.DB.prepare(`INSERT INTO activity_events
+          (event_name,listing_id,page_path,metadata_json) VALUES ('lead_notification_failed',?,?,?)`)
+          .bind(lead.listingId || null, lead.pagePath || "/contact/", JSON.stringify({ inquiry_id: inquiryId, reason })).run();
+      } catch (_) {}
+    }
+    return { sent: false, reason };
+  }
+
+  if (!env.RESEND_API_KEY || !env.CONTACT_NOTIFICATION_EMAIL || !env.CONTACT_FROM_EMAIL) return failed("email-not-configured");
   const subject = `[BBAS lead ${inquiryId}] ${clean(lead.subject, 160) || "Website inquiry"}`;
   const html = `<h2>${escapeHtml(subject)}</h2>
     <p><strong>Name:</strong> ${escapeHtml(`${lead.firstName} ${lead.lastName}`.trim())}</p>
     <p><strong>Email:</strong> ${escapeHtml(lead.email)}<br><strong>Phone:</strong> ${escapeHtml(lead.phone || "Not provided")}</p>
+    <p><strong>Lead type:</strong> ${escapeHtml(lead.leadType || "Website inquiry")}<br><strong>Listing:</strong> ${escapeHtml(lead.listingId || "General inquiry")}</p>
+    <p><strong>Location:</strong> ${escapeHtml([lead.city, lead.state].filter(Boolean).join(", ") || "Not provided")}</p>
     <p><strong>Source:</strong> ${escapeHtml(lead.sourceUrl || lead.pagePath)}</p>
     <pre style="white-space:pre-wrap;font:14px/1.5 system-ui,sans-serif">${escapeHtml(lead.message)}</pre>`;
   try {
@@ -64,8 +77,8 @@ export async function notifyLead(env, lead, inquiryId) {
         html
       })
     });
-    return response.ok ? { sent: true } : { sent: false, reason: `email-provider-${response.status}` };
+    return response.ok ? { sent: true } : failed(`email-provider-${response.status}`);
   } catch (_) {
-    return { sent: false, reason: "email-provider-unavailable" };
+    return failed("email-provider-unavailable");
   }
 }

@@ -108,7 +108,10 @@
   }
 
   function trackFirstParty(eventName, payload) {
-    var allowed = ["page_view_enhanced", "listing_click", "listing_inquiry", "listing_filter", "form_start", "form_submit_success", "private_access_requested"];
+    /* Successful leads are written by the server after the inquiry is saved.
+       Keeping them out of this browser-side allowlist prevents duplicate CRM
+       events while still sending the GA4 conversion event below. */
+    var allowed = ["page_view_enhanced", "listing_click", "listing_inquiry", "listing_filter", "form_start", "calculator_submit", "email_click", "phone_click", "private_access_requested"];
     if (allowed.indexOf(eventName) === -1) return;
     var params = new URLSearchParams(window.location.search);
     var listingId = (document.body && document.body.getAttribute("data-listing-id")) || payload.listing_id || "";
@@ -123,7 +126,8 @@
       metadata: {
         page_type: getPageType(),
         event_label: payload.event_label || "",
-        event_section: payload.event_section || ""
+        event_section: payload.event_section || "",
+        lead_type: payload.lead_type || ""
       }
     };
     var data = JSON.stringify(event);
@@ -337,7 +341,7 @@
   function initFormTracking() {
     document.addEventListener("input", function (e) {
       var form = closest(e.target, "form");
-      if (!form) return;
+      if (!form || !form.hasAttribute("data-analytics-form")) return;
 
       var key = form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form") || "form";
       if (formStarted[key]) return;
@@ -353,7 +357,7 @@
 
     document.addEventListener("submit", function (e) {
       var form = e.target;
-      if (!form || !form.matches || !form.matches("form")) return;
+      if (!form || !form.matches || !form.matches("form[data-analytics-form]")) return;
 
       var key = form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form") || "form";
       track("form_submit_attempt", {
@@ -365,12 +369,21 @@
     }, true);
 
     document.addEventListener("bbas:form-success", function (e) {
-      track("form_submit_success", {
+      var details = e.detail || {};
+      var payload = {
         event_category: "form",
-        form_id: e.detail && e.detail.form_id ? e.detail.form_id : "form",
-        form_name: e.detail && e.detail.form_name ? e.detail.form_name : "form",
-        event_goal: e.detail && e.detail.goal ? e.detail.goal : getPrimaryGoal()
-      });
+        form_id: details.form_id || "form",
+        form_name: details.form_name || "form",
+        event_goal: details.goal || getPrimaryGoal(),
+        lead_type: details.lead_type || details.goal || "website_inquiry",
+        listing_id: details.listing_id || "",
+        inquiry_id: details.inquiry_id || "",
+        notification_sent: details.notification_sent === true
+      };
+      track("form_submit_success", payload);
+      /* GA4's recommended lead event is emitted only after the server confirms
+         that the inquiry was saved. */
+      track("generate_lead", payload);
     });
 
     document.addEventListener("bbas:form-error", function (e) {
@@ -400,13 +413,18 @@
   function initFormHelpers() {
     window.BBAS = window.BBAS || {};
 
-    window.BBAS.formSuccess = window.BBAS.formSuccess || function (form, goal) {
-      var formId = form && (form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form")) || "form";
+    window.BBAS.formSuccess = window.BBAS.formSuccess || function (form, goal, params) {
+      params = params || {};
+      var formId = params.form_id || (form && (form.getAttribute("id") || form.getAttribute("name") || form.getAttribute("data-analytics-form"))) || "form";
       document.dispatchEvent(new CustomEvent("bbas:form-success", {
         detail: {
           form_id: formId,
-          form_name: form && form.getAttribute("data-analytics-form") || formId,
-          goal: goal || getPrimaryGoal()
+          form_name: params.form_name || (form && form.getAttribute("data-analytics-form")) || formId,
+          goal: goal || getPrimaryGoal(),
+          lead_type: params.lead_type || goal || getPrimaryGoal(),
+          listing_id: params.listing_id || "",
+          inquiry_id: params.inquiry_id || "",
+          notification_sent: params.notification_sent === true
         }
       }));
     };

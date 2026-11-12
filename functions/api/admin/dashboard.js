@@ -10,7 +10,7 @@ export async function onRequestGet(context) {
     db.prepare("SELECT COUNT(*) AS count FROM nda_records WHERE status = 'signed'"),
     db.prepare("SELECT COUNT(*) AS count FROM access_grants WHERE status = 'active' AND datetime(expires_at) > CURRENT_TIMESTAMP"),
     db.prepare("SELECT COUNT(*) AS count FROM activity_events WHERE event_name = 'page_view_enhanced' AND datetime(created_at) >= datetime('now','-30 days')"),
-    db.prepare("SELECT COUNT(*) AS count FROM activity_events WHERE event_name = 'listing_inquiry' AND datetime(created_at) >= datetime('now','-30 days')"),
+    db.prepare("SELECT COUNT(*) AS count FROM inquiries WHERE listing_id IS NOT NULL AND datetime(created_at) >= datetime('now','-30 days')"),
     db.prepare(`SELECT listing_id, COUNT(*) AS views FROM activity_events
       WHERE event_name IN ('listing_click','page_view_enhanced') AND listing_id IS NOT NULL
       AND datetime(created_at) >= datetime('now','-30 days') GROUP BY listing_id ORDER BY views DESC LIMIT 8`),
