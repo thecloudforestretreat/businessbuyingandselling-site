@@ -12,7 +12,6 @@ database_id = "4d856ffb-217c-4e12-9c22-2d40488bf962"
 PUBLIC_SITE_URL = "https://businessbuyingandselling.com"
 CF_ACCESS_TEAM_DOMAIN = "tcfr-mbw.cloudflareaccess.com"
 CF_ACCESS_AUD = "56325ca515cf21834616ff84ad5ca570c5e03ffa2979b397ba20d76224eef97d"
-# Configure these in Cloudflare Pages after verifying the sending domain.
 # Keep RESEND_API_KEY as an encrypted secret rather than committing it.
-# CONTACT_FROM_EMAIL = "Business Buying and Selling <info@businessbuyingandselling.com>"
-# CONTACT_NOTIFICATION_EMAIL = "verified-destination@example.com"
+CONTACT_FROM_EMAIL = "Business Buying and Selling <info@businessbuyingandselling.com>"
+CONTACT_NOTIFICATION_EMAIL = "juanpgranda@gmail.com"
