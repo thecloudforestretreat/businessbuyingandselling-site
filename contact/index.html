@@ -42,12 +42,28 @@
       ]
     },
     {
+      "@type": "Organization",
+      "@id": "https://businessbuyingandselling.com/#organization",
+      "name": "Business Buying and Selling",
+      "url": "https://businessbuyingandselling.com/",
+      "email": "mailto:info@businessbuyingandselling.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "buyer and seller inquiries",
+        "email": "info@businessbuyingandselling.com",
+        "availableLanguage": "English"
+      }
+    },
+    {
       "@type": "ContactPage",
       "@id": "https://businessbuyingandselling.com/contact/#webpage",
       "url": "https://businessbuyingandselling.com/contact/",
       "name": "Contact a Business Broker | Business Buying & Selling",
       "description": "Contact Business Buying and Selling for help buying a business, selling a business, reviewing listings, valuation questions, or next steps.",
-      "dateModified": "2026-07-15",
+      "dateModified": "2026-11-12",
+      "mainEntity": {
+        "@id": "https://businessbuyingandselling.com/#organization"
+      },
       "breadcrumb": {
         "@id": "https://businessbuyingandselling.com/contact/#breadcrumb"
       },
@@ -92,8 +108,8 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<link rel="stylesheet" href="/assets/css/site.css?v=20260514-contact-final-v1" />
-<link rel="stylesheet" href="/assets/css/header.css?v=20260514-contact-final-v1" />
+<link rel="stylesheet" href="/assets/css/site.css?v=20261112-contact-intent-v2" />
+<link rel="stylesheet" href="/assets/css/header.css?v=20261112-contact-intent-v2" />
 <link rel="stylesheet" href="/assets/css/confidential-listings.css?v=20260926" />
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -148,7 +164,7 @@ window.onTurnstileError = function(){
           <h1>Contact a Business Broker with Confidence</h1>
 
           <div class="contact-hero-copy">
-            <p>Contact Business Buying and Selling when you are evaluating a purchase, preparing to sell, requesting information about a listing, using a calculator, or researching a transaction question. Identify your goal, relevant business or page, geography, timing, experience, financing stage, and the decision you need to make—without sending unnecessary sensitive information initially.</p>
+            <p>Tell us whether you are buying, selling, asking about a listing, or working through a business transaction question. Start with the decision you need to make and brief context about your timing, location, experience, or financing stage.</p>
           </div>
 
           <div class="hero-actions">
@@ -176,7 +192,7 @@ window.onTurnstileError = function(){
           <div class="contact-card-head">
             <div class="eyebrow">Send a message</div>
             <h2>Tell us what you need help with</h2>
-            <p class="contact-card-sub">Share whether you are buying, selling, exploring listings, or asking a general business transaction question. Do not include Social Security numbers, passwords, bank credentials, payment-card data, complete tax returns, employee/customer files, health information, or other unnecessary sensitive records in the initial message.</p>
+            <p class="contact-card-sub">Choose your goal first. The form will show the most useful details to include. Start with summary information and do not send sensitive documents, passwords, banking information, or complete financial records.</p>
           </div>
 
           <div class="listing-context-box" id="listingContext" role="status">
@@ -187,6 +203,31 @@ window.onTurnstileError = function(){
           <form class="contact-form" id="contactForm" action="/api/contact" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
             <input type="hidden" id="listingReference" name="listing_reference" value="" />
             <input type="hidden" id="sourceUrl" name="source_url" value="" />
+            <input type="hidden" id="topic" name="topic" value="" />
+
+            <fieldset class="contact-intent-selector" aria-describedby="intentHelp">
+              <legend>What can we help you with?</legend>
+              <div class="contact-intent-grid" role="group" aria-label="Inquiry type">
+                <button class="contact-intent-option" type="button" data-contact-intent="buying" aria-pressed="false">
+                  <strong>Buy a business</strong>
+                  <span>Acquisition criteria, financing, diligence, or next steps</span>
+                </button>
+                <button class="contact-intent-option" type="button" data-contact-intent="selling" aria-pressed="false">
+                  <strong>Sell a business</strong>
+                  <span>Preparation, timing, value, confidentiality, or exit planning</span>
+                </button>
+                <button class="contact-intent-option" type="button" data-contact-intent="listings" aria-pressed="false">
+                  <strong>Ask about a listing</strong>
+                  <span>Buyer fit, financing stage, timing, or confidential information</span>
+                </button>
+                <button class="contact-intent-option" type="button" data-contact-intent="general" aria-pressed="false">
+                  <strong>Another question</strong>
+                  <span>Calculators, resources, partnerships, or general support</span>
+                </button>
+              </div>
+              <p class="contact-intent-help" id="intentHelp">Choose the option that best matches your goal.</p>
+            </fieldset>
+
             <div class="form-grid">
               <div class="field">
                 <label for="firstName">First Name</label>
@@ -219,18 +260,6 @@ window.onTurnstileError = function(){
               </div>
 
               <div class="field field--full">
-                <label for="topic">What is this about?</label>
-                <select id="topic" name="topic" required>
-                  <option value="">Select one</option>
-                  <option value="buying">Buying a business</option>
-                  <option value="selling">Selling a business</option>
-                  <option value="listings">Listings or opportunities</option>
-                  <option value="general">General question</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div class="field field--full">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" autocapitalize="sentences" placeholder="Tell us a little about what you are looking for or what you need help with." required></textarea>
                 <div class="form-note">Helpful details include whether you are buying or selling, your timing, and any budget, business type, or location context that matters.</div>
@@ -253,6 +282,8 @@ window.onTurnstileError = function(){
               <button class="contact-btn contact-btn-secondary" type="reset">Clear form</button>
               <button class="contact-btn contact-btn-primary" type="submit">Send message</button>
             </div>
+
+            <p class="contact-email-fallback">Prefer email? Write to <a href="mailto:info@businessbuyingandselling.com" data-analytics-event="contact_email_click" data-analytics-label="info@businessbuyingandselling.com" data-analytics-section="contact_form">info@businessbuyingandselling.com</a>. Include your goal and enough context to route the request, but do not attach sensitive documents in the first message.</p>
           </form>
         </section>
 
@@ -295,7 +326,7 @@ window.onTurnstileError = function(){
       <div class="link-card"><h3>Confidentiality has limits</h3><p>Information can be handled carefully, but no website, form, process, or agreement eliminates every risk of disclosure, breach, subpoena, third-party action, or legally required communication.</p></div>
       <div class="link-card"><h3>No automatic professional relationship</h3><p>Contact alone does not create an attorney-client, accountant-client, lender-borrower, broker-client, valuation, fiduciary, or other professional relationship. Applicable scope and terms require separate confirmation.</p></div>
       <div class="link-card"><h3>Use qualified specialists</h3><p>Material legal, tax, accounting, valuation, lending, environmental, licensing, employment, cybersecurity, property, insurance, and investment questions may require qualified professionals with the actual facts and documents.</p></div>
-    </div><div class="info-band"><p><strong>Contact-page methodology reviewed July 15, 2026.</strong> The routing framework separates the visitor’s goal, relevant opportunity or resource, context, question, sensitivity level, and next step. It does not represent a response commitment or professional opinion.</p></div></div></section>
+    </div><div class="info-band"><p><strong>Contact-page methodology reviewed November 12, 2026.</strong> The routing framework separates the visitor’s goal, relevant opportunity or resource, context, question, sensitivity level, and next step. It does not represent a response commitment or professional opinion.</p></div></div></section>
 
     <section class="section">
       <div class="section-card">
@@ -411,6 +442,46 @@ window.onTurnstileError = function(){
   var sourceUrl = document.getElementById("sourceUrl");
   var listingContext = document.getElementById("listingContext");
   var listingContextText = document.getElementById("listingContextText");
+  var topic = document.getElementById("topic");
+  var intentHelp = document.getElementById("intentHelp");
+  var intentOptions = Array.prototype.slice.call(document.querySelectorAll("[data-contact-intent]"));
+  var intentGuidance = {
+    buying: {
+      help: "Include the business types and locations you prefer, your operating experience, budget or available equity, financing stage, and timing.",
+      placeholder: "Describe the type of business and location you want, your experience, budget or available equity, financing stage, timing, and the question you need answered."
+    },
+    selling: {
+      help: "Include your industry, broad location, desired timing, preparation status, and any confidentiality concerns.",
+      placeholder: "Describe the industry, broad location, desired timing, preparation status, transition goals, and the question you need answered."
+    },
+    listings: {
+      help: "Identify the listing and share your buyer experience, available capital or financing stage, intended role, timing, and specific questions.",
+      placeholder: "Identify the listing and share your acquisition experience, available capital or financing stage, intended operating role, timing, and questions."
+    },
+    general: {
+      help: "Name the page, calculator, resource, or transaction question involved and tell us what decision you are trying to make.",
+      placeholder: "Name the page, calculator, resource, or transaction question involved and tell us what you need help deciding."
+    }
+  };
+
+  function selectIntent(value){
+    var guidance = intentGuidance[value];
+    if (!guidance || !topic) return;
+    topic.value = value;
+    intentOptions.forEach(function(option){
+      var isActive = option.getAttribute("data-contact-intent") === value;
+      option.classList.toggle("is-active", isActive);
+      option.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    if (intentHelp) intentHelp.textContent = guidance.help;
+    if (message && !message.value) message.placeholder = guidance.placeholder;
+  }
+
+  intentOptions.forEach(function(option){
+    option.addEventListener("click", function(){
+      selectIntent(option.getAttribute("data-contact-intent"));
+    });
+  });
   var listingTitles = {
     "NC-AUTO-SERVICE":"Established Brake and Repair Operation",
     "NC-CONVENIENCE-STORE":"Standalone Convenience Store Opportunity",
@@ -440,7 +511,7 @@ window.onTurnstileError = function(){
       listingContextText.textContent = listingParam + " - " + listingTitles[listingParam] + ". We will use this reference throughout the qualification and NDA process.";
       listingContext.classList.add("is-visible");
     }
-    if (form && form.topic) form.topic.value = "listings";
+    selectIntent("listings");
     if (message && !message.value) message.placeholder = "Please share your acquisition experience, available capital or financing stage, timing, intended operating role, and questions about " + listingParam + ".";
     if (form) form.setAttribute("data-listing-id", listingParam);
   }
@@ -469,16 +540,23 @@ window.onTurnstileError = function(){
 
   form.addEventListener("reset", function(){
     window.setTimeout(function(){
-      if (form.dataset.skipResetStatus === "1"){
+      var preserveSuccessStatus = form.dataset.skipResetStatus === "1";
+      if (preserveSuccessStatus){
         form.dataset.skipResetStatus = "0";
-        return;
       }
-      if (status) {
+      if (status && !preserveSuccessStatus) {
         status.textContent = "Please complete verification before submitting.";
         status.style.color = "#6B7280";
         status.style.fontWeight = "500";
       }
       if (token) token.value = "";
+      if (topic) topic.value = "";
+      intentOptions.forEach(function(option){
+        option.classList.remove("is-active");
+        option.setAttribute("aria-pressed", "false");
+      });
+      if (intentHelp) intentHelp.textContent = "Choose the option that best matches your goal.";
+      if (message) message.placeholder = "Tell us a little about what you are looking for or what you need help with.";
     }, 0);
   });
 })();
@@ -495,6 +573,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
   form.addEventListener("submit", async function(e){
     e.preventDefault();
+
+    if (!form.topic || !String(form.topic.value || "").trim()) {
+      if (status) { status.textContent = "Choose what you need help with before submitting."; status.style.color = "#9A3412"; status.style.fontWeight = "700"; }
+      const firstIntent = form.querySelector("[data-contact-intent]");
+      if (firstIntent) firstIntent.focus();
+      return;
+    }
 
     const hasToken = token && String(token.value || "").trim();
     if (!hasToken) {

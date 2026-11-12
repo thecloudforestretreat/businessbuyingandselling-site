@@ -64,3 +64,14 @@ test("deprecated Gmail destination is absent", () => {
     assert.doesNotMatch(readFileSync(file, "utf8"), /businessbuyingandselling@gmail\.com/i, relative(root, file));
   }
 });
+
+test("contact page exposes current intent routing and verified email fallback", () => {
+  const contact = readFileSync(join(root, "contact/index.html"), "utf8");
+  assert.match(contact, /"dateModified": "2026-11-12"/);
+  assert.match(contact, /data-contact-intent="buying"/);
+  assert.match(contact, /data-contact-intent="selling"/);
+  assert.match(contact, /data-contact-intent="listings"/);
+  assert.match(contact, /data-contact-intent="general"/);
+  assert.match(contact, /mailto:info@businessbuyingandselling\.com/);
+  assert.match(contact, /Choose what you need help with before submitting\./);
+});
