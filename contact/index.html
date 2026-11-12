@@ -184,7 +184,7 @@ window.onTurnstileError = function(){
             <span id="listingContextText"></span>
           </div>
 
-          <form class="contact-form" id="contactForm" action="https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
+          <form class="contact-form" id="contactForm" action="/api/contact" method="post" novalidate data-analytics-form="contact" data-analytics-goal="contact_submit">
             <input type="hidden" id="listingReference" name="listing_reference" value="" />
             <input type="hidden" id="sourceUrl" name="source_url" value="" />
             <div class="form-grid">
@@ -485,7 +485,7 @@ window.onTurnstileError = function(){
 </script>
 
 <script>
-const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxuT8h_yW5ox7Oa7lNXtuo1n-sZCHBC5c2-fq3kuPTZQbzUWhINaIS_bYS2M5YG2m7Ecw/exec";
+const CONTACT_ENDPOINT = "/api/contact";
 
 document.addEventListener("DOMContentLoaded", function(){
   const form = document.querySelector("#contactForm");
@@ -528,14 +528,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
     try {
       const listingEndpoint = form.listing_reference && form.listing_reference.value ? "/api/listing-inquiry" : CONTACT_ENDPOINT;
-      const requestOptions = listingEndpoint === CONTACT_ENDPOINT
-        ? { method: "POST", body: formBody }
-        : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(formBody.entries())) };
-      let res = await fetch(listingEndpoint, requestOptions);
-      if (listingEndpoint !== CONTACT_ENDPOINT && res.status === 503) {
-        // Keep production inquiries working while the secure D1 binding is being provisioned.
-        res = await fetch(CONTACT_ENDPOINT, { method: "POST", body: formBody });
-      }
+      const res = await fetch(listingEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formBody.entries()))
+      });
 
       const json = await res.json();
 
@@ -548,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function(){
         form.reset();
         if (token) token.value = "";
         if (status) {
-          status.textContent = "Thank you. Your message has been sent successfully.";
+          status.textContent = "Thank you. Your message has been received.";
           status.style.color = "#166534";
           status.style.fontWeight = "700";
         }

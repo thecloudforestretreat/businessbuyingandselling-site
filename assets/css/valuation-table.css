@@ -1,0 +1,4 @@
+.resource-table th:nth-child(n+2),
+.resource-table td:nth-child(n+2) {
+  text-align: center;
+}
